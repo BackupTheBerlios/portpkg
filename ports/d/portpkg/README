@@ -12,20 +12,21 @@ About The Portpkg Project
    uploading them onto our server which commits them into an open directory.
    Our Crew will later merge them into the ports tree.
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
 To-Do-List
 
      o Double check all ports. Make them 100 % work on Slackware 10.0.
      o Support for CVS or maybe RSYNC, SVN in sources.
-     o Fakeroot? Building packages as user.
      o Cooperation with slackpkg (or slapt-get/swaret) for dependency
        resolution of Slackware packages?
-     o Ignore for single ports
+     o ignore for single ports
+     o Integrate pp-sync-bin and pp-sync-src to the CVS repository
      o Feature freeze, then beta-status, documentation, maybe translation.
 
    Already done:
 
+     o Fakeroot: Building packages as user.
      o Data integrity checking (half done: md5sums)
      o Lazy upgrading: don't upgrade any dependencies just to install a
        library that doesn't need that.
@@ -45,7 +46,7 @@ To-Do-List
        pasture/, which has to be excluded in exclude.local by users of
        current-systems.
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
 Contribute / Jobs
 
@@ -80,7 +81,7 @@ Contribute / Jobs
      o Maintainers who are interested in taking over a few of my (Tom) ports
      o Is someone interested in hosting binary packages?
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
 Known Bugs
 
@@ -97,12 +98,25 @@ Known Bugs
            * SlackBuilds look for .gz while sources has .bz2 or vice-versa.
            * Incomplete requirements-list, portpkg stops.
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
 Contact
 
    As always, feel free to contact me: Tom <topf at users dot berlios dot
    de>.
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
+
+References
+
+   Visible links
+   . file:///usr/ports/d/portpkg/doc.php?page=links/TodoBugsAbout
+   . http://portpkg.berlios.de/
+   . http://portpkg.berlios.de/
+   . file:///usr/ports/d/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/d/portpkg/doc.php?page=MaintainerGuide
+   . http://portpkg.berlios.de/
+   . file:///usr/ports/d/portpkg/doc.php?page=edit/TodoBugsAbout
+   . file:///usr/ports/d/portpkg/doc.php?page=links/TodoBugsAbout
+   . file:///usr/ports/d/portpkg/doc.php?page=info/TodoBugsAbout

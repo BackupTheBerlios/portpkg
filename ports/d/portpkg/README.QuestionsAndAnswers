@@ -3,7 +3,7 @@ QuestionsAndAnswers
    Note: This is a Wiki: you can add your questions by clicking EditThisPage
    below.
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
   My /tmp is being bloated, why and how to prevent?
 
@@ -36,6 +36,22 @@ QuestionsAndAnswers
    your ports tree, this script is able to import about 90 % of the original
    SlackBuild scripts as ports. Use them as templates. See UserGuide.
 
+   But generally, there's no solution for hardware-optimised packages. We
+   provide the possibility to build packages for x86_64 and s390, but x86
+   code has normal -march=i486 -mcpu=i686 -O2 cflags.
+
+  Does it work with installpkg and removepkg?
+
+   Yes, it does. After building the package, portpkg calls upgradepkg
+   --reinstall <pkg> which replaces your new packge with its older version,
+   if there's one installed, otherwise it acts like a installpkg <pkg>. As
+   any Slackware packages, you can remove it with removepkg <pkg>.
+
+  There are so few mirror list files and none of them fits my needs. What to do?
+
+   You can use Portpkg without mirrors. You can add your own preferred mirror
+   sites to mirrors.local.
+
   How is Portpkg different from other attempts to do the same, how is Portpkg
   different from other Slackware tools?
 
@@ -47,7 +63,16 @@ QuestionsAndAnswers
    straight on with "ort", just to find its climax with another "p", and ends
    quickly but sudden with "kg".
 
-  How to cool down a Doener?
+   --------------------------------------------------------------------------
 
-   ---------------------------------------------------------------------------
 
+References
+
+   Visible links
+   . file:///usr/ports/d/portpkg/doc.php?page=links/QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=EditThisPage
+   . file:///usr/ports/d/portpkg/doc.php?page=Links
+   . file:///usr/ports/d/portpkg/doc.php?page=UserGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=edit/QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=links/QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=info/QuestionsAndAnswers

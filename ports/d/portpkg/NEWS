@@ -1,5 +1,19 @@
 News
 
+  02/02/2005
+
+   Portpkg
+           * Release 0.34.
+           * Integrated fakeroot into the build process which should do the
+             whole thing much more secure. SlackBuilds will now be started by
+             user account 'nobody' with fakeroot, so any SlackBuild trying to
+             write to anywhere except $PKG/ will fail. If you find ports not
+             working with fakeroot make a touch no-fakeroot in the ports
+             directory and leave me a messaege about that. I will try to fix
+             all that ports.
+           * Disabled support for slackpkg since that doesn't work at all
+             (the interaction, not slackpkg).
+
   01/23/2005
 
    Portpkg
@@ -13,7 +27,7 @@ News
   01/10/2005
 
    Portpkg
-           * Release 0.32, code name "Hafenordnung fuer Schlackstoffe".
+           * Release 0.32, code name "Hafenordnung für Schlackstoffe".
 
    Ports
            * Ports that are needed by Slackware-10.0 systems only are moved
@@ -124,5 +138,29 @@ News
            * Added Xfce-4.1.99 to testing/. A cd /usr/ports/testing; portpkg
              *xf* should do it.
 
-   ---------------------------------------------------------------------------
+   --------------------------------------------------------------------------
 
+
+References
+
+   Visible links
+   . file:///usr/ports/d/portpkg/doc.php?page=links/FrontPage
+   . file:///usr/ports/d/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/d/portpkg/doc.php?page=UserGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=MaintainerGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=PortpkgGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=AutoportGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=Screenshots
+   . file:///usr/ports/d/portpkg/doc.php?page=TodoBugsAbout
+   . file:///usr/ports/d/portpkg/doc.php?page=QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=Links
+   . http://developer.berlios.de/project/showfiles.php?group_id=2486
+   . http://developer.berlios.de/forum/?group_id=2486
+   . http://developer.berlios.de/projects/portpkg
+   . http://portpkg.berlios.de/daily.log
+   . http://www.slackforum.de/forum/index.php?t=msg&th=1344
+   . file:///usr/ports/d/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/d/portpkg/doc.php?page=MaintainerGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=edit/FrontPage
+   . file:///usr/ports/d/portpkg/doc.php?page=links/FrontPage
+   . file:///usr/ports/d/portpkg/doc.php?page=info/FrontPage

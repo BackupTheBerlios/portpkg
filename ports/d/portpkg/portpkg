@@ -47,10 +47,10 @@ rebuild=false
 output=/dev/null
 
 # global variables
-declare ignore mirrors exclude #prefer
+declare ignore mirrors exclude
 declare package name group
 declare script description requires size u_size sources pkg_file
-declare maintain slot_in pseudo
+declare maintain slot_in pseudo no_fakeroot
 
 # converters
 pkg2name() { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -95,9 +95,13 @@ get()
     done <$t/mirrors
   fi
   debug "get(): \$url=$url"
-  if wget -c -O $dest.part $url >$output 2>&1; then
+  local log=/tmp/wget-`basename $dest`.log
+  rm -rf $log || die
+  $VERBOSE && log=/dev/stdout
+  if wget -c -O $dest.part $url >$log 2>&1; then
     mv $dest.part $dest
   else
+    $VERBOSE || tail $log
     error "Download failed!"
   fi
 }
@@ -113,8 +117,7 @@ regex() # >regex_list
         echo -n " -e \(^\|\/\)$arg";;
       *)
         # (g_)names and (g_)packages
-        echo -n " -e \(^\|\/\)$arg-[^-]*-[^-]*-[^-]*$"
-        echo -n " -e \(^\|\/\)$arg$";;
+        echo -n " -e \(^\|\/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
   done
   [ "$#" == "0" ] && echo "-e ^$"
@@ -144,12 +147,12 @@ ls_locations()
   find $PRT_DIR/ -follow -mindepth 3 -name "*SlackBuild" \
   | xargs egrep -sH "^VERSION=|^ARCH=|^BUILD=" \
   | tr "\n" " " | sed -r \
-  -e "s,/[^/]*SlackBuild:VERSION=,-,g" \
-  -e "s, [^ ]*:ARCH=,-,g" \
-  -e "s, [^ ]*:BUILD=,-,g" \
-  -e "s,\\$\{ARCH:[-=][a-z0-9_]*},$ARCH,g" \
-  -e "s,\\$\{[A-Z]*:[-=]([^}]*)},\1,g" \
-  | tr " " "\n" \
+  "s,/[^/]*SlackBuild:VERSION=,-,g;
+  s, [^ ]*:ARCH=,-,g;
+  s, [^ ]*:BUILD=,-,g;
+  s,\\$\{ARCH:[-=][a-z0-9_]*},$ARCH,g;
+  s,\\$\{[A-Z]*:[-=]([^}]*)},\1,g;
+  s, ,\n,g" \
   | sort \
   | tee $LOC_CACHE 2>/dev/null
 # fix me: preset $BUILD and $VERSION is not supported, only reset!
@@ -170,7 +173,7 @@ ls_diff() # >list
 #    grep -m 1 `regex $name` $t/avail >>$t/avail.check
 #    grep `regex $name` $t/inst >>$t/inst.check
     grep -m 1 "^$name-[^-]*-[^-]*-[^-]*$" $t/avail >>$t/avail.check
-   grep "^$name-[^-]*-[^-]*-[^-]*$" $t/inst >>$t/inst.check
+    grep "^$name-[^-]*-[^-]*-[^-]*$" $t/inst >>$t/inst.check
   done <$t/check.names
   fgrep -vxf $t/inst.check $t/avail.check
   debug "ls_diff(): finished"
@@ -181,7 +184,6 @@ get_info()
 {
   debug "get_info(): starting: $@"
   # if there are more than one, take the first
-# fix me: why 2>/dev/null?
   local loc=`ls_locations | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
   # maybe an exluded explicitly?
   [ "$loc" ] || case $1 in */*)
@@ -224,6 +226,9 @@ get_info()
   # pseudo-port?
   pseudo=false
   [ -f $path/pseudo ] && pseudo=true
+  # no fakeroot?
+  no_fakeroot=false
+  [ -f $path/no-fakeroot ] && no_fakeroot=true
   debug "get_info(): finished: $@"
   return 0
 }
@@ -237,7 +242,6 @@ check_reqs()
   debug "check_reqs(): starting: $package"
   # remember that for a refresh later
   local gpkg=$group/$package
-#  $strict && debug "check_reqs(): in strict mode"
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   debug "check_reqs(): $name requires "$requires
   local req
@@ -249,7 +253,6 @@ check_reqs()
     if [ "$inst_pkg" ]; then
       debug "check_reqs(): $req is installed"
       # if not in strict mode then it's sufficient
-#      $strict || continue
       $LAZY_CHECKS && continue
     fi
     # anyway, is there an available port?
@@ -259,33 +262,32 @@ check_reqs()
       is_inst $avail_pkg && continue
       debug "check_reqs(): call: add_pkg $avail_pkg"
       if ! add_pkg $avail_pkg; then
-        error "$avail_pkg is broken! Stopping."
+        error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | cut -d / -f 2`."
         return 1
       fi
       # after that add_pkg we have to refresh
       get_info $gpkg
     elif ! [ "$inst_pkg" ]; then
-      if [ -x /usr/sbin/slackpkg ]; then
-        # $req is not installed and not available, but we have slackpkg
-        if $DRY_RUN; then
-          stanza "Resolving $req with slackpkg..."
-        else
-          su -c "echo | slackpkg install $req"
-          if ! [ "`ls_inst | grep -m 1 $(regex $req)`" ]; then
-            error "Unable to resolve $req (also with slackpkg)! Stopping."
-            return 1
-          fi
-        fi
-        debug "check_reqs(): $req resolved by slackpkg"
-      else
+#      if [ -x /usr/sbin/slackpkg ]; then
+#        # $req is not installed and not available, but we have slackpkg
+#        if $DRY_RUN; then
+#          stanza "Resolving $req with slackpkg..."
+#        else
+#          su -c "echo | slackpkg install $req"
+#          if ! [ "`ls_inst | grep -m 1 $(regex $req)`" ]; then
+#            error "Unable to resolve $req (also with slackpkg)! Stopping."
+#            return 1
+#          fi
+#        fi
+#        debug "check_reqs(): $req resolved by slackpkg"
+#      else
         error "Cannot find required package $req! Stopping."
-      fi
+#      fi
     fi
   done
   debug "check_reqs(): finished: $package"
   return 0
 }
-
 
 # build package
 build_pkg()
@@ -293,17 +295,21 @@ build_pkg()
   local t=`mktemp -d`
   local path=`dirname $script`
   stanza "Building $package:"
-  $maintain && warn "Maintainer mode: File 'requires' will be modified!"
-  $maintain && $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
+  if $maintain; then
+    warn "Maintainer mode: File 'requires' will be modified!"
+    $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
+  fi
   # prepare build directory in /tmp
-  mkdir -p $t/script/$name
-  cd $t/script/$name/
+  rm -rf /tmp/script-$name
+  mkdir -p /tmp/script-$name/$name
+  chmod -R 755 /tmp/script-$name
+  cd /tmp/script-$name/$name/
   cp -a $path/* .
   # download the source files
   local src
   for src in $sources; do
     # if the source is a cgi- or php-script, the file name can be
-    # written behind a % by the maintainer
+    # written behind a % in sources
     local srcname=`basename "$src" | cut -d % -f 2`
     local src=`echo "$src" | cut -d % -f 1`
     if [ -f $SRC_DIR/$srcname ]; then
@@ -316,31 +322,33 @@ build_pkg()
       # pseudo ports: don't cache sources
       $pseudo && mv $SRC_DIR/$srcname . || ln -s $SRC_DIR/$srcname .
     fi
-    # md5sums
-    local md5sum=`grep -s " $srcname$" $path/md5sums`
-    if [ "$md5sum" ] && ! echo "$md5sum" | md5sum --check >$t/md5sum; then
-      cat $t/md5sum
-      error "Integrity checking failed!"
-      return 1
-    fi
   done
-#  # check any other file
-#  if [ -f $path/md5sum ] && ! md5sum --check $path/md5sums >$t/md5sum; then
-#    cat $t/md5sum
-#    error "Integrity checking failed!"
-#    return 1
-#  fi
+  # check md5sums
+  if ! $maintain && ! $DRY_RUN && ! md5sum --check md5sums >$t/md5sum 2>&1; then
+    grep FAILED $t/md5sum | sed -r "s,(.*): FAILED$,  --> MD5SUM mismatch: \1,"
+    error "Integrity checking failed!"
+    return 1
+  fi
   $download_only && return 0
   # build package
-  row "Executing $script"
   $DRY_RUN && return 0
-# fix me: chmod 1777 /tmp is a hack-around
-  su -c "rm -rf /tmp/buildlog-$name
-         rm -rf /tmp/$package.tgz
-         export ARCH=$ARCH
-         sh $script 2>&1 | tee /tmp/buildlog-$name >$output
-         chmod 1777 /tmp" || return 1
-  # success?
+  rm -rf /tmp/buildlog-$name
+  rm -rf /tmp/$package.tgz
+  export ARCH
+  if ! $no_fakeroot && [ -x /usr/bin/fakeroot ]; then
+    # run fakerooted SlackBuild as nobody
+    row "Executing $script (fakerooted as nobody)"
+    su nobody -c "CCACHE_DIR=/tmp/ccache-nobody PATH=\$PATH:/sbin \
+      fakeroot sh $script 2>&1 | tee /tmp/buildlog-$name >$output" || return 1
+  else
+    $no_fakeroot && warn "Fakeroot disabled for this port!" \
+    || warn "Please install fakeroot as soon as possible!"
+    row "Executing $script"
+    sh $script 2>&1 | tee /tmp/buildlog-$name >$output
+# fix me: chmod 1777 /tmp is a hack-around for some faulty install scripts
+    chmod 1777 /tmp
+  fi
+  # success (this is the most promising test to ensure it worked)?
   if ! [ -f /tmp/$package.tgz ]; then
     $VERBOSE || tail /tmp/buildlog-$name
     error "Compilation failed (see /tmp/buildlog-$name)!"
@@ -353,18 +361,16 @@ build_pkg()
     rm -rf $path/PORT_IS_BROKEN
     # write a file list of the package (remove creation time)
     row "Writing footprint"
-    tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }'\
+    tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
     | sort +3 >$path/footprint
     # write md5sum list
-    [ -f $path/sources ] && row "Writing md5sums (assuming these files are integer!)"
-#    find $path/ -type f | grep -ve md5sums -e arbitrary -e /CVS/ \
-#    | sed "s,^$path/,," | sort | xargs -r md5sum >$path/md5sums
-    for src in $sources; do
-      local srcname=`basename "$src" | cut -d % -f 2`
-      md5sum $srcname
-    done >$path/md5sums
-# later:
-#    cat $path/md5sums | gpg --clearsign >$path/md5sums
+    row "Writing md5sums (assuming these files are integer!)"
+    find $path/ -type f | grep -ve md5sums -e arbitrary -e /CVS/ \
+    -e footprint | sed "s,^$path/,," | sort | xargs -r md5sum >$path/md5sums
+#    if [ -d ~/.gnupg ]; then
+#      row "Signing md5sums"
+#      cat $path/md5sums | gpg --clearsign >$path/md5sums
+#    fi
     [ -s $path/md5sums ]  || rm $path/md5sums
     # is there a package tree?
     if [ -d /tmp/package-$name ]; then
@@ -404,14 +410,17 @@ build_pkg()
       diff -u $t/old_req $t/bin_req | grep ^[-][^-] | cut -c 2- >$path/arbitrary
       [ -s $path/arbitrary ] && warn "Arbitrary requirements: "`cat $path/arbitrary` \
       || rm -f $path/arbitrary
-      # now remove that directory
-      rm -r /tmp/package-$name
     fi
   fi
   row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group
-  # actually make a copy because portpkg could be run as user
-  cp /tmp/$package.tgz $PKG_DIR/$group/
+  mv /tmp/$package.tgz $PKG_DIR/$group/
+  row "Cleaning up /tmp"
+  rm -rf /tmp/script-$name
+  rm -rf /tmp/package-$name
+#  rm -f /tmp/buildlog-$name
+#  rm -f /tmp/wgetlog-*
+  cd /tmp
 }
 
 # really (re)install/upgrade current port
@@ -421,11 +430,15 @@ add_pkg() # tgz
   # track argument
   echo $1 >>$ADD_SUM
   get_info $1 || return 1
-  # remove arg and track as started
+  # ok, remove arg
   sed -i "\,^$1$,d" $ADD_SUM
+  # if it is already tracked as started, it is either broken or a circular
+  # dependency and should fail now
+  fgrep -sqx "$group/$package" $ADD_SUM.started && return 1
+  # track as started
   echo $group/$package >>$ADD_SUM.started
   # skip if we already did that (maybe because of a dependency)
-  fgrep -sqx "$group/$package" $ADD_SUM.finished && continue
+  fgrep -sqx "$group/$package" $ADD_SUM.finished && return 1
   # requirements check
   check_reqs || return 1
   # package file found in cache? (first in its group, then other places)
@@ -433,7 +446,7 @@ add_pkg() # tgz
     build_pkg || return 1
     pkg_file=$PKG_DIR/$group/$package.tgz
   elif $download_only; then
-    stanza "Already built. No need to download source files."
+    stanza "Already built. No need to download source files. Skipping."
   fi
   # track as finished
   echo $group/$package >>$ADD_SUM.finished
@@ -472,6 +485,7 @@ add_pkg() # tgz
 do_add() # pkgex-list
 {
   debug "do_add(): starting: $@"
+  is_root || die
   has_args $@ || die
   has_ports || die
   $NO_REQS && warn "Dependency resolving disabled!"
@@ -483,14 +497,16 @@ do_add() # pkgex-list
     local ret=$?
   done
   # summary
-  if $VERBOSE && [ `cat $ADD_SUM* | wc -l` -gt "2" ]; then
+  local stats=/tmp/portpkg-summary
+  rm -rf $stats || die
+  if [ `cat $ADD_SUM* | wc -l` -gt "2" ]; then
     stanza "Summary of actions:"
     touch $ADD_SUM.started
     touch $ADD_SUM.finished
     cat $ADD_SUM.finished | xargs -r -l echo "  --> Finished"
     fgrep -vxf $ADD_SUM.finished $ADD_SUM.started | xargs -r -l echo "  --> Failed at"
     cat $ADD_SUM | xargs -r -l echo "  --> Couldn't find"
-  fi
+  fi | tee $stats >$output
   debug "do_add(): finished: $@"
   return $ret
 }
@@ -559,12 +575,13 @@ do_list() # [pkgex-list] >glist
   local t=`mktemp -d`
   has_ports || die
   ls_locations | loc2gpkg >$t/pipe
-#| grep -v $exclude >$t/pipe
   # grep arguments
   if [ "$*" ]; then
+    debug "do_list(): start $@"
+    debug "do_list(): regex `regex $@`"
     grep `regex $@` $t/pipe 2>/dev/null
   else
-    cat $t/pipe
+    cat $t/pipe 2>/dev/null
   fi
 }
 
@@ -678,7 +695,6 @@ rebuild,download,verbose,dryrun,noreqs,noexclude,debug,lazy"
   $VERBOSE && output=/dev/stdout
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
-#  debug "init(): prefer=\"$prefer\""
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
@@ -715,31 +731,13 @@ init()
   has_pkg coreutils-5.2 || die
   # check for obsolete things
   check_obsolete
-#  if ! [ -f $PRT_DIR/mirrors ] && ! [ -L $PRT_DIR/mirrors ]; then
-#    warn "No mirrors specified!"
-#    if [ -f /etc/slackpkg/mirrors ]; then
-#      local tld=`grep -v ^# /etc/slackpkg/mirrors | cut -s -d / -f 3 | rev \
-#      | cut -d . -f 1 | rev`
-#      warn "Trying slackpkg mirror: $tld"
-#      [ -f $PRT_DIR/mirrors.$tld ] && ln -s mirrors.$tld $PRT_DIR/mirrors \
-#      || warn "Not available."
-#    fi
-#  fi
   # local configuration
   [ -f $PRT_DIR/local.conf ] && source $PRT_DIR/local.conf
   mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{.local,}`
-#  prefer=`grep -vshe ^# -e ^$ $PRT_DIR/prefer{.local,}`
   ignore=`regex $ignore`
   exclude=`regex $exclude`
-#  prefer=`regex $prefer`
-#  # ignore list: translate to names, add exclude list and remove items that
-#  # are also in non-excluded lists!
-#  local t=`mktemp -d`
-#  ls_locations | loc2gpkg >$t/avail
-#  grep -v $exclude $t/avail | pkg2name | cut -d / -f 2 >$t/non-excl
-#  ignore=`grep $exclude $ignore $t/avail | pkg2name | cut -d / -f 2 | fgrep -vxf $t/non-excl | sort -u`
   # check default arch
   ARCH=i486
   ls $ADM_DIR/packages/glibc-* | grep -sqe -s390- && ARCH=s390

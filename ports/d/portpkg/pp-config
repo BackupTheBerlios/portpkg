@@ -1,73 +1,169 @@
 #!/bin/sh
+#BLURB="Configure Portpkg"
 
 source `which portpkg` || exit 1
 t=`mktemp -d`
 is_root || die
-back="Pp-config -- Setup for Portpkg"
 
-dialog --backtitle "$back" --title "DISTRIBUTION VERSION" \
---inputbox "What distribution target do you focus? \
-Possible answers are '10.0' or 'current'. If unsure enter '10.0'." 0 0 \
-"$DIST_VER" 2>$t/dist-ver || exit
-DIST_VER=`cat $t/dist-ver`
-sed -i "/^DIST_VER=/d" $PRT_DIR/local.conf
-if [ "$DIST_VER" ]; then
-  echo "DIST_VER=\"$DIST_VER\"" >>$PRT_DIR/local.conf
-  if [ $DIST_VER == current ]; then
-    if dialog --backtitle "$back" --title "EXCLUDE PASTURE/" \
---yesno "You are using 'current'. It is recommended to exclude ports of the \
-group pasture/. Shall I add 'pasture/' to your exclude list \
-($PRT_DIR/exclude.local)?" 0 0; then
-      # add pasture/ to the list of excluded ports
-      sed -i "/^pasture\/$/d" $PRT_DIR/exclude.local
-      echo "pasture/" >>$PRT_DIR/exclude.local
+dist()
+{
+  dialog --title "DISTRIBUTION VERSION" \
+    --inputbox "What distribution do you focus? Possible answers are '10.0' or 'current'.
+If unsure enter '10.0'." 0 0 \
+    "$DIST_VER" 2>$t/dist-ver || exit
+  DIST_VER=`cat $t/dist-ver`
+  sed -i "/^DIST_VER=/d" $PRT_DIR/local.conf
+  if [ "$DIST_VER" ]; then
+    echo "DIST_VER=\"$DIST_VER\"" >>$PRT_DIR/local.conf
+    if [ $DIST_VER == current ]; then
+      if dialog --title "EXCLUDE PASTURE/" \
+        --yesno "You are using 'current'. It is recommended to exclude ports of the group pasture/. Shall I add 'pasture/' to your exclude list ($PRT_DIR/exclude.local)?
+If unsure answer 'yes'." 0 0; then
+        # add pasture/ to the list of excluded ports
+        sed -i "/^pasture\/$/d" $PRT_DIR/exclude.local
+        echo "pasture/" >>$PRT_DIR/exclude.local
+      fi
     fi
   fi
-fi
+}
 
-dialog --backtitle "$back" --title "YOUR TAG" \
---inputbox "If you plan to write ports, what tag would you like to use? Only \
-lower case letters allowed (e.g. 'mich'). Leave this empty if unsure or you \
-don't plan to write ports." 0 0 "$MY_TAG" 2>$t/my-tag || exit
-MY_TAG=`cat $t/my-tag | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
-sed -i "/^MY_TAG=/d" $PRT_DIR/local.conf
-sed -i "/^MY_EMAIL=/d" $PRT_DIR/local.conf
-sed -i "/^MY_REALNAME=/d" $PRT_DIR/local.conf
-if [ "$MY_TAG" ]; then
-  echo "MY_TAG=\"$MY_TAG\"" >>$PRT_DIR/local.conf
-  dialog --backtitle "$back" --title "YOUR MAIL ADDRESS" \
-  --inputbox "If you plan to contrib your ports to the Portpkg Project, you \
-need to enter your mail address. Leave this empty if you don't plan to \
-contribute ports." 0 0 "$MY_EMAIL" 2>$t/my-email || exit
-  MY_EMAIL=`cat $t/my-email`
-  if [ "$MY_EMAIL" ]; then
-    echo "MY_EMAIL=\"$MY_EMAIL\"" >>$PRT_DIR/local.conf
-    dialog --backtitle "$back" --title "YOUR REAL NAME" \
-    --inputbox "Please enter your real name." 0 0 "$MY_REALNAME" \
-    2>$t/my-realname || exit
-    MY_REALNAME=`cat $t/my-realname`
-    echo "MY_REALNAME=\"$MY_REALNAME\"" >>$PRT_DIR/local.conf
+tag()
+{
+  dialog --title "YOUR TAG" \
+    --inputbox "If you plan to write ports, what tag would you like to use? Only lower case letters allowed (e.g. 'mich').
+Leave this empty if unsure or you don't plan to write ports." 0 0 "$MY_TAG" 2>$t/my-tag || exit
+  MY_TAG=`cat $t/my-tag | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
+  sed -i "/^MY_TAG=/d" $PRT_DIR/local.conf
+  sed -i "/^MY_EMAIL=/d" $PRT_DIR/local.conf
+  sed -i "/^MY_REALNAME=/d" $PRT_DIR/local.conf
+  if [ "$MY_TAG" ]; then
+    echo "MY_TAG=\"$MY_TAG\"" >>$PRT_DIR/local.conf
+    dialog --title "YOUR MAIL ADDRESS" \
+      --inputbox "If you plan to contrib your ports to the Portpkg Project, you need to enter your mail address.
+Leave this empty if you don't plan to contribute ports." 0 0 "$MY_EMAIL" 2>$t/my-email || exit
+    MY_EMAIL=`cat $t/my-email`
+    if [ "$MY_EMAIL" ]; then
+      echo "MY_EMAIL=\"$MY_EMAIL\"" >>$PRT_DIR/local.conf
+      dialog --title "YOUR REAL NAME" \
+        --inputbox "Please enter your real name." 0 0 "$MY_REALNAME" \
+      2>$t/my-realname || exit
+      MY_REALNAME=`cat $t/my-realname`
+      echo "MY_REALNAME=\"$MY_REALNAME\"" >>$PRT_DIR/local.conf
+    fi
   fi
-fi
+}
 
-sed -i "/^VERBOSE=/d" $PRT_DIR/local.conf
-if dialog --backtitle "$back" --title "VERBOSE MODE" --defaultno \
---yesno "Do you want to have always verbose mode? You will see more output. If \
-unsure answer 'no'." 0 0; then
-  echo "VERBOSE=true" >>$PRT_DIR/local.conf
-fi
-
-sed -i "/^NO_REQS=/d" $PRT_DIR/local.conf
-sed -i "/^LAZY_CHECKS=/d" $PRT_DIR/local.conf
-if dialog --backtitle "$back" --title "DEPENDENCY RESOLUTION" \
---yesno "Do you want to have dependency resolution always enabled? If unsure \
-answer 'yes'." 0 0; then
-  if dialog --backtitle "$back" --title "LAZY UPGRADING" --defaultno \
-  --yesno "Do you want to have lazy upgrading always enabled? Dependencies will \
-  normally being upgraded if possible. Lazy upgrading cuts that off. If unsure \
-  answer 'no'." 0 0; then
-    echo "LAZY_CHECKS=true" >>$PRT_DIR/local.conf
+output()
+{
+  sed -i "/^VERBOSE=/d" $PRT_DIR/local.conf
+  if dialog --title "VERBOSE MODE" --defaultno \
+    --yesno "Do you want to have always verbose mode? You will see more output.
+If unsure answer 'no'." 0 0; then
+    echo "VERBOSE=true" >>$PRT_DIR/local.conf
   fi
-else
-  echo "NO_REQS=true" >>$PRT_DIR/local.conf
-fi
+}
+
+dependencies()
+{
+  sed -i "/^NO_REQS=/d" $PRT_DIR/local.conf
+  sed -i "/^LAZY_CHECKS=/d" $PRT_DIR/local.conf
+  if dialog --title "DEPENDENCY RESOLUTION" \
+    --yesno "Do you want to have dependency resolution always enabled?
+If unsure answer 'yes'." 0 0; then
+    if dialog --title "LAZY UPGRADING" --defaultno \
+      --yesno "Do you want to have lazy upgrading always enabled? Dependencies will normally being upgraded if possible. Lazy upgrading cuts that off, but can cause ports fail to build.
+If unsure answer 'no'." 0 0; then
+      echo "LAZY_CHECKS=true" >>$PRT_DIR/local.conf
+    fi
+  else
+    echo "NO_REQS=true" >>$PRT_DIR/local.conf
+  fi
+}
+
+resources()
+{
+  use_bin=false
+  use_src=false
+  dialog --title "USING BINARY PACKAGES" --defaultno \
+    --yesno "Do you want to use Slackware binary packages with portpkg?
+This will enlarge your base of available ports and resolves dependencies to Slackware packages better. You will be able to install Slackware binary packages.
+If unsure answer 'no'." 0 0 && use_bin=true
+  dialog --title "USING SLACKWARE SOURCES" --defaultno \
+    --yesno "Do you want to use Slackware's source scripts with portpkg?
+This will enlarge your base of available ports and resolves dependencies to Slackware packages better. You will be able to port Slackware package by its source code scripts.
+Nevertheless this function is quite unstable.
+If unsure answer 'no'." 0 0 && use_src=true
+  $use_bin || $use_src || return
+  ports="Ports $PRT_DIR"
+  bins="Binaries ${BIN_PRT_DIR:-$PRT_DIR/z/bin}"
+  srcs="Source ${SRC_PRT_DIR:-$PRT_DIR/z/src}"
+  local rc=3
+  while [ $rc == 3 ]; do
+    # assume the ports tree comes after its child directory xxx/a
+    ports="$ports/mmm"
+    list=`echo -e "$ports\n$bins\n$srcs" | sort +1`
+    ports=`echo $ports | sed "s,/mmm$,,"`
+    list=`echo "$list" | sed "s,/mmm$,,"`
+    echo "$list"
+    dialog --title "RESOURCE PREFERENCES" \
+      --extra-label "Change" --inputmenu "Which resources do you prefer?
+You can change the paths of these resources to adjust the order of available ports. It is recommended to use /usr/ports/0/... and /usr/ports/z/...
+If unsure press OK." 20 60 9 \
+      $list 2>$t/out
+    rc=$?
+    out=`cat $t/out`
+    if [ $rc == 3 ]; then
+      case $out in
+        RENAMED\ P*)
+          ports=`echo $out | cut -d " " -f 2-`;;
+        RENAMED\ B*)
+          bins=`echo $out | cut -d " " -f 2-`;;
+        RENAMED\ S*)
+          srcs=`echo $out | cut -d " " -f 2-`;;
+      esac
+    fi
+  done
+  sed -i "/^BIN_PRT_DIR=/d" $PRT_DIR/local.conf
+  sed -i "/^SRC_PRT_DIR=/d" $PRT_DIR/local.conf
+  BIN_PRT_DIR=`echo $bins | cut -d " " -f 2-`
+  SRC_PRT_DIR=`echo $srcs | cut -d " " -f 2-`
+  $use_bin && echo "BIN_PRT_DIR=$BIN_PRT_DIR" >>$PRT_DIR/local.conf
+  $use_src && echo "SRC_PRT_DIR=$SRC_PRT_DIR" >>$PRT_DIR/local.conf
+}
+
+mirrors()
+{
+  echo -n "dialog --title \"MIRRORS\" --menu \
+\"Which of the currently available mirror files do you want to use?\" 0 0 0 " >$t/menu
+  find $PRT_DIR/mirrors.* | xargs basename | grep -v mirrors.local \
+  | xargs -i echo "{} \"Mirror list\" \\" >>$t/menu
+  echo "none \"Use main server URLs\"" >>$t/menu
+  . $t/menu 2>$t/out
+  out=`cat $t/out`
+  rm -rf $PRT_DIR/mirrors
+  if [ "$out" != "none" ]; then
+    ln -s $out $PRT_DIR/mirrors
+  fi
+}
+
+#rc=0
+#while [ $rc == 0 ]; do 
+#  dialog --backtitle "$back" --title "PP-CONFIG MAIN MENU" \
+#--cancel-label "Quit" --menu "This is a configuration tool for Portpkg.
+#Select what you want to configure:" 0 0 0 \
+#  Target #"Set distribution target" \
+#  Resources #"Set wich resources to use" \
+#  Tagging #"Set ports tag string" \
+#  Output #"Set output level" \
+#  Mirrors #"Set mirrors for downloads" \
+#  Dependencies #"Set dependency handling" 2>$t/sub
+#  rc=$?
+#  sub=`cat $t/sub`
+#  [ $rc == 0 ] && $sub
+#done
+
+dist
+tag
+output
+mirrors
+dependencies

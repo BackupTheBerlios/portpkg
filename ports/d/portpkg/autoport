@@ -346,9 +346,13 @@ case $format in
 esac
 sed -i "s,^$srcdir_prefix/,," $t/footprint
 
+use_inst_destdir=false
+use_fix_man=false
+use_no_mk=false
 # configure/make
 if check "setup.py" "^setup\.py$" $t/footprint; then
   # setup.py seems to be first choice...
+  use_no_mk=true
   snip cfg_autogen $script
   snip cfg_configure $script
   snip cfg_perl $script
@@ -366,6 +370,10 @@ else
   snip inst_python $script
   if check "Makefile.PL" "^Makefile.PL$" $t/footprint; then
     # ...but Makefile.PL isn't bad either...
+#    # tell about name scheme? ("perl-xxx")
+#    case $name in perl-*) ;; *) error "Name should be perl-$name" esac
+    use_inst_destdir=true
+    use_fix_man=true
     snip cfg_autogen $script
     snip cfg_configure $script
     # use cfg_perl
@@ -416,7 +424,7 @@ fi
 
 # installation prefix
 if check "Makefile" "^Makefile" $t/footprint; then
-  if check "DESTDIR" "\<DESTDIR\>" "$t/src/$srcdir_prefix/Makefile*"; then
+  if $use_inst_destdir || check "DESTDIR" "\<DESTDIR\>" "$t/src/$srcdir_prefix/Makefile*"; then
     # use inst_destdir
     snip inst_PREFIX $script
     snip inst_prefix $script
@@ -450,6 +458,8 @@ if check "Makefile" "^Makefile" $t/footprint; then
       fi
     fi
   fi
+elif $use_no_mk; then
+  :
 else
   error "Don't know how to install this package (no Makefile)."
   failed=true
@@ -489,8 +499,8 @@ else
   fi
 fi
 
-#check "wrong doc paths" "/share/doc\>" "$t/src/$srcdir_prefix/Makefile*" || snip pt_doc $script
-#check "wrong man paths" "/share/man\>" "$t/src/$srcdir_prefix/Makefile*" || snip pt_man $script
+#check "wrong doc paths" "/share/doc\>" "$t/src/$srcdir_prefix/Makefile*" || snip fix_doc $script
+$use_fix_man || check "wrong man paths" "/share/man\>" "$t/src/$srcdir_prefix/Makefile*" || snip fix_man $script
 ## add mime-installation
 #mime_inst="usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1"
 #if $mime && ! grep -sqx "$mime_inst" $path/doinst.sh; then
@@ -631,8 +641,8 @@ perl Makefile.PL || exit 1 ##cfg_perl
 sed -i "s,/usr/local/etc,$PKG/etc,g" Makefile ##cfg_hard
 sed -i "s,/usr/local/var,$PKG/var,g" Makefile ##cfg_hard
 sed -i "s,/usr/local,$PKG/usr,g" Makefile ##cfg_hard
-#sed -i "s,/share/doc,/doc,g" Makefile ##pt_doc
-#sed -i "s,/share/man,/man,g" Makefile ##pt_man
+#sed -i "s,/share/doc,/doc,g" Makefile ##fix_doc
+sed -i "s,/share/man,/man,g" Makefile ##fix_man
 #---here begins making---
 make || exit 1 ##mk
 make PREFIX=/usr || exit 1 ##mk_PREFIX

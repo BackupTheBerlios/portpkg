@@ -17,34 +17,35 @@ main_menu()
 {
     local t=`mktemp -d`
     please_wait
+    echo -n "dia --title \"LIST OF GROUPS\" --cancel-label \"Quit\" \
+--menu \"These are the available groups. Select the one you want to look \
+into.\" 0 0 0 " >$t/menu # `cat $t/menu`
     do_list | cut -d / -f 1 | sort -u | sed \
-    -e "s,^a$,& System_packages ," \
-    -e "s,^ap$,& Applications ," \
-    -e "s,^d$,& Development_tools ," \
-    -e "s,^e$,& Emacs_editor ," \
-    -e "s,^extra$,& Additional_software ," \
-    -e "s,^f$,& FAQS_and_HOWTOs ," \
-    -e "s,^gnome$,& GNOME_Desktop ," \
-    -e "s,^k$,& Linux_kernel_sources ," \
-    -e "s,^kde$,& KDE_Desktop ," \
-    -e "s,^kdei$,& KDE_I18n_files ," \
-    -e "s,^kernels$,& Kernels ," \
-    -e "s,^l$,& Libraries ," \
-    -e "s,^local$,& Local_ports ," \
-    -e "s,^n$,& Network_utilities ," \
-    -e "s,^patches$,& Security_updates ," \
-    -e "s,^pasture$,& Compatibility_packages ," \
-    -e "s,^rootdisks$,& Boot_programmes ," \
-    -e "s,^t$,& TeX_word_processing ," \
-    -e "s,^tcl$,& Tcl_and_Tk_language ," \
-    -e "s,^testing$,& Unstable_software ," \
-    -e "s,^x$,& X-Window-system ," \
-    -e "s,^xap$,& X-Applications ," \
-    -e "s,^y$,& Games ," \
-    -e "s,^[^ ]*$,& & ," >$t/menu
-#    echo "orphans Any_other_installed_packages" >>$t/menu
-    dia --title "LIST OF GROUPS" --cancel-label "Quit" --menu "These are the \
-available groups. Select the one you want to look into." 0 0 0 `cat $t/menu`
+    -e "s,^a$,& \"System packages\" ," \
+    -e "s,^ap$,& \"Applications\" ," \
+    -e "s,^d$,& \"Development tools\" ," \
+    -e "s,^e$,& \"Emacs editor\" ," \
+    -e "s,^extra$,& \"Additional software\" ," \
+    -e "s,^f$,& \"FAQS and HOWTOs\" ," \
+    -e "s,^gnome$,& \"GNOME Desktop\" ," \
+    -e "s,^k$,& \"Linux kernel sources\" ," \
+    -e "s,^kde$,& \"KDE Desktop\" ," \
+    -e "s,^kdei$,& \"KDE I18n files\" ," \
+    -e "s,^kernels$,& \"Kernels\" ," \
+    -e "s,^l$,& \"Libraries\" ," \
+    -e "s,^local$,& \"Local ports\" ," \
+    -e "s,^n$,& \"Network utilities\" ," \
+    -e "s,^patches$,& \"Security updates\" ," \
+    -e "s,^pasture$,& \"Compatibility packages\" ," \
+    -e "s,^rootdisks$,& \"Boot programmes\" ," \
+    -e "s,^t$,& \"TeX word processing\" ," \
+    -e "s,^tcl$,& \"Tcl and Tk language\" ," \
+    -e "s,^testing$,& \"Unstable software\" ," \
+    -e "s,^x$,& \"X-Window-system\" ," \
+    -e "s,^xap$,& \"X-Applications\" ," \
+    -e "s,^y$,& \"Games\" ," \
+    -e "s,^[^ ]*$,& & ," | tr "\n" " "  >>$t/menu
+    . $t/menu
 }
 
 check_group()
@@ -63,22 +64,25 @@ check_group()
     ls_inst >$t/inst
     count=`cat $t/unames | wc -l`
     i=0
+    echo -n "dia --item-help --separate-output --cancel-label \"Quit\" \
+--title \"LIST OF PORTS IN GROUP `echo $group | tr "a-z" "A-Z"`/\" \
+--checklist \"These are the available ports in group $group/. Installed ports \
+are already selected. You can deselect them to remove or select others to \
+install them.\" 0 0 0 " >$t/menu
     while read name; do
 	loc=`grep -m 1 $(regex $name) $t/locs`
 	pkg=`echo $loc | sed "s,^.*/,,"`
-	desc=`grep -sv ^# $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | tr " " "_"`
-	desc=${desc:-(n/a)}
+	desc=`grep -sv ^# $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2-` #| tr " " "_"`
+	desc=${desc:-}
 	[ $(fgrep -xm 1 $pkg $t/inst) ] \
-	&& echo $name $desc on $pkg >>$t/list \
-	|| echo $name $desc off $pkg >>$t/list
+	&& echo \"$name\" \"$desc\" on \"$pkg\" \\>>$t/list \
+	|| echo \"$name\" \"$desc\" off \"$pkg\" \\>>$t/list
 	((i++))
 	echo $((100*i/count))
     done <$t/unames | dia --gauge "Searching ports..." 0 40
     sort $t/list -o $t/list
-    dia --item-help --separate-output --cancel-label "Quit" --title "LIST OF \
-PORTS IN GROUP `echo $group | tr "a-z" "A-Z"`/" --checklist "These are the \
-available ports in group $group/. Installed ports are already selected. You \
-can deselect them to remove or select others to install them." 0 0 0 `cat $t/list` 2>$t/pos_names
+    cat $t/list >>$t/menu
+    . $t/menu 2>$t/pos_names
     [ $? != 0 ] && return 1
     # Liste vergleichen und (de-)installieren
     fgrep -vxf $t/pos_names $t/unames >$t/neg_names
