@@ -1,6 +1,6 @@
 VERSION=0.5.15
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -24,6 +24,10 @@ cd /tmp || exit 1
 tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
+
+# patch to work with kernel-2.4 again
+sed -i "s,O_RDWR,O_RDONLY,g" src/*
+
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -53,3 +57,5 @@ find $PKG/ -name "*.schemas" -o -name "*.omf" \
 
 cd $PKG || exit 1
 makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+sed -i "s,O_RDWR,O_RDONLY,g" *
+| sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh
