@@ -1,0 +1,13 @@
+--- balsa-2.3.0/images/Makefile.in.orig	2005-02-25 13:03:40.000000000 +0100
++++ balsa-2.3.0/images/Makefile.in	2005-02-25 13:04:03.000000000 +0100
+@@ -570,8 +570,8 @@
+ # installed in $(SUBDIRS) (Gtk+-2.6)
+ install-data-hook:
+ 	if test -n "$(GTK_UPDATE_ICON_CACHE)" ; then                    \
+-		$(GTK_UPDATE_ICON_CACHE) $(BALSA_DATA_PREFIX)/hicolor ; \
+-		$(GTK_UPDATE_ICON_CACHE) $(HICOLOR_ICON_DIR) ;          \
++		$(GTK_UPDATE_ICON_CACHE) $(DESTDIR)$(BALSA_DATA_PREFIX)/hicolor ; \
++		$(GTK_UPDATE_ICON_CACHE) $(DESTDIR)$(HICOLOR_ICON_DIR) ;          \
+ 	fi
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
