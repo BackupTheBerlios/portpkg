@@ -1,11 +1,23 @@
 #
-# This is an additional list of ports that are already part of Slackware current.
-# It is recommended to add these ports to your exclude.local or to make a
-# symlink to this file if you are running Slackware current.
+# EXCLUDE these ports for implicit declarations (upgrades, diffs, dependency
+# resolution etc.)
+# These ports can only be used by explicit naming ("group/name")
 #
-# This list is updated automatically on every Portpkg release. Don't bother
-# if it's empty. :)
+# Note: This file will be overwritten on upgrades, you should add your own
+# exclude-list to exclude.local!
 #
+
+# exclude all testing/ and open/ packages
+
+testing/
+open/
+
+# these packages aren't meant for upgrades
+
+a/aaa_base
+a/aaa_elflibs
+
+# these are already part of Slackware current. (automatic generated list)
 
 gnome/libidl
 l/atk
