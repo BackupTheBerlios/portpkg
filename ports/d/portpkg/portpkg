@@ -498,6 +498,7 @@ do_sync()
     -e "s,^cvs [a-z]*:,  -->," \
     -e "s,^U,  --> Updating," \
     -e "s,^C,  --> Conflict with," \
+    -e "s,^P,  --> Patching," \
     -e "s,^\?,  --> Unknown file," \
     -e "s,^[A-Z\?],  --> &,"
 }
