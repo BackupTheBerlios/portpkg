@@ -8,11 +8,22 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 mkdir -p $PKG/usr/share/mplayer/Skin
 
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
 cd /tmp || exit 1
 tar xjvf $CWD/MPlayer-$VERSION.tar.bz2
 cd MPlayer-$VERSION || exit 1
 bzcat $CWD/mplayer1.0pre5-gtk2-20040730.patch.bz2 | patch -p1 --verbose
 chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
 ./configure --prefix=/usr \
 	    --confdir=/etc \
 	    --enable-gui \
