@@ -1,0 +1,45 @@
+VERSION=cvs
+ARCH=${ARCH:-i486}
+BUILD=1tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
+
+case $ARCH in
+  i386,i486)   SLKCFLAGS="-O2 -march=$ARCH -mcpu=i686";;
+  s390,x86_64) SLKCFLAGS="-O2";;
+esac
+
+cd /tmp || exit 1
+rm -rf $NAME
+cvs -qz9 -d:pserver:anonymous@anoncvs.gnome.org:/cvs/gnome co $NAME || exit 1
+cd $NAME || exit 1
+chown -R root.root .
+./autogen.sh || exit 1
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  --with-ssl \
+  $ARCH-slackware-linux || exit 1
+make || exit 1
+make install DESTDIR=$PKG || exit 1
+cp -a \
+  AUTHORS COPYING ChangeLog* HACKING INSTALL NEWS README TODO TRANSLATABLE_FILES \
+  $PKG/usr/doc/$NAME-$VERSION
+
+cd $PKG || exit 1
+cat $CWD/slack-desc >install/slack-desc
+cat $CWD/doinst.sh >install/doinst.sh
+find -name "*.schemas" -o -name "*.omf" | sed "s,^\./,," | xargs -r -l echo inst >>$PKG/install/doinst.sh
+find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+find -type d | grep /bin$ | xargs -r chown -R root.bin
+find -type f | grep /man/ | xargs -r gzip -9
+find -type f | grep /info/ | xargs -r gzip -9
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
