@@ -1,7 +1,7 @@
 VERSION=2.8.2
 GSV_VER=1.1.1
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -36,6 +36,7 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
+make install || exit 1
 
 cd /tmp || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
