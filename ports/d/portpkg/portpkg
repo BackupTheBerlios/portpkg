@@ -274,7 +274,7 @@ maintainer_mode()
   local t=`mktemp -d`
   row "Going maintainer mode"
   # assume we are in the script dir
-  rm -rf PORT_IS_BROKEN
+#  rm -rf PORT_IS_BROKEN
   rm -rf md5sums
   rm -rf footprint
   # write md5sum list first (don't md5sum footprint)
@@ -411,6 +411,9 @@ build_pkg()
       error "Compilation failed (see $TMP/buildlog-$name)!"
       $maintain && touch PORT_IS_BROKEN
       return 1
+    else
+      # remove this tag in any case
+      rm -rf PORT_IS_BROKEN
     fi
   else
     if ! [ "$pkg_file" ]; then
