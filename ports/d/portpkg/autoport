@@ -277,7 +277,7 @@ case $file in
     echo ".tar.bz2"
     snip targz $script
     snip rpm $script;;
-  *tar.gz)
+  *tar.gz|*.tgz)
     format=targz
     tar tzf $SRC_DIR/$file >$t.footprint \
     || die "Error while unpacking, maybe wrong URL?"

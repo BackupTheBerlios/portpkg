@@ -12,7 +12,7 @@ QuestionsAndAnswers
    built. It is recommended to delete that on every boot (see Filesystem
    Hierarchy Standard in Links):
 
- echo rm -r /tmp/* >>/etc/rc.d/rc.local
+ echo 'rm -r /tmp/*' >>/etc/rc.d/rc.local
 
   I get "Cannot find required package xyz! Stopping." so often... ?!
 
@@ -45,4 +45,3 @@ QuestionsAndAnswers
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Thu Dec 16 23:37:11 2004

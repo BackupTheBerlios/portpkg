@@ -7,7 +7,7 @@ fi
 for doc in FrontPage QuickStart UserGuide MaintainerGuide PortpkgGuide \
 AutoportGuide TodoBugsAbout QuestionsAndAnswers Links; do
   wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
-  elinks -no-numbering -dump $doc.html >README.$doc
+  elinks -no-numbering -dump $doc.html | grep -v "^[ ]*EditThisPage" >README.$doc
   rm $doc.html
 done
 

@@ -7,15 +7,15 @@ QuickStart
    the SlackBuild scripts, is a bit hard to use, or the comfortable way with
    the administration tool portpkg which is recommended.
 
-1. The comfortable way: portpkg
+The Comfortable Way
 
    If you want to have a quick look into what Portpkg does, download the
    latest package here and install it as root with:
 
  # installpkg portpkg-xxx-noarch-1tom.tgz
 
-   Now you can fetch the complete current ports collection from our CVS
-   repository:
+   Now that the administration scripts are installed, you can fetch the
+   complete current ports collection from our CVS repository:
 
  # portpkg --sync
 
@@ -29,7 +29,8 @@ QuickStart
    --> Updating ports/xap/zinf/slack-desc
    --> Updating ports/xap/zinf/sources
 
-   After --sync, you can find out if there's an update for portpkg available:
+   After --sync, you can check whether there's an update for portpkg
+   available:
 
  # portpkg portpkg
 
@@ -52,7 +53,8 @@ QuickStart
  xap/zinf-2.2.5-i486-2tom
 
    To build and install a port to your system, just type in the short name of
-   the port:
+   the port (it is always recommended to use --dryrun first, to see, what
+   would happen):
 
  # portpkg id3lib
 
@@ -65,8 +67,6 @@ QuickStart
  Installing id3lib-3.8.3-i486-2tom...
  PACKAGE DESCRIPTION:
  id3lib: id3lib (id3v1/id3v2 tagging library)
-
-   It is always recommended to use --dryrun first, to see, what would happen.
 
    In doubt you can specify the port with the group and/or the long name to
    define the port more precisely or imply whole groups also, otherwise
@@ -89,7 +89,7 @@ QuickStart
 
    ---------------------------------------------------------------------------
 
-2. Alternative: The puristic way without portpkg
+Alternative: The Puristic Way
 
    "Just the ports, nothing else, please!"
 
@@ -97,10 +97,9 @@ QuickStart
    source/ directory on a Slackware repository. Get the complete tree via
    CVS:
 
- # cvs -z9 -d:pserver:!anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
+ # cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
 
    You should definitely have a look at UserGuide and MaintainerGuide now.
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Thu Dec 16 11:39:39 2004

@@ -9,7 +9,7 @@ AutoportGuide
    portpkg, writing ports is more difficult and you should now what you are
    doing, this is at your own risk!
 
-1. Working with ports
+The Tool Autoport
 
    "Packages as mom does"
 
@@ -103,8 +103,7 @@ AutoportGuide
  Alright, since we have the code, I'll have a look into it:
    --> Checking format... .tar.gz
    --> Checking source-prefix... lame-3.96/
-   --> Checking docs... COPYING ChangeLog HACKING INSTALL
- INSTALL.configure LICENSE README README.WINGTK TODO.
+   --> Checking docs... COPYING ChangeLog HACKING INSTALL INSTALL.configure LICENSE README README.WINGTK TODO.
    --> Checking for setup.py... no
    --> Checking for Makefile.PL... no
    --> Checking for configure... yes
@@ -133,6 +132,7 @@ AutoportGuide
  lame: lame (create mp3 audio files)
  lame:
  lame: LAME is an LGPL MP3 encoder. The Open source development model
+
  lame: allowed to improve its quality and speed since 1999. It is now an
  lame: highly evolved MP3 encoder, with quality and speed able to rival
  lame: state of the art commercial encoders.
@@ -140,32 +140,7 @@ AutoportGuide
  Executing install script for lame...
 
    We hope you plan to contribute your ports to this project, it is a simple
-   task! First you have to make a tarball of your ports (here you will be
-   asked for your mail address and your real name, so we can contact you
-   later):
-
- # cd /usr/ports
- # ./export
-
- What is your real name? M. Ich
- What is your mail address? mich@hier.de
- Continue exporting ports with tag 'mich'? (ctrl-c to quit)
- Found ap/this
- Found n/that
- Copying 2 ports to /tmp/ports-mich
- Removing private files from export: buildlog footprint arbitrary diff maintain CVS...
- Writing info-file (contains mich, mich@hier.de, M. Ich)...
- Creating ports-mich-31022004.tar.bz2...
- Remmoving /tmp/ports-mich...
- Done.
-
-   Now there's your tarball in /usr/ports, called
-   ports-mich-31022004.tar.bz2. Please make sure, it's not getting too big!
-   Normally, a port just needs the files SlackBuild, slack-desc, sources and
-   requires. You can load it up on http://portpkg.berlios.de.
-
-   You can read further on in MaintainerGuide!
+   task! Read on for Contributing Ports in MaintainerGuide!
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Mon Dec 13 17:48:50 2004

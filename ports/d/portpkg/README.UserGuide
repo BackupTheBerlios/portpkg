@@ -1,7 +1,5 @@
 UserGuide
 
-1. Overview
-
    Portpkg is a portsystem for Slackware Linux. You ask why? Because there
    hasn't been such! The traditional way of adding software to a Slackware
    system is either to install a ready made package or to compile it by hand.
@@ -11,7 +9,6 @@ UserGuide
    Portpkg is in the middle of both: It has a comfortable administration
    interface similiar to installpkg, but also a source script system, as
    Slackware uses it to compile and gives you as much control as possible.
-
    Also the Portpkg project tries not to change any of Slackware's behaviour.
    Portpkg is a ports system that tries to match Slackware's way as close as
    possible.
@@ -23,20 +20,20 @@ UserGuide
 
    ---------------------------------------------------------------------------
 
-2. The ports tree
+The Ports Tree
 
    This section describes, how to use the ports without portpkg. If want to
    be comfortable go to the next section.
 
    Sync the official ports tree with cvs:
 
- # cvs -z9 -d:pserver:!anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
+ # cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
 
-   The tree is now in ./ports/. The ports tree is divided in groups and
-   groups are divided in ports. For each one there is a directory. To compile
-   e.g. enlightenment go to the group xap/enightenment, download the source
-   files you need, they are listet in a file called sources, but check the
-   version, the SlackBuild is written for:
+   The tree is now in ports/. The ports tree is divided in groups and groups
+   are divided in ports. For each one there is a directory. To compile e.g.
+   enlightenment go to the group xap/enlightenment, download the source files
+   you need, they are listet in a file called sources, but check the version,
+   the SlackBuild is written for:
 
  # cd ports/xap/enlightenment
  # grep VERSION= SlackBuild
@@ -75,9 +72,9 @@ UserGuide
 
    ---------------------------------------------------------------------------
 
-3. Portpkg^1
+Portpkg^1
 
-  3.1 Installation
+  Installation
 
    First, make sure you have permissions to switch to root! If you are not
    allowed, portpkg makes no sense to you. You will also need access to the
@@ -101,12 +98,12 @@ UserGuide
    this command to update your ports tree later. Portpkg is now ready to
    work.
 
-  3.2 Usage
+  Usage
 
    Portpkg is the administration tool of the ports. It has one default
    behaviour and five alternative options (for details see the ManPage):
 
-    3.2.1 Building and installing ports
+    Building And Installing Ports
 
    The default action of portpkg is to build and install a package (that
    includes checking for neccessary packages and download of source files).
@@ -137,7 +134,7 @@ UserGuide
 
  # portpkg --verbose paranoid
 
-    3.2.2 Listing all available ports
+    Listing All Available Ports
 
    Get a full list with groups and release information with --list:
 
@@ -156,7 +153,7 @@ UserGuide
  xap/xvid4conf-1.12-i486-1tom
  xap/zinf-2.2.5-i486-2tom
 
-    3.2.3 Print information of certain ports
+    Viewing Information Of Ports
 
    Get some meta information about ports with --info:
 
@@ -164,11 +161,12 @@ UserGuide
 
  PORT NAME:  dunnodiz-2.2.5-i486-2tom
  PORT SIZE (compressed):  1520 K
+
  PORT LOCATION:  /usr/ports/xap/dunnodiz/SlackBuild
  PORT REQUIREMENTS:  alsa-lib atk audiofile cxxlibs esound expat gdbm
     glib2 glibc gtk+2 id3lib libmusicbrainz libogg libvorbis ncurses
     pango x11 x11-devel zlib
- PORT SOURCES:  !http://dl.sourceforge.net/dunnodiz/dunnodiz-2.2.5.tar.gz
+ PORT SOURCES:  http://dl.sourceforge.net/dunnodiz/dunnodiz-2.2.5.tar.gz
  PORT DESCRIPTION:
  dunnodiz: dunnodiz (a package)
  dunnodiz:
@@ -176,11 +174,11 @@ UserGuide
  dunnodiz: annoying since you don't know either anything about it. Strange.
  dunnodiz:
 
-    3.2.4 Finding ports
+    Finding Ports
 
  # portpkg --find gui
 
-    3.2.5 Listing differences between installed and available ports
+    Listing Outdated Packages
 
    Lists all installed packages, that have a newer version in the ports:
 
@@ -191,7 +189,7 @@ UserGuide
  l/bluecurve                1.0-i486-11tom          1.0-i486-10tom
  gnome/epiphany             1.4.5-i486-1tom         1.4.4-i486-1tom
 
-    3.2.6 Upgrading all outdated ports
+    Upgrading All Outdated Packages
 
    Upgrading is not always recommended, although it does just what --diff
    lists.
@@ -200,33 +198,33 @@ UserGuide
 
    ---------------------------------------------------------------------------
 
-4. Tools
+Tools
 
    The package portpkg contains a set of tools, usefull for creating new
    ports and keeping track of installed and available ports or binary
    packages.
 
-  4.1 Autoport
+  Autoport
 
    Autoport is a script to create new ports very easy.
 
    See AutoportGuide.
 
-  4.2 Checkpkg
+  Checkpkg
 
    Checkpkg is a menu controlled programme (similiar to pkgtool) to keep
    track of installed and available ports.
 
    (For now see Screenshots.)
 
-  4.3 Pp-sync-dist
+  Pp-sync-dist
 
    Pp-sync-dist is a script that adds binary packages for your Slackware
    version to your ports tree.
 
    (...)
 
-  4.4 Pp-sync-slack
+  Pp-sync-slack
 
    Pp-sync-slack is a script that imports the source code of Slackware to a
    second ports tree in /usr/ports/z/slack.
@@ -262,7 +260,7 @@ UserGuide
 
  Pseudo ports are now in /usr/ports/z/dist.
 
-  4.5 Pp-clean-cache
+  Pp-clean-cache
 
    (...)
 
@@ -272,4 +270,3 @@ UserGuide
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Thu Dec 16 23:19:36 2004

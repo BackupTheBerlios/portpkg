@@ -1,0 +1,84 @@
+#!/bin/sh
+# export - A portpkg-addon to pack one's ports to a tarball
+
+source `which portpkg` || exit 1
+
+stanza "pp-export -- A portpkg-addon that packs your ports to a tarball for submission
+to the Portpkg Project hosted on http://portpkg.berlios.de.
+
+If this is the first time you use pp-export, you will be asked for your mail
+address and real name which is required for maintainers. These will be stored
+world visible to contact you later. You can change this later in
+$PRT_DIR/local.conf.
+
+Schulz!"
+
+#usage
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+  die "Usage: pp-export [port ..]"
+fi
+
+echo -ne "\nContinue exporting ports with tag '$MY_TAG'? (ctrl-c to quit) "
+read
+
+cd $PRT_DIR || die
+
+# variables
+while ! [ "$MY_TAG" ]; do
+  stanza "What is your tag? (e.g.: 'mich')"
+  read MY_TAG
+  MY_TAG=`echo $MY_TAG | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
+  [ "$MY_TAG" ] && echo "MY_TAG=$MY_TAG" >>$PRT_DIR/local.conf
+done
+while ! [ "$MY_REALNAME" ]; do
+  stanza "What is your real name?"
+  read MY_REALNAME
+  [ "$MY_REALNAME" ] && echo "MY_REALNAME=\"$MY_REALNAME\"" >>$PRT_DIR/local.conf
+done
+while ! [ "$MY_EMAIL" ]; do
+  stanza "What is your mail address?"
+  read MY_EMAIL
+  [ "$MY_EMAIL" ] && echo "MY_EMAIL=$MY_EMAIL" >>$PRT_DIR/local.conf
+done
+
+# find ports
+stanza "Finding ports:"
+temp=/tmp/ports-$MY_TAG
+ports=`find $@ -name "*SlackBuild" -follow | grep -v "^./SlackBuild$" \
+| xargs grep -l "^BUILD=[0-9]*$MY_TAG$" | grep -v /open/ \
+| rev | cut -d / -f 2- | rev`
+if ! [ "$ports"  ]; then
+    row "Cannot find any ports from you!"
+    exit 1
+fi
+echo "$ports" | xargs -l echo "  --> Found"
+count=`echo "$ports" | wc -l`
+
+# create tarball
+stanza "Creating tarball:"
+row "Copying $count ports to $temp/"
+rm -rf $temp || exit 1
+mkdir $temp
+cp -a --parents $ports $temp
+private="buildlog footprint arbitrary diff maintain CVS"
+
+row "Removing private files from export: $private"
+for i in $private; do
+    find $temp -name "$i" -exec rm -rf {} \; 2>/dev/null
+done
+
+row "Writing info-file (contains $MY_TAG, $MY_EMAIL, $MY_REALNAME)"
+echo "tag: $MY_TAG" >$temp/info
+echo "email: $MY_EMAIL" >>$temp/info
+echo "realname: $MY_REALNAME" >>$temp/info
+
+timestamp=`date +%Y%m%d`
+row "Creating ports-$MY_TAG-$timestamp.tar.bz2"
+(   cd `dirname $temp`
+    tar cjf ports-$MY_TAG-$timestamp.tar.bz2 `basename $temp`
+)
+mv /tmp/ports-$MY_TAG-$timestamp.tar.bz2 .
+
+row "Removing $temp"
+rm -r $temp
+stanza "Tarball is in $PRT_DIR/ports-$MY_TAG-$timestamp.tar.bz2."

@@ -1,11 +1,10 @@
 portpkg: Portpkg (Administration tools for the Portpkg Project)
 portpkg:
-portpkg: These are the administration tools portpkg, autoport, checkpkg,
-portpkg: pp-clean-cache, pp-sync-dist and pp-sync-slack.
+portpkg: These are the administration tools portpkg, autoport,
+portpkg: checkpkg, pp-clean-cache, pp-sync-dist, pp-sync-slack and
+portpkg: pp-export. For more docmentation see /usr/doc/portpkg-xxx or
+portpkg: http://portpkg.berlios.de.
 portpkg: 
 portpkg: To checkout the ports tree, do
-portpkg:     portpkg --sync
-portpkg: 
-portpkg: To upgrade this package in future, simply do
-portpkg:     portpkg portpkg
+portpkg:   # portpkg --sync
 portpkg:

@@ -1,6 +1,6 @@
 TodoBugsAbout
 
-1. About
+About
 
    Portpkg is a ports system for Slackware Linux. Its purpose is to build and
    manage a larger set of software for Slackware.
@@ -12,7 +12,7 @@ TodoBugsAbout
    uploading them onto our server which commits them into an open directory.
    Our Crew will later merge them into the ports tree.
 
-2. Todo
+Todo
 
      o Support for three architectures: i486, s390 and x86_64. i486 will be
        the default architecture, so our ports will have either ARCH=noarch or
@@ -39,12 +39,12 @@ TodoBugsAbout
 
    ---------------------------------------------------------------------------
 
-3. Contribute
+Contribute
 
    If you want to contribute to this project, then read on, there're many
    ways to help us:
 
-  3.1 Bug reporting
+  Bug reporting
 
      o If you use portpkg and something doesn't work, upload the buildlog!
        You can find it in /tmp, it is called buildlog-<portname>, go to
@@ -57,7 +57,7 @@ TodoBugsAbout
      o If you know how to fix a broken SlackBuild and want to code directly
        as a maintainer, ask me for a CVS-account!
 
-  3.2 Contributing ports
+  Contributing ports
 
      o Make ports you missed in the ports collection. A good starting point
        is the addport script in /usr/ports (EDIT: or autoport from the
@@ -71,30 +71,27 @@ TodoBugsAbout
 
    ---------------------------------------------------------------------------
 
-4. Known bugs
+Known bugs
 
    These are often reported bugs. Please do so and send your buildlog, if
    something hangs.
 
-  4.1 Portpkg
+   Portpkg
+           * Sync does nothing: Because we moved the tree from http to cvs,
+             there might be problems to sync your tree. Work around: Remove
+             your ports tree, and try again. Make sure you have version 0.28
+             or higher.
 
-     o Sync does nothing: Because we moved the tree from http to cvs, there
-       might be problems to sync your tree. Work around: Remove your ports
-       tree, and try again. Make sure you have version 0.28 or higher.
-
-  4.2 Ports
-
-     o SlackBuilds look for .gz while sources has .bz2 or vice-versa.
-
-     o Incomplete requirements-list, portpkg stops.
+   Ports
+           * SlackBuilds look for .gz while sources has .bz2 or vice-versa.
+           * Incomplete requirements-list, portpkg stops.
 
    ---------------------------------------------------------------------------
 
-5. Contact
+Contact
 
    As always, feel free to contact me: Tom <topf at users dot berlios dot
    de>.
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Sun Dec 12 17:15:56 2004
