@@ -43,6 +43,7 @@ declare script description requires size sources
 pkg2name()	{ sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()	{ sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()	{ sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
+loc2gpkg()	{ sed -r "s,^.*/(.*/.*)$,\1," 2>/dev/null; }
 
 # message system
 stanza()	{ [ "$*" ] && echo -e "\n$@"; }
@@ -65,7 +66,6 @@ has_ports()	{ [ -d $PRT_DIR ] || error "No ports found! Try: portpkg --sync"; }
 # file utils
 ls_inst()	{ find $ADM_DIR/packages/ -type f | sed "s,^.*/,," 2>/dev/null; }
 ls_cache()	{ find $PKG_DIR/ -name "*.tgz" | sed -r "s,^.*/(.*/.*)\.tgz$,\1," 2>/dev/null; }
-ls_avail()	{ ls_locations | sed -r "s,^/.*/(.*/.*)$,\1," 2>/dev/null; }
 
 # download a file
 get()
@@ -159,7 +159,7 @@ ls_diff() # >list
     debug "ls_diff(): starting"
     local t=`private`
     debug "ls_diff(): call: ls_avail"
-    ls_avail | grep -v $exclude | cut -d / -f 2 >$t.avail
+    ls_locations | loc2gpkg | grep -v $exclude | cut -d / -f 2 >$t.avail
     debug "ls_diff(): call: ls_inst"
     ls_inst >$t.inst
     debug "ls_diff(): call: pkg2name"
@@ -183,25 +183,27 @@ ls_diff() # >list
 # get information about a port and write it into global variables
 get_info()
 {
+    debug "get_info(): start: $@"
     # if there are more than one, take the first
     local url=`ls_locations | grep -m 1 $(regex $1)`
     if ! [ "$url" ]; then
 	error "No such port: $1"
 	return 1
     fi
-    local gpkg=`echo $url | sed -r "s,.*/(.*/.*)$,\1,"`
+    local gpkg=`echo $url | loc2gpkg`
     group=`echo $gpkg | cut -d / -f 1`
     package=`echo $gpkg | cut -d / -f 2`
     name=`echo $package | pkg2name`
     version=`echo $package | pkg2ver`
-    local path=`dirname $url`/$name
-    script=`find $path/ -name "*SlackBuild"`
+    script=`find $(dirname $url)/$name -name "*SlackBuild" | head -n 1`
+    local path=`echo $script | rev | cut -d / -f 2- | rev`
     # remove ' and " from description
     description=`grep -s ^$name: $path/slack-desc | sed "s,['\"],,g" | cut -d : -f 2- | cut -d " " -f 2-`
     requires=`grep -sv ^# $path/requires`
     sources=`grep -sv ^# $path/sources | sed "s,\\$VERSION,$version,g"`
     depends=`fgrep -sxl $name $path/../../*/*/requires | rev | cut -d / -f 2 | rev`
     size=`du $PKG_DIR/$group/$package.tgz 2>/dev/null | cut -f 1`
+    debug "get_info(): end: $@"
     return 0
 }
 
@@ -209,7 +211,7 @@ get_info()
 check_reqs()
 {
     local avail=$SCRATCH_DIR/avail_cache
-    [ -f $avail ] || ls_avail >$avail
+    [ -f $avail ] || ls_locations | loc2gpkg >$avail
     debug "check_reqs(): starting: $package"
     # remember that for later
     local gpkg=$group/$package
@@ -318,7 +320,8 @@ mk_source_pkg()
 	    find /tmp/package-$name/ | xargs file | grep ELF \
 	    | cut -d : -f 1 | xargs ldd 2>/dev/null | grep -o "/[^ ]*\.so" \
 	    | sed -r "s,\./,," | cut -c 2- | sort -u | grep -lf - $ADM_DIR/packages/* \
-	    | sed -r "s,^$ADM_DIR/packages/,," | pkg2name \
+	    | sed -r "s,^$ADM_DIR/packages/,," | pkg2name | sed -r \
+            -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
 	    | grep -ve ^$name$ $ignore | sort -u >$t.bin_req
 	    echo "$requires" >$t.old_req
 	    # now merge into old requirements-list
@@ -376,25 +379,33 @@ do_add() # pkgex-list
     debug "do_add(): starting: $@"
     has_ports || die
     has_args $@ || die
+    local total=$SCRATCH_DIR/do_add.total
+    local total_started=$SCRATCH_DIR/do_add.total_started
+    local total_finished=$SCRATCH_DIR/do_add.total_finished
     local ret=0
     local arg
     for arg in `explicit $@`; do
 	debug "do_add(): \$arg=$arg"
    	ret=1
-#	# vite vite!
-#	local avail_pkg=`ls_avail | grep -m 1 $(regex $arg) | cut -d / -f 2`
-#	if [ -f $ADM_DIR/packages/$avail_pkg ]; then
-#	    ret=0
-#    	    continue
-#	fi
+	echo $arg >>$total
 	get_info $arg || continue
+	sed -i "\,^$arg$,d" $total
+	echo $group/$package >>$total_started
 	# requirements check (flat, no versions)
 	# (...well, a little deeper now :) )
 	# (...quite deep now :) )
 	check_reqs || continue
 	# package file found in cache?
 	if ! [ -f $PKG_DIR/$group/$package.tgz ] || $rebuild; then
-	    mk_source_pkg || continue
+#	    # maybe somewhere else
+#	    local file=`find $PKG_DIR/ -name $package.tgz | head -n 1 | loc2gpkg`
+#	    if [ -f $PKG_DIR/$file ]; then
+#		stanza "Moving `basename $file .tgz` to $group/..."
+#		mkdir -p $PKG_DIR/$group
+#		mv $PKG_DIR/$file $PKG_DIR/$group/
+#	    else
+		mk_source_pkg || continue
+#	    fi
 	fi
 	if ! $download_only; then
 	    # install the package
@@ -404,10 +415,18 @@ do_add() # pkgex-list
 		add_pkg || continue
 	    fi
 	fi
+	echo $group/$package >>$total_finished
 	ret=0
     done
-    return $ret
+    # summary
+    if $verbose; then
+        stanza "That was in total:"
+	cat $total_finished | xargs -r -l echo "  --> Compiled successfully"
+	fgrep -vxf $total_finished $total_started | xargs -r -l echo "  --> Failed at"
+	cat $total | xargs -r -l echo "  --> Didn't find"
+    fi
     debug "do_add(): finished: $@"
+    return $ret
 }
 
 do_diff()
@@ -418,7 +437,7 @@ do_diff()
     [ "$diff_list" ] || die "No differences found."
     stanza "PORT\r\t\t\t\tAVAILABLE\r\t\t\t\t\t\t\tINSTALLED"
     ls_inst >$t.inst
-    ls_avail >$t.avail
+    ls_locations | loc2gpkg >$t.avail
     local pkg
     for pkg in $diff_list; do
 	local avail_rel=`echo $pkg | pkg2rel`
@@ -473,24 +492,33 @@ do_list() # [pkgex-list] >glist
     has_ports || die
     # grep arguments
     if [ "$*" ]; then
-    	ls_avail | grep `regex $@` 2>/dev/null
+    	ls_locations | loc2gpkg | grep `regex $@` 2>/dev/null
     else
-    	ls_avail
+    	ls_locations | loc2gpkg
     fi
 }
 
 do_sync()
 {
-    local t=`private`
+    has_pkg cvs-1.11 || die
     local cvsroot=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
-    stanza "Synchronising your ports tree with `echo $cvsroot | cut -d @ -f 2 | cut -d : -f 1`:"
-    # coming this summer
+    stanza "Syncing your ports tree with `echo $cvsroot | cut -d @ -f 2 | cut -d : -f 1`:"
+    local file
+    # since --sync stops after cvsing, we needn't restore this later,
+    # but we need acces to these file either if run with sudo or not
+    umask 007
     if [ -d $PRT_DIR ]; then
         cd $PRT_DIR || die
+#	# .CVS -> CVS
+#	find -name .CVS | sed "s,/\.CVS$,," | while read file; do
+#	    mv $file/.CVS $file/CVS
+#	done
 	cvs -qz3 up -dPC -I footprint -I diff -I buildlog \
-	-I PORT_IS_BROKEN -I arbitrary -I local 2>/dev/null
+	-I PORT_IS_BROKEN -I arbitrary -I local -I "*.local" 2>/dev/null
     else
 	mkdir -p $PRT_DIR
+	chmod 2770 $PRT_DIR
+	chgrp users $PRT_DIR
         cd `dirname $PRT_DIR` || die
 	cvs -qz3 -d $cvsroot co -P ports 2>/dev/null
     fi | sed -r \
@@ -501,6 +529,11 @@ do_sync()
     -e "s,^P,  --> Patching," \
     -e "s,^\?,  --> Unknown file," \
     -e "s,^[A-Z\?],  --> &,"
+#    cd $PRT_DIR || die
+#    # CVS -> .CVS
+#    find -name CVS | sed "s,/CVS$,," | while read file; do
+#	mv $file/CVS $file/.CVS
+#    done
 }
 
 # upgrade all installed ports that are not available
@@ -526,7 +559,7 @@ Actions:
   -i, --info		View information about ports
   -f, --find		Find ports by pattern
   -l, --list		List available ports
-  -s, --sync		Sync your ports tree with the official
+  -s, --sync		Sync your ports tree with the global
   -u, --upgrade		Upgrade all (!) outdated ports
   -v, --version		View version information
 Options:
@@ -592,6 +625,9 @@ init()
     mkdir -p $SCRATCH_DIR
     chmod 700 $SCRATCH_DIR
     [ -d $SCRATCH_DIR ] || die "Internal error!"
+#    # we need umask 007 in our ports dir
+#    umask 007
+#    chmod 2770 $PRT_DIR
     # clean up on exit
     trap "rm -rf $SCRATCH_DIR" EXIT
     trap "" PIPE
