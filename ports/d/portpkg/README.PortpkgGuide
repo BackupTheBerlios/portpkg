@@ -240,6 +240,7 @@ Using the ports
 
  # portpkg --find gui
 
+
   Listing outdated packages
 
    List all installed packages, that have a newer version in the ports
@@ -293,7 +294,7 @@ Writing ports
    /usr/ports/AUTHORS to see, what tags are already in use). Furthermore, if
    you plan to contribute your ports and make them puplic, we need your real
    name and mail address to contact you. These values will be written to the
-   file /usr/ports/local.conf, which looks something like this:
+   file /etc/portpkg/local.conf, which looks something like this:
 
  MY_TAG="me"
  MY_EMAIL="myself@here.org"
@@ -751,40 +752,17 @@ Writing ports
 
 Contribute to the Portpkg Project
 
-   For contributing your ports, you have to make a tarball of your ports
-   first. Use the script Pp-export (here you will be asked for your mail
-   address and your real name, so we can contact you later):
+   Contributing your ports to the Portpkg Project is very easy: Please
+   consider a reasonable summary of your export (did you patch a certain bug,
+   did you upgraded the version):
 
- # pp-export
+ # portpkg --export "Upgraded to version 1.2." ap/package
 
- pp-export -- A portpkg-addon that packs your ports to a tarball for submission
- to the Portpkg Project hosted on http://portpkg.berlios.de.
+ Exporting to cvs.portpkg.berlios.de:
+   --> Uploading ap/package-1.2-i486-1tom
 
- If this is the first time you use pp-export, you will be asked for your mail
- address and real name which is required for maintainers. These will be stored
-
- world visible to contact you later. You can change this later in
- /usr/ports/local.conf.
-
- Continue exporting ports with tag 'tom'? (ctrl-c to quit)
-
- Finding ports:
-   --> Found ap/this
-   --> Found n/that
-
- Creating tarball:
-   --> Copying 2 ports to /tmp/ports-mich
-   --> Removing private files from export: buildlog footprint arbitrary diff maintain CVS...
-   --> Writing info-file (contains mich, mich@hier.de, M. Ich)...
-   --> Creating ports-mich-31022004.tar.bz2...
-   --> Removing /tmp/ports-mich...
-
- Tarball is in /usr/ports/ports-mich-20040231.tar.bz2.
-
-   Now there's your tarball in /usr/ports, called ports-tag-20040231.tar.bz2.
-   Please make sure, it's not getting too big! Normally, a port just needs
-   the files SlackBuild, slack-desc, sources and requires. You can load it up
-   on http://portpkg.berlios.de.
+   Ports that are submitted via --export will be picked up by a cron job on
+   portpkg.berlios.de that merges them into open/.
 
    --------------------------------------------------------------------------
 
@@ -1015,8 +993,8 @@ Backgrounds
 
    Portpkg makes using port scripts easier by providing several functions for
    users and maintainers also. Maintainer mode is automatically initiated
-   when the value of MY_TAG (in /usr/ports/local.conf) matches the build-tag
-   of the port being built.
+   when the value of MY_TAG (in /etc/portpkg/local.conf) matches the
+   build-tag of the port being built.
 
      o Downloads required source packages while resuming aborted downloads
      o Checks and completes (in maintainer mode) a list of required packages
@@ -1035,50 +1013,49 @@ Backgrounds
 References
 
    Visible links
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-3
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-4
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-5
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-6
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-7
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-1-1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-1-2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-3
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-4
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-5
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-6
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-7
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-8
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-9
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-10
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-11
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-3
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-4
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-4
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#4
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-1
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-2
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-3
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-4
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-5
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-6
-   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-7
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-3
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-4
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-5
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-6
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-7
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-1-1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-1-2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-3
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-4
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-5
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-6
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-7
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-8
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-9
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-10
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-11
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-3
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-4
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-4
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#4
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-1
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-2
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-3
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-4
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-5
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-6
+   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-7
    . http://developer.berlios.de/project/showfiles.php?group_id=2486
-   . file:///usr/ports/local/portpkg/doc.php?page=Screenshots
+   . file:///usr/ports/d/portpkg/doc.php?page=Screenshots
    . http://www.pathname.com/fhs/pub/fhs-2.3.html
-   . http://portpkg.berlios.de/
-   . file:///usr/ports/local/portpkg/doc.php?page=edit/PortpkgGuide
-   . file:///usr/ports/local/portpkg/doc.php?page=links/PortpkgGuide
-   . file:///usr/ports/local/portpkg/doc.php?page=info/PortpkgGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=edit/PortpkgGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=links/PortpkgGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=info/PortpkgGuide

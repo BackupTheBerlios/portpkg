@@ -11,6 +11,10 @@ QuestionsAndAnswers
    want to fill the gap in the causal connexion between .tgz-packages and
    SlackBuilds.
 
+   But generally, building packages by source gives you control over how it
+   is compiled (included features) and what it will be. More than this,
+   having build scripts in an open collection allows to improve quality.
+
   Who will use that?
 
    I want to target as much users as possible: For the puristic slacker it
@@ -23,28 +27,50 @@ QuestionsAndAnswers
 
   Why not use Checkinstall?
 
+   Checkinstall is a wrapper around installation routines that are not able
+   to redirect installation destinations: If make install
+   DESTDIR=/tmp/package is not supported, checkinstall could be an
+   alternative. Although a lot of people think Checkinstall does the same as
+   Portpkg does, the results are quite different: Apart from some cosmetics
+   (stripping and chowning root.bin binaries, gzipping manpages and infos
+   etc. pp.), the package building method is not saved, neither is the
+   process logged. Naturally, both ways allow removepkg package afterwards.
+
   Why not use binary packages?
 
   Is it safe?
 
+   Since Portpkg uses Fakeroot, it is quite safe: Each SlackBuild (there're a
+   few left exceptions) is started in a subshell as nobody via fakeroot (a
+   programme that fakes root privileges, needed to virtually allow directives
+   as chown root.root file to make proper ownerships in resulting
+   .tgz-packages). This subshell is actually unprivileged, any attempt to
+   touch a file that is not owned by nobody outside of fakeroot cannot be
+   changed (test it: su nobody -c fakeroot and whoami; touch /test)!
+
+   So what could happen ("worst case scenario")? Bad code introduced by bad
+   source code or incomplete or bad packaging. Slackware's installpkg doesn't
+   check for conflicting files (packages overwriting files of another
+   package).
+
   Can I turn off "dependencies" and "requirements"?
 
-   Yes, with -q in the command line or add NO_REQS=true in
-   /usr/ports/local.conf.
+   Yes, you can. Use -q in the command line or add NO_REQS=true in
+   /etc/portpkg/local.conf.
 
   Does it work with installpkg and removepkg?
 
    Yes, it does. After building the package, portpkg calls upgradepkg
-   --reinstall <pkg> which replaces your new packge with its older version,
-   if there's one installed, otherwise it acts like a installpkg <pkg>. As
-   any Slackware packages, you can remove it with removepkg <pkg>.
+   --reinstall package which replaces your new packge with its older version,
+   if there's one installed, otherwise it acts like a installpkg package. As
+   any Slackware packages, you can remove it with removepkg package.
 
   How can I recompile a Slackware package for my CPU?
 
-   Download Slackware's SlackBuild (and all other files), add
-   CFLAGS="$SLKCFLAGS" \ right before ./configure if it doesn't exist. You
-   must set ARCH and CFLAGS in your /usr/ports/local.conf (best with
-   pp-config). See PortpkgGuide.
+   Get your favorite SlackBuild (and all other files), add a proper entry in
+   your ports tree (beneath local/) and add CFLAGS="$SLKCFLAGS" \ right
+   before ./configure if it doesn't exist. You must set ARCH and CFLAGS in
+   your /etc/portpkg/local.conf (best with pp-config). See PortpkgGuide.
 
   Why is /tmp filled with so much data?
 
@@ -68,6 +94,22 @@ QuestionsAndAnswers
 
    You can use Portpkg without mirrors. You can add your own preferred mirror
    sites to mirrors.local.
+
+  How can I customise download behaviour?
+
+   Portpkg uses wget as download backend. Use man wget to know how to adjust
+   /etc/wgetrc.
+
+  Can I use ccache with Portpkg?
+
+   Yes, you can. All you need is to symlink gcc, g++ and cc in /usr/local/bin
+   to /usr/bin/ccache. See man ccache. Note, that ccache (as each SlackBuild)
+   will be run as user nobody with home directory /tmp, to set e.g. the max
+   cache size, run su nobody and then export HOME=/tmp; ccache -M size.
+
+  Can I redirect /tmp?
+
+   Yes, you can. Add TMP=directory to /etc/portpkg/local.conf.
 
   I'm using this Slackware-binaries-sync-addon-thing, but I want to use gcc-3.4
   from testing/. Portpkg always wants to downgrade to gcc-3.3 from d/. Hm?
@@ -101,8 +143,8 @@ References
 
    Visible links
    . http://portpkg.berlios.de/doc.php?page=edit/QuestionsAndAnswers
-   . file:///usr/ports/local/portpkg/doc.php?page=PortpkgGuide
-   . file:///usr/ports/local/portpkg/doc.php?page=Links
-   . file:///usr/ports/local/portpkg/doc.php?page=edit/QuestionsAndAnswers
-   . file:///usr/ports/local/portpkg/doc.php?page=links/QuestionsAndAnswers
-   . file:///usr/ports/local/portpkg/doc.php?page=info/QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=PortpkgGuide
+   . file:///usr/ports/d/portpkg/doc.php?page=Links
+   . file:///usr/ports/d/portpkg/doc.php?page=edit/QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=links/QuestionsAndAnswers
+   . file:///usr/ports/d/portpkg/doc.php?page=info/QuestionsAndAnswers
