@@ -86,12 +86,17 @@ Customise this path with SRC_DIR=<path> in /etc/portpkg/local.conf.
 The binary packages archive. Customise this path with PKG_DIR=<path> in
 /etc/portpkg/local.conf.
 .SH FILES
+.IP /var/log/portpkg/<name>.buildlog
+The detailed output when a SlackBuild was executed. You can view this instantly
+with --verbose.
+.IP /var/log/portpkg/<file>.wgetlog
+The detailed output when a file is downloaded. You can view this instantly
+with --verbose.
+.IP /var/log/portpkg/<package>.tar.bz2
+A copy of ports that were exported.
 .IP /etc/portpkg/local.conf
 The configuration file for optional settings. Empty or non-existend for
 defaults.
-.IP /tmp/buildlog-<name>
-The detailed output when a SlackBuild was executed. You can view this instantly
-with --verbose. 
 .PP
 Several configuration files are distributed and can be expanded by \.local files:
 .IP "/etc/portpkg/mirrors and mirrors.local"

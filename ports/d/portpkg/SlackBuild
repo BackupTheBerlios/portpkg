@@ -9,6 +9,7 @@ rm -rf $PKG
 mkdir -p $PKG/etc/portpkg
 mkdir -p $PKG/usr/bin
 mkdir -p $PKG/usr/man/man1
+mkdir -p $PKG/var/log/portpkg
 mkdir -p $PKG/var/log/setup
 
 install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/

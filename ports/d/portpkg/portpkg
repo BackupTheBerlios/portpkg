@@ -110,15 +110,15 @@ get()
     done <$t/mirrors
   fi
   debug "get(): \$url=$url"
-  local log=$TMP/wget-`basename $dest`.log
+  local log=$ADM_DIR/portpkg/`basename $dest`.wgetlog
   rm -rf $log || die
   $VERBOSE && log=/dev/stdout
   # try primary url if mirror fails
   if wget -c -O $dest.part $url >$log 2>&1 \
   || wget -c -O $dest.part $o_url >>$log 2>&1; then
     mv $dest.part $dest
-    # at this point we don't need a log anymore (don't do that with stdout!)
-    $VERBOSE || rm $log
+#    # at this point we don't need a log anymore (don't do that with stdout!)
+#    $VERBOSE || rm $log
   else
     $VERBOSE || tail $log
     error "Download failed!"
@@ -381,7 +381,7 @@ build_pkg()
   # build package
   $DRY_RUN && return 0
   if ! $remaintain; then
-    rm -rf $TMP/buildlog-$name
+#    rm -rf $ADM_DIR/portpkg/$name.buildlog
     rm -rf $TMP/package-$name
     rm -rf $TMP/$package.tgz
     local flags_var=`grep -o "CFLAGS=\\"*\\$[^ ]*" $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
@@ -395,20 +395,20 @@ build_pkg()
       # run fakerooted SlackBuild as nobody
       row "Executing $script (fakerooted)"
       su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$TMP TMPDIR=$TMP \
-        PATH=\$PATH:/sbin fakeroot sh $script" 2>&1 | tee $TMP/buildlog-$name >$output
+        PATH=\$PATH:/sbin fakeroot sh $script" 2>&1 | tee $ADM_DIR/portpkg/$name.buildlog >$output
     else
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
       $prepare_only && warn "Preparing without fakeroot is not a good idea!"
       row "Executing $script"
-      eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $script" 2>&1 | tee $TMP/buildlog-$name >$output
+      eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $script" 2>&1 | tee $ADM_DIR/portpkg/$name.buildlog >$output
       # this is a hack-around for some faulty install scripts
       chmod 1777 /tmp
     fi
     # success? (this is the most promising test to ensure it worked)
     if ! [ -f $TMP/$package.tgz ]; then
-      $VERBOSE || tail $TMP/buildlog-$name
-      error "Compilation failed (see $TMP/buildlog-$name)!"
+      $VERBOSE || tail $ADM_DIR/portpkg/$name.buildlog
+      error "Compilation failed (see $ADM_DIR/portpkg/$name.buildlog)!"
       $maintain && touch PORT_IS_BROKEN
       return 1
     else
@@ -437,7 +437,7 @@ build_pkg()
     $pseudo && rm -rf $SRC_DIR/$srcname
   done
   rm -rf $TMP/package-$name
-#  rm -f $TMP/buildlog-$name
+#  rm -f $ADM_DIR/portpkg/$name.buildlog
 }
 
 # really (re)install/upgrade current port
@@ -589,7 +589,7 @@ do_export()
       continue;;
     esac
     row "Uploading $group/$package"
-    rm -rf $TMP/$package.tar.bz2
+    rm -rf $ADM_DIR/portpkg/$package.tar.bz2
     mkdir -p $t/$package/$name
     ( cd `dirname $script`
       cp -a . $t/$package/$name
@@ -599,10 +599,10 @@ do_export()
       echo "Intended group:  $group/" >>info
       echo "ChangeLog entry:  $export_opt" >>info
       cd $t/$package
-      tar cjf $TMP/$package.tar.bz2 .
+      tar cjf $ADM_DIR/portpkg/$package.tar.bz2 .
     )
     $DRY_RUN  \
-    || curl -F filetoupload=@$TMP/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
+    || curl -F filetoupload=@$ADM_DIR/portpkg/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
     || error "An error occured!"
 #    ret=$?
   done
