@@ -1,6 +1,6 @@
 VERSION=0.36
 ARCH=noarch
-BUILD=4tom
+BUILD=5tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -14,7 +14,7 @@ mkdir -p $PKG/var/log/setup
 
 install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/
 install -m 644 $CWD/ignore $PKG/etc/portpkg/
-install -m 644 $CWD/exclude* $PKG/etc/portpkg/
+install -m 644 $CWD/exclude.* $PKG/etc/portpkg/
 
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
 

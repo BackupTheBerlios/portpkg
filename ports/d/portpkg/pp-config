@@ -19,16 +19,15 @@ If unsure enter '$newest_slack'." 0 0 \
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$CFG_DIR/local.conf
 #    if [ $DIST_VER == $newest_slack ] || [ $DIST_VER == current ]; then
-      if dialog --title "$heading" --defaultno --yesno \
-"It is recommended to make exclude.$DIST_VER a symlink to exclude.local. \
-Shall I do that for you? Note, that this will overwrite your existing \
-exclude.local!
-If unsure answer 'no'." 0 0; then
+      if dialog --title "$heading" --yesno \
+"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
+Shall I do that for you?
+If unsure answer 'yes'." 0 0; then
 #        # add pasture/ to the list of excluded ports
 #        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
 #        echo "pasture/" >>$CFG_DIR/exclude.local
-         rm -rf $CFG_DIR/exclude.local
-         ln -s exclude.$DIST_VER $CFG_DIR/exclude.local
+         rm -rf $CFG_DIR/exclude
+         ln -s exclude.$DIST_VER $CFG_DIR/exclude
       fi
 #    fi
   fi
@@ -124,13 +123,14 @@ mirrors()
   heading="MIRROR SETTINGS"
   echo -n "dialog --title \"$heading\" --menu \
 \"Which of the currently available mirror files do you want to use?\" 0 0 0 " >$t/menu
-  find $CFG_DIR/mirrors.* | xargs basename | grep -v mirrors.local \
-  | xargs -i echo "{} \"Mirror list\" \\" >>$t/menu
-  echo "none \"Use main server URLs\"" >>$t/menu
+  find $CFG_DIR/mirrors.* | xargs -l basename | grep -v mirrors.local \
+  | xargs -i echo "{} \"Mirror list {}\" \\" >>$t/menu
+  echo "none \"Use primary download URLs\"" >>$t/menu
   . $t/menu 2>$t/out
   out=`cat $t/out`
   rm -rf $PRT_DIR/mirrors
   if [ "$out" != "none" ]; then
+    rm -rf $CFG_DIR/mirrors
     ln -s $out $CFG_DIR/mirrors
   fi
 }
