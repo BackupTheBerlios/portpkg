@@ -78,12 +78,9 @@ get()
     if [ "$mirrors" ]; then
 	debug "get(): we have mirrors"
 	echo "$mirrors" >$t.mirrors
-        local line
-        while read line; do
-	    debug "get(): checking for $line"
-	    # seems i won't get around awk
-	    local master=$(echo $line | awk '{ print $1 }')
-	    local mirror=$(echo $line | awk '{ print $2 }')
+        local master mirror
+        while read master mirror; do
+	    debug "get(): checking for $master $mirror"
 	    url=`echo $url | sed "s,^$master,$mirror,"`
 	done <$t.mirrors
     fi
@@ -365,7 +362,7 @@ add_pkg() # tgz
     	stanza "Installing $package..."
     fi
     # commercials to fill the time gap
-    $verbose || echo "$description" | sed "s,^,$name: ,"
+    $verbose || echo "$description" | xargs -r -l $name:
     # call the magic all-in-one install-command
     if ! su -c "upgradepkg --install-new --reinstall \
     $PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
@@ -397,9 +394,14 @@ do_add() # pkgex-list
 	# (...well, a little deeper now :) )
 	# (...quite deep now :) )
 	check_reqs || continue
-	# package file found in cache?
-	if ! [ -f $PKG_DIR/$group/$package.tgz ] || $rebuild; then
+	# package file found in cache? (first in its group, then other places)
+	local file=`find $PKG_DIR/{$group/,} -name $package.tgz | head -n 1`
+	if ! [ $file ] || $rebuild; then
 	    mk_source_pkg || continue
+	elif [ "$file" != "$PRT_DIR/$group/$package.tgz" ]; then
+	    stanza "$package should be in $group/. Moving..."
+	    mkdir -p $PKG_DIR/$group
+	    mv $file $PKG_DIR/$group/
 	fi
 	if ! $download_only; then
 	    # install the package
