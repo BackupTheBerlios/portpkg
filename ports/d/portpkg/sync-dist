@@ -4,17 +4,26 @@
 #include "portpkg.h"
 source `which portpkg` || exit 1
 
-DIST=ftp://ftp.slackware.com/pub/slackware/slackware-current
+DIST=ftp://ftp.slackware.com/pub/slackware
 SECTIONS=(extra testing kernels slackware pasture)
 TREE=/usr/src/pseudo/dist
 
 t=`private`
 is_root || die
-mkdir -p $t.names
+#mkdir -p $t.names
 rm -rf $TREE
 mkdir -p $TREE
-stanza "Synchronising with $DIST:"
-row "Retrieving file-list"
+[ -f $PRT_DIR/pseudo ] && . $PRT_DIR/pseudo
+DIST_VER=${DIST_VER:-}
+while ! [ "$DIST_VER" ]; do
+    echo
+    echo -n "What distribution is your target? (e.g. \"10.0\", \"current\")  "
+    read DIST_VER
+    echo "DIST_VER=$DIST_VER" >>$PRT_DIR/pseudo
+done
+DIST=$DIST/slackware-$DIST_VER
+stanza "Syncing with `echo $DIST | cut -d / -f 3`:"
+row "Retrieving meta data"
 get $DIST/FILELIST.TXT $t.file_list
 get $DIST/PACKAGES.TXT $t.packages
 get $DIST/kernels/VERSIONS.TXT $t.kernel_versions
@@ -32,12 +41,13 @@ for section in ${SECTIONS[@]}; do
 	| rev | grep -v modules | while read flavour; do
 	    mkdir -p kernels/$flavour
 	    cat <<EOF >kernels/$flavour/SlackBuild
+NAME=$flavour
 VERSION=$kver
 ARCH=$karch
 BUILD=1
 
 CWD=\`pwd\`
-PKG=/tmp/package-$flavour
+PKG=/tmp/package-\$NAME
 rm -rf \$PKG
 mkdir -p \$PKG/boot
 cd \$PKG/boot
@@ -49,7 +59,7 @@ ln -s vmlinuz-$flavour-$kver vmlinuz
 ln -s System.map-$flavour-$kver System.map
 ln -s config-$flavour-$kver config
 cd \$PKG
-makepkg -l y -c n /tmp/$flavour-$kver-$karch-1.tgz
+makepkg -l y -c n /tmp/\$NAME-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
 	    cat <<EOF >kernels/$flavour/sources
 $DIST/kernels/$flavour/bzImage
@@ -64,7 +74,7 @@ EOF
     grep "^$section/.*\.tgz$" $t.files \
     | sed -r "s,^[^/]*/(.*)\.tgz$,\1," \
     | while read s; do
-	row "$s"
+#	row "$s"
     	if [ "$section" == "slackware" ]; then
 	    group=`echo $s | cut -d / -f 1`
 	else
@@ -93,13 +103,23 @@ EOF
     done
 done
 
-stanza "Pseudo ports are now in $TREE.\n\
-Please link them into $PRT_DIR in your favoured sequence. The sequence is\n\
-essential for --upgrade. Remember: The first found port is the default port!\n\
-You have also $PRT_DIR/exclude to fine tune the upgrade list.\n\
-Good style: Z[0-9]: Before all other ports\n\
+stanza "Pseudo ports are now in $TREE."
+stanza "Please link them into $PRT_DIR in your favoured sequence. The \
+sequence is essential for --upgrade. Remember: The first found port is the \
+default port! You have also $PRT_DIR/exclude to fine tune the upgrade list."
+stanza "Good style: Z[0-9]: Before all other ports
             z[0-9]: After all other ports"
 stanza "\
-E.g.: ln -s $TREE/extra $PRT_DIR/Z0\n\
-      ln -s $TREE/slackware $PRT_DIR/Z1\n\
-      ln -s $TREE/testing $PRT_DIR/z0"
+E.g.: ln -s $TREE/extra $PRT_DIR/z0\n\
+      ln -s $TREE/kernels $PRT_DIR/z1\n\
+      ln -s $TREE/slackware $PRT_DIR/z2\n\
+      ln -s $TREE/testing $PRT_DIR/z3\n\
+      ln -s $TREE/pasture $PRT_DIR/z4"
+if ! [ "`find $PRT_DIR/ -type l -name "z?" 2>/dev/null`" ]; then
+    stanza "Since there seem to be no links at all I will make that for you..."
+    ln -s $TREE/extra $PRT_DIR/z0
+    ln -s $TREE/kernels $PRT_DIR/z1
+    ln -s $TREE/slackware $PRT_DIR/z2
+    ln -s $TREE/testing $PRT_DIR/z3
+    ln -s $TREE/pasture $PRT_DIR/z4
+fi

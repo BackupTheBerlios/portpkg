@@ -146,7 +146,7 @@ ls_locations()
     -e "s,/[^/]*SlackBuild:VERSION=,-,g" \
     -e "s, [^ ]*:ARCH=,-,g" \
     -e "s, [^ ]*:BUILD=,-,g" \
-    -e "s,\\$\{[A-Z]*:-,,g" \
+    -e "s,\\$\{[A-Z]*:[-=],,g" \
     -e "s,},,g" \
     | tr " " "\n" \
     | sort \
@@ -295,8 +295,14 @@ mk_source_pkg()
     done
     $download_only && return 0
     # build package
+#    if which fakeroot >/dev/null 2>&1; then
+#	warn "fakeroot enabled: on problems remove it to disable"
+#	local root="fakeroot -- sh -c PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+#    else
+	local root="su -c"
+#    fi
     row "Executing $script"
-    su -c "rm -rf /tmp/buildlog-$name
+    $root "rm -rf /tmp/buildlog-$name
            rm -rf /tmp/$package.tgz
            sh $script 2>&1 | tee /tmp/buildlog-$name >$output" || return 1
     $maintain && cp /tmp/buildlog-$name $path/buildlog
@@ -379,7 +385,7 @@ do_add() # pkgex-list
 {
     debug "do_add(): starting: $@"
     has_args $@ || die
-    is_root || die
+#    is_root || die
     has_ports || die
     local ret=0
     local arg
@@ -625,17 +631,17 @@ init()
     ignore=`regex $ignore`
     exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{,.local}`
     exclude=`regex $exclude`
-    # check deprecated dirs
+    # check obsolete dirs
     if [ -d ~/ports ]; then
-	warn "~/ports is deprecated! Move to $PRT_DIR!"
+	warn "~/ports is obsolete! Move to $PRT_DIR!"
 	PRT_DIR=~/ports
     fi
     if [ -d ~/sources ]; then
-	warn "~/sources is deprecated! Move to $SRC_DIR!"
+	warn "~/sources is obsolete! Move to $SRC_DIR!"
 	SRC_DIR=~/sources
     fi
     if [ -d ~/packages ]; then
-	warn "~/packages is deprecated! Move to $PKG_DIR!"
+	warn "~/packages is obsolete! Move to $PKG_DIR!"
 	PKG_DIR=~/packages
     fi
     # if not used as include file, start me

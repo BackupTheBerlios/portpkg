@@ -31,7 +31,7 @@ stanza "Building sources-files..."
 t=`private`
 row "Retrieving file list"
 get $DIST/FILELIST.TXT $t.file_list
-row "Constructing ports"
+row "Constructing `find $TREE/ -name "*SlackBuild" | wc -l` ports"
 # for any file
 grep -o "\./source/.*/.*/.*" $t.file_list \
 | cut -d " " -f 1 | cut -d / -f 3- | while read s; do
@@ -44,7 +44,7 @@ grep -o "\./source/.*/.*/.*" $t.file_list \
     >>`echo $s | cut -d / -f 1-2`/sources
 done
 
-row "Checking if wrappers needed" 
+row "Constructing `find $TREE/ -name "*.build" | wc -l` .build-wrappers"
 find -name "*.build" | while read s; do
     dir=`dirname $s`
     gname=`dirname $s | cut -c 3-`
@@ -73,4 +73,6 @@ checkinstall -S -y \\
 EOF
 done
 
+stanza "Done. I was able to import `find $TREE/ -name "*SlackBuild" | wc -l` of \
+`find $TREE/ -type d -mindepth 2 -maxdepth 2 | wc -l` possible ports."
 stanza "Don't forget, to link $TREE in $PRT_DIR, to use it!"
