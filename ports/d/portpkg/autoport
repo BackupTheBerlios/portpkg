@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 source `which portpkg` || exit 1
-t=`private`
+t=`mktemp -d`
 
 ask()
 {
@@ -65,7 +65,6 @@ decode()
   echo "$dec"
 }
 
-# preambel
 stanza "Autoport -- An Automatic SlackBuild Generator
 Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
 Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
@@ -96,12 +95,10 @@ if [ "$*" ]; then
 #        i_act=false
 #        shift;;
       -s)
-#        set_sources=$2
         sources=$2
         shift
         shift;;
       -g)
-#        set_group=`echo $2 | cut -d / -f 1`
         group=`echo $2 | cut -d / -f 1`
         shift
         shift;;
@@ -133,51 +130,34 @@ fi
 ask "* First step: Collect information. Continue? (ctrl-c to quit)"
 
 # first: do we have tags?
-while ! [ "$MY_TAG" ]; do
-#  $i_act && die "No tag specified!"
-  ask "What is your tag? (e.g.: 'mich')"
-  MY_TAG=`echo $s | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
-  [ "$MY_TAG" ] && echo "MY_TAG=$MY_TAG" >>$PRT_DIR/local.conf
-done
+[ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
 # input information
 # sources
 ask "Source file URL [$sources]:"
 sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
-sources=`echo "$sources" | sed -e "s,//prdownloads\.,//dl\.," -e "s,\?download$,,"`
+sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
 # set source_out before user can input a different version
-#source_out=`echo "$sources" | sed "s,$version,\\$VERSION,g"`
-source_out=`encode "$sources"`
-#set_sources=$sources
+[ "$version" ] && source_out=`encode "$sources"`
 # name: guess it, if we haven't yet it
 file=`basename $sources`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
 ask "Name [$name]:"
 name=${s:-$name}
-## now check if it exists
-#get_info $name 2>/dev/null
-#[ "$set_sources" ] && sources=$set_sources
-#[ "$set_group" != "local" ] && group=$set_group
-## try to guess group
-#[ "$group" == "local" ] && get_info $name 2>/dev/null
 # group
 ask "Group [$group]:"
 group=${s:-$group}
 # version: should be always guessed
-## version: guess it, if we haven't yet it
-#if ! [ "$version" ]; then
-  version=`echo $file | rev | cut -d - -f 1 | rev`
-  version=`basename $version .tar.gz`
-  version=`basename $version .tar.bz2`
-  version=`basename $version .tgz`
-#fi
+version=`echo $file | rev | cut -d - -f 1 | rev`
+version=`basename $version .tar.gz`
+version=`basename $version .tar.bz2`
+version=`basename $version .tgz`
 ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
-#source_out=`echo "$sources" | sed "s,$version,\\$VERSION,g"`
 # arch
 ask "Arch [$arch]:"
 arch=${s:-$arch}
@@ -289,7 +269,7 @@ echo -n "  --> Checking format... "
 case $file in
   *.tar.bz2)
     format=tarbz2
-    tar tjf $SRC_DIR/$file >$t.footprint \
+    tar tjf $SRC_DIR/$file >$t/footprint \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".tar.bz2"
 #    snip targz $script
@@ -297,7 +277,7 @@ case $file in
     snip rpm $script;;
   *tar.gz|*.tgz)
     format=targz
-    tar tzf $SRC_DIR/$file >$t.footprint \
+    tar tzf $SRC_DIR/$file >$t/footprint \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".tar.gz"
 #    snip tarbz2 $script
@@ -310,7 +290,7 @@ case $file in
       cp $SRC_DIR/$file .
       rpm2targz $file
       tar xzf `basename $file .rpm`.tar.gz
-      tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t.footprint \
+      tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t/footprint \
       || die "Error while unpacking, maybe wrong URL?" )
     echo ".src.rpm"
     snip tar $script
@@ -324,7 +304,7 @@ sed -i "s,%tarball%,$tarball," $script
 
 # source-prefix
 echo -n "  --> Checking source-prefix... "
-srcdir_prefix=`cat $t.footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
+srcdir_prefix=`cat $t/footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
 if [ `echo "$srcdir_prefix" | wc -l` == "1" ] && [ "$srcdir_prefix" != "." ]; then
   echo "$srcdir_prefix/"
   snip extra_sdp $script
@@ -342,7 +322,7 @@ docs=`egrep "/ABOUT$|/ABOUT-NLS$|/ANNOUNCE$|/AUTHORS$|/CONFIGURATION$|/CHANGES$\
 |/CONTRIBUTORS$|FAQ|/FEATURES$|/FILES$|/HACKING$|/History$|/HISTORY$|/INSTALL\
 |/LICENSE$|/LSM$|/MANIFEST$|/NEWS$|README|Readme|/SITES$|RELEASE|/RELNOTES$\
 |/THANKS$|/TIPS$|/TODO$|/VERSION$|/CONFIGURATION|/GPL$|/License$|/Doc$|/doc$\
-|/Docs|/docs|/Roadmap$|/ROADMAP$|BUGS|/index.ht|INDEX" $t.footprint \
+|/Docs|/docs|/Roadmap$|/ROADMAP$|BUGS|/index.ht|INDEX" $t/footprint \
 | sed "s,^$srcdir_prefix/,," | grep -v / | sort -u | xargs`
 if [ "$docs" ]; then
   row "Checking docs... $docs."
@@ -353,16 +333,16 @@ else
 fi
 
 # extract Makefiles
-mkdir -p $t.src
+mkdir -p $t/src
 case $format in
-  tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
-  targz)  tar xzf $SRC_DIR/$file -C $t.src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
-  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
+  tarbz2) tar xjf $SRC_DIR/$file -C $t/src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
+  targz)  tar xzf $SRC_DIR/$file -C $t/src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
+  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t/src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
 esac
-sed -i "s,^$srcdir_prefix/,," $t.footprint
+sed -i "s,^$srcdir_prefix/,," $t/footprint
 
 # configure/make
-if check "setup.py" "^setup\.py$" $t.footprint; then
+if check "setup.py" "^setup\.py$" $t/footprint; then
   # setup.py seems to be first choice...
   snip cfg_autogen $script
   snip cfg_configure $script
@@ -379,7 +359,7 @@ if check "setup.py" "^setup\.py$" $t.footprint; then
   arch=noarch
 else
   snip inst_python $script
-  if check "Makefile.PL" "^Makefile.PL$" $t.footprint; then
+  if check "Makefile.PL" "^Makefile.PL$" $t/footprint; then
     # ...but Makefile.PL isn't bad either...
     snip cfg_autogen $script
     snip cfg_configure $script
@@ -396,7 +376,7 @@ else
     arch=noarch
   else
     snip cfg_perl $script
-    if check "configure" "^configure$" $t.footprint; then
+    if check "configure" "^configure$" $t/footprint; then
       snip cfg_autogen $script
       # use cfg_configure
       # cfg_perl disabled
@@ -409,7 +389,7 @@ else
       # inst_prefix?
       # inst?
       # inst_python disabled
-    elif check "autogen.sh" "^autogen.sh$" $t.footprint; then
+    elif check "autogen.sh" "^autogen.sh$" $t/footprint; then
       # use cfg_autogen
       # use cfg_configure
       # cfg_perl disabled
@@ -430,29 +410,29 @@ else
 fi
 
 # installation prefix
-if check "Makefile" "^Makefile" $t.footprint; then
-  if check "DESTDIR" "\<DESTDIR\>" "$t.src/$srcdir_prefix/Makefile*"; then
+if check "Makefile" "^Makefile" $t/footprint; then
+  if check "DESTDIR" "\<DESTDIR\>" "$t/src/$srcdir_prefix/Makefile*"; then
     # use inst_destdir
     snip inst_PREFIX $script
     snip inst_prefix $script
     snip inst $script
   else
     snip inst_destdir $script
-    if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/Makefile*"; then
+    if check "PREFIX" "\<PREFIX\>" "$t/src/$srcdir_prefix/Makefile*"; then
       # inst_destdir disabled
       # use inst_PREFIX
       snip inst_prefix $script
       snip inst $script
     else
       snip inst_PREFIX $script
-      if check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/Makefile*"; then
+      if check "prefix" "\<prefix\>" "$t/src/$srcdir_prefix/Makefile*"; then
         # inst_destdir disabled
         # inst_PREFIX disabled
         # use inst_prefix
         snip inst $script
       else
         snip inst_prefix $script
-        if check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/Makefile*"; then
+        if check "hard coded /usr/local" "/usr/local" "$t/src/$srcdir_prefix/Makefile*"; then
           # inst_destdir disabled
           # inst_PREFIX disabled
           # inst_prefix diabled
@@ -471,23 +451,23 @@ else
 fi
 
 # cflags
-if check "CFLAGS" "\<CFLAGS\>" "$t.src/$srcdir_prefix/*"; then
+if check "CFLAGS" "\<CFLAGS\>" "$t/src/$srcdir_prefix/*"; then
   :
 else
   snip cflags $script
 fi
 
 # cxxflags
-if check "CXXFLAGS" "\<CXXFLAGS\>" "$t.src/$srcdir_prefix/*"; then
+if check "CXXFLAGS" "\<CXXFLAGS\>" "$t/src/$srcdir_prefix/*"; then
   :
 else
   snip cxxflags $script
 fi
 
 # gconf schemas and scrollkeeper
-check "gconf schemas" "\.schemas(|\.in|\.in\.in)$" $t.footprint && schemas=true || schemas=false
-check "scrollkeeper" "\.omf$" $t.footprint && omfs=true || omfs=false
-#check "mime database" "/mime-info$" "$t.src/$srcdir_prefix/*" && mimes=true || mimes=false
+check "gconf schemas" "\.schemas(|\.in|\.in\.in)$" $t/footprint && schemas=true || schemas=false
+check "scrollkeeper" "\.omf$" $t/footprint && omfs=true || omfs=false
+#check "mime database" "/mime-info$" "$t/src/$srcdir_prefix/*" && mimes=true || mimes=false
 if $schemas || $omfs; then
   if ! grep -sq "^inst()$" $path/doinst.sh; then
     stanza "There's no inst() in your doinst.sh although you need it! I'll add it."
@@ -504,8 +484,8 @@ else
   fi
 fi
 
-#check "wrong doc paths" "/share/doc\>" "$t.src/$srcdir_prefix/Makefile*" || snip pt_doc $script
-#check "wrong man paths" "/share/man\>" "$t.src/$srcdir_prefix/Makefile*" || snip pt_man $script
+#check "wrong doc paths" "/share/doc\>" "$t/src/$srcdir_prefix/Makefile*" || snip pt_doc $script
+#check "wrong man paths" "/share/man\>" "$t/src/$srcdir_prefix/Makefile*" || snip pt_man $script
 ## add mime-installation
 #mime_inst="usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1"
 #if $mime && ! grep -sqx "$mime_inst" $path/doinst.sh; then

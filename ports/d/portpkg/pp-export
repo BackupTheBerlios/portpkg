@@ -16,30 +16,14 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
   die "Usage: pp-export [port ..]"
 fi
 
-cd $PRT_DIR || die
-
-# variables
-while ! [ "$MY_TAG" ]; do
-  echo -en "\nWhat is your tag (e.g.: 'mich') ? "
-  read MY_TAG
-  MY_TAG=`echo $MY_TAG | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
-  [ "$MY_TAG" ] && echo "MY_TAG=$MY_TAG" >>$PRT_DIR/local.conf
-done
-
-while ! [ "$MY_REALNAME" ]; do
-  echo -en "\nWhat is your real name? "
-  read MY_REALNAME
-  [ "$MY_REALNAME" ] && echo "MY_REALNAME=\"$MY_REALNAME\"" >>$PRT_DIR/local.conf
-done
-
-while ! [ "$MY_EMAIL" ]; do
-  echo -en "\nWhat is your mail address? "
-  read MY_EMAIL
-  [ "$MY_EMAIL" ] && echo "MY_EMAIL=$MY_EMAIL" >>$PRT_DIR/local.conf
-done
+[ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
+[ "$MY_EMAIL" ] || die "No mail address set. Please run 'pp-config'!"
+[ "$MY_REALNAME" ] || die "No real name set. Please run 'pp-config'!"
 
 echo -ne "\nContinue exporting ports with tag '$MY_TAG'? (ctrl-c to quit) "
 read
+
+cd $PRT_DIR || die
 
 # find ports
 stanza "Finding ports:"

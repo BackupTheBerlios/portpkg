@@ -1,6 +1,6 @@
-VERSION=0.32
+VERSION=0.33
 ARCH=noarch
-BUILD=5tom
+BUILD=1tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -9,8 +9,9 @@ rm -rf $PKG
 mkdir -p $PKG/usr/{bin,doc/$NAME-$VERSION,man/man1}
 
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
-install -m 755 $CWD/pp-sync-dist $PKG/usr/bin/
-install -m 755 $CWD/pp-sync-slack $PKG/usr/bin/
+install -m 755 $CWD/pp-config $PKG/usr/bin/
+install -m 755 $CWD/pp-sync-bin $PKG/usr/bin/
+install -m 755 $CWD/pp-sync-src $PKG/usr/bin/
 install -m 755 $CWD/pp-clean-cache $PKG/usr/bin/
 install -m 755 $CWD/pp-export $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/

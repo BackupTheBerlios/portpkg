@@ -1,19 +1,18 @@
 #!/bin/bash -u
 # clean-cache - portpkg-addon that moves all outdated packages to outdated/
 
-#include "portpkg.h"
 source `which portpkg` || exit 1
 
-t=`private`
+t=`mktemp -d`
 stanza "Cleaning $PKG_DIR/:"
 mkdir -p $PKG_DIR
 cd $PKG_DIR/ || die
-ls_locations | loc2gpkg >$t.avail
+ls_locations | loc2gpkg >$t/avail
 # leave local/ as is
-ls_cache | grep -v "^local/" >$t.cache
+ls_cache | grep -v "^local/" >$t/cache
 row "Checking cache structure"
-for gpkg in `fgrep -vxf $t.avail $t.cache`; do
-    group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t.avail | cut -sd / -f 1`
+for gpkg in `fgrep -vxf $t/avail $t/cache`; do
+    group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
     group=${group:-outdated}
     case $gpkg in $group/*) continue;; esac
     row "Moving $gpkg to $group/"

@@ -25,10 +25,10 @@ SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
 
-SCRATCH_DIR=/tmp/portpkg-`whoami`-$$
-FAKE_INST=$SCRATCH_DIR/fake_inst
-ADD_SUM=$SCRATCH_DIR/add_sum
-LOC_CACHE=$SCRATCH_DIR/loc_cache
+export TMPDIR=`mktemp -d /tmp/portpkg-XXXXXX`
+FAKE_INST=`mktemp`
+ADD_SUM=`mktemp`
+LOC_CACHE=`mktemp`
 
 # local configuration
 MY_TAG=""
@@ -87,12 +87,12 @@ get()
   # mirrors
   if [ "$mirrors" ]; then
     debug "get(): we have mirrors"
-    echo "$mirrors" >$t.mirrors
+    echo "$mirrors" >$t/mirrors
     local master mirror
     while read master mirror; do
       debug "get(): checking for $master <-> $mirror"
       url=`echo $url | sed "s,^$master,$mirror,"`
-    done <$t.mirrors
+    done <$t/mirrors
   fi
   debug "get(): \$url=$url"
   if wget -c -O $dest.part $url >$output 2>&1; then
@@ -100,14 +100,6 @@ get()
   else
     error "Download failed!"
   fi
-}
-
-# prepare a unique scratch-dir or -file
-private() # >filename
-{
-  local file=$SCRATCH_DIR/$RANDOM
-  rm -rf $file
-  echo $file
 }
 
 # generate a regular expression for grep from a pkgex-list
@@ -144,7 +136,7 @@ explicit() # >pkgex-list
 # list all available ports
 ls_locations()
 {
-  if [ -f $LOC_CACHE ]; then
+  if [ -s $LOC_CACHE ]; then
     cat $LOC_CACHE 2>/dev/null
     return
   fi
@@ -167,20 +159,20 @@ ls_locations()
 ls_diff() # >list
 {
   debug "ls_diff(): starting"
-  local t=`private`
-  ls_locations | loc2gpkg | grep -v $exclude | cut -d / -f 2 >$t.avail
-  ls_inst >$t.inst
-  pkg2name <$t.avail >$t.avail.names
-  pkg2name <$t.inst >$t.inst.names
-  fgrep -xf $t.avail.names $t.inst.names >$t.check.names
+  local t=`mktemp -d`
+  ls_locations | loc2gpkg | grep -v $exclude | cut -d / -f 2 >$t/avail
+  ls_inst >$t/inst
+  pkg2name <$t/avail >$t/avail.names
+  pkg2name <$t/inst >$t/inst.names
+  fgrep -xf $t/avail.names $t/inst.names >$t/check.names
   local name
   while read name; do
-#    grep -m 1 `regex $name` $t.avail >>$t.avail.check
-#    grep `regex $name` $t.inst >>$t.inst.check
-    grep -m 1 "^$name-[^-]*-[^-]*-[^-]*$" $t.avail >>$t.avail.check
-   grep "^$name-[^-]*-[^-]*-[^-]*$" $t.inst >>$t.inst.check
-  done <$t.check.names
-  fgrep -vxf $t.inst.check $t.avail.check
+#    grep -m 1 `regex $name` $t/avail >>$t/avail.check
+#    grep `regex $name` $t/inst >>$t/inst.check
+    grep -m 1 "^$name-[^-]*-[^-]*-[^-]*$" $t/avail >>$t/avail.check
+   grep "^$name-[^-]*-[^-]*-[^-]*$" $t/inst >>$t/inst.check
+  done <$t/check.names
+  fgrep -vxf $t/inst.check $t/avail.check
   debug "ls_diff(): finished"
 }
 
@@ -240,7 +232,7 @@ get_info()
 check_reqs()
 {
   $NO_REQS && return 0
-  local avail=$SCRATCH_DIR/avail_cache
+  local avail=$TMPDIR/avail_cache
   [ -f $avail ] || ls_locations | loc2gpkg | grep -v $exclude >$avail
   debug "check_reqs(): starting: $package"
   # remember that for a refresh later
@@ -298,14 +290,14 @@ check_reqs()
 # build package
 build_pkg()
 {
-  local t=`private`
+  local t=`mktemp -d`
   local path=`dirname $script`
   stanza "Building $package:"
   $maintain && warn "Maintainer mode: File 'requires' will be modified!"
   $maintain && $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
   # prepare build directory in /tmp
-  mkdir -p $t.script/$name
-  cd $t.script/$name/
+  mkdir -p $t/script/$name
+  cd $t/script/$name/
   cp -a $path/* .
   # download the source files
   local src
@@ -326,15 +318,15 @@ build_pkg()
     fi
     # md5sums
     local md5sum=`grep -s " $srcname$" $path/md5sums`
-    if [ "$md5sum" ] && ! echo "$md5sum" | md5sum --check >$t.md5sum; then
-      cat $t.md5sum
+    if [ "$md5sum" ] && ! echo "$md5sum" | md5sum --check >$t/md5sum; then
+      cat $t/md5sum
       error "Integrity checking failed!"
       return 1
     fi
   done
 #  # check any other file
-#  if [ -f $path/md5sum ] && ! md5sum --check $path/md5sums >$t.md5sum; then
-#    cat $t.md5sum
+#  if [ -f $path/md5sum ] && ! md5sum --check $path/md5sums >$t/md5sum; then
+#    cat $t/md5sum
 #    error "Integrity checking failed!"
 #    return 1
 #  fi
@@ -364,7 +356,7 @@ build_pkg()
     tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }'\
     | sort +3 >$path/footprint
     # write md5sum list
-    row "Writing md5sums (assuming these files are integer!)"
+    [ -f $path/sources ] && row "Writing md5sums (assuming these files are integer!)"
 #    find $path/ -type f | grep -ve md5sums -e arbitrary -e /CVS/ \
 #    | sed "s,^$path/,," | sort | xargs -r md5sum >$path/md5sums
     for src in $sources; do
@@ -376,7 +368,7 @@ build_pkg()
     [ -s $path/md5sums ]  || rm $path/md5sums
     # is there a package tree?
     if [ -d /tmp/package-$name ]; then
-      echo "$requires" >$t.old_req
+      echo "$requires" >$t/old_req
       row "Analysing package"
       # check libraries (rename xxx-solibs to xxx, add x11-devel if needed)
       find /tmp/package-$name/ | xargs file | grep ELF | cut -d : -f 1 \
@@ -384,32 +376,32 @@ build_pkg()
       | cut -c 2- | sort -u | grep -lf - $ADM_DIR/packages/* \
       | sed -r "s,^$ADM_DIR/packages/,," | pkg2name \
       | sed -r -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
-      | grep -v ^$name$ >$t.bin_req
+      | grep -v ^$name$ >$t/bin_req
       # check for perl and python scripts
-      find /tmp/package-$name/ | xargs file >$t.ftypes
-      grep -q perl $t.ftypes && echo perl >>$t.bin_req
-      grep -q python $t.ftypes || grep -q "\.py$" $path/footprint \
-      && echo python >>$t.bin_req
+      find /tmp/package-$name/ | xargs file >$t/ftypes
+      grep -q perl $t/ftypes && echo perl >>$t/bin_req
+      grep -q python $t/ftypes || grep -q "\.py$" $path/footprint \
+      && echo python >>$t/bin_req
       # sort
-      sort -uo $t.bin_req $t.bin_req
+      sort -uo $t/bin_req $t/bin_req
       # strip ignore list
-      grep $ignore $t.bin_req | xargs -r echo "  --> Ignoring dependencies:"
-      grep -v $ignore $t.bin_req >$t.bin_req.new
-      mv $t.bin_req{.new,}
+      grep $ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
+      grep -v $ignore $t/bin_req >$t/bin_req.new
+      mv $t/bin_req{.new,}
       # check trashed package upgrades
-      ls_locations | loc2gpkg | grep $exclude | cut -d / -f 2 >$t.exclude
-      fgrep -xf $t.exclude $t.bin_req >$t.excl_req
-      grep -e "-upgraded$" $t.bin_req >>$t.excl_req
-      [ -s $t.excl_req ] && warn "Check these requirements: "`cat $t.excl_req`
+      ls_locations | loc2gpkg | grep $exclude | cut -d / -f 2 >$t/exclude
+      fgrep -xf $t/exclude $t/bin_req >$t/excl_req
+      grep -e "-upgraded$" $t/bin_req >>$t/excl_req
+      [ -s $t/excl_req ] && warn "Check these requirements: "`cat $t/excl_req`
       # check for common mistakes
-      grep -e /share/doc/ -e /share/man/ -e var/scrollkeeper/ $path/footprint >$t.check_path
-      cat $t.check_path | rev | cut -d " " -f 1 | rev | xargs -i -r echo "WARNING: Check this path: /{}"
+      grep -e /share/doc/ -e /share/man/ -e var/scrollkeeper/ $path/footprint >$t/check_path
+      cat $t/check_path | rev | cut -d " " -f 1 | rev | xargs -i -r echo "WARNING: Check this path: /{}"
       grep "^........w" $path/footprint | xargs -r -l echo "WARNING: Check these permissions:"
       # now generate new "requires" file
-      cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$path/requires
+      cat $t/bin_req $t/old_req | grep -v ^$ | sort -u >$path/requires
       [ -s $path/requires ] || rm -f $path/requires
       # show any dependency that couldn't be confirmed
-      diff -u $t.old_req $t.bin_req | grep ^[-][^-] | cut -c 2- >$path/arbitrary
+      diff -u $t/old_req $t/bin_req | grep ^[-][^-] | cut -c 2- >$path/arbitrary
       [ -s $path/arbitrary ] && warn "Arbitrary requirements: "`cat $path/arbitrary` \
       || rm -f $path/arbitrary
       # now remove that directory
@@ -425,7 +417,7 @@ build_pkg()
 # really (re)install/upgrade current port
 add_pkg() # tgz
 {
-  local t=`private`
+  local t=`mktemp -d`
   # track argument
   echo $1 >>$ADD_SUM
   get_info $1 || return 1
@@ -467,9 +459,9 @@ add_pkg() # tgz
   echo $package >>$FAKE_INST
   $DRY_RUN && return 0
   # call the install-command
-  if ! su -c "$add $pkg_file | tee $t.install_log | grep -e ^PACKAGE \
+  if ! su -c "$add $pkg_file | tee $t/install_log | grep -e ^PACKAGE \
   -e ^$name: -e ^Executing"; then
-    cat $t.install_log
+    cat $t/install_log
     error "Installation failed!"
     return 1
   fi
@@ -505,20 +497,20 @@ do_add() # pkgex-list
 
 do_diff()
 {
-  local t=`private`
+  local t=`mktemp -d`
   has_ports || die
   local diff_list=`ls_diff`
   [ "$diff_list" ] || die "No differences found."
   stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
-  ls_inst >$t.inst
-  ls_locations | loc2gpkg >$t.avail
+  ls_inst >$t/inst
+  ls_locations | loc2gpkg >$t/avail
   local pkg
   for pkg in $diff_list; do
     debug "do_diff(): \$pkg=$pkg"
     local avail_rel=`echo $pkg | pkg2rel`
     local name=`echo $pkg | pkg2name`
-    local avail=`grep -m 1 $(regex $name) $t.avail | pkg2name`
-    local inst_rel=`grep -m 1 $(regex $name) $t.inst | pkg2rel`
+    local avail=`grep -m 1 $(regex $name) $t/avail | pkg2name`
+    local inst_rel=`grep -m 1 $(regex $name) $t/inst | pkg2rel`
     avail=${avail:-$name}
     avail_rel=${avail_rel:-(n/a)}
     echo -e "$avail\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
@@ -528,13 +520,13 @@ do_diff()
 # find ports by pattern
 do_find() # text [..] >list
 {
-  local t=`private`
+  local t=`mktemp -d`
   has_ports || die
   local arg
   for arg; do
     find $PRT_DIR/ -follow -name slack-desc | xargs grep -shi $arg
-  done | grep "^[^ ]*: " | cut -d : -f 1 | sort -u >$t.list
-  [ -s $t.list ] && do_list `cat $t.list`
+  done | grep "^[^ ]*: " | cut -d : -f 1 | sort -u >$t/list
+  [ -s $t/list ] && do_list `cat $t/list`
 }
 
 # print information about a port
@@ -564,15 +556,15 @@ do_info() # pkgex-list
 # list available ports (gives a glist)
 do_list() # [pkgex-list] >glist
 {
-  t=`private`
+  local t=`mktemp -d`
   has_ports || die
-  ls_locations | loc2gpkg >$t.pipe
-#| grep -v $exclude >$t.pipe
+  ls_locations | loc2gpkg >$t/pipe
+#| grep -v $exclude >$t/pipe
   # grep arguments
   if [ "$*" ]; then
-    grep `regex $@` $t.pipe 2>/dev/null
+    grep `regex $@` $t/pipe 2>/dev/null
   else
-    cat $t.pipe
+    cat $t/pipe
   fi
 }
 
@@ -714,16 +706,10 @@ check_obsolete()
 init()
 {
   # make temporary directory
-  case $SCRATCH_DIR in ""|"/") die "Internal error!";; esac
-  rm -rf $SCRATCH_DIR
-  mkdir -p $SCRATCH_DIR
-  chmod 700 $SCRATCH_DIR
-  [ -d $SCRATCH_DIR ] || die "Internal error!"
+  [ -d $TMPDIR ] || die "Internal error!"
   # clean up on exit
-  trap "rm -rf $SCRATCH_DIR" EXIT
+  trap "rm -rf $TMPDIR" EXIT
   trap "" PIPE
-  # init virtual install list
-  touch $FAKE_INST
   # check requirements
   has_pkg sed-4 || die
   has_pkg coreutils-5.2 || die
@@ -740,7 +726,7 @@ init()
 #    fi
 #  fi
   # local configuration
-  source $PRT_DIR/local.conf
+  [ -f $PRT_DIR/local.conf ] && source $PRT_DIR/local.conf
   mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{.local,}`
@@ -750,15 +736,14 @@ init()
 #  prefer=`regex $prefer`
 #  # ignore list: translate to names, add exclude list and remove items that
 #  # are also in non-excluded lists!
-#  local t=`private`
-#  ls_locations | loc2gpkg >$t.avail
-#  grep -v $exclude $t.avail | pkg2name | cut -d / -f 2 >$t.non-excl
-#  ignore=`grep $exclude $ignore $t.avail | pkg2name | cut -d / -f 2 | fgrep -vxf $t.non-excl | sort -u`
+#  local t=`mktemp -d`
+#  ls_locations | loc2gpkg >$t/avail
+#  grep -v $exclude $t/avail | pkg2name | cut -d / -f 2 >$t/non-excl
+#  ignore=`grep $exclude $ignore $t/avail | pkg2name | cut -d / -f 2 | fgrep -vxf $t/non-excl | sort -u`
   # check default arch
-  ARCH=i486
+  export ARCH=i486
   ls $ADM_DIR/packages/glibc-* | grep -sqe -s390- && ARCH=s390
   ls $ADM_DIR/packages/glibc-* | grep -sqe -x86_64- && ARCH=x86_64
-#  ARCH=`ls_inst | grep -m 1 $(regex glibc) | pkg2rel | cut -d - -f 2`
   # if not used as include file, start me
   [ `basename $0` == "portpkg" ] && parse_options $@
   return 0

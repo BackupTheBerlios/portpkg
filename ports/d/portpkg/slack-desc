@@ -1,11 +1,10 @@
 portpkg: Portpkg (Administration tools for the Portpkg Project)
 portpkg:
-portpkg: These are the administration tools portpkg, autoport,
-portpkg: checkpkg, pp-clean-cache, pp-sync-dist, pp-sync-slack and
-portpkg: pp-export. For more docmentation see /usr/doc/portpkg-xxx or
-portpkg: http://portpkg.berlios.de. Checkout the ports tree with
-portpkg:   # portpkg --sync
-portpkg: PLEASE NOTE: If you have Slackware-current, do
-portpkg:   # echo pasture/ >>/usr/ports/exclude.local
-portpkg: AND ALSO: If you want to use mirrors make a symlink
-portpkg:   # ln -s mirrors.de /usr/ports/mirrors
+portpkg: These are the administration tools: portpkg autoport checkpkg
+portpkg: pp-clean-cache pp-config pp-sync-bin pp-sync-src pp-export.
+portpkg:
+portpkg: For more documentation see /usr/doc/portpkg-XXX or
+portpkg: http://portpkg.berlios.de.
+portpkg:
+portpkg: For setting up Portpkg, please run 'pp-config'.
+portpkg:

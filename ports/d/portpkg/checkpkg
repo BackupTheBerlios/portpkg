@@ -1,7 +1,6 @@
 #!/bin/sh
 # checkpkg - a small dialog interface for portpkg portsystem
 
-#include "portpkg.h"
 source `which portpkg` || exit 1
 
 dia()
@@ -16,7 +15,7 @@ please_wait()
 
 main_menu()
 {
-    local t=`private`
+    local t=`mktemp -d`
     please_wait
     do_list | cut -d / -f 1 | sort -u | sed \
     -e "s,^a$,& System_packages ," \
@@ -42,76 +41,76 @@ main_menu()
     -e "s,^x$,& X-Window-system ," \
     -e "s,^xap$,& X-Applications ," \
     -e "s,^y$,& Games ," \
-    -e "s,^[^ ]*$,& & ," >$t.menu
-#    echo "orphans Any_other_installed_packages" >>$t.menu
+    -e "s,^[^ ]*$,& & ," >$t/menu
+#    echo "orphans Any_other_installed_packages" >>$t/menu
     dia --title "LIST OF GROUPS" --cancel-label "Quit" --menu "These are the \
-available groups. Select the one you want to look into." 0 0 0 `cat $t.menu`
+available groups. Select the one you want to look into." 0 0 0 `cat $t/menu`
 }
 
 check_group()
 {
-    local t=`private`
+    local t=`mktemp -d`
     group=$1
     please_wait
-    ls_locations | grep "^.*/$group/[^/]*$" >$t.locs
-    cat $t.locs | loc2gpkg >$t.gpkgs
-    cat $t.gpkgs | cut -d / -f 2 >$t.pkgs
+    ls_locations | grep "^.*/$group/[^/]*$" >$t/locs
+    cat $t/locs | loc2gpkg >$t/gpkgs
+    cat $t/gpkgs | cut -d / -f 2 >$t/pkgs
 #    if [ "$group" == "orphans" ]; then
-#      ls_inst | fgrep -xvf $t.pkgs 
+#      ls_inst | fgrep -xvf $t/pkgs 
 #    fi
-    cat $t.pkgs | pkg2name >$t.names
-    cat $t.names | sort -u >$t.unames
-    ls_inst >$t.inst
-    count=`cat $t.unames | wc -l`
+    cat $t/pkgs | pkg2name >$t/names
+    cat $t/names | sort -u >$t/unames
+    ls_inst >$t/inst
+    count=`cat $t/unames | wc -l`
     i=0
     while read name; do
-	loc=`grep -m 1 $(regex $name) $t.locs`
+	loc=`grep -m 1 $(regex $name) $t/locs`
 	pkg=`echo $loc | sed "s,^.*/,,"`
 	desc=`grep -sv ^# $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | tr " " "_"`
 	desc=${desc:-(n/a)}
-	[ $(fgrep -xm 1 $pkg $t.inst) ] \
-	&& echo $name $desc on $pkg >>$t.list \
-	|| echo $name $desc off $pkg >>$t.list
+	[ $(fgrep -xm 1 $pkg $t/inst) ] \
+	&& echo $name $desc on $pkg >>$t/list \
+	|| echo $name $desc off $pkg >>$t/list
 	((i++))
 	echo $((100*i/count))
-    done <$t.unames | dia --gauge "Searching ports..." 0 40
-    sort $t.list -o $t.list
+    done <$t/unames | dia --gauge "Searching ports..." 0 40
+    sort $t/list -o $t/list
     dia --item-help --separate-output --cancel-label "Quit" --title "LIST OF \
 PORTS IN GROUP `echo $group | tr "a-z" "A-Z"`/" --checklist "These are the \
 available ports in group $group/. Installed ports are already selected. You \
-can deselect them to remove or select others to install them." 0 0 0 `cat $t.list` 2>$t.pos_names
+can deselect them to remove or select others to install them." 0 0 0 `cat $t/list` 2>$t/pos_names
     [ $? != 0 ] && return 1
     # Liste vergleichen und (de-)installieren
-    fgrep -vxf $t.pos_names $t.unames >$t.neg_names
-    for p in `cat $t.neg_names`; do
-	pkg=`grep -m 1 $(regex $p) $t.pkgs`
-        fgrep -xsq $pkg $t.inst && echo $pkg
-    done >$t.list_remove
-    if [ -s $t.list_remove ]; then
+    fgrep -vxf $t/pos_names $t/unames >$t/neg_names
+    for p in `cat $t/neg_names`; do
+	pkg=`grep -m 1 $(regex $p) $t/pkgs`
+        fgrep -xsq $pkg $t/inst && echo $pkg
+    done >$t/list_remove
+    if [ -s $t/list_remove ]; then
 	{
-	    removepkg `cat $t.list_remove` 2>&1
+	    removepkg `cat $t/list_remove` 2>&1
 	    stanza "Finished. You can now press ENTER."
-	} >$t.pipe-rem-$p &
-    	dia --tailbox $t.pipe-rem-$p 20 75
+	} >$t/pipe-rem-$p &
+    	dia --tailbox $t/pipe-rem-$p 20 75
     fi
-    for p in `cat $t.pos_names`; do
-	pkg=`grep -m 1 $(regex $p) $t.pkgs`
-	fgrep -xsq $pkg $t.inst || echo $pkg
-    done >$t.list_install
-    if [ -s $t.list_install ]; then
+    for p in `cat $t/pos_names`; do
+	pkg=`grep -m 1 $(regex $p) $t/pkgs`
+	fgrep -xsq $pkg $t/inst || echo $pkg
+    done >$t/list_install
+    if [ -s $t/list_install ]; then
 	{
-	    portpkg `cat $t.list_install` 2>&1
+	    portpkg `cat $t/list_install` 2>&1
 	    stanza "Finished. You can now press ENTER."
-	} >$t.pipe-add-$p &
-	dia --tailbox $t.pipe-add-$p 20 75
+	} >$t/pipe-add-$p &
+	dia --tailbox $t/pipe-add-$p 20 75
     fi
 }
 
-t=`private`
+t=`mktemp -d`
 while true; do
-    main_menu 2>$t.group
+    main_menu 2>$t/group
     [ $? == 0 ] || break
-    check_group `cat $t.group`
+    check_group `cat $t/group`
     [ $? == 0 ] || break
 done
 clear

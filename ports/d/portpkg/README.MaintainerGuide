@@ -235,6 +235,8 @@ The Configuration Of Portpkg
    |-----------------------+------------------------------------------------|
    |NO_REQS=true           |Let Portpkg always work without requirements    |
    |                       |resolving (--noreqs)                            |
+   |-----------------------+------------------------------------------------|
+   |LAZY_CHECKS=true       |Don't upgrade dependencies (==--lazy)           |
    +------------------------------------------------------------------------+
 
   Mirrors And Mirrors.local

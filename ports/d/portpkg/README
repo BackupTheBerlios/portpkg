@@ -17,38 +17,27 @@ About The Portpkg Project
 To-Do-List
 
      o Double check all ports. Make them 100 % work on Slackware 10.0.
-
      o Support for CVS or maybe RSYNC, SVN in sources.
-
      o Fakeroot? Building packages as user.
-
      o Cooperation with slackpkg (or slapt-get/swaret) for dependency
        resolution of Slackware packages?
-
-     o Data integrity checking? (MD5? GPG?)
-
-     o Lazy upgrading: don't upgrade any dependencies just to install a
-       library that doesn't need that.
-
      o Ignore for single ports
-
      o Feature freeze, then beta-status, documentation, maybe translation.
 
    Already done:
 
+     o Data integrity checking (half done: md5sums)
+     o Lazy upgrading: don't upgrade any dependencies just to install a
+       library that doesn't need that.
      o Support for three architectures: i486, s390 and x86_64. i486 is the
        default architecture, so our ports have either ARCH=noarch or
        ARCH=${ARCH:-i486} in the SlackBuild, portpkg detects the architecure
        and passes $ARCH with to the SlackBuild.
-
      o Simple slot system: Ports that don't replace an existing different
        version have an empty file slot-in.
-
      o Removed addport and export from ports and integrated with Portpkg.
-
      o Localised mirrors-files (half-done): Users can link mirrors to
        mirrors.xx (only .de for now).
-
      o Found a way to get over the differences between stable (10.0) and
        current (could be improved): Some ports need newer versions of a
        dependency that is not in 10.0 (stable), but in current. And current
@@ -69,10 +58,8 @@ Contribute / Jobs
        You can find it in /tmp, it is called buildlog-<portname>, go to
        http://portpkg.berlios.de and click browse and upload it. This is
        anonymous, and helps a lot!
-
      o If you have a clue what is borked, send a short bug-report on
        http://portpkg.berlios.de.
-
      o If you know how to fix a broken SlackBuild and want to code directly
        as a maintainer, ask me for a CVS-account!
 
@@ -84,16 +71,13 @@ Contribute / Jobs
        on http://portpkg.berlios.de with the panel on the right. They will be
        automatically committed into the group open/ within the next hour and
        checked later to be merged to the collection.
-
      o If you miss dependencies or descriptions or something leave a message
        for the maintainer.
 
   Wanted
 
      o Maintainers for KDE applications
-
      o Maintainers who are interested in taking over a few of my (Tom) ports
-
      o Is someone interested in hosting binary packages?
 
    ---------------------------------------------------------------------------
