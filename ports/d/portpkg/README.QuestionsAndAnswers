@@ -38,6 +38,14 @@ QuestionsAndAnswers
 
   Why not use binary packages?
 
+   See also the question Why? above: building packages by source gives you
+   control over how it is compiled. If you install a binary package, you
+   don't know which features are compiled in, or which are left out. (e.g. an
+   aterm without transparency or a licq only linked against KDE (like the
+   package from linuxpackages.net), and you don't want to use KDE). With
+   portpkg you has the control, just like the three-step ./configure; make;
+   make install way, but with getting a valid Slackware package.
+
   Is it safe?
 
    Since Portpkg uses Fakeroot, it is quite safe: Each SlackBuild (there're a
@@ -135,6 +143,15 @@ QuestionsAndAnswers
    spkg... Portpkg is unique in this sense of feature: It starts with a "p",
    goes straight on with "ort", just to find its climax with another "p", and
    ends quickly but sudden with "kg".
+
+  After reading the main parts of this page, it seems to me, that portpkg only
+  works with Slackware 10.0. But what's about Slackware 10.1 or the 9.x series?
+  (still using slack 9.1, you know: never change a running system ;-)
+
+   It should work fine on Slackware 10.1 and current (I'm running current).
+   About 9.x series, I have read sometime about changes with some GNU tools
+   options, but I didn't noted what it was. Also, I've never tested it on
+   9.x.
 
    --------------------------------------------------------------------------
 

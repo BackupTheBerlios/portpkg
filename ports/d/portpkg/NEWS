@@ -1,5 +1,29 @@
 News
 
+  04/04/2005
+
+   Portpkg
+           * Release 0.37.
+           * This release contains many bug-fixes. Thanks to all contributor
+             and bug hunters (lem, hnaz, sjn etc.).
+           * All buildlogs and wgetlogs are stored in /var/log/portpkg
+           * In non-maintainer-mode SlackBuilds use --cleanup (if supported
+             by the script)
+           * Export needs a short message for the log (portpkg --export
+             "Message for Changelog" ports)
+           * PORT_IS_BROKEN is now a symlink to the buildlog to make things
+             easier for maintainers
+           * Introduced some more mirrors lists for source URLs
+           * Introduced different exclude lists depending on the running
+             Slackware version
+           * Please run pp-config to configure them.
+
+  03/29/2005
+
+   Ports
+           * We have now over 500 ports. Thanks to all contributors! Keep on
+             submitting :)
+
   03/12/2005
 
    Portpkg
@@ -8,8 +32,7 @@ News
              ignore*, exclude*, mirrors*) moved to /etc/portpkg, the ports
              tree location can now be customised via PRT_DIR. Please move
              your *local* files to /etc/portpkg.
-           * Pp-export is now called by portpkg --export "Message for
-             Changelog" ports
+           * Pp-export is now called by portpkg --export ports
 
   03/03/2005
 

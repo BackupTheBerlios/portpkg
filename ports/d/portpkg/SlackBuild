@@ -1,33 +1,38 @@
-VERSION=0.36
+VERSION=0.37
 ARCH=noarch
-BUILD=5tom
+BUILD=1tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=/tmp/package-$NAME
 rm -rf $PKG
+
+# directories
 mkdir -p $PKG/etc/portpkg
 mkdir -p $PKG/usr/bin
 mkdir -p $PKG/usr/man/man1
 mkdir -p $PKG/var/log/portpkg
 mkdir -p $PKG/var/log/setup
 
+# configuration
 install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/
 install -m 644 $CWD/ignore $PKG/etc/portpkg/
 install -m 644 $CWD/exclude.* $PKG/etc/portpkg/
+install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude.new
 
+# man page
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
 
+# executables
 install -m 755 $CWD/portpkg $PKG/usr/bin/
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 install -m 755 $CWD/pp-config $PKG/usr/bin/
 install -m 755 $CWD/pp-sync-bin $PKG/usr/bin/
 #install -m 755 $CWD/pp-sync-src $PKG/usr/bin/
-#install -m 755 $CWD/pp-clean-cache $PKG/usr/bin/
-#install -m 755 $CWD/pp-export $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 
+# integrate pp-config into pkgtool
 ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
 
 chown -R root.bin $PKG/usr/bin
@@ -38,8 +43,7 @@ cp -a \
   $PKG/usr/doc/$NAME-$VERSION/
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-## hotfix for 0.35cvs-7tom/8tom:
-#cat $CWD/doinst.sh >$PKG/install/doinst.sh
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
