@@ -482,74 +482,23 @@ do_list() # [pkgex-list] >glist
 do_sync()
 {
     local t=`private`
-    has_pkg wget-1.9 || die
-    local pub_tree=http://portpkg.berlios.de/download/ports
-#    local cvsroot=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
-    stanza "Synchronising your ports tree with `echo $pub_tree | cut -d / -f 3`:"
-#    # coming this summer
-#    cd `dirname $PRT_DIR`
-#    if has_ports; then
-#	cvs -q -z3 -d$cvsroot checkout -P ports 2>&1
-#    else
-#	cvs -q -z3 -d$cvsroot update -dCP ports 2>&1
-#    fi | sed -r \
-#    -e "s,^cvs [a-z]*:,  -->," \
-#    -e "s,^U,  --> Updating," \
-#    -e "s,^\?,  --> Unknown file," \
-#    -e "/\(.*\)/d" \
-#    -e "/^M /d"
-    if ! has_ports; then
+    local cvsroot=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+    stanza "Synchronising your ports tree with `echo $cvsroot | cut -d @ -f 2 | cut -d : -f 1`:"
+    # coming this summer
+    if [ -d $PRT_DIR ]; then
+        cd $PRT_DIR || die
+	cvs -qz3 up -dPC 2>/dev/null
+    else
 	mkdir -p $PRT_DIR
-	cd $PRT_DIR || die
-	row "Retrieving ports snapshot"
-	get $pub_tree/snapshot.tar.bz2 $t.snapshot.tar.bz2 || die
-	row "Unpacking ports"
-	tar xjf $t.snapshot.tar.bz2
-	return 0
-    fi
-    cd $PRT_DIR || die
-    row "Checking out file list"
-    get $pub_tree/flist $t.flist || die
-    md5sum --check $t.flist 2>/dev/null | grep -v OK$ \
-    | cut -d : -f 1 | cut -c 3- | sed "s,.*,$pub_tree/&," >$t.up_list
-    if ! [ -s $t.up_list ]; then
-	row "Ports up to date"
-    else
-	wget -nv -r -nH --cut-dirs=2 -i $t.up_list 2>&1 \
-	| sed -r "s,^.*-> \"(.*)\".*$,  --> Updating \1," || die "Download failed!"
-    fi
-    # remove files, deleted in public tree
-    find -type f >$t.is
-    cat $t.flist | awk '{ print $2 }' >$t.should
-    fgrep -vxf $t.should $t.is | cut -c 3- | grep / >$t.remove
-    local file
-    if [ "$MY_TAG" ]; then
-	local ports=`ls_locations | grep -e "-[0-9]*$MY_TAG$" \
-	| rev | cut -d / -f 1-2 | rev | pkg2name`
-        for file in $ports; do
-	    sed -i "\,^$file/,d" $t.remove
-	done
-    else
-	local ports=""
-    fi
-    if [ -s $t.remove ]; then
-	stanza "There are more files than in the public archiv!"
-	{ stanza "You are maintaining these ports (they will be excluded from removing):"
-	for file in $ports; do
-	    row "$file"
-	done
-	stanza "So in total, these files will be removed:"
-	while read file; do
-	    row "$file"
-	done <$t.remove; } | more
-	echo
-	echo "In the near future, this will be done automatically, so please send bug reports!"
-	echo -n "Go on? (ctrl-c to abort)  "
-	read
-	cat $t.remove | xargs rm
-	# remove empty dirs
-	find -type d -empty | sort -r | xargs rmdir -p 2>/dev/null
-    fi
+        cd `dirname $PRT_DIR` || die
+	cvs -qz3 -d $cvsroot co -P ports 2>/dev/null
+    fi | sed -r \
+    -e "/\(.*\)/d" \
+    -e "s,^cvs [a-z]*:,  -->," \
+    -e "s,^U,  --> Updating," \
+    -e "s,^C,  --> Conflict with," \
+    -e "s,^\?,  --> Unknown file," \
+    -e "s,^[A-Z\?],  --> &,"
 }
 
 # upgrade all installed ports that are not available
@@ -582,7 +531,7 @@ Options:
   -e, --reinstall	Reinstall port if already installed
   -b, --rebuild		Rebuild port if alread build
   -o, --download	Download source files only
-  -g, --showcompile	Show compile output
+  -g, --verbose		Show compile output
 Declaration:
   list: group/ or [group/]name[-version-arch-build]
 EOF
@@ -619,7 +568,7 @@ parse_options()
 	    -e|--reinstall)	reinstall=true;;
 	    -b|--rebuild)	rebuild=true;;
 	    -o|--download)	download_only=true;;
-	    -g|--showcompile)	verbose=true
+	    -g|--verbose)	verbose=true
 				output=/dev/stdout;;
 	    --)			shift
 				break;;
