@@ -1,4 +1,4 @@
-VERSION=20041019
+VERSION=20041123
 ARCH=i386
 BUILD=1tom
 
@@ -14,6 +14,19 @@ tar xjvf $CWD/common-$VERSION-linux.i386.tar.bz2
 tar xjvf $CWD/$NAME-$VERSION-linux.i386.tar.bz2
 cd dripkg || exit 1
 chown -R root.root .
+
+# we need to remove any other package before checkinstall
+# runs a installpkg on it.
+removepkg $NAME
+
+# check if slacktrack is installed
+if [ -f /var/log/packages/slacktrack-* ]; then
+    echo "You have installed 'slacktrack' which conflicts with 'checkinstall'."
+    echo "Please remove it and reinstall 'checkinstall' at least for"
+    echo "compiling this package."
+    exit 1
+fi
+
 checkinstall \
   --type=slackware \
   --pkgname=$NAME \
