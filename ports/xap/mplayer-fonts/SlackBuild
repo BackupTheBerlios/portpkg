@@ -1,0 +1,33 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.0
+ARCH=noarch
+BUILD=2sjn
+
+rm -rf $PKG 
+cd $TMP
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+
+for FONTS in $CWD/*tar.bz2;do
+tar xjvf  $FONTS -C $PKG/usr/share/mplayer/fonts/
+done
+
+mkdir -p $PKG/usr/{bin,doc/$NAME-$VERSION}
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/mplayerfontconfig >$PKG/usr/bin/mplayerfontconfig
+
+cd $PKG || exit 1
+
+for i in font-arial-cp1250 font-arial-iso-8859-1 font-arial-iso-8859-2 font-arial-iso-8859-7;do
+ln -sf /usr/share/mplayer/fonts/$i usr/doc/$NAME-$VERSION/
+done
+
+chown -R root.root .
+chown -R root.bin usr/bin
+chmod 755 usr/bin/*
+find . -type f ! -name mplayerfontconfig -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
