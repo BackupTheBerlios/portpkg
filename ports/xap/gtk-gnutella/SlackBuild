@@ -1,6 +1,9 @@
 VERSION=0.95
 ARCH=i486
-BUILD=1tom
+BUILD=2tom
+
+# don't work properly, removed :(
+CFLAGS=""
 
 CWD=`pwd`
 NAME=`basename $CWD`
