@@ -429,7 +429,7 @@ if grep -sqe "#!meta-config" -e "#!meta-make" $script; then
     if check "^configure$" $t/footprint; then
       check "--prefix" $t/src/$srcdir_prefix/configure || snip ac_prefix $script
       check "--sysconfdir" $t/src/$srcdir_prefix/configure || snip ac_sysconfdir $script
-#      check "--program-prefix" $t/src/$srcdir_prefix/configure || snip ac_program_prefix $script
+      check "--program-prefix" $t/src/$srcdir_prefix/configure || snip ac_program_prefix $script
       check "--localstatedir" $t/src/$srcdir_prefix/configure || snip ac_localstatedir $script
       check "--disable-static" $t/src/$srcdir_prefix/configure || snip ac_disable_static $script
       snip cfg_autogen $script
@@ -665,7 +665,7 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --prefix=/usr \ ##ac_prefix
   --sysconfdir=/etc \ ##ac_sysconfdir
   --localstatedir=/var/lib \ ##ac_localstatedir
-##  --program-prefix="" \ ##ac_program_prefix
+  --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
   $ARCH-slackware-linux || exit 1
 #!cfg_configure
@@ -698,6 +698,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 #!strip
 #!meta-doc
