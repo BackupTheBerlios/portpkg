@@ -1,0 +1,32 @@
+VERSION=1.1.4
+ARCH=${ARCH:-i486}
+BUILD=1lem
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr
+
+cd /tmp || exit 1
+tar xzvf $CWD/Imaging-$VERSION.tar.gz || exit 1
+cd Imaging-$VERSION || exit 1
+chown -R root.root .
+
+cd libImaging
+./configure --prefix=/usr
+make
+cd ..
+
+python setup.py build_ext -i install --root=$PKG || exit 1
+chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
+gzip -9 $PKG/usr/man/man?/*
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  README Doc\
+  $PKG/usr/doc/$NAME-$VERSION
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
