@@ -30,7 +30,7 @@ read me
 is_root || die
 mkdir -p $TREE
 cd $TREE || die
-has_pkg rsync-2.6
+has_pkg rsync-2.6 || die
 # sync source/ and remove files we don't need
 rsync -avz --delete \
 --exclude "FILE_LIST" \

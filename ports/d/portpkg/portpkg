@@ -19,13 +19,16 @@
 
 # constant definitions
 ENGINE_VER=cvs
+CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
 ADM_DIR=/var/log
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
+
 SCRATCH_DIR=/tmp/portpkg-`whoami`-$$
 FAKE_INST=$SCRATCH_DIR/fake_inst
 ADD_SUM=$SCRATCH_DIR/add_sum
+LOC_CACHE=$SCRATCH_DIR/loc_cache
 
 # local configuration
 MY_TAG=""
@@ -35,7 +38,6 @@ DRY_RUN=false
 NO_REQS=false
 LAZY_CHECKS=false
 DEBUG=false
-source $PRT_DIR/local.conf
 
 # default options
 action=do_add
@@ -45,7 +47,7 @@ rebuild=false
 output=/dev/null
 
 # global variables
-declare ignore mirrors exclude
+declare ignore mirrors exclude prefer
 declare package name group
 declare script description requires size u_size sources pkg_file
 declare maintain slot_in pseudo
@@ -142,9 +144,8 @@ explicit() # >pkgex-list
 # list all available ports
 ls_locations()
 {
-  local cache=$SCRATCH_DIR/loc_cache
-  if [ -f $cache ]; then
-    cat $cache 2>/dev/null
+  if [ -f $LOC_CACHE ]; then
+    cat $LOC_CACHE 2>/dev/null
     return
   fi
   debug "ls_locations(): generating list"
@@ -158,7 +159,7 @@ ls_locations()
   -e "s,\\$\{[A-Z]*:[-=]([^}]*)},\1,g" \
   | tr " " "\n" \
   | sort \
-  | tee $cache 2>/dev/null
+  | tee $LOC_CACHE 2>/dev/null
 # fix me: preset $BUILD and $VERSION is not supported, only reset!
 }
 
@@ -192,7 +193,7 @@ get_info()
   local loc=`ls_locations | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
   # maybe an exluded explicitly?
   [ "$loc" ] || case $1 in */*)
-    loc=`ls_locations | grep -m 1 $(regex $1)`
+    loc=`grep -m 1 $(regex $1) $LOC_CACHE`
     [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
   esac
   if ! [ "$loc" ]; then
@@ -231,9 +232,6 @@ get_info()
   # pseudo-port?
   pseudo=false
   [ -f $path/pseudo ] && pseudo=true
-#  # strict dependency resolving?
-#  strict=false
-#  [ -f $path/strict ] && strict=true
   debug "get_info(): finished: $@"
   return 0
 }
@@ -297,7 +295,7 @@ check_reqs()
 }
 
 
-# build package by SlackBuild
+# build package
 build_pkg()
 {
   local t=`private`
@@ -326,17 +324,14 @@ build_pkg()
       # pseudo ports: don't cache sources
       $pseudo && mv $SRC_DIR/$srcname . || ln -s $SRC_DIR/$srcname .
     fi
-  done
-  # md5sums
-  if [ -f $path/md5sums ]; then
-    row "Checking md5sums"
-    # check anything and only what's inside "md5sums"
-    if ! md5sum --check $path/md5sums >$t.md5sum; then
+    # md5sums
+    local md5sum=`grep -s $srcname $path/md5sums`
+    if [ "$md5sum" ] && ! echo "$md5sum" | md5sum --check >$t.md5sum; then
       cat $t.md5sum
       error "Failed at integrity checking"
       return 1
     fi
-  fi
+  done
   $download_only && return 0
   # build package
   row "Executing $script"
@@ -373,20 +368,24 @@ build_pkg()
     if [ -d /tmp/package-$name ]; then
       echo "$requires" >$t.old_req
       row "Analysing package"
-      # check libraries (don't log the package itself, aaa_base and
-      # aaa_elflibs, gcc and co. glibc-derivates and all -solibs)
+      # check libraries (rename xxx-solibs to xxx, add x11-devel if needed)
       find /tmp/package-$name/ | xargs file | grep ELF | cut -d : -f 1 \
       | xargs ldd 2>/dev/null | grep -o "/[^ ]*\.so" | sed -r "s,\./,," \
       | cut -c 2- | sort -u | grep -lf - $ADM_DIR/packages/* \
       | sed -r "s,^$ADM_DIR/packages/,," | pkg2name \
       | sed -r -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
-      | grep -ve ^$name$ $ignore >$t.bin_req
+      | grep -v ^$name$ >$t.bin_req
       # check for perl and python scripts
       find /tmp/package-$name/ | xargs file >$t.ftypes
       grep -q perl $t.ftypes && echo perl >>$t.bin_req
       grep -q python $t.ftypes || grep -q "\.py$" $path/footprint \
       && echo python >>$t.bin_req
+      # sort
       sort -uo $t.bin_req $t.bin_req
+      # strip ignore list
+      grep $ignore $t.bin_req | xargs -r -l echo "  --> Ignoring dependency"
+      grep -v $ignore $t.bin_req >$t.bin_req.new
+      mv $t.bin_req{.new,}
       # check trashed package upgrades
       ls_locations | loc2gpkg | grep $exclude | cut -d / -f 2 >$t.exclude
       fgrep -xf $t.exclude $t.bin_req >$t.excl_req
@@ -568,16 +567,15 @@ do_sync()
 {
   is_root || die
   has_pkg cvs-1.11 || die
-  local cvsroot=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
-  stanza "Syncing your ports tree with `echo $cvsroot | cut -d @ -f 2 | cut -d : -f 1`:"
+  stanza "Syncing your ports tree with `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
   local file
   if [ -d $PRT_DIR/CVS ]; then
     cd $PRT_DIR || die
-    cvs -qz3 up -dPC -I arbitrary -I local -I "*.local" -I local.conf 2>/dev/null
+    cvs -qz9 up -dPC -I arbitrary -I local -I "*.local" -I local.conf 2>/dev/null
   else
     mkdir -p $PRT_DIR
     cd `dirname $PRT_DIR` || die
-    cvs -qz3 -d $cvsroot co -Pd `basename $PRT_DIR` ports 2>/dev/null
+    cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
   fi | sed -r \
   -e "s,^.*$,  --> &," \
   -e "s, U , Updating ," \
@@ -674,6 +672,8 @@ rebuild,download,verbose,dryrun,noreqs,noexclude,debug,lazy"
   $rebuild && reinstall=true
   $VERBOSE && output=/dev/stdout
   debug "init(): exclude=\"$exclude\""
+  debug "init(): ignore=\"$ignore\""
+  debug "init(): prefer=\"$prefer\""
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
@@ -727,11 +727,20 @@ init()
 #    fi
 #  fi
   # local configuration
+  source $PRT_DIR/local.conf
   mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{.local,}`
+  prefer=`grep -vshe ^# -e ^$ $PRT_DIR/prefer{.local,}`
   ignore=`regex $ignore`
   exclude=`regex $exclude`
+  prefer=`regex $prefer`
+#  # ignore list: translate to names, add exclude list and remove items that
+#  # are also in non-excluded lists!
+#  local t=`private`
+#  ls_locations | loc2gpkg >$t.avail
+#  grep -v $exclude $t.avail | pkg2name | cut -d / -f 2 >$t.non-excl
+#  ignore=`grep $exclude $ignore $t.avail | pkg2name | cut -d / -f 2 | fgrep -vxf $t.non-excl | sort -u`
   # check default arch
   ARCH=i486
   ls $ADM_DIR/packages/glibc-* | grep -sqe -s390- && ARCH=s390

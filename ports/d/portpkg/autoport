@@ -346,9 +346,9 @@ fi
 # extract Makefiles
 mkdir -p $t.src
 case $format in
-  tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
-  targz)  tar xzf $SRC_DIR/$file -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
-  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
+  tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
+  targz)  tar xzf $SRC_DIR/$file -C $t.src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
+  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" "Makefile*" 2>/dev/null;;
 esac
 sed -i "s,^$srcdir_prefix/,," $t.footprint
 
