@@ -1,34 +1,22 @@
-.TH PORTPKG 1 "OCTOBER 2004" Linux "User Manuals"
+.TH PORTPKG 1 "November 21, 2004" "Slackware Linux" "User Manuals"
 .SH NAME
-portpkg \- make a package by a script and install it
+portpkg \- build a package by source and install it
 .SH SYNOPSIS
-.B portpkg [
-.I action
-.B ] [
-.I options
-.B ] [
-.I list
-.B ... ]
-.IP while
-.I list
-can be one of these forms:
+portpkg [action] [options] [list ..]
+.PP
+while list can be one of these forms:
 .IP
-.I group/
+group/
 .IP
-.B [
-.I group/
-.B ]
-.I portname
-.B [
-.I -version-arch-build
-.B ]
+[group/]portname[-version-arch-build]
 .SH DESCRIPTION
 portpkg starts a so called port script (SlackBuild) found in
-/usr/ports/<portgroup>/<portname>/ and installs the resulting package to your
-system.
+/usr/ports/<portgroup>/<portname>/ and installs the resulting package to
+your system.
 .SH ACTIONS
 There can be only one alternative action. If none specified, the default
-action is to build and install.
+action is to check for required ports, then download the source, then
+build a binary package and install it.
 .IP "-d, --diff"
 List the difference between installed and available port versions.
 .IP "-f, --find"
@@ -42,7 +30,7 @@ List all (or specified) available ports.
 .IP "-s, --sync"
 Synchronise your ports tree in /usr/ports with the official tree.
 .IP "-u, --upgrade"
-Upgrade all (!) outdated ports shown by --diff.
+Upgrade all (!) outdated ports shown by --diff (so-called "dist-upgrade").
 .IP "-v, --version"
 Show version information about portpkg.
 .SH OPTIONS
@@ -53,8 +41,12 @@ Download source files only.
 Rebuild the package if already build.
 .IP "-e, --reinstall"
 Reinstall the package, if already installed.
-.IP "-g, --showcompile"
+.IP "-g, --verbose"
 Show SlackBuild output instead of piping it to /tmp/buildlog-<portname>.
+.IP "-q, --noreqs"
+Disable checking for required ports.
+.IP "-y, --dryrun"
+Disable downloading, building and installing. Just show what would happen.
 .SH EXAMPLES
 .IP "portpkg foobar"
 .IP "portpkg --diff"
@@ -66,41 +58,26 @@ Show SlackBuild output instead of piping it to /tmp/buildlog-<portname>.
 .IP "portpkg --sync"
 .IP "portpkg --upgrade"
 .SH DIRECTORIES
-.I /usr/ports
-.RS
+.IP /usr/ports
 The ports archive portpkg needs to build packages.
-.RE
-.I /usr/src/dist
-.RS
+.IP /usr/src/dist
 The source files portpkg downloaded for ports.
-.RE
-.I /usr/obj/pkg
-.RS
+.IP /usr/obj/pkg
 The packages portpkg made of ports.
-.RE
 .SH FILES
-.I /usr/ports/maintain
-.RS
-The configuration file for maintainer information.
-.RE
-.I /usr/ports/mirrors
-.RS
-List  of mirrors to be used when downloading files. 
-.RE
-.I /usr/ports/ignore
-.RS
+.IP /usr/ports/local.conf
+The configuration file for optional settings, mostly written by
+interactive scripts.
+.PP
+Several configuration files are distributed and can be expanded by \.local files:
+.IP "/usr/ports/mirrors and mirrors.local"
+List of mirrors to be used when downloading files. 
+.IP "/usr/ports/ignore and ignore.local"
 List of ports to ignore when making the "requires" file.
-.RE
-.I /usr/ports/exclude
-.RS
+.IP "/usr/ports/exclude and exclude.local"
 List of ports to exclude when doing upgrades or diffs.
-.RE
-.I /usr/ports/local.conf
-.RS
-Configuration script for addort and export.
-.RE
 .SH AUTHOR
-Thomas Pfaff <toastbrot at web de>
+Thomas Pfaff <topf at users dot berlios de>
 .SH "SEE ALSO"
 .BR installpkg(8)
 .BR removepkg(8)
