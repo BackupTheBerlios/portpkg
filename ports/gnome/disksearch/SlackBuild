@@ -1,0 +1,26 @@
+VERSION=1.0.0
+ARCH=noarch
+BUILD=1tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr
+
+cd /tmp || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+cat $CWD/*.patch | patch -p1 --verbose
+make prefix=/usr || exit 1
+make install prefix=$PKG/usr || exit 1
+chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
+mv $PKG/usr/share/{man,doc} $PKG/usr/ 2>/dev/null
+rmdir $PKG/usr/share 2>/dev/null
+gzip -9 $PKG/usr/man/man?/*
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
