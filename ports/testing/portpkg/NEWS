@@ -1,0 +1,193 @@
+News
+
+  02/20/2005
+
+   Portpkg
+           * Release 0.35.
+           * CFLAGS can be set to different values (but not recommended,
+             since it is impossible to check, if a SlackBuild actually uses
+             it, and you can end up with packages named i686, but tuned for
+             i486). Set ARCH and CFLAGS with pp-config and if necessary check
+             your ports for not setting a default SLKCFLAGS.
+           * Binary package and source code directories can be set to
+             different values (PKG_DIR and SRC_DIR, set them in
+             /usr/ports/local.conf)
+           * Subdirectory (not group!) local/ is always preferred
+           * Reintroduced --prepare on popular request ;-): packaging only
+             without installing (since we have fakeroot now, it should work
+             as it should work)
+           * Pp-sync-bin and Pp-clean-cache have been integrated into portpkg
+             --sync
+           * Disabled Pp-sync-src until it's working better
+
+  02/08/2005
+
+   Ports
+           * I'm currently preparing the ports collection for custom
+             processor optimations (via $SLKCFLAGS variables) and appreciate
+             any help on this. If you're brave enough, you can test different
+             values with ARCH=arch SLKCFLAGS="cflags" sh SlackBuild and tell
+             me about stability/compatibility and so forth under my mail
+             address in TodoBugsAbout, or post it in our Forums (see above).
+             Thanks.
+
+  02/02/2005
+
+   Portpkg
+           * Release 0.34.
+           * Integrated fakeroot into the build process which should do the
+             whole thing much more secure. SlackBuilds will now be started by
+             user account 'nobody' with fakeroot, so any SlackBuild trying to
+             write to anywhere except $PKG/ will fail. If you find ports not
+             working with fakeroot make a touch no-fakeroot in the ports
+             directory and leave me a messaege about that. I will try to fix
+             all that ports.
+           * Disabled support for slackpkg since that doesn't work at all
+             (the interaction, not slackpkg).
+
+  01/23/2005
+
+   Portpkg
+           * Release 0.33.
+           * New setup script pp-config, pp-sync-dist has been renamed to
+             pp-sync-bin and pp-sync-slack to pp-sync-src.
+           * Support for md5sums.
+           * Lazy upgrading: don't upgrade dependencies (--lazy)
+           * Major changes to Autoport.
+
+  01/10/2005
+
+   Portpkg
+           * Release 0.32, code name "Hafenordnung für Schlackstoffe".
+
+   Ports
+           * Ports that are needed by Slackware-10.0 systems only are moved
+             to pasture/, which in turn is removed from exclude. So anyone
+             running Portpkg on a Slackware-current system needs to add
+             pasture/ manually to his exclude.local to prevent compiling
+             packages again that are already in the current repositories.
+           * mirrors is renamed to mirrors.de because it's just containing
+             mirrors usable for German users. (Sorry, there aren't any more
+             mirror lists for now). German users have to symlink mirrors.de
+             to mirrors first to use them.
+
+   Platform
+           * Added a fancy search button.
+
+  12/18/2004
+
+   Portpkg
+           * Moved export from the tree to /usr/bin/pp-export.
+
+   Ports
+           * ...and therefore removed export and obsolete addport, SlackBuild
+             and doinst.sh.
+
+  12/16/2004
+
+   Portpkg
+           * Release 0.31.
+
+  12/12/2004
+
+   Ports
+           * GNOME-2.8.2 complete! This is gnome-platform-2.8.2 and
+             gnome-desktop-2.8.2, except ximian-connector, gnomemeeting
+             (didn't get them working), gnome-volume-manager (in testing/
+             because of required hal and dbus) and nautilus-cd-burner (newest
+             version still has problems with kernel-2.4)
+
+   Portpkg
+           * Some major updates to Autoport. Moved sync-dist, sync-slack and
+             clean-cache to pp-sync-dist, pp-sync-slack and pp-clean-cache.
+             /usr/src/pseudo/dist moved to /usr/ports/z/dist.
+
+  12/10/2004
+
+   Ports
+           * Made a bunch of long outstanding changes to the last ARCH=i486
+             lines. They're now ARCH=${ARCH:-i486}.
+           * Updated the first packages of GNOME-2.8.2 ("gnome-platform" to
+             be exactly). The rest will follow in the next days.
+
+  12/1/2004
+
+   Platform
+           * It's done: Auto-committing is up and running! (Although it seems
+             a bit fragile for now.) Uploaded exports will be merged into the
+             group open/ by a cron job every hour. Try our testing weeks! :)
+             And remind me to remove all the tests in a few weeks.
+
+   Ports
+           * I finally found a typo ("SLKFLAGS") in the SlackBuild-skeleton
+             that infected about 175 ports! And nobody told me! I'm upset ;)
+             To prevent chaotic conditions I didn't change the revisions
+             (EDIT: means, I didn't change the build number, so you don't
+             HAVE to recompile all these ports, because it is a minor issue,
+             but any ports you build in future are fixed).
+
+  11/30/2004
+
+   Platform
+           * Added some fancy statistics.
+
+   Portpkg
+           * Release 0.30. CVS should work better now.
+           * Added autoport, an improvement to addport. Autoport searches the
+             source file for keywords to adjust a SlackBuild.
+
+  11/24/2004
+
+   Portpkg
+           * Added a simple slot system: see QuickStart and MaintainerGuide.
+
+   Ports
+           * Added Xfce-Goodies.
+           * Added "metalists" for GNOME, Xfce and Xfce-Goddies
+             (gnome.metalist, xfce.metalist and xfce-goodies.metalist: So you
+             can do portpkg `cat xfce.metalist`.
+           * Updated Abiword to 2.2.0 and moved it from testing/abiword22 to
+             xap/abiword, please note the name change, since it's stable now.
+
+  11/18/2004
+
+   Platform
+           Redesigned and rearranged the pages a bit.
+
+   Portpkg
+           * New release 0.29.
+           * Added --noreqs to disable requirements checking at all.
+           * Added --dryrun to have an overviwe of what would happen (disable
+             building, donwloading and installing).
+           * Merged maintain and sync-dist's/sync-slack's pseudo from
+             /usr/ports to local.conf.
+
+   Ports
+           * addport allows now the source url as a parameter, and uses
+             default options if so, therefore it works nearly
+             non-interactive.
+           * Added Xfce-4.1.99 to testing/. A cd /usr/ports/testing; portpkg
+             *xf* should do it.
+
+   --------------------------------------------------------------------------
+
+
+References
+
+   Visible links
+   . file:///usr/ports/local/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=PortpkgGuide
+   . file:///usr/ports/local/portpkg/doc.php?page=Screenshots
+   . file:///usr/ports/local/portpkg/doc.php?page=TodoBugsAbout
+   . file:///usr/ports/local/portpkg/doc.php?page=QuestionsAndAnswers
+   . file:///usr/ports/local/portpkg/doc.php?page=Links
+   . http://developer.berlios.de/project/showfiles.php?group_id=2486
+   . http://developer.berlios.de/forum/?group_id=2486
+   . http://developer.berlios.de/projects/portpkg
+   . http://www.slackforum.de/forum/index.php?t=msg&th=1344
+   . file:///usr/ports/local/portpkg/doc.php?page=TodoBugsAbout
+   . file:///usr/ports/local/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=MaintainerGuide
+   . file:///usr/ports/local/portpkg/doc.php?page=edit/FrontPage
+   . file:///usr/ports/local/portpkg/doc.php?page=links/FrontPage
+   . file:///usr/ports/local/portpkg/doc.php?page=info/FrontPage

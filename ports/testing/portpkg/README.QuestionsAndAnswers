@@ -1,0 +1,92 @@
+QuestionsAndAnswers
+
+   Note: This is a Wiki: you can add your questions by clicking EditThisPage
+   below.
+
+   --------------------------------------------------------------------------
+
+  My /tmp is being bloated, why and how to prevent?
+
+   Your /tmp directory will be filled while compiling with source code,
+   object code and packages, which isn't needed anymore, once the package is
+   built. It is recommended to delete that on every boot (see Filesystem
+   Hierarchy Standard in Links):
+
+ echo 'rm -rf /tmp/*' >>/etc/rc.d/rc.local
+
+  I get "Cannot find required package xyz! Stopping." so often... ?!
+
+   There are three solutions:
+
+     o You can copy all .tgz-packages you have to /usr/obj/pkg to resolve all
+       dependencies automatically.
+     o If you have an RSYNC'ed tree of Slackware, you can link /usr/obj/pkg
+       to its slackware/ directory.
+     o Use pp-sync-dist which will download Slackware packages on demand.
+
+  I don't want to know anything about "dependencies" or "requirements"... Can I
+  turn that off?
+
+   Yes, with -q in the command line or add NO_REQS=true in
+   /usr/ports/local.conf.
+
+  I want to recompile Slackware's apmd (or xyz) for my athlon-tbird. How?
+
+   You can use pp-sync-slack to import the original Slackware SlackBuilds to
+   your ports tree, this script is able to import about 90 % of the original
+   SlackBuild scripts as ports. Use them as templates. See UserGuide.
+
+   But generally, there's no solution for hardware-optimised packages. We
+   provide the possibility to build packages for x86_64 and s390, but x86
+   code has normal -march=i486 -mcpu=i686 -O2 cflags.
+
+  Does it work with installpkg and removepkg?
+
+   Yes, it does. After building the package, portpkg calls upgradepkg
+   --reinstall <pkg> which replaces your new packge with its older version,
+   if there's one installed, otherwise it acts like a installpkg <pkg>. As
+   any Slackware packages, you can remove it with removepkg <pkg>.
+
+  There are so few mirror list files and none of them fits my needs. What to do?
+
+   You can use Portpkg without mirrors. You can add your own preferred mirror
+   sites to mirrors.local.
+
+  I have my own ports located in group local/ and want portpkg to prefer them
+  over all others. How can I do that?
+
+   The default port (if there're more than one) is always the first found in
+   alphabetical order of its path in /usr/ports. To make your group local/
+   appear before all others, there's a trick: make a directory 0 (zero) and
+   symlink your preferred group there:
+
+ # cd /usr/ports
+ # mkdir 0
+ # ln -s ../local 0/
+ # portpkg -l
+ local/myport-1.0-i486doe
+ (...)
+
+  How is Portpkg different from other attempts to do the same, how is Portpkg
+  different from other Slackware tools?
+
+   Other Slackware tools contain "slack" in the project name or at least
+   start with an "s": slapt-get, slackpkg, swaret, slackports, slack-get,
+   spkg...
+
+   Portpkg is unique in this sense of feature: It starts with a "p", goes
+   straight on with "ort", just to find its climax with another "p", and ends
+   quickly but sudden with "kg".
+
+   --------------------------------------------------------------------------
+
+
+References
+
+   Visible links
+   . file:///usr/ports/local/portpkg/doc.php?page=EditThisPage
+   . file:///usr/ports/local/portpkg/doc.php?page=Links
+   . file:///usr/ports/local/portpkg/doc.php?page=UserGuide
+   . file:///usr/ports/local/portpkg/doc.php?page=edit/QuestionsAndAnswers
+   . file:///usr/ports/local/portpkg/doc.php?page=links/QuestionsAndAnswers
+   . file:///usr/ports/local/portpkg/doc.php?page=info/QuestionsAndAnswers
