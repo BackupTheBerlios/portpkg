@@ -619,6 +619,7 @@ do_sync()
   -e "s, \\? , Unknown file ,"
 #    -e "/\(.*\)/d" \
   # hide CVS
+  cd $PRT_DIR || die
   find -name CVS -type d | while read s; do mv $s `dirname $s`/.CVS; done
   # sync addons?
   local addon
