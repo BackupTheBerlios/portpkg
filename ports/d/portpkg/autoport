@@ -431,7 +431,7 @@ if grep -sqe "#!meta-config" -e "#!meta-make" $script; then
     snip cfg_configure $script
     arch=noarch
   else
-    snip cfg_perl $script
+    snip perl $script
     if check "^configure$" $t/footprint; then
       check "--prefix" $t/src/$srcdir_prefix/configure || snip ac_prefix $script
       check "--sysconfdir" $t/src/$srcdir_prefix/configure || snip ac_sysconfdir $script
@@ -459,7 +459,7 @@ fi
 # installation prefix
 if grep -sq "#!meta-install" $script; then
   if check "^Makefile" $t/footprint; then
-    snip inst_python $script
+    snip python $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
     || check "DESTDIR" $t/src/$srcdir_prefix/Makefile*; then
@@ -530,6 +530,7 @@ if check "\.omf$" $t/footprint; then
   add_inst "usr/bin/scrollkeeper-update" $path/doinst.sh
 else
   remove_inst "scrollkeeper-update" $path/doinst.sh
+  snip scrollkeeper $script
 fi
 
 # mime-update
@@ -675,7 +676,7 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --disable-static \ ##ac_disable_static
   $ARCH-slackware-linux || exit 1
 #!cfg_configure
-perl Makefile.PL || exit 1 ##cfg_perl
+perl Makefile.PL || exit 1 ##perl
 ##find -name Makefile | xargs sed -i "s,/usr/local/etc,$PKG/etc,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local/var,$PKG/var,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local,$PKG/usr,g" ##cfg_mk_hard
@@ -693,9 +694,13 @@ make install DESTDIR=$PKG || exit 1 ##inst_destdir
 make install PREFIX=$PKG/usr || exit 1 ##inst_PREFIX
 make install prefix=$PKG/usr || exit 1 ##inst_prefix
 ##make install || exit 1 ##inst
-python setup.py build install --root=$PKG || exit 1 ##inst_python
+python setup.py build install --root=$PKG || exit 1 ##python
 GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
+find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
+rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
+rm -rf $PKG/usr/info/dir
 #!meta-install
 #%install-fix%
 #%post-install-fix%
@@ -707,8 +712,8 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 #!strip
+mv $PKG/usr/share/{man,doc} $PKG/usr/
 #!meta-doc
-find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \ ##docs
   %docs% \ ##docs
@@ -718,7 +723,6 @@ cp -a \ ##docs
 #%post-doc-fix%
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/info -name dir | xargs -r rm
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
