@@ -573,15 +573,21 @@ do_export()
     debug "do_export(): \$arg=$arg"
     get_info $arg || continue
     local path=`dirname $script`
+    # check if it's broken
     if [ -f $path/PORT_IS_BROKEN ]; then
-      error "Cannot export broken ports. Please fix first!"
+      error "Cannot export broken ports. Please fix first: $group/$name"
       continue
     fi
-    local tag=`echo $package | rev | cut -d - -f 1 | rev | sed "s,^[0-9]*,,"`
-    if [ "$tag" != "$MY_TAG" ]; then
+    # check if it's already run
+    if ! [ -f $path/footprint ] || ! [ $path/footprint -nt $script ]; then
+      error "Please do a test run before exporting: $group/$name"
+      continue
+    fi
+    # check "ownership"
+    case $package in *[0-9]$MY_TAG) ;; *)
       row "$group/$name is not your port. Skipping."
-      continue
-    fi
+      continue;;
+    esac
     row "Uploading $group/$package"
     rm -rf $TMP/$package.tar.bz2
     mkdir -p $t/$package/$name
