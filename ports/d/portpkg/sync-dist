@@ -1,0 +1,100 @@
+#!/bin/bash -u
+# syncdist - portpkg-addon for using slackware packages as pseudo ports
+
+#include "portpkg.h"
+source `which portpkg` || exit 1
+
+DIST=ftp://ftp.slackware.at/slackware-current
+SECTIONS=(extra testing kernels slackware pasture)
+TREE=~/pseudo/dist
+
+t=`private`
+mkdir -p $t.names
+rm -rf $TREE
+mkdir -p $TREE
+stanza "Synchronising with $DIST:"
+row "Retrieving file-list"
+get $DIST/FILELIST.TXT $t.file_list
+cat $t.file_list | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t.files
+for section in ${SECTIONS[@]}; do
+    cd $TREE || die
+    mkdir $section
+    cd $section
+    row "Preparing pseudo ports for $section/"
+    if [ "$section" == "kernels" ]; then
+    	get $DIST/kernels/VERSIONS.TXT $t.kernel_versions || continue
+	kver=`grep -o "[0-9]\.[0-9]\.[0-9][0-9]" $t.kernel_versions`
+	karch=`grep -o "glibc-.*\.tgz$" $t.file_list \
+	| grep $(regex glibc) | rev | cut -d - -f 2 | rev | head -n 1`
+	grep \./kernels/ $t.file_list | grep ^d | rev | cut -d / -f 1 \
+	| rev | grep -v modules | while read flavour; do
+	    mkdir -p kernels/$flavour
+	    cat <<EOF >kernels/$flavour/SlackBuild
+VERSION=$kver
+ARCH=$karch
+BUILD=1
+
+CWD=\`pwd\`
+PKG=/tmp/package-$flavour
+rm -rf \$PKG
+mkdir -p \$PKG/boot
+cd \$PKG/boot
+cat \$CWD/bzImage >vmlinuz-$flavour-$kver
+cat \$CWD/System.map.gz >System.map-$flavour-$kver.gz
+cat \$CWD/config >config-$flavour-$kver
+gunzip System.map-$flavour-$kver.gz
+ln -s vmlinuz-$flavour-$kver vmlinuz
+ln -s System.map-$flavour-$kver System.map
+ln -s config-$flavour-$kver config
+cd \$PKG
+makepkg -l y -c n /tmp/$flavour-$kver-$karch-1.tgz
+EOF
+	    cat <<EOF >kernels/$flavour/sources
+$DIST/kernels/$flavour/bzImage
+$DIST/kernels/$flavour/System.map.gz
+$DIST/kernels/$flavour/config
+EOF
+	    touch kernels/$flavour/pseudo
+	done
+	continue
+    fi
+    grep "^$section/.*\.tgz$" $t.files \
+    | sed -r "s,^[^/]*/(.*)\.tgz$,\1," \
+    | while read s; do
+    	if [ "$section" == "slackware" ]; then
+	    group=`echo $s | cut -d / -f 1`
+	else
+	    group=$section
+	fi
+	pkg=`echo $s | sed -r "s,^.*/(.*)$,\1,"`
+	name=`echo $pkg | pkg2name`
+#	[ -f $t.names/$name ] && continue
+#	touch $t.names/$name
+	rel=`echo $pkg | pkg2rel`
+	ver=`echo $rel | cut -d - -f 1`
+	arch=`echo $rel | cut -d - -f 2`
+	build=`echo $rel | cut -d - -f 3`
+	mkdir -p $group/$name
+	cat <<EOF >$group/$name/SlackBuild
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
+
+CWD=\`pwd\`
+cp \$CWD/$pkg.tgz /tmp
+EOF
+	echo "$DIST/$section/$s.tgz" >$group/$name/sources
+	touch $group/$name/pseudo
+    done
+done
+
+stanza "Pseudo ports are now in $TREE.\n\
+Please link them into $PRT_DIR in your favoured sequence. The sequence is\n\
+essential for --upgrade. Remember: The first found port is the default port!\n\
+You have also $PRT_DIR/exclude to fine tune the upgrade list.\n\
+Good style: Z[0-9]: Before all other ports\n\
+            z[0-9]: After all other ports"
+stanza "\
+E.g.: ln -s $TREE/extra $PRT_DIR/Z0\n\
+      ln -s $TREE/slackware $PRT_DIR/Z1\n\
+      ln -s $TREE/testing $PRT_DIR/z0"
