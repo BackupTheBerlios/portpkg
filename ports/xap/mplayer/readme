@@ -1,0 +1,18 @@
+MPLAYER AND DEPENDENCIES:
+
+MPlayer can be built with support for many *optional* libraries.
+
+These lists of required and optional dependencies is therefore incomplete:
+You may not want to have all that dependencies or you may want to have
+support for more special features which need that you have other packages
+installed *before* you build MPlayer.
+
+I have decided to only include Slackware packages in the requires-file itself,
+(the requires-file is obligatory and this should be ok, since most of Slackware
+systems are full-installations) and to put any other found dependency to
+optional.
+
+Note: You can always run portpkg --noreqs mplayer to skip dependencies
+checking at all!
+
+tom

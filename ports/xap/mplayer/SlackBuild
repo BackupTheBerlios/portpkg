@@ -26,15 +26,15 @@ chown -R root.root .
 #+config-fix
 
 if [ "$ARCH" = "i386" ]; then
-  OPT="--enable-runtime-cpudetection";;
+  OPT="--enable-runtime-cpudetection"
 elif [ "$ARCH" = "i486" ]; then
-  OPT="--enable-runtime-cpudetection";;
+  OPT="--enable-runtime-cpudetection"
 elif [ "$ARCH" = "s390" ]; then
-  OPT="--enable-runtime-cpudetection";;
+  OPT="--enable-runtime-cpudetection"
 elif [ "$ARCH" = "x86_64" ]; then
-  OPT="--enable-runtime-cpudetection";;
+  OPT="--enable-runtime-cpudetection"
 else
-  OPT="--disable-runtime-cpudetection";;
+  OPT="--disable-runtime-cpudetection"
 fi
 
 CFLAGS="" \
