@@ -1,6 +1,6 @@
 VERSION=2.8.7
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -10,8 +10,8 @@ rm -rf $PKG
 mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
 
 case $ARCH in
-  i386,i486)   SLKCFLAGS="-O2 -march=$ARCH -mcpu=i686";;
-  s390,x86_64) SLKCFLAGS="-O2";;
+  i386|i486)   SLKCFLAGS="-O2 -march=$ARCH -mcpu=i686";;
+  s390|x86_64) SLKCFLAGS="-O2";;
 esac
 
 cd $TMP || exit 1
