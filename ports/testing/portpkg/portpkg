@@ -658,8 +658,9 @@ do_sync()
   fi | sed -r \
   -e "s,^.*$,  --> &," \
   -e "s, U , Updating ," \
-  -e "s, C , Conflicting with ," \
+  -e "s, C , Conflict with ," \
   -e "s, P , Patching ," \
+  -e "s, M , Locally modified ," \
   -e "s, \\? , Unknown entry ,"
 #    -e "/\(.*\)/d" \
   # hide CVS

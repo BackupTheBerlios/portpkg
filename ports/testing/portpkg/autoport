@@ -291,10 +291,12 @@ if [ -d $path ]; then
 fi
 
 stanza "Autoporting $group/$name-$version-$arch-$build:"
+mkdir -p $path
+touch $script
 
 # check for fixes in the script (style: #+post-config-fix)
 for i in config-fix install-fix doc-fix post-config-fix post-install-fix post-doc-fix; do
-  [ -f $script ] && sed -n "/^#+$i$/,/^#+$i$/p" $script >$t/$i
+  sed -n "/^#+$i$/,/^#+$i$/p" $script >$t/$i
   # ...and old-style (post-config-fix.autoport) files
   if [ -f $path/$i.autoport ]; then
     echo "#+$i" >$t/$i
@@ -308,7 +310,6 @@ done
 
 # write skeletons
 failed=false
-mkdir -p $path
 sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
 echo "$source_out" >$path/sources
 echo "$desc" >$path/slack-desc
