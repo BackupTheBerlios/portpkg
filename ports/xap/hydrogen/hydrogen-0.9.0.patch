@@ -1,0 +1,20 @@
+--- hydrogen-0.9.0/hydrogen_gui/PreferencesDialog.cpp.old	2004-11-27 00:27:29.000000000 +0100
++++ hydrogen-0.9.0/hydrogen_gui/PreferencesDialog.cpp	2004-11-27 00:45:40.000000000 +0100
+@@ -167,7 +167,7 @@
+ 	// Style
+ 	QStringList list = QStyleFactory::keys();
+ 	uint i = 0;
+-	for ( QStringList::Iterator it = list.begin(); it != list.end(); it++) {
++/*	for ( QStringList::Iterator it = list.begin(); it != list.end(); it++) {
+ 		m_styleComboBox->insertItem( *it );
+ 		infoLog( "QT Stile: " + *it   );
+ 		//string sStyle = (*it).latin1();
+@@ -177,7 +177,7 @@
+ 		}
+ 		i++;
+ 	}
+-
++*/
+ 
+ 	// midi tab
+ 	#ifndef USE_ALSA_SEQ
