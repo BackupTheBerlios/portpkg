@@ -113,20 +113,15 @@ get()
   rm -rf $log || die
   $VERBOSE && log=/dev/stdout
   # try primary url if mirror fails
-  local use_url
-  for use_url in $url $o_url; do
-    if wget -c -O $dest.part $use_url >$log 2>&1; then
-      mv $dest.part $dest
-      return 0
-    elif [ "$use_url" != "$o_url" ]; then
-      debug "get(): Falling back to primary site"
-    else
-      $VERBOSE || tail $log
-      error "Download failed!"
-    fi
-  done
-  # at this point we don't need a log anymore
-  rm $log
+  if wget -c -O $dest.part $url >$log 2>&1 \
+  || wget -c -O $dest.part $o_url >>$log 2>&1; then
+    mv $dest.part $dest
+    # at this point we don't need a log anymore (don't do that with stdout!)
+    $VERBOSE || rm $log
+  else
+    $VERBOSE || tail $log
+    error "Download failed!"
+  fi
 }
 
 # generate a regular expression for grep from a pkgex-list
