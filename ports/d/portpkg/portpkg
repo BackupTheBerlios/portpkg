@@ -274,7 +274,6 @@ maintainer_mode()
   local t=`mktemp -d`
   row "Going maintainer mode"
   # assume we are in the script dir
-#  rm -rf PORT_IS_BROKEN
   rm -rf md5sums
   rm -rf footprint
   # write md5sum list first (don't md5sum footprint)
@@ -414,7 +413,7 @@ build_pkg()
     if ! [ -f $TMP/$package.tgz ]; then
       $VERBOSE || tail $ADM_DIR/portpkg/$name.buildlog
       error "Compilation failed (see $ADM_DIR/portpkg/$name.buildlog)!"
-      $maintain && touch PORT_IS_BROKEN
+      $maintain && ln -s $ADM_DIR/portpkg/$name.buildlog PORT_IS_BROKEN
       return 1
     else
       # remove this tag in any case
