@@ -1,1 +1,7 @@
-hal: hal
+hal: hal (hardware abstraction layer)
+hal: 
+hal: You must add a user and a group "haldaemon" to your system
+hal: to use hal.
+hal: E.g.: groupadd haldaemon
+hal:       useradd haldaemon
+hal: Start it with "/etc/rc.d/rc.hald start".
