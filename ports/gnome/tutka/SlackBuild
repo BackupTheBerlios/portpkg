@@ -35,10 +35,6 @@ CFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-
-mkdir -p $PKG/etc/gconf/schemas
-cp tutka.schemas $PKG/etc/gconf/schemas
-
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
