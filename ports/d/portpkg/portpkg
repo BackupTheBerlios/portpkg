@@ -279,8 +279,12 @@ check_reqs()
         # $req is not installed and not available, but we have slackpkg
         if $DRY_RUN; then
           stanza "Resolving $req with slackpkg..."
-        elif ! su -c "echo | slackpkg install $req"; then
-          error "Unable to resolve $req (also with slackpkg)! Stopping."
+        else
+          su -c "echo | slackpkg install $req"
+          if ! [ "`ls_inst | grep -m 1 $(regex $req)`" ]; then
+            error "Unable to resolve $req (also with slackpkg)! Stopping."
+            return 1
+          fi
         fi
         debug "check_reqs(): $req resolved by slackpkg"
       else

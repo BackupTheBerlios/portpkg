@@ -599,6 +599,10 @@ elif [ "$ARCH" = "x86_64" ]; then
 else
   SLKCFLAGS="-O2"
 fi
+# this seems to be the new style
+#CHOST="$ARCH-slackware-linux"
+#CFLAGS="-O2 ..."
+#CXXFLAGS=$CFLAGS
 
 #!cflags
 cd /tmp || exit 1
