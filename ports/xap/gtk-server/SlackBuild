@@ -1,5 +1,5 @@
-VERSION=0.6.3
-ARCH=${ARCH:-i486}
+VERSION=1.2.3
+ARCH=i486
 BUILD=1tom
 
 CWD=`pwd`
@@ -19,8 +19,9 @@ elif [ "$ARCH" = "x86_64" ]; then
 fi
 
 cd /tmp || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
+tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
 cd $NAME-$VERSION || exit 1
+cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 ./autogen.sh
 CFLAGS="$SLKFLAGS" \
@@ -31,7 +32,12 @@ CFLAGS="$SLKFLAGS" \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux || exit 1
+if [ -f Makefile.PL ]; then perl Makefile.PL || exit 1; fi
 make || exit 1
+
+sed -i "s,/usr/local/,$PKG/usr/,g" Makefile
+sed -i "s,/usr/etc,/etc,g" Makefile
+
 make install DESTDIR=$PKG || exit 1
 chown -R root.bin $PKG{,/usr}/{,s}bin
 find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded

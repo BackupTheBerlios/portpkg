@@ -1,1 +1,10 @@
-x86cpucaps: x86cpucaps
+x86cpucaps: x86cpucaps (cpu information)
+x86cpucaps:
+x86cpucaps: x86cpucaps is a library, which investigates CPU
+x86cpucaps: information using 'cpuid' in assembler. This library
+x86cpucaps: can detect CPU IDs (Family-Model-Stepping), vender
+x86cpucaps: name strings ("GenuineIntel", "AuthenticAMD", and so
+x86cpucaps: on), and SIMD capabilities. Furthermore, there are
+x86cpucaps: functions, estimating optimal Processor Type (for
+x86cpucaps: building kernel), and estimating optimization flags
+x86cpucaps: for gcc.

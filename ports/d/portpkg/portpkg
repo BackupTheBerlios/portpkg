@@ -147,9 +147,9 @@ ls_locations()
     | xargs egrep -sH "^VERSION=|^ARCH=|^BUILD=" \
     | tr "\n" " " | sed -r \
     -e "s,/[^/]*SlackBuild:VERSION=,-,g" \
-    -e "s,\\$\{ARCH:[-=][a-z0-9]*},$ARCH,g" \
     -e "s, [^ ]*:ARCH=,-,g" \
     -e "s, [^ ]*:BUILD=,-,g" \
+    -e "s,\\$\{ARCH:[-=][a-z0-9_]*},$ARCH,g" \
     | tr " " "\n" \
     | sort \
     | tee $cache 2>/dev/null
@@ -190,24 +190,28 @@ get_info()
     debug "get_info(): start: $@"
     # if there are more than one, take the first
 # fix me: why 2>/dev/null?
-    local url=`ls_locations | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
-    if ! [ "$url" ]; then
+    local loc=`ls_locations | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
+    if ! [ "$loc" ]; then
 	error "No such port: $1"
 	return 1
     fi
-    local gpkg=`echo $url | loc2gpkg`
+    local gpkg=`echo $loc | loc2gpkg`
     group=`echo $gpkg | cut -d / -f 1`
     package=`echo $gpkg | cut -d / -f 2`
     name=`echo $package | pkg2name`
     version=`echo $package | pkg2ver`
-    script=`find $(dirname $url)/$name -name "*SlackBuild" | head -n 1`
-    local path=`echo $script | rev | cut -d / -f 2- | rev`
+    local path=`dirname $loc`/$name
+    script=`find $path/ -name "*SlackBuild" | head -n 1`
     # remove ' and " from description
     description=`grep -s ^$name: $path/slack-desc | sed "s,['\"],,g" | cut -d : -f 2- | cut -d " " -f 2-`
     requires=`grep -sv ^# $path/requires`
     sources=`grep -sv ^# $path/sources | sed "s,\\$VERSION,$version,g"`
-    depends=`fgrep -sxl $name $path/../../*/*/requires | rev | cut -d / -f 2 | rev`
-    size=`du $PKG_DIR/$group/$package.tgz 2>/dev/null | cut -f 1`
+#    depends=`fgrep -sxl $name $PRT_DIR/*/*/requires | rev | cut -d / -f 2 | rev`
+    local s=`gzip -l $PKG_DIR/$group/$package.tgz 2>/dev/null | tail -n 1`
+    size=`echo $s | awk '{print $1}'`
+    u_size=`echo $s | awk '{print $2}'`
+    ((size/=1024))
+    ((u_size/=1024))
     debug "get_info(): end: $@"
     return 0
 }
@@ -306,18 +310,14 @@ build_pkg()
     done
     $download_only && return 0
     # build package
-#    if which fakeroot >/dev/null 2>&1; then
-#	warn "fakeroot enabled: on problems remove it to disable"
-#	local root="fakeroot -- sh -c PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-#    else
-	local root="su -c"
-#    fi
     row "Executing $script"
     $dry_run && return 0
-    $root "rm -rf /tmp/buildlog-$name
+# fix me: chmod 1777 /tmp is a hack-around
+    su -c "rm -rf /tmp/buildlog-$name
            rm -rf /tmp/$package.tgz
 	   export ARCH
-           sh $script 2>&1 | tee /tmp/buildlog-$name >$output" || return 1
+           sh $script 2>&1 | tee /tmp/buildlog-$name >$output
+	   chmod 1777 /tmp" || return 1
     $maintain && cp /tmp/buildlog-$name $path/buildlog
     # success?
     if ! [ -f /tmp/$package.tgz ]; then
@@ -328,6 +328,7 @@ build_pkg()
     fi
     # stuff for maintainers of port scripts :)
     if $maintain; then
+	row "Going maintainer mode"
 	rm -rf $path/PORT_IS_BROKEN
 	# is there a build tree?
 	if [ -d /tmp/package-$name ]; then
@@ -341,6 +342,12 @@ build_pkg()
 	    | sed -r "s,^$ADM_DIR/packages/,," | pkg2name | sed -r \
             -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
 	    | grep -ve ^$name$ $ignore | sort -u >$t.bin_req
+	    # check for perl
+	    find /tmp/package-$name/usr/lib -name "perl[0-9]*" 2>/dev/null \
+	    && echo perl >>$t.bin_req
+	    # check for python
+	    find /tmp/package-$name/usr/lib -name "python[0-9]*.[0-9]*" 2>/dev/null \
+	    && echo python >>$t.bin_req
 	    echo "$requires" >$t.old_req
 	    # now merge into old requirements-list
 	    cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$t.new_req
@@ -435,8 +442,8 @@ do_add() # pkgex-list
 	ret=0
     done
     # summary
-    if $verbose; then
-        stanza "Summary:"
+    if $verbose && [ `cat $ADD_SUM* | wc -l` != "1" ]; then
+        stanza "Summary of actions:"
 	touch $ADD_SUM.finished
 	cat $ADD_SUM.finished | xargs -r -l echo "  --> Added successfully"
 	cat $ADD_SUM | xargs -r -l echo "  --> Failed at"
@@ -491,9 +498,10 @@ do_info() # pkgex-list
 	echo
 	echo "PORT NAME:  $package"
 	[ "$size" ] && echo "PORT SIZE (compressed):  $size K"
+	[ "$u_size" ] && echo "PORT SIZE (uncompressed):  $u_size K"
 	echo "PORT LOCATION:  $script"
-	[ "$requires" ] && echo "PORT REQUIREMENTS:  "$requires | fmt -t
-	[ "$depends" ] && echo "PORT DEPENDENCIES:  "$depends | fmt -t
+	[ "$requires" ] && echo "PORT REQUIRES:  "$requires | fmt -t
+#	[ "$depends" ] && echo "PORT DEPENDENCIES:  "$depends | fmt -t
 	[ "$sources" ] && echo "PORT SOURCES:  "$sources | fmt -t
 	[ "$description" ] && echo "PORT DESCRIPTION:"
 	[ "$description" ] && echo "$description" | sed "s,^,$name: ,"
@@ -657,8 +665,7 @@ init()
     # init virtual install list
     touch $FAKE_INST
     # clean up on exit
-# fix me: chmod 1777 /tmp is a hack-around
-    trap "rm -rf $SCRATCH_DIR; chmod 1777 /tmp" EXIT
+    trap "rm -rf $SCRATCH_DIR" EXIT
     trap "" PIPE
     # check requirements
     has_pkg sed-4 || die
