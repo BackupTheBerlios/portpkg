@@ -1,6 +1,6 @@
 VERSION=2.4.8
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -8,24 +8,11 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 mkdir -p $PKG/usr
 
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-else
-  SLKCFLAGS="-O2"
-fi
-
 cd /tmp || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
+./autogen.sh || exit 1
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \
@@ -41,13 +28,13 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
   find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
 )
 gzip -9 $PKG/usr/man/man?/*
-mkdir -p $PKG/usr/doc/$NAME-$VERSION
-mv $PKG/usr/share/doc/$NAME-2.4/* $PKG/usr/doc/$NAME-$VERSION/
-rm -r $PKG/usr/share/doc
-cp -a \
-  AUTHORS CHANGES COPYING ChangeLog INSTALL NEWS README README.SUN README.win32 \
-  $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+mv $PKG/usr/share/doc/*/* $PKG/usr/doc/$NAME-$VERSION/
+rm -rf $PKG/usr/share/doc
+cp -a \
+  AUTHORS CHANGES COPYING ChangeLog INSTALL NEWS PORTING README README.SUN README.win32 \
+  $PKG/usr/doc/$NAME-$VERSION
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
