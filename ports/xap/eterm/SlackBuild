@@ -24,7 +24,7 @@ cd /tmp || exit 1
 tar xzvf $CWD/Eterm-$VERSION.tar.gz || exit 1
 cd Eterm-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

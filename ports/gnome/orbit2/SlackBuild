@@ -22,7 +22,7 @@ cd /tmp || exit 1
 tar xjvf $CWD/ORBit2-$VERSION.tar.bz2
 cd ORBit2-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

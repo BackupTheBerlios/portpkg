@@ -24,7 +24,7 @@ cd /tmp || exit 1
 tar xzvf $CWD/$pak.tar.gz
 cd $pak || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

@@ -24,7 +24,7 @@ cd $NAME-$VERSION || exit 1
 cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 ./autogen.sh
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

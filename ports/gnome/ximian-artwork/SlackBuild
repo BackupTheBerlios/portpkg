@@ -25,7 +25,7 @@ tar xzvf ximian-artwork-$VERSION-0.ximian.6.3.src.tar.gz
 tar xzvf ximian-artwork-$VERSION.tar.gz
 cd ximian-artwork-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

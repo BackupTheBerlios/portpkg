@@ -24,7 +24,7 @@ cd abiword-$VERSION || exit 1
 for i in abi abiword-plugins; do
 cd $i || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

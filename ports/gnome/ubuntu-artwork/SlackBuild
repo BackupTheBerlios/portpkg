@@ -22,7 +22,7 @@ cd /tmp || exit 1
 tar xzvf $CWD/ubuntu-artwork_$VERSION.orig.tar.gz
 cd ubuntu-artwork-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \

@@ -22,7 +22,7 @@ cd /tmp || exit 1
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 ICEAUTH=/usr/X11R6/bin/iceauth \
 ./configure \
   --prefix=/usr \
