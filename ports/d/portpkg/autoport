@@ -259,7 +259,7 @@ desc=`{ echo "$name: $desc1"
           echo "$name:"
         done; } | head -n 11`
 
-if [ "$script" ]; then
+if [ "$group" != "local" ] && [ "$script" ]; then
   path=`dirname $script`
 else
   path=$PRT_DIR/$group/$name
@@ -293,7 +293,7 @@ if [ -f $path/stop.autoport ]; then
   die
 fi
 if [ -d $path ]; then
-  ask "* This port already exists. Really go on? (ctrl-c to quit)"
+  ask "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
 fi
 
 stanza "Autoporting $group/$name-$version-$arch-$build:"
