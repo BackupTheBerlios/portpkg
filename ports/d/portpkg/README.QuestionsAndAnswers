@@ -1,44 +1,36 @@
 QuestionsAndAnswers
 
-   Note: This is a Wiki: you can add your questions by clicking EditThisPage
-   below.
+   Note: This is a Wiki: you can add your questions by clicking EditThisPage!
 
    --------------------------------------------------------------------------
 
-  My /tmp is being bloated, why and how to prevent?
+  Why?
 
-   Your /tmp directory will be filled while compiling with source code,
-   object code and packages, which isn't needed anymore, once the package is
-   built. It is recommended to delete that on every boot (see Filesystem
-   Hierarchy Standard in Links):
+   Well, in every case I come to the final point that I cannot explain: I
+   like the idea of a ports system for Slackware. And more technically: I
+   want to fill the gap in the causal connexion between .tgz-packages and
+   SlackBuilds.
 
- echo 'rm -rf /tmp/*' >>/etc/rc.d/rc.local
+  Who will use that?
 
-  I get "Cannot find required package xyz! Stopping." so often... ?!
+   I want to target as much users as possible: For the puristic slacker it
+   could be a helpful reference, kept in a simple CVS tree. For the novice it
+   could be a installer that is easy to use. For the bleeding-edge-user it
+   could be a system to have all your software up-to-date and made for your
+   system.
 
-   There are three solutions:
+  Why is it written in Bash?
 
-     o You can copy all .tgz-packages you have to /usr/obj/pkg to resolve all
-       dependencies automatically.
-     o If you have an RSYNC'ed tree of Slackware, you can link /usr/obj/pkg
-       to its slackware/ directory.
-     o Use pp-sync-dist which will download Slackware packages on demand.
+  Why not use Checkinstall?
 
-  I don't want to know anything about "dependencies" or "requirements"... Can I
-  turn that off?
+  Why not use binary packages?
+
+  Is it safe?
+
+  Can I turn off "dependencies" and "requirements"?
 
    Yes, with -q in the command line or add NO_REQS=true in
    /usr/ports/local.conf.
-
-  I want to recompile Slackware's apmd (or xyz) for my athlon-tbird. How?
-
-   You can use pp-sync-slack to import the original Slackware SlackBuilds to
-   your ports tree, this script is able to import about 90 % of the original
-   SlackBuild scripts as ports. Use them as templates. See UserGuide.
-
-   But generally, there's no solution for hardware-optimised packages. We
-   provide the possibility to build packages for x86_64 and s390, but x86
-   code has normal -march=i486 -mcpu=i686 -O2 cflags.
 
   Does it work with installpkg and removepkg?
 
@@ -47,36 +39,60 @@ QuestionsAndAnswers
    if there's one installed, otherwise it acts like a installpkg <pkg>. As
    any Slackware packages, you can remove it with removepkg <pkg>.
 
-  There are so few mirror list files and none of them fits my needs. What to do?
+  How can I recompile a Slackware package for my CPU?
+
+   Download Slackware's SlackBuild (and all other files), add
+   CFLAGS="$SLKCFLAGS" \ right before ./configure if it doesn't exist. You
+   must set ARCH and CFLAGS in your /usr/ports/local.conf (best with
+   pp-config). See PortpkgGuide.
+
+  Why is /tmp filled with so much data?
+
+   Your /tmp directory will be filled with source code, object code and
+   packages, which isn't needed anymore, once the package is built. It is
+   recommended to delete that on every boot (see Filesystem Hierarchy
+   Standard in Links):
+
+ echo 'rm -rf /tmp/*' >>/etc/rc.d/rc.local
+
+  What means "Cannot find required package xyz! Stopping."?
+
+   It simply means that you need another package before you can install this
+   one. As it couldn't be found, I assume it is a package of the Slackware
+   distribution. You can install it by hand (installpkg xyz) or you can
+   import all Slackware packages to your ports tree: Run pp-config and
+   configure it to use Slackware's binaries (resources). After next portpkg
+   --sync Portpkg resolves dependencies to Slackware packages automatically.
+
+  Why are there so few mirror list files? None of them fits my needs?
 
    You can use Portpkg without mirrors. You can add your own preferred mirror
    sites to mirrors.local.
 
-  I have my own ports located in group local/ and want portpkg to prefer them
-  over all others. How can I do that?
+  I'm using this Slackware-binaries-sync-addon-thing, but I want to use gcc-3.4
+  from testing/. Portpkg always wants to downgrade to gcc-3.3 from d/. Hm?
 
-   The default port (if there're more than one) is always the first found in
-   alphabetical order of its path in /usr/ports. To make your group local/
-   appear before all others, there's a trick: make a directory 0 (zero) and
-   symlink your preferred group there:
+   Make a symlink in local/ to gcc-3.4. local/ is always preferred, and
+   Slackware's testing tree (in /usr/ports/z/bin/z/testing) is mostly
+   overlapped by stable versions:
 
- # cd /usr/ports
- # mkdir 0
- # ln -s ../local 0/
+ # mkdir /usr/ports/local
+ # cd /usr/ports/local
+ # ln -s ../z/bin/z/testing/gcc .
  # portpkg -l
- local/myport-1.0-i486doe
+ local/gcc-3.4.3-i486-1
  (...)
+
+   You will now have the gcc version in testing/ as default.
 
   How is Portpkg different from other attempts to do the same, how is Portpkg
   different from other Slackware tools?
 
    Other Slackware tools contain "slack" in the project name or at least
    start with an "s": slapt-get, slackpkg, swaret, slackports, slack-get,
-   spkg...
-
-   Portpkg is unique in this sense of feature: It starts with a "p", goes
-   straight on with "ort", just to find its climax with another "p", and ends
-   quickly but sudden with "kg".
+   spkg... Portpkg is unique in this sense of feature: It starts with a "p",
+   goes straight on with "ort", just to find its climax with another "p", and
+   ends quickly but sudden with "kg".
 
    --------------------------------------------------------------------------
 
@@ -84,9 +100,9 @@ QuestionsAndAnswers
 References
 
    Visible links
-   . file:///usr/ports/local/portpkg/doc.php?page=EditThisPage
+   . http://portpkg.berlios.de/doc.php?page=edit/QuestionsAndAnswers
+   . file:///usr/ports/local/portpkg/doc.php?page=PortpkgGuide
    . file:///usr/ports/local/portpkg/doc.php?page=Links
-   . file:///usr/ports/local/portpkg/doc.php?page=UserGuide
    . file:///usr/ports/local/portpkg/doc.php?page=edit/QuestionsAndAnswers
    . file:///usr/ports/local/portpkg/doc.php?page=links/QuestionsAndAnswers
    . file:///usr/ports/local/portpkg/doc.php?page=info/QuestionsAndAnswers

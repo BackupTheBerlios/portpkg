@@ -1,9 +1,48 @@
 News
 
+  12/03/2005
+
+   Portpkg
+           * Release 0.36.
+           * As noted below, configuration scripts locations (local.conf,
+             ignore*, exclude*, mirrors*) moved to /etc/portpkg, the ports
+             tree location can now be customised via PRT_DIR. Pleas move your
+             *local* files to /etc/portpkg.
+           * Pp-export is now called by portpkg --export ports
+
+  03/03/2005
+
+   Portpkg
+           * I've just found a bug in the testing version
+             (portpkg-0.35cvs-noarch-7tom and -8tom), which removes
+             /dev/stdout (a symlink to /dev/fd/1) when downlading in verbose
+             mode. If you're running the testing version, please upgrade to
+             fix that!
+
+  02/24/2005
+
+   Portpkg
+           * I have uploaded a testing version of Portpkg with some slight
+             differences: mirrors*, ignore*, exlcude* and local.conf are
+             located in /etc/portpkg which makes it possible to customise
+             also the ports tree (PRT_DIR in local.conf, but doesn't work
+             with Pp-config for now!)
+           * Autoport uses some more conservative SlackBuild methods again,
+             it is sensitive for update-mime-database and
+             update-desktop-database and installs GConf-schemas-defaults
+             before packaging
+           * Pp-export has been integrated into portpkg (start as portpkg
+             --export ports)
+           * Pp-config uses a different way of identifying your CPU (thanks
+             to MPlayer's configure). Maybe it's better now. At least I found
+             out, mine is a athlon-4, not athlon-xp!
+
   02/20/2005
 
    Portpkg
            * Release 0.35.
+           * Edit: Sorry, made some mistakes, please ensure you have release
+             0.35b!
            * CFLAGS can be set to different values (but not recommended,
              since it is impossible to check, if a SlackBuild actually uses
              it, and you can end up with packages named i686, but tuned for
