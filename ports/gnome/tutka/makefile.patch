@@ -1,0 +1,13 @@
+--- tutka-0.12.0/Makefile.in.orig	2005-02-02 21:46:19.000000000 +0100
++++ tutka-0.12.0/Makefile.in	2005-02-02 21:45:45.000000000 +0100
+@@ -590,8 +590,8 @@
+ 	$(INSTALL_DATA) tutka.desktop $(DESTDIR)$(datadir)/applications
+ 	$(mkinstalldirs) $(DESTDIR)$(datadir)/pixmaps
+ 	$(INSTALL_DATA) tutka.png $(DESTDIR)$(datadir)/pixmaps
+-	$(mkinstalldirs) $(GCONF_SCHEMA_FILE_DIR)
+-	$(INSTALL_DATA) tutka.schemas $(GCONF_SCHEMA_FILE_DIR)
++	$(mkinstalldirs) $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)
++	$(INSTALL_DATA) tutka.schemas $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)
+ 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule tutka.schemas
+ 
+ dist-hook:
