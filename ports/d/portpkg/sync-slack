@@ -5,7 +5,7 @@
 source `which portpkg` || exit 1
 
 RSYNC=rsync://rsync.slackware.at/slackware/slackware-current/source
-DIST=ftp://ftp.slackware.at/slackware-current
+DIST=ftp://ftp.slackware.com/pub/slackware/slackware-current
 TREE=~/pseudo/slack
 
 mkdir -p $TREE
@@ -29,19 +29,54 @@ $RSYNC/* .
 # write missing files into sources-files
 stanza "Building sources-files..."
 t=`private`
-row "Retrieving file list..."
+row "Retrieving file list"
 get $DIST/FILELIST.TXT $t.file_list
-row "Constructing ports..."
+row "Constructing ports"
+# for any file
 grep -o "\./source/.*/.*/.*" $t.file_list \
 | cut -d " " -f 1 | cut -d / -f 3- | while read s; do
-    if find $s >/dev/null 2>&1; then
-	echo `echo $s | cut -d / -f 3-`
-    else
+    # if not found, add it to "sources"
+    if ! find $s >/dev/null 2>&1; then
+#	echo `echo $s | cut -d / -f 3-`
+#    else
 	echo $DIST/$s
-    fi | grep -ve "SlackBuild$" -e "^slack-desc$" -e "^doinst.sh$" \
+    fi | grep -ve "SlackBuild$" -e "^slack-desc$" -e "^doinst.sh" \
     >>`echo $s | cut -d / -f 1-2`/sources
 done
 
-stanza "Don't forget, to link $TREE in $PRT_DIR, to use them!"
+row "Checking if wrappers needed" 
+find -name "*.build" | while read s; do
+    dir=`dirname $s`
+    gname=`dirname $s | cut -c 3-`
+    group=`echo $gname | cut -d / -f 1`
+    name=`echo $gname | cut -d / -f 2`
+    ver=`grep ^VERSION= $s | cut -d = -f 2-`
+    arch=`grep ^ARCH= $s | cut -d = -f 2- | sed -re "s,\\\\$\\{[A-Z]*:-,," -e "s,},,"`
+    build=1slack
+    row "Wrapping $gname"
+echo "$gname"
+echo "$group"
+echo "$name"
+echo "$ver"
+echo "$arch"
+echo "$build"
+    cat <<EOF >$dir/SlackBuild
+NAME=$name
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
 
-# todo: *.build-wrapper?
+checkinstall -S -y \\
+  --pkgname=$name \\
+  --pkgarch=$arch \\
+  --pkgrelease=$build \\
+  --pakdir=/tmp \\
+  --strip=yes \\
+  --stripso=yes \\
+  --gzman=yes \\
+  --backup=no \\
+  `basename $s` || exit 1
+EOF
+done
+
+stanza "Don't forget, to link $TREE in $PRT_DIR, to use it!"
