@@ -74,17 +74,19 @@ check_group()
     for p in `cat $t.neg_names`; do
 	pkg=`grep -m 1 $(regex $p) $t.pkgs`
         if fgrep -xsq $pkg $t.inst; then
-	    { su -c "removepkg $pkg" 2>&1; echo "---"; } >$t.pipe-rem-$p &
+	    {	su -c "removepkg $pkg" 2>&1
+		stanza "Finished removing $p."
+	    } >$t.pipe-rem-$p &
 	    dia --tailbox $t.pipe-rem-$p 20 75
-	    sleep 1
 	fi
     done
     for p in `cat $t.pos_names`; do
 	pkg=`grep -m 1 $(regex $p) $t.pkgs`
 	if ! fgrep -xsq $pkg $t.inst; then
-	    { portpkg $pkg 2>&1; echo "---"; } >$t.pipe-add-$p &
+	    {	su -c "portpkg $pkg" 2>&1
+		stanza "Finished adding $p."
+	    } >$t.pipe-add-$p &
 	    dia --tailbox $t.pipe-add-$p 20 75
-	    sleep 1
 	fi
     done
 }
