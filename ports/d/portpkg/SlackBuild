@@ -1,6 +1,6 @@
 VERSION=0.30
 ARCH=noarch
-BUILD=4tom
+BUILD=5tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -16,20 +16,12 @@ install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 install -m 755 $CWD/portpkg $PKG/usr/bin/
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
-for i in QuickStart UserGuide MaintainerGuide PortpkgGuide TodoBugsAbout; do
-  lynx -dump $CWD/$i.html >$PKG/usr/doc/$NAME-$VERSION/$i.txt
-  sed -i \
-  -e "/:\/\/localhost\//d" \
-  -e "s,^[^ 0-9],      &," \
-  -e "s,^[0-9],   &," $PKG/usr/doc/$NAME-$VERSION/$i.txt
-  chmod 644 $PKG/usr/doc/$NAME-$VERSION/$i.txt
-done
 
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  COPYING \
+  COPYING MaintainerGuide.* PortpkgGuide.* UserGuide.* QuickStart.* TodoBugsAbout.* \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc

@@ -1,0 +1,92 @@
+
+QuickStart
+
+This page addresses a very short introduction to the most important components
+of the Portpkg Project.
+There are two ways of using the ports collection: the puristic way, only the
+SlackBuild scripts, is a bit hard to use, or the comfortable way with the
+administration tool portpkg which is recommended.
+
+1. The comfortable way: portpkg
+
+If you want to have a quick look into what Portpkg does, download the latest
+package here and install it with:
+
+  # installpkg portpkg-xxx-noarch-1tom.tgz
+
+Now you can fetch the complete current ports collection:
+
+  # portpkg --sync
+
+After --sync, you can find out if there's an update for portpkg available:
+
+  # portpkg portpkg
+
+Portpkg uses the directories /usr/ports, /usr/obj/pkg and /usr/src/dist to
+store the SlackBuild scripts, source packages and binary packages. You can have
+a list of all available ports with:
+
+  $ portpkg --list
+
+To build and install a port to your system, just type in the short name of the
+port:
+
+  # portpkg id3lib
+
+It is always recommended to do a dry-run first, to see, what would happen:
+
+  # portpkg --dryrun id3lib
+
+In doubt you can specify the port with the group and/or the long name to define
+the port more precisely or imply whole groups also, otherwise portpkg will use
+the first port that fits your mask:
+
+  $ portpkg --info l/id3lib dia-0.94-i486-1tom gnome/
+
+Read further on in UserGuide!
+
+1.1 Working with ports
+
+"Packages as mom does"
+First of all: Writing new ports can be quite easy, but can also become hard
+work and implies at least the possibility to shred your system! The procedure
+described here, is subject to certain conditions (one script just writes
+another script, and that could fail). So instead of just using portpkg, writing
+ports is more difficult and you should now what you are doing, this is at your
+own risk!
+The package portpkg contains a script called autoport, that will assist you to
+prepare a SlackBuild and some useful other files if you have a given source
+code URL. Normally the default answers (encluded in [ and ]) should be the
+right choice, so just press enter (if this is the first time you use autoport,
+you will be asked for a tag, which will be stored in /usr/ports/local.conf).
+Now your desired port can be used if anything goes right:
+
+  # autoport
+  (...)
+  # portpkg my-new-port
+
+We hope you plan to contribute your ports to this project, it is a simple task!
+First you have to make a tarball of your ports (here you will be asked for your
+mail address and your real name, so we can contact you later):
+
+  $ cd /usr/ports
+  $ ./export
+
+Now there's your tarball in /usr/ports, called ports-yourtag-date.tar.bz2.
+Please make sure, it's not getting too big! Normally, a port just needs the
+files SlackBuild, slack-desc, sources and requires.
+Read further on in MaintainerGuide!
+-------------------------------------------------------------------------------
+
+2. Alternative: The puristic way without portpkg
+
+"Just the ports, nothing else, please!"
+You can use the ports tree without portpkg at all! It is just like the source/
+directory on a Slackware repository. Get the complete tree via CVS:
+
+  $ cvs -z9 -d:pserver:anonymous&#x40;cvs.berlios.de:/cvsroot/portpkg co ports
+
+You should definitely have a look at UserGuide and MaintainerGuide now.
+
+-------------------------------------------------------------------------------
+       EditThisPage BackLinks PageInfo last changed on Wed Dec 08 11:39:50 2004

@@ -13,7 +13,7 @@ ls_avail >$t.avail
 ls_cache | grep -v "^local/" >$t.cache
 row "Checking cache structure"
 for gpkg in `fgrep -vxf $t.avail $t.cache`; do
-    group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t.avail | cut -d / -f 1`
+    group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t.avail | cut -sd / -f 1`
     group=${group:-outdated}
     case $gpkg in $group/*) continue;; esac
     row "Moving $gpkg to $group/"

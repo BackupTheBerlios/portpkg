@@ -1,0 +1,215 @@
+<html>
+<body>
+
+<div class="wiki view QuickStart">
+<div class="text-head">
+<h2 class="text-title page title"><a href="doc.php?page=links/QuickStart">QuickStart</a></h2>
+</div>
+<div class="text-body">
+
+<p>This page addresses a very short introduction to the most important components of the Portpkg Project.
+</p>
+
+
+<p>There are two ways of using the ports collection: the puristic way, only the SlackBuild scripts, is a bit hard to use, or the comfortable way with the administration tool <tt>portpkg</tt> which is recommended.
+</p>
+
+<h2>1. The comfortable way: portpkg</h2>
+
+<p>If you want to have a quick look into what Portpkg does, download the
+latest package <a href="http://developer.berlios.de/project/showfiles.php?group_id=2486">here</a> and install it with:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+# installpkg portpkg-xxx-noarch-1tom.tgz
+</pre>
+
+
+
+
+<p>Now you can fetch the complete current ports collection:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+# portpkg --sync
+</pre>
+
+
+
+
+<p>After <tt>--sync</tt>, you can find out if there's an update for portpkg available:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+# portpkg portpkg
+</pre>
+
+
+
+
+<p>Portpkg uses the directories <tt>/usr/ports</tt>, <tt>/usr/obj/pkg</tt> and <tt>/usr/src/dist</tt> to store the SlackBuild scripts, source packages and binary packages. You can have a list of all available ports with:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+$ portpkg --list
+</pre>
+
+
+
+
+<p>To build and install a port to your system, just type in the short name of the port:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+# portpkg id3lib
+</pre>
+
+
+
+
+<p>It is always recommended to do a dry-run first, to see, what would happen:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+# portpkg --dryrun id3lib
+</pre>
+
+
+
+
+<p>In doubt you can specify the port with the group and/or the long name to define the port more precisely or imply whole groups also, otherwise <tt>portpkg</tt> will use the first port that fits your mask:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+$ portpkg --info l/id3lib dia-0.94-i486-1tom gnome/
+</pre>
+
+
+
+
+<p>Read further on in <a href="doc.php?page=UserGuide">UserGuide</a>!
+</p>
+
+<h3>1.1 Working with ports</h3>
+
+<p><em>"Packages as mom does"</em>
+</p>
+
+
+<p><em>First of all: Writing new ports can be quite easy, but can also become hard work and implies at least the possibility to shred your system! The procedure described here, is subject to certain conditions (one script just writes another script, and that could fail). So instead of</em> just using <em>portpkg,</em> writing ports <em>is more difficult and you should now what you are doing, this is at your own risk!</em>
+</p>
+
+
+<p>The package portpkg contains a script called <tt>autoport</tt>, that will assist you to prepare a SlackBuild and some useful other files if you have a given source code URL. Normally the default answers (encluded in <tt>[</tt> and <tt>]</tt>) should be the right choice, so just press <tt>enter</tt> (if this is the first time you use autoport, you will be asked for a tag, which will be stored in <tt>/usr/ports/local.conf</tt>).
+</p>
+
+
+<p>Now your desired port can be used if anything goes right:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+# autoport
+(...)
+# portpkg my-new-port
+</pre>
+
+
+
+
+<p>We hope you plan to contribute your ports to this project, it is a
+simple task! First you have to make a tarball of your ports (here you will be asked for your mail address and your real name, so we can contact you later):
+</p>
+
+
+
+
+
+<pre class="markup pre">
+$ cd /usr/ports
+$ ./export
+</pre>
+
+
+
+
+<p>Now there's your tarball in <tt>/usr/ports</tt>, called <tt>ports-<em>yourtag</em>-<em>date</em>.tar.bz2</tt>. Please make sure, it's not getting too big! Normally, a port just needs the files <tt>SlackBuild</tt>, <tt>slack-desc</tt>, <tt>sources</tt> and <tt>requires</tt>.
+</p>
+
+
+<p>Read further on in <a href="doc.php?page=MaintainerGuide">MaintainerGuide</a>!
+</p>
+
+
+<p><hr noshade="noshade" />
+</p>
+
+<h2>2. Alternative: The puristic way without portpkg</h2>
+
+<p><em>"Just the ports, nothing else, please!"</em>
+</p>
+
+
+<p>You can use the ports tree without <tt>portpkg</tt> at all! It is just like the source/ directory on a Slackware repository. Get the complete tree via CVS:
+</p>
+
+
+
+
+
+<pre class="markup pre">
+$ cvs -z9 -d:pserver:anonymous&#x40;cvs.berlios.de:/cvsroot/portpkg co ports
+</pre>
+
+
+
+
+<p>You should definitely have a look at <a href="doc.php?page=UserGuide">UserGuide</a> and <a href="doc.php?page=MaintainerGuide">MaintainerGuide</a> now.
+</p>
+
+
+
+</div>
+<div class="wiki-plugins">
+
+<div align="right" class="action-links control-links">
+<br />
+<hr noshade="noshade" />
+  <a href="doc.php?page=edit/QuickStart">EditThisPage</a>   <a href="doc.php?page=links/QuickStart">BackLinks</a>   <a href="doc.php?page=info/QuickStart">PageInfo</a>   <small>last changed on Wed Dec 08 11:39:50 2004</small></div>
+</div>
+
+</div>
+
+</body>
+</html>
