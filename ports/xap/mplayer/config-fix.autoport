@@ -1,0 +1,9 @@
+CFLAGS= \
+./configure \
+  --prefix=/usr \
+  --confdir=/etc \
+  --enable-gui \
+  --enable-dynamic-plugins \
+  --enable-menu \
+  --enable-runtime-cpudetection \
+  --disable-smb || exit 1
