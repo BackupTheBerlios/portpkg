@@ -651,7 +651,7 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
   find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
 )
 #!strip
-find $PKG/usr/man/ | xargs gzip -9
+find $PKG/usr/man/ -type f | xargs -r gzip -9
 #!docs
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \

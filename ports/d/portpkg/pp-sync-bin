@@ -3,6 +3,11 @@
 #                were ports
 
 source `which portpkg` || exit 1
+[ "$DIST_VER" ] || die "No distribution target set. Please run 'pp-config'!"
+TREE=/usr/ports/z/bin
+# this will be mangled through our mirrors-list anyway
+DIST=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+SECTIONS=(patches extra slackware kernels pasture testing)
 
 stanza "pp-sync-dist -- A portpkg-addon to use Slackware's .tgz-packages as if they
 were ports. Since this script is kind of hack-around (a work-around-hack) it's
@@ -22,15 +27,9 @@ Slackware-current. You can change this later in $PRT_DIR/local.conf.
 
 Enjoy."
 
-[ "$DIST_VER" ] || die "No distribution target set. Please run 'pp-config'!"
-
 echo -ne "\nContinue (ctrl-c to abort) "
 read me
 
-TREE=/usr/ports/z/bin
-# this will be mangled through our mirrors-list anyway
-DIST=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
-SECTIONS=(patches extra slackware kernels pasture testing)
 t=`mktemp -d`
 is_root || die
 rm -rf $TREE

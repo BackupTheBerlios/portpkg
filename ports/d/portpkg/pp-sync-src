@@ -2,7 +2,9 @@
 # pp-sync-src -- A portpkg-addon for using Slackware's source code as ports.
 
 source `which portpkg` || exit 1
-
+is_root || die
+# Should be better to have current SlackBuilds as default, so don't ask.
+#[ "$DIST_VER" ] || die "No distribution target set. Please run 'pp-config'!"
 RSYNC=rsync://rsync.slackware.at/slackware/slackware-current/source
 DIST=ftp://ftp.slackware.com/pub/slackware/slackware-current
 TREE=/usr/ports/z/src
@@ -22,10 +24,6 @@ distribution version. Choose '10.0' or maybe 'current', but only if you use
 Slackware-current! You can change this later in $PRT_DIR/local.conf.
 
 Have fun."
-
-is_root || die
-# Should be better to have current SlackBuilds as default, so don't ask.
-#[ "$DIST_VER" ] || die "No distribution target set. Please run 'pp-config'!"
 
 echo -ne "\nContinue (ctrl-c to abort) "
 read me
