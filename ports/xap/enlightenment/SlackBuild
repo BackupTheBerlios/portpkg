@@ -31,6 +31,7 @@ CFLAGS="$SLKFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --enable-fsstd \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1

@@ -15,3 +15,4 @@ config()
       gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1;;
   esac
 }
+
