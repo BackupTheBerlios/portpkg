@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.2.0
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=2lem
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -38,16 +38,14 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
 )
 
-#+post-install-fix
-mkdir -p $PKG/usr/doc/$NAME-$VERSION
-mv $PKG/usr/share/doc/valgrind/* $PKG/usr/doc/$NAME-$VERSION
-rm -rf $PKG/usr/share
-#+post-install-fix
-
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING FAQ.txt NEWS README README_MISSING_SYSCALL_OR_IOCTL README_PACKAGERS TODO \
   $PKG/usr/doc/$NAME-$VERSION/
+#+post-doc-fix
+mv $PKG/usr/share/doc/valgrind/* $PKG/usr/doc/$NAME-$VERSION
+rm -rf $PKG/usr/share
+#+post-doc-fix
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
