@@ -24,7 +24,8 @@ can be one of these forms:
 .B ]
 .SH DESCRIPTION
 portpkg starts a so called port script (SlackBuild) found in
-/usr/ports/*/<portname>/ and installs the resulting package to your system.
+/usr/ports/<portgroup>/<portname>/ and installs the resulting package to your
+system.
 .SH ACTIONS
 There can be only one alternative action. If none specified, the default
 action is to build and install.
@@ -93,6 +94,10 @@ List of ports to ignore when making the "requires" file.
 .I /usr/ports/exclude
 .RS
 List of ports to exclude when doing upgrades or diffs.
+.RE
+.I /usr/ports/local.conf
+.RS
+Configuration script for addort and export.
 .RE
 .SH AUTHOR
 Thomas Pfaff <toastbrot at web de>

@@ -263,10 +263,9 @@ build_pkg()
 	error "Malformed SlackBuild-header (VERSION, ARCH, BUILD)!"
 	return 1
     fi
-    # include maintain and switch to maintainer mode if $rel end with
-    # -[0-9]*$MY_TAG
+    # switch to maintainer mode if $rel end with -[0-9]*$MY_TAG
     local maintain=false
-    if [ -f $PRT_DIR/maintain ]; then
+    if [ "$MY_TAG" ]; then
 	local rel=`echo $package | pkg2rel`
 	case $rel in *-[0-9]*$MY_TAG) maintain=true;; esac
     fi
@@ -645,7 +644,7 @@ init()
     has_pkg sed-4 || die
     has_pkg coreutils-5.2 || die
     # prepare the exclude pattern
-    [ -f $PRT_DIR/maintain ] && source $PRT_DIR/maintain
+    [ -f $PRT_DIR/local.conf ] && source $PRT_DIR/local.conf
     MY_TAG=${MY_TAG:-}
     MAINTAIN_ALL=${MAINTAIN_ALL:-false}
     # global configs
