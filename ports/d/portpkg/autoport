@@ -139,7 +139,7 @@ sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
 # set source_out before user can input a different version
-[ "$version" ] && source_out=`encode "$sources"`
+[ "$version" ] && [ "$name" ] && source_out=`encode "$sources"`
 # name: guess it, if we haven't yet it
 file=`basename $sources`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
@@ -149,15 +149,20 @@ name=${s:-$name}
 # group
 ask "Group [$group]:"
 group=${s:-$group}
+if ! [ "$version" ]; then
 # version: should be always guessed
 version=`echo $file | rev | cut -d - -f 1 | rev`
 version=`basename $version .tar.gz`
 version=`basename $version .tar.bz2`
 version=`basename $version .tgz`
+fi
 ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
+## set source_out before user can input a different version
+#[ "$version" ] && 
+[ "$source_out" ] || source_out=`encode "$sources"`
 # arch
 ask "Arch [$arch]:"
 arch=${s:-$arch}

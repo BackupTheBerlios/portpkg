@@ -741,9 +741,10 @@ init()
 #  grep -v $exclude $t/avail | pkg2name | cut -d / -f 2 >$t/non-excl
 #  ignore=`grep $exclude $ignore $t/avail | pkg2name | cut -d / -f 2 | fgrep -vxf $t/non-excl | sort -u`
   # check default arch
-  export ARCH=i486
+  ARCH=i486
   ls $ADM_DIR/packages/glibc-* | grep -sqe -s390- && ARCH=s390
   ls $ADM_DIR/packages/glibc-* | grep -sqe -x86_64- && ARCH=x86_64
+  export $ARCH
   # if not used as include file, start me
   [ `basename $0` == "portpkg" ] && parse_options $@
   return 0
