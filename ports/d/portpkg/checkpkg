@@ -19,29 +19,29 @@ main_menu()
     local t=`private`
     please_wait
     portpkg -l | cut -d / -f 1 | sort -u | sed \
-    -e "s,^a$,& System ," \
+    -e "s,^a$,& System_packages ," \
     -e "s,^ap$,& Applications ," \
-    -e "s,^d$,& Development ," \
-    -e "s,^e$,& Emacs ," \
-    -e "s,^extra$,& Additional ," \
-    -e "s,^f$,& FaqsAndHowtos ," \
-    -e "s,^gnome$,& GnomeDesktop ," \
-    -e "s,^k$,& KernelSources ," \
-    -e "s,^kde$,& KdeDesktop ," \
-    -e "s,^kdei$,& KdeI18n ," \
+    -e "s,^d$,& Development_tools ," \
+    -e "s,^e$,& Emacs_editor ," \
+    -e "s,^extra$,& Additional_software ," \
+    -e "s,^f$,& FAQS_and_HOWTOs ," \
+    -e "s,^gnome$,& GNOME_Desktop ," \
+    -e "s,^k$,& Linux_kernel_sources ," \
+    -e "s,^kde$,& KDE_Desktop ," \
+    -e "s,^kdei$,& KDE_I18n_files ," \
     -e "s,^kernels$,& Kernels ," \
     -e "s,^l$,& Libraries ," \
-    -e "s,^local$,& Local ," \
-    -e "s,^n$,& Network ," \
-    -e "s,^patches$,& SecurityUpdates ," \
-    -e "s,^pasture$,& Compatibility ," \
-    -e "s,^t$,& Tex ," \
-    -e "s,^tcl$,& TclAndTk ," \
-    -e "s,^testing$,& Unstable ," \
-    -e "s,^x$,& XWindowSystem ," \
-    -e "s,^xap$,& XApplications ," \
+    -e "s,^local$,& Local_ports ," \
+    -e "s,^n$,& Network_utilities ," \
+    -e "s,^patches$,& Security_updates ," \
+    -e "s,^pasture$,& Compatibility_packages ," \
+    -e "s,^t$,& TeX_word_processing ," \
+    -e "s,^tcl$,& Tcl_and_Tk_language ," \
+    -e "s,^testing$,& Unstable_software ," \
+    -e "s,^x$,& X-Window-system ," \
+    -e "s,^xap$,& X-Applications ," \
     -e "s,^y$,& Games ," >$t.menu
-    dia --menu "MainMenu" 0 0 0 `cat $t.menu`
+    dia --menu "Groups:" 0 0 0 `cat $t.menu`
 }
 
 check_group()
@@ -65,9 +65,9 @@ check_group()
 	echo $name $desc $([ $(fgrep -xm 1 $pkg $t.inst) ] && echo "on" || echo "off") $name-$rel >>$t.list
 	((i++))
 	echo $((100*i/count))
-    done <$t.locs | dia --gauge "Searching ports..." 0 30
+    done <$t.locs | dia --gauge "Searching ports..." 0 40
     dia --item-help --separate-output \
-    --checklist "Packages of group $group:" 0 0 0 `cat $t.list` 2>$t.pos_names
+    --checklist "Ports of group $group/:" 0 0 0 `cat $t.list` 2>$t.pos_names
     [ $? != 0 ] && die
     # Liste vergleichen und (de-)installieren
     fgrep -vxf $t.pos_names $t.names >$t.neg_names
