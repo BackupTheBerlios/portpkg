@@ -7,6 +7,11 @@ VERSION=0.8.7
 ARCH=i486
 BUILD=1
 
+# we need to remove any other package before checkinstall
+# runs a installpkg on it
+
+removepkg $NAME
+
 checkinstall -S -y \
   --pkgname=$NAME \
   --pkgversion=$VERSION \
