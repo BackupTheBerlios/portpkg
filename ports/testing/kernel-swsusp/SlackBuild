@@ -8,8 +8,6 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 mkdir -p $PKG/boot
 
-cd /tmp || exit 1
-rm -rf linux-$VERSION
 cd /usr/src/linux-$VERSION || exit 1
 make mrproper
 cat $CWD/config-software-suspend-$VERSION >.config
