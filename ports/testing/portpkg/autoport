@@ -26,8 +26,7 @@ ask()
   echo
   echo -n "$@ "
   s=""
-#  $i_act && read s || echo
-  echo
+  read s
 }
 
 check()
@@ -148,15 +147,15 @@ SlackBuild script. If autoport doesn't work as expected, please mail at:
 
 ask "* First step: Collect information. Continue? (ctrl-c to quit)"
 
-# input information
+# sources
 ask "Source file URL [$sources]:"
 sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
-## set source_out before user can input a different version
-#[ "$version" ] && [ "$name" ] && source_out=`encode "$sources"`
+# we can only handle _one_ source file
+src=`echo "$sources" | head -n 1`
 # name: guess it, if we haven't yet it
-file=`basename $(decode "$sources")`
+file=`basename $(decode $src)`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
 ask "Name [$name]:"
@@ -164,6 +163,7 @@ name=${s:-$name}
 # group
 ask "Group [$group]:"
 group=${s:-$group}
+# version
 if ! [ "$version" ]; then
   # version: should be always guessed
   version=`echo $file | rev | cut -d - -f 1 | rev`
@@ -175,8 +175,6 @@ ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
-## set source_out before user can input a different version
-#[ "$version" ] && 
 [ "$source_out" ] || source_out=`encode "$sources"`
 # arch
 ask "Arch [$arch]:"
@@ -221,9 +219,9 @@ desc2=${s:-$desc2}
 if [ "$desc2" ]; then
   len=${#name}
   desc=`echo "$name: $desc1"
-  echo "$name:"
-  echo "$desc2" | fmt -u -w $((75-len)) | sed "s,^,$name: ,"
-  echo "$name:"`
+        echo "$name:"
+        echo "$desc2" | fmt -u -w $((75-len)) | sed "s,^,$name: ,"
+        echo "$name:"`
 else
   desc="$name: $desc1"
 fi
@@ -233,53 +231,45 @@ if $i_act; then
   echo
   echo "PACKAGE NAME:  $name-$version-$arch-$build"
   echo "SCRIPT LOCATION:  $PRT_DIR/$group/$name/SlackBuild"
-  echo "SOURCE LOCATION:  $source_out"
+  echo "SOURCE LOCATION:  $sources" | fmt -u
   echo "PACKAGE DESCRIPTION:"
   echo "$desc"
 fi
 
-ask "* Last chance to quit. Port scripts will now be written.
+ask "Last chance to quit. Port scripts will now be written.
 * Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
 
 # now we should redecode the actual source name
 sources=`decode "$source_out"`
-
 path=$PRT_DIR/$group/$name
 script=$path/SlackBuild
-old_script=""
 if [ -f $path/stop.autoport ]; then
   stanza "There's a warning not to autoport this source code:"
   echo "==========================================="
   more $path/stop.autoport
   echo "==========================================="
-  ask "Really continue? (ctrl-c to quit)"
+  die
 fi
 if [ -d $path ]; then
   ask "* This port already exists. Really go on? (ctrl-c to quit)"
-  old_script=`find $path/ -name "*SlackBuild" | head -n 1`
-#  mv ${old_script}{,.old}
-#  [ -f $path/doinst.sh ] && mv $path/doinst{.sh,.old}
 fi
 
 # write skeletons
+stanza "Autoporting $group/$package:"
 failed=false
 mkdir -p $path
-cat $0 | sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' >$script
+sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
 echo "$source_out" >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
 
-# checking
-stanza "Autoporting $group/$package:"
-
 # downlaod source file
-file=`basename $sources`
+#file=`basename $src`
 if [ -f $SRC_DIR/$file ]; then
   row "$file found in $SRC_DIR/"
 else
-  src=`echo "$sources" | head -n 1`
-  row "Downloading $src"
+  row "Downloading $file"
   VERBOSE=true
   output=/dev/stdout
   get $src $SRC_DIR/$file || die
@@ -328,7 +318,6 @@ srcdir_prefix=`cat $t/footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
 if [ `echo "$srcdir_prefix" | wc -l` == 1 ] && [ "$srcdir_prefix" != "." ]; then
   echo "$srcdir_prefix/"
   if [ "$format" == "srpm" ]; then
-#    # srpms are different :)
 #    snip cd_sdp $script
     :
   else
@@ -388,7 +377,7 @@ if grep -sqe "#!meta-config" -e "#!meta-make" $script; then
     if check "^configure$" $t/footprint; then
       check "--prefix" $t/src/$srcdir_prefix/configure || snip ac_prefix $script
       check "--sysconfdir" $t/src/$srcdir_prefix/configure || snip ac_sysconfdir $script
-      check "--program-prefix" $t/src/$srcdir_prefix/configure || snip ac_program_prefix $script
+#      check "--program-prefix" $t/src/$srcdir_prefix/configure || snip ac_program_prefix $script
       check "--localstatedir" $t/src/$srcdir_prefix/configure || snip ac_localstatedir $script
       check "--disable-static" $t/src/$srcdir_prefix/configure || snip ac_disable_static $script
       snip cfg_autogen $script
@@ -416,7 +405,6 @@ if grep -sq "#!meta-install" $script; then
     if check "^Makefile" $t/footprint; then
       if grep -sq "^Makefile.PL$" $t/footprint \
       || check "DESTDIR" $t/src/$srcdir_prefix/Makefile*; then
-        # use inst_destdir
         snip inst_PREFIX $script
         snip inst_prefix $script
         snip inst $script
@@ -424,26 +412,17 @@ if grep -sq "#!meta-install" $script; then
       else
         snip inst_destdir $script
         if check "PREFIX" $t/src/$srcdir_prefix/Makefile*; then
-          # inst_destdir disabled
-          # use inst_PREFIX
           snip inst_prefix $script
           snip inst $script
           snip cfg_mk_hard $script
         else
           snip inst_PREFIX $script
           if check "prefix" $t/src/$srcdir_prefix/Makefile*; then
-            # inst_destdir disabled
-            # inst_PREFIX disabled
-            # use inst_prefix
             snip inst $script
             snip cfg_mk_hard $script
           else
             snip inst_prefix $script
             if check "/usr/local" $t/src/$srcdir_prefix/{,*/}Makefile*; then
-              # inst_destdir disabled
-              # inst_PREFIX disabled
-              # inst_prefix diabled
-              # use inst
               :
             else
               error "Don't know how to install this package (no install-prefix)."
@@ -511,7 +490,7 @@ else
 fi
 
 # desktop-database
-if check "\.desktop$" $t/footprint; then
+if check "\.desktop(|\.in)$" $t/footprint; then
   if ! grep -sq "update-desktop-database" $path/doinst.sh; then
     row "Adding update-desktop-database to doinst.sh"
     echo "usr/bin/update-desktop-database -q" >>$path/doinst.sh
@@ -523,22 +502,22 @@ else
   fi
 fi
 
-# wrong hard-coded doc paths
-if ! check "/share/doc" $t/src/$srcdir_prefix/{,*/}Makefile*; then
-  snip fix_mk_doc $script
-fi
+## wrong hard-coded doc paths
+#if ! check "/share/doc" $t/src/$srcdir_prefix/{,*/}Makefile*; then
+#  snip fix_mk_doc $script
+#fi
 
-# wrong hard-coded man paths (force on Makefile.PL)
-if ! grep -sq "^Makefile.PL$" $t/footprint \
-&& ! check "/share/man" $t/src/$srcdir_prefix/{,*/}Makefile*; then
-  snip fix_mk_man $script
-fi
+## wrong hard-coded man paths (force on Makefile.PL)
+#if ! grep -sq "^Makefile.PL$" $t/footprint \
+#&& ! check "/share/man" $t/src/$srcdir_prefix/{,*/}Makefile*; then
+#  snip fix_mk_man $script
+#fi
 
-# needed config() routine
+# config() subroutine?
 if grep -sq "\.new" $script; then
   if ! grep -sq "^config()" $path/doinst.sh; then
     row "Adding config() to doinst.sh"
-    cat $0 | sed '/^#\!doinst.sh_config$/,/^#\!doinst.sh_config$/!d' >>$path/doinst.sh
+    sed '/^#\!doinst.sh_config$/,/^#\!doinst.sh_config$/!d' $0 >>$path/doinst.sh
   fi
 else
   if grep -sq "^config()" $path/doinst.sh; then
@@ -576,7 +555,6 @@ if [ -f $path/doinst.sh ]; then
 fi
 
 # summary
-#stanza "We're done. Port written in $path."
 if [ -f $path/readme.autoport ]; then
   stanza "There's a readme for this port:"
   echo "==========================================="
@@ -657,8 +635,8 @@ perl Makefile.PL || exit 1 ##cfg_perl
 find -name Makefile | xargs sed -i "s,/usr/local/etc,$PKG/etc,g" ##cfg_mk_hard
 find -name Makefile | xargs sed -i "s,/usr/local/var,$PKG/var,g" ##cfg_mk_hard
 find -name Makefile | xargs sed -i "s,/usr/local,$PKG/usr,g" ##cfg_mk_hard
-find -name Makefile | xargs sed -i "s,/share/doc,/doc,g" ##fix_mk_doc
-find -name Makefile | xargs sed -i "s,/share/man,/man,g" ##fix_mk_man
+##find -name Makefile | xargs sed -i "s,/share/doc,/doc,g" ##fix_mk_doc
+##find -name Makefile | xargs sed -i "s,/share/man,/man,g" ##fix_mk_man
 #!meta-config
 #%config-fix%
 #%post-config-fix%
@@ -685,6 +663,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 )
 #!strip
 #!meta-doc
+find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \ ##docs
   %docs% \ ##docs

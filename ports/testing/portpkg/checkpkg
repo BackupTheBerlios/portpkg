@@ -69,27 +69,28 @@ install them.\" 21 75 12 " >$t/menu
   cat $t/list >>$t/menu
   . $t/menu 2>$t/pos_names
   [ $? != 0 ] && return 1
-  # Liste vergleichen und (de-)installieren
+  # compare and install/remove
   fgrep -vxf $t/pos_names $t/unames >$t/neg_names
   for p in `cat $t/neg_names`; do
     pkg=`grep -m 1 $(regex $p) $t/pkgs`
     fgrep -xsq $pkg $t/inst && echo $pkg
   done >$t/list_remove
   if [ -s $t/list_remove ]; then
-    { removepkg `cat $t/list_remove` 2>&1
-      stanza "Finished. You can now press ENTER."
-    } >$t/pipe-rem-$p &
-    dialog --tailbox $t/pipe-rem-$p 20 75
+    clear
+    removepkg `cat $t/list_remove` 2>&1
+    # fake a summary
+    echo -e "\nSummary of actions:" >/tmp/portpkg-summary
+    cat $t/list_remove | xargs echo "  --> Finished" >>/tmp/portpkg-summary
+    dialog --title "REMOVING PACKAGES" --textbox /tmp/portpkg-summary 0 0
   fi
   for p in `cat $t/pos_names`; do
     pkg=`grep -m 1 $(regex $p) $t/pkgs`
     fgrep -xsq $pkg $t/inst || echo $pkg
   done >$t/list_install
   if [ -s $t/list_install ]; then
-    { portpkg `cat $t/list_install` 2>&1
-      stanza "Finished. You can now press ENTER."
-    } >$t/pipe-add-$p &
-    dialog --tailbox $t/pipe-add-$p 20 75
+    clear
+    portpkg `cat $t/list_install` 2>&1
+    dialog --title "ADDING PACKAGES" --textbox /tmp/portpkg-summary 0 0
   fi
 }
 

@@ -323,11 +323,11 @@ maintainer_mode()
   # show a few statistics
   fgrep -xf $t/ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
   fgrep -xvf $t/old_req requires | xargs -r echo "  --> New dependencies:"
-  fgrep -xvf $t/old_req $t/bin_req | fgrep -xvf optional | tee arbitrary | xargs -r echo "  --> Arbitrary dependencies:"
+  fgrep -xvf requires $t/bin_req | fgrep -xvf optional | tee arbitrary | xargs -r echo "  --> Arbitrary dependencies:"
   fgrep -xf optional $t/bin_req | xargs -r echo "  --> Dependant options:"
   # check for common mistakes
   grep -woe "usr/local/.*" -e "usr/share/doc/.*" -e "usr/share/man/.*" \
-  -e "usr/info/dir.*" footprint >$t/check_path
+  -e "usr/info/dir.*" -e "/$ARCH-slackware-linux-" footprint >$t/check_path
   grep "^........w" footprint >$t/check_perm
   grep -e "-upgraded$" $t/bin_req >$t/check_req
   ls_slk | slk2loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
@@ -352,6 +352,7 @@ build_pkg()
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
   fi
   # assume, all symlinks here are links to source files
+  trap "rm -rf $TMPDIR; find $PRT_DIR/$group/$name/ -type l | xargs -r rm" EXIT
   find -type l | xargs -r rm
   # download the source files
   local src
@@ -435,6 +436,7 @@ build_pkg()
   mv /tmp/$package.tgz $PKG_DIR/$group/
   row "Cleaning up"
   rm -rf /tmp/package-$name
+  trap "rm -rf $TMPDIR" EXIT
 #  rm -f /tmp/buildlog-$name
 #  rm -f /tmp/wgetlog-*
 }
