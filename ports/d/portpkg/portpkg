@@ -47,7 +47,7 @@ rebuild=false
 output=/dev/null
 
 # global variables
-declare ignore mirrors exclude prefer
+declare ignore mirrors exclude #prefer
 declare package name group
 declare script description requires size u_size sources pkg_file
 declare maintain slot_in pseudo
@@ -673,7 +673,7 @@ rebuild,download,verbose,dryrun,noreqs,noexclude,debug,lazy"
   $VERBOSE && output=/dev/stdout
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
-  debug "init(): prefer=\"$prefer\""
+#  debug "init(): prefer=\"$prefer\""
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
@@ -731,10 +731,10 @@ init()
   mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{.local,}`
-  prefer=`grep -vshe ^# -e ^$ $PRT_DIR/prefer{.local,}`
+#  prefer=`grep -vshe ^# -e ^$ $PRT_DIR/prefer{.local,}`
   ignore=`regex $ignore`
   exclude=`regex $exclude`
-  prefer=`regex $prefer`
+#  prefer=`regex $prefer`
 #  # ignore list: translate to names, add exclude list and remove items that
 #  # are also in non-excluded lists!
 #  local t=`private`
