@@ -1,12 +1,13 @@
+NAME=gstreamer
 VERSION=0.8.7
 ARCH=i486
-BUILD=2slack
+BUILD=3slack
 
 checkinstall -S -y \
-  --pkgname=gstreamer \
-  --pkgversion=0.8.7 \
-  --pkgarch=i486 \
-  --pkgrelease=1slack \
+  --pkgname=$NAME \
+  --pkgversion=$VERSION \
+  --pkgarch=$ARCH \
+  --pkgrelease=$BUILD \
   --pakdir=/tmp \
   --strip=yes \
   --stripso=yes \
