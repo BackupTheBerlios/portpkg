@@ -1,0 +1,4 @@
+Docfix:
+
+mv $PKG/usr/share/doc/*/* $PKG/usr/doc/$NAME-$VERSION/
+rm -rf $PKG/usr/share/doc
