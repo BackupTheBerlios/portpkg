@@ -43,6 +43,7 @@ main_menu()
     -e "s,^xap$,& X-Applications ," \
     -e "s,^y$,& Games ," \
     -e "s,^[^ ]*$,& & ," >$t.menu
+#    echo "orphans Any_other_installed_packages" >>$t.menu
     dia --title "LIST OF GROUPS" --cancel-label "Quit" --menu "These are the \
 available groups. Select the one you want to look into." 0 0 0 `cat $t.menu`
 }
@@ -55,6 +56,9 @@ check_group()
     ls_locations | grep "^.*/$group/[^/]*$" >$t.locs
     cat $t.locs | loc2gpkg >$t.gpkgs
     cat $t.gpkgs | cut -d / -f 2 >$t.pkgs
+#    if [ "$group" == "orphans" ]; then
+#      ls_inst | fgrep -xvf $t.pkgs 
+#    fi
     cat $t.pkgs | pkg2name >$t.names
     cat $t.names | sort -u >$t.unames
     ls_inst >$t.inst

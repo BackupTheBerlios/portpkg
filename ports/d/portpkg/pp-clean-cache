@@ -8,7 +8,7 @@ t=`private`
 stanza "Cleaning $PKG_DIR/:"
 mkdir -p $PKG_DIR
 cd $PKG_DIR/ || die
-ls_avail >$t.avail
+ls_locations | loc2gpkg >$t.avail
 # leave local/ as is
 ls_cache | grep -v "^local/" >$t.cache
 row "Checking cache structure"

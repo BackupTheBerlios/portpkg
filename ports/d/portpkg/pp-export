@@ -58,9 +58,9 @@ row "Copying $count ports to $temp/"
 rm -rf $temp || exit 1
 mkdir $temp
 cp -a --parents $ports $temp
-priv="buildlog arbitrary diff maintain CVS"
 
-row "Removing private files from export: $priv"
+priv="arbitrary CVS"
+#row "Removing private files from export: $priv"
 for i in $priv; do
     find $temp -name "$i" -exec rm -rf {} \; 2>/dev/null
 done

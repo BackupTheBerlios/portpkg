@@ -337,7 +337,7 @@ build_pkg()
          export ARCH=$ARCH
          sh $script 2>&1 | tee /tmp/buildlog-$name >$output
          chmod 1777 /tmp" || return 1
-  $maintain && cp /tmp/buildlog-$name $path/buildlog
+#  $maintain && cp /tmp/buildlog-$name $path/buildlog
   # success?
   if ! [ -f /tmp/$package.tgz ]; then
     $VERBOSE || tail /tmp/buildlog-$name
@@ -560,8 +560,7 @@ do_sync()
   local file
   if [ -d $PRT_DIR/CVS ]; then
     cd $PRT_DIR || die
-    cvs -qz3 up -dPC -I footprint -I diff -I buildlog -I PORT_IS_BROKEN \
-    -I arbitrary -I local -I "*.local" -I local.conf 2>/dev/null
+    cvs -qz3 up -dPC -I arbitrary -I local -I "*.local" -I local.conf 2>/dev/null
     echo "Syncing complete"
   else
     mkdir -p $PRT_DIR
