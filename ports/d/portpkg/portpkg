@@ -385,8 +385,8 @@ build_pkg()
     fi
     # write the footprint
     tar tzvf /tmp/$package.tgz | sort +5 >$path/footprint
-    # write the diff: SlackBuild compared to a generic one
-    grep -sv "^#" $PRT_DIR/SlackBuild | diff -bu - $script >$path/diff
+#    # write the diff: SlackBuild compared to a generic one
+#    grep -sv "^#" $PRT_DIR/SlackBuild | diff -bu - $script >$path/diff
   fi
   row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group
