@@ -1,0 +1,11 @@
+--- anacron-2.3/gregor.c.orig	2000-06-23 00:50:40.000000000 +0200
++++ anacron-2.3/gregor.c	2005-03-10 00:04:18.000000000 +0100
+@@ -65,7 +65,7 @@
+ {
+     int dn;
+     int i;
+-    const int isleap; /* save three calls to leap() */
++    int isleap; /* save three calls to leap() */
+ 
+     /* Some validity checks */
+ 

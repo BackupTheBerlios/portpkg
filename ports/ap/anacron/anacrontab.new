@@ -1,0 +1,21 @@
+#
+# The  file /etc/anacrontab describes the jobs controlled by
+# anacron(8).  Its  lines  can  be  of  three  kinds:   job-
+# description   lines,  environment  assignments,  or  empty
+# lines.
+#		     
+# Job-description lines are of the form:
+# period  delay  job-identifier  command
+# 
+# Environment assignment lines are of the form:
+# VAR=VALUE
+#
+# Spaces around VAR are removed.  No spaces around VALUE are
+# allowed  (unless  you  want them to be part of the value).
+#
+# Example:
+#
+# PATH=/sbin:/bin:/usr/sbin:/usr/bin
+# 1  5  day     run-parts /etc/cron.daily
+# 7  10 week    run-parts /etc/cron.weekly
+# 30 15 month   run-parts /etc/cron.monthly
