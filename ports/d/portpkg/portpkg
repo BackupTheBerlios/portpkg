@@ -338,8 +338,8 @@ build_pkg()
   if ! $no_fakeroot && [ -x /usr/bin/fakeroot ]; then
     # run fakerooted SlackBuild as nobody
     row "Executing $script (fakerooted as nobody)"
-    su nobody -c "CCACHE_DIR=/tmp/ccache-nobody PATH=\$PATH:/sbin \
-      fakeroot sh $script 2>&1 | tee /tmp/buildlog-$name >$output" || return 1
+    su nobody -c "TMPDIR=/tmp CCACHE_DIR=/tmp/ccache-nobody PATH=\$PATH:/sbin \
+      fakeroot sh $script" 2>&1 | tee /tmp/buildlog-$name >$output
   else
     $no_fakeroot && warn "Fakeroot disabled for this port!" \
     || warn "Please install fakeroot as soon as possible!"
