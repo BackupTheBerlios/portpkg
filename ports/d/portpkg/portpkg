@@ -325,7 +325,8 @@ build_pkg()
     fi
   done
   # check md5sums
-  if ! $maintain && ! $DRY_RUN && ! md5sum --check md5sums >$t/md5sum 2>&1; then
+  if ! $maintain && ! $DRY_RUN && [ -f $path/md5sums ] \
+  && ! md5sum --check md5sums >$t/md5sum 2>&1; then
     grep FAILED $t/md5sum | sed -r "s,(.*): FAILED$,  --> MD5SUM mismatch: \1,"
     error "Integrity checking failed!"
     return 1
@@ -364,7 +365,7 @@ build_pkg()
     rm -rf footprint
     # write md5sum list
     row "Writing md5sums (assuming these files are integer!)"
-    find . -type f -o -type l | sed "s,^\./,," | sort | xargs md5sum >$path/md5sums
+    find . -type l | sed "s,^\./,," | sort | xargs md5sum >$path/md5sums
 #    if [ -d ~/.gnupg ]; then
 #      row "Signing md5sums"
 #      cat $path/md5sums | gpg --clearsign >$path/md5sums
