@@ -441,8 +441,7 @@ build_pkg()
     # pseudo ports: don't cache sources
     $pseudo && rm -rf $SRC_DIR/$srcname
   done
-  rm -rf $TMP/package-$name
-#  rm -f $ADM_DIR/portpkg/$name.buildlog
+  $maintain || rm -rf $TMP/package-$name
 }
 
 # really (re)install/upgrade current port
