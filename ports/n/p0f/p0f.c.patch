@@ -1,0 +1,11 @@
+--- p0f/p0f.c.old	2004-09-13 19:51:36.000000000 +0200
++++ p0f/p0f.c	2005-03-09 19:18:15.000000000 +0100
+@@ -36,7 +36,7 @@
+ #include <pcap.h>
+ #include <signal.h>
+ 
+-#include <net/bpf.h>
++#include <pcap-bpf.h>
+ #include <time.h>
+ #include <ctype.h>
+ 
