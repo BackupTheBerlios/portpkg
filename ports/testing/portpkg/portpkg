@@ -38,6 +38,7 @@ CFG_DIR=/etc/portpkg
 # constants
 ENGINE_VER=cvs
 CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+SUBMIT_URL=http://portpkg.berlios.de/upload.php
 TMPDIR=`mktemp -d /tmp/portpkg-XXXXXX` || exit 1
 export TMPDIR
 ADD_SUM_CALL=`mktemp`
@@ -58,7 +59,7 @@ output=/dev/null
 declare \
   ignore mirrors exclude \
   package name group \
-  script description requires size u_size sources pkg_file \
+  script description requires optional size u_size sources pkg_file \
   maintain slot_in pseudo no_fakeroot
 
 # listers
@@ -200,6 +201,7 @@ get_info() # pkgex
   script=`find $path/ -name "*SlackBuild" | head -n 1`
   description=`grep -s ^$name: $path/slack-desc`
   requires=`grep -sv ^# $path/requires`
+  optional=`grep -sv ^# $path/optional`
   sources=`grep -sv ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
   # info about cached .tgz-packages
   pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
@@ -278,7 +280,7 @@ maintainer_mode()
   rm -rf md5sums
   rm -rf footprint
   # write md5sum list first (don't md5sum footprint)
-  row "Writing md5sums (assuming these files are integer!)"
+  row "Writing: footprint md5sums requires (assuming these files are integer!)"
   # ok, only source files, which are symlinks
   find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >md5sums
 #  if [ -d ~/.gnupg ]; then
@@ -287,7 +289,6 @@ maintainer_mode()
 #  fi
   [ -s md5sums ] || rm md5sums
   # write a file list of the package (remove creation time)
-  row "Writing footprint"
   tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
   | sort +3 >footprint
   # is there a package tree?
@@ -297,7 +298,6 @@ maintainer_mode()
     tar xzf /tmp/$package.tgz -C /tmp/package-$name/
   fi
   echo "$requires" >$t/old_req
-  row "Analysing package"
   find /tmp/package-$name/ -type f | xargs file >$t/ftypes
   { # shared libraries
     grep ":.*ELF" $t/ftypes | cut -d : -f 1 | xargs -r ldd \
@@ -315,12 +315,19 @@ maintainer_mode()
   sort -uo $t/bin_req $t/bin_req
   # strip ignore list
   ls_slk | slk2loc | grep $ignore | loc2gpkg | pkg2name | cut -d / -f 2 >$t/ignore
-  $VERBOSE && fgrep -xf $t/ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
   fgrep -vxf $t/ignore $t/bin_req >$t/bin_req.new
   mv $t/bin_req{.new,}
+  # now generate new "requires" file
+  touch optional
+  cat $t/bin_req $t/old_req | fgrep -xvf optional | grep -v ^$ | sort -u >requires
+  # show a few statistics
+  fgrep -xf $t/ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
+  fgrep -xvf $t/old_req requires | xargs -r echo "  --> New dependencies:"
+  fgrep -xvf $t/old_req $t/bin_req | fgrep -xvf optional | tee arbitrary | xargs -r echo "  --> Arbitrary dependencies:"
+  fgrep -xf optional $t/bin_req | xargs -r echo "  --> Dependant options:"
   # check for common mistakes
   grep -woe "usr/local/.*" -e "usr/share/doc/.*" -e "usr/share/man/.*" \
-  -e "usr/info/dir" footprint >$t/check_path
+  -e "usr/info/dir.*" footprint >$t/check_path
   grep "^........w" footprint >$t/check_perm
   grep -e "-upgraded$" $t/bin_req >$t/check_req
   ls_slk | slk2loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
@@ -328,15 +335,10 @@ maintainer_mode()
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
   cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
   cat $t/check_req | xargs -r echo "WARNING: Check these dependencies:"
-  # now generate new "requires" file
-  cat $t/bin_req $t/old_req | grep -v ^$ | sort -u >requires
-  # show any dependency that couldn't be confirmed
-  diff -u $t/old_req $t/bin_req | grep ^[-][^-] | cut -c 2- >arbitrary
-  [ -s arbitrary ] && warn "Arbitrary dependencies: "`cat arbitrary` \
-  || rm -f arbitrary
-  diff -u $t/old_req requires | grep ^[+][^+] | cut -c 2- \
-  | xargs -r echo "  --> New dependencies:"
+  # remove empty files
+  [ -s arbitrary ] || rm -f arbitrary
   [ -s requires ] || rm -f requires
+  [ -s optional ] || rm -f optional
 }
 
 # build package
@@ -386,10 +388,10 @@ build_pkg()
   $download_only && return 0
   # build package
   $DRY_RUN && return 0
-  rm -rf /tmp/buildlog-$name
-  rm -rf /tmp/package-$name
-  rm -rf /tmp/$package.tgz
   if ! $remaintain; then
+    rm -rf /tmp/buildlog-$name
+    rm -rf /tmp/package-$name
+    rm -rf /tmp/$package.tgz
     local flags_var=`grep -o "CFLAGS=\\"*\\$[^ ]*" $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
     if [ "$flags_var" ]; then
       row "SlackBuild seems to use $flags_var for CFLAGS"
@@ -581,8 +583,8 @@ do_export()
       cd $t/$package
       tar cjf /tmp/$package.tar.bz2 .
     )
-    $DRY_RUN || curl -F filetoupload=@/tmp/$package.tar.bz2 \
-      http://portpkg.berlios.de/upload.php >/dev/null 2>&1 \
+    $DRY_RUN  \
+    || curl -F filetoupload=@/tmp/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
     || error "An error occured!"
     ret=$?
   done
@@ -620,7 +622,8 @@ do_info() # pkgex-list
     [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
     [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file"
     echo "SCRIPT LOCATION:  $script"
-    [ "$requires" ] && echo "SCRIPT REQUIRES:  "$requires | fmt -t 2>/dev/null
+    [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t 2>/dev/null
+    [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t 2>/dev/null
     [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t 2>/dev/null
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
     ret=0
@@ -647,9 +650,9 @@ do_sync()
   # sync port dir
   row "Syncing $PRT_DIR with `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`"
   mkdir -p $PRT_DIR
-  local s
+  local cvs
   # unhide .CVS
-  find $PRT_DIR/ -name .CVS -type d | while read s; do mv $s `dirname $s`/CVS; done
+  find $PRT_DIR/ -name .CVS -type d | while read cvs; do mv $cvs `dirname $cvs`/CVS; done
   if [ -d CVS ]; then
     cd $PRT_DIR || die
     cvs -qz9 up -dP -I arbitrary,local,z #,"*.local",local.conf
@@ -664,7 +667,7 @@ do_sync()
   -e "s, \\? , Unknown file ,"
 #    -e "/\(.*\)/d" \
   # hide CVS
-  find $PRT_DIR/ -name CVS -type d | while read s; do mv $s `dirname $s`/.CVS; done
+  find $PRT_DIR/ -name CVS -type d | while read cvs; do mv $cvs `dirname $cvs`/.CVS; done
   # sync addons?
   local addon
   if [ "$SYNC_ADDON" ]; then
@@ -676,7 +679,6 @@ do_sync()
   local t=`mktemp -d`
   row "Syncing $PKG_DIR with $PRT_DIR"
   mkdir -p $PKG_DIR
-#  cd $PKG_DIR || die
   ls_slk | slk2loc | loc2gpkg >$t/avail
   # leave group local/ as is
   ls_pkg | grep -v "^local/" >$t/cache
@@ -714,7 +716,7 @@ help()
 
 Usage: portpkg [action] [options] [list [...]]
   Build and install (or upgrade) a package.
-Actions:
+Actions (alternative):
   -d, --diff	   Compare installed versions with availables
   -i, --info	   View information about specified ports
   -f, --find	   Find ports by pattern
@@ -729,8 +731,8 @@ Options:
   -p, --prepare    Build package, but don't install (implies --noreqs)
   -o, --download   Download source files only
   -g, --verbose	   Show compile output
-  -y, --dryrun	   Simulate install/download/build
-  -q, --noreqs	   Don't check for requirements
+  -y, --dryrun	   Simulate install/build/download/upload
+  -q, --noreqs	   Don't install/upgrade dependencies
   -a, --lazy       Don't upgrade dependencies to newest version
 Lists:
   group/ or [group/]name[-version-arch-build]
@@ -799,27 +801,6 @@ maintain,export"
   exit $?
 }
 
-check_obsolete()
-{
-  # since PRT_DIR, SRC_DIR and PKG_DIR are customisable now, we don't need
-  # this anymore
-#  # check obsolete dirs (remove in 0.39)
-#  if [ -d ~/ports ]; then
-#    warn "~/ports is obsolete! Move to $PRT_DIR!"
-#    PRT_DIR=~/ports
-#  fi
-#  if [ -d ~/sources ]; then
-#    warn "~/sources is obsolete! Move to $SRC_DIR!"
-#    SRC_DIR=~/sources
-#  fi
-#  if [ -d ~/packages ]; then
-#    warn "~/packages is obsolete! Move to $PKG_DIR!"
-#    PKG_DIR=~/packages
-#  fi
-  # but this :-)
-  :
-}
-
 init()
 {
   # make temporary directory
@@ -829,7 +810,6 @@ init()
   trap "" PIPE
   has_prog sed || die
   # check
-  check_obsolete
   case $ARCH in *-*) die "ARCH value not allowed: $ARCH";; esac
   mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`

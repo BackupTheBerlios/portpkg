@@ -22,11 +22,12 @@ t=`mktemp -d`
 
 ask()
 {
-#  $i_act || return
+  $i_act || return
   echo
   echo -n "$@ "
   s=""
-  $i_act && read s || echo
+#  $i_act && read s || echo
+  echo
 }
 
 check()
@@ -72,16 +73,6 @@ decode()
   local VERSION=$version
   eval echo \"$@\"
 }
-
-stanza "Autoport -- An Automatic SlackBuild Generator
-Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
-Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
-are welcome to redistribute it under certain conditions.
-
-Autoport is quite experimental. A source code URL given, it will download and
-unpack the code and searche for different keywords to adjust a suitable
-SlackBuild script. If autoport doesn't work as expected, please mail at:
-<topf at users dot berlios dot de>"
 
 # first: do we have tags?
 [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
@@ -142,6 +133,16 @@ Options:
   done
 fi
 
+$i_act && stanza "Autoport -- An Automatic SlackBuild Generator
+Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
+Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions.
+
+Autoport is quite experimental. A source code URL given, it will download and
+unpack the code and searche for different keywords to adjust a suitable
+SlackBuild script. If autoport doesn't work as expected, please mail at:
+<topf at users dot berlios dot de>"
+
 #[ "$sources" ] || die "No source url specified! Try: autoport --help"
 [ "$group" ] || group=local
 
@@ -184,7 +185,7 @@ arch=${s:-$arch}
 n=1
 gpkg=`ls_slk | slk2loc | loc2gpkg | grep -m 1 "^$group/$name-$version-$arch-[0-9]*$MY_TAG$"`
 if [ $gpkg ]; then
-  echo "There is already $gpkg."
+  $i_act && stanza "There is already $gpkg."
   # find it
   while [ "$group/$name-$version-$arch-$n$MY_TAG" != $gpkg ]; do
     ((n++))
@@ -204,10 +205,10 @@ else
 fi
 ask "Description (1-liner) [$desc1]:"
 desc1=${s:-$desc1}
-stanza "Description (details) (Write or paste and finish with a single '.')"
-echo "[$desc2]"
-s=""
 if $i_act; then
+  stanza "Description (details) (Write or paste and finish with a single '.')"
+  echo "[$desc2]"
+  s=""
   while [ "$l" != "." ]; do
     read l
     s="$s
@@ -226,14 +227,16 @@ if [ "$desc2" ]; then
 else
   desc="$name: $desc1"
 fi
-echo
-echo "Creating now a port with this information:"
-echo
-echo "PACKAGE NAME:  $name-$version-$arch-$build"
-echo "SCRIPT LOCATION:  $PRT_DIR/$group/$name/SlackBuild"
-echo "SOURCE LOCATION:  $source_out"
-echo "PACKAGE DESCRIPTION:"
-echo "$desc"
+if $i_act; then
+  echo
+  echo "Creating now a port with this information:"
+  echo
+  echo "PACKAGE NAME:  $name-$version-$arch-$build"
+  echo "SCRIPT LOCATION:  $PRT_DIR/$group/$name/SlackBuild"
+  echo "SOURCE LOCATION:  $source_out"
+  echo "PACKAGE DESCRIPTION:"
+  echo "$desc"
+fi
 
 ask "* Last chance to quit. Port scripts will now be written.
 * Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
@@ -267,19 +270,20 @@ echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
 
+# checking
+stanza "Autoporting $group/$package:"
+
 # downlaod source file
 file=`basename $sources`
 if [ -f $SRC_DIR/$file ]; then
-  stanza "$file found in $SRC_DIR/."
+  row "$file found in $SRC_DIR/"
 else
-  stanza "Downloading source file:"
+  src=`echo "$sources" | head -n 1`
+  row "Downloading $src"
   VERBOSE=true
   output=/dev/stdout
-  get $sources $SRC_DIR/$file || die
+  get $src $SRC_DIR/$file || die
 fi
-
-# checking
-stanza "Alright, since we have the code, I'll have a look into it:"
 
 # format
 echo -n "  --> Checking format... "
@@ -378,16 +382,6 @@ if grep -sqe "#!meta-config" -e "#!meta-make" $script; then
     # Makefile.PL is first choice
     snip cfg_autogen $script
     snip cfg_configure $script
-    # use cfg_perl
-#    snip cfg_hard $script
-    # use mk
-    snip mk_PREFIX $script
-    snip mk_prefix $script
-    # use inst_destdir
-    snip inst_PREFIX $script
-    snip inst_prefix $script
-    snip inst $script
-    snip inst_python $script
     arch=noarch
   else
     snip cfg_perl $script
@@ -398,47 +392,14 @@ if grep -sqe "#!meta-config" -e "#!meta-make" $script; then
       check "--localstatedir" $t/src/$srcdir_prefix/configure || snip ac_localstatedir $script
       check "--disable-static" $t/src/$srcdir_prefix/configure || snip ac_disable_static $script
       snip cfg_autogen $script
-      # use cfg_configure
-      # cfg_perl disabled
-#      snip cfg_hard $script
-      # use mk
-      snip mk_PREFIX $script
-      snip mk_prefix $script
-      # inst_destdir?
-      # inst_PREFIX?
-      # inst_prefix?
-      # inst?
-      snip inst_python $script
     elif check "^autogen.sh$" $t/footprint; then
-      # use cfg_autogen
-      # use cfg_configure
-      # cfg_perl disabled
-#      snip cfg_hard $script
-      # use mk
-      snip mk_PREFIX $script
-      snip mk_prefix $script
-      # inst_destdir?
-      # inst_PREFIX?
-      # inst_prefix?
-      # inst?
-      snip inst_python $script
+      :
     else
       snip cfg_configure $script
       snip cfg_autogen $script
       if check "^setup\.py$" $t/footprint; then
-        # setup.py only if no configure
-        #snip cfg_autogen $script
-        #snip cfg_configure $script
-        #snip cfg_perl $script
         snip cfg_mk_hard $script
         snip mk $script
-        snip mk_PREFIX $script
-        snip mk_prefix $script
-        snip inst_destdir $script
-        snip inst_PREFIX $script
-        snip inst_prefix $script
-        snip inst $script
-        # use inst_python
         arch=noarch
       else
         error "Don't know how to build this package."
@@ -450,48 +411,51 @@ fi
 
 # installation prefix
 if grep -sq "#!meta-install" $script; then
-  if check "^Makefile" $t/footprint; then
-    if grep -sq "^Makefile.PL$" $t/footprint \
-    || check "DESTDIR" $t/src/$srcdir_prefix/Makefile*; then
-      # use inst_destdir
-      snip inst_PREFIX $script
-      snip inst_prefix $script
-      snip inst $script
-      snip cfg_mk_hard $script
-    else
-      snip inst_destdir $script
-      if check "PREFIX" $t/src/$srcdir_prefix/Makefile*; then
-        # inst_destdir disabled
-        # use inst_PREFIX
+  if ! check "^setup\.py$" $t/footprint; then
+    snip inst_python $script
+    if check "^Makefile" $t/footprint; then
+      if grep -sq "^Makefile.PL$" $t/footprint \
+      || check "DESTDIR" $t/src/$srcdir_prefix/Makefile*; then
+        # use inst_destdir
+        snip inst_PREFIX $script
         snip inst_prefix $script
         snip inst $script
         snip cfg_mk_hard $script
       else
-        snip inst_PREFIX $script
-        if check "prefix" $t/src/$srcdir_prefix/Makefile*; then
+        snip inst_destdir $script
+        if check "PREFIX" $t/src/$srcdir_prefix/Makefile*; then
           # inst_destdir disabled
-          # inst_PREFIX disabled
-          # use inst_prefix
+          # use inst_PREFIX
+          snip inst_prefix $script
           snip inst $script
           snip cfg_mk_hard $script
         else
-          snip inst_prefix $script
-          if check "/usr/local" $t/src/$srcdir_prefix/{,*/}Makefile*; then
+          snip inst_PREFIX $script
+          if check "prefix" $t/src/$srcdir_prefix/Makefile*; then
             # inst_destdir disabled
             # inst_PREFIX disabled
-            # inst_prefix diabled
-            # use inst
-            :
+            # use inst_prefix
+            snip inst $script
+            snip cfg_mk_hard $script
           else
-            error "Don't know how to install this package (no install-prefix)."
-            failed=true
+            snip inst_prefix $script
+            if check "/usr/local" $t/src/$srcdir_prefix/{,*/}Makefile*; then
+              # inst_destdir disabled
+              # inst_PREFIX disabled
+              # inst_prefix diabled
+              # use inst
+              :
+            else
+              error "Don't know how to install this package (no install-prefix)."
+              failed=true
+            fi
           fi
         fi
       fi
+    else
+      error "Don't know how to install this package (no Makefile)."
+      failed=true
     fi
-  else
-    error "Don't know how to install this package (no Makefile)."
-    failed=true
   fi
 fi
 
@@ -517,6 +481,7 @@ fi
 # scrollkeeper
 if check "\.omf$" $t/footprint; then
   if ! grep -sq scrollkeeper-update $path/doinst.sh; then
+    row "Adding scrollkeeper-update to doinst.sh"
     echo "usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1" >>$path/doinst.sh
   fi
 else
@@ -699,8 +664,8 @@ find -name Makefile | xargs sed -i "s,/share/man,/man,g" ##fix_mk_man
 #%post-config-fix%
 #!meta-install
 make || exit 1 ##mk
-make PREFIX=/usr || exit 1 ##mk_PREFIX
-make prefix=/usr || exit 1 ##mk_prefix
+##make PREFIX=/usr || exit 1 ##mk_PREFIX
+##make prefix=/usr || exit 1 ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
 make install DESTDIR=$PKG || exit 1 ##inst_destdir
 make install PREFIX=$PKG/usr || exit 1 ##inst_PREFIX
@@ -709,6 +674,9 @@ make install || exit 1 ##inst
 python setup.py build install --root=$PKG || exit 1 ##inst_python
 GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
+#!meta-install
+#%install-fix%
+#%post-install-fix%
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 #!strip
 ( cd $PKG
@@ -716,9 +684,6 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
 )
 #!strip
-#!meta-install
-#%install-fix%
-#%post-install-fix%
 #!meta-doc
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \ ##docs
@@ -726,7 +691,7 @@ cp -a \ ##docs
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xarg -r gzip -9
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 #!meta-doc
 #%doc-fix%
 #%post-doc-fix%
