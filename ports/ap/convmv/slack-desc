@@ -1,0 +1,8 @@
+convmv: convmv (converts filenames from one encoding to another)
+convmv:
+convmv: convmv is meant to help convert a single filename, a directory tree
+convmv: and the contained files or a whole filesystem into a different
+convmv: encoding. It just converts the filenames, not the content of the
+convmv: files. A special feature of convmv is that it also takes care of
+convmv: symlinks, also converts the symlink target pointer in case the
+convmv: symlink target is being converted, too.
