@@ -1,6 +1,6 @@
 VERSION=0.98
 ARCH=i486
-BUILD=3tom
+BUILD=4tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -12,7 +12,7 @@ cd /tmp || exit 1
 rm -rf $NAME-$VERSION-1.src.tar.gz
 rpm2targz $CWD/$NAME-$VERSION-1.src.rpm
 tar xzvf $NAME-$VERSION-1.src.tar.gz
-tar xzvf $NAME-$VERSION-1/$NAME-$VERSION.tar.gz
+tar xzvf $NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="-O2 -march=$ARCH -mcpu=i686" \
