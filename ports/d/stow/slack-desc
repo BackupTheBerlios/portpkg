@@ -1,0 +1,9 @@
+stow: stow (Manages installation process)
+stow:
+stow: Manages the installation process by keeping packages separate while
+stow: making them appear to be installed in the same place. Stow doesn't
+stow: store an extra state between runs, so there's no danger of mangling
+stow: directories when file hierarchies don't match the database. Also,
+stow: stow will never delete any files, directories, or links that appear in
+stow: a stow directory, so it is always possible to rebuild the target tree.
+stow:
