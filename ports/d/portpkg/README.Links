@@ -16,15 +16,13 @@ Ports Systems For Slackware Linux
 
    http://emerde.freaknet.org/
 
-  Slackports
+  Slackports (unmaintained)
 
    "[The slackports project] aim at creating a light BSD-like ports system
    for the Slackware GNU/linux the goal is to provide a large set a software
    to the distribution, by downloading and compiling them and creating
    slackware package in order to let you manage your installed software as
    usually with pkgtool."
-
-   (unmaintained)
 
    http://slackports.sourceforge.net/
 
@@ -65,6 +63,13 @@ Ports Systems For Slackware Linux
    package that will add this as a package."
 
    ftp://opensys.linuxpackages.net/pub/SlackBuilds/
+
+  GSB: GNOME.SlackBuild
+
+   "The goal of this project is to run one script: GNOME.SlackBuild and have
+   it output Slackware packages for a GNOME release."
+
+   http://gsb.sourceforge.net/
 
    --------------------------------------------------------------------------
 
@@ -193,6 +198,17 @@ Usefull Documentation And Interesting Concepts
 
    http://www.pathname.com/fhs/pub/fhs-2.3.html
 
+  Introduction To Autoconf
+
+   "Autoconf is an extensible package of m4 macros that produce shell scripts
+   to automatically configure software source code packages. These scripts
+   can adapt the packages to many kinds of UNIX-like systems without manual
+   user intervention. Autoconf creates a configuration script for a package
+   from a template file that lists the operating system features that the
+   package can use, in the form of m4 macro calls."
+
+   http://www.gnu.org/software/autoconf/manual/
+
   GoboLinux
 
    ''"GoboLinux is an alternative Linux distribution which redefines the
@@ -219,19 +235,27 @@ Usefull Documentation And Interesting Concepts
 
    http://autopackage.org/
 
+  Some documentation on optimisation
+
+   http://www.freehackers.org/gentoo/gccflags/faq.html
+
+   http://www.freehackers.org/gentoo/gccflags/flag_gcc3opt.html
+
+   http://www.freehackers.org/gentoo/gccflags/flag_gcc3.html
+
    --------------------------------------------------------------------------
 
 
 References
 
    Visible links
-   . file:///usr/ports/d/portpkg/doc.php?page=links/Links
    . http://emerde.freaknet.org/
    . http://slackports.sourceforge.net/
    . http://cvs.sourceforge.net/viewcvs.py/dropline-gnome/dropline-build-system/
    . http://yath.mine.nu/autopkg/
    . http://slackpack.tripleg.net.au/
    . ftp://opensys.linuxpackages.net/pub/SlackBuilds/
+   . http://gsb.sourceforge.net/
    . http://pkgbuilder.berlios.de/
    . http://www.netbsd.org/Documentation/software/packages.html
    . http://cipherfunk.org/garnome/
@@ -245,9 +269,13 @@ References
    . http://slackget.infinityperl.org/
    . http://gnome-pkgtool.sourceforge.net/
    . http://www.pathname.com/fhs/pub/fhs-2.3.html
+   . http://www.gnu.org/software/autoconf/manual/
    . http://www.gobolinux.org/
    . http://www.gnu.org/software/stow/stow.html
    . http://autopackage.org/
-   . file:///usr/ports/d/portpkg/doc.php?page=edit/Links
-   . file:///usr/ports/d/portpkg/doc.php?page=links/Links
-   . file:///usr/ports/d/portpkg/doc.php?page=info/Links
+   . http://www.freehackers.org/gentoo/gccflags/faq.html
+   . http://www.freehackers.org/gentoo/gccflags/flag_gcc3opt.html
+   . http://www.freehackers.org/gentoo/gccflags/flag_gcc3.html
+   . file:///usr/ports/local/portpkg/doc.php?page=edit/Links
+   . file:///usr/ports/local/portpkg/doc.php?page=links/Links
+   . file:///usr/ports/local/portpkg/doc.php?page=info/Links

@@ -1,14 +1,5 @@
 QuickStart
 
-   This page describes a very short introduction to the most important
-   components of the Portpkg Project.
-
-   There are two ways of using the ports collection: The puristic way, which
-   is only the SlackBuild scripts, is a bit hard to use, or the comfortable
-   way with a set of administration tools, which is highly recommended.
-
-The Comfortable Way
-
    If you want to have a quick look into what Portpkg does, download the
    latest package at
    http://developer.berlios.de/project/showfiles.php?group_id=2486 and
@@ -59,7 +50,7 @@ The Comfortable Way
    the port (it is always recommended to use --dryrun first, to see, what
    would happen):
 
- # portpkg id3lib
+ # portpkg --dryrun id3lib
 
  Building id3lib-3.8.3-i486-2tom:
    --> Downloading id3lib-3.8.3.tar.gz
@@ -86,24 +77,9 @@ The Comfortable Way
  SCRIPT SOURCES:  http://dl.sourceforge.net/id3lib/id3lib-3.8.3.tar.gz
  PACKAGE DESCRIPTION:
  id3lib: id3lib (id3v1/id3v2 tagging library)
+
+ PACKAGE NAME:  dia-0.94-i486-1tom
  (...)
-
-   Read further on in UserGuide!
-
-   --------------------------------------------------------------------------
-
-Alternative: The Puristic Way
-
-   "Just the ports, nothing else, please!"
-
-   You can use the ports tree without portpkg at all! It looks just like the
-   source/ directory on a Slackware repository. This is recommended, if you
-   just want to have a certain build script or something else. You don't need
-   to install any packages with this method. Get the complete tree via CVS:
-
- # cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
-
-   You should definitely have a look at UserGuide and MaintainerGuide now.
 
    --------------------------------------------------------------------------
 
@@ -111,11 +87,7 @@ Alternative: The Puristic Way
 References
 
    Visible links
-   . file:///usr/ports/d/portpkg/doc.php?page=links/QuickStart
    . http://developer.berlios.de/project/showfiles.php?group_id=2486
-   . file:///usr/ports/d/portpkg/doc.php?page=UserGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=UserGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=MaintainerGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=edit/QuickStart
-   . file:///usr/ports/d/portpkg/doc.php?page=links/QuickStart
-   . file:///usr/ports/d/portpkg/doc.php?page=info/QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=edit/QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=links/QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=info/QuickStart

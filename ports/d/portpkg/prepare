@@ -1,11 +1,11 @@
 #!/bin/sh
 if ! [ -x /usr/bin/elinks ]; then
+  echo
   echo "No package 'elinks' installed!"
   exit 1
 fi
 
-for doc in FrontPage QuickStart UserGuide MaintainerGuide PortpkgGuide \
-AutoportGuide TodoBugsAbout QuestionsAndAnswers Links; do
+for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers Links; do
   wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
   elinks -no-numbering -dump $doc.html | grep -v "^[ ]*EditThisPage" >README.$doc
   rm $doc.html

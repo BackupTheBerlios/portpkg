@@ -1,5 +1,36 @@
 News
 
+  02/20/2005
+
+   Portpkg
+           * Release 0.35.
+           * CFLAGS can be set to different values (but not recommended,
+             since it is impossible to check, if a SlackBuild actually uses
+             it, and you can end up with packages named i686, but tuned for
+             i486). Set ARCH and CFLAGS with pp-config and if necessary check
+             your ports for not setting a default SLKCFLAGS.
+           * Binary package and source code directories can be set to
+             different values (PKG_DIR and SRC_DIR, set them in
+             /usr/ports/local.conf)
+           * Subdirectory (not group!) local/ is always preferred
+           * Reintroduced --prepare on popular request ;-): packaging only
+             without installing (since we have fakeroot now, it should work
+             as it should work)
+           * Pp-sync-bin and Pp-clean-cache have been integrated into portpkg
+             --sync
+           * Disabled Pp-sync-src until it's working better
+
+  02/08/2005
+
+   Ports
+           * I'm currently preparing the ports collection for custom
+             processor optimations (via $SLKCFLAGS variables) and appreciate
+             any help on this. If you're brave enough, you can test different
+             values with ARCH=arch SLKCFLAGS="cflags" sh SlackBuild and tell
+             me about stability/compatibility and so forth under my mail
+             address in TodoBugsAbout, or post it in our Forums (see above).
+             Thanks.
+
   02/02/2005
 
    Portpkg
@@ -144,23 +175,19 @@ News
 References
 
    Visible links
-   . file:///usr/ports/d/portpkg/doc.php?page=links/FrontPage
-   . file:///usr/ports/d/portpkg/doc.php?page=QuickStart
-   . file:///usr/ports/d/portpkg/doc.php?page=UserGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=MaintainerGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=PortpkgGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=AutoportGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=Screenshots
-   . file:///usr/ports/d/portpkg/doc.php?page=TodoBugsAbout
-   . file:///usr/ports/d/portpkg/doc.php?page=QuestionsAndAnswers
-   . file:///usr/ports/d/portpkg/doc.php?page=Links
+   . file:///usr/ports/local/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=PortpkgGuide
+   . file:///usr/ports/local/portpkg/doc.php?page=Screenshots
+   . file:///usr/ports/local/portpkg/doc.php?page=TodoBugsAbout
+   . file:///usr/ports/local/portpkg/doc.php?page=QuestionsAndAnswers
+   . file:///usr/ports/local/portpkg/doc.php?page=Links
    . http://developer.berlios.de/project/showfiles.php?group_id=2486
    . http://developer.berlios.de/forum/?group_id=2486
    . http://developer.berlios.de/projects/portpkg
-   . http://portpkg.berlios.de/daily.log
    . http://www.slackforum.de/forum/index.php?t=msg&th=1344
-   . file:///usr/ports/d/portpkg/doc.php?page=QuickStart
-   . file:///usr/ports/d/portpkg/doc.php?page=MaintainerGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=edit/FrontPage
-   . file:///usr/ports/d/portpkg/doc.php?page=links/FrontPage
-   . file:///usr/ports/d/portpkg/doc.php?page=info/FrontPage
+   . file:///usr/ports/local/portpkg/doc.php?page=TodoBugsAbout
+   . file:///usr/ports/local/portpkg/doc.php?page=QuickStart
+   . file:///usr/ports/local/portpkg/doc.php?page=MaintainerGuide
+   . file:///usr/ports/local/portpkg/doc.php?page=edit/FrontPage
+   . file:///usr/ports/local/portpkg/doc.php?page=links/FrontPage
+   . file:///usr/ports/local/portpkg/doc.php?page=info/FrontPage

@@ -3,13 +3,8 @@
 
 source `which portpkg` || exit 1
 
-stanza "pp-export -- A portpkg-addon that packs your ports to a tarball for submission
-to the Portpkg Project hosted on http://portpkg.berlios.de.
-
-If this is the first time you use pp-export, you will be asked for your mail
-address and real name which is required for maintainers. These will be stored
-world visible to contact you later. You can change this later in
-$PRT_DIR/local.conf."
+stanza "pp-export -- A portpkg-addon that packs your ports to a tarball for
+submission to the Portpkg Project hosted on http://portpkg.berlios.de."
 
 #usage
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then

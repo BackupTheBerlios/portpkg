@@ -30,7 +30,8 @@ read me
 
 mkdir -p $SRC_PRT_DIR
 cd $SRC_PRT_DIR || die
-has_pkg rsync-2.6 || die
+#has_pkg rsync-2.6 || die
+has_prog rsync || die
 # sync source/ and remove files we don't need
 rsync -avz --delete \
 --exclude "FILE_LIST" \
