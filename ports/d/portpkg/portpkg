@@ -79,6 +79,7 @@ get()
   local url=$1 dest=$2
   has_pkg wget-1.9 || die
   mkdir -p `dirname $dest`
+  o_url=$url
   # mirrors
   if [ "$mirrors" ]; then
     debug "get(): we have mirrors"
@@ -86,19 +87,20 @@ get()
     local master mirror
     while read master mirror; do
       debug "get(): checking for $master <-> $mirror"
-      m_url=`echo $url | sed "s,^$master,$mirror,"`
+      url=`echo $url | sed "s,^$master,$mirror,"`
     done <$t.mirrors
   fi
-  debug "get(): \$m_url=$m_url"
-  if wget -c -O $dest.part $m_url 2>&1; then
+  debug "get(): \$url=$url"
+  if wget -c -O $dest.part $url 2>&1; then
     mv $dest.part $dest
-  elif [ "$url" != "$m_url" ]; then
-    # try master server
-    if wget -c -O $dest.part $url 2>&1; then
-      mv $dest.part $dest
-    else
-      error "Download failed!"
-    fi
+#  elif [ "$url" != "$o_url" ]; then
+#    # try master server
+#    echo "Falling back to master server:"
+#    if wget -c -O $dest.part $o_url 2>&1; then
+#      mv $dest.part $dest
+#    else
+#      error "Download failed!"
+#    fi
   else
     error "Download failed!"
   fi
@@ -368,7 +370,7 @@ build_pkg()
       echo "$requires" >$t.old_req
       # check trashed package upgrades
       grep -se "-upgraded$" $t.bin_req \
-      && warn "Check this requirements: "`grep "-upgraded$" $t.bin_req`
+      && warn "Check these requirements: "`grep "-upgraded$" $t.bin_req`
       # now merge into old requirements-list
       cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$t.new_req
       # update requires
@@ -384,9 +386,8 @@ build_pkg()
       fi
     fi
     # write the footprint
-    tar tzvf /tmp/$package.tgz | sort +5 >$path/footprint
-#    # write the diff: SlackBuild compared to a generic one
-#    grep -sv "^#" $PRT_DIR/SlackBuild | diff -bu - $script >$path/diff
+    row "Writing footprint"
+    tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }'| sort +3 >$path/footprint
   fi
   row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group
@@ -434,7 +435,7 @@ add_pkg() # tgz
   fi
   # infomercials
   echo "PACKAGE DESCRIPTION:"
-  echo "$description" #| sed "s,^,$name: ,"
+  echo "$description"
   # track it as it was installed
   echo $package >>$FAKE_INST
   $DRY_RUN && return 0
@@ -444,7 +445,7 @@ add_pkg() # tgz
     error "Installation failed!"
     return 1
   fi
-  # mimicry
+  # more mimicry
   grep -sq "^install/doinst.sh$" $ADM_DIR/packages/$package \
   && echo "Executing install script for $name..."
   return 0
@@ -529,7 +530,7 @@ do_info() # pkgex-list
     [ "$requires" ] && echo "SCRIPT REQUIRES:  "$requires | fmt -t
     [ "$sources" ] && echo "SCRIPT SOURCES:  "$sources | fmt -t
     [ "$description" ] && echo "PACKAGE DESCRIPTION:"
-    [ "$description" ] && echo "$description" #| sed "s,^,$name: ,"
+    [ "$description" ] && echo "$description"
     ret=0
   done
   return $ret
@@ -687,10 +688,11 @@ include() # file
   # comment out any lines containing `` or $() or that are no assignments,
   # or that are assignments with a space somewhere, but don't have a " at
   # the beginning and the end
-  sed -i -r \
+  local t=`private`
+  sed -r \
   -e "/^[^#].*(\`|\$\()/s,^,#," \
-  -e "/^(#|[_A-Z]*=([^ ]*|\"[^\"]*\ [^\"]*\")$)/!s,^,#," $1
-  source $1
+  -e "/^(#|[_A-Z]*=([^ ]*|\"[^\"]*\ [^\"]*\")$)/!s,^,#," $1 >$t.file
+  source $t.file
 }
 
 init()

@@ -58,10 +58,10 @@ row "Copying $count ports to $temp/"
 rm -rf $temp || exit 1
 mkdir $temp
 cp -a --parents $ports $temp
-private="buildlog footprint arbitrary diff maintain CVS"
+priv="buildlog arbitrary diff maintain CVS"
 
-row "Removing private files from export: $private"
-for i in $private; do
+row "Removing private files from export: $priv"
+for i in $priv; do
     find $temp -name "$i" -exec rm -rf {} \; 2>/dev/null
 done
 

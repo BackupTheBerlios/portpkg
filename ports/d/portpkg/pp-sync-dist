@@ -7,7 +7,7 @@ source `which portpkg` || exit 1
 TREE=/usr/ports/z/dist
 # this will be mangled through our mirrors-list anyway
 DIST=ftp://ftp.slackware.com/pub/slackware
-SECTIONS=(patches extra testing kernels pasture slackware)
+SECTIONS=(patches slackware kernels extra pasture testing)
 
 stanza "pp-sync-dist -- A portpkg-addon to use Slackware's .tgz-packages as if they
 were ports. Since this script is kind of hack-around (a work-around-hack) it's
@@ -45,9 +45,9 @@ done
 DIST=$DIST/slackware-$DIST_VER
 stanza "Syncing with `echo $DIST | cut -d / -f 3`:"
 row "Retrieving meta data"
-get $DIST/FILELIST.TXT $t.file_list
-get $DIST/PACKAGES.TXT $t.packages
-get $DIST/kernels/VERSIONS.TXT $t.kernel_versions
+get $DIST/FILELIST.TXT $t.file_list >/dev/null
+get $DIST/PACKAGES.TXT $t.packages >/dev/null
+get $DIST/kernels/VERSIONS.TXT $t.kernel_versions >/dev/null
 cat $t.file_list | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t.files
 n=-1
 for section in ${SECTIONS[@]}; do
@@ -130,12 +130,12 @@ EOF
   done
 done
 cd $TREE
-# make slot-ins for kernel-modules to allow 2.6-modules co-exist with 2.4-modules
-touch slackware/k/kernel-source/slot-in
-touch slackware/a/kernel-modules/slot-in
-touch slackware/l/alsa-driver/slot-in
-touch testing/kernel-source/slot-in
-touch testing/kernel-modules/slot-in
-touch testing/alsa-driver/slot-in
+## make slot-ins for kernel-modules to allow 2.6-modules co-exist with 2.4-modules
+#touch slackware/k/kernel-source/slot-in
+#touch slackware/a/kernel-modules/slot-in
+#touch slackware/l/alsa-driver/slot-in
+#touch testing/kernel-source/slot-in
+#touch testing/kernel-modules/slot-in
+#touch testing/alsa-driver/slot-in
 
 stanza "Pseudo ports are now in $TREE."
