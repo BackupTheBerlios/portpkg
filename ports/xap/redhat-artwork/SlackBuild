@@ -14,6 +14,7 @@ rpm2targz $CWD/$NAME-$VERSION-1.src.rpm
 tar xzvf `basename $NAME-$VERSION-1.src.rpm .rpm`.tar.gz
 tar xzvf `basename $NAME-$VERSION-1.src.rpm .src.rpm`/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
+cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 ./configure \
   --prefix=/usr \

@@ -1,0 +1,11 @@
+--- redhat-artwork-0.117/art/cursor/cursorthemegen/main.c.orig	2004-12-12 13:15:16.000000000 +0100
++++ redhat-artwork-0.117/art/cursor/cursorthemegen/main.c	2004-12-12 13:15:33.000000000 +0100
+@@ -371,7 +371,7 @@
+ 
+   fclose (config_file);
+ 
+-  command = g_strdup_printf ("sh -c 'xcursorgen %s > %s'\n",
++  command = g_strdup_printf ("sh -c '/usr/X11R6/bin/xcursorgen %s > %s'\n",
+ 			     config_filename, cursor->name);
+   if (!g_spawn_command_line_sync (command, NULL, NULL, &status, &error))
+     {
