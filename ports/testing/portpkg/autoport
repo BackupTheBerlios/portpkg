@@ -290,8 +290,23 @@ if [ -d $path ]; then
   ask "* This port already exists. Really go on? (ctrl-c to quit)"
 fi
 
+stanza "Autoporting $group/$name-$version-$arch-$build:"
+
+# check for fixes in the script (style: #+post-config-fix)
+for i in config-fix install-fix doc-fix post-config-fix post-install-fix post-doc-fix; do
+  [ -f $script ] && sed -n "/^#+$i$/,/^#+$i$/p" $script >$t/$i
+  # ...and old-style (post-config-fix.autoport) files
+  if [ -f $path/$i.autoport ]; then
+    echo "#+$i" >$t/$i
+    cat $path/$i.autoport >>$t/$i
+    echo "#+$i" >>$t/$i
+    # obsolete
+    rm $path/$i.autoport
+  fi
+  [ -s $t/$i ] && row "Found $i" || rm $t/$i
+done
+
 # write skeletons
-stanza "Autoporting $group/$package:"
 failed=false
 mkdir -p $path
 sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
@@ -368,17 +383,19 @@ else
 fi
 sed -i "s,^$srcdir_prefix/,," $t/footprint
 
-# are there patches?
+# insert fixes
 for section in config install doc post-config post-install post-doc; do
-  if [ -f $path/$section-fix.autoport ]; then
-    row "Adding $section-fix"
-    sed -i "\,#%$section-fix%,r $path/$section-fix.autoport" $script
+  if [ -f $t/$section-fix ]; then
+    row "Using $section-fix"
+    sed -i "\,#%$section-fix%,r $t/$section-fix" $script
     # if it's not a post-xxx, then it's meant to replace the section
     case $section in post-*) ;; *) snip meta-$section $script;; esac
   fi
 done
+
+# include patches
 if [ "`ls $path/*.patch 2>/dev/null`" ]; then
-  row "Adding patches (Please check them later!)"
+  row "Including patches (Please check them later!)"
 else
   snip patch $script
 fi
@@ -436,41 +453,43 @@ fi
 
 # installation prefix
 if grep -sq "#!meta-install" $script; then
-  if ! check "^setup\.py$" $t/footprint; then
+  if check "^Makefile" $t/footprint; then
     snip inst_python $script
-    if check "^Makefile" $t/footprint; then
-      if grep -sq "^Makefile.PL$" $t/footprint \
-      || check "DESTDIR" $t/src/$srcdir_prefix/Makefile*; then
-        snip inst_PREFIX $script
+    # Makefile.PL will always use DESTDIR
+    if grep -sq "^Makefile.PL$" $t/footprint \
+    || check "DESTDIR" $t/src/$srcdir_prefix/Makefile*; then
+      snip inst_PREFIX $script
+      snip inst_prefix $script
+      snip inst $script
+      snip cfg_mk_hard $script
+    else
+      snip inst_destdir $script
+      if check "PREFIX" $t/src/$srcdir_prefix/Makefile*; then
         snip inst_prefix $script
         snip inst $script
         snip cfg_mk_hard $script
       else
-        snip inst_destdir $script
-        if check "PREFIX" $t/src/$srcdir_prefix/Makefile*; then
-          snip inst_prefix $script
+        snip inst_PREFIX $script
+        if check "prefix" $t/src/$srcdir_prefix/Makefile*; then
           snip inst $script
           snip cfg_mk_hard $script
         else
-          snip inst_PREFIX $script
-          if check "prefix" $t/src/$srcdir_prefix/Makefile*; then
-            snip inst $script
-            snip cfg_mk_hard $script
+          snip inst_prefix $script
+          if check "/usr/local" $t/src/$srcdir_prefix/{,*/}Makefile*; then
+            :
           else
-            snip inst_prefix $script
-            if check "/usr/local" $t/src/$srcdir_prefix/{,*/}Makefile*; then
-              :
-            else
-              error "Don't know how to install this package (no install-prefix)."
-              failed=true
-            fi
+            error "Don't know how to install this package (no install-prefix)."
+            failed=true
           fi
         fi
       fi
-    else
-      error "Don't know how to install this package (no Makefile)."
-      failed=true
     fi
+  # as always, check setup.py at last! use configure if possible!
+  elif check "^setup\.py$" $t/footprint; then
+    snip cfg_mk_hard $script
+  else
+    error "Don't know how to install this package (no Makefile)."
+    failed=true
   fi
 fi
 
@@ -681,13 +700,14 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 )
 #!strip
 #!meta-doc
-find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \ ##docs
   %docs% \ ##docs
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
+find $PKG/usr/info -name dir | xargs -r rm
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 #!meta-doc
 #%doc-fix%

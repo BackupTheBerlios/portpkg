@@ -304,31 +304,31 @@ maintainer_mode()
     | xargs sed -n "s,.*use *\([A-Z][a-z][^;<> ]*\).*,\1,p" | xargs -i echo "/man./{}\."
   } | sed "s,/\./,/,g" | grep -lf - $ADM_DIR/packages/* | rev | cut -d / -f 1 \
   | cut -d - -f 4- | rev| pkg2name | rev | cut -d / -f 1 | rev \
-  | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/bin_req
+  | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/auto_req_raw
   # perl and python?
-  grep -qie ":.*perl" -e "\.pm:" $t/ftypes && echo perl >>$t/bin_req
-  grep -qie ":.*python" -e "\.py:" $t/ftypes && echo python >>$t/bin_req
+  grep -qie ":.*perl" -e "\.pm:" $t/ftypes && echo perl >>$t/auto_req_raw
+  grep -qie ":.*python" -e "\.py:" $t/ftypes && echo python >>$t/auto_req_raw
   # sort
-  sort -uo $t/bin_req $t/bin_req
+  sort -uo $t/auto_req_raw $t/auto_req_raw
   # strip ignore list
   ls_slk | slk2loc | grep $ignore | loc2gpkg | pkg2name | cut -d / -f 2 >$t/ignore
-  fgrep -vxf $t/ignore $t/bin_req >$t/bin_req.new
-  mv $t/bin_req{.new,}
+  fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
   # now generate new "requires" file
   touch optional
-  cat $t/bin_req $t/old_req | fgrep -xvf optional | grep -v ^$ | sort -u >requires
+  fgrep -hxvf optional $t/auto_req $t/old_req | grep -v ^$ | sort -u >requires
   # show a few statistics
-  fgrep -xf $t/ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
+  fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "  --> Ignoring dependencies:"
   fgrep -xvf $t/old_req requires | xargs -r echo "  --> New dependencies:"
-  fgrep -xvf requires $t/bin_req | fgrep -xvf optional | tee arbitrary | xargs -r echo "  --> Arbitrary dependencies:"
-  fgrep -xf optional $t/bin_req | xargs -r echo "  --> Dependant options:"
+  fgrep -xf optional $t/auto_req | xargs -r echo "  --> Dependant options:"
+  fgrep -xvf requires $t/auto_req | fgrep -xvf optional | tee arbitrary \
+  | xargs -r echo "  --> Arbitrary dependencies:"
   # check for common mistakes
   grep -woe "usr/local/.*" -e "usr/share/doc/.*" -e "usr/share/man/.*" \
   -e "usr/info/dir.*" -e "/$ARCH-slackware-linux-" footprint >$t/check_path
   grep "^........w" footprint >$t/check_perm
-  grep -e "-upgraded$" $t/bin_req >$t/check_req
+  grep -e "-upgraded$" $t/auto_req >$t/check_req
   ls_slk | slk2loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
-  | fgrep -vxf - $t/bin_req >>$t/check_req
+  | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
   cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
   cat $t/check_req | xargs -r echo "WARNING: Check these dependencies:"
