@@ -1,0 +1,37 @@
+VERSION=0.8
+ARCH=${ARCH:-i486}
+BUILD=1hnaz
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
+
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  $ARCH-slackware-linux || exit 1
+make || exit 1
+make install DESTDIR=$PKG || exit 1
+cp -a \
+  AUTHORS COPYING ChangeLog README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+
+cd $PKG || exit 1
+cat $CWD/slack-desc >$PKG/install/slack-desc
+find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
+find -type d | grep /doc/ | xargs -r chmod 755
+find -type f | grep /doc/ | xargs -r chmod 644
+find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
+
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
