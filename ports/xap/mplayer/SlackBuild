@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.0pre6
 ARCH=${ARCH:-i486}
-BUILD=5tom
+BUILD=6tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -25,19 +25,19 @@ cd MPlayer-$VERSION || exit 1
 chown -R root.root .
 #+config-fix
 
-if [ "$ARCH" == "i386" ]; then
+if [ "$ARCH" = "i386" ]; then
   OPT="--enable-runtime-cpudetection";;
-elif [ "$ARCH" == "i486" ]; then
+elif [ "$ARCH" = "i486" ]; then
   OPT="--enable-runtime-cpudetection";;
-elif [ "$ARCH" == "s390" ]; then
+elif [ "$ARCH" = "s390" ]; then
   OPT="--enable-runtime-cpudetection";;
-elif [ "$ARCH" == "x86_64" ]; then
+elif [ "$ARCH" = "x86_64" ]; then
   OPT="--enable-runtime-cpudetection";;
 else
   OPT="--disable-runtime-cpudetection";;
 fi
 
-CFLAGS= \
+CFLAGS="" \
 ./configure \
   --prefix=/usr \
   --confdir=/etc \
@@ -48,10 +48,6 @@ CFLAGS= \
 #+config-fix
 #+install-fix
 make install DESTDIR=$PKG || exit 1
-# use our .desktop entry and pixmap
-mkdir -p $PKG/usr/share/{applications,pixmaps}
-cp $CWD/gmplayer.desktop $PKG/usr/share/applications/
-cp $CWD/MPlayer_mini.xpm $PKG/usr/share/pixmaps/
 # install a skin
 tar xjvf $CWD/Blue-1.4.tar.bz2 -C $PKG/usr/share/mplayer/Skin/
 chown -R root.root $PKG/usr/share/mplayer/Skin
