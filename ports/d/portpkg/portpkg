@@ -278,7 +278,7 @@ maintainer_mode()
   rm -rf md5sums
   rm -rf footprint
   # write md5sum list first (don't md5sum footprint)
-  row "Writing: footprint md5sums requires (assuming these files are integer!)"
+  row "Writing: footprint md5sums requires"
   # ok, only source files, which are symlinks
   find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >md5sums
 #  if [ -d ~/.gnupg ]; then
