@@ -1,0 +1,9 @@
+dd_rescue: dd_rescue - an error prone dd
+dd_rescue:
+dd_rescue: dd_rescue copies data from one file or block device to
+dd_rescue: another. It is intended for error recovery, so, by default,
+dd_rescue: it doesn't abort on errors, and doesn't truncate the output
+dd_rescue: file. It uses large block sizes to quicken the copying, but
+dd_rescue: falls back to small blocks upon encountering errors. It produces
+dd_rescue: reports that allow you to keep track of bad blocks.
+dd_rescue:
