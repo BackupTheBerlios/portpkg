@@ -1,0 +1,33 @@
+VERSION=0.2.1
+ARCH=noarch
+BUILD=3tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr/X11R6/lib/X11/fonts/TTF
+
+cd /tmp || exit 1
+tar xzvf $CWD/xf86-$NAME-$VERSION.tar.gz
+cd xf86-$NAME-$VERSION || exit 1
+for i in *; do
+  cabextract -L $i
+done
+cp -v *.ttf $PKG/usr/X11R6/lib/X11/fonts/TTF/
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
+  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
+  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
+  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
+  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
+  $PKG/usr/doc/$NAME-$VERSION
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
+| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
