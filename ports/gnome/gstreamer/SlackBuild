@@ -1,6 +1,6 @@
 VERSION=0.8.7
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -35,6 +35,13 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
+
+rm -f $PKG/var/lib/cache/gstreamer-0.8/registry.xml
+mkdir -p $PKG/var/lib/cache/gstreamer-0.8
+mkdir -p $PKG/var/log/setup
+zcat $CWD/setup.07.get-register.gz >$PKG/var/log/setup/setup.07.get-register
+chmod 755 $PKG/var/log/setup/setup.07.get-register
+
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
