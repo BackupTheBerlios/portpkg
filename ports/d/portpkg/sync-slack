@@ -54,14 +54,16 @@ find -name "*.build" | while read s; do
     arch=`grep ^ARCH= $s | cut -d = -f 2- | sed -re "s,\\\\$\\{[A-Z]*:-,," -e "s,},,"`
     build=1slack
     cat <<EOF >$dir/SlackBuild
+NAME=$name
 VERSION=$ver
 ARCH=$arch
 BUILD=$build
 
 checkinstall -S -y \\
-  --pkgname=$name \\
-  --pkgarch=$arch \\
-  --pkgrelease=$build \\
+  --pkgname=\$NAME \\
+  --pkgversion=\$VERSION \\
+  --pkgarch=\$ARCH \\
+  --pkgrelease=\$BUILD \\
   --pakdir=/tmp \\
   --strip=yes \\
   --stripso=yes \\
