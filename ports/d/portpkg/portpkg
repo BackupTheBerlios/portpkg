@@ -311,7 +311,8 @@ maintainer_mode()
   # sort
   sort -uo $t/auto_req_raw $t/auto_req_raw
   # strip ignore list
-  ls_slk | slk2loc | grep $ignore | loc2gpkg | pkg2name | cut -d / -f 2 >$t/ignore
+#  ls_slk | slk2loc | grep $ignore | loc2gpkg | pkg2name | cut -d / -f 2 >$t/ignore
+  ls_inst | grep $ignore | pkg2name | cut -d / -f 2 >$t/ignore
   fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
   # now generate new "requires" file
   touch optional
