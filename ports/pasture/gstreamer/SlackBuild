@@ -1,17 +1,25 @@
 # this is a wrapper around the original build-script from
 # Slackware-current, since on current-systems this is already
-# installed, portpkg won't use it
+# installed, portpkg won't use it. sorry, i cannot change
+# revision number for that reason
 
 NAME=gstreamer
 VERSION=0.8.7
 ARCH=i486
 BUILD=1
 
-# we need to remove any other package before checkinstall
+# we need to remove any other packages before checkinstall
 # runs a installpkg on it
-
 removepkg $NAME
 
+# check if slacktrack is installed
+if [ -f /var/log/packages/slacktrack-* ]; then
+    echo "slacktrack conflicts with checkinstall."
+    echo "Please remove slacktrack while compiling $NAME."
+    exit 1
+fi
+
+# wrappadap
 checkinstall -S -y \
   --pkgname=$NAME \
   --pkgversion=$VERSION \
@@ -22,4 +30,4 @@ checkinstall -S -y \
   --stripso=yes \
   --gzman=yes \
   --backup=no \
-  "sh gstreamer.build" || exit 1
+  "sh $NAME.build" || exit 1
