@@ -528,7 +528,7 @@ fi
 
 # mime-update
 if check "\.(keys|mime)(|\.in)$" $t/footprint; then
-  add_inst "usr/bin/update-mime-database" $path/doinst.sh
+  add_inst "usr/bin/update-mime-database usr/share/mime" $path/doinst.sh
 else
   remove_inst "update-mime-database" $path/doinst.sh
 fi
