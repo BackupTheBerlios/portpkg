@@ -4,7 +4,13 @@ if ! [ -x /usr/bin/elinks ]; then
   exit 1
 fi
 
-for doc in QuickStart UserGuide MaintainerGuide PortpkgGuide TodoBugsAbout; do
+for doc in FrontPage QuickStart UserGuide MaintainerGuide PortpkgGuide \
+TodoBugsAbout QuestionsAndAnswers Links; do
   wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
-  elinks -dump $doc.html >$doc.txt
+  elinks -no-numbering -dump $doc.html >README.$doc
+  rm $doc.html
 done
+
+mv README.FrontPage NEWS
+mv README.TodoBugsAbout README
+sed -i "0,11d" NEWS

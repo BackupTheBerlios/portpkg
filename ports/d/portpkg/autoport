@@ -50,7 +50,8 @@ snip()
 
 encode()
 {
-  local enc=`echo "$@" | sed -e "s,$name,\\$NAME,g" -e "s,\'$version\',\\$VERSION,g"`
+  local ver=`echo $version | sed "s,\.,\.,g"`
+  local enc=`echo "$@" | sed -e "s,$name,\\$NAME,g" -e "s,$ver,\\$VERSION,g"`
   echo "$enc"
 }
 
@@ -112,7 +113,7 @@ if [ "$*" ]; then
   done
 fi
 
-ask "Continue? (ctrl-c to quit)"
+ask "* Next step: Give meta information. Continue? (ctrl-c to quit)"
 
 # do we have tags?
 while ! [ "$MY_TAG" ]; do
@@ -123,7 +124,6 @@ while ! [ "$MY_TAG" ]; do
 done
 
 # input information
-stanza "Now we need some information about the port:"
 # source: check if we can guess it, but -u is dominant
 if [ "$name" ] && [ "$group" ] && ! [ "$source" ]; then
   script=`find $PRT_DIR/$group/$name/ -name "*SlackBuild" | head -n 1`
@@ -216,7 +216,8 @@ echo "PORT SOURCE:  $source_out"
 echo "PORT DESCRIPTION:"
 echo "$desc"
 
-ask "Continue? (ctrl-c to quit)"
+ask "* Last chance to quit. Port scripts will now be written.
+Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
 
 path=$PRT_DIR/$group/$name
 script=$path/SlackBuild
@@ -229,7 +230,7 @@ if [ -f $path/stop.autoport ]; then
   ask "Really continue? (ctrl-c to quit)"
 fi
 if [ -d $path ]; then
-  ask "Exists already. Really go on? (ctrl-c to quit)"
+  ask "* This port already exists. Really go on? (ctrl-c to quit)"
   old_script=`find $path/ -name "*SlackBuild" | head -n 1`
   mv ${old_script}{,.old}
 #  [ -f $path/doinst.sh ] && mv $path/doinst{.sh,.old}
@@ -245,28 +246,46 @@ sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
 
 # downlaod source file
-stanza "Next, I'll download the source file:"
 file=`basename $source`
-[ -f $SRC_DIR/$file ] && stanza "$file found in $SRC_DIR/." \
-|| get $source $SRC_DIR/$file || die
+if [ -f $SRC_DIR/$file ]; then
+  stanza "$file found in $SRC_DIR/."
+else
+  stanza "Downloading source file:"
+  get $source $SRC_DIR/$file || die
+fi
 
 # checking
 stanza "Alright, since we have the code, I'll have a look into it:"
 # format
 echo -n "  --> Checking format... "
-format=`file $SRC_DIR/$file | egrep -wo "gzip|bzip2"`
-case $format in
-  bzip2)
+#format=`file $SRC_DIR/$file | egrep -wo "gzip|bzip2"`
+# todo: check tar or not
+case $file in
+  *.tar.bz2)
     format=tarbz2
     tar tjf $SRC_DIR/$file >$t.footprint \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".tar.bz2"
-    snip targz $script;;
-  gzip)
+    snip targz $script
+    snip rpm $script;;
+  *tar.gz)
     format=targz
     tar tzf $SRC_DIR/$file >$t.footprint \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".tar.gz"
+    snip tarbz2 $script
+    snip rpm $script;;
+  *.src.rpm)
+    format=srpm
+    ( cd /tmp
+      rm -rf `basename $file .rpm`.tar.gz
+      cp $SRC_DIR/$file .
+      rpm2targz $file
+      tar xzf `basename $file .rpm`.tar.gz
+      tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t.footprint \
+      || die "Error while unpacking, maybe wrong URL?" )
+    echo ".src.rpm"
+    snip targz $script
     snip tarbz2 $script;;
   *)
     echo "unknown!"
@@ -305,6 +324,7 @@ mkdir -p $t.src
 case $format in
   tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" 2>/dev/null;;
   targz)  tar xzf $SRC_DIR/$file -C $t.src/ "*/Makefile*" 2>/dev/null;;
+  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" 2>/dev/null;;
 esac
 # installation
 if check "setup.py" "^$srcdir_prefix/setup\.py$" $t.footprint; then
@@ -350,15 +370,12 @@ else
         if check "Makefile" "^$srcdir_prefix/Makefile$" $t.footprint; then
           # single Makefile: we need to tell the prefix nevertheless
           if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/*"; then
-#            snip usrlocal $script
             snip make $script
             snip make_prefix $script
           elif check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/*"; then
-#            snip usrlocal $script
             snip make $script
             snip make_PREFIX $script
           elif check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/*"; then
-#            snip make $script
             snip make_PREFIX $script
             snip make_prefix $script
           else
@@ -378,12 +395,10 @@ else
       if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/*"; then
         snip inst_prefix $script
         snip usrlocal $script
-#        snip make $script
       else
         snip inst_PREFIX $script
         if check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/*" "$t.src/$srcdir_prefix/*"; then
           snip usrlocal $script
-#          snip make $script
         else
           snip inst_prefix $script
           if check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/*"; then
@@ -410,8 +425,10 @@ else
   snip cxxflags $script
 fi
 # gconf schemas and scrollkeeper
-if check "gconf schemas" "\.schemas(|\.in|\.in\.in)$" $t.footprint \
-|| check "scrollkeeper" "\.omf$" $t.footprint; then
+check "gconf schemas" "\.schemas(|\.in|\.in\.in)$" $t.footprint && schemas=true || schemas=false
+check "scrollkeeper" "\.omf$" $t.footprint && omfs=true || omfs=false
+#check "mime database" "/mime-info$" "$t.src/$srcdir_prefix/*" && mimes=true || mimes=false
+if $schemas || $omfs; then
   if ! grep -sq "^inst()$" $path/doinst.sh; then
     stanza "There's no inst() in your doinst.sh although you need it! I'll add it."
     cat $0 | sed '/^#\!doinst.sh.skel$/,/^#\!doinst.sh.skel$/!d' >>$path/doinst.sh
@@ -426,6 +443,15 @@ else
     fi
   fi
 fi
+## add mime-installation
+#mime_inst="usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1"
+#if $mime && ! grep -sqx "$mime_inst" $path/doinst.sh; then
+#  stanza "Adding mime database intallation to doinst.sh."
+#  echo "$mime_str" >>$path/doinst.sh
+#elif $mime && grep -sqx "$mime_inst" $path/doinst.sh; then
+#  stanza "Remving unneeded mime database intallation from doinst.sh."
+#  sed -i "\,^$mime_inst$,d" $path/doinst.sh
+#fi
 # anyways check old config()
 if grep -sq "^config()$" $path/doinst.sh && ! grep -sq "^config .*\.new$" $path/doinst.sh; then
   stanza "There's an old config() in your doinst.sh although you don't need to config
@@ -456,6 +482,10 @@ them later."
 else
   snip patch $script
 fi
+#if [ -f $path/install.autoport ]; then
+#  stanza "Including install-replacement..."
+#  sed "
+#fi
 # for now...
 snip srcver $script
 snip perms644 $script
@@ -471,8 +501,9 @@ if [ -f $path/readme.autoport ]; then
   more $path/readme.autoport
   echo "==========================================="
 fi
+
 if $build_port; then
-  ask "Continue? (ctrl-c to quit)"
+  ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   portpkg $group/$name
 fi
 exit 0
@@ -510,6 +541,12 @@ cd /tmp || exit 1
 mkdir -p $NAME-$VERSION
 cd $NAME-$VERSION
 #!extra_sdp
+#!rpm
+rm -rf `basename %tarball% .rpm`.tar.gz
+rpm2targz $CWD/%tarball%
+tar xzvf `basename %tarball% .rpm`.tar.gz
+tar xzvf `basename %tarball% .src.rpm`/$NAME-$VERSION.tar.gz
+#!rpm
 #!targz
 tar xzvf $CWD/%tarball% || exit 1
 #!targz
@@ -567,6 +604,7 @@ make PREFIX=/usr || exit 1
 make prefix=/usr || exit 1
 #!make_prefix
 #---here begins installation---
+#!meta-install
 #!inst_destdir
 make install DESTDIR=$PKG || exit 1
 #!inst_destdir
@@ -582,6 +620,7 @@ make install || exit 1
 #!python
 python setup.py build install --root=$PKG || exit 1
 #!python
+#!meta-install
 #---installation done---
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 #!strip
@@ -604,6 +643,7 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 #!doinst
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 #!doinst
+#%meta-fix%
 #!config
 find $PKG/ -name "*.schemas" -o -name "*.omf" \
 | sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh

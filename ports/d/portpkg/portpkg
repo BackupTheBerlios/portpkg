@@ -193,7 +193,7 @@ get_info()
   # maybe an exluded explicitly?
   [ "$loc" ] || case $1 in */*)
     loc=`ls_locations | grep -m 1 $(regex $1)`
-    warn "Excluded port specified explicitly!";;
+    [ "$loc" ] && warn "Excluded port specified explicitly!";;
   esac
   if ! [ "$loc" ]; then
     error "No such port: $1"
@@ -421,7 +421,7 @@ add_pkg() # tgz
     local add="installpkg"
   fi
   # infomercials
-  echo "PORT DESCRIPTION:"
+  echo "PACKAGE DESCRIPTION:"
   echo "$description" #| sed "s,^,$name: ,"
   # track it as it was installed
   echo $package >>$FAKE_INST
@@ -467,7 +467,7 @@ do_diff()
   has_ports || die
   local diff_list=`ls_diff`
   [ "$diff_list" ] || die "No differences found."
-  stanza "PORT NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
+  stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
   ls_inst >$t.inst
   ls_locations | loc2gpkg >$t.avail
   local pkg
@@ -506,13 +506,14 @@ do_info() # pkgex-list
     ret=1
     get_info $arg || continue
     echo
-    echo "PORT NAME:  $package"
-    [ "$size" ] && echo "COMPRESSED PORT SIZE:  $size K"
-    [ "$u_size" ] && echo "UNCOMPRESSED PORT SIZE:  $u_size K"
-    echo "PORT LOCATION:  $script"
-    [ "$requires" ] && echo "PORT REQUIRES:  "$requires | fmt -t
-    [ "$sources" ] && echo "PORT SOURCES:  "$sources | fmt -t
-    [ "$description" ] && echo "PORT DESCRIPTION:"
+    echo "PACKAGE NAME:  $package"
+    [ "$size" ] && echo "COMPRESSED PACKAGE SIZE:  $size K"
+    [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
+    [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file"
+    echo "SCRIPT LOCATION:  $script"
+    [ "$requires" ] && echo "SCRIPT REQUIRES:  "$requires | fmt -t
+    [ "$sources" ] && echo "SCRIPT SOURCES:  "$sources | fmt -t
+    [ "$description" ] && echo "PACKAGE DESCRIPTION:"
     [ "$description" ] && echo "$description" #| sed "s,^,$name: ,"
     ret=0
   done

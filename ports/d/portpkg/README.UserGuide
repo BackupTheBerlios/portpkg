@@ -1,0 +1,231 @@
+UserGuide
+
+1. Overview
+
+   Portpkg is a portsystem for Slackware Linux. You ask why? Because there
+   hasn't been such! The traditional way of adding software to a Slackware
+   system is either to install a ready made package or to compile it by hand.
+   While the one is dead easy, the other gives you the full control over how
+   this software will look like.
+
+   Portpkg is in the middle of both: It has a comfortable administration
+   interface similiar to installpkg, but also a source script system, as
+   Slackware uses it to compile and gives you as much control as possible.
+
+   Also the Portpkg project tries not to change any of Slackware's behaviour.
+   Portpkg is a ports system that tries to match Slackware's way as close as
+   possible.
+
+   The information of how to compile what software, in what version, on which
+   server is stored in scripts, these are catalogised in a so called ports
+   tree. An adequate program makes it possible to browse, search and handle
+   these scripts as one needs. This programme is portpkg.
+
+   ---------------------------------------------------------------------------
+
+2. The ports tree
+
+   This section describes, how to use the ports without portpkg. If want to
+   be comfortable go to the next section.
+
+   Sync the official ports tree with cvs:
+
+ # cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
+
+   The tree is now in ./ports/. The ports tree is divided in groups and
+   groups are divided in ports. For each one there is a directory. To compile
+   e.g. enlightenment go to the group xap/enightenment, download the source
+   files you need, they are listet in a file called sources, but check the
+   version, the SlackBuild is written for:
+
+ # cd ports/xap/enlightenment
+ # grep VERSION= SlackBuild
+ VERSION=0.16.7.1
+ # cat sources
+ http://dl.sourceforge.net/enlightenment/enlightenment-$VERSION.tar.gz
+ # wget http://dl.sourceforge.net/enlightenment/enlightenment-0.16.7.1.tar.gz
+ [...]
+
+   ... and start the script:
+
+ # sh ./SlackBuild
+
+   This will compile the sources for you. Some ports will need other ports to
+   be build before they can build, you should check, if all ports in requires
+   are installed, before you start.
+
+ # cat requires
+ alsa-lib
+ audiofile
+ esound
+ glibc
+ imlib2
+ libtool
+ x11
+ x11-devel
+ zlib
+
+   (Go further in MaintainerGuide.)
+
+   Each of them are either ports in this tree or official Slackware packages.
+   And remember also, that each of them can have their own requires file,
+   this is called dependencies hell.
+
+   This is were the administration tool portpkg comes into play.
+
+   ---------------------------------------------------------------------------
+
+3. Portpkg^1
+
+  3.1 Installation
+
+   First, make sure you have permissions to switch to root! If you are not
+   allowed, portpkg makes no sense to you. You will also need access to the
+   internet, although portpkg should work fine on a dial-up system, too!
+   Download a resent package of portpkg to your home directory and install it
+   as root:
+
+ $ su
+ # installpkg portpkg-xxx-noarch-1tom.tgz
+
+   This will install just the administration tools in /usr/bin. Now, make
+   sure you have all dependend programmes installed to use it. You will need
+   cvs and wget (n/ group) to retrieve the ports collection and distributed
+   files, To build packages you will definitively need the development
+   packages in Slackware's d/ group. Checkout your ports tree with:
+
+ # portpkg --sync
+
+   Portpkg will now write a copy of the current ports tree to /usr/ports. Use
+   this command to update your ports tree later. Portpkg is now ready to
+   work.
+
+  3.2 Usage
+
+   Portpkg is the administration tool of the ports. It has one default
+   behaviour and five alternative options (for details see the ManPage):
+
+    3.2.1 Building and installing ports
+
+   The default action of portpkg is to build and install a package (that
+   includes checking for neccessary packages and download of source files).
+   When this is called default, it means there's no other parameters needed.
+   Its usage is quite simple, just write down the port names you would like
+   to add to your system or bring to its latest release:
+
+ # portpkg beam meup scotty
+
+   This will install/upgrade the ports beam, meup and scotty. Portpkg will
+   not reinstall a port if exactly that revision is already installed. If you
+   want to do so, you must add the parameter --reinstall:
+
+ # portpkg --reinstall alreadyhere
+
+   To build the package of a port again, use --rebuild. Normally portpkg will
+   use the already build package it finds in /usr/obj/pkg:
+
+ # portpkg --rebuild buggy
+
+   If you just want to download the source files (if want to compile the
+   package later), add --download:
+
+ # portpkg --download iminpressure
+
+   The last option is --verbose. This will give you the full output of the
+   build process and what Slackware's package manager outputs:
+
+ # portpkg --verbose paranoid
+
+    3.2.2 Listing all available ports
+
+ # portpkg --list
+
+   Gives a full list with groups and release information:
+
+ [...]
+ xap/mplayer-1.0pre5-i486-4tom
+ xap/ogle-0.9.2-i486-2tom
+ xap/ogle_gui-0.9.2-i486-1tom
+ xap/pyne-1.0.2-i486-1tom
+ xap/redhat-artwork-0.98-i486-3tom
+ xap/straw-0.22.1-i486-4tom
+ xap/tagtool-0.10-i486-3tom
+ xap/video-dvdrip-0.51.1-i486-1tom
+ xap/xdaf-A.01.11.01-i486-1tom
+ xap/xmbmon-203-i486-1tom
+ xap/xvid4conf-1.12-i486-1tom
+ xap/zinf-2.2.5-i486-2tom
+
+    3.2.3 Print information of certain ports
+
+ # portpkg --info dunnodiz
+
+   Prints some meta information about ports:
+
+ PORT NAME:  zinf-2.2.5-i486-2tom
+ PORT SIZE (compressed):  1520 K
+ PORT LOCATION:  /usr/ports/xap/zinf/SlackBuild
+ PORT REQUIREMENTS:  alsa-lib atk audiofile cxxlibs esound expat gdbm
+    glib2 glibc gtk+2 id3lib libmusicbrainz libogg libvorbis ncurses
+    pango x11 x11-devel zlib
+ PORT SOURCES:  http://dl.sourceforge.net/zinf/zinf-2.2.5.tar.gz
+ PORT DESCRIPTION:
+ zinf: zinf (audio player)
+
+    3.2.4 Finding ports
+
+ # portpkg --find gui
+
+    3.2.5 Listing differences between installed and available ports
+
+ # porpkg --diff
+
+   Lists all installed packages, that have a newer version in the ports:
+
+ PORT NAME:                 AVAILABLE:              INSTALLED:
+ gnome/gparted              0.0.6-i486-2tom         0.0.6-i486-1tom
+ l/bluecurve                1.0-i486-11tom          1.0-i486-10tom
+ gnome/epiphany             1.4.5-i486-1tom         1.4.4-i486-1tom
+
+    3.2.6 Upgrading all outdated ports
+
+   Upgrading is not always recommended, although it does just what --diff
+   lists.
+
+ # portpkg --upgrade
+
+   ---------------------------------------------------------------------------
+
+4. Hints, Tips and Miscellaneous
+
+  4.1 Clean up /tmp
+
+   Your /tmp directory will be filled while compiling. It is recommended to
+   make a rm -r /tmp/* on every boot (you can write that into
+   /etc/rc.d/rc.local).
+
+  4.2 Automatic dependency resolution^1
+
+   You can copy all .tgz-packages you have to /usr/obj/pkg to resolve all
+   dependencies automatically. Or if you have an RSYNC'ed tree of Slackware,
+   you can link /usr/obj/pkg to its slackware/ directory.
+
+  4.3 Portpkg as a package updater^1
+
+   You can use sync-dist to create so-called pseudo ports, which make portpkg
+   act like a package management updater: Slackware packages will be
+   downloaded from a Slackware mirror as if they were ports.
+
+  4.4 Original Slackware ports^1
+
+   You can use sync-slack to import the original Slackware SlackBuilds to
+   your ports tree, this script is able to import about 76% of the original
+   SlackBuild scripts as ports. Use them as templates.
+
+   ---------------------------------------------------------------------------
+
+   Notes: ^1 This is Portpkg-specific and belongs only to the use of Portpkg.
+
+   ---------------------------------------------------------------------------
+
+     EditThisPage BackLinks PageInfo last changed on Mon Nov 29 16:52:45 2004

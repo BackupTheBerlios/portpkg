@@ -1,6 +1,6 @@
 VERSION=0.30
 ARCH=noarch
-BUILD=5tom
+BUILD=6tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -9,9 +9,9 @@ rm -rf $PKG
 mkdir -p $PKG/usr/{bin,doc/$NAME-$VERSION,man/man1}
 
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
-install -m 755 $CWD/sync-dist $PKG/usr/bin/
-install -m 755 $CWD/sync-slack $PKG/usr/bin/
-install -m 755 $CWD/clean-cache $PKG/usr/bin/
+install -m 755 $CWD/pp-sync-dist $PKG/usr/bin/
+install -m 755 $CWD/pp-sync-slack $PKG/usr/bin/
+install -m 755 $CWD/pp-clean-cache $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 install -m 755 $CWD/portpkg $PKG/usr/bin/
@@ -21,7 +21,7 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  COPYING MaintainerGuide.* PortpkgGuide.* UserGuide.* QuickStart.* TodoBugsAbout.* \
+  COPYING NEWS README* \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc

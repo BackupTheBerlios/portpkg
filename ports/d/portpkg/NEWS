@@ -1,0 +1,86 @@
+News
+
+  12/12/2004
+
+   Ports
+           * GNOME-2.8.2 complete! This is gnome-platform-2.8.2 and
+             gnome-desktop-2.8.2, except gnome ximian-connector, gnomemeeting
+             (didn't get them working), gnome-volume-manager (in testing/
+             because of required hal and dbus) and nautilus-cd-burner (newest
+             version still has problems with kernel-2.4)
+
+   Portpkg
+           * Some major updates to Autoport. Moved sync-dist, sync-slack and
+             clean-cache to pp-sync-dist, pp-sync-slack and pp-clean-cache.
+             /usr/src/pseudo/dist moved to /usr/ports/z/dist.
+
+  12/10/2004
+
+   Ports
+           * Made a bunch of long outstanding changes to the last ARCH=i486
+             lines. They're now ARCH=${ARCH:-i486}.
+           * Updated the first packages of GNOME-2.8.2 ("gnome-platform" to
+             be exactly). The rest will follow in the next days.
+
+  12/1/2004
+
+   Platform
+           * It's done: Auto-committing is up and running! (Although it seems
+             a bit fragile for now.) Uploaded exports will be merged into the
+             group open/ by a cron job every hour. Try our testing weeks! :)
+             And remind me to remove all the tests in a few weeks.
+
+   Ports
+           * I finally found a typo ("SLKFLAGS") in the SlackBuild-skeleton
+             that infected about 175 ports! And nobody told me! I'm upset ;)
+             To prevent chaotic conditions I didn't change the revisions
+             (EDIT: means, I didn't change the build number, so you don't
+             HAVE to recompile all these ports, because it is a minor issue,
+             but any ports you build in future are fixed).
+
+  11/30/2004
+
+   Platform
+           * Added some fancy statistics.
+
+   Portpkg
+           * Release 0.30. CVS should work better now.
+           * Added autoport, an improvement to addport. Autoport searches the
+             source file for keywords to adjust a SlackBuild.
+
+  11/24/2004
+
+   Portpkg
+           * Added a simple slot system: see QuickStart and MaintainerGuide.
+
+   Ports
+           * Added Xfce-Goodies.
+           * Added "metalists" for GNOME, Xfce and Xfce-Goddies
+             (gnome.metalist, xfce.metalist and xfce-goodies.metalist: So you
+             can do portpkg `cat xfce.metalist`.
+           * Updated Abiword to 2.2.0 and moved it from testing/abiword22 to
+             xap/abiword, please note the name change, since it's stable now.
+
+  11/18/2004
+
+   Platform
+           Redesigned and rearranged the pages a bit.
+
+   Portpkg
+           * New release 0.29.
+           * Added --noreqs to disable requirements checking at all.
+           * Added --dryrun to have an overviwe of what would happen (disable
+             building, donwloading and installing).
+           * Merged maintain and sync-dist's/sync-slack's pseudo from
+             /usr/ports to local.conf.
+
+   Ports
+           * addport allows now the source url as a parameter, and uses
+             default options if so, therefore it works nearly
+             non-interactive.
+           * Added Xfce-4.1.99 to testing/. A cd /usr/ports/testing; portpkg
+             *xf* should do it.
+
+   ---------------------------------------------------------------------------
+
+     EditThisPage BackLinks PageInfo last changed on Sun Dec 12 17:26:45 2004
