@@ -1,4 +1,4 @@
-VERSION=20041123
+VERSION=20050207
 ARCH=i386
 BUILD=1tom
 
@@ -9,42 +9,36 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 
 cd /tmp || exit 1
-rm -rf dripkg
-tar xjvf $CWD/common-$VERSION-linux.i386.tar.bz2
-tar xjvf $CWD/$NAME-$VERSION-linux.i386.tar.bz2
+tar xjvf $CWD/common-$VERSION-linux.i386.tar.bz2 || exit 1
+tar xjvf $CWD/$NAME-$VERSION-linux.i386.tar.bz2 || exit 1
 cd dripkg || exit 1
 chown -R root.root .
 
-# we need to remove any other package before checkinstall
-# runs a installpkg on it.
-removepkg $NAME
+mkdir -p $PKG/usr/X11R6/{bin,lib/modules/{linux,extensions,dri{,vers}}}
 
-# check if slacktrack is installed
-if [ -f /var/log/packages/slacktrack-* ]; then
-    echo "You have installed 'slacktrack' which conflicts with 'checkinstall'."
-    echo "Please remove it and reinstall 'checkinstall' at least for"
-    echo "compiling this package."
-    exit 1
-fi
+bzcat $CWD/Xorg.bz2 >$PKG/usr/X11R6/bin/Xorg
+sed -i "s,\x88\x22\x44\x11\x11\x44\x22\x88,\x00\x00\x00\x00\x00\x00\x00\x00," \
+  $PKG/usr/X11R6/bin/Xorg
+chmod 4755 $PKG/usr/X11R6/bin/Xorg
+tar xjf $CWD/modules.tar.bz2 -C $PKG/usr/X11R6/lib
 
-checkinstall \
-  --type=slackware \
-  --pkgname=$NAME \
-  --pkgversion=$VERSION \
-  --pkgarch=$ARCH \
-  --pkgrelease=$BUILD \
-  --pakdir=/tmp \
-  --gzman=yes \
-  --stripso=yes \
-  --nodoc \
-  --default \
-  --backup=no \
-  "echo | ./install.sh"
+cat $CWD/*.patch | patch -p1 --verbose
+sed -i "s,^\(XF86_DIR=\)\(.*\)$,\1$PKG\2," install.sh
+sed -i "s,^\(KERNEL_LIB_DIR=\)\(.*\)$,\1$PKG\2," install.sh
+echo | ./install.sh
 
-cd $PKG || exit 1
-tar xzvf /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
-find -name "dri-old.*" -exec rm {} \;
-find -name "modules.*" -exec rm {} \;
-find -name "tmp.log" -exec rm {} \;
+cd $PKG
+# uff, make relative symlinks
+for symlink in `find . -type l`; do
+  linkto=`ls -l $symlink | rev | cut -d " " -f 1 | rev | sed "s,$PKG,,"`
+  rm $symlink
+  ln -s $linkto $symlink
+done
+chown -R root.root .
+chown -R root.bin usr/X11R6/bin
+find usr/X11R6/man/ -type f | xargs -r gzip -9
+mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
 makepkg -l y -c n -p /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
