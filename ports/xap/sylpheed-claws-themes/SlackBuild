@@ -1,0 +1,31 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.0
+ARCH=noarch
+BUILD=1sjn
+
+rm -rf $PKG 
+cd $TMP
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2
+
+for THEMESTARGZ in $CWD/*tar.gz;do
+tar xzvf  $THEMESTARGZ -C $PKG/usr/share/sylpheed/themes/
+done
+
+for THEMESTARBZ2 in $CWD/*tar.bz2;do
+tar xjvf  $THEMESTARBZ2 -C $PKG/usr/share/sylpheed/themes/
+done
+
+mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+mv usr/share/sylpheed/themes/INSTALL usr/doc/$NAME-$VERSION
+find . -type f -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
+chown -R root.root .
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
