@@ -225,9 +225,9 @@ check_reqs()
     for req in $requires; do
 	debug "check_reqs(): \$req=$req"
 	local avail_pkg=`grep -m 1 $(regex $req) $avail | cut -d / -f 2`
-	debug "check_reqs(): \$avail_pkg=$avail_pkg"
-	is_inst $avail_pkg && continue
 	if [ "$avail_pkg" ]; then
+	    debug "check_reqs(): \$avail_pkg=$avail_pkg"
+	    is_inst $avail_pkg && continue
 	    debug "check_reqs(): call: add_pkg $req"
 	    if ! add_pkg $req; then
 		error "$req is broken! Stopping."
