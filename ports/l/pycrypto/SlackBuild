@@ -1,0 +1,28 @@
+VERSION=2.0
+ARCH=noarch
+BUILD=1lem
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
+
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+python setup.py build install --root=$PKG || exit 1
+cp -a \
+  ChangeLog LICENSE MANIFEST README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+
+cd $PKG || exit 1
+cat $CWD/slack-desc >$PKG/install/slack-desc
+find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
+find -type d | grep /doc/ | xargs -r chmod 755
+find -type f | grep /doc/ | xargs -r chmod 644
+find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
+
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
