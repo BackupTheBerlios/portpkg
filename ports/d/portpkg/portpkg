@@ -24,6 +24,7 @@ ADM_DIR=/var/log
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
+PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 # default options
 action=do_add
@@ -453,7 +454,7 @@ do_find() # text [..] >list
     has_ports || die
     local arg
     for arg; do
-        grep -shi $arg $PRT_DIR/*/*/slack-desc
+        find $PRT_DIR/ -follow -name slack-desc | xargs grep -shi $arg
     done | grep "^[^ ]*: " | cut -d : -f 1 | sort -u >$t.list
     [ -s $t.list ] && do_list `cat $t.list`
 }
