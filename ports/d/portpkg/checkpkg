@@ -1,0 +1,98 @@
+#!/bin/sh
+# checkpkg - a small dialog interface for portpkg portsystem
+
+#include "portpkg.h"
+source `which portpkg` || exit 1
+
+dia()
+{
+    dialog --backtitle "Checkpkg -- A Portpkg Frontend" "$@"
+}
+
+please_wait()
+{
+    dia --infobox "Please wait..." 0 0
+}
+
+main_menu()
+{
+    local t=`private`
+    please_wait
+    portpkg -l | cut -d / -f 1 | sort -u | sed \
+    -e "s,^a$,& System ," \
+    -e "s,^ap$,& Applications ," \
+    -e "s,^d$,& Development ," \
+    -e "s,^e$,& Emacs ," \
+    -e "s,^extra$,& Additional ," \
+    -e "s,^f$,& FaqsAndHowtos ," \
+    -e "s,^gnome$,& GnomeDesktop ," \
+    -e "s,^k$,& KernelSources ," \
+    -e "s,^kde$,& KdeDesktop ," \
+    -e "s,^kdei$,& KdeI18n ," \
+    -e "s,^kernels$,& Kernels ," \
+    -e "s,^l$,& Libraries ," \
+    -e "s,^local$,& Local ," \
+    -e "s,^n$,& Network ," \
+    -e "s,^patches$,& SecurityUpdates ," \
+    -e "s,^pasture$,& Compatibility ," \
+    -e "s,^t$,& Tex ," \
+    -e "s,^tcl$,& TclAndTk ," \
+    -e "s,^testing$,& Unstable ," \
+    -e "s,^x$,& XWindowSystem ," \
+    -e "s,^xap$,& XApplications ," \
+    -e "s,^y$,& Games ," >$t.menu
+    dia --menu "MainMenu" 0 0 0 `cat $t.menu`
+}
+
+check_group()
+{
+    local t=`private`
+    group=$1
+    please_wait
+    ls_locations | grep "^.*/$group/[^/]*$" >$t.locs
+    cat $t.locs | loc2gpkg >$t.gpkgs
+    cat $t.gpkgs | cut -d / -f 2 >$t.pkgs
+    cat $t.pkgs | pkg2name >$t.names
+    ls_inst >$t.inst
+    count=`cat $t.locs | wc -l`
+    i=0
+    while read line; do
+	pkg=$(echo $line | loc2gpkg | cut -d / -f 2)
+	name=$(echo $pkg | pkg2name)
+	rel=$(echo $pkg | pkg2rel)
+	desc=$(grep -sv ^# $(dirname $line)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | tr " " "_")
+	desc=${desc:-(n/a)}
+	echo $name $desc $([ $(fgrep -xm 1 $pkg $t.inst) ] && echo "on" || echo "off") $name-$rel >>$t.list
+	((i++))
+	echo $((100*i/count))
+    done <$t.locs | dia --gauge "Searching ports..." 0 30
+    dia --item-help --separate-output \
+    --checklist "Packages of group $group:" 0 0 0 `cat $t.list` 2>$t.pos_names
+    [ $? != 0 ] && die
+    # Liste vergleichen und (de-)installieren
+    fgrep -vxf $t.pos_names $t.names >$t.neg_names
+    for p in `cat $t.neg_names`; do
+	pkg=`grep -m 1 $(regex $p) $t.pkgs`
+        if fgrep -xsq $pkg $t.inst; then
+	    { su -c "removepkg $pkg" 2>&1; echo "---"; } >$t.pipe-rem-$p &
+	    dia --tailbox $t.pipe-rem-$p 20 75
+	    sleep 1
+	fi
+    done
+    for p in `cat $t.pos_names`; do
+	pkg=`grep -m 1 $(regex $p) $t.pkgs`
+	if ! fgrep -xsq $pkg $t.inst; then
+	    { portpkg $pkg 2>&1; echo "---"; } >$t.pipe-add-$p &
+	    dia --tailbox $t.pipe-add-$p 20 75
+	    sleep 1
+	fi
+    done
+}
+
+t=`private`
+while true; do
+    main_menu 2>$t.group
+    [ $? == 0 ] || break
+    check_group `cat $t.group`
+done
+clear

@@ -1,4 +1,4 @@
-VERSION=0.27b
+VERSION=0.27c
 ARCH=noarch
 BUILD=1tom
 
@@ -12,6 +12,7 @@ install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
 install -m 755 $CWD/sync-dist $PKG/usr/bin/
 install -m 755 $CWD/sync-slack $PKG/usr/bin/
 install -m 755 $CWD/clean-cache $PKG/usr/bin/
+install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/portpkg $PKG/usr/bin/
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 

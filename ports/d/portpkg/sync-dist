@@ -4,7 +4,7 @@
 #include "portpkg.h"
 source `which portpkg` || exit 1
 
-DIST=ftp://ftp.slackware.at/slackware-current
+DIST=ftp://ftp.slackware.com/pub/slackware/slackware-current
 SECTIONS=(extra testing kernels slackware pasture)
 TREE=~/pseudo/dist
 
@@ -15,6 +15,8 @@ mkdir -p $TREE
 stanza "Synchronising with $DIST:"
 row "Retrieving file-list"
 get $DIST/FILELIST.TXT $t.file_list
+get $DIST/PACKAGES.TXT $t.packages
+get $DIST/kernels/VERSIONS.TXT $t.kernel_versions
 cat $t.file_list | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t.files
 for section in ${SECTIONS[@]}; do
     cd $TREE || die
@@ -22,7 +24,6 @@ for section in ${SECTIONS[@]}; do
     cd $section
     row "Preparing pseudo ports for $section/"
     if [ "$section" == "kernels" ]; then
-    	get $DIST/kernels/VERSIONS.TXT $t.kernel_versions || continue
 	kver=`grep -o "[0-9]\.[0-9]\.[0-9][0-9]" $t.kernel_versions`
 	karch=`grep -o "glibc-.*\.tgz$" $t.file_list \
 	| grep $(regex glibc) | rev | cut -d - -f 2 | rev | head -n 1`
@@ -54,6 +55,7 @@ $DIST/kernels/$flavour/bzImage
 $DIST/kernels/$flavour/System.map.gz
 $DIST/kernels/$flavour/config
 EOF
+	    echo "$flavour: Linux-$kver ($flavour)" >kernels/$flavour/slack-desc
 	    touch kernels/$flavour/pseudo
 	done
 	continue
@@ -61,6 +63,7 @@ EOF
     grep "^$section/.*\.tgz$" $t.files \
     | sed -r "s,^[^/]*/(.*)\.tgz$,\1," \
     | while read s; do
+	row "$s"
     	if [ "$section" == "slackware" ]; then
 	    group=`echo $s | cut -d / -f 1`
 	else
@@ -84,6 +87,7 @@ CWD=\`pwd\`
 cp \$CWD/$pkg.tgz /tmp
 EOF
 	echo "$DIST/$section/$s.tgz" >$group/$name/sources
+	grep "^PACKAGE NAME:.* $pkg.tgz$" -A 5 $t.packages | tail -n 1 >$group/$name/slack-desc
 	touch $group/$name/pseudo
     done
 done
