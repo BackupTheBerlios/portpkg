@@ -211,7 +211,6 @@ ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
-[ "$source_out" ] || source_out=`encode "$sources"`
 # arch
 ask "Arch [$arch]:"
 arch=${s:-$arch}
@@ -282,7 +281,10 @@ ask "Last chance to quit. Port scripts will now be written.
 * Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
 
 # now we should redecode the actual source name
-sources=`decode "$source_out"`
+sources=`decode "$sources"`
+src=`echo "$sources" | head -n 1`
+file=`basename $(decode $src)`
+
 if [ -f $path/stop.autoport ]; then
   stanza "There's a warning not to autoport this source code:"
   echo "==========================================="
@@ -315,7 +317,7 @@ done
 # write skeletons
 failed=false
 sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
-echo "$source_out" >$path/sources
+echo `encode "$sources"` >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
