@@ -1,6 +1,6 @@
 VERSION=0.35cvs
 ARCH=noarch
-BUILD=8tom
+BUILD=9tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -37,6 +37,8 @@ cp -a \
   $PKG/usr/doc/$NAME-$VERSION/
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+# hotfix for 0.35cvs-7tom/8tom:
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz

@@ -308,7 +308,7 @@ else
   row "Downloading $file"
   VERBOSE=true
   output=/dev/stdout
-  get $src $SRC_DIR/$file || die
+  get `decode $src` $SRC_DIR/$file || die
 fi
 
 # format
