@@ -197,7 +197,7 @@ get_info()
     local path=`dirname $url`/$name
     script=`find $path/ -name "*SlackBuild"`
     # remove ' and " from description
-    description=`grep -s ^$name: $path/slack-desc | sed "s,['\"],,g" | tr -s " " | cut -s -d " " -f 2-` #| head -n 1`
+    description=`grep -s ^$name: $path/slack-desc | sed "s,['\"],,g" | cut -d : -f 2- | cut -d " " -f 2-`
     requires=`grep -sv ^# $path/requires`
     sources=`grep -sv ^# $path/sources | sed "s,\\$VERSION,$version,g"`
     depends=`fgrep -sxl $name $path/../../*/*/requires | rev | cut -d / -f 2 | rev`
@@ -361,7 +361,7 @@ add_pkg() # tgz
     	stanza "Installing $package..."
     fi
     # commercials to fill the time gap
-    $verbose || echo "$description" | xargs -l echo "$name:"
+    $verbose || echo "$description" | sed "s,^,$name: ,"
     # call the magic all-in-one install-command
     if ! su -c "upgradepkg --install-new --reinstall \
                 $PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
@@ -487,7 +487,8 @@ do_sync()
     # coming this summer
     if [ -d $PRT_DIR ]; then
         cd $PRT_DIR || die
-	cvs -qz3 up -dPC 2>/dev/null
+	cvs -qz3 up -dPC -I footprint -I diff -I buildlog \
+	-I PORT_IS_BROKEN -I arbitrary -I local 2>/dev/null
     else
 	mkdir -p $PRT_DIR
         cd `dirname $PRT_DIR` || die
