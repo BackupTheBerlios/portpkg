@@ -1,6 +1,6 @@
 VERSION=4.1.99.1
 ARCH=i486
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -25,13 +25,18 @@ chown -R root.root .
 CFLAGS="$SLKFLAGS" \
 ./configure \
   --prefix=/usr \
-  --sysconfdir=/etc \
+  --sysconfdir=/etc/X11 \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
+
+mkdir -p $PKG/etc/X11/xinit
+ln -s /etc/X11/xdg/xfce4/xinitrc $PKG/etc/X11/xinit/xinitrc.xfce
+chmod +x $PKG/etc/X11/xdg/xfce4/xinitrc
+
 chown -R root.bin $PKG{,/usr}/{,s}bin
 find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
 mv $PKG/usr/share/{man,doc} $PKG/usr/
