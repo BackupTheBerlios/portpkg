@@ -472,6 +472,7 @@ do_diff()
     ls_locations | loc2gpkg >$t.avail
     local pkg
     for pkg in $diff_list; do
+	debug "do_diff(): \$pkg=$pkg"
 	local avail_rel=`echo $pkg | pkg2rel`
 	local name=`echo $pkg | pkg2name`
 	local avail=`grep -m 1 $(regex $name) $t.avail | pkg2name`

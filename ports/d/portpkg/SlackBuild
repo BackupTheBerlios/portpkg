@@ -1,6 +1,6 @@
 VERSION=0.30
 ARCH=noarch
-BUILD=2tom
+BUILD=3tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -16,7 +16,7 @@ install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 install -m 755 $CWD/portpkg $PKG/usr/bin/
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
-for i in Introduction UserGuide MaintainerGuide Internals TodoBugsAbout; do
+for i in QuickStart UserGuide MaintainerGuide PortpkgGuide TodoBugsAbout; do
   lynx -dump $CWD/$i.html >$PKG/usr/doc/$NAME-$VERSION/$i.txt
   sed -i "/:\/\/localhost\//d" $PKG/usr/doc/$NAME-$VERSION/$i.txt
   chmod 644 $PKG/usr/doc/$NAME-$VERSION/$i.txt

@@ -204,6 +204,7 @@ case $format in
 esac
 # installation
 if check "setup.py" "/setup\.py$" $t.footprint; then
+    # setup.py seems to be first choice...
     snip perl $t.SlackBuild
     snip configure $t.SlackBuild
     snip autogen $t.SlackBuild
@@ -216,6 +217,7 @@ if check "setup.py" "/setup\.py$" $t.footprint; then
 else
     snip python $t.SlackBuild
     if check "Makefile.PL" "/Makefile.PL$" $t.footprint; then
+	# ...but Makefile.PL isn't bad either...
 	snip configure $t.SlackBuild
 	snip autogen $t.SlackBuild
 	snip PREFIX $t.SlackBuild
@@ -224,13 +226,13 @@ else
 	arch=noarch
     else
 	snip perl $t.SlackBuild
-	if check "Makefile" "/Makefile$" $t.footprint; then
-	    snip configure $t.SlackBuild
-	    snip autogen $t.SlackBuild
+	if check "autogen.sh" "/autogen.sh$" $t.footprint; then
+	    :
         elif check "configure" "/configure$" $t.footprint; then
     	    snip autogen $t.SlackBuild
-	elif check "autogen.sh" "/autogen.sh$" $t.footprint; then
-	    :
+	elif check "Makefile" "/Makefile$" $t.footprint; then
+	    snip configure $t.SlackBuild
+	    snip autogen $t.SlackBuild
 	else
 	    die "Don't know how to build this package, please write SlackBuild by hand!"
 	fi
