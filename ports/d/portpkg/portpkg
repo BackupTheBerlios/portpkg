@@ -371,7 +371,8 @@ build_pkg()
     fi
   done
   # check md5sums
-  if ! $maintain && ! $DRY_RUN && ! md5sum -c md5sums >$t/md5sum 2>&1; then
+  if ! $maintain && ! $DRY_RUN && [ -f $path/md5sums ] \
+  && ! md5sum --check md5sums >$t/md5sum 2>&1; then
     grep FAILED $t/md5sum | sed -r "s,(.*): FAILED$,  --> MD5SUM mismatch: \1,"
     error "Integrity checking failed!"
     return 1
@@ -606,10 +607,10 @@ do_sync()
   # unhide .CVS
   find -name .CVS -type d | while read s; do mv $s `dirname $s`/CVS; done
   if [ -d CVS ]; then
-    cvs -qz9 up -dP -I arbitrary -I local -I "*.local" -I local.conf 2>/dev/null
+    cvs -qz9 up -dP -I arbitrary,local,"*.local",local.conf
   else
     cd `dirname $PRT_DIR` || die
-    cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
+    cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports
   fi | sed -r \
   -e "s,^.*$,  --> &," \
   -e "s, U , Updating ," \
