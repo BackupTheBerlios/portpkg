@@ -566,8 +566,8 @@ do_export()
   [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
   [ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
   local t=`mktemp -d`
-  stanza "Exporting ports to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
-  local ret
+  stanza "Exporting to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
+#  local ret
   local arg
   for arg in `explicit "$@"`; do
     debug "do_export(): \$arg=$arg"
@@ -575,6 +575,11 @@ do_export()
     local path=`dirname $script`
     if [ -f $path/PORT_IS_BROKEN ]; then
       error "Cannot export broken ports. Please fix first!"
+      continue
+    fi
+    local tag=`echo $package | rev | cut -d - -f 1 | rev | sed "s,^[0-9]*,,"`
+    if [ "$tag" != "$MY_TAG" ]; then
+      row "$group/$name is not your port. Skipping."
       continue
     fi
     row "Uploading $group/$package"
@@ -593,9 +598,9 @@ do_export()
     $DRY_RUN  \
     || curl -F filetoupload=@$TMP/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
     || error "An error occured!"
-    ret=$?
+#    ret=$?
   done
-  return $ret
+#  return $ret
 }
 
 # find ports by pattern
