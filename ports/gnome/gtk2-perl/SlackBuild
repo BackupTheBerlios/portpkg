@@ -1,6 +1,6 @@
 VERSION=1.061
-ARCH=${ARCH:-i486}
-BUILD=1tom
+ARCH=noarch
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -8,32 +8,19 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 mkdir -p $PKG/usr
 
-for src in `grep -v ^# $CWD/sources`; do
-eval src=`basename $src .tar.gz`
-
 cd /tmp || exit 1
-tar xzvf $CWD/$src.tar.gz
-cd $src || exit 1
+tar xzvf $CWD/Glib-$VERSION.tar.gz || exit 1
+cd Glib-$VERSION || exit 1
 chown -R root.root .
 perl Makefile.PL || exit 1
+sed -i "s,/share/man,/man,g" Makefile
 make || exit 1
-make install || exit 1
 make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin
-
-done
-
-find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-mv $PKG/usr/share/{man,doc} $PKG/usr/
-rmdir $PKG/usr/share
-gzip -9 $PKG/usr/man/man?/*
+chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
+find $PKG/usr/man/ -type f | xargs -r gzip -9
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
+  AUTHORS ChangeLog LICENSE MANIFEST NEWS README README.api-changes TODO \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
