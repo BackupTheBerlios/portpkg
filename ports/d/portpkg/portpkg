@@ -363,7 +363,7 @@ add_pkg() # tgz
     	stanza "Installing $package..."
     fi
     # commercials to fill the time gap
-    $verbose || echo "$description" | xargs -r -l echo $name:
+    $verbose || echo "$description" | sed "s,^,$name: ,"
     # call the magic all-in-one install-command
     if ! su -c "upgradepkg --install-new --reinstall \
     $PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
