@@ -272,12 +272,12 @@ maintainer_mode()
 {
   row "Going maintainer mode"
   rm -rf $path/PORT_IS_BROKEN
-  rm -rf md5sums
-  rm -rf footprint
+  rm -rf $path/md5sums
+  rm -rf $path/footprint
   # write md5sum list first (don't md5sum footprint)
   row "Writing md5sums (assuming these files are integer!)"
   # ok, only source files, which are symlinks
-  find . -type l | sed "s,^\./,," | sort | xargs md5sum >$path/md5sums
+  find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >$path/md5sums
 #  if [ -d ~/.gnupg ]; then
 #    row "Signing md5sums"
 #    cat $path/md5sums | gpg --clearsign >$path/md5sums
