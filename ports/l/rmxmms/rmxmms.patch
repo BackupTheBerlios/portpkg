@@ -1,0 +1,11 @@
+--- rmxmms/plugin.c.orig	2004-06-14 23:07:57.000000000 +0200
++++ rmxmms/plugin.c	2004-06-14 23:06:52.000000000 +0200
+@@ -497,7 +497,7 @@
+ 			       &real_cfg.outputcheck);
+ 	if (strstr (real_cfg.outputcheck, "libdisk_writer.so"))
+ 	{
+-		warning_msg = g_strdup_printf("You are not allowed to save a realaudio
++		warning_msg = g_strdup_printf("You are not allowed to save a realaudio\
+ 		stream to disc. Please don't violate the copyright.");
+ 		xmms_show_message ("", warning_msg, "Understood!", FALSE, NULL, NULL);
+ 		g_free(warning_msg);

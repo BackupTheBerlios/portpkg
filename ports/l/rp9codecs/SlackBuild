@@ -1,0 +1,35 @@
+VERSION=20040626
+ARCH=i386
+BUILD=2tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr/lib/win32
+
+cd /tmp || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+cp -av * $PKG/usr/lib/win32
+chown -R root.bin $PKG{,/usr}/{,s}bin
+mv $PKG/usr/share/{man,doc} $PKG/usr/
+rmdir $PKG/usr/share
+gzip -9 $PKG/usr/man/man?/*
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
+  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
+  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
+  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
+  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
+  $PKG/usr/doc/$NAME-$VERSION
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
+| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz

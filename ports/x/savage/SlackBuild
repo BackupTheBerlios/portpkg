@@ -1,0 +1,37 @@
+VERSION=20041019
+ARCH=i386
+BUILD=1tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr
+
+cd /tmp || exit 1
+rm -rf dripkg
+tar xjvf $CWD/common-$VERSION-linux.i386.tar.bz2
+tar xjvf $CWD/$NAME-$VERSION-linux.i386.tar.bz2
+cd dripkg || exit 1
+chown -R root.root .
+checkinstall \
+  --type=slackware \
+  --pkgname=$NAME \
+  --pkgversion=$VERSION \
+  --pkgarch=$ARCH \
+  --pkgrelease=$BUILD \
+  --pakdir=/tmp \
+  --gzman=yes \
+  --stripso=yes \
+  --nodoc \
+  --default \
+  --backup=no \
+  "echo | ./install.sh"
+
+cd $PKG || exit 1
+tar xzvf /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+find -name "dri-old.*" -exec rm {} \;
+find -name "modules.*" -exec rm {} \;
+find -name "tmp.log" -exec rm {} \;
+cat $CWD/slack-desc >$PKG/install/slack-desc
+makepkg -l y -c n -p /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz

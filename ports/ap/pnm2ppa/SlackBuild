@@ -1,0 +1,41 @@
+VERSION=1.12
+ARCH=i486
+BUILD=2tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr/{lib/cups/filter,share/cups/model}
+
+cd /tmp || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+make || exit 1
+make install BINDIR=$PKG/usr/bin CONFDIR=$PKG/etc MANDIR=$PKG/usr/man/man1 || exit 1
+
+install -m 755 $CWD/foomatic-rip $PKG/usr/lib/cups/filter/
+install -m 644 $CWD/*.ppd $PKG/usr/share/cups/model/
+
+chown -R root.bin $PKG{,/usr}/{,s}bin
+find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
+mv $PKG/usr/share/{man,doc} $PKG/usr/
+rmdir $PKG/usr/share
+gzip -9 $PKG/usr/man/man?/*
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
+  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
+  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
+  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
+  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
+  $PKG/usr/doc/$NAME-$VERSION
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
+| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz

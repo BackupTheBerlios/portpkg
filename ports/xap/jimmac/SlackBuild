@@ -1,0 +1,20 @@
+VERSION=0
+ARCH=noarch
+BUILD=2tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr/share/icons
+
+cd $PKG/usr/share/icons/ || exit 1
+tar xzvf $CWD/Jimmac_theme.tar.gz
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
+| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz

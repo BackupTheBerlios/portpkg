@@ -1,0 +1,13 @@
+fping: fping
+fping:
+fping: fping is a ping like program which uses the Internet Control
+fping: Message Protocol (ICMP) echo request to determine if a host
+fping: is up. fping is different from ping in that you can specify
+fping: any number of hosts on the command line, or specify a file
+fping: containing the lists of hosts to ping. Instead of trying one
+fping: host until it timeouts or replies, fping will send out a ping
+fping: packet and move on to the next host in a round-robin fashion.
+fping: If a host replies, it is noted and removed from the list of
+fping: hosts to check. If a host does not respond within a certain
+fping: time limit and/or retry limit it will be considered unreachable.
+fping:

@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# messagebus:   The D-BUS systemwide message bus
+#
+# chkconfig: 345 97 03
+# description:  This is a daemon which broadcasts notifications of system events \
+#               and other messages. See http://www.freedesktop.org/software/dbus/
+#
+# processname: dbus-daemon-1
+#
+
+# Sanity checks.
+[ -x /usr/bin/dbus-daemon-1 ] || exit 0
+
+RETVAL=0
+
+start() {
+  echo "Starting system message bus:  dbus-daemon-1 --system"
+  dbus-daemon-1 --system
+  RETVAL=$?
+}
+
+stop() {
+  echo "Stopping system message bus..."
+
+  ## we don't want to kill all the per-user $processname, we want
+  ## to use the pid file *only*; because we use the fake nonexistent 
+  ## program name "$servicename" that should be safe-ish
+  kill -TERM `cat /var/run/dbus/pid`
+  RETVAL=$?
+  [ $RETVAL -eq 0 ] && rm -f /var/run/dbus/pid
+}
+
+# See how we were called.
+case "$1" in
+  start)
+    start;;
+  stop)
+    stop;;
+  restart)
+    stop
+    start;;
+  *)
+    echo $"Usage: $0 {start|stop|restart}";;
+esac
+exit $RETVAL
