@@ -5,7 +5,7 @@ Links
 
    ---------------------------------------------------------------------------
 
-Other Portsystems For Slackware Linux
+Ports Systems For Slackware Linux
 
   The Emerde Project
 
@@ -37,9 +37,38 @@ Other Portsystems For Slackware Linux
 
    http://cvs.sourceforge.net/viewcvs.py/dropline-gnome/dropline-build-system/
 
+  Autopkg
+
+   "autopkg helps to automate Slackware package creation. Once an autopkg
+   rules file has been created for a program, the rules may be used to easily
+   create a package from the program's source. They are also likely to be
+   useful for the program's next version. One could therefore stay on the
+   bleeding edge with certain favorite applications, but retain the
+   advantages of the Slackware package system."
+
+   http://yath.mine.nu/autopkg/
+
+  SlackBuild Central
+
+   "This is a repository of scripts and controller tarballs used to create
+   Slackware-compatible packages."
+
+   http://slackpack.tripleg.net.au/
+
+  Linuxpackages.net's SlackBuilds
+
+   "This directory contains build scripts for Slackware. Most of these are
+   taken from -current and only have a few modifications. You should always
+   read the program.SlackBuild file and adjust it for your needs. Also you
+   will need to download the slack-package.conf file and place it in /etc and
+   edit for your needs or you can install the slackbuilds-1.1-noarch-1jim.tgz
+   package that will add this as a package."
+
+   ftp://opensys.linuxpackages.net/pub/SlackBuilds/
+
    ---------------------------------------------------------------------------
 
-Unspecific Portsystems
+Other Ports Systems
 
   Pkgbuilder
 
@@ -65,10 +94,6 @@ Unspecific Portsystems
    and other forms of co-dependance."
 
    http://cipherfunk.org/garnome/
-
-   ---------------------------------------------------------------------------
-
-Other Distributions's Portsystems
 
   Portage
 
@@ -101,14 +126,7 @@ Other Distributions's Portsystems
 
    ---------------------------------------------------------------------------
 
-Package Building Tools For Slackware Linux
-
-  SlackBuild Central
-
-   "This is a repository of scripts and controller tarballs used to create
-   Slackware-compatible packages."
-
-   http://slackpack.tripleg.net.au/
+Package Managing And Building Tools For Slackware Linux
 
   Slackware Linux Stuff
 
@@ -116,28 +134,6 @@ Package Building Tools For Slackware Linux
    fashion) related to or for use with the Slackware Linux distribution."
 
    http://www.interlude.org.uk/unix/slackware/
-
-  Linuxpackages.net's SlackBuilds
-
-   "This directory contains build scripts for Slackware. Most of these are
-   taken from -current and only have a few modifications. You should always
-   read the program.SlackBuild file and adjust it for your needs. Also you
-   will need to download the slack-package.conf file and place it in /etc and
-   edit for your needs or you can install the Slackbuilds-1.1-noarch-1jim.tgz
-   package that will add this as a package."
-
-   ftp://opensys.linuxpackages.net/pub/SlackBuilds/
-
-   ---------------------------------------------------------------------------
-
-Slackware Binary Repositories And Tools
-
-  LinuxPackages.net
-
-   "This site is dedicated to the the enrichment and enhancement of the
-   Slackware Linux operating system."
-
-   http://www.linuxpackages.net/
 
   Swaret :: The Esential SlackWARE Tool
 
@@ -178,19 +174,14 @@ Slackware Binary Repositories And Tools
 
    "gnome-pkgtool is a GTK+/GNOME front-end to Slackware package management
    tools (pkgtool). With gnome-pkgtool you can do the following actions to
-   your Slackware Linux installation:
-
-     o Install .TGZ packages
-     o Uninstall installed packages
-     o Re-install/upgrade installed packages
-     o Build packages from source and install them
-     o Inspect packages content"
+   your Slackware Linux installation: (...) Build packages from source and
+   install them (...)"
 
    http://gnome-pkgtool.sourceforge.net/
 
    ---------------------------------------------------------------------------
 
-Other Usefull Documentation
+Usefull Documentation And Interesting Concepts
 
   Filesystem Hierarchy Standard
 
@@ -204,11 +195,11 @@ Other Usefull Documentation
 
   GoboLinux
 
-   "GoboLinux is an alternative Linux distribution which redefines the entire
-   filesystem hierarchy. In GoboLinux you don't need a package manager
+   ''"GoboLinux is an alternative Linux distribution which redefines the
+   entire filesystem hierarchy. In GoboLinux you don't need a package manager
    because the filesystem is the package manager: each program resides in its
    own directory, such as /Programs/Xorg/6.7.0/ and /Programs/KDE/3.2.2. Like
-   it? Read more..."
+   it? Read more..."''
 
    http://www.gobolinux.org/
 
@@ -224,16 +215,7 @@ Other Usefull Documentation
   Autopackage
 
    "This is autopackage, the distro neutral binary packaging framework for
-   Linux systems.
-
-     o Build packages that will install on many different distros
-     o Multiple front ends: best is automatically chosen so GUI users get a
-       graphical front end, and command line users get a text based interface
-     o Multiple language support (both in tools and for your own packages)
-     o Automatically verifies and resolves dependencies no matter how the
-       software was installed. This means you don't have to use autopackage
-       for all your software, or even any of it, for packages to succesfully
-       install."
+   Linux systems.''
 
    http://autopackage.org/
 

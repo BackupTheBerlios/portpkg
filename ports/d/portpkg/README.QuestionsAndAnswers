@@ -12,7 +12,7 @@ QuestionsAndAnswers
    built. It is recommended to delete that on every boot (see Filesystem
    Hierarchy Standard in Links):
 
- echo 'rm -r /tmp/*' >>/etc/rc.d/rc.local
+ echo 'rm -rf /tmp/*' >>/etc/rc.d/rc.local
 
   I get "Cannot find required package xyz! Stopping." so often... ?!
 
@@ -23,6 +23,12 @@ QuestionsAndAnswers
      o If you have an RSYNC'ed tree of Slackware, you can link /usr/obj/pkg
        to its slackware/ directory.
      o Use pp-sync-dist which will download Slackware packages on demand.
+
+  I don't want to know anything about "dependencies" or "requirements"... Can I
+  turn that off?
+
+   Yes, with -q in the command line or add NO_REQS=true in
+   /usr/ports/local.conf.
 
   I want to recompile Slackware's apmd (or xyz) for my athlon-tbird. How?
 

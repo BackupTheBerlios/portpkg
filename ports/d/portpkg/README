@@ -1,6 +1,6 @@
 TodoBugsAbout
 
-About
+About The Portpkg Project
 
    Portpkg is a ports system for Slackware Linux. Its purpose is to build and
    manage a larger set of software for Slackware.
@@ -14,42 +14,56 @@ About
 
    ---------------------------------------------------------------------------
 
-Todo
-
-     o Support for three architectures: i486, s390 and x86_64. i486 will be
-       the default architecture, so our ports will have either ARCH=noarch or
-       ARCH=${ARCH:-i486} in the SlackBuild, portpkg should be able to
-       detect, what architecture is to be build.
+To-Do-List
 
      o Double check all ports. Make them 100 % work on Slackware 10.0.
 
-     o Option: Support for CVS or maybe RSYNC, SVN in sources.
+     o Support for CVS or maybe RSYNC, SVN in sources.
 
-     o Option: Fakeroot? Building packages as user.
+     o Fakeroot? Building packages as user.
 
-     o Option: Cooperation with slackpkg (or slapt-get/swaret) for dependency
+     o Cooperation with slackpkg (or slapt-get/swaret) for dependency
        resolution of Slackware packages?
 
-     o Option: Data integrity checking? (MD5? GPG?)
+     o Data integrity checking? (MD5? GPG?)
 
-     o Find a way to get over the differences between release (10.0) and
-       current. Some ports need newer versions of a dependency that is not in
-       10.0 (e.g. gtk+2-2.4), but in current (gtk+2-2.6). And current system
-       shouldn't need to compile that again.
+     o Lazy upgrading: don't upgrade any dependencies just to install a
+       library that doesn't need that.
 
-     o Have some localised mirrors-files. The existing one has just mirros
-       for Germany. Maybe a symlink to mirrors.de etc.?
+     o Ignore for single ports
 
      o Feature freeze, then beta-status, documentation, maybe translation.
 
+   Already done:
+
+     o Support for three architectures: i486, s390 and x86_64. i486 is the
+       default architecture, so our ports have either ARCH=noarch or
+       ARCH=${ARCH:-i486} in the SlackBuild, portpkg detects the architecure
+       and passes $ARCH with to the SlackBuild.
+
+     o Simple slot system: Ports that don't replace an existing different
+       version have an empty file slot-in.
+
+     o Removed addport and export from ports and integrated with Portpkg.
+
+     o Localised mirrors-files (half-done): Users can link mirrors to
+       mirrors.xx (only .de for now).
+
+     o Found a way to get over the differences between stable (10.0) and
+       current (could be improved): Some ports need newer versions of a
+       dependency that is not in 10.0 (stable), but in current. And current
+       system shouldn't need to compile that again. These ports have moved to
+       pasture/, which has to be excluded in exclude.local by users of
+       current-systems.
+
    ---------------------------------------------------------------------------
 
-Contribute
+Contribute / Jobs
 
    If you want to contribute to this project, then read on, there're many
    ways to help us:
 
-  Bug reporting
+  Bug Reporting
 
      o If you use portpkg and something doesn't work, upload the buildlog!
        You can find it in /tmp, it is called buildlog-<portname>, go to
@@ -62,7 +76,7 @@ Contribute
      o If you know how to fix a broken SlackBuild and want to code directly
        as a maintainer, ask me for a CVS-account!
 
-  Contributing ports
+  Contributing Ports
 
      o Make ports you missed in the ports collection. A good starting point
        is the addport script in /usr/ports (EDIT: or autoport from the
@@ -74,9 +88,17 @@ Contribute
      o If you miss dependencies or descriptions or something leave a message
        for the maintainer.
 
+  Wanted
+
+     o Maintainers for KDE applications
+
+     o Maintainers who are interested in taking over a few of my (Tom) ports
+
+     o Is someone interested in hosting binary packages?
+
    ---------------------------------------------------------------------------
 
-Known bugs
+Known Bugs
 
    These are often reported bugs. Please do so and send your buildlog, if
    something hangs.
