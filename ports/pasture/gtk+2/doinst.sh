@@ -1,0 +1,3 @@
+mkdir -p etc/gtk-2.0
+usr/bin/gtk-query-immodules-2.0 >etc/gtk-2.0/gtk.immodules
+usr/bin/gdk-pixbuf-query-loaders >etc/gtk-2.0/gdk-pixbuf.loaders
