@@ -1,1 +1,11 @@
-xml-writer: XML::Writer (Perl extension for writing XML documents)
+xml-writer: Perl extension for writing XML documents
+xml-writer:
+xml-writer: XML::Writer is a simple Perl module for writing XML documents:
+xml-writer: it takes care of constructing markup and escaping data
+xml-writer: correctly, and by default, it also performs a significant
+xml-writer: amount of well-formedness checking on the output, to make
+xml-writer: certain (for example) that start and end tags match, that
+xml-writer: there is exactly one document element, and that there are not
+xml-writer: duplicate attribute names.
+xml-writer:
+xml-writer:
