@@ -11,4 +11,3 @@ config() {
 }
 
 config etc/pnm2ppa.conf.new
-                      
