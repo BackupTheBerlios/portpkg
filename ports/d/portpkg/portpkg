@@ -553,6 +553,7 @@ do_diff()
 do_export()
 {
   has_args "$@" || die
+  [ "$export_opt" ] || die "You must specify a summary of your export!"
   has_ports || die
   has_prog curl || die
   # hm, use at least 7.12.2 (Slackware 10.1)
@@ -583,9 +584,9 @@ do_export()
       cp -a . $t/$package/$name
       cd $t/$package/$name
       rm -rf .CVS CVS arbitrary
-      echo "tag: $MY_TAG" >info
-      echo "email: $MY_EMAIL" >>info
-      echo "realname: $MY_REALNAME" >>info
+      echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >info
+      echo "Intended group:  $group/" >>info
+      echo "ChangeLog entry:  $export_opt" >>info
       cd $t/$package
       tar cjf $TMP/$package.tar.bz2 .
     )
@@ -601,6 +602,7 @@ do_export()
 do_find() # text [..] >list
 {
   local t=`mktemp -d`
+  has_args "$@" || die
   has_ports || die
   local arg
   for arg; do
@@ -728,23 +730,23 @@ help()
 Usage: portpkg [action] [options] [list [...]]
   Build and install (or upgrade) a package.
 Actions (alternative):
-  -d, --diff	   Compare installed versions with availables
-  -i, --info	   View information about specified ports
-  -f, --find	   Find ports by pattern
-  -l, --list	   List available ports
-  -s, --sync	   Sync local ports tree
-  -u, --upgrade	   Upgrade all (!) outdated ports (see --diff)
-  -v, --version	   View version information
-  -x, --export     Upload ports to portpkg.berlios.de
+  -d, --diff        Compare installed versions with availables
+  -i, --info        View information about specified ports
+  -f, --find strs   Find ports by pattern strings
+  -l, --list        List available ports
+  -s, --sync        Sync local ports tree
+  -u, --upgrade     Upgrade all (!) outdated ports (see --diff)
+  -v, --version	    View version information
+  -x, --export msg  Upload ports to portpkg.berlios.de
 Options:
-  -e, --reinstall  Reinstall package if already installed
-  -b, --rebuild	   Rebuild package if already build (implies --reinstall)
-  -p, --prepare    Build package, but don't install (implies --noreqs)
-  -o, --download   Download source files only
-  -g, --verbose	   Show compile output
-  -y, --dryrun	   Simulate install/build/download/upload
-  -q, --noreqs	   Don't install/upgrade dependencies
-  -a, --lazy       Don't upgrade dependencies to newest version
+  -e, --reinstall   Reinstall package if already installed
+  -b, --rebuild     Rebuild package if already build (implies --reinstall)
+  -p, --prepare     Build package, but don't install (implies --noreqs)
+  -o, --download    Download source files only
+  -g, --verbose	    Show compile output
+  -y, --dryrun	    Simulate install/build/download/upload
+  -q, --noreqs	    Don't install/upgrade dependencies
+  -a, --lazy        Don't upgrade dependencies to newest version
 Lists:
   group/ or [group/]name[-version-arch-build]
 EOF
@@ -763,12 +765,12 @@ EOF
 
 parse_options()
 {
-  local shorts="diflsuvhebogyqxzarpm"
+  local shorts="diflsuvhebogyqx:zarpm"
   local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
 rebuild,download,verbose,dryrun,noreqs,debug,lazy,remaintain,prepare,\
-maintain,export"
+maintain,export:"
   local args
-  args=`getopt -quo $shorts -l $longs -- "$@"`
+  args=`getopt -qo $shorts -l $longs -- "$@"`
   [ "$?" == "0" ] || die "Bad Arguments! Try: portpkg --help"
   local start_args="$@"
   eval set -- "$args"
@@ -777,11 +779,15 @@ maintain,export"
       -d|--diff)        action=do_diff;;
       -i|--info)      	action=do_info;;
       -f|--find)        action=do_find;;
+#                        find_opt=$2
+#                        shift;;
       -l|--list)      	action=do_list;;
       -s|--sync)        action=do_sync;;
       -u|--upgrade)     action=do_upgrade;;
       -v|--version)     action=version;;
-      -x|--export)      action=do_export;;
+      -x|--export)      action=do_export
+                        export_opt="$2"
+                        shift;;
       -h|--help)      	action=help;;
       -e|--reinstall)   reinstall=true;;
       -b|--rebuild)     rebuild=true;;
