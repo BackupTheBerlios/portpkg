@@ -1,0 +1,63 @@
+
+CWD=`pwd`
+if [ "$TMP" = "" ]; then
+  TMP=/tmp
+fi
+
+if [ ! -d $TMP ]; then
+  mkdir -p $TMP # location to build the source
+fi
+PKG=/tmp/package-libdnet
+
+VERSION=1.10
+ARCH=${ARCH:-i486}
+BUILD=1stb
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG
+echo "+=====================+"
+echo "| libdnet-$VERSION |"
+echo "+=====================+"
+cd $TMP
+rm -rf libdnet-$VERSION
+tar xvzf $CWD/libdnet-$VERSION.tar.gz
+cd libdnet-$VERSION
+chown -R root.root .
+find . -perm 777 -exec chmod 755 {} \;
+find . -perm 775 -exec chmod 755 {} \;
+find . -perm 700 -exec chmod 755 {} \;
+find . -perm 744 -exec chmod 755 {} \;
+find . -perm 666 -exec chmod 644 {} \;
+find . -perm 664 -exec chmod 644 {} \;
+find . -perm 600 -exec chmod 644 {} \;
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var/lib
+make
+make install DESTDIR=$PKG
+strip $PKG/usr/sbin/*
+strip $PKG/usr/bin/*
+chown -R root.bin $PKG/usr/bin
+chown -R root.bin $PKG/usr/sbin
+gzip -9 $PKG/usr/man/man3/*
+gzip -9 $PKG/usr/man/man8/*
+mkdir -p $PKG/usr/doc/libdnet-$VERSION
+cp LICENSE $PKG/usr/doc/libdnet-$VERSION
+cp README $PKG/usr/doc/libdnet-$VERSION
+cp THANKS $PKG/usr/doc/libdnet-$VERSION
+cp TODO $PKG/usr/doc/libdnet-$VERSION
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cd $PKG
+makepkg -l y -c n ../libdnet-$VERSION-$ARCH-$BUILD.tgz
+
