@@ -1,0 +1,10 @@
+Scores in /var/lib/games/*.* should be installed lossless:
+
+( cd $PKG/var/lib/games
+  mkdir tmp
+  mv --verbose *.* tmp )
+
+Binaries have special groups:
+
+chown root.bin $PKG/usr/bin/{,blackjack,gataxx,gnect,iagno,sol}
+#chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
