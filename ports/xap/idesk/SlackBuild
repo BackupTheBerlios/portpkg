@@ -6,29 +6,20 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=/tmp/package-$NAME
 rm -rf $PKG
-mkdir -p $PKG/usr/bin
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-else
-  SLKCFLAGS="-O2"
-fi
+mkdir -p $PKG/usr
 
 cd /tmp || exit 1
-mkdir $NAME
-cd $NAME
+mkdir -p $NAME-$VERSION
+cd $NAME-$VERSION
 tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
 chown -R root.root .
-sed -i "s,/usr/local/etc,${PKG}/etc,g" Makefile
-sed -i "s,/usr/local/var,${PKG}/var,g" Makefile
-sed -i "s,/usr/local,${PKG}/usr,g" Makefile
+sed -i "s,/usr/local/etc,$PKG/etc,g" Makefile
+sed -i "s,/usr/local/var,$PKG/var,g" Makefile
+sed -i "s,/usr/local,$PKG/usr,g" Makefile
 make || exit 1
+
+mkdir -p $PKG/usr/bin
+
 make install || exit 1
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 ( cd $PKG
