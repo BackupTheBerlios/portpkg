@@ -1,4 +1,4 @@
-VERSION=0.27c
+VERSION=0.28
 ARCH=noarch
 BUILD=1tom
 
@@ -19,7 +19,13 @@ sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 chown -R root.bin $PKG{,/usr}/{,s}bin
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-cp -a `ls | grep ^[A-Z]*$` $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
+  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
+  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
+  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
+  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
+  $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh

@@ -1,14 +1,15 @@
 #!/bin/bash -u
-# syncdist - portpkg-addon for using slackware packages as pseudo ports
+# sync-dist - portpkg-addon for using slackware packages as pseudo ports
 
 #include "portpkg.h"
 source `which portpkg` || exit 1
 
 DIST=ftp://ftp.slackware.com/pub/slackware/slackware-current
 SECTIONS=(extra testing kernels slackware pasture)
-TREE=~/pseudo/dist
+TREE=/usr/src/pseudo/dist
 
 t=`private`
+is_root || die
 mkdir -p $t.names
 rm -rf $TREE
 mkdir -p $TREE

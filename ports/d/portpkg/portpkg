@@ -19,11 +19,11 @@
 
 # default settings
 ENGINE_VER=current
-ADM_DIR=/var/log
 SCRATCH_DIR=/tmp/portpkg-`whoami`-$$
-SRC_DIR=~/sources
-PKG_DIR=~/packages
-PRT_DIR=~/ports
+ADM_DIR=/var/log
+SRC_DIR=/usr/src/dist
+PKG_DIR=/usr/obj/pkg
+PRT_DIR=/usr/ports
 
 # default options
 action=do_add
@@ -43,7 +43,7 @@ declare script description requires size sources
 pkg2name()	{ sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()	{ sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()	{ sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
-loc2gpkg()	{ sed -r "s,^.*/(.*/.*)$,\1," 2>/dev/null; }
+loc2gpkg()	{ sed -r "s,^.*/(.*/.*)$,\1,"; }
 
 # message system
 stanza()	{ [ "$*" ] && echo -e "\n$@"; }
@@ -51,6 +51,7 @@ row()		{ echo -e "  --> $@"; }
 warn()		{ echo -e "WARNING: $@"; }
 error()		{ [ "$*" ] && stanza "$@" >&2; return 1; }
 die()		{ error "$@"; exit 1; }
+
 if $debug; then
 debug()		{ echo $@ >&2; }
 else
@@ -79,6 +80,7 @@ get()
 	echo "$mirrors" >$t.mirrors
         local line
         while read line; do
+	    debug "get(): checking for $line"
 	    # seems i won't get around awk
 	    local master=$(echo $line | awk '{ print $1 }')
 	    local mirror=$(echo $line | awk '{ print $2 }')
@@ -248,7 +250,6 @@ mk_source_pkg()
 {
     local t=`private`
     local path=`dirname $script`
-    local tree=`dirname $(dirname $path)`
     stanza "Building $package:"
     # check ports directory
     if ! [ -f $script ]; then
@@ -263,7 +264,7 @@ mk_source_pkg()
     # include maintain and switch to maintainer mode if $rel end with
     # -[0-9]*$MY_TAG
     local maintain=false
-    if [ -f $tree/maintain ]; then
+    if [ -f $PRT_DIR/maintain ]; then
 	local rel=`echo $package | pkg2rel`
 	case $rel in *-[0-9]*$MY_TAG) maintain=true;; esac
     fi
@@ -297,9 +298,9 @@ mk_source_pkg()
     $download_only && return 0
     # build package
     row "Executing $script"
-    su -c "rm -rf /tmp/buildlog-$name
-           rm -rf /tmp/$package.tgz
-           sh $script 2>&1 | tee /tmp/buildlog-$name >$output" || return 1
+    rm -rf /tmp/buildlog-$name
+    rm -rf /tmp/$package.tgz
+    sh $script 2>&1 | tee /tmp/buildlog-$name >$output || return 1
     $maintain && cp /tmp/buildlog-$name $path/buildlog
     # success?
     if ! [ -f /tmp/$package.tgz ]; then
@@ -340,9 +341,9 @@ mk_source_pkg()
 	# write the footprint
 	tar tzvf /tmp/$package.tgz | sort +5 >$path/footprint
 	# write the diff: SlackBuild compared to a generic one
-	grep -sv "^#" $tree/SlackBuild | diff -bu - $script >$path/diff
+	grep -sv "^#" $PRT_DIR/SlackBuild | diff -bu - $script >$path/diff
     fi
-    row "Moving to $PKG_DIR/$group/"
+    row "Moving $package to $PKG_DIR/$group/"
     mkdir -p $PKG_DIR/$group
     cp /tmp/$package.tgz $PKG_DIR/$group/
 }
@@ -352,7 +353,7 @@ add_pkg() # tgz
 {
     local t=`private`
     if ! [ -f $PKG_DIR/$group/$package.tgz ]; then
-	error "Strange: $package not found."
+	error "Strange: $package.tgz not found."
 	return 1
     fi
     # what to display?
@@ -366,22 +367,23 @@ add_pkg() # tgz
     # commercials to fill the time gap
     $verbose || echo "$description" | sed "s,^,$name: ,"
     # call the magic all-in-one install-command
-    if ! su -c "upgradepkg --install-new --reinstall \
-                $PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
-	$verbose || cat $t.install_log
+    if ! upgradepkg --install-new --reinstall $PKG_DIR/$group/$package.tgz \
+    | tee $t.install_log >$output; then
+    	$verbose || cat $t.install_log
 	error "Installation failed!"
+	return 1
     fi
+    return 0
 }
 
 # prepare and install ports
 do_add() # pkgex-list
 {
     debug "do_add(): starting: $@"
-    has_ports || die
     has_args $@ || die
+    is_root || die
+    has_ports || die
     local total=$SCRATCH_DIR/do_add.total
-    local total_started=$SCRATCH_DIR/do_add.total_started
-    local total_finished=$SCRATCH_DIR/do_add.total_finished
     local ret=0
     local arg
     for arg in `explicit $@`; do
@@ -390,22 +392,14 @@ do_add() # pkgex-list
 	echo $arg >>$total
 	get_info $arg || continue
 	sed -i "\,^$arg$,d" $total
-	echo $group/$package >>$total_started
+	echo $group/$package >>$total.started
 	# requirements check (flat, no versions)
 	# (...well, a little deeper now :) )
 	# (...quite deep now :) )
 	check_reqs || continue
 	# package file found in cache?
 	if ! [ -f $PKG_DIR/$group/$package.tgz ] || $rebuild; then
-#	    # maybe somewhere else
-#	    local file=`find $PKG_DIR/ -name $package.tgz | head -n 1 | loc2gpkg`
-#	    if [ -f $PKG_DIR/$file ]; then
-#		stanza "Moving `basename $file .tgz` to $group/..."
-#		mkdir -p $PKG_DIR/$group
-#		mv $PKG_DIR/$file $PKG_DIR/$group/
-#	    else
-		mk_source_pkg || continue
-#	    fi
+	    mk_source_pkg || continue
 	fi
 	if ! $download_only; then
 	    # install the package
@@ -415,16 +409,17 @@ do_add() # pkgex-list
 		add_pkg || continue
 	    fi
 	fi
-	echo $group/$package >>$total_finished
+	echo $group/$package >>$total.finished
 	ret=0
     done
     # summary
     if $verbose; then
-        stanza "That was in total:"
-	touch $total_finished
-	fgrep -s ".*" $total_finished | xargs -r -l echo "  --> Compiled successfully"
-	fgrep -svxf $total_finished $total_started | xargs -r -l echo "  --> Failed at"
-	fgrep -s ".*" $total | xargs -r -l echo "  --> Didn't find"
+        stanza "Summary:"
+	touch $total.started
+	touch $total.finished
+	cat $total.finished | xargs -r -l echo "  --> Added successfully"
+	fgrep -vxf $total.finished $total.started | xargs -r -l echo "  --> Failed at"
+	cat $total | xargs -r -l echo "  --> Couldn't find"
     fi
     debug "do_add(): finished: $@"
     return $ret
@@ -436,7 +431,7 @@ do_diff()
     has_ports || die
     local diff_list=`ls_diff`
     [ "$diff_list" ] || die "No differences found."
-    stanza "PORT\r\t\t\t\tAVAILABLE\r\t\t\t\t\t\t\tINSTALLED"
+    stanza "PORT NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
     ls_inst >$t.inst
     ls_locations | loc2gpkg >$t.avail
     local pkg
@@ -501,40 +496,26 @@ do_list() # [pkgex-list] >glist
 
 do_sync()
 {
+    is_root || die
     has_pkg cvs-1.11 || die
     local cvsroot=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
     stanza "Syncing your ports tree with `echo $cvsroot | cut -d @ -f 2 | cut -d : -f 1`:"
     local file
-    # since --sync stops after cvsing, we needn't restore this later,
-    # but we need acces to these file either if run with sudo or not
-    umask 007
     if [ -d $PRT_DIR ]; then
         cd $PRT_DIR || die
-#	# .CVS -> CVS
-#	find -name .CVS | sed "s,/\.CVS$,," | while read file; do
-#	    mv $file/.CVS $file/CVS
-#	done
 	cvs -qz3 up -dPC -I footprint -I diff -I buildlog \
 	-I PORT_IS_BROKEN -I arbitrary -I local -I "*.local" 2>/dev/null
     else
 	mkdir -p $PRT_DIR
-	chmod 2770 $PRT_DIR
-	chgrp users $PRT_DIR
         cd `dirname $PRT_DIR` || die
-	cvs -qz3 -d $cvsroot co -P ports 2>/dev/null
+	cvs -qz3 -d $cvsroot co -Pd `basename $PRT_DIR` ports 2>/dev/null
     fi | sed -r \
-    -e "/\(.*\)/d" \
-    -e "s,^cvs [a-z]*:,  -->," \
-    -e "s,^U,  --> Updating," \
-    -e "s,^C,  --> Conflict with," \
-    -e "s,^P,  --> Patching," \
-    -e "s,^\?,  --> Unknown file," \
-    -e "s,^[A-Z\?],  --> &,"
-#    cd $PRT_DIR || die
-#    # CVS -> .CVS
-#    find -name CVS | sed "s,/CVS$,," | while read file; do
-#	mv $file/CVS $file/.CVS
-#    done
+    -e "s,^.*$,  --> &," \
+    -e "s, U , Updating ," \
+    -e "s, C , Conflict with ," \
+    -e "s, P , Patching ," \
+    -e "s, \? , Unknown file ,"
+#    -e "/\(.*\)/d" \
 }
 
 # upgrade all installed ports that are not available
@@ -542,10 +523,10 @@ do_upgrade() # [pkgex-list]
 {
     debug "do_upgrade(): starting: $@"
     has_ports || die
-    debug "do_upgrade(): calling: ls_diff"
+    debug "do_upgrade(): call: ls_diff"
     local diff_list=`ls_diff | pkg2name`
     [ "$diff_list" ] || die "No upgrades available."
-    debug "do_upgrade(): calling: do_add $diff_list"
+    debug "do_upgrade(): call: do_add $diff_list"
     do_add $diff_list
 }
 
@@ -579,7 +560,7 @@ version()
 	
 Portpkg version $ENGINE_VER.
 Copyright (C) 2003, 2004 Thomas Pfaff <toastbrot@web.de>.
-This comes with ABSOLUTELY NO WARRANTY. This is free software, and
+This programme comes with ABSOLUTELY NO WARRANTY. This is free software, and
 you are welcome to redistribute it under certain conditions.
 EOF
 }
@@ -612,7 +593,7 @@ parse_options()
 	shift
     done
     $rebuild && reinstall=true
-    debug "parse_options(): calling: $action $@"
+    debug "parse_options(): call: $action $@"
     $action $@
     exit $?
 }
@@ -626,9 +607,6 @@ init()
     mkdir -p $SCRATCH_DIR
     chmod 700 $SCRATCH_DIR
     [ -d $SCRATCH_DIR ] || die "Internal error!"
-#    # we need umask 007 in our ports dir
-#    umask 007
-#    chmod 2770 $PRT_DIR
     # clean up on exit
     trap "rm -rf $SCRATCH_DIR" EXIT
     trap "" PIPE
@@ -640,11 +618,24 @@ init()
     MY_TAG=${MY_TAG:-}
     MAINTAIN_ALL=${MAINTAIN_ALL:-false}
     # global configs
-    mirrors=`grep -vse ^# -e ^$ $PRT_DIR/mirrors`
-    ignore=`grep -vse ^# -e ^$ $PRT_DIR/ignore`
+    mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{,.local}`
+    ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{,.local}`
     ignore=`regex $ignore`
-    exclude=`grep -vse ^# -e ^$ $PRT_DIR/exclude`
+    exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{,.local}`
     exclude=`regex $exclude`
+    # check deprecated dirs
+    if [ -d ~/ports ]; then
+	warn "~/ports is deprecated! Move to $PRT_DIR!"
+	PRT_DIR=~/ports
+    fi
+    if [ -d ~/sources ]; then
+	warn "~/sources is deprecated! Move to $SRC_DIR!"
+	SRC_DIR=~/sources
+    fi
+    if [ -d ~/packages ]; then
+	warn "~/packages is deprecated! Move to $PKG_DIR!"
+	PKG_DIR=~/packages
+    fi
     # if not used as include file, start me
     [ `basename $0` == "portpkg" ] && parse_options $@
     return 0

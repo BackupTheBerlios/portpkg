@@ -24,7 +24,7 @@ can be one of these forms:
 .B ]
 .SH DESCRIPTION
 portpkg starts a so called port script (SlackBuild) found in
-~/ports/*/<portname>/ and installs the resulting package to your system.
+/usr/ports/*/<portname>/ and installs the resulting package to your system.
 .SH ACTIONS
 There can be only one alternative action. If none specified, the default
 action is to build and install.
@@ -39,7 +39,7 @@ Show information about ports.
 .IP "-l, --list"
 List all (or specified) available ports.
 .IP "-s, --sync"
-Synchronise your ports tree in ~/ports with the official tree.
+Synchronise your ports tree in /usr/ports with the official tree.
 .IP "-u, --upgrade"
 Upgrade all (!) outdated ports shown by --diff.
 .IP "-v, --version"
@@ -65,38 +65,38 @@ Show SlackBuild output instead of piping it to /tmp/buildlog-<portname>.
 .IP "portpkg --sync"
 .IP "portpkg --upgrade"
 .SH DIRECTORIES
-.I ~/ports
+.I /usr/ports
 .RS
 The ports archive portpkg needs to build packages.
 .RE
-.I ~/sources
+.I /usr/src/dist
 .RS
 The source files portpkg downloaded for ports.
 .RE
-.I ~/packages
+.I /usr/obj/pkg
 .RS
 The packages portpkg made of ports.
 .RE
 .SH FILES
-.I ~/ports/maintain
+.I /usr/ports/maintain
 .RS
 The configuration file for maintainer information.
 .RE
-.I ~/ports/mirrors
+.I /usr/ports/mirrors
 .RS
 List  of mirrors to be used when downloading files. 
 .RE
-.I ~/ports/ignore
+.I /usr/ports/ignore
 .RS
 List of ports to ignore when making the "requires" file.
 .RE
-.I ~/ports/exclude
+.I /usr/ports/exclude
 .RS
 List of ports to exclude when doing upgrades or diffs.
 .RE
 .SH AUTHOR
 Thomas Pfaff <toastbrot at web de>
 .SH "SEE ALSO"
-.BR installpkg
-.BR removepkg
-.BR upgradepkg  	
+.BR installpkg(8)
+.BR removepkg(8)
+.BR upgradepkg(8)  	

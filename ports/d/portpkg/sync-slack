@@ -6,11 +6,11 @@ source `which portpkg` || exit 1
 
 RSYNC=rsync://rsync.slackware.at/slackware/slackware-current/source
 DIST=ftp://ftp.slackware.com/pub/slackware/slackware-current
-TREE=~/pseudo/slack
+TREE=/usr/src/pseudo/slack
 
+is_root || die
 mkdir -p $TREE
 cd $TREE || die
-
 has_pkg rsync-2.6
 # sync source/ and remove files we don't need
 rsync -avz --delete \

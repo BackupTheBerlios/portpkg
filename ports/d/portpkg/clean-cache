@@ -20,7 +20,7 @@ for gpkg in `fgrep -vxf $t.avail $t.cache`; do
     mkdir -p $group
     mv $gpkg.tgz $group/
 done
-find -type d -empty | while read pkg; do
-    row "Deleting empty directory $pkg"
-    rmdir $pkg
+find -type d -empty | while read dir; do
+    row "Deleting empty directory $dir/"
+    rmdir $dir
 done
