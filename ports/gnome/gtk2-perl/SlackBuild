@@ -1,6 +1,6 @@
 VERSION=1.061
 ARCH=noarch
-BUILD=2tom
+BUILD=3tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -9,8 +9,8 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 
 cd /tmp || exit 1
-tar xzvf $CWD/Glib-$VERSION.tar.gz || exit 1
-cd Glib-$VERSION || exit 1
+tar xzvf $CWD/Gtk2-$VERSION.tar.gz || exit 1
+cd Gtk2-$VERSION || exit 1
 chown -R root.root .
 perl Makefile.PL || exit 1
 sed -i "s,/share/man,/man,g" Makefile
@@ -20,7 +20,7 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 find $PKG/usr/man/ -type f | xargs -r gzip -9
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS ChangeLog LICENSE MANIFEST NEWS README README.api-changes TODO \
+  AUTHORS ChangeLog LICENSE MANIFEST NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
