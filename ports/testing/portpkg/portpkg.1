@@ -1,4 +1,4 @@
-.TH PORTPKG 1 "November 21, 2004" "Slackware Linux" "User Manuals"
+.TH PORTPKG 1 "February 2005" "Slackware Linux" "User Manuals"
 .SH NAME
 portpkg \- build a package by source and install it
 .SH SYNOPSIS
@@ -10,13 +10,16 @@ group/
 .IP
 [group/]name[-version-arch-build]
 .SH DESCRIPTION
-Portpkg starts a so called port script (SlackBuild) found in
-/usr/ports/<group>/<name>/ and installs the resulting package to
-the system.
+Portpkg starts a so called build script (SlackBuild) found in
+/usr/ports/<group>/<name>/ and installs the resulting package to the system.
+The default behaviour will let it check for dependant ports and packages and
+build them in order to satisfy requirements. Portpkg will always try to
+shorten and reuse existing files: It resumes automatically partly downloaded
+source files and makes use of its cache directories.
 .SH ACTIONS
-If no action is specified, the default action is to check for required
-packages, then download the source code, compile it, build a binary package
-and install it. There can be only one alternative action:
+If no action is specified, the default action is to install a port, which
+includes downloading source code, compiling and packaging if neccessary. There
+can be only one alternative action:
 .IP "-d, --diff"
 List the difference between installed and available port versions.
 .IP "-f, --find"
@@ -28,30 +31,32 @@ Show information about ports.
 .IP "-l, --list"
 List all (or specified) available ports.
 .IP "-s, --sync"
-Synchronise local ports tree with the official tree.
+Sync the ports tree with the official tree and the package directory with the
+ports tree.
 .IP "-u, --upgrade"
 Upgrade all (!) outdated ports shown by --diff.
 .IP "-v, --version"
 Show version information about Portpkg.
+.IP "-x, --export"
+Submit ports to the Portpkg Project.
 .SH OPTIONS
-There can be multiple options at once:
+There can be multiple options at once to customise portpkg's behaviour (some of
+them can also be defined in /etc/portpkg/local.conf, see below):
 .IP "-e, --reinstall"
 Reinstall the package, if already installed.
 .IP "-b, --rebuild"
-Rebuild the package if already build.
+Rebuild the package if already build (implies --reinstall).
 .IP "-p, --prepare"
 Build package, but don't install (implies --noreqs).
 .IP "-o, --download"
 Download source code files only.
-.IP "-g, --verbose"
+.IP "-g, --verbose (VERBOSE=true)"
 Show compile output.
 .IP "-y, --dryrun"
 Simulate install/download/build.
-.IP "-x, --noexclude"
-Don't use exclude list.
-.IP "-q, --noreqs"
+.IP "-q, --noreqs (NO_REQS=true)"
 Don't check for requirements.
-.IP "-a, --lazy"
+.IP "-a, --lazy (LAZY_CHECKS=true)"
 Don't upgrade dependencies to newest version.
 .SH EXAMPLES
 .IP "Port 'foobar' (download source code, compile, package, install), show compile output, but don't check dependencies:"
@@ -72,15 +77,18 @@ portpkg --sync
 portpkg --upgrade
 .SH DIRECTORIES
 .IP /usr/ports
-The ports tree.
+The ports tree. Costumise this path with PRT_DIR=<path> in
+/etc/portpkg/local.conf.
 .IP /usr/src/dist
 The source code files archive. Files that were downloaded before compiling.
+Costumise this path with SRC_DIR=<path> in /etc/portpkg/local.conf.
 .IP /usr/obj/pkg
-The binary packages archive.
+The binary packages archive. Costumise this path with PKG_DIR=<path> in
+/etc/portpkg/local.conf.
 .SH FILES
 .IP /etc/portpkg/local.conf
-The configuration file for optional settings, mostly written by
-interactive scripts.
+The configuration file for optional settings. Empty or non-existend for
+defaults.
 .IP /tmp/buildlog-<name>
 The detailed output when a SlackBuild was executed. You can view this instantly
 with --verbose. 

@@ -33,7 +33,7 @@ SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
 CFG_DIR=/etc/portpkg
-[ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
+[ -f $CFG_DIR/local.conf ] && source $CFG_DIR/local.conf
 
 # constants
 ENGINE_VER=cvs
@@ -125,6 +125,8 @@ get()
       error "Download failed!"
     fi
   done
+  # at this point we don't need a log anymore
+  rm $log
 }
 
 # generate a regular expression for grep from a pkgex-list
@@ -345,14 +347,13 @@ maintainer_mode()
 build_pkg()
 {
   local t=`mktemp -d`
-  cd `dirname $script` || return 1
   stanza "Building $package:"
   if $maintain; then
     warn "Maintainer mode: Modifying files: requires md5sums footprint"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
   fi
+  cd `dirname $script` || return 1
   # assume, all symlinks here are links to source files
-  trap "rm -rf $TMPDIR; find $PRT_DIR/$group/$name/ -type l | xargs -r rm" EXIT
   find -type l | xargs -r rm
   # download the source files
   local src
@@ -367,23 +368,13 @@ build_pkg()
       row "Downloading $srcname"
       $DRY_RUN || get $src $SRC_DIR/$srcname || return 1
     fi
-    if ! $DRY_RUN; then
-      # pseudo ports: don't cache sources
-      if $pseudo; then
-        rm -rf /tmp/$srcname
-        mv $SRC_DIR/$srcname /tmp
-        ln -s /tmp/$srcname .
-      else
-        ln -s $SRC_DIR/$srcname .
-      fi
-    fi
+    $DRY_RUN || ln -s $SRC_DIR/$srcname .
   done
   # check md5sums
   if ! $maintain && ! $DRY_RUN && [ -f md5sums ] \
   && ! md5sum -c md5sums >$t/md5sum 2>&1; then
     sed -n "/FAILED/s,\(.*\):.*,\1,p" $t/md5sum | xargs -r echo "  --> MD5SUM mismatch:"
     error "Integrity checking failed!"
-    clean_port
     return 1
   fi
   $download_only && return 0
@@ -414,7 +405,7 @@ build_pkg()
       # this is a hack-around for some faulty install scripts
       chmod 1777 /tmp
     fi
-    # success (this is the most promising test to ensure it worked)?
+    # success? (this is the most promising test to ensure it worked)
     if ! [ -f /tmp/$package.tgz ]; then
       $VERBOSE || tail /tmp/buildlog-$name
       error "Compilation failed (see /tmp/buildlog-$name)!"
@@ -435,10 +426,15 @@ build_pkg()
   mkdir -p $PKG_DIR/$group
   mv /tmp/$package.tgz $PKG_DIR/$group/
   row "Cleaning up"
+  for src in $sources; do
+    local srcname=`basename "$src" | cut -d % -f 2`
+    # remove symlinks to sources
+    rm -rf `dirname $script`/$srcname
+    # pseudo ports: don't cache sources
+    $pseudo && rm -rf $SRC_DIR/$srcname
+  done
   rm -rf /tmp/package-$name
-  trap "rm -rf $TMPDIR" EXIT
 #  rm -f /tmp/buildlog-$name
-#  rm -f /tmp/wgetlog-*
 }
 
 # really (re)install/upgrade current port
@@ -507,27 +503,26 @@ add_pkg() # pkgex
 do_add() # pkgex-list
 {
   debug "do_add(): starting: $@"
-  has_args $@ || die
+  has_args "$@" || die
   has_ports || die
   is_root || die
-  $NO_REQS && warn "Dependency resolving disabled!"
-  $DRY_RUN && warn "Downloading, packaging and installing simulated!"
   local ret
   local arg
-  for arg in `explicit $@`; do
+  for arg in `explicit "$@"`; do
     debug "do_add(): \$arg=$arg"
     add_pkg $arg
     ret=$?
   done
   # summary
-  local stats=/tmp/portpkg-summary
-  rm -rf $stats || die
-  if [ "`cat $ADD_SUM_CALL $ADD_SUM_START $ADD_SUM_FINISH | wc -l`" ]; then
+  local stats=$ADM_DIR/portpkg.log
+  echo "+--------------------+" >>$stats
+  date >>$stats
+  if [ "`cat $ADD_SUM_CALL $ADD_SUM_START $ADD_SUM_FINISH`" ]; then
     stanza "Summary of actions:"
     cat $ADD_SUM_FINISH | xargs -r -l echo "  --> Finished"
     cat $ADD_SUM_START | xargs -r -l echo "  --> Failed at"
     cat $ADD_SUM_CALL | xargs -r -l echo "  --> Couldn't find"
-  fi | tee $stats >$output
+  fi | tee -a $stats >$output
   debug "do_add(): finished: $@"
   return $ret
 }
@@ -554,7 +549,7 @@ do_diff()
 
 do_export()
 {
-  has_args $@ || die
+  has_args "$@" || die
   has_ports || die
   has_prog curl || die
   [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
@@ -564,7 +559,7 @@ do_export()
   stanza "Exporting ports to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
   local ret
   local arg
-  for arg in `explicit $@`; do
+  for arg in `explicit "$@"`; do
     debug "do_export(): \$arg=$arg"
     get_info $arg || continue
     local path=`dirname $script`
@@ -609,12 +604,12 @@ do_find() # text [..] >list
 do_info() # pkgex-list
 {
   has_ports || die
-  has_args $@ || die
+  has_args "$@" || die
   local ret=0
   local arg
   debug "do_info(): starting: $@"
-  debug "do_info(): for arg in `explicit $@`"
-  for arg in `explicit $@`; do
+  debug "do_info(): for arg in "`explicit "$@"`
+  for arg in `explicit "$@"`; do
     ret=1
     debug "do_info(): testing $arg"
     get_info $arg || continue
@@ -655,18 +650,22 @@ do_sync()
   local cvs
   # unhide .CVS
   find $PRT_DIR/ -name .CVS -type d | while read cvs; do mv $cvs `dirname $cvs`/CVS; done
+  [ -f ~/.cvspass ] || touch ~/.cvspass
   if [ -d CVS ]; then
     cd $PRT_DIR || die
-    cvs -qz9 up -dP -I arbitrary,local,z #,"*.local",local.conf
+#    # if it's a CVS root with a CVS-account, then don't overwrite modified files
+#    grep -sq anonymous CVS/Root && local opt="C" || local opt=""
+#    cvs -qz9 up -dP$opt -I arbitrary,local,z
+    cvs -qz9 up -dP -I arbitrary,local,z 2>/dev/null
   else
     cd `dirname $PRT_DIR` || die
-    cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports
+    cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
   fi | sed -r \
   -e "s,^.*$,  --> &," \
   -e "s, U , Updating ," \
-  -e "s, C , Conflict with ," \
+  -e "s, C , Conflicting with ," \
   -e "s, P , Patching ," \
-  -e "s, \\? , Unknown file ,"
+  -e "s, \\? , Unknown entry ,"
 #    -e "/\(.*\)/d" \
   # hide CVS
   find $PRT_DIR/ -name CVS -type d | while read cvs; do mv $cvs `dirname $cvs`/.CVS; done
@@ -696,7 +695,7 @@ do_sync()
     mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
   done
   local dir
-  find $PKG_DIR/ -mindepth 2 -type d -empty | cut -c 3- | while read dir; do
+  find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
     row "Deleting empty directory $dir/"
     rmdir $dir
   done
@@ -799,7 +798,10 @@ maintain,export"
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
-  $action $@
+  $NO_REQS && warn "Dependency resolving disabled!"
+  $LAZY_CHECKS && warn "Enable lazy dependency checking!"
+  $DRY_RUN && warn "Up-/downloading, packaging and installing simulated!"
+  $action "$@"
   exit $?
 }
 
@@ -819,8 +821,8 @@ init()
   ignore=`regex $ignore`
   exclude=`regex $exclude`
   # if not used as include file then start me
-  [ `basename $0` == "portpkg" ] && parse_options $@
+  [ `basename $0` == "portpkg" ] && parse_options "$@"
   return 0
 }
 
-init $@
+init "$@"

@@ -73,6 +73,42 @@ decode()
   eval echo \"$@\"
 }
 
+add_inst() # rel/path/to/command_to_add file
+{
+  local s1=`basename $1`
+  local s2=`basename $2`
+  # check for old style ("command bla")
+  if grep -sq "$s1" $2 && ! grep -sq "^if .*/$s1" $2; then
+    # one-liner: remove it
+    sed -i "\,$s1,d" $2
+  fi
+  # remove to make sure, it's correct
+  sed -i "/^if .*\/$s1/,/^fi$/d" $2
+  # check for new style ("if [ -x command ]; then...")
+  if ! grep -sq "$s1" $2; then
+    row "Adding $s1 to $s2"
+    echo "if [ -x $1 ]; then" >>$2
+    echo "  $1 >/dev/null 2>&1" >>$2
+    echo "fi" >>$2
+  fi
+}
+
+remove_inst() # command_to_remove file
+{
+  local s1=`basename $1`
+  local s2=`basename $2`
+  if grep -sq "$s1" $2; then
+    row "Removing unneeded $s1 from $s2"
+    # check for new style ("if [ -x command ]; then...")
+    if grep -sq "^if .*/$s1" $2; then
+      sed -i "/^if .*\/$s1/,/^fi$/d" $2
+    else
+      # old style ("command bla")
+      sed -i "\,$s1,d" $2
+    fi
+  fi
+}
+
 # first: do we have tags?
 [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
@@ -457,49 +493,31 @@ if ! check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
   snip schemas $script
 fi
 
-# scrollkeeper
-if check "\.omf$" $t/footprint; then
-  if ! grep -sq scrollkeeper-update $path/doinst.sh; then
-    row "Adding scrollkeeper-update to doinst.sh"
-    echo "usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1" >>$path/doinst.sh
-  fi
-else
-  if grep -sq scrollkeeper-update $path/doinst.sh; then
-    row "Removing unneeded scrollkeeper-update from doinst.sh"
-    sed -i "\,scrollkeeper-update,d" $path/doinst.sh
-  fi
-fi
-
 # old inst()
 if grep -sq "^inst()" $path/doinst.sh; then
   row "Removing old inst() from doinst.sh"
   sed -i "/^inst()/,/^}$/d" $path/doinst.sh
 fi
 
+# scrollkeeper
+if check "\.omf$" $t/footprint; then
+  add_inst "usr/bin/scrollkeeper-update" $path/doinst.sh
+else
+  remove_inst "scrollkeeper-update" $path/doinst.sh
+fi
+
 # mime-update
 if check "\.(keys|mime)(|\.in)$" $t/footprint; then
-  if ! grep -sq "update-mime-database" $path/doinst.sh; then
-    row "Adding update-mime-database to doinst.sh"
-    echo "usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1" >>$path/doinst.sh
-  fi
+  add_inst "usr/bin/update-mime-database" $path/doinst.sh
 else
-  if grep -sq "update-mime-database" $path/doinst.sh; then
-    row "Removing unneeded update-mime-database from doinst.sh"
-    sed -i "\,update-mime-database,d" $path/doinst.sh
-  fi
+  remove_inst "update-mime-database" $path/doinst.sh
 fi
 
 # desktop-database
 if check "\.desktop(|\.in)$" $t/footprint; then
-  if ! grep -sq "update-desktop-database" $path/doinst.sh; then
-    row "Adding update-desktop-database to doinst.sh"
-    echo "usr/bin/update-desktop-database -q" >>$path/doinst.sh
-  fi
+  add_inst "usr/bin/update-desktop-database" $path/doinst.sh
 else
-  if grep -sq "update-desktop-database" $path/doinst.sh; then
-    row "Removing unneeded update-desktop-database from doinst.sh"
-    sed -i "\,update-desktop-database,d" $path/doinst.sh
-  fi
+  remove_inst "update-mime-database" $path/doinst.sh
 fi
 
 ## wrong hard-coded doc paths
@@ -681,6 +699,7 @@ cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 #!SlackBuild.skel
+
 #!doinst.sh_config
 config() {
   NEW="$1"
