@@ -1,6 +1,6 @@
 #!/bin/bash -u
 #
-# Portpkg - A portssystem for Slackware written in Bash++
+# Portpkg -- A portssystem for Slackware written in Bash++
 # Copyright (C) 2003, 2004 Thomas Pfaff <toastbrot@web.de>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -343,12 +343,15 @@ build_pkg()
             -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
 	    | grep -ve ^$name$ $ignore | sort -u >$t.bin_req
 	    # check for perl
-	    find /tmp/package-$name/usr/lib -name "perl[0-9]*" 2>/dev/null \
+	    find /tmp/package-$name/ | xargs file | grep -q perl \
 	    && echo perl >>$t.bin_req
 	    # check for python
-	    find /tmp/package-$name/usr/lib -name "python[0-9]*.[0-9]*" 2>/dev/null \
+	    find /tmp/package-$name/ | xargs file | grep -q python \
 	    && echo python >>$t.bin_req
 	    echo "$requires" >$t.old_req
+	    # check trashed package upgrades
+	    grep -se "-upgraded$" $t.bin_req \
+	    && warn "Check this requirements: "`grep "-upgraded$" $t.bin_req`
 	    # now merge into old requirements-list
 	    cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$t.new_req
 	    # update requires
@@ -515,7 +518,7 @@ do_list() # [pkgex-list] >glist
 {
     t=`private`
     has_ports || die
-    ls_locations | loc2gpkg | grep -v $exclude >$t.pipe
+    ls_locations | loc2gpkg >$t.pipe #| grep -v $exclude >$t.pipe
     # grep arguments
     if [ "$*" ]; then
     	grep `regex $@` $t.pipe 2>/dev/null
@@ -531,10 +534,11 @@ do_sync()
     local cvsroot=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
     stanza "Syncing your ports tree with `echo $cvsroot | cut -d @ -f 2 | cut -d : -f 1`:"
     local file
-    if [ -d $PRT_DIR ]; then
+    if [ -d $PRT_DIR/CVS ]; then
         cd $PRT_DIR || die
 	cvs -qz3 up -dPC -I footprint -I diff -I buildlog \
 	-I PORT_IS_BROKEN -I arbitrary -I local -I "*.local" 2>/dev/null
+	echo "Syncing complete"
     else
 	mkdir -p $PRT_DIR
         cd `dirname $PRT_DIR` || die
@@ -592,8 +596,8 @@ version()
 	
 Portpkg version $ENGINE_VER.
 Copyright (C) 2003, 2004 Thomas Pfaff <toastbrot@web.de>.
-This programme comes with ABSOLUTELY NO WARRANTY. This is free software, and
-you are welcome to redistribute it under certain conditions.
+Portpkg comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions.
 EOF
 }
 

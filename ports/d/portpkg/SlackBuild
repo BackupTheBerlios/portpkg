@@ -1,4 +1,4 @@
-VERSION=0.29g
+VERSION=0.30
 ARCH=noarch
 BUILD=1tom
 
@@ -6,15 +6,21 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=/tmp/package-$NAME
 rm -rf $PKG
-mkdir -p $PKG/usr/{bin,man/man1}
+mkdir -p $PKG/usr/{bin,doc/$NAME-$VERSION,man/man1}
 
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
 install -m 755 $CWD/sync-dist $PKG/usr/bin/
 install -m 755 $CWD/sync-slack $PKG/usr/bin/
 install -m 755 $CWD/clean-cache $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
+install -m 755 $CWD/autoport $PKG/usr/bin/
 install -m 755 $CWD/portpkg $PKG/usr/bin/
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
+for i in Introduction UserGuide MaintainerGuide Internals TodoBugsAbout; do
+  lynx -dump $CWD/$i.html >$PKG/usr/doc/$NAME-$VERSION/$i.txt
+  sed -i "/:\/\/localhost\//d" $PKG/usr/doc/$NAME-$VERSION/$i.txt
+  chmod 644 $PKG/usr/doc/$NAME-$VERSION/$i.txt
+done
 
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 gzip -9 $PKG/usr/man/man?/*

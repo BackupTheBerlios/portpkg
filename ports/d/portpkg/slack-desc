@@ -1,9 +1,9 @@
 portpkg: Portpkg (Administration tools for the Portpkg Project)
 portpkg:
-portpkg: These are the administration tools portpkg, checkpkg,
-portpkg: clean-cache, sync-dist and sync-slack for handling ports
-portpkg: of the Portpkg Project hosted on http://portpkg.berlios.de.
-portpkg: To Retrieve all available ports, do
+portpkg: These are the administration tools portpkg, autoport, checkpkg,
+portpkg: clean-cache, sync-dist and sync-slack.
+portpkg: 
+portpkg: To checkout the ports tree, do
 portpkg:     portpkg --sync
-portpkg: To upgrade this package in future, do
+portpkg: To upgrade portpkg in future, do
 portpkg:     portpkg portpkg
