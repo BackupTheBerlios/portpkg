@@ -1,6 +1,6 @@
 VERSION=2.2pre2
 SVER=2.2-pre2
-ARCH=i486
+ARCH=${ARCH:-i486}
 BUILD=1tom
 
 CWD=`pwd`

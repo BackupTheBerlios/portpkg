@@ -5,7 +5,7 @@
 
 NAME=gst-plugins
 VERSION=0.8.5
-ARCH=i486
+ARCH=${ARCH:-i486}
 BUILD=1
 
 # we need to remove any other packages before checkinstall
@@ -14,11 +14,12 @@ removepkg $NAME
 
 # check if slacktrack is installed
 if [ -f /var/log/packages/slacktrack-* ]; then
-    echo "slacktrack conflicts with checkinstall."
-    echo "Please remove slacktrack while compiling $NAME."
+    echo "You have installed 'slacktrack' which conflicts with 'checkinstall'."
+    echo "Please remove it and reinstall 'checkinstall' at least for"
+    echo "compiling this package."
     exit 1
 fi
-
+		
 # wrappadap
 checkinstall -S -y \
   --pkgname=$NAME \

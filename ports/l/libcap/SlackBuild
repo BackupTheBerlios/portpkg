@@ -1,5 +1,5 @@
 VERSION=1.10
-ARCH=i486
+ARCH=${ARCH:-i486}
 BUILD=1tom
 
 CWD=`pwd`
@@ -12,13 +12,6 @@ cd /tmp || exit 1
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="-O2 -march=$ARCH -mcpu=i686" \
-./configure --prefix=/usr \
-	    --sysconfdir=/etc \
-	    --localstatedir=/var/lib \
-	    --program-prefix="" \
-	    --disable-static \
-            $ARCH-slackware-linux || exit 1
 make || exit 1
 make install FAKEROOT=$PKG || exit 1
 chown -R root.bin $PKG{,/usr}/{,s}bin

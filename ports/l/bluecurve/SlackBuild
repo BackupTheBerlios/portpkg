@@ -1,6 +1,6 @@
 VERSION=1.0
-ARCH=i486
-BUILD=10tom
+ARCH=${ARCH:-i486}
+BUILD=11tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -21,12 +21,6 @@ CFLAGS="-O2 -march=$ARCH -mcpu=i686" \
             $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-
-cp -av $CWD/files/* $PKG/usr/share/
-find $PKG/usr/share/ -type f -exec chmod 644 {} \;
-find $PKG/usr/share/ -type d -exec chmod 755 {} \;
-chown -R root.root $PKG/usr/share
-
 chown -R root.bin $PKG{,/usr}/{,s}bin
 find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
 mv $PKG/usr/share/{man,doc} $PKG/usr/

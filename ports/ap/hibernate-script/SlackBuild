@@ -1,4 +1,4 @@
-VERSION=0.99
+VERSION=1.02
 ARCH=noarch
 BUILD=1tom
 
@@ -13,7 +13,7 @@ tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 
-BASE_DIR=$PKG PREFIX=/usr install.sh || exit 1
+BASE_DIR=$PKG PREFIX=/usr sh install.sh || exit 1
 
 chown -R root.bin $PKG{,/usr}/{,s}bin
 find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded

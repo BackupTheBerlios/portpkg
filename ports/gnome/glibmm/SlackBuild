@@ -1,6 +1,6 @@
 VERSION=2.4.4
-ARCH=i486
-BUILD=1tom
+ARCH=${ARCH:-i486}
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -9,7 +9,7 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 
 cd /tmp || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="-O2 -march=$ARCH -mcpu=i686" \

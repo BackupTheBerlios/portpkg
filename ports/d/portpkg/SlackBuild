@@ -1,6 +1,6 @@
 VERSION=0.30
 ARCH=noarch
-BUILD=3tom
+BUILD=4tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -18,7 +18,10 @@ install -m 755 $CWD/portpkg $PKG/usr/bin/
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 for i in QuickStart UserGuide MaintainerGuide PortpkgGuide TodoBugsAbout; do
   lynx -dump $CWD/$i.html >$PKG/usr/doc/$NAME-$VERSION/$i.txt
-  sed -i "/:\/\/localhost\//d" $PKG/usr/doc/$NAME-$VERSION/$i.txt
+  sed -i \
+  -e "/:\/\/localhost\//d" \
+  -e "s,^[^ 0-9],      &," \
+  -e "s,^[0-9],   &," $PKG/usr/doc/$NAME-$VERSION/$i.txt
   chmod 644 $PKG/usr/doc/$NAME-$VERSION/$i.txt
 done
 
