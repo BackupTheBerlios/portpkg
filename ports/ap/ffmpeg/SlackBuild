@@ -1,0 +1,56 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.4.9pre1
+ARCH=${ARCH:-i486}
+BUILD=2tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-0.4.9-pre1.tar.gz || exit 1
+cd $NAME-0.4.9-pre1 || exit 1
+chown -R root.root .
+#+config-fix
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=$PKG/usr \
+  --enable-shared \
+  $ARCH-slackware-linux || exit 1
+#+config-fix
+#+install-fix
+make || exit 1
+make install || exit 1
+#+install-fix
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  COPYING CREDITS Changelog README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
+find $PKG/usr/info -name dir | xargs -r rm
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG || exit 1
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
