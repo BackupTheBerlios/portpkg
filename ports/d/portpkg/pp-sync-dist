@@ -44,9 +44,13 @@ while ! [ "$DIST_VER" ]; do
 done
 DIST=$DIST/slackware-$DIST_VER
 stanza "Syncing with `echo $DIST | cut -d / -f 3`:"
-row "Retrieving meta data"
+row "Retrieving file list"
 get $DIST/FILELIST.TXT $t.file_list >/dev/null
+row "Retrieving package info"
 get $DIST/PACKAGES.TXT $t.packages >/dev/null
+row "Retrieving md5sums"
+get $DIST/CHECKSUMS.md5 $t.md5sums >/dev/null
+row "Retrieving kernel version"
 get $DIST/kernels/VERSIONS.TXT $t.kernel_versions >/dev/null
 cat $t.file_list | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t.files
 n=-1
@@ -92,6 +96,7 @@ $DIST/kernels/$flavour/bzImage
 $DIST/kernels/$flavour/System.map.gz
 $DIST/kernels/$flavour/config
 EOF
+      grep "\./kernels/$flavour/" $t.md5sums | sed "s,  .*/,  ," >$path/md5sums
       echo "$flavour: Linux-$kver ($flavour)" >$path/slack-desc
       touch $path/pseudo
       touch $path/slot-in
@@ -125,6 +130,7 @@ CWD=\`pwd\`
 cp \$CWD/$pkg.tgz /tmp
 EOF
     echo "$DIST/$section/$s.tgz" >$path/sources
+    grep "/$section/$s.tgz$" $t.md5sums | sed "s,  .*/,  ," >$path/md5sums
     grep "^$name:" $t.packages >$path/slack-desc
     touch $path/pseudo
   done

@@ -135,27 +135,30 @@ done
 
 # input information
 # try to guess, but set anything else as user wants
-get_info $name 2>/dev/null
-[ "$set_sources" ] && sources=$set_source
+[ "$name" ] && get_info $name 2>/dev/null
+[ "$set_sources" ] && sources=$set_sources
 [ "$set_group" != "local" ] && group=$set_group
 # sources
 ask "Source file URL [$sources]:"
 sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,//prdownloads\.,//dl\.," -e "s,\?download$,,"`
+set_sources=$sources
 # name: guess it, if we haven't yet it
 file=`basename $sources`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
 ask "Name [$name]:"
 name=${s:-$name}
+## now check if it exists
+#get_info $name 2>/dev/null
+#[ "$set_sources" ] && sources=$set_sources
+#[ "$set_group" != "local" ] && group=$set_group
 ## try to guess group
 #[ "$group" == "local" ] && get_info $name 2>/dev/null
 # group
 ask "Group [$group]:"
 group=${s:-$group}
-## now check if it exists
-#get_info $name 2>/dev/null
 # version: should be always guessed
 ## version: guess it, if we haven't yet it
 #if ! [ "$version" ]; then
@@ -262,6 +265,8 @@ if [ -f $SRC_DIR/$file ]; then
   stanza "$file found in $SRC_DIR/."
 else
   stanza "Downloading source file:"
+  VERBOSE=true
+  output=/dev/stdout
   get $sources $SRC_DIR/$file || die
 fi
 

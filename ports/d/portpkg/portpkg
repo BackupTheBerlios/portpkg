@@ -33,6 +33,8 @@ MAINTAIN_ALL=false
 VERBOSE=false
 DRY_RUN=false
 NO_REQS=false
+LAZY_CHECKS=false
+DEBUG=false
 source $PRT_DIR/local.conf
 
 # default options
@@ -40,14 +42,13 @@ action=do_add
 download_only=false
 reinstall=false
 rebuild=false
-debug=false
 output=/dev/null
 
 # global variables
 declare ignore mirrors exclude
 declare package name group
 declare script description requires size u_size sources pkg_file
-declare maintain slot_in
+declare maintain slot_in pseudo
 
 # converters
 pkg2name() { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -61,7 +62,7 @@ row()    { echo -e "  --> $@"; }
 warn()   { echo -e "WARNING: $@"; }
 error()  { [ "$*" ] && stanza "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
-debug()  { $debug && echo "$@" >&2; }
+debug()  { $DEBUG && echo "$@" >&2; }
 
 # checks
 has_args()  { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
@@ -146,6 +147,7 @@ ls_locations()
     cat $cache 2>/dev/null
     return
   fi
+  debug "ls_locations(): generating list"
   find $PRT_DIR/ -follow -mindepth 3 -name "*SlackBuild" \
   | xargs egrep -sH "^VERSION=|^ARCH=|^BUILD=" \
   | tr "\n" " " | sed -r \
@@ -226,6 +228,12 @@ get_info()
   # slot-in?
   slot_in=false
   [ -f $path/slot-in ] && slot_in=true
+  # pseudo-port?
+  pseudo=false
+  [ -f $path/pseudo ] && pseudo=true
+#  # strict dependency resolving?
+#  strict=false
+#  [ -f $path/strict ] && strict=true
   debug "get_info(): finished: $@"
   return 0
 }
@@ -237,35 +245,49 @@ check_reqs()
   local avail=$SCRATCH_DIR/avail_cache
   [ -f $avail ] || ls_locations | loc2gpkg | grep -v $exclude >$avail
   debug "check_reqs(): starting: $package"
-  # remember that for later
+  # remember that for a refresh later
   local gpkg=$group/$package
-  local refresh=false
-  debug "check_reqs(): \$requires="$requires
+#  $strict && debug "check_reqs(): in strict mode"
+  $LAZY_CHECKS && debug "check_reqs(): being lazy"
+  debug "check_reqs(): $name requires "$requires
   local req
   for req in $requires; do
-    debug "check_reqs(): \$req=$req"
+    debug "check_reqs(): checking $req"
+    local inst_pkg=`ls_inst | grep -m 1 $(regex $req)`
     local avail_pkg=`grep -m 1 $(regex $req) $avail | cut -d / -f 2`
+    # is another version installed?
+    if [ "$inst_pkg" ]; then
+      debug "check_reqs(): $req is installed"
+      # if not in strict mode then it's sufficient
+#      $strict || continue
+      $LAZY_CHECKS && continue
+    fi
+    # anyway, is there an available port?
     if [ "$avail_pkg" ]; then
-      debug "check_reqs(): \$avail_pkg=$avail_pkg"
+      debug "check_reqs(): $req available as $avail_pkg"
+      # is it up-to-date?
       is_inst $avail_pkg && continue
-      debug "check_reqs(): call: add_pkg $req"
-      if ! add_pkg $req; then
-        error "$req is broken! Stopping."
+      debug "check_reqs(): call: add_pkg $avail_pkg"
+      if ! add_pkg $avail_pkg; then
+        error "$avail_pkg is broken! Stopping."
         return 1
       fi
-      refresh=true
-    elif ! [ `ls_inst | grep -m 1 $(regex $req)` ]; then
-#      if ! slackpkg upgrade $req; then
+      # after that add_pkg we have to refresh
+      get_info $gpkg
+    elif ! [ "$inst_pkg" ]; then
+      if [ -x /usr/sbin/slackpkg ]; then
+        # $req is not installed and not available, but we have slackpkg
+        if $DRY_RUN; then
+          stanza "Resolving $req with slackpkg..."
+        elif ! su -c "echo | slackpkg install $req"; then
+          error "Unable to resolve $req (also with slackpkg)! Stopping."
+        fi
+        debug "check_reqs(): $req resolved by slackpkg"
+      else
         error "Cannot find required package $req! Stopping."
-        return 1
-#      fi
-#      debug "check_reqs(): $req resolved by slackpkg"
-    else
-      debug "check_reqs(): $req is sufficient and installed"
+      fi
     fi
   done
-  # refresh info
-  $refresh && get_info $gpkg
   debug "check_reqs(): finished: $package"
   return 0
 }
@@ -296,13 +318,21 @@ build_pkg()
       row "Downloading $srcname"
       $DRY_RUN || get $src $SRC_DIR/$srcname || return 1
     fi
-    # pseudo ports: don't cache sources
-    if [ -f $path/pseudo ]; then
-      mv $SRC_DIR/$srcname .
-    else
-      ln -s $SRC_DIR/$srcname .
+    if ! $DRY_RUN; then
+      # pseudo ports: don't cache sources
+      $pseudo && mv $SRC_DIR/$srcname . || ln -s $SRC_DIR/$srcname .
     fi
   done
+  # md5sums
+  if [ -f $path/md5sums ]; then
+    row "Checking md5sums"
+    # check anything and only what's inside "md5sums"
+    if ! md5sum --check $path/md5sums >$t.md5sum; then
+      cat $t.md5sum
+      error "Failed at integrity checking"
+      return 1
+    fi
+  fi
   $download_only && return 0
   # build package
   row "Executing $script"
@@ -328,10 +358,17 @@ build_pkg()
     row "Writing footprint"
     tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }'\
     | sort +3 >$path/footprint
-    # is there a build tree?
+    # write md5sums
+    [ -f $path/sources ] && row "Writing md5sums (assuming these files are integer!)"
+    for src in $sources; do
+      local srcname=`basename "$src" | cut -d % -f 2`
+      md5sum $srcname
+    done >$path/md5sums
+    [ -s $path/md5sums ] || rm $path/md5sums
+    # is there a package tree?
     if [ -d /tmp/package-$name ]; then
       echo "$requires" >$t.old_req
-      row "Finding requirements"
+      row "Analysing package"
       # check libraries (don't log the package itself, aaa_base and
       # aaa_elflibs, gcc and co. glibc-derivates and all -solibs)
       find /tmp/package-$name/ | xargs file | grep ELF | cut -d : -f 1 \
@@ -360,11 +397,14 @@ build_pkg()
       # show any dependency that couldn't be confirmed
       diff -u $t.old_req $t.bin_req | grep ^[-][^-] | cut -c 2- >$path/arbitrary
       [ -s $path/arbitrary ] && warn "Arbitrary requirements: "`cat $path/arbitrary` \
-      || rm -r $path/arbitrary
+      || rm -f $path/arbitrary
+      # now remove that directory
+      rm -r /tmp/package-$name
     fi
   fi
   row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group
+  # actually make a copy because portpkg could be run as user
   cp /tmp/$package.tgz $PKG_DIR/$group/
 }
 
@@ -426,8 +466,8 @@ do_add() # pkgex-list
   debug "do_add(): starting: $@"
   has_args $@ || die
   has_ports || die
-  $NO_REQS && debug "do_add(): Dependency resolving disabled!"
-  $DRY_RUN && warn "do_add(): Downloading, packing and installing simulated!"
+  $NO_REQS && warn "Dependency resolving disabled!"
+  $DRY_RUN && warn "Downloading, packaging and installing simulated!"
   local arg
   for arg in `explicit $@`; do
     debug "do_add(): \$arg=$arg"
@@ -570,12 +610,13 @@ Actions:
   -v, --version		View version information
 Options:
   -e, --reinstall	Reinstall package if already installed
-  -b, --rebuild		Rebuild package if alread build
+  -b, --rebuild		Rebuild package if already build
   -o, --download	Download source files only
   -g, --verbose		Show compile output
   -y, --dryrun		Simulate install/download/build
   -x, --noexlcude	Don't use exclude list
   -q, --noreqs		Don't check for requirements
+  -a, --lazy            Don't upgrade dependencies to newest version
 Declaration:
   list: group/ or [group/]name[-version-arch-build]
 EOF
@@ -594,9 +635,9 @@ EOF
 
 parse_options()
 {
-  local shorts="diflsuvhebogyqxz"
+  local shorts="diflsuvhebogyqxza"
   local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
-rebuild,download,verbose,dryrun,noreqs,noexclude,debug"
+rebuild,download,verbose,dryrun,noreqs,noexclude,debug,lazy"
   local args
   args=`getopt -quo $shorts -l $longs -- "$@"`
   [ "$?" == "0" ] || die "Bad Arguments! Try: portpkg --help"
@@ -619,7 +660,8 @@ rebuild,download,verbose,dryrun,noreqs,noexclude,debug"
       -y|--dryrun)      DRY_RUN=true;;
       -q|--noreqs)      NO_REQS=true;;
       -x|--noexclude)   exclude=^$;;
-      -z|--debug)       debug=true;;
+      -z|--debug)       DEBUG=true;;
+      -a|--lazy)        LAZY_CHECKS=true;;
       --)               shift
                         break;;
     esac
@@ -627,7 +669,7 @@ rebuild,download,verbose,dryrun,noreqs,noexclude,debug"
   done
   $rebuild && reinstall=true
   $VERBOSE && output=/dev/stdout
-  debug "init(): exclude=$exclude"
+  debug "init(): exclude=\"$exclude\""
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
@@ -670,6 +712,16 @@ init()
   has_pkg coreutils-5.2 || die
   # check for obsolete things
   check_obsolete
+#  if ! [ -f $PRT_DIR/mirrors ] && ! [ -L $PRT_DIR/mirrors ]; then
+#    warn "No mirrors specified!"
+#    if [ -f /etc/slackpkg/mirrors ]; then
+#      local tld=`grep -v ^# /etc/slackpkg/mirrors | cut -s -d / -f 3 | rev \
+#      | cut -d . -f 1 | rev`
+#      warn "Trying slackpkg mirror: $tld"
+#      [ -f $PRT_DIR/mirrors.$tld ] && ln -s mirrors.$tld $PRT_DIR/mirrors \
+#      || warn "Not available."
+#    fi
+#  fi
   # local configuration
   mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{.local,}`
@@ -677,7 +729,7 @@ init()
   ignore=`regex $ignore`
   exclude=`regex $exclude`
   # check default arch
-  ls $ADM_DIR/packages/glibc-* | grep -sqe -i486- && ARCH=i486
+  ARCH=i486
   ls $ADM_DIR/packages/glibc-* | grep -sqe -s390- && ARCH=s390
   ls $ADM_DIR/packages/glibc-* | grep -sqe -x86_64- && ARCH=x86_64
 #  ARCH=`ls_inst | grep -m 1 $(regex glibc) | pkg2rel | cut -d - -f 2`
