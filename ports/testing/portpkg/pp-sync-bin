@@ -2,24 +2,21 @@
 # pp-sync-bin -- A portpkg-addon to use Slackware's .tgz-packages as if they
 #                were ports
 
-sync_section()
+sync_kernels()
 {
-  section=$1
-  tree=$2
+  tree=$1
   # current has no patches
-  [ "$DIST_VER" == "current" ] && [ "$section" == "patches" ] && return
   mkdir -p $tree
   cd $tree || die
-  row "Preparing pseudo ports for $section/"
-  if [ "$section" == "kernels" ]; then
-    kver=`grep -o "[0-9]\.[0-9]\.[0-9][0-9]" $t/kernel_versions`
-    karch=`grep -o "glibc-.*\.tgz$" $t/file_list \
-    | grep $(regex glibc) | rev | cut -d - -f 2 | rev | head -n 1`
-    grep \./kernels/ $t/file_list | grep ^d | rev | cut -d / -f 1 \
-    | rev | grep -v modules | while read flavour; do
-      path=kernels/$flavour
-      mkdir -p $path
-      cat <<EOF >$path/SlackBuild
+  row "Preparing pseudo ports for kernels/"
+  kver=`grep -o "[0-9]\.[0-9]\.[0-9][0-9]" $t/kernel_versions`
+  karch=`grep -o "glibc-.*\.tgz$" $t/file_list \
+  | grep $(regex glibc) | rev | cut -d - -f 2 | rev | head -n 1`
+  grep \./kernels/ $t/file_list | grep ^d | rev | cut -d / -f 1 \
+  | rev | grep -v modules | while read flavour; do
+    path=kernels/$flavour
+    mkdir -p $path
+    cat <<EOF >$path/SlackBuild
 NAME=$flavour
 VERSION=$kver
 ARCH=$karch
@@ -40,18 +37,27 @@ gunzip System.map-$flavour-$kver.gz
 cd \$PKG
 makepkg -l y -c n /tmp/\$NAME-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
-      cat <<EOF >$path/sources
+    cat <<EOF >$path/sources
 $DIST/kernels/$flavour/bzImage
 $DIST/kernels/$flavour/System.map.gz
 $DIST/kernels/$flavour/config
 EOF
-      grep "\./kernels/$flavour/" $t/md5sums | sed "s,  .*/,  ," >$path/md5sums
-      echo "$flavour: Linux-$kver ($flavour)" >$path/slack-desc
-      touch $path/pseudo
-      touch $path/slot-in
-    done
-    return
-  fi
+    grep "\./kernels/$flavour/" $t/md5sums | sed "s,  .*/,  ," >$path/md5sums
+    echo "$flavour: Linux-$kver ($flavour)" >$path/slack-desc
+    touch $path/pseudo
+    touch $path/slot-in
+  done
+}
+
+sync_section()
+{
+  section=$1
+  tree=$2
+  # current has no patches
+  [ "$DIST_VER" == "current" ] && [ "$section" == "patches" ] && return
+  mkdir -p $tree
+  cd $tree || die
+  row "Preparing pseudo ports for $section/"
   grep "^$section/.*\.tgz$" $t/files | grep -v /source/ \
   | sed -r "s,^[^/]*/(.*)\.tgz$,\1," \
   | while read s; do
@@ -83,44 +89,19 @@ EOF
   done
 }
 
-#source `which portpkg` || exit 1
 if ! [ `basename $0` == portpkg ]; then
   echo
   echo "Please run 'pp-config' and start me as: portpkg --sync"
   exit 1
 fi
 
-#is_root || die
-[ "$DIST_VER" ] || die "No distribution target set. Please run 'pp-config'!"
-[ "$BIN_PRT_DIR" ] || die "No path set. Please run 'pp-config'!"
+[ "${DIST_VER:-}" ] || die "No distribution target set. Please run 'pp-config'!"
+[ "${BIN_PRT_DIR:-}" ] || die "No path set. Please run 'pp-config'!"
 # this will be mangled through our mirrors-list anyway
 DIST=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
 
-#stanza "pp-sync-bin -- A portpkg-addon to use Slackware's .tgz-packages as if they
-#were ports. Since this script is kind of hack-around (a work-around-hack) it's
-#not that easy to use.
-#
-#pp-sync-bin will download some informative files from a Slackware mirror and
-#generates a pseudo ports tree in $BIN_PRT_DIR.
-#
-#What are 'pseudo ports'? Pseudo ports are SlackBuilds that do nothing else
-#than download binary packages and install them. You will probably have no need
-#for this if you use (alphabetical order) slack-get, slackpkg, slapt-get, swaret
-#or any other Slackware package manager that I missed to name here.
-#
-#If this is the first time you use pp-sync-bin, you will be asked for a target
-#distribution version. Choose '10.0' or maybe 'current', but only if you use
-#Slackware-current. You can change this later in $CFG_DIR/local.conf.
-#
-#Enjoy."
-
-#echo -ne "\nContinue (ctrl-c to abort) "
-#read me
-
-#stanza "Syncing with `echo $DIST | cut -d / -f 3`:"
 t=`mktemp -d`
 row "Syncing $BIN_PRT_DIR with `echo $DIST | cut -d / -f 3`"
-#row "Retrieving change log"
 get $DIST/ChangeLog.txt $t/change_log >/dev/null
 if [ -f $BIN_PRT_DIR/ChangeLog.txt ] \
 && [ "`cat $t/change_log | md5sum`" == "`cat $BIN_PRT_DIR/ChangeLog.txt | md5sum`" ]; then
@@ -146,13 +127,11 @@ else
   sync_section patches $BIN_PRT_DIR/0/
   sync_section extra $BIN_PRT_DIR/0/
   # and these are "recessive"
-  sync_section kernels $BIN_PRT_DIR/z/
+  sync_kernels $BIN_PRT_DIR/z/
   sync_section pasture $BIN_PRT_DIR/z/
   sync_section testing $BIN_PRT_DIR/z/
   # make slot-ins for kernel-modules to allow 2.6-modules co-exist with 2.4-modules
   find -name kernel-source -exec touch {}/slot-in \;
   find -name kernel-modules -exec touch {}/slot-in \;
   find -name alsa-driver -exec touch {}/slot-in \;
-  # done
-  #stanza "Pseudo ports are now in $BIN_PRT_DIR."
 fi

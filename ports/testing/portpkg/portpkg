@@ -343,19 +343,14 @@ maintainer_mode()
 build_pkg()
 {
   local t=`mktemp -d`
-  local path=`dirname $script`
+  cd `dirname $script` || return 1
   stanza "Building $package:"
   if $maintain; then
     warn "Maintainer mode: Modifying files: requires md5sums footprint"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
   fi
-#  # prepare build directory in /tmp
-#  rm -rf /tmp/script-$name
-#  mkdir -p /tmp/script-$name/$name
-#  chmod -R 755 /tmp/script-$name
-#  cd /tmp/script-$name/$name/
-#  cp -a $path/* .
-  cd $path || return 1
+  # assume, all symlinks here are links to source files
+  find -type l | xargs -r rm
   # download the source files
   local src
   for src in $sources; do
@@ -363,7 +358,6 @@ build_pkg()
     # written behind a % in sources
     local srcname=`basename "$src" | cut -d % -f 2`
     local src=`echo "$src" | cut -d % -f 1`
-    [ -L $srcname ] && rm -rf $srcname
     if [ -f $SRC_DIR/$srcname ]; then
       row "$srcname found in $SRC_DIR/"
     else
@@ -372,7 +366,13 @@ build_pkg()
     fi
     if ! $DRY_RUN; then
       # pseudo ports: don't cache sources
-      $pseudo && mv $SRC_DIR/$srcname $t/ || ln -s $SRC_DIR/$srcname .
+      if $pseudo; then
+        rm -rf /tmp/$srcname
+        mv $SRC_DIR/$srcname /tmp
+        ln -s /tmp/$srcname .
+      else
+        ln -s $SRC_DIR/$srcname .
+      fi
     fi
   done
   # check md5sums
@@ -380,6 +380,7 @@ build_pkg()
   && ! md5sum -c md5sums >$t/md5sum 2>&1; then
     sed -n "/FAILED/s,\(.*\):.*,\1,p" $t/md5sum | xargs -r echo "  --> MD5SUM mismatch:"
     error "Integrity checking failed!"
+    clean_port
     return 1
   fi
   $download_only && return 0
@@ -431,9 +432,6 @@ build_pkg()
   mkdir -p $PKG_DIR/$group
   mv /tmp/$package.tgz $PKG_DIR/$group/
   row "Cleaning up"
-  find -type l | xargs -r rm -rf
-  cd /tmp
-#  rm -rf /tmp/script-$name
   rm -rf /tmp/package-$name
 #  rm -f /tmp/buildlog-$name
 #  rm -f /tmp/wgetlog-*
