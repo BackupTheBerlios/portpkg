@@ -16,16 +16,18 @@ cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 # no config
 BASE_DIR=$PKG PREFIX=/usr sh install.sh || exit 1
+mv $PKG/etc/hibernate/hibernate.conf{,.new}
+mv $PKG/etc/hibernate/blacklisted-modules{,.new}
 cp -a \
   CHANGELOG COPYING README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 
 cd $PKG || exit 1
 cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
 find -type d | grep /doc/ | xargs -r chmod 755
 find -type f | grep /doc/ | xargs -r chmod 644
 find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
 find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
-
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz

@@ -1,0 +1,13 @@
+Maybe you need to restart rc.hotplug (and/or rc.local) for your system:
+
+/etc/hibernate/hibernate.conf:
+(...)
+RestartServices rc.hotplug
+(...)
+
+To invoke hibernate by ACPI power button:
+
+/etc/acpi.d/acpi_handler.sh:
+(...)
+      power) /usr/sbin/hibernate
+(...)
