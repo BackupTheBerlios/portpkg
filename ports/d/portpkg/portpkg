@@ -38,6 +38,7 @@ output=/dev/null
 declare ignore mirrors exclude
 declare package name group
 declare script description requires size sources
+sum=$SCRATCH_DIR/sum
 
 # converters
 pkg2name()	{ sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -380,25 +381,24 @@ do_add() # pkgex-list
     has_args $@ || die
     is_root || die
     has_ports || die
-    local total=$SCRATCH_DIR/do_add.total
     local ret=0
     local arg
     for arg in `explicit $@`; do
 	debug "do_add(): \$arg=$arg"
    	ret=1
-	echo $arg >>$total
+	echo $arg >>$sum
 	get_info $arg || continue
-	sed -i "\,^$arg$,d" $total
-	echo $group/$package >>$total.started
+	sed -i "\,^$arg$,d" $sum
+	echo $group/$package >>$sum.started
 	# requirements check (flat, no versions)
 	# (...well, a little deeper now :) )
 	# (...quite deep now :) )
 	check_reqs || continue
 	# package file found in cache? (first in its group, then other places)
-	local file=`find $PKG_DIR/{$group/,} -name $package.tgz | head -n 1`
+	local file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
 	if ! [ $file ] || $rebuild; then
 	    mk_source_pkg || continue
-	elif [ "$file" != "$PRT_DIR/$group/$package.tgz" ]; then
+	elif [ "$file" != "$PKG_DIR/$group/$package.tgz" ]; then
 	    stanza "$package should be in $group/. Moving..."
 	    mkdir -p $PKG_DIR/$group
 	    mv $file $PKG_DIR/$group/
@@ -411,18 +411,9 @@ do_add() # pkgex-list
 		add_pkg || continue
 	    fi
 	fi
-	echo $group/$package >>$total.finished
+	echo $group/$package >>$sum.finished
 	ret=0
     done
-    # summary
-    if $verbose; then
-        stanza "Summary:"
-	touch $total.started
-	touch $total.finished
-	cat $total.finished | xargs -r -l echo "  --> Added successfully"
-	fgrep -vxf $total.finished $total.started | xargs -r -l echo "  --> Failed at"
-	cat $total | xargs -r -l echo "  --> Couldn't find"
-    fi
     debug "do_add(): finished: $@"
     return $ret
 }
@@ -597,6 +588,15 @@ parse_options()
     $rebuild && reinstall=true
     debug "parse_options(): call: $action $@"
     $action $@
+    # summary
+    if $verbose; then
+        stanza "Summary:"
+	touch $sum.started
+	touch $sum.finished
+	cat $sum.finished | xargs -r -l echo "  --> Added successfully"
+	fgrep -vxf $sum.finished $sum.started | xargs -r -l echo "  --> Failed at"
+	cat $sum | xargs -r -l echo "  --> Couldn't find"
+    fi
     exit $?
 }
 
