@@ -111,7 +111,8 @@ regex() # >regex_list
     for arg; do
 	case $arg in
 	    */)	# groups
-		echo -n " -e ^$arg";;
+		echo -n " -e ^$arg"
+		echo -n " -e /$arg";;
 	    *)	# (g_)names and (g_)packages
 		echo -n " -e ^$arg-[^-]*-[^-]*-[^-]*$"
 		echo -n " -e /$arg-[^-]*-[^-]*-[^-]*$"
@@ -119,7 +120,7 @@ regex() # >regex_list
 		echo -n " -e /$arg$";;
 	esac
     done
-    [ "$#" = "0" ] && echo "-e ^$"
+    [ "$#" == "0" ] && echo "-e ^$"
 }
 
 # resolve groups/ to names
@@ -191,6 +192,11 @@ get_info()
     # if there are more than one, take the first
 # fix me: why 2>/dev/null?
     local loc=`ls_locations | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
+    # maybe an exluded explicitly?
+    [ "$loc" ] || case $1 in */*)
+	loc=`ls_locations | grep -m 1 $(regex $1)`
+        warn "Excluded port specified exlplicitly!";;
+    esac
     if ! [ "$loc" ]; then
 	error "No such port: $1"
 	return 1
@@ -500,8 +506,8 @@ do_info() # pkgex-list
 	get_info $arg || continue
 	echo
 	echo "PORT NAME:  $package"
-	[ "$size" ] && echo "PORT SIZE (compressed):  $size K"
-	[ "$u_size" ] && echo "PORT SIZE (uncompressed):  $u_size K"
+	[ "$size" ] && echo "COMPRESSED PORT SIZE:  $size K"
+	[ "$u_size" ] && echo "UNCOMPRESSED PORT SIZE:  $u_size K"
 	echo "PORT LOCATION:  $script"
 	[ "$requires" ] && echo "PORT REQUIRES:  "$requires | fmt -t
 #	[ "$depends" ] && echo "PORT DEPENDENCIES:  "$depends | fmt -t
@@ -677,6 +683,8 @@ init()
     # check default arch
     export ARCH=`ls_inst | grep -m 1 $(regex glibc) | pkg2rel | cut -d - -f 2`
     debug "init(): ARCH=$ARCH"
+    # check for obsolete things
+    check_obsolete
     # local configuration
     [ -f $PRT_DIR/local.conf ] && source $PRT_DIR/local.conf
     mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
@@ -685,8 +693,6 @@ init()
     ignore=`regex $ignore`
     exclude=`regex $exclude`
     debug "init(): exclude=$exclude"
-    # check for obsolete things
-    check_obsolete
     # if not used as include file, start me
     [ `basename $0` == "portpkg" ] && parse_options $@
     return 0

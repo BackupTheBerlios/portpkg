@@ -393,10 +393,10 @@ find . -perm %%perm755%% -exec chmod 755 {} \;
 #!autogen
 #!configure
 #!cflags
-CFLAGS="$SLKFLAGS" \
+CFLAGS="$SLKCFLAGS" \
 #!cflags
 #!cxxflags
-CXXFLAGS="$SLKFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
 #!cxxflags
 ./configure \
   --prefix=%%prefix%% \
@@ -409,7 +409,7 @@ CXXFLAGS="$SLKFLAGS" \
   $ARCH-slackware-linux || exit 1
 #!configure
 #!perl
-perl Makefile.PL || exit 1
+perl Makefile.PL PREFIX=/usr SYSCONFDIR=/etc LOCALSTATEDIR=/var/lib || exit 1
 #!perl
 #!usrlocal
 #!etcvar
