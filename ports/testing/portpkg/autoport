@@ -83,7 +83,7 @@ add_inst() # rel/path/to/command_to_add file
     sed -i "\,$s1,d" $2
   fi
   # remove to make sure, it's correct
-  sed -i "/^if .*\/$s1/,/^fi$/d" $2
+  [ -f $2 ] && sed -i "/^if .*\/$s1/,/^fi$/d" $2
   # check for new style ("if [ -x command ]; then...")
   if ! grep -sq "$s1" $2; then
     row "Adding $s1 to $s2"
