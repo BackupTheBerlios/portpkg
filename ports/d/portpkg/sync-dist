@@ -98,7 +98,7 @@ CWD=\`pwd\`
 cp \$CWD/$pkg.tgz /tmp
 EOF
 	echo "$DIST/$section/$s.tgz" >$group/$name/sources
-	grep "^PACKAGE NAME:.* $pkg.tgz$" -A 5 $t.packages | tail -n 1 >$group/$name/slack-desc
+	grep "^$name:" $t.packages >$group/$name/slack-desc
 	touch $group/$name/pseudo
     done
 done

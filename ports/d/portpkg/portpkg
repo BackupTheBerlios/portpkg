@@ -648,10 +648,10 @@ init()
     MY_TAG=${MY_TAG:-}
     MAINTAIN_ALL=${MAINTAIN_ALL:-false}
     # global configs
-    mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{,.local}`
-    ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{,.local}`
+    mirrors=`grep -vshe ^# -e ^$ $PRT_DIR/mirrors{.local,}`
+    ignore=`grep -vshe ^# -e ^$ $PRT_DIR/ignore{.local,}`
     ignore=`regex $ignore`
-    exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{,.local}`
+    exclude=`grep -vshe ^# -e ^$ $PRT_DIR/exclude{.local,}`
     exclude=`regex $exclude`
     # check obsolete dirs
     if [ -d ~/ports ]; then
