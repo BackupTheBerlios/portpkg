@@ -1,0 +1,56 @@
+CWD=`pwd`
+
+VERSION=0.8.7
+ARCH=${ARCH:-i486}
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+cd /tmp
+tar xjvf $CWD/gstreamer-$VERSION.tar.bz2
+cd gstreamer-$VERSION
+chown -R root.root .
+find . -perm 664 -exec chmod 644 {} \;
+find . -perm 600 -exec chmod 644 {} \;
+find . -perm 444 -exec chmod 644 {} \;
+find . -perm 400 -exec chmod 644 {} \;
+find . -perm 440 -exec chmod 644 {} \;
+find . -perm 777 -exec chmod 755 {} \;
+find . -perm 775 -exec chmod 755 {} \;
+find . -perm 511 -exec chmod 755 {} \;
+find . -perm 711 -exec chmod 755 {} \;
+find . -perm 555 -exec chmod 755 {} \;
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --disable-static \
+  --program-prefix="" \
+  --program-suffix="" \
+  --disable-tests \
+  --disable-examples \
+  --disable-docs-build \
+  $ARCH-slackware-linux
+make -j3
+make install
+rm -f /var/lib/cache/gstreamer-0.8/registry.xml
+mkdir -p /var/lib/cache/gstreamer-0.8
+mkdir -p /var/log/setup
+zcat $CWD/setup.07.get-register.gz > /var/log/setup/setup.07.get-register
+chmod 755 /var/log/setup/setup.07.get-register
+mkdir -p /usr/doc/gstreamer-$VERSION
+cp -a \
+  ABOUT-NLS AUTHORS COPYING DEVEL DOCBUILDING NEWS README RELEASE REQUIREMENTS TODO \
+  /usr/doc/gstreamer-$VERSION
+mkdir -p /install
+cat $CWD/slack-desc > /install/slack-desc
+zcat $CWD/doinst.sh.gz > /install/doinst.sh
+

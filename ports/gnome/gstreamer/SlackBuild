@@ -1,0 +1,15 @@
+NAME=gstreamer
+VERSION=0.8.7
+ARCH=i486
+BUILD=1slack
+
+checkinstall -S -y \
+  --pkgname=gstreamer \
+  --pkgarch=i486 \
+  --pkgrelease=1slack \
+  --pakdir=/tmp \
+  --strip=yes \
+  --stripso=yes \
+  --gzman=yes \
+  --backup=no \
+  gstreamer.build || exit 1
