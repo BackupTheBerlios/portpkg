@@ -31,6 +31,8 @@ download_only=false
 reinstall=false
 rebuild=false
 verbose=false
+dry_run=false
+no_reqs=false
 debug=${debug:-false}
 output=/dev/null
 
@@ -38,7 +40,7 @@ output=/dev/null
 declare ignore mirrors exclude
 declare package name group
 declare script description requires size sources
-sum=$SCRATCH_DIR/sum
+declare fake_inst=$SCRATCH_DIR/fake_inst
 
 # converters
 pkg2name()	{ sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -64,9 +66,10 @@ has_args()	{ [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
 is_root()	{ [ "$UID" == "0" ] || error "You must be root to run this action!"; }
 has_pkg()	{ ls_inst | grep -q "^$1." || error "You need $1.0 or newer!"; }
 has_ports()	{ [ -d $PRT_DIR ] || error "No ports found! Try: portpkg --sync"; }
+is_inst()	{ [ -f $ADM_DIR/packages/$1 ] || fgrep -sqx $1 $fake_inst; }
 
 # file utils
-ls_inst()	{ find $ADM_DIR/packages/ -type f | sed "s,^.*/,," 2>/dev/null; }
+ls_inst()	{ find $ADM_DIR/packages/ -type f | sed "s,^.*/,," 2>/dev/null; cat $fake_inst; }
 ls_cache()	{ find $PKG_DIR/ -name "*.tgz" | sed -r "s,^.*/(.*/.*)\.tgz$,\1," 2>/dev/null; }
 
 # download a file
@@ -210,6 +213,7 @@ get_info()
 # check if all required packages are installed
 check_reqs()
 {
+    $no_reqs && return 0
     local avail=$SCRATCH_DIR/avail_cache
     [ -f $avail ] || ls_locations | loc2gpkg >$avail
     debug "check_reqs(): starting: $package"
@@ -222,10 +226,10 @@ check_reqs()
 	debug "check_reqs(): \$req=$req"
 	local avail_pkg=`grep -m 1 $(regex $req) $avail | cut -d / -f 2`
 	debug "check_reqs(): \$avail_pkg=$avail_pkg"
-	[ -f $ADM_DIR/packages/$avail_pkg ] && continue
+	is_inst $avail_pkg && continue
 	if [ "$avail_pkg" ]; then
-	    debug "check_reqs(): call: do_add $req"
-	    if ! do_add $req; then
+	    debug "check_reqs(): call: add_pkg $req"
+	    if ! add_pkg $req; then
 		error "$req is broken! Stopping."
 		return 1
 	    fi
@@ -244,7 +248,7 @@ check_reqs()
 }
 
 # build package by SlackBuild
-mk_source_pkg()
+build_pkg()
 {
     local t=`private`
     local path=`dirname $script`
@@ -283,8 +287,12 @@ mk_source_pkg()
 	if [ -f $SRC_DIR/$srcname ]; then
 	    row "$srcname found in $SRC_DIR/"
 	else
-	    row "Downloading $srcname"
-	    get $src $SRC_DIR/$srcname || return 1
+	    if $dry_run; then
+		row "Would have downloaded $src"
+	    else
+		row "Downloading $srcname"
+		get $src $SRC_DIR/$srcname || return 1
+	    fi
 	fi
 	# pseudo ports: don't cache sources
 	if [ -f $path/pseudo ]; then
@@ -294,6 +302,10 @@ mk_source_pkg()
 	fi
     done
     $download_only && return 0
+    if $dry_run; then
+	row "Would have build $package"
+	return 0
+    fi
     # build package
 #    if which fakeroot >/dev/null 2>&1; then
 #	warn "fakeroot enabled: on problems remove it to disable"
@@ -356,26 +368,52 @@ mk_source_pkg()
 add_pkg() # tgz
 {
     local t=`private`
-    if ! [ -f $PKG_DIR/$group/$package.tgz ]; then
-	error "Strange: $package.tgz not found."
-	return 1
+    get_info $1 || continue
+    # requirements check (flat, no versions)
+    # (...well, a little deeper now :) )
+    # (...quite deep now :) )
+    check_reqs || continue
+    # package file found in cache? (first in its group, then other places)
+    local file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
+    if ! [ $file ] || $rebuild; then
+        build_pkg || continue
+    elif [ "$file" != "$PKG_DIR/$group/$package.tgz" ]; then
+        stanza "$package should be in $group/. Moving..."
+        mkdir -p $PKG_DIR/$group
+        mv $file $PKG_DIR/$group/
     fi
-    # what to display?
-    if [ -f $ADM_DIR/packages/$package ]; then
-	stanza "Reinstalling $package..."
-    elif [ "`ls_inst | grep $(regex $name)`" ]; then
-	stanza "Upgrading $name to `echo $package | pkg2rel`..."
-    else
-    	stanza "Installing $package..."
-    fi
-    # commercials to fill the time gap
-    $verbose || echo "$description" | sed "s,^,$name: ,"
-    # call the magic all-in-one install-command
-    if ! su -c "upgradepkg --install-new --reinstall \
-    $PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
-    	$verbose || cat $t.install_log
-	error "Installation failed!"
-	return 1
+    if ! $download_only; then
+        # install the package
+        if is_inst $package && ! $reinstall; then
+	    stanza "$package is already installed. Skipping."
+	else
+	    if $dry_run; then
+		stanza "Would have installed $package."
+		echo $package >>$fake_inst
+		return 0
+	    fi
+	    if ! [ -f $PKG_DIR/$group/$package.tgz ]; then
+	        error "Strange: $package.tgz not found."
+	        return 1
+	    fi
+	    # what to display?
+	    if is_inst $package; then
+	        stanza "Reinstalling $package..."
+	    elif [ "`ls_inst | grep $(regex $name)`" ]; then
+	        stanza "Upgrading $name to `echo $package | pkg2rel`..."
+	    else
+    	        stanza "Installing $package..."
+	    fi
+	    # commercials to fill the time gap
+	    $verbose || echo "$description" | sed "s,^,$name: ,"
+	    # call the magic all-in-one install-command
+	    if ! su -c "upgradepkg --install-new --reinstall \
+		$PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
+    	        $verbose || cat $t.install_log
+	        error "Installation failed!"
+	        return 1
+	    fi
+	fi
     fi
     return 0
 }
@@ -387,39 +425,25 @@ do_add() # pkgex-list
     has_args $@ || die
 #    is_root || die
     has_ports || die
+    local sum=$SCRATCH_DIR/sum
     local ret=0
     local arg
     for arg in `explicit $@`; do
-	debug "do_add(): \$arg=$arg"
    	ret=1
+	debug "do_add(): \$arg=$arg"
 	echo $arg >>$sum
-	get_info $arg || continue
-	sed -i "\,^$arg$,d" $sum
-	echo $group/$package >>$sum.started
-	# requirements check (flat, no versions)
-	# (...well, a little deeper now :) )
-	# (...quite deep now :) )
-	check_reqs || continue
-	# package file found in cache? (first in its group, then other places)
-	local file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
-	if ! [ $file ] || $rebuild; then
-	    mk_source_pkg || continue
-	elif [ "$file" != "$PKG_DIR/$group/$package.tgz" ]; then
-	    stanza "$package should be in $group/. Moving..."
-	    mkdir -p $PKG_DIR/$group
-	    mv $file $PKG_DIR/$group/
-	fi
-	if ! $download_only; then
-	    # install the package
-	    if [ -f $ADM_DIR/packages/$package ] && ! $reinstall; then
-		stanza "$package is already installed. Skipping."
-	    else
-		add_pkg || continue
-	    fi
-	fi
+        add_pkg $arg || continue
 	echo $group/$package >>$sum.finished
+	sed -i "/^$arg$/d" $sum
 	ret=0
     done
+    # summary
+    if $verbose; then
+        stanza "Summary:"
+	touch $sum.finished
+	cat $sum.finished | xargs -r -l echo "  --> Added successfully"
+	cat $sum | xargs -r -l echo "  --> Failed at"
+    fi
     debug "do_add(): finished: $@"
     return $ret
 }
@@ -548,6 +572,8 @@ Options:
   -b, --rebuild		Rebuild port if alread build
   -o, --download	Download source files only
   -g, --verbose		Show compile output
+  -y, --dryrun		Don't install/download/build
+  -q, --noreqs		Don't check for requirements
 Declaration:
   list: group/ or [group/]name[-version-arch-build]
 EOF
@@ -568,7 +594,10 @@ parse_options()
 {
     debug "parse_options(): starting: $@"
     local args
-    args=`getopt -quo diflsuvhebog -l diff,info,find,list,sync,upgrade,version,help,reinstall,rebuild,download,showcompile -- "$@"`
+    local shorts="diflsuvhebogyq"
+    local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
+rebuild,download,verbose,dryrun,noreqs"
+    args=`getopt -quo $shorts -l $longs -- "$@"`
     [ "$?" == "0" ] || die "Bad Arguments! Try: portpkg --help"
     eval set -- "$args"
     while [ "$1" ]; do
@@ -584,25 +613,18 @@ parse_options()
 	    -e|--reinstall)	reinstall=true;;
 	    -b|--rebuild)	rebuild=true;;
 	    -o|--download)	download_only=true;;
-	    -g|--verbose)	verbose=true
-				output=/dev/stdout;;
+	    -g|--verbose)	verbose=true;;
+	    -y|--dryrun)	dry_run=true;;
+	    -q|--noreqs)	no_reqs=true;;
 	    --)			shift
 				break;;
 	esac
 	shift
     done
     $rebuild && reinstall=true
+    $verbose && output=/dev/stdout
     debug "parse_options(): call: $action $@"
     $action $@
-    # summary
-    if $verbose; then
-        stanza "Summary:"
-	touch $sum.started
-	touch $sum.finished
-	cat $sum.finished | xargs -r -l echo "  --> Added successfully"
-	fgrep -vxf $sum.finished $sum.started | xargs -r -l echo "  --> Failed at"
-	cat $sum | xargs -r -l echo "  --> Couldn't find"
-    fi
     exit $?
 }
 
@@ -615,6 +637,7 @@ init()
     mkdir -p $SCRATCH_DIR
     chmod 700 $SCRATCH_DIR
     [ -d $SCRATCH_DIR ] || die "Internal error!"
+    touch $fake_inst
     # clean up on exit
     trap "rm -rf $SCRATCH_DIR" EXIT
     trap "" PIPE
