@@ -1,7 +1,9 @@
 dbus: dbus (message bus system)
 dbus: 
 dbus: You must add a user and a group "messagebus" to your system
-dbus: to use dbus.
-dbus: E.g.: groupadd messagebus
-dbus:       useradd messagebus
-dbus: Start it with "/etc/rc.d/rc.dbus start".
+dbus: to use dbus:
+dbus:   # groupadd messagebus
+dbus:   # useradd messagebus
+dbus: Start it with:
+dbus:   # /etc/rc.d/rc.dbus start
+dbus:

@@ -8,3 +8,4 @@ athcool: because athcool only set/unset "Disconnect enable when STPGNT
 athcool: detected" bits in the Northbridge of Chipset. To really save
 athcool: power, someone has to send the STPGNT signal when idle. This is
 athcool: done by the ACPI subsystem when C2 state enterd.
+athcool:
