@@ -53,15 +53,7 @@ find -name "*.build" | while read s; do
     ver=`grep ^VERSION= $s | cut -d = -f 2-`
     arch=`grep ^ARCH= $s | cut -d = -f 2- | sed -re "s,\\\\$\\{[A-Z]*:-,," -e "s,},,"`
     build=1slack
-    row "Wrapping $gname"
-echo "$gname"
-echo "$group"
-echo "$name"
-echo "$ver"
-echo "$arch"
-echo "$build"
     cat <<EOF >$dir/SlackBuild
-NAME=$name
 VERSION=$ver
 ARCH=$arch
 BUILD=$build
