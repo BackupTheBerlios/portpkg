@@ -18,14 +18,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 # default settings
-ENGINE_VER=current
-SCRATCH_DIR=/tmp/portpkg-`whoami`-$$
+ENGINE_VER=cvs
 ADM_DIR=/var/log
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
+SCRATCH_DIR=/tmp/portpkg-`whoami`-$$
 FAKE_INST=$SCRATCH_DIR/fake_inst
-sum=$SCRATCH_DIR/sum
+ADD_SUM=$SCRATCH_DIR/add_sum
 
 # defaults for local.conf
 MY_TAG=
@@ -39,7 +39,7 @@ rebuild=false
 verbose=false
 dry_run=false
 no_reqs=false
-debug=${debug:-false}
+debug=false
 output=/dev/null
 
 # global variables
@@ -59,12 +59,7 @@ row()		{ echo -e "  --> $@"; }
 warn()		{ echo -e "WARNING: $@"; }
 error()		{ [ "$*" ] && stanza "$@" >&2; return 1; }
 die()		{ error "$@"; exit 1; }
-
-if $debug; then
-debug()		{ echo $@ >&2; }
-else
-debug()		{ :; }
-fi
+debug()		{ $debug && echo "portpkg: $@" >&2; }
 
 # checks
 has_args()	{ [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
@@ -89,7 +84,7 @@ get()
 	echo "$mirrors" >$t.mirrors
         local master mirror
         while read master mirror; do
-	    debug "get(): checking for $master $mirror"
+	    debug "get(): checking for $master <-> $mirror"
 	    url=`echo $url | sed "s,^$master,$mirror,"`
 	done <$t.mirrors
     fi
@@ -242,11 +237,11 @@ check_reqs()
 	    fi
 	    refresh=true
 	elif ! [ `ls_inst | grep -m 1 $(regex $req)` ]; then
-	    if ! slackpkg upgrade $req; then
+#	    if ! slackpkg upgrade $req; then
 		error "Cannot find required package $req! Stopping."
 		return 1
-	    fi
-	    debug "check_reqs(): $req resolved by slackpkg"
+#	    fi
+#	    debug "check_reqs(): $req resolved by slackpkg"
 	else
 	    debug "check_reqs(): $req is sufficient and installed"
 	fi
@@ -264,16 +259,17 @@ build_pkg()
     local t=`private`
     local path=`dirname $script`
     stanza "Building $package:"
-    # check ports directory
-    if ! [ -f $script ]; then
-    	error "Strange: SlackBuild not found!"
-	return 1
-    fi
-    # check SlackBuild header (this is for ls_avail)
-    if [ "`egrep -o "^VERSION=|^ARCH=|^BUILD=" $script | xargs`" != "VERSION= ARCH= BUILD=" ]; then
-	error "Malformed SlackBuild-header (VERSION, ARCH, BUILD)!"
-	return 1
-    fi
+# these checks are unneccessary
+#    # check ports directory
+#    if ! [ -f $script ]; then
+#    	error "Strange: SlackBuild not found!"
+#	return 1
+#    fi
+#    # check SlackBuild header (this is for ls_avail)
+#    if [ "`egrep -o "^VERSION=|^ARCH=|^BUILD=" $script | xargs`" != "VERSION= ARCH= BUILD=" ]; then
+#	error "Malformed SlackBuild-header (VERSION, ARCH, BUILD)!"
+#	return 1
+#    fi
     # switch to maintainer mode if $rel end with -[0-9]*$MY_TAG
     local maintain=false
     if [ "$MY_TAG" ]; then
@@ -283,6 +279,7 @@ build_pkg()
     $MAINTAIN_ALL && maintain=true
     $maintain && warn "Maintainer mode: Port scripts will be modified!"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
+    $no_reqs && warn "You disabled requirements checking!"
     # prepare build directory in /tmp
     mkdir -p $t.script/$name
     cd $t.script/$name/
@@ -297,12 +294,8 @@ build_pkg()
 	if [ -f $SRC_DIR/$srcname ]; then
 	    row "$srcname found in $SRC_DIR/"
 	else
-	    if $dry_run; then
-		row "Would have downloaded $src"
-	    else
-		row "Downloading $srcname"
-		get $src $SRC_DIR/$srcname || return 1
-	    fi
+	    row "Downloading $srcname"
+	    $dry_run || get $src $SRC_DIR/$srcname || return 1
 	fi
 	# pseudo ports: don't cache sources
 	if [ -f $path/pseudo ]; then
@@ -369,14 +362,14 @@ build_pkg()
     fi
     row "Moving $package to $PKG_DIR/$group/"
     mkdir -p $PKG_DIR/$group
-    mv /tmp/$package.tgz $PKG_DIR/$group/
+    cp /tmp/$package.tgz $PKG_DIR/$group/
 }
 
 # really (re)install/upgrade current port
 add_pkg() # tgz
 {
     local t=`private`
-    echo $1 >>$sum
+    echo $1 >>$ADD_SUM
     get_info $1 || return 1
     # requirements check
     check_reqs || return 1
@@ -386,44 +379,41 @@ add_pkg() # tgz
         build_pkg || return 1
 	file=$PKG_DIR/$group/$package.tgz
     fi
-    echo $group/$package >>$sum.finished
-    sed -i "\,^$1$,d" $sum
-    if ! $download_only; then
-        # install the package
-        if is_inst $package && ! $reinstall; then
-	    stanza "$package is already installed. Skipping."
-	else
-	    if [ -f `dirname $script`/slot-in ]; then
-		local slot_in=true
-		warn "Slot-in: Old release will stay installed!"
-	    else
-		local slot_in=false
-	    fi
-	    # what to display?
-	    if ! $slot_in && is_inst $package; then
-	        stanza "Reinstalling $package..."
-		local add="upgradepkg --reinstall"
-	    elif ! $slot_in && [ "`ls_inst | grep -m 1 $(regex $name)`" ]; then
-	        stanza "Upgrading $name to `echo $package | pkg2rel`..."
-		local add="upgradepkg"
-	    else
-    	        stanza "Installing $package..."
-		local add="installpkg"
-	    fi
-	    # infomercials
-	    echo "PORT DESCRIPTION:"
-	    echo "$description" | sed "s,^,$name: ,"
-	    if $dry_run; then
-		echo $package >>$FAKE_INST
-		return 0
-	    fi
-	    # call the install-command
-	    if ! su -c "$add $file >$t.install_log"; then
-    	        $verbose || cat $t.install_log
-	        error "Installation failed!"
-	        return 1
-	    fi
-	fi
+    echo $group/$package >>$ADD_SUM.finished
+    sed -i "\,^$1$,d" $ADD_SUM
+    $download_only && return 0
+    # install the package
+    if is_inst $package && ! $reinstall; then
+        stanza "$package is already installed. Skipping."
+	return 0
+    fi
+    if [ -f `dirname $script`/slot-in ]; then
+        local slot_in=true
+        warn "Slot-in: Old release will stay installed!"
+    else
+        local slot_in=false
+    fi
+    # what to display?
+    if ! $slot_in && is_inst $package; then
+        stanza "Reinstalling $package..."
+        local add="upgradepkg --reinstall"
+    elif ! $slot_in && [ "`ls_inst | grep -m 1 $(regex $name)`" ]; then
+        stanza "Upgrading $name to `echo $package | pkg2rel`..."
+        local add="upgradepkg"
+    else
+        stanza "Installing $package..."
+        local add="installpkg"
+    fi
+    # infomercials
+    echo "PORT DESCRIPTION:"
+    echo "$description" | sed "s,^,$name: ,"
+    echo $package >>$FAKE_INST
+    $dry_run && return 0
+    # call the install-command
+    if ! su -c "$add $file >$t.install_log"; then
+	cat $t.install_log
+	error "Installation failed!"
+	return 1
     fi
     return 0
 }
@@ -447,9 +437,9 @@ do_add() # pkgex-list
     # summary
     if $verbose; then
         stanza "Summary:"
-	touch $sum.finished
-	cat $sum.finished | xargs -r -l echo "  --> Added successfully"
-	cat $sum | xargs -r -l echo "  --> Failed at"
+	touch $ADD_SUM.finished
+	cat $ADD_SUM.finished | xargs -r -l echo "  --> Added successfully"
+	cat $ADD_SUM | xargs -r -l echo "  --> Failed at"
     fi
     debug "do_add(): finished: $@"
     return $ret
@@ -500,13 +490,13 @@ do_info() # pkgex-list
 	get_info $arg || continue
 	echo
 	echo "PORT NAME:  $package"
-	[ "$size" ] && echo "PACKAGE SIZE (compressed):  $size K"
+	[ "$size" ] && echo "PORT SIZE (compressed):  $size K"
 	echo "PORT LOCATION:  $script"
-	[ "$description" ] && echo "PORT DESCRIPTION:"
-	[ "$description" ] && echo "$description" | sed "s,^,$name: ,"
 	[ "$requires" ] && echo "PORT REQUIREMENTS:  "$requires | fmt -t
 	[ "$depends" ] && echo "PORT DEPENDENCIES:  "$depends | fmt -t
 	[ "$sources" ] && echo "PORT SOURCES:  "$sources | fmt -t
+	[ "$description" ] && echo "PORT DESCRIPTION:"
+	[ "$description" ] && echo "$description" | sed "s,^,$name: ,"
 	ret=0
     done
     return $ret
@@ -566,7 +556,7 @@ help()
 {
     cat <<EOF
 
-Usage: portpkg [action] [options] [list ...]
+Usage: portpkg [action] [options] [list ..]
   Build and install (or upgrade) a port.
 Actions:
   -d, --diff		Compare installed versions with availables
@@ -603,9 +593,9 @@ parse_options()
 {
     debug "parse_options(): starting: $@"
     local args
-    local shorts="diflsuvhebogyq"
+    local shorts="diflsuvhebogyqz"
     local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
-rebuild,download,verbose,dryrun,noreqs"
+rebuild,download,verbose,dryrun,noreqs,debug"
     args=`getopt -quo $shorts -l $longs -- "$@"`
     [ "$?" == "0" ] || die "Bad Arguments! Try: portpkg --help"
     eval set -- "$args"
@@ -625,6 +615,7 @@ rebuild,download,verbose,dryrun,noreqs"
 	    -g|--verbose)	verbose=true;;
 	    -y|--dryrun)	dry_run=true;;
 	    -q|--noreqs)	no_reqs=true;;
+	    -z|--debug)		debug=true;;
 	    --)			shift
 				break;;
 	esac
@@ -635,6 +626,23 @@ rebuild,download,verbose,dryrun,noreqs"
     debug "parse_options(): call: $action $@"
     $action $@
     exit $?
+}
+
+check_obsolete()
+{
+    # check obsolete dirs (remove in 0.39)
+    if [ -d ~/ports ]; then
+	warn "~/ports is obsolete! Move to $PRT_DIR!"
+	PRT_DIR=~/ports
+    fi
+    if [ -d ~/sources ]; then
+	warn "~/sources is obsolete! Move to $SRC_DIR!"
+	SRC_DIR=~/sources
+    fi
+    if [ -d ~/packages ]; then
+	warn "~/packages is obsolete! Move to $PKG_DIR!"
+	PKG_DIR=~/packages
+    fi
 }
 
 init()
@@ -666,19 +674,8 @@ init()
     ignore=`regex $ignore`
     exclude=`regex $exclude`
     debug "init(): exclude=$exclude"
-    # check obsolete dirs (remove in 0.39)
-    if [ -d ~/ports ]; then
-	warn "~/ports is obsolete! Move to $PRT_DIR!"
-	PRT_DIR=~/ports
-    fi
-    if [ -d ~/sources ]; then
-	warn "~/sources is obsolete! Move to $SRC_DIR!"
-	SRC_DIR=~/sources
-    fi
-    if [ -d ~/packages ]; then
-	warn "~/packages is obsolete! Move to $PKG_DIR!"
-	PKG_DIR=~/packages
-    fi
+    # check for obsolete things
+    check_obsolete
     # if not used as include file, start me
     [ `basename $0` == "portpkg" ] && parse_options $@
     return 0
