@@ -75,7 +75,7 @@ decode()
 
 add_inst() # rel/path/to/command_to_add file
 {
-  local s1=`basename $1`
+  local s1=`basename $(echo $1 | cut -d " " -f 1)`
   local s2=`basename $2`
   # check for old style ("command bla")
   if grep -sq "$s1" $2 && ! grep -sq "^if .*/$s1" $2; then
@@ -87,7 +87,7 @@ add_inst() # rel/path/to/command_to_add file
   # check for new style ("if [ -x command ]; then...")
   if ! grep -sq "$s1" $2; then
     row "Adding $s1 to $s2"
-    echo "if [ -x $1 ]; then" >>$2
+    echo "if [ -x `echo $1 | cut -d " " -f 1` ]; then" >>$2
     echo "  $1 >/dev/null 2>&1" >>$2
     echo "fi" >>$2
   fi
