@@ -155,7 +155,7 @@ ls_locations()
   s, ,\n,g" \
   | sort \
   | tee $LOC_CACHE 2>/dev/null
-# fix me: preset $BUILD and $VERSION is not supported, only reset!
+# FIXME: preset $BUILD and $VERSION is not supported, only reset!
 }
 
 # print non-available, but installed ports
@@ -296,7 +296,7 @@ build_pkg()
   local path=`dirname $script`
   stanza "Building $package:"
   if $maintain; then
-    warn "Maintainer mode: File 'requires' will be modified!"
+    warn "Maintainer mode: Modifying files: requires md5sums footprint"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
   fi
   # prepare build directory in /tmp
@@ -305,6 +305,7 @@ build_pkg()
   chmod -R 755 /tmp/script-$name
   cd /tmp/script-$name/$name/
   cp -a $path/* .
+  rm -rf arbitrary CVS PORT_IS_BROKEN
   # download the source files
   local src
   for src in $sources; do
@@ -337,7 +338,7 @@ build_pkg()
   export ARCH
   if ! $no_fakeroot && [ -x /usr/bin/fakeroot ]; then
     # run fakerooted SlackBuild as nobody
-    row "Executing $script (fakerooted as nobody)"
+    row "Executing $script (fakerooted)"
     su nobody -c "TMPDIR=/tmp CCACHE_DIR=/tmp/ccache-nobody PATH=\$PATH:/sbin \
       fakeroot sh $script" 2>&1 | tee /tmp/buildlog-$name >$output
   else
@@ -345,7 +346,7 @@ build_pkg()
     || warn "Please install fakeroot as soon as possible!"
     row "Executing $script"
     sh $script 2>&1 | tee /tmp/buildlog-$name >$output
-# fix me: chmod 1777 /tmp is a hack-around for some faulty install scripts
+# FIXME: chmod 1777 /tmp is a hack-around for some faulty install scripts
     chmod 1777 /tmp
   fi
   # success (this is the most promising test to ensure it worked)?
@@ -359,58 +360,62 @@ build_pkg()
   if $maintain; then
     row "Going maintainer mode"
     rm -rf $path/PORT_IS_BROKEN
-    # write a file list of the package (remove creation time)
-    row "Writing footprint"
-    tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
-    | sort +3 >$path/footprint
+    rm -rf md5sums
+    rm -rf footprint
     # write md5sum list
     row "Writing md5sums (assuming these files are integer!)"
-    find $path/ -type f | grep -ve md5sums -e arbitrary -e /CVS/ \
-    -e footprint | sed "s,^$path/,," | sort | xargs -r md5sum >$path/md5sums
+    find . -type f -o -type l | sed "s,^\./,," | sort | xargs md5sum >$path/md5sums
 #    if [ -d ~/.gnupg ]; then
 #      row "Signing md5sums"
 #      cat $path/md5sums | gpg --clearsign >$path/md5sums
 #    fi
-    [ -s $path/md5sums ]  || rm $path/md5sums
+    [ -s $path/md5sums ] || rm $path/md5sums
+    # write a file list of the package (remove creation time)
+    row "Writing footprint"
+    tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
+    | sort +3 >$path/footprint
     # is there a package tree?
-    if [ -d /tmp/package-$name ]; then
-      echo "$requires" >$t/old_req
-      row "Analysing package"
-      # check libraries (rename xxx-solibs to xxx, add x11-devel if needed)
-      find /tmp/package-$name/ | xargs file | grep ELF | cut -d : -f 1 \
-      | xargs ldd 2>/dev/null | grep -o "/[^ ]*\.so" | sed -r "s,\./,," \
-      | cut -c 2- | sort -u | grep -lf - $ADM_DIR/packages/* \
-      | sed -r "s,^$ADM_DIR/packages/,," | pkg2name \
-      | sed -r -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
-      | grep -v ^$name$ >$t/bin_req
-      # check for perl and python scripts
-      find /tmp/package-$name/ | xargs file >$t/ftypes
-      grep -q perl $t/ftypes && echo perl >>$t/bin_req
-      grep -q python $t/ftypes || grep -q "\.py$" $path/footprint \
-      && echo python >>$t/bin_req
-      # sort
-      sort -uo $t/bin_req $t/bin_req
-      # strip ignore list
-      grep $ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
-      grep -v $ignore $t/bin_req >$t/bin_req.new
-      mv $t/bin_req{.new,}
-      # check trashed package upgrades
-      ls_locations | loc2gpkg | grep $exclude | cut -d / -f 2 >$t/exclude
-      fgrep -xf $t/exclude $t/bin_req >$t/excl_req
-      grep -e "-upgraded$" $t/bin_req >>$t/excl_req
-      [ -s $t/excl_req ] && warn "Check these requirements: "`cat $t/excl_req`
-      # check for common mistakes
-      grep -e /share/doc/ -e /share/man/ -e var/scrollkeeper/ $path/footprint >$t/check_path
-      cat $t/check_path | rev | cut -d " " -f 1 | rev | xargs -i -r echo "WARNING: Check this path: /{}"
-      grep "^........w" $path/footprint | xargs -r -l echo "WARNING: Check these permissions:"
-      # now generate new "requires" file
-      cat $t/bin_req $t/old_req | grep -v ^$ | sort -u >$path/requires
-      [ -s $path/requires ] || rm -f $path/requires
-      # show any dependency that couldn't be confirmed
-      diff -u $t/old_req $t/bin_req | grep ^[-][^-] | cut -c 2- >$path/arbitrary
-      [ -s $path/arbitrary ] && warn "Arbitrary requirements: "`cat $path/arbitrary` \
-      || rm -f $path/arbitrary
+    if ! [ -d /tmp/package-$name ]; then
+      rm -rf /tmp/package-$name
+      mkdir /tmp/package-$name
+      tar xzf /tmp/$package.tgz -C /tmp/package-$name
     fi
+    echo "$requires" >$t/old_req
+    row "Analysing package"
+    find /tmp/package-$name/ | xargs file >$t/ftypes
+    # check libraries (rename xxx-solibs to xxx, add x11-devel if needed)
+    grep -w ELF $t/ftypes | cut -d : -f 1 | xargs ldd 2>/dev/null \
+    | grep -o "/[^ ]*\.so" | sed -r "s,\./,," | cut -c 2- | sort -u \
+    | grep -lf - $ADM_DIR/packages/* | sed -r "s,^$ADM_DIR/packages/,," \
+    | pkg2name | sed -r -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
+    | grep -v ^$name$ >$t/bin_req
+    # check for perl and python scripts
+    grep -qwi perl $t/ftypes && echo perl >>$t/bin_req
+    grep -qwi python $t/ftypes || grep -q "\.py$" $path/footprint \
+    && echo python >>$t/bin_req
+    # sort
+    sort -uo $t/bin_req $t/bin_req
+    # strip ignore list
+    grep $ignore $t/bin_req | xargs -r echo "  --> Ignoring dependencies:"
+    grep -v $ignore $t/bin_req >$t/bin_req.new
+    mv $t/bin_req{.new,}
+    # check trashed package upgrades
+    ls_locations | loc2gpkg | grep $exclude | cut -d / -f 2 >$t/exclude
+    fgrep -xf $t/exclude $t/bin_req >$t/excl_req
+    grep -e "-upgraded$" $t/bin_req >>$t/excl_req
+    [ -s $t/excl_req ] && warn "Check these requirements: "`cat $t/excl_req`
+    # check for common mistakes
+    grep -oe "usr/share/doc/.*" -e "usr/share/man/.*" -e "var/.*scrollkeeper/.*" \
+      $path/footprint >$t/check_path
+    cat $t/check_path | xargs -i -r echo "WARNING: Check this path: /{}"
+    grep "^........w" $path/footprint | xargs -r -l echo "WARNING: Check these permissions:"
+    # now generate new "requires" file
+    cat $t/bin_req $t/old_req | grep -v ^$ | sort -u >$path/requires
+    [ -s $path/requires ] || rm -f $path/requires
+    # show any dependency that couldn't be confirmed
+    diff -u $t/old_req $t/bin_req | grep ^[-][^-] | cut -c 2- >$path/arbitrary
+    [ -s $path/arbitrary ] && warn "Arbitrary requirements: "`cat $path/arbitrary` \
+    || rm -f $path/arbitrary
   fi
   row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group

@@ -52,6 +52,21 @@ QuestionsAndAnswers
    You can use Portpkg without mirrors. You can add your own preferred mirror
    sites to mirrors.local.
 
+  I have my own ports located in group local/ and want portpkg to prefer them
+  over all others. How can I do that?
+
+   The default port (if there're more than one) is always the first found in
+   alphabetical order of its path in /usr/ports. To make your group local/
+   appear before all others, there's a trick: make a directory 0 (zero) and
+   symlink your preferred group there:
+
+ # cd /usr/ports
+ # mkdir 0
+ # ln -s ../local 0/
+ # portpkg -l
+ local/myport-1.0-i486doe
+ (...)
+
   How is Portpkg different from other attempts to do the same, how is Portpkg
   different from other Slackware tools?
 
