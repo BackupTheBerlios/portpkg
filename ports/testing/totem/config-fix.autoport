@@ -1,9 +1,0 @@
-CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
-./configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --localstatedir=/var/lib \
-  --disable-static \
-  --enable-gstreamer \
-  $ARCH-slackware-linux || exit 1
