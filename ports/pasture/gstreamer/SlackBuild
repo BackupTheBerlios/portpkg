@@ -1,7 +1,11 @@
+# this is a wrapper around the original build-script from
+# Slackware-current, since on current-systems this is already
+# installed, portpkg won't use it
+
 NAME=gstreamer
 VERSION=0.8.7
 ARCH=i486
-BUILD=3slack
+BUILD=1
 
 checkinstall -S -y \
   --pkgname=$NAME \

@@ -129,7 +129,7 @@ explicit() # >pkgex-list
     local arg
     for arg; do
 	case $arg in
-	    */)	do_list $arg | pkg2name | cut -d / -f 2;;
+	    */)	do_list $arg | pkg2name | cut -d / -f 2 | fgrep -vx $exclude;;
 	    *)	echo $arg;;
 	esac
     done
