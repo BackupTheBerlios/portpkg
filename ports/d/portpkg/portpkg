@@ -24,7 +24,6 @@ ADM_DIR=/var/log
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
-PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 # default options
 action=do_add
@@ -299,9 +298,9 @@ mk_source_pkg()
     $download_only && return 0
     # build package
     row "Executing $script"
-    rm -rf /tmp/buildlog-$name
-    rm -rf /tmp/$package.tgz
-    sh $script 2>&1 | tee /tmp/buildlog-$name >$output || return 1
+    su -c "rm -rf /tmp/buildlog-$name
+           rm -rf /tmp/$package.tgz
+           sh $script 2>&1 | tee /tmp/buildlog-$name >$output" || return 1
     $maintain && cp /tmp/buildlog-$name $path/buildlog
     # success?
     if ! [ -f /tmp/$package.tgz ]; then
@@ -368,8 +367,8 @@ add_pkg() # tgz
     # commercials to fill the time gap
     $verbose || echo "$description" | sed "s,^,$name: ,"
     # call the magic all-in-one install-command
-    if ! upgradepkg --install-new --reinstall $PKG_DIR/$group/$package.tgz \
-    | tee $t.install_log >$output; then
+    if ! su -c "upgradepkg --install-new --reinstall \
+    $PKG_DIR/$group/$package.tgz | tee $t.install_log >$output"; then
     	$verbose || cat $t.install_log
 	error "Installation failed!"
 	return 1
