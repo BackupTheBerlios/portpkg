@@ -1,3 +1,10 @@
+
+case $ARCH in
+  i386,i486)   OPTIMISATION="--enable-runtime-cpudetection";;
+  s390,x86_64) OPTIMISATION="--enable-runtime-cpudetection";;
+  *86)         OPTIMISATION="--disable-runtime-cpudetection";;
+esac
+
 CFLAGS= \
 ./configure \
   --prefix=/usr \
@@ -5,5 +12,4 @@ CFLAGS= \
   --enable-gui \
   --enable-dynamic-plugins \
   --enable-menu \
-  --enable-runtime-cpudetection \
-  --disable-smb || exit 1
+  $OPTIMISATION || exit 1
