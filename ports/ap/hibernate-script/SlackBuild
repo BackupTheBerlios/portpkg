@@ -1,6 +1,6 @@
 VERSION=1.05
-ARCH=${ARCH:-i486}
-BUILD=1tom
+ARCH=noarch
+BUILD=2tom
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -28,6 +28,5 @@ cat $CWD/doinst.sh >$PKG/install/doinst.sh
 find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
 find -type d | grep /doc/ | xargs -r chmod 755
 find -type f | grep /doc/ | xargs -r chmod 644
-find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
 find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
