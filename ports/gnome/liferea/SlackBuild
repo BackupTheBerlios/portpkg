@@ -1,6 +1,6 @@
-VERSION=0.6.0
-ARCH=i486
-BUILD=2tom
+VERSION=0.6.2
+ARCH=${ARCH:-i486}
+BUILD=1tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -8,18 +8,29 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 mkdir -p $PKG/usr
 
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
 cd /tmp || exit 1
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 ./autogen.sh
-CFLAGS="-O2 -march=$ARCH -mcpu=i686" \
-./configure --prefix=/usr \
-	    --sysconfdir=/etc \
-	    --localstatedir=/var/lib \
-            --program-prefix="" \
-            --disable-static \
-            $ARCH-slackware-linux || exit 1
+CFLAGS="$SLKFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
 chown -R root.bin $PKG{,/usr}/{,s}bin
@@ -39,7 +50,7 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
+| sed -r "s,^$PKG/(.*)$,config \1," >>$PKG/install/doinst.sh
 
 cd $PKG || exit 1
 makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
