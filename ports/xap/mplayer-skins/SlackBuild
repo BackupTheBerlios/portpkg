@@ -1,0 +1,28 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.0
+ARCH=noarch
+BUILD=1sjn
+
+rm -rf $PKG 
+cd $TMP
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+
+for SKINS in $CWD/*tar.bz2;do
+tar xjvf  $SKINS -C $PKG/usr/share/mplayer/Skin/
+done
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+
+find . -type f -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
+chown -R root.root .
+
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
