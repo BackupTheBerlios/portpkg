@@ -1,10 +1,10 @@
-NAME=gst-plugins
 VERSION=0.8.5
 ARCH=i486
-BUILD=1slack
+BUILD=2slack
 
 checkinstall -S -y \
   --pkgname=gst-plugins \
+  --pkgversion=0.8.5 \
   --pkgarch=i486 \
   --pkgrelease=1slack \
   --pakdir=/tmp \
