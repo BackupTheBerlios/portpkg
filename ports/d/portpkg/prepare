@@ -42,6 +42,8 @@ for i in $dist_set; do
 
 EOF
   fgrep -xf /tmp/pkg_list.ports /tmp/pkg_list.$i | rev | cut -d - -f 2- | rev \
-  | xargs -r portpkg -l | grep -ve ^pasture/ -e ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
+  | xargs -r portpkg -l | grep -ve ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
   >>exclude.$i
 done
+
+echo "pasture/" >>exclude.current
