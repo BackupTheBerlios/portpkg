@@ -1,0 +1,360 @@
+xfce4-systemload-plugin-0.3.4/
+xfce4-systemload-plugin-0.3.4/po/
+xfce4-systemload-plugin-0.3.4/po/ChangeLog
+xfce4-systemload-plugin-0.3.4/po/Makefile.in.in
+xfce4-systemload-plugin-0.3.4/po/POTFILES.in
+xfce4-systemload-plugin-0.3.4/po/xfce4-systemload.pot
+xfce4-systemload-plugin-0.3.4/po/de.po
+xfce4-systemload-plugin-0.3.4/po/ca.po
+xfce4-systemload-plugin-0.3.4/po/hu.po
+xfce4-systemload-plugin-0.3.4/po/lt.po
+xfce4-systemload-plugin-0.3.4/po/uk.po
+xfce4-systemload-plugin-0.3.4/po/de.gmo
+xfce4-systemload-plugin-0.3.4/po/ca.gmo
+xfce4-systemload-plugin-0.3.4/po/hu.gmo
+xfce4-systemload-plugin-0.3.4/po/lt.gmo
+xfce4-systemload-plugin-0.3.4/po/uk.gmo
+xfce4-systemload-plugin-0.3.4/README
+xfce4-systemload-plugin-0.3.4/AUTHORS
+xfce4-systemload-plugin-0.3.4/COPYING
+xfce4-systemload-plugin-0.3.4/ChangeLog
+xfce4-systemload-plugin-0.3.4/INSTALL
+xfce4-systemload-plugin-0.3.4/Makefile.am
+xfce4-systemload-plugin-0.3.4/Makefile.in
+xfce4-systemload-plugin-0.3.4/NEWS
+xfce4-systemload-plugin-0.3.4/aclocal.m4
+xfce4-systemload-plugin-0.3.4/compile
+xfce4-systemload-plugin-0.3.4/config.guess
+xfce4-systemload-plugin-0.3.4/config.h.in
+xfce4-systemload-plugin-0.3.4/config.sub
+xfce4-systemload-plugin-0.3.4/configure
+xfce4-systemload-plugin-0.3.4/configure.ac
+xfce4-systemload-plugin-0.3.4/depcomp
+xfce4-systemload-plugin-0.3.4/install-sh
+xfce4-systemload-plugin-0.3.4/ltmain.sh
+xfce4-systemload-plugin-0.3.4/missing
+xfce4-systemload-plugin-0.3.4/mkinstalldirs
+xfce4-systemload-plugin-0.3.4/panel-plugin/
+xfce4-systemload-plugin-0.3.4/panel-plugin/Makefile.am
+xfce4-systemload-plugin-0.3.4/panel-plugin/Makefile.in
+xfce4-systemload-plugin-0.3.4/panel-plugin/systemload.c
+xfce4-systemload-plugin-0.3.4/panel-plugin/uptime.c
+xfce4-systemload-plugin-0.3.4/panel-plugin/uptime.h
+xfce4-systemload-plugin-0.3.4/panel-plugin/memswap.c
+xfce4-systemload-plugin-0.3.4/panel-plugin/memswap.h
+xfce4-systemload-plugin-0.3.4/panel-plugin/cpu.c
+xfce4-systemload-plugin-0.3.4/panel-plugin/cpu.h
+cat: /tmp/portpkg-root-19743/15723.script/xfce4-systemload-plugin/*.patch: No such file or directory
+Hmm...  I can't seem to find a patch in there anywhere.
+/usr/ports/testing/xfce4-systemload-plugin/SlackBuild: line 26: ./autogen.sh: No such file or directory
+configure: WARNING: you should use --build, --host, --target
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for style of include used by make... GNU
+checking for i486-slackware-linux-gcc... i486-slackware-linux-gcc
+checking for C compiler default output... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether i486-slackware-linux-gcc accepts -g... yes
+checking for i486-slackware-linux-gcc option to accept ANSI C... none needed
+checking dependency style of i486-slackware-linux-gcc... gcc3
+checking how to run the C preprocessor... i486-slackware-linux-gcc -E
+checking for egrep... grep -E
+checking for AIX... no
+checking for strerror in -lcposix... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking for i486-slackware-linux-gcc... (cached) i486-slackware-linux-gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether i486-slackware-linux-gcc accepts -g... (cached) yes
+checking for i486-slackware-linux-gcc option to accept ANSI C... (cached) none needed
+checking dependency style of i486-slackware-linux-gcc... (cached) gcc3
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking build system type... i486-slackware-linux-gnu
+checking host system type... i486-slackware-linux-gnu
+checking for ld used by GCC... /usr/i486-slackware-linux/bin/ld
+checking if the linker (/usr/i486-slackware-linux/bin/ld) is GNU ld... yes
+checking for /usr/i486-slackware-linux/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... nm
+checking for a sed that does not truncate output... /bin/sed
+checking whether ln -s works... yes
+checking how to recognise dependent libraries... pass_all
+checking command to parse nm output... ok
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for i486-slackware-linux-ranlib... no
+checking for ranlib... ranlib
+checking for i486-slackware-linux-strip... no
+checking for strip... strip
+checking for objdir... .libs
+checking for i486-slackware-linux-gcc option to produce PIC... -fPIC
+checking if i486-slackware-linux-gcc PIC flag -fPIC works... yes
+checking if i486-slackware-linux-gcc static flag -static works... yes
+checking if i486-slackware-linux-gcc supports -c -o file.o... yes
+checking if i486-slackware-linux-gcc supports -c -o file.lo... yes
+checking if i486-slackware-linux-gcc supports -fno-rtti -fno-exceptions... yes
+checking whether the linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking whether -lc should be explicitly linked in... no
+creating libtool
+checking for kvm_open in -lkvm... no
+checking for ANSI C header files... (cached) yes
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking for LC_MESSAGES... yes
+checking libintl.h usability... yes
+checking libintl.h presence... yes
+checking for libintl.h... yes
+checking for dgettext in libc... yes
+checking for bind_textdomain_codeset... yes
+checking for msgfmt... /usr/bin/msgfmt
+checking for dcgettext... yes
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for catalogs to be installed...  de ca hu lt uk
+checking for locales directory... ${prefix}/share/locale
+checking for pkg-config... /usr/bin/pkg-config
+checking for xfce4-panel-1.0 >= 3.99.2... yes
+checking XFCE4_PANEL_CFLAGS... -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0  
+checking XFCE4_PANEL_LIBS... -Wl,--export-dynamic -L/usr/X11/lib -lxfcegui4 -lxml2 -lpthread -lz -lgtk-x11-2.0 -lxfce4util -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0  
+checking where to install panel plugins... /usr/lib/xfce4/panel-plugins
+checking whether to build with debugging support... no
+checking whether to build with profiling support... no
+checking whether to enable assert statements... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating panel-plugin/Makefile
+config.status: creating po/Makefile.in
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing default-1 commands
+make  all-recursive
+make[1]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4'
+Making all in panel-plugin
+make[2]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4/panel-plugin'
+if /bin/sh ../libtool --mode=compile i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0    -MT libsystemload_la-systemload.lo -MD -MP -MF ".deps/libsystemload_la-systemload.Tpo" \
+  -c -o libsystemload_la-systemload.lo `test -f 'systemload.c' || echo './'`systemload.c; \
+then mv ".deps/libsystemload_la-systemload.Tpo" ".deps/libsystemload_la-systemload.Plo"; \
+else rm -f ".deps/libsystemload_la-systemload.Tpo"; exit 1; \
+fi
+i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -MT libsystemload_la-systemload.lo -MD -MP -MF .deps/libsystemload_la-systemload.Tpo -c systemload.c  -fPIC -DPIC -o libsystemload_la-systemload.lo
+if /bin/sh ../libtool --mode=compile i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0    -MT libsystemload_la-uptime.lo -MD -MP -MF ".deps/libsystemload_la-uptime.Tpo" \
+  -c -o libsystemload_la-uptime.lo `test -f 'uptime.c' || echo './'`uptime.c; \
+then mv ".deps/libsystemload_la-uptime.Tpo" ".deps/libsystemload_la-uptime.Plo"; \
+else rm -f ".deps/libsystemload_la-uptime.Tpo"; exit 1; \
+fi
+i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -MT libsystemload_la-uptime.lo -MD -MP -MF .deps/libsystemload_la-uptime.Tpo -c uptime.c  -fPIC -DPIC -o libsystemload_la-uptime.lo
+if /bin/sh ../libtool --mode=compile i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0    -MT libsystemload_la-memswap.lo -MD -MP -MF ".deps/libsystemload_la-memswap.Tpo" \
+  -c -o libsystemload_la-memswap.lo `test -f 'memswap.c' || echo './'`memswap.c; \
+then mv ".deps/libsystemload_la-memswap.Tpo" ".deps/libsystemload_la-memswap.Plo"; \
+else rm -f ".deps/libsystemload_la-memswap.Tpo"; exit 1; \
+fi
+i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -MT libsystemload_la-memswap.lo -MD -MP -MF .deps/libsystemload_la-memswap.Tpo -c memswap.c  -fPIC -DPIC -o libsystemload_la-memswap.lo
+if /bin/sh ../libtool --mode=compile i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0    -MT libsystemload_la-cpu.lo -MD -MP -MF ".deps/libsystemload_la-cpu.Tpo" \
+  -c -o libsystemload_la-cpu.lo `test -f 'cpu.c' || echo './'`cpu.c; \
+then mv ".deps/libsystemload_la-cpu.Tpo" ".deps/libsystemload_la-cpu.Plo"; \
+else rm -f ".deps/libsystemload_la-cpu.Tpo"; exit 1; \
+fi
+i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\" -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -MT libsystemload_la-cpu.lo -MD -MP -MF .deps/libsystemload_la-cpu.Tpo -c cpu.c  -fPIC -DPIC -o libsystemload_la-cpu.lo
+/bin/sh ../libtool --mode=link i486-slackware-linux-gcc     -o libsystemload.la -rpath /usr/lib/xfce4/panel-plugins -avoid-version -export-dynamic -module libsystemload_la-systemload.lo libsystemload_la-uptime.lo libsystemload_la-memswap.lo libsystemload_la-cpu.lo -Wl,--export-dynamic -L/usr/X11/lib -lxfcegui4 -lxml2 -lpthread -lz -lgtk-x11-2.0 -lxfce4util -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0   
+mkdir .libs
+rm -fr .libs/libsystemload.la .libs/libsystemload.* .libs/libsystemload.*
+(cd . && ln -s libsystemload_la-systemload.lo libsystemload_la-systemload.o)
+(cd . && ln -s libsystemload_la-uptime.lo libsystemload_la-uptime.o)
+(cd . && ln -s libsystemload_la-memswap.lo libsystemload_la-memswap.o)
+(cd . && ln -s libsystemload_la-cpu.lo libsystemload_la-cpu.o)
+i486-slackware-linux-gcc -shared  libsystemload_la-systemload.lo libsystemload_la-uptime.lo libsystemload_la-memswap.lo libsystemload_la-cpu.lo  -L/usr/X11R6/lib -L/usr/lib -L/usr/X11/lib /usr/lib/libxfcegui4.so /usr/lib/libxml2.so -lpthread -lz /usr/lib/libgtk-x11-2.0.so /usr/lib/libxfce4util.so /usr/lib/libgdk-x11-2.0.so /usr/lib/libatk-1.0.so /usr/lib/libgdk_pixbuf-2.0.so -lm /usr/lib/libpangoxft-1.0.so /usr/lib/libpangox-1.0.so /usr/lib/libpango-1.0.so /usr/lib/libgobject-2.0.so /usr/lib/libgmodule-2.0.so -ldl /usr/lib/libglib-2.0.so  -Wl,--export-dynamic -Wl,-soname -Wl,libsystemload.so -o .libs/libsystemload.so
+creating libsystemload.la
+(cd .libs && rm -f libsystemload.la && ln -s ../libsystemload.la libsystemload.la)
+make[2]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4/panel-plugin'
+Making all in po
+make[2]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4/po'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4/po'
+make[2]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4'
+make[1]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4'
+Making install in panel-plugin
+make[1]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4/panel-plugin'
+make[2]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4/panel-plugin'
+make[2]: Nothing to be done for `install-exec-am'.
+/bin/sh ../mkinstalldirs /tmp/package-xfce4-systemload-plugin/usr/lib/xfce4/panel-plugins
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/lib/xfce4/panel-plugins
+ /bin/sh ../libtool --mode=install /usr/bin/ginstall -c  libsystemload.la /tmp/package-xfce4-systemload-plugin/usr/lib/xfce4/panel-plugins/libsystemload.la
+/usr/bin/ginstall -c .libs/libsystemload.so /tmp/package-xfce4-systemload-plugin/usr/lib/xfce4/panel-plugins/libsystemload.so
+/usr/bin/ginstall -c .libs/libsystemload.lai /tmp/package-xfce4-systemload-plugin/usr/lib/xfce4/panel-plugins/libsystemload.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib/xfce4/panel-plugins'
+make[2]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4/panel-plugin'
+make[1]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4/panel-plugin'
+Making install in po
+make[1]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4/po'
+if test -r ".././mkinstalldirs"; then \
+  .././mkinstalldirs /tmp/package-xfce4-systemload-plugin/usr/share; \
+else \
+  /bin/sh ../mkinstalldirs /tmp/package-xfce4-systemload-plugin/usr/share; \
+fi
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/share
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/share/locale/de/LC_MESSAGES
+installing de.gmo as /tmp/package-xfce4-systemload-plugin/usr/share/locale/de/LC_MESSAGES/xfce4-systemload.mo
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/share/locale/ca/LC_MESSAGES
+installing ca.gmo as /tmp/package-xfce4-systemload-plugin/usr/share/locale/ca/LC_MESSAGES/xfce4-systemload.mo
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/share/locale/hu/LC_MESSAGES
+installing hu.gmo as /tmp/package-xfce4-systemload-plugin/usr/share/locale/hu/LC_MESSAGES/xfce4-systemload.mo
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/share/locale/lt/LC_MESSAGES
+installing lt.gmo as /tmp/package-xfce4-systemload-plugin/usr/share/locale/lt/LC_MESSAGES/xfce4-systemload.mo
+mkdir -p -- /tmp/package-xfce4-systemload-plugin/usr/share/locale/uk/LC_MESSAGES
+installing uk.gmo as /tmp/package-xfce4-systemload-plugin/usr/share/locale/uk/LC_MESSAGES/xfce4-systemload.mo
+if test "xfce4-systemload-plugin" = "glib"; then \
+  if test -r ".././mkinstalldirs"; then \
+    .././mkinstalldirs /tmp/package-xfce4-systemload-plugin/usr/share/glib-2.0/gettext/po; \
+  else \
+    /bin/sh ../mkinstalldirs /tmp/package-xfce4-systemload-plugin/usr/share/glib-2.0/gettext/po; \
+  fi; \
+  /usr/bin/ginstall -c -m 644 ./Makefile.in.in \
+		  /tmp/package-xfce4-systemload-plugin/usr/share/glib-2.0/gettext/po/Makefile.in.in; \
+else \
+  : ; \
+fi
+make[1]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4/po'
+make[1]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4'
+make[2]: Entering directory `/tmp/xfce4-systemload-plugin-0.3.4'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4'
+make[1]: Leaving directory `/tmp/xfce4-systemload-plugin-0.3.4'
+chown: cannot access `/tmp/package-xfce4-systemload-plugin/bin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-systemload-plugin/sbin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-systemload-plugin/usr/bin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-systemload-plugin/usr/sbin': No such file or directory
+mv: cannot stat `/tmp/package-xfce4-systemload-plugin/usr/share/man': No such file or directory
+mv: cannot stat `/tmp/package-xfce4-systemload-plugin/usr/share/doc': No such file or directory
+rmdir: `/tmp/package-xfce4-systemload-plugin/usr/share': Directory not empty
+gzip: /tmp/package-xfce4-systemload-plugin/usr/man/man?/*: No such file or directory
+cp: cannot stat `ABOUT': No such file or directory
+cp: cannot stat `ABOUT-NLS': No such file or directory
+cp: cannot stat `ANNOUNCE': No such file or directory
+cp: cannot stat `CONFIGURATION': No such file or directory
+cp: cannot stat `CHANGES': No such file or directory
+cp: cannot stat `COPYRIGHT': No such file or directory
+cp: cannot stat `CREDITS': No such file or directory
+cp: cannot stat `Changelog': No such file or directory
+cp: cannot stat `CHANGELOG': No such file or directory
+cp: cannot stat `CONTRIBUTORS': No such file or directory
+cp: cannot stat `*FAQ*': No such file or directory
+cp: cannot stat `FEATURES': No such file or directory
+cp: cannot stat `FILES': No such file or directory
+cp: cannot stat `HACKING': No such file or directory
+cp: cannot stat `History': No such file or directory
+cp: cannot stat `HISTORY': No such file or directory
+cp: cannot stat `LICENSE': No such file or directory
+cp: cannot stat `LSM': No such file or directory
+cp: cannot stat `MANIFEST': No such file or directory
+cp: cannot stat `*Readme*': No such file or directory
+cp: cannot stat `SITES': No such file or directory
+cp: cannot stat `*RELEASE*': No such file or directory
+cp: cannot stat `RELNOTES': No such file or directory
+cp: cannot stat `THANKS': No such file or directory
+cp: cannot stat `TIPS': No such file or directory
+cp: cannot stat `TODO': No such file or directory
+cp: cannot stat `VERSION': No such file or directory
+cp: cannot stat `CONFIGURATION*': No such file or directory
+cp: cannot stat `GPL': No such file or directory
+cp: cannot stat `License': No such file or directory
+cp: cannot stat `Doc': No such file or directory
+cp: cannot stat `doc': No such file or directory
+cp: cannot stat `Docs*': No such file or directory
+cp: cannot stat `docs*': No such file or directory
+cp: cannot stat `Roadmap': No such file or directory
+cp: cannot stat `ROADMAP': No such file or directory
+cp: cannot stat `*BUGS*': No such file or directory
+cp: cannot stat `index.ht*': No such file or directory
+cp: cannot stat `*INDEX*': No such file or directory
+
+Slackware package maker, version 2.1.
+
+Searching for symbolic links:
+
+No symbolic links were found, so we won't make an installation script.
+You can make your own later in ./install/doinst.sh and rebuild the
+package if you like.
+
+This next step is optional - you can set the directories in your package
+to some sane permissions. If any of the directories in your package have
+special permissions, then DO NOT reset them here!
+
+Would you like to reset all directory permissions to 755 (drwxr-xr-x) and
+directory ownerships to root.root ([y]es, [n]o)? n
+
+
+Creating tar file xfce4-systemload-plugin-0.3.4-i486-1tom.tar...
+
+./
+usr/
+usr/doc/
+usr/doc/xfce4-systemload-plugin-0.3.4/
+usr/doc/xfce4-systemload-plugin-0.3.4/NEWS
+usr/doc/xfce4-systemload-plugin-0.3.4/README
+usr/doc/xfce4-systemload-plugin-0.3.4/AUTHORS
+usr/doc/xfce4-systemload-plugin-0.3.4/INSTALL
+usr/doc/xfce4-systemload-plugin-0.3.4/ChangeLog
+usr/doc/xfce4-systemload-plugin-0.3.4/COPYING
+usr/lib/
+usr/lib/xfce4/
+usr/lib/xfce4/panel-plugins/
+usr/lib/xfce4/panel-plugins/libsystemload.la
+usr/lib/xfce4/panel-plugins/libsystemload.so
+usr/share/
+usr/share/locale/
+usr/share/locale/ca/
+usr/share/locale/ca/LC_MESSAGES/
+usr/share/locale/ca/LC_MESSAGES/xfce4-systemload.mo
+usr/share/locale/de/
+usr/share/locale/de/LC_MESSAGES/
+usr/share/locale/de/LC_MESSAGES/xfce4-systemload.mo
+usr/share/locale/hu/
+usr/share/locale/hu/LC_MESSAGES/
+usr/share/locale/hu/LC_MESSAGES/xfce4-systemload.mo
+usr/share/locale/lt/
+usr/share/locale/lt/LC_MESSAGES/
+usr/share/locale/lt/LC_MESSAGES/xfce4-systemload.mo
+usr/share/locale/uk/
+usr/share/locale/uk/LC_MESSAGES/
+usr/share/locale/uk/LC_MESSAGES/xfce4-systemload.mo
+tar-1.13: xfce4-systemload-plugin-0.3.4-i486-1tom.tar is the archive; not dumped
+install/
+install/doinst.sh
+install/slack-desc
+
+Gzipping xfce4-systemload-plugin-0.3.4-i486-1tom.tar...
+
+Renaming xfce4-systemload-plugin-0.3.4-i486-1tom.tar.gz to xfce4-systemload-plugin-0.3.4-i486-1tom.tgz...
+
+Moving xfce4-systemload-plugin-0.3.4-i486-1tom.tgz to /tmp...
+
+Package creation complete.
+

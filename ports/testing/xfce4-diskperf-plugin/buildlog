@@ -1,0 +1,515 @@
+xfce4-diskperf-plugin-1.5/
+xfce4-diskperf-plugin-1.5/CVS/
+xfce4-diskperf-plugin-1.5/CVS/Root
+xfce4-diskperf-plugin-1.5/CVS/Repository
+xfce4-diskperf-plugin-1.5/CVS/Entries
+xfce4-diskperf-plugin-1.5/CVS/Entries.Log
+xfce4-diskperf-plugin-1.5/ChangeLog
+xfce4-diskperf-plugin-1.5/AUTHORS
+xfce4-diskperf-plugin-1.5/COPYING
+xfce4-diskperf-plugin-1.5/Makefile.am
+xfce4-diskperf-plugin-1.5/INSTALL
+xfce4-diskperf-plugin-1.5/m4/
+xfce4-diskperf-plugin-1.5/m4/CVS/
+xfce4-diskperf-plugin-1.5/m4/CVS/Root
+xfce4-diskperf-plugin-1.5/m4/CVS/Repository
+xfce4-diskperf-plugin-1.5/m4/CVS/Entries
+xfce4-diskperf-plugin-1.5/m4/debug.m4
+xfce4-diskperf-plugin-1.5/m4/depends.m4
+xfce4-diskperf-plugin-1.5/m4/i18n.m4
+xfce4-diskperf-plugin-1.5/Makefile.in
+xfce4-diskperf-plugin-1.5/NEWS
+xfce4-diskperf-plugin-1.5/README
+xfce4-diskperf-plugin-1.5/aclocal.m4
+xfce4-diskperf-plugin-1.5/autogen.sh
+xfce4-diskperf-plugin-1.5/compile
+xfce4-diskperf-plugin-1.5/config.guess
+xfce4-diskperf-plugin-1.5/config.h.in
+xfce4-diskperf-plugin-1.5/config.sub
+xfce4-diskperf-plugin-1.5/configure
+xfce4-diskperf-plugin-1.5/configure.ac
+xfce4-diskperf-plugin-1.5/depcomp
+xfce4-diskperf-plugin-1.5/install-sh
+xfce4-diskperf-plugin-1.5/ltcf-c.sh
+xfce4-diskperf-plugin-1.5/ltmain.sh
+xfce4-diskperf-plugin-1.5/missing
+xfce4-diskperf-plugin-1.5/mkinstalldirs
+xfce4-diskperf-plugin-1.5/panel-plugin/
+xfce4-diskperf-plugin-1.5/panel-plugin/CVS/
+xfce4-diskperf-plugin-1.5/panel-plugin/CVS/Root
+xfce4-diskperf-plugin-1.5/panel-plugin/CVS/Repository
+xfce4-diskperf-plugin-1.5/panel-plugin/CVS/Entries
+xfce4-diskperf-plugin-1.5/panel-plugin/Makefile.am
+xfce4-diskperf-plugin-1.5/panel-plugin/Makefile.in
+xfce4-diskperf-plugin-1.5/panel-plugin/config_gui.c
+xfce4-diskperf-plugin-1.5/panel-plugin/config_gui.h
+xfce4-diskperf-plugin-1.5/panel-plugin/debug.c
+xfce4-diskperf-plugin-1.5/panel-plugin/debug.h
+xfce4-diskperf-plugin-1.5/panel-plugin/devperf.c
+xfce4-diskperf-plugin-1.5/panel-plugin/devperf.h
+xfce4-diskperf-plugin-1.5/panel-plugin/main.c
+xfce4-diskperf-plugin-1.5/rebuild
+cat: /tmp/portpkg-root-19743/27231.script/xfce4-diskperf-plugin/*.patch: No such file or directory
+Hmm...  I can't seem to find a patch in there anywhere.
+**Message**: I am going to add --enable-maintainer-mode to `configure'.
+If you wish to pass any other to it, please specify them on the
+`./autogen.sh' command line.
+
+processing .
+Running libtoolize...
+You should update your `aclocal.m4' by running aclocal.
+Running aclocal -I m4  ...
+/usr/share/aclocal/wxwin.m4:36: warning: underquoted definition of AM_OPTIONS_WXCONFIG
+  run info '(automake)Extending aclocal'
+  or see http://sources.redhat.com/automake/automake.html#Extending-aclocal
+/usr/share/aclocal/wxwin.m4:59: warning: underquoted definition of AM_PATH_WXCONFIG
+/usr/share/aclocal/vorbis.m4:9: warning: underquoted definition of XIPH_PATH_VORBIS
+/usr/share/aclocal/pkg.m4:5: warning: underquoted definition of PKG_CHECK_MODULES
+/usr/share/aclocal/pilot-link.m4:1: warning: underquoted definition of AC_PILOT_LINK_HOOK
+/usr/share/aclocal/ogg.m4:8: warning: underquoted definition of XIPH_PATH_OGG
+/usr/share/aclocal/nspr.m4:8: warning: underquoted definition of AM_PATH_NSPR
+/usr/share/aclocal/libraw1394.m4:6: warning: underquoted definition of AC_LIB_RAW1394_FLAGS
+/usr/share/aclocal/libraw1394.m4:19: warning: underquoted definition of AC_LIB_RAW1394_HEADERS
+/usr/share/aclocal/libraw1394.m4:41: warning: underquoted definition of AC_LIB_RAW1394_LIBVERSION
+/usr/share/aclocal/libraw1394.m4:75: warning: underquoted definition of AC_LIB_RAW1394_RUNTEST
+/usr/share/aclocal/libraw1394.m4:138: warning: underquoted definition of AC_LIB_RAW1394
+/usr/share/aclocal/libmikmod.m4:11: warning: underquoted definition of AM_PATH_LIBMIKMOD
+/usr/share/aclocal/libIDL.m4:6: warning: underquoted definition of AM_PATH_LIBIDL
+/usr/share/aclocal/imlib.m4:9: warning: underquoted definition of AM_PATH_IMLIB
+/usr/share/aclocal/imlib.m4:167: warning: underquoted definition of AM_PATH_GDK_IMLIB
+/usr/share/aclocal/gtk.m4:7: warning: underquoted definition of AM_PATH_GTK
+/usr/share/aclocal/gpgme.m4:9: warning: underquoted definition of AM_PATH_GPGME
+/usr/share/aclocal/gnet-2.0.m4:8: warning: underquoted definition of AM_PATH_GNET_2_0
+/usr/share/aclocal/glib.m4:8: warning: underquoted definition of AM_PATH_GLIB
+/usr/share/aclocal/gdk-pixbuf.m4:12: warning: underquoted definition of AM_PATH_GDK_PIXBUF
+/usr/share/aclocal/audiofile.m4:12: warning: underquoted definition of AM_PATH_AUDIOFILE
+/usr/share/aclocal/ao.m4:9: warning: underquoted definition of XIPH_PATH_AO
+/usr/share/aclocal/aalib.m4:12: warning: underquoted definition of AM_PATH_AALIB
+/usr/share/aclocal/ORBit.m4:4: warning: underquoted definition of AM_PATH_ORBIT
+Running autoheader...
+Running automake --foreign  ...
+Running autoconf ...
+Running ./configure --enable-maintainer-mode ...
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... yes
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking dependency style of gcc... gcc3
+checking how to run the C preprocessor... gcc -E
+checking for egrep... grep -E
+checking for AIX... no
+checking for library containing strerror... none required
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ANSI C... (cached) none needed
+checking dependency style of gcc... (cached) gcc3
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by gcc... /usr/i486-slackware-linux/bin/ld
+checking if the linker (/usr/i486-slackware-linux/bin/ld) is GNU ld... yes
+checking for /usr/i486-slackware-linux/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognise dependent libraries... pass_all
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking how to run the C++ preprocessor... g++ -E
+checking for g77... no
+checking for f77... no
+checking for xlf... no
+checking for frt... no
+checking for pgf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for f90... no
+checking for xlf90... no
+checking for pgf90... no
+checking for epcf90... no
+checking for f95... no
+checking for fort... no
+checking for xlf95... no
+checking for ifc... no
+checking for efc... no
+checking for pgf95... no
+checking for lf95... no
+checking for gfortran... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 32768
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if gcc static flag  works... yes
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC
+checking if gcc PIC flag -fPIC works... yes
+checking if gcc supports -c -o file.o... yes
+checking whether the gcc linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by g++... /usr/i486-slackware-linux/bin/ld
+checking if the linker (/usr/i486-slackware-linux/bin/ld) is GNU ld... yes
+checking whether the g++ linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC
+checking if g++ PIC flag -fPIC works... yes
+checking if g++ supports -c -o file.o... yes
+checking whether the g++ linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+appending configuration tag "F77" to libtool
+checking for ANSI C header files... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking for xfce4-panel-1.0 >= 4.0.0... yes
+checking XFCE4_PANEL_CFLAGS... -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0  
+checking XFCE4_PANEL_LIBS... -Wl,--export-dynamic -L/usr/X11/lib -lxfcegui4 -lxml2 -lpthread -lz -lgtk-x11-2.0 -lxfce4util -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0  
+checking whether the panel is threaded... yes
+checking where to install panel plugins... /usr/lib/xfce4/panel-plugins
+checking whether to build with debugging support... no
+checking whether to build with profiling support... no
+checking whether to enable assert statements... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating panel-plugin/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+Now type `make' to compile.
+configure: WARNING: you should use --build, --host, --target
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for style of include used by make... GNU
+checking for i486-slackware-linux-gcc... i486-slackware-linux-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether i486-slackware-linux-gcc accepts -g... yes
+checking for i486-slackware-linux-gcc option to accept ANSI C... none needed
+checking dependency style of i486-slackware-linux-gcc... gcc3
+checking how to run the C preprocessor... i486-slackware-linux-gcc -E
+checking for egrep... grep -E
+checking for AIX... no
+checking for library containing strerror... none required
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking for i486-slackware-linux-gcc... (cached) i486-slackware-linux-gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether i486-slackware-linux-gcc accepts -g... (cached) yes
+checking for i486-slackware-linux-gcc option to accept ANSI C... (cached) none needed
+checking dependency style of i486-slackware-linux-gcc... (cached) gcc3
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking build system type... i486-slackware-linux-gnu
+checking host system type... i486-slackware-linux-gnu
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by i486-slackware-linux-gcc... /usr/i486-slackware-linux/bin/ld
+checking if the linker (/usr/i486-slackware-linux/bin/ld) is GNU ld... yes
+checking for /usr/i486-slackware-linux/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... nm
+checking whether ln -s works... yes
+checking how to recognise dependent libraries... pass_all
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for i486-slackware-linux-g++... i486-slackware-linux-g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether i486-slackware-linux-g++ accepts -g... yes
+checking dependency style of i486-slackware-linux-g++... gcc3
+checking how to run the C++ preprocessor... i486-slackware-linux-g++ -E
+checking for i486-slackware-linux-g77... no
+checking for i486-slackware-linux-f77... no
+checking for i486-slackware-linux-xlf... no
+checking for i486-slackware-linux-frt... no
+checking for i486-slackware-linux-pgf77... no
+checking for i486-slackware-linux-fort77... no
+checking for i486-slackware-linux-fl32... no
+checking for i486-slackware-linux-af77... no
+checking for i486-slackware-linux-f90... no
+checking for i486-slackware-linux-xlf90... no
+checking for i486-slackware-linux-pgf90... no
+checking for i486-slackware-linux-epcf90... no
+checking for i486-slackware-linux-f95... no
+checking for i486-slackware-linux-fort... no
+checking for i486-slackware-linux-xlf95... no
+checking for i486-slackware-linux-ifc... no
+checking for i486-slackware-linux-efc... no
+checking for i486-slackware-linux-pgf95... no
+checking for i486-slackware-linux-lf95... no
+checking for i486-slackware-linux-gfortran... no
+checking for g77... no
+checking for f77... no
+checking for xlf... no
+checking for frt... no
+checking for pgf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for f90... no
+checking for xlf90... no
+checking for pgf90... no
+checking for epcf90... no
+checking for f95... no
+checking for fort... no
+checking for xlf95... no
+checking for ifc... no
+checking for efc... no
+checking for pgf95... no
+checking for lf95... no
+checking for gfortran... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 32768
+checking command to parse nm output from i486-slackware-linux-gcc object... ok
+checking for objdir... .libs
+checking for i486-slackware-linux-ar... no
+checking for ar... ar
+checking for i486-slackware-linux-ranlib... no
+checking for ranlib... ranlib
+checking for i486-slackware-linux-strip... no
+checking for strip... strip
+checking if i486-slackware-linux-gcc static flag  works... yes
+checking if i486-slackware-linux-gcc supports -fno-rtti -fno-exceptions... no
+checking for i486-slackware-linux-gcc option to produce PIC... -fPIC
+checking if i486-slackware-linux-gcc PIC flag -fPIC works... yes
+checking if i486-slackware-linux-gcc supports -c -o file.o... yes
+checking whether the i486-slackware-linux-gcc linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by i486-slackware-linux-g++... /usr/i486-slackware-linux/bin/ld
+checking if the linker (/usr/i486-slackware-linux/bin/ld) is GNU ld... yes
+checking whether the i486-slackware-linux-g++ linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking for i486-slackware-linux-g++ option to produce PIC... -fPIC
+checking if i486-slackware-linux-g++ PIC flag -fPIC works... yes
+checking if i486-slackware-linux-g++ supports -c -o file.o... yes
+checking whether the i486-slackware-linux-g++ linker (/usr/i486-slackware-linux/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+appending configuration tag "F77" to libtool
+checking for ANSI C header files... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking for xfce4-panel-1.0 >= 4.0.0... yes
+checking XFCE4_PANEL_CFLAGS... -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0  
+checking XFCE4_PANEL_LIBS... -Wl,--export-dynamic -L/usr/X11/lib -lxfcegui4 -lxml2 -lpthread -lz -lgtk-x11-2.0 -lxfce4util -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0  
+checking whether the panel is threaded... yes
+checking where to install panel plugins... /usr/lib/xfce4/panel-plugins
+checking whether to build with debugging support... no
+checking whether to build with profiling support... no
+checking whether to enable assert statements... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating panel-plugin/Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5'
+Making all in panel-plugin
+make[2]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5/panel-plugin'
+if /bin/sh ../libtool --mode=compile --tag=CC i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0   -DXFCE_PANEL_THREADED=1 -DXFCE_PANEL_LOCK\(\)=gdk_threads_enter\(\) -DXFCE_PANEL_UNLOCK\(\)=gdk_threads_leave\(\)  -MT libdiskperf_la-main.lo -MD -MP -MF ".deps/libdiskperf_la-main.Tpo" -c -o libdiskperf_la-main.lo `test -f 'main.c' || echo './'`main.c; \
+then mv -f ".deps/libdiskperf_la-main.Tpo" ".deps/libdiskperf_la-main.Plo"; else rm -f ".deps/libdiskperf_la-main.Tpo"; exit 1; fi
+mkdir .libs
+ i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -DXFCE_PANEL_THREADED=1 "-DXFCE_PANEL_LOCK()=gdk_threads_enter()" "-DXFCE_PANEL_UNLOCK()=gdk_threads_leave()" -MT libdiskperf_la-main.lo -MD -MP -MF .deps/libdiskperf_la-main.Tpo -c main.c  -fPIC -DPIC -o .libs/libdiskperf_la-main.o
+In file included from main.c:34:
+debug.h:44:1: warning: "TRACE" redefined
+In file included from /usr/include/xfce4/libxfce4util/libxfce4util.h:33,
+                 from /usr/include/xfce4/libxfcegui4/libxfcegui4-config.h:29,
+                 from /usr/include/xfce4/libxfcegui4/libxfcegui4.h:25,
+                 from /usr/include/xfce4/panel/global.h:26,
+                 from /usr/include/xfce4/panel/xfce.h:23,
+                 from /usr/include/xfce4/panel/plugins.h:26,
+                 from config_gui.h:38,
+                 from main.c:32:
+/usr/include/xfce4/libxfce4util/debug.h:95:1: warning: this is the location of the previous definition
+if /bin/sh ../libtool --mode=compile --tag=CC i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0   -DXFCE_PANEL_THREADED=1 -DXFCE_PANEL_LOCK\(\)=gdk_threads_enter\(\) -DXFCE_PANEL_UNLOCK\(\)=gdk_threads_leave\(\)  -MT libdiskperf_la-config_gui.lo -MD -MP -MF ".deps/libdiskperf_la-config_gui.Tpo" -c -o libdiskperf_la-config_gui.lo `test -f 'config_gui.c' || echo './'`config_gui.c; \
+then mv -f ".deps/libdiskperf_la-config_gui.Tpo" ".deps/libdiskperf_la-config_gui.Plo"; else rm -f ".deps/libdiskperf_la-config_gui.Tpo"; exit 1; fi
+ i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -DXFCE_PANEL_THREADED=1 "-DXFCE_PANEL_LOCK()=gdk_threads_enter()" "-DXFCE_PANEL_UNLOCK()=gdk_threads_leave()" -MT libdiskperf_la-config_gui.lo -MD -MP -MF .deps/libdiskperf_la-config_gui.Tpo -c config_gui.c  -fPIC -DPIC -o .libs/libdiskperf_la-config_gui.o
+if /bin/sh ../libtool --mode=compile --tag=CC i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0   -DXFCE_PANEL_THREADED=1 -DXFCE_PANEL_LOCK\(\)=gdk_threads_enter\(\) -DXFCE_PANEL_UNLOCK\(\)=gdk_threads_leave\(\)  -MT libdiskperf_la-devperf.lo -MD -MP -MF ".deps/libdiskperf_la-devperf.Tpo" -c -o libdiskperf_la-devperf.lo `test -f 'devperf.c' || echo './'`devperf.c; \
+then mv -f ".deps/libdiskperf_la-devperf.Tpo" ".deps/libdiskperf_la-devperf.Plo"; else rm -f ".deps/libdiskperf_la-devperf.Tpo"; exit 1; fi
+ i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -DXFCE_PANEL_THREADED=1 "-DXFCE_PANEL_LOCK()=gdk_threads_enter()" "-DXFCE_PANEL_UNLOCK()=gdk_threads_leave()" -MT libdiskperf_la-devperf.lo -MD -MP -MF .deps/libdiskperf_la-devperf.Tpo -c devperf.c  -fPIC -DPIC -o .libs/libdiskperf_la-devperf.o
+if /bin/sh ../libtool --mode=compile --tag=CC i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I..    -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0   -DXFCE_PANEL_THREADED=1 -DXFCE_PANEL_LOCK\(\)=gdk_threads_enter\(\) -DXFCE_PANEL_UNLOCK\(\)=gdk_threads_leave\(\)  -MT libdiskperf_la-debug.lo -MD -MP -MF ".deps/libdiskperf_la-debug.Tpo" -c -o libdiskperf_la-debug.lo `test -f 'debug.c' || echo './'`debug.c; \
+then mv -f ".deps/libdiskperf_la-debug.Tpo" ".deps/libdiskperf_la-debug.Plo"; else rm -f ".deps/libdiskperf_la-debug.Tpo"; exit 1; fi
+ i486-slackware-linux-gcc -DHAVE_CONFIG_H -I. -I. -I.. -DXTHREADS -D_REENTRANT -DXUSE_MTSAFE_API -I/usr/include/xfce4 -I/usr/include/libxml2 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/atk-1.0 -DXFCE_PANEL_THREADED=1 "-DXFCE_PANEL_LOCK()=gdk_threads_enter()" "-DXFCE_PANEL_UNLOCK()=gdk_threads_leave()" -MT libdiskperf_la-debug.lo -MD -MP -MF .deps/libdiskperf_la-debug.Tpo -c debug.c  -fPIC -DPIC -o .libs/libdiskperf_la-debug.o
+/bin/sh ../libtool --mode=link --tag=CC i486-slackware-linux-gcc     -o libdiskperf.la -rpath /usr/lib/xfce4/panel-plugins -avoid-version -export-dynamic -module libdiskperf_la-main.lo libdiskperf_la-config_gui.lo libdiskperf_la-devperf.lo libdiskperf_la-debug.lo -Wl,--export-dynamic -L/usr/X11/lib -lxfcegui4 -lxml2 -lpthread -lz -lgtk-x11-2.0 -lxfce4util -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0   
+i486-slackware-linux-gcc -shared  .libs/libdiskperf_la-main.o .libs/libdiskperf_la-config_gui.o .libs/libdiskperf_la-devperf.o .libs/libdiskperf_la-debug.o  -L/usr/X11R6/lib -L/usr/lib -L/usr/X11/lib /usr/lib/libxfcegui4.so /usr/lib/libxml2.so -lpthread -lz /usr/lib/libgtk-x11-2.0.so /usr/lib/libxfce4util.so /usr/lib/libgdk-x11-2.0.so /usr/lib/libatk-1.0.so /usr/lib/libgdk_pixbuf-2.0.so -lm /usr/lib/libpangoxft-1.0.so /usr/lib/libpangox-1.0.so /usr/lib/libpango-1.0.so /usr/lib/libgobject-2.0.so /usr/lib/libgmodule-2.0.so -ldl /usr/lib/libglib-2.0.so  -Wl,--export-dynamic -Wl,-soname -Wl,libdiskperf.so -o .libs/libdiskperf.so
+creating libdiskperf.la
+(cd .libs && rm -f libdiskperf.la && ln -s ../libdiskperf.la libdiskperf.la)
+make[2]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5/panel-plugin'
+make[2]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5'
+make[2]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5'
+make[1]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5'
+Making install in panel-plugin
+make[1]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5/panel-plugin'
+make[2]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5/panel-plugin'
+make[2]: Nothing to be done for `install-exec-am'.
+test -z "/usr/lib/xfce4/panel-plugins" || mkdir -p -- "/tmp/package-xfce4-diskperf-plugin/usr/lib/xfce4/panel-plugins"
+ /bin/sh ../libtool --mode=install /usr/bin/ginstall -c  'libdiskperf.la' '/tmp/package-xfce4-diskperf-plugin/usr/lib/xfce4/panel-plugins/libdiskperf.la'
+/usr/bin/ginstall -c .libs/libdiskperf.so /tmp/package-xfce4-diskperf-plugin/usr/lib/xfce4/panel-plugins/libdiskperf.so
+/usr/bin/ginstall -c .libs/libdiskperf.lai /tmp/package-xfce4-diskperf-plugin/usr/lib/xfce4/panel-plugins/libdiskperf.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib/xfce4/panel-plugins'
+make[2]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5/panel-plugin'
+make[1]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5/panel-plugin'
+make[1]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5'
+make[2]: Entering directory `/tmp/xfce4-diskperf-plugin-1.5'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5'
+make[1]: Leaving directory `/tmp/xfce4-diskperf-plugin-1.5'
+chown: cannot access `/tmp/package-xfce4-diskperf-plugin/bin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-diskperf-plugin/sbin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-diskperf-plugin/usr/bin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-diskperf-plugin/usr/sbin': No such file or directory
+mv: cannot stat `/tmp/package-xfce4-diskperf-plugin/usr/share/man': No such file or directory
+mv: cannot stat `/tmp/package-xfce4-diskperf-plugin/usr/share/doc': No such file or directory
+rmdir: `/tmp/package-xfce4-diskperf-plugin/usr/share': No such file or directory
+gzip: /tmp/package-xfce4-diskperf-plugin/usr/man/man?/*: No such file or directory
+cp: cannot stat `ABOUT': No such file or directory
+cp: cannot stat `ABOUT-NLS': No such file or directory
+cp: cannot stat `ANNOUNCE': No such file or directory
+cp: cannot stat `CONFIGURATION': No such file or directory
+cp: cannot stat `CHANGES': No such file or directory
+cp: cannot stat `COPYRIGHT': No such file or directory
+cp: cannot stat `CREDITS': No such file or directory
+cp: cannot stat `Changelog': No such file or directory
+cp: cannot stat `CHANGELOG': No such file or directory
+cp: cannot stat `CONTRIBUTORS': No such file or directory
+cp: cannot stat `*FAQ*': No such file or directory
+cp: cannot stat `FEATURES': No such file or directory
+cp: cannot stat `FILES': No such file or directory
+cp: cannot stat `HACKING': No such file or directory
+cp: cannot stat `History': No such file or directory
+cp: cannot stat `HISTORY': No such file or directory
+cp: cannot stat `LICENSE': No such file or directory
+cp: cannot stat `LSM': No such file or directory
+cp: cannot stat `MANIFEST': No such file or directory
+cp: cannot stat `*Readme*': No such file or directory
+cp: cannot stat `SITES': No such file or directory
+cp: cannot stat `*RELEASE*': No such file or directory
+cp: cannot stat `RELNOTES': No such file or directory
+cp: cannot stat `THANKS': No such file or directory
+cp: cannot stat `TIPS': No such file or directory
+cp: cannot stat `TODO': No such file or directory
+cp: cannot stat `VERSION': No such file or directory
+cp: cannot stat `CONFIGURATION*': No such file or directory
+cp: cannot stat `GPL': No such file or directory
+cp: cannot stat `License': No such file or directory
+cp: cannot stat `Doc': No such file or directory
+cp: cannot stat `doc': No such file or directory
+cp: cannot stat `Docs*': No such file or directory
+cp: cannot stat `docs*': No such file or directory
+cp: cannot stat `Roadmap': No such file or directory
+cp: cannot stat `ROADMAP': No such file or directory
+cp: cannot stat `*BUGS*': No such file or directory
+cp: cannot stat `index.ht*': No such file or directory
+cp: cannot stat `*INDEX*': No such file or directory
+
+Slackware package maker, version 2.1.
+
+Searching for symbolic links:
+
+No symbolic links were found, so we won't make an installation script.
+You can make your own later in ./install/doinst.sh and rebuild the
+package if you like.
+
+This next step is optional - you can set the directories in your package
+to some sane permissions. If any of the directories in your package have
+special permissions, then DO NOT reset them here!
+
+Would you like to reset all directory permissions to 755 (drwxr-xr-x) and
+directory ownerships to root.root ([y]es, [n]o)? n
+
+
+Creating tar file xfce4-diskperf-plugin-1.5-i486-1tom.tar...
+
+./
+usr/
+usr/doc/
+usr/doc/xfce4-diskperf-plugin-1.5/
+usr/doc/xfce4-diskperf-plugin-1.5/NEWS
+usr/doc/xfce4-diskperf-plugin-1.5/README
+usr/doc/xfce4-diskperf-plugin-1.5/AUTHORS
+usr/doc/xfce4-diskperf-plugin-1.5/INSTALL
+usr/doc/xfce4-diskperf-plugin-1.5/ChangeLog
+usr/doc/xfce4-diskperf-plugin-1.5/COPYING
+usr/lib/
+usr/lib/xfce4/
+usr/lib/xfce4/panel-plugins/
+usr/lib/xfce4/panel-plugins/libdiskperf.la
+usr/lib/xfce4/panel-plugins/libdiskperf.so
+tar-1.13: xfce4-diskperf-plugin-1.5-i486-1tom.tar is the archive; not dumped
+install/
+install/doinst.sh
+install/slack-desc
+
+Gzipping xfce4-diskperf-plugin-1.5-i486-1tom.tar...
+
+Renaming xfce4-diskperf-plugin-1.5-i486-1tom.tar.gz to xfce4-diskperf-plugin-1.5-i486-1tom.tgz...
+
+Moving xfce4-diskperf-plugin-1.5-i486-1tom.tgz to /tmp...
+
+Package creation complete.
+

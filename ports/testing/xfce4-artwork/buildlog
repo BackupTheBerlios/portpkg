@@ -1,0 +1,190 @@
+xfce4-artwork-0.0.4/
+xfce4-artwork-0.0.4/NEWS
+xfce4-artwork-0.0.4/compile
+xfce4-artwork-0.0.4/depcomp
+xfce4-artwork-0.0.4/aclocal.m4
+xfce4-artwork-0.0.4/README
+xfce4-artwork-0.0.4/ltmain.sh
+xfce4-artwork-0.0.4/configure
+xfce4-artwork-0.0.4/configure.ac
+xfce4-artwork-0.0.4/config.guess
+xfce4-artwork-0.0.4/install-sh
+xfce4-artwork-0.0.4/config.sub
+xfce4-artwork-0.0.4/missing
+xfce4-artwork-0.0.4/mkinstalldirs
+xfce4-artwork-0.0.4/Makefile.am
+xfce4-artwork-0.0.4/Makefile.in
+xfce4-artwork-0.0.4/config.h.in
+xfce4-artwork-0.0.4/AUTHORS
+xfce4-artwork-0.0.4/backdrops/
+xfce4-artwork-0.0.4/backdrops/xfce-gradiented.png
+xfce4-artwork-0.0.4/backdrops/xfce-transparent.png
+xfce4-artwork-0.0.4/backdrops/xfce-rio.png
+xfce4-artwork-0.0.4/backdrops/Makefile.am
+xfce4-artwork-0.0.4/backdrops/Makefile.in
+xfce4-artwork-0.0.4/backdrops/xfce-evil.jpg
+xfce4-artwork-0.0.4/INSTALL
+xfce4-artwork-0.0.4/ChangeLog
+xfce4-artwork-0.0.4/COPYING
+cat: /tmp/portpkg-root-22976/751.script/xfce4-artwork/*.patch: No such file or directory
+Hmm...  I can't seem to find a patch in there anywhere.
+/usr/ports/testing/xfce4-artwork/SlackBuild: line 26: ./autogen.sh: No such file or directory
+configure: WARNING: you should use --build, --host, --target
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for a BSD-compatible install... /usr/bin/ginstall -c
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating backdrops/Makefile
+config.status: creating config.h
+make  all-recursive
+make[1]: Entering directory `/tmp/xfce4-artwork-0.0.4'
+Making all in backdrops
+make[2]: Entering directory `/tmp/xfce4-artwork-0.0.4/backdrops'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/tmp/xfce4-artwork-0.0.4/backdrops'
+make[2]: Entering directory `/tmp/xfce4-artwork-0.0.4'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/tmp/xfce4-artwork-0.0.4'
+make[1]: Leaving directory `/tmp/xfce4-artwork-0.0.4'
+Making install in backdrops
+make[1]: Entering directory `/tmp/xfce4-artwork-0.0.4/backdrops'
+make[2]: Entering directory `/tmp/xfce4-artwork-0.0.4/backdrops'
+make[2]: Nothing to be done for `install-exec-am'.
+/bin/sh ../mkinstalldirs /tmp/package-xfce4-artwork/usr/share/xfce4/backdrops
+mkdir -p -- /tmp/package-xfce4-artwork/usr/share/xfce4/backdrops
+ /usr/bin/ginstall -c -m 644 xfce-evil.jpg /tmp/package-xfce4-artwork/usr/share/xfce4/backdrops/xfce-evil.jpg
+ /usr/bin/ginstall -c -m 644 xfce-gradiented.png /tmp/package-xfce4-artwork/usr/share/xfce4/backdrops/xfce-gradiented.png
+ /usr/bin/ginstall -c -m 644 xfce-transparent.png /tmp/package-xfce4-artwork/usr/share/xfce4/backdrops/xfce-transparent.png
+ /usr/bin/ginstall -c -m 644 xfce-rio.png /tmp/package-xfce4-artwork/usr/share/xfce4/backdrops/xfce-rio.png
+make[2]: Leaving directory `/tmp/xfce4-artwork-0.0.4/backdrops'
+make[1]: Leaving directory `/tmp/xfce4-artwork-0.0.4/backdrops'
+make[1]: Entering directory `/tmp/xfce4-artwork-0.0.4'
+make[2]: Entering directory `/tmp/xfce4-artwork-0.0.4'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/tmp/xfce4-artwork-0.0.4'
+make[1]: Leaving directory `/tmp/xfce4-artwork-0.0.4'
+chown: cannot access `/tmp/package-xfce4-artwork/bin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-artwork/sbin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-artwork/usr/bin': No such file or directory
+chown: cannot access `/tmp/package-xfce4-artwork/usr/sbin': No such file or directory
+Usage: strip <option(s)> in-file(s)
+ Removes symbols and sections from files
+ The options are:
+  -I --input-target=<bfdname>      Assume input file is in format <bfdname>
+  -O --output-target=<bfdname>     Create an output file in format <bfdname>
+  -F --target=<bfdname>            Set both input and output format to <bfdname>
+  -p --preserve-dates              Copy modified/access timestamps to the output
+  -R --remove-section=<name>       Remove section <name> from the output
+  -s --strip-all                   Remove all symbol and relocation information
+  -g -S -d --strip-debug           Remove all debugging symbols & sections
+     --strip-unneeded              Remove all symbols not needed by relocations
+     --only-keep-debug             Strip everything but the debug information
+  -N --strip-symbol=<name>         Do not copy symbol <name>
+  -K --keep-symbol=<name>          Only copy symbol <name>
+  -w --wildcard                    Permit wildcard in symbol comparison
+  -x --discard-all                 Remove all non-global symbols
+  -X --discard-locals              Remove any compiler-generated symbols
+  -v --verbose                     List all object files modified
+  -V --version                     Display this program's version number
+  -h --help                        Display this output
+     --info                        List object formats & architectures supported
+  -o <file>                        Place stripped output into <file>
+strip: supported targets: elf32-i386 a.out-i386-linux efi-app-ia32 elf64-x86-64 elf64-little elf64-big elf32-little elf32-big srec symbolsrec tekhex binary ihex trad-core
+mv: cannot stat `/tmp/package-xfce4-artwork/usr/share/man': No such file or directory
+mv: cannot stat `/tmp/package-xfce4-artwork/usr/share/doc': No such file or directory
+rmdir: `/tmp/package-xfce4-artwork/usr/share': Directory not empty
+gzip: /tmp/package-xfce4-artwork/usr/man/man?/*: No such file or directory
+cp: cannot stat `ABOUT': No such file or directory
+cp: cannot stat `ABOUT-NLS': No such file or directory
+cp: cannot stat `ANNOUNCE': No such file or directory
+cp: cannot stat `CONFIGURATION': No such file or directory
+cp: cannot stat `CHANGES': No such file or directory
+cp: cannot stat `COPYRIGHT': No such file or directory
+cp: cannot stat `CREDITS': No such file or directory
+cp: cannot stat `Changelog': No such file or directory
+cp: cannot stat `CHANGELOG': No such file or directory
+cp: cannot stat `CONTRIBUTORS': No such file or directory
+cp: cannot stat `*FAQ*': No such file or directory
+cp: cannot stat `FEATURES': No such file or directory
+cp: cannot stat `FILES': No such file or directory
+cp: cannot stat `HACKING': No such file or directory
+cp: cannot stat `History': No such file or directory
+cp: cannot stat `HISTORY': No such file or directory
+cp: cannot stat `LICENSE': No such file or directory
+cp: cannot stat `LSM': No such file or directory
+cp: cannot stat `MANIFEST': No such file or directory
+cp: cannot stat `*Readme*': No such file or directory
+cp: cannot stat `SITES': No such file or directory
+cp: cannot stat `*RELEASE*': No such file or directory
+cp: cannot stat `RELNOTES': No such file or directory
+cp: cannot stat `THANKS': No such file or directory
+cp: cannot stat `TIPS': No such file or directory
+cp: cannot stat `TODO': No such file or directory
+cp: cannot stat `VERSION': No such file or directory
+cp: cannot stat `CONFIGURATION*': No such file or directory
+cp: cannot stat `GPL': No such file or directory
+cp: cannot stat `License': No such file or directory
+cp: cannot stat `Doc': No such file or directory
+cp: cannot stat `doc': No such file or directory
+cp: cannot stat `Docs*': No such file or directory
+cp: cannot stat `docs*': No such file or directory
+cp: cannot stat `Roadmap': No such file or directory
+cp: cannot stat `ROADMAP': No such file or directory
+cp: cannot stat `*BUGS*': No such file or directory
+cp: cannot stat `index.ht*': No such file or directory
+cp: cannot stat `*INDEX*': No such file or directory
+
+Slackware package maker, version 2.1.
+
+Searching for symbolic links:
+
+No symbolic links were found, so we won't make an installation script.
+You can make your own later in ./install/doinst.sh and rebuild the
+package if you like.
+
+This next step is optional - you can set the directories in your package
+to some sane permissions. If any of the directories in your package have
+special permissions, then DO NOT reset them here!
+
+Would you like to reset all directory permissions to 755 (drwxr-xr-x) and
+directory ownerships to root.root ([y]es, [n]o)? n
+
+
+Creating tar file xfce4-artwork-0.0.4-i486-1tom.tar...
+
+./
+usr/
+usr/doc/
+usr/doc/xfce4-artwork-0.0.4/
+usr/doc/xfce4-artwork-0.0.4/NEWS
+usr/doc/xfce4-artwork-0.0.4/README
+usr/doc/xfce4-artwork-0.0.4/AUTHORS
+usr/doc/xfce4-artwork-0.0.4/INSTALL
+usr/doc/xfce4-artwork-0.0.4/ChangeLog
+usr/doc/xfce4-artwork-0.0.4/COPYING
+usr/share/
+usr/share/xfce4/
+usr/share/xfce4/backdrops/
+usr/share/xfce4/backdrops/xfce-gradiented.png
+usr/share/xfce4/backdrops/xfce-transparent.png
+usr/share/xfce4/backdrops/xfce-rio.png
+usr/share/xfce4/backdrops/xfce-evil.jpg
+tar-1.13: xfce4-artwork-0.0.4-i486-1tom.tar is the archive; not dumped
+install/
+install/doinst.sh
+install/slack-desc
+WARNING: zero length file ./usr/doc/xfce4-artwork-0.0.4/NEWS
+
+Gzipping xfce4-artwork-0.0.4-i486-1tom.tar...
+
+Renaming xfce4-artwork-0.0.4-i486-1tom.tar.gz to xfce4-artwork-0.0.4-i486-1tom.tgz...
+
+Moving xfce4-artwork-0.0.4-i486-1tom.tgz to /tmp...
+
+Package creation complete.
+

@@ -1,0 +1,23 @@
+--- -	2004-11-24 16:37:32.000000000 +0100
++++ /usr/ports/testing/xfce4-showdesktop-plugin/SlackBuild	2004-11-24 16:31:03.000000000 +0100
+@@ -1,6 +1,6 @@
+-VERSION=
+-ARCH=${ARCH:-i486}
+-BUILD=
++VERSION=0.4.0
++ARCH=i486
++BUILD=1tom
+ 
+ CWD=`pwd`
+ NAME=`basename $CWD`
+@@ -19,8 +19,8 @@
+ fi
+ 
+ cd /tmp || exit 1
+-tar xzvf $CWD/$NAME-$VERSION.tar.gz
+-cd $NAME-$VERSION || exit 1
++tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
++cd $NAME || exit 1
+ cat $CWD/*.patch | patch -p1 --verbose
+ chown -R root.root .
+ ./autogen.sh

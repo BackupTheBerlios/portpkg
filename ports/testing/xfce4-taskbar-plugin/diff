@@ -1,0 +1,21 @@
+--- -	2004-11-24 16:23:07.000000000 +0100
++++ /usr/ports/testing/xfce4-taskbar-plugin/SlackBuild	2004-11-24 16:06:49.000000000 +0100
+@@ -1,6 +1,6 @@
+-VERSION=
+-ARCH=${ARCH:-i486}
+-BUILD=
++VERSION=0.2.2
++ARCH=i486
++BUILD=1tom
+ 
+ CWD=`pwd`
+ NAME=`basename $CWD`
+@@ -19,7 +19,7 @@
+ fi
+ 
+ cd /tmp || exit 1
+-tar xzvf $CWD/$NAME-$VERSION.tar.gz
++tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+ cd $NAME-$VERSION || exit 1
+ cat $CWD/*.patch | patch -p1 --verbose
+ chown -R root.root .
