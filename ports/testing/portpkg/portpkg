@@ -271,6 +271,7 @@ check_reqs()
 
 maintainer_mode()
 {
+  local t=`mktemp -d`
   row "Going maintainer mode"
   # assume we are in the script dir
   rm -rf PORT_IS_BROKEN
@@ -304,9 +305,9 @@ maintainer_mode()
     # perl modules
     grep -ie ":.*perl" -e ".pm:" $t/ftypes | cut -d : -f 1 \
     | xargs sed -n "s,.*use *\([A-Z][a-z][^;<> ]*\).*,\1,p" | xargs -i echo "/man./{}\."
-  } | grep -lf - $ADM_DIR/packages/* | rev | cut -d / -f 1 | cut -d - -f 4- \
-  | rev| pkg2name | rev | cut -d / -f 1 | rev | sed -e "s,-solibs$,," \
-  -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/bin_req
+  } | sed "s,/\./,/,g" | grep -lf - $ADM_DIR/packages/* | rev | cut -d / -f 1 \
+  | cut -d - -f 4- | rev| pkg2name | rev | cut -d / -f 1 | rev \
+  | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/bin_req
   # perl and python?
   grep -qie ":.*perl" -e "\.pm:" $t/ftypes && echo perl >>$t/bin_req
   grep -qie ":.*python" -e "\.py:" $t/ftypes && echo python >>$t/bin_req
@@ -362,6 +363,7 @@ build_pkg()
     # written behind a % in sources
     local srcname=`basename "$src" | cut -d % -f 2`
     local src=`echo "$src" | cut -d % -f 1`
+    [ -L $srcname ] && rm -rf $srcname
     if [ -f $SRC_DIR/$srcname ]; then
       row "$srcname found in $SRC_DIR/"
     else
@@ -370,7 +372,7 @@ build_pkg()
     fi
     if ! $DRY_RUN; then
       # pseudo ports: don't cache sources
-      $pseudo && mv $SRC_DIR/$srcname . || ln -s $SRC_DIR/$srcname .
+      $pseudo && mv $SRC_DIR/$srcname $t/ || ln -s $SRC_DIR/$srcname .
     fi
   done
   # check md5sums
@@ -429,8 +431,7 @@ build_pkg()
   mkdir -p $PKG_DIR/$group
   mv /tmp/$package.tgz $PKG_DIR/$group/
   row "Cleaning up"
-# FIXME
-  find -type l | xargs -r echo "  --> Would remove"
+  find -type l | xargs -r rm -rf
   cd /tmp
 #  rm -rf /tmp/script-$name
   rm -rf /tmp/package-$name
