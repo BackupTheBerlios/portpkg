@@ -537,7 +537,7 @@ fi
 if check "\.desktop(|\.in)$" $t/footprint; then
   add_inst "usr/bin/update-desktop-database" $path/doinst.sh
 else
-  remove_inst "update-mime-database" $path/doinst.sh
+  remove_inst "update-desktop-database" $path/doinst.sh
 fi
 
 ## wrong hard-coded doc paths
