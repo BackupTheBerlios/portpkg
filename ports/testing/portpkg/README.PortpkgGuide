@@ -1,8 +1,6 @@
 The Portpkg Project Guide
 
-   --------------------------------------------------------------------------
-
-Copyright
+  Copyright
 
    Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
 
@@ -10,6 +8,8 @@ Copyright
    terms of the GNU General Public License as published by the Free Software
    Foundation; either version 2 of the License, or (at your option) any later
    version.
+
+   --------------------------------------------------------------------------
 
 Introduction
 
@@ -19,35 +19,81 @@ Introduction
    manage a larger set of software for Slackware. This is done not by
    provding binary packages, but by collecting scripts that download, compile
    and install software on your machine. The implementation is very simple
-   and automated while still gaining the maximum possible "Slackwareness".
-   Contribution of own ports is realised by uploading them onto our server
-   which commits them into an open directory. The contributed ports will be
-   checked merged into the ports tree later.
+   and automated while still gaining a maximum of system integration: It is
+   based on SlackBuilds aslike Slackware's Pkgtools. The information of how
+   to compile what software, what version and where to find is stored in
+   additional files, these are catalogised in a so called ports tree.
+   Portpkg's administration scripts make it possible to browse, search and
+   handle these scripts. Contribution of own ports is realised by uploading
+   them onto our server which commits them into an open directory. The
+   contributed ports will be checked and merged into the ports tree later.
 
   Why should I use Portpkg?
 
    The traditional way of adding software to a Slackware system is either to
-   install a ready made package or to compile it by hand. While the first one
+   install a ready-made package or to compile it by hand. While the first one
    is dead easy, the other one gives you full control over any details of the
-   resulting software.
-
-   Portpkg is in the middle of both: It has a comfortable administration
-   interface similiar to installpkg, but also a source script system, as
-   Slackware uses it to compile and gives you as much control as possible.
-   Also the Portpkg project won't change Slackware's behaviour. Portpkg is a
-   ports system that tries to match Slackware's way as close as possible. The
-   information of how to compile what software, what version and where to
-   find is stored in scripts, these are catalogised in a so called ports
-   tree. Portpkg's administration scripts make it possible to browse, search
-   and handle these scripts.
+   resulting software. Portpkg is in the middle of both: It has a comfortable
+   administration interface similiar to installpkg, but also a source script
+   system, as Slackware uses it to compile and gives you as much control as
+   possible. Also, the Portpkg project doesn't change Slackware's behaviour
+   in any way. Portpkg is a ports system that tries to match Slackware's way
+   as close as possible.
 
   Overview of this guide
 
      o Installing Portpkg
      o Using the ports
+
+          o Building and installing ports
+          o Listing all available ports
+          o Viewing information of ports
+          o Finding ports
+          o Listing outdated packages
+          o Upgrading all outdated packages
+          o The tool Checkpkg
+
      o Writing ports
+
+          o Preparing
+
+               o Maintainer mode
+               o Classifying ports
+
+          o Ports and their parts
+
+               o SlackBuild
+               o Doinst.sh
+               o Slack-desc
+               o Sources
+               o Slot-in
+               o Pseudo
+               o Requires
+               o No-fakeroot
+               o Ignore
+               o Miscellaneous
+
+          o Configuration of Portpkg
+
+               o Local.conf
+               o Mirrors ans mirrors.local
+               o Ignore and ignore.local
+               o Exclude and exclude.local
+
+          o The tool Autoport
+
      o Contribute to the Portpkg Project
      o Backgrounds
+
+          o A small introduction into the ports tree
+          o Terminology
+          o Theory
+          o File system
+          o Ports tree
+          o The SlackBuild-blackbox
+          o Dealing with ports
+
+   --------------------------------------------------------------------------
 
 Installing Portpkg
 
@@ -80,6 +126,8 @@ Installing Portpkg
    Portpkg will now write a copy of the current ports tree to /usr/ports. Use
    this command to update your ports tree later as the it changes quite
    often. Portpkg is now ready to compile.
+
+   --------------------------------------------------------------------------
 
 Using the ports
 
@@ -154,6 +202,7 @@ Using the ports
  (...)
  xap/mplayer-1.0pre5-i486-4tom
  xap/ogle-0.9.2-i486-2tom
+
  xap/ogle_gui-0.9.2-i486-1tom
  xap/pyne-1.0.2-i486-1tom
  xap/redhat-artwork-0.98-i486-3tom
@@ -217,20 +266,7 @@ Using the ports
 
    (For now see Screenshots.)
 
-  The tool Pp-clean-cache
-
-   Use Pp-clean-cache to move outdated packages in yours package cache in
-   /usr/obj/pkg into its subdirectory outdated/. If you want, you can delete
-   them: rm -rf /usr/obj/pkg/outdated.
-
-  The addon-scripts Pp-sync-bin and Pp-sync-src
-
-   (Handle with care, experimantal)
-
-   Pp-sync-bin is a script that adds binary packages for your Slackware
-   version to your ports tree beneath /usr/ports/z/bin, while Pp-sync-slack
-   is a script that imports the source code of Slackware to a second ports
-   tree in /usr/ports/z/src.
+   --------------------------------------------------------------------------
 
 Writing ports
 
@@ -242,6 +278,11 @@ Writing ports
    doing, this is at your own risk!
 
   Preparing
+
+   For your own ports, you should use the subdirectory local/ for two
+   reasons: These ports will be listed preferred, that means that your ports
+   overlay other ports. All other directories will be overwritten by a sync
+   with the official tree.
 
     Maintainer mode
 
@@ -286,14 +327,20 @@ Writing ports
    other ports. To avoid cluttering we should follow a naming scheme.
 
    Notes
-           * Ports should be portable for other architectures than x86 (s390
-             and x86_64), so if the code will be architecture-dependend, ARCH
-             has to be {ARCH:-i486}, which means, that i486 is the default
-             architecture, otherwise it has to be noarch.
-           * Besides versions cannot have a - inside. Futhermore names cannot
-             have capitals.
+           * Versions (and architectures, revisions) cannot have a - inside.
+           * Names should not have capitals.
 
   Ports and their parts
+
+   A ports is made up of different files (most important the SlackBuild) and
+   its path, where the critical part is only the last two parent directories,
+   which describe the port's group and name:
+
+ /usr/ports/local/kde-stuff/audio/l/artsd/SlackBuild
+ \________/                      /  \___/ \________/
+     |                          /     |       |
+ ports tree                group    name  contains version,
+                                          arch and release
 
     SlackBuild
 
@@ -313,6 +360,10 @@ Writing ports
    |Variable data|/var/lib|
    |-------------+--------|
    |Prefix       |/usr    |
+   |-------------+--------|
+   |Documentation|/usr/doc|
+   |-------------+--------|
+   |Manpages     |/usr/man|
    +----------------------+
 
    The Filesystem Hierarchy Standard, which should be followed in general,
@@ -321,6 +372,36 @@ Writing ports
    (prefix /opt/name). Note, that the prefix /usr/local, which is normally
    the default prefix for any source code, should never be used for packages,
    but only for installations by hands! The same is in the other way around.
+
+   Make ports portable
+
+   Ports should be portable for architectures other than x86 (particularly
+   s390 and x86_64), so if the code will be architecture-dependend, ARCH must
+   be set to {ARCH:-i486}, which means, that i486 is the default
+   architecture, otherwise it has to be noarch. Granted, SlackBuilds aren't
+   predestinated for porting to other platforms, but they can also be made
+   suitable for processor optimisations via CFLAGS. To satisfy
+   CFLAGS-customisation, a SlackBuild must have these lines or appropriate
+   instructions (supposed it makes use of ./configure):
+
+ if [ "$ARCH" = "i386" ]; then
+   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+ elif [ "$ARCH" = "i486" ]; then
+   SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+ elif [ "$ARCH" = "s390" ]; then
+   SLKCFLAGS="-O2"
+ elif [ "$ARCH" = "x86_64" ]; then
+   SLKCFLAGS="-O2"
+ fi
+
+   It is important that default values will be set only for i386, i486, s390
+   and x86_64. For any other ARCH (especially effected by a general else
+   instruction), there should be no default value! Later, SLKCFLAGS must be
+   handed over to ./configure via
+
+ CFLAGS="$SLKCFLAGS" \
+ ./configure \
+ (...)
 
    Notes
            * Executable files in bin/ and sbin/ and their directories have to
@@ -467,15 +548,20 @@ Writing ports
 
   Configuration of Portpkg
 
-   The configuration files are located in /usr/ports.
+   The configuration files are located in /usr/ports. Generally, there are
+   configuration files that are distributed (mirrors, ignore and exclude),
+   don't edit them. Use a host specific file instead (mirrors.local,
+   ignore.local and exclude.local) that won't be overwritten.
 
     Local.conf
 
    You can customise portpkg with several variables in local.conf:
 
+   +----------------------------+
+   |MY_TAG=tag|Your personal tag|
+   +----------------------------+
+
    +------------------------------------------------------------------------+
-   |MY_TAG=tag             |Your personal tag                               |
-   |-----------------------+------------------------------------------------|
    |MY_EMAIL=email         |Your mail address for contacting you if you plan|
    |                       |to contribute                                   |
    |-----------------------+------------------------------------------------|
@@ -498,9 +584,9 @@ Writing ports
    |-----------------------+------------------------------------------------|
    |LAZY_CHECKS=true       |Don't upgrade dependencies (--lazy)             |
    |-----------------------+------------------------------------------------|
-   |ARCH=arch^2            |Architecture of the target platform             |
+   |ARCH=arch              |Architecture of the target platform             |
    |-----------------------+------------------------------------------------|
-   |CFLAGS=cflags^2        |Compiler optimisations flags                    |
+   |CFLAGS=cflags          |Compiler optimisations flags                    |
    +------------------------------------------------------------------------+
 
     Mirrors and mirrors.local
@@ -554,6 +640,7 @@ Writing ports
  difference is, autoport will download the source code package you have to
  enter and searches for different keywords to adjust a suitable SlackBuild
  script.
+
 
  If autoport doesn't work as expected, please mail at:
  <topf at users dot berlios dot de>
@@ -644,8 +731,6 @@ Writing ports
  lame: lame (create mp3 audio files)
  lame:
  lame: LAME is an LGPL MP3 encoder. The Open source development model
-
-
  lame: allowed to improve its quality and speed since 1999. It is now an
  lame: highly evolved MP3 encoder, with quality and speed able to rival
  lame: state of the art commercial encoders.
@@ -654,6 +739,8 @@ Writing ports
 
    We hope you plan to contribute your ports to this project, it is a simple
    task!
+
+   --------------------------------------------------------------------------
 
 Contribute to the Portpkg Project
 
@@ -691,6 +778,8 @@ Contribute to the Portpkg Project
    Please make sure, it's not getting too big! Normally, a port just needs
    the files SlackBuild, slack-desc, sources and requires. You can load it up
    on http://portpkg.berlios.de.
+
+   --------------------------------------------------------------------------
 
 Backgrounds
 
@@ -820,11 +909,13 @@ Backgrounds
 
    -- "What directories are used for Portpkg and it's scripts?"
 
+   +-----------------------------------+
+   |/usr/ports  |Ports tree copy       |
+   |------------+----------------------|
+   |/usr/obj/pkg|Stored binary packages|
+   +-----------------------------------+
+
    +-----------------------------------------+
-   |/usr/ports    |Ports tree copy           |
-   |--------------+--------------------------|
-   |/usr/obj/pkg  |Stored binary packages    |
-   |--------------+--------------------------|
    |/usr/src/dist |Downloaded source packages|
    |--------------+--------------------------|
    |/usr/src/cvs^2|CVS-repositories          |
@@ -876,7 +967,7 @@ Backgrounds
    |open/   |The open group: a temporary place (special to Portpkg) for     |
    |        |ports that are uploaded by users with the web interface.       |
    |--------+---------------------------------------------------------------|
-   |local/^2|A subdirectory (not a group!) that is always preferred before  |
+   |local/  |A subdirectory (not a group!) that is always preferred before  |
    |        |all others                                                     |
    |--------+---------------------------------------------------------------|
    |z/      |A subdirectory (not a group!) that contains ports to be used as|
@@ -941,9 +1032,43 @@ References
    Visible links
    . file:///usr/ports/local/portpkg/PortpkgGuide.html#1
    . file:///usr/ports/local/portpkg/PortpkgGuide.html#2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-1
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-3
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-4
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-5
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-6
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#2-7
    . file:///usr/ports/local/portpkg/PortpkgGuide.html#3
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-1
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-1-1
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-1-2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-1
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-3
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-4
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-5
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-6
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-7
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-8
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-9
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-2-10
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-1
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-3
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-3-4
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#3-4
    . file:///usr/ports/local/portpkg/PortpkgGuide.html#4
    . file:///usr/ports/local/portpkg/PortpkgGuide.html#5
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-1
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-2
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-3
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-4
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-5
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-6
+   . file:///usr/ports/local/portpkg/PortpkgGuide.html#5-7
    . http://developer.berlios.de/project/showfiles.php?group_id=2486
    . file:///usr/ports/local/portpkg/doc.php?page=Screenshots
    . http://www.pathname.com/fhs/pub/fhs-2.3.html

@@ -726,7 +726,7 @@ cp -a \ ##docs
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} | xarg -r gzip -9
+find $PKG/usr/{man,info} -type f | xarg -r gzip -9
 #!meta-doc
 #%doc-fix%
 #%post-doc-fix%

@@ -554,6 +554,9 @@ do_export()
   has_args $@ || die
   has_ports || die
   has_prog curl || die
+  [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
+  [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
+  [ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
   local t=`mktemp -d`
   stanza "Exporting ports to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
   local ret
@@ -579,7 +582,7 @@ do_export()
       cd $t/$package
       tar cjf /tmp/$package.tar.bz2 .
     )
-    curl -F filetoupload=@/tmp/$package.tar.bz2 \
+    $DRY_RUN || curl -F filetoupload=@/tmp/$package.tar.bz2 \
       http://portpkg.berlios.de/upload.php >/dev/null 2>&1 \
     || error "An error occured!"
     ret=$?

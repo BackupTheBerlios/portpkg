@@ -1,9 +1,29 @@
 News
 
+  02/24/2005
+
+   Portpkg
+           * I have uploaded a testing version of Portpkg with some slight
+             differences: mirrors*, ignore*, exlcude* and local.conf are
+             located in /etc/portpkg which makes it possible to customise
+             also the ports tree (PRT_DIR in local.conf, but doesn't work
+             with Pp-config for now!)
+           * Autoport uses some more conservative SlackBuild methods again,
+             it is sensitive for update-mime-database and
+             update-desktop-database and installs GConf-schemas-defaults
+             before packaging
+           * Pp-export has been integrated into portpkg (start as portpkg
+             --export ports)
+           * Pp-config uses a different way of identifying your CPU (thanks
+             to MPlayer's configure). Maybe it's better now. At least I found
+             out, mine is a athlon-4, not athlon-xp!
+
   02/20/2005
 
    Portpkg
            * Release 0.35.
+           * Edit: Sorry, made some mistakes, please ensure you have release
+             0.35b!
            * CFLAGS can be set to different values (but not recommended,
              since it is impossible to check, if a SlackBuild actually uses
              it, and you can end up with packages named i686, but tuned for

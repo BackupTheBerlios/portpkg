@@ -1,6 +1,6 @@
 VERSION=0.35cvs
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -11,7 +11,7 @@ mkdir -p $PKG/usr/bin
 mkdir -p $PKG/usr/man/man1
 mkdir -p $PKG/var/log/setup
 
-install -m 644 $CWD/mirrors $PKG/etc/portpkg/
+install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/
 install -m 644 $CWD/ignore $PKG/etc/portpkg/
 install -m 644 $CWD/exclude $PKG/etc/portpkg/
 
@@ -33,7 +33,7 @@ chown -R root.bin $PKG/usr/bin
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  COPYING NEWS README* \
+  COPYING CREDITS NEWS README* \
   $PKG/usr/doc/$NAME-$VERSION/
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc

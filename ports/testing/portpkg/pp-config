@@ -114,40 +114,6 @@ If unsure answer 'yes'." 0 0 && use_bin=true
   $use_bin && echo "BIN_PRT_DIR=\$PRT_DIR/z/bin" >>$CFG_DIR/local.conf
   $use_bin && echo "SYNC_ADDON=\"pp-sync-bin\"" >>$CFG_DIR/local.conf
 #  $use_src && echo "SRC_PRT_DIR=\$PRT_DIR/z/src" >>$CFG_DIR/local.conf
-return
-  ports="Ports $PRT_DIR"
-  bins="Binaries ${BIN_PRT_DIR:-$PRT_DIR/z/bin}"
-  srcs="Source ${SRC_PRT_DIR:-$PRT_DIR/z/src}"
-  local rc=3
-  while [ $rc == 3 ]; do
-    # assume the ports tree comes after its child directory xxx/a
-    ports="$ports/mmm"
-    list=`echo -e "$ports\n$bins\n$srcs" | sort +1`
-    ports=`echo $ports | sed "s,/mmm$,,"`
-    list=`echo "$list" | sed "s,/mmm$,,"`
-    echo "$list"
-    dialog --title "$heading" --extra-label "Change" --inputmenu 
-"Which resources do you prefer?
-You can change the paths of these resources to adjust the order of available \
-ports. It is recommended to use /usr/ports/0/... and /usr/ports/z/...
-If unsure press OK." 20 60 9 $list 2>$t/out
-    rc=$?
-    out=`cat $t/out`
-    if [ $rc == 3 ]; then
-      case $out in
-        RENAMED\ P*)
-          ports=`echo $out | cut -d " " -f 2-`;;
-        RENAMED\ B*)
-          bins=`echo $out | cut -d " " -f 2-`;;
-        RENAMED\ S*)
-          srcs=`echo $out | cut -d " " -f 2-`;;
-      esac
-    fi
-  done
-  BIN_PRT_DIR=`echo $bins | cut -d " " -f 2-`
-  SRC_PRT_DIR=`echo $srcs | cut -d " " -f 2-`
-  $use_bin && echo "BIN_PRT_DIR=$BIN_PRT_DIR" >>$CFG_DIR/local.conf
-  $use_src && echo "SRC_PRT_DIR=$SRC_PRT_DIR" >>$CFG_DIR/local.conf
 }
 
 mirrors()
@@ -170,6 +136,7 @@ cpu()
 {
   # This subroutine has been "inspired" by the configure script from Mplayer.
   # Thanks to these people! :-)
+  [ -f /proc/cpuinfo ] || die "Cannot determine CPU without /proc."
   vendor=`grep "vendor_id" /proc/cpuinfo | cut -d : -f 2 | xargs`
   family=`grep "cpu family" /proc/cpuinfo | cut -d : -f 2 | xargs`
   model=`grep "model" /proc/cpuinfo | grep -v "model name" | cut -d : -f 2 | xargs`
