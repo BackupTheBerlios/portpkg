@@ -1,10 +1,10 @@
 #!/bin/sh
-if ! html2text -help >/dev/null; then
-  echo "No package 'html2text installed!"
+if ! [ -x /usr/bin/elinks ]; then
+  echo "No package 'elinks' installed!"
   exit 1
 fi
 
 for doc in QuickStart UserGuide MaintainerGuide PortpkgGuide TodoBugsAbout; do
   wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
-  html2text -nobs -style pretty -o $doc.txt $doc.html
+  elinks -dump $doc.html >$doc.txt
 done

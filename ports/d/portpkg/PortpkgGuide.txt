@@ -1,165 +1,216 @@
+[1]PortpkgGuide
 
-PortpkgGuide
-
-This page addresses the how and why of the administration tool portpkg and its
-inner work and development... It will soon. :-)
+   This page addresses the how and why of the administration tool portpkg and
+   its inner work and development... It will soon. :-)
 
 1. File system
 
- ________________________________________
-|/usr/ports___|Ports_tree_copy___________|
-|/usr/src/dist|Downloaded_source_packages|
-|/usr/obj/pkg_|Stored_binary_packages____|
+   +----------------------------------------+
+   |/usr/ports   |Ports tree copy           |
+   |-------------+--------------------------|
+   |/usr/src/dist|Downloaded source packages|
+   |-------------+--------------------------|
+   |/usr/obj/pkg |Stored binary packages    |
+   +----------------------------------------+
 
-Planning:
- _____________________________
-|/usr/src/cvs|CVS-repositories|
+   Planning:
 
-Tipp: Damit alle Abhängikeiten automatisch aufgelöst werden können, kann man
-alle .tgz-Pakete, die man sich vom Slackware-Mirror heruntergeladen hat nach /
-usr/obj/pkg kopieren oder man benutzt das in Portpkg mitgelieferte Skript sync-
-dist, das sogenannte Pseudo-Ports erstellt, die wiederum nichts anderes machen,
-als Slackware-Pakete bei Bedarf von einem Slackware-Mirror herunterzuladen.
--------------------------------------------------------------------------------
+   +-----------------------------+
+   |/usr/src/cvs|CVS-repositories|
+   +-----------------------------+
+
+   Tipp: Damit alle Abhaengikeiten automatisch aufgeloest werden koennen,
+   kann man alle .tgz-Pakete, die man sich vom Slackware-Mirror
+   heruntergeladen hat nach /usr/obj/pkg kopieren oder man benutzt das in
+   Portpkg mitgelieferte Skript sync-dist, das sogenannte Pseudo-Ports
+   erstellt, die wiederum nichts anderes machen, als Slackware-Pakete bei
+   Bedarf von einem Slackware-Mirror herunterzuladen.
+
+   ---------------------------------------------------------------------------
 
 2. Ports Tree
 
-Der Portsbaum ist analog dem Paketverzeichnis von Slackware selbst. Die erste
-Ebende unter /usr/ports sind die Gruppen:
- ___________________________________________________________________
-|ap/_____|Anwendungen_______________________________________________|
-|d/______|Entwicklungswerkzeuge_____________________________________|
-|gnome/__|Anwendungen,_die_auf_GNOME_aufbauen_______________________|
-|kde/____|Anwendungen,_die_auf_KDE_aufbauen_________________________|
-|l/______|Bibliotheken______________________________________________|
-|n/______|Netzwerkserver,_und_-clients______________________________|
-|x/______|X-Server_und_dessen_Treiber_______________________________|
-|xap/____|X-Anwendungen_____________________________________________|
-|pasture/|Pakete,_die_nur_aus_Kompatibilitätsgründen_noch_dabei_sind|
-|testing/|Alles,_was_noch_nicht_stabil_ist__________________________|
+   Der Portsbaum ist analog dem Paketverzeichnis von Slackware selbst. Die
+   erste Ebende unter /usr/ports sind die Gruppen:
 
-Findige Slacker werden hier sicherlich bemerkt haben, dass die Gruppen testing/
-und pasture/ eigentlich auf Slackware eine Ebene höher liegen. Dies steht
-natürlich noch zur Diskussion :)
-In zweiter Ebene stehen die Ports, von denen jeder nur in einer Gruppe sein
-kann. Für jeden Port gibt es ein Verzeichnis, in dem die Skripte aufbewahrt
-werden:
+   +---------------------------------------------------------------------+
+   |ap/     |Anwendungen                                                 |
+   |--------+------------------------------------------------------------|
+   |d/      |Entwicklungswerkzeuge                                       |
+   |--------+------------------------------------------------------------|
+   |gnome/  |Anwendungen, die auf GNOME aufbauen                         |
+   |--------+------------------------------------------------------------|
+   |kde/    |Anwendungen, die auf KDE aufbauen                           |
+   |--------+------------------------------------------------------------|
+   |l/      |Bibliotheken                                                |
+   |--------+------------------------------------------------------------|
+   |n/      |Netzwerkserver, und -clients                                |
+   |--------+------------------------------------------------------------|
+   |x/      |X-Server und dessen Treiber                                 |
+   |--------+------------------------------------------------------------|
+   |xap/    |X-Anwendungen                                               |
+   |--------+------------------------------------------------------------|
+   |pasture/|Pakete, die nur aus Kompatibilitaetsgruenden noch dabei sind|
+   |--------+------------------------------------------------------------|
+   |testing/|Alles, was noch nicht stabil ist                            |
+   +---------------------------------------------------------------------+
 
-  /usr/ports/
-  |-- a/
-  |   `-- slmodem/
-  |-- ap/
-  |   |-- abook/
-  |   |-- athcool/
-  |   |-- bonnie++/
-  |   |-- cabextract/
-  |   |-- cpudyn/
-  |   |-- exiftags/
-  |   `-- exifutils/
-  |-- d/
-  |   |-- fakeroot/
-  |   |-- lua/
-  |   |-- mono/
-  |   |-- portpkg/
-  |   |-- ruby/
-  |   `-- tla/
-  |-- gnome/
-  |   |-- aegis-virus-scanner/
-  |   |-- at-spi/
-  |   |-- balsa/
-  (...)
+   Findige Slacker werden hier sicherlich bemerkt haben, dass die Gruppen
+   testing/ und pasture/ eigentlich auf Slackware eine Ebene hoeher liegen.
+   Dies steht natuerlich noch zur Diskussion :)
 
-Die Dateien, die grundsätzlich in einem Port vorhanden sein können und
-besondere Bedeutung haben:
- ____________________________________________________________________________
-|PORT_IS_BROKEN|Markiert,_dass_die_letzte_Kompilation_fehlschlug______|2,_3__|
-|SlackBuild____|Bashskript_zum_erstellen_des_Pakets___________________|1_____|
-|arbitrary     |Abhängigkeiten, die nicht automatisch bestätigt werden|2, 3  |
-|______________|konnten_______________________________________________|______|
-|buildlog______|Log-Datei_des_SlackBuilds_____________________________|2,_3__|
-|diff__________|Differenz_zum_Grund-SlackBuild________________________|2,_3__|
-|doinst.sh_____|Bashskript_das_von_installpkg_ausgeführt_wird_________|(1)___|
-|footprint_____|Dateiliste_des_Pakets_________________________________|2,_3__|
-|pseudo________|Markiert_einen_Pseudoport_____________________________|(1)___|
-|requires______|Liste_der_Abhängigkeiten______________________________|(1),_2|
-|slack-desc____|Beschreibung_des_Ports/Pakets_________________________|(1)___|
-|slot-in       |Weisst portpkg an, kein Upgrade, sondern eine normale |(1)   |
-|______________|Installation_durchzuführen____________________________|______|
-|sources_______|Liste_der_Quellpakete_________________________________|(1)___|
+   In zweiter Ebene stehen die Ports, von denen jeder nur in einer Gruppe
+   sein kann. Fuer jeden Port gibt es ein Verzeichnis, in dem die Skripte
+   aufbewahrt werden:
 
-Hinweise: 1 muss (kann) vorhanden sein, 2 wird von portpkg nachträglich
-erstellt, 3 nur zur Kontrolle für den Maintainer, wird nicht veröffentlicht.
--------------------------------------------------------------------------------
+ /usr/ports/
+ |-- a/
+ |   `-- slmodem/
+ |-- ap/
+ |   |-- abook/
+ |   |-- athcool/
+ |   |-- bonnie++/
+ |   |-- cabextract/
+ |   |-- cpudyn/
+ |   |-- exiftags/
+ |   `-- exifutils/
+ |-- d/
+ |   |-- fakeroot/
+ |   |-- lua/
+ |   |-- mono/
+ |   |-- portpkg/
+ |   |-- ruby/
+ |   `-- tla/
+ |-- gnome/
+ |   |-- aegis-virus-scanner/
+ |   |-- at-spi/
+ |   |-- balsa/
+ (...)
+
+   Die Dateien, die grundsaetzlich in einem Port vorhanden sein koennen und
+   besondere Bedeutung haben:
+
+   +------------------------------------------------------------------------+
+   |PORT_IS_BROKEN|Markiert, dass die letzte Kompilation fehlschlug|^2, ^3  |
+   |--------------+------------------------------------------------+--------|
+   |SlackBuild    |Bashskript zum erstellen des Pakets             |1       |
+   |--------------+------------------------------------------------+--------|
+   |arbitrary     |Abhaengigkeiten, die nicht automatisch          |2, ^3   |
+   |              |bestaetigt werden konnten                       |        |
+   |--------------+------------------------------------------------+--------|
+   |buildlog      |Log-Datei des SlackBuilds                       |2, ^3   |
+   |--------------+------------------------------------------------+--------|
+   |diff          |Differenz zum Grund-SlackBuild                  |2, ^3   |
+   |--------------+------------------------------------------------+--------|
+   |doinst.sh     |Bashskript das von installpkg ausgefuehrt wird  |(^1)    |
+   |--------------+------------------------------------------------+--------|
+   |footprint     |Dateiliste des Pakets                           |^2, ^3  |
+   |--------------+------------------------------------------------+--------|
+   |pseudo        |Markiert einen Pseudoport                       |(^1)    |
+   |--------------+------------------------------------------------+--------|
+   |requires      |Liste der Abhaengigkeiten                       |(^1), ^2|
+   |--------------+------------------------------------------------+--------|
+   |slack-desc    |Beschreibung des Ports/Pakets                   |(^1)    |
+   |--------------+------------------------------------------------+--------|
+   |slot-in       |Weisst portpkg an, kein Upgrade, sondern eine   |(^1)    |
+   |              |normale Installation durchzufuehren             |        |
+   |--------------+------------------------------------------------+--------|
+   |sources       |Liste der Quellpakete                           |(^1)    |
+   +------------------------------------------------------------------------+
+
+   Hinweise: ^1 muss (kann) vorhanden sein, ^2 wird von portpkg nachtraeglich
+   erstellt, ^3 nur zur Kontrolle fuer den Maintainer, wird nicht
+   veroeffentlicht.
+
+   ---------------------------------------------------------------------------
 
 3. Work process
 
-Portpkg durchsucht den Portsbaum nach Dateien, die *.SlackBuild oder SlackBuild
-heißen. Aus diesen wird die Versionsinformation ausgelesen. All das wird zu
-einer Liste von verfügbaren Paketen zusammengestellt, die mit portpkg --list
-angezeigt werden kann. Wenn mit portpkg grip der Port "grip" aufgerufen wird,
-so geht Portpkg zuerst diese Liste durch und sucht den ersten zutreffenden Port
-und dessen Verzeichnis (in diesem Falle /usr/ports/xap/grip, dabei wird
-natürlich auch sichergestellt, dass z.B. die Suchmaske "nautilus" nicht auf
-"nautilus-cd-burner" zutrifft), danach geht es eine Checkliste durch:
+   Portpkg durchsucht den Portsbaum nach Dateien, die *.SlackBuild oder
+   SlackBuild heissen. Aus diesen wird die Versionsinformation ausgelesen.
+   All das wird zu einer Liste von verfuegbaren Paketen zusammengestellt, die
+   mit portpkg --list angezeigt werden kann. Wenn mit portpkg grip der Port
+   "grip" aufgerufen wird, so geht Portpkg zuerst diese Liste durch und sucht
+   den ersten zutreffenden Port und dessen Verzeichnis (in diesem Falle
+   /usr/ports/xap/grip, dabei wird natuerlich auch sichergestellt, dass z.B.
+   die Suchmaske "nautilus" nicht auf "nautilus-cd-burner" zutrifft), danach
+   geht es eine Checkliste durch:
 
-  1. Ist genau diese verfügbare Version schon installiert?
-  2. Ist ein fertiges Paket schon in /usr/obj/pkg?
-  3. Ist das Quellpaket schon in /usr/src/dist?
+    1. Ist genau diese verfuegbare Version schon installiert?
+    2. Ist ein fertiges Paket schon in /usr/obj/pkg?
+    3. Ist das Quellpaket schon in /usr/src/dist?
 
-Erst jetzt wird das SlackBuild aufgerufen, dann bei erfolgreicher Kompilation
-installiert und nach /usr/obj/pkg verschoben.
--------------------------------------------------------------------------------
+   Erst jetzt wird das SlackBuild aufgerufen, dann bei erfolgreicher
+   Kompilation installiert und nach /usr/obj/pkg verschoben.
+
+   ---------------------------------------------------------------------------
 
 4. Dealing with Ports
 
-Portpkg übernimmt einige Aufgaben, die das Erstellen von Ports erleichtern,
-sowohl wenn man "Maintainer" eines Ports ist (d.h. das der in der Datei /usr/
-ports/maintain stehende Tag in der Zeile MY_TAG= mit dem Tag des jeweiligen
-Ports übereinstimmt), als auch für das bauen und installieren von Ports an
-sich:
+   Portpkg uebernimmt einige Aufgaben, die das Erstellen von Ports
+   erleichtern, sowohl wenn man "Maintainer" eines Ports ist (d.h. das der in
+   der Datei /usr/ports/maintain stehende Tag in der Zeile MY_TAG= mit dem
+   Tag des jeweiligen Ports uebereinstimmt), als auch fuer das bauen und
+   installieren von Ports an sich:
 
-o Download der erforderlichen Quelldateien (siehe Datei sources)
-o Automatisches Überprüfen und Ergänzen (im Maintainermodus) von Abhängigkeiten
-  (siehe Datei requires)
-o Sammeln der Quelldateien und Pakte in speziellen Verzeichnissen (/usr/src/
-  dist und /usr/obj/pkg)
-o Erstellen von diversen Dateien (siehe oben), die dem Maintainer helfen, zu
-  überprüfen, ob das Paket richtig gebaut wurde.
+     o Download der erforderlichen Quelldateien (siehe Datei sources)
+     o Automatisches Ueberpruefen und Ergaenzen (im Maintainermodus) von
+       Abhaengigkeiten (siehe Datei requires)
+     o Sammeln der Quelldateien und Pakte in speziellen Verzeichnissen
+       (/usr/src/dist und /usr/obj/pkg)
+     o Erstellen von diversen Dateien (siehe oben), die dem Maintainer
+       helfen, zu ueberpruefen, ob das Paket richtig gebaut wurde.
 
--------------------------------------------------------------------------------
+   ---------------------------------------------------------------------------
 
 5. Theory
 
-"What is exactly the difference between the ports in Portpkg and the "ports" in
-Slackware?"
-Slackware doesn't call that ports! It's just the source code of Slackware.
-The most obvious difference seems to be the file source: While Slackware stores
-every source package in the same directory, Portpkg just gives a list of URLs,
-where to get them. The effect is the same, because they have to be downloaded
-anyway.
-Moreover the SlackBuilds in Portpkg are a little more consequential in
-declarations (each SlackBuild has to have the lines VERSION=, ARCH= and BUILD=
-and its values in plain text) and more consequential in implementation (each
-port has one SlackBuild, each SlackBuild makes one binary package). Have a look
-at the .build-scripts, the X11-SlackBuild and the KDE-scipts to see what I
-mean. This behaviour may change in future to make Portpkg more compatible with
-the Slackware sources.
-Portpkg ist so konzipiert, dass das Portsarchiv auch ohne portpkg benutzt
-werden kann (sogenannter Handbetrieb :). Um einen Port ohne Zuhilfenahme von
-portpkg zu bauen, würde man ungefähr folgendermaßen vorgehen:
+   "What is exactly the difference between the ports in Portpkg and the
+   "ports" in Slackware?"
 
-  # cd /usr/ports/ap/dbus
-  # cat sources | sed "s#\$VERSION#1.2.3#" | wget -i -
-  (...)
-  # sh ./SlackBuild
-  (...)
-  # installpkg /tmp/dbus-*.tgz
-  (...)
+   Slackware doesn't call that ports! It's just the source code of Slackware.
 
-Portpkg listet die Ports "on-the-fly". D.h. eine VERSION-Änderung in einer
-SlackBuild-Datei ist sofort verfügbar und muss nicht erst übersetzt werden.
-Portpkg soll analog zu installpkg funktionieren, die Kommandozeilensyntax und -
-ausgabe sind weitgehend ähnlich.
+   The most obvious difference seems to be the file source: While Slackware
+   stores every source package in the same directory, Portpkg just gives a
+   list of URLs, where to get them. The effect is the same, because they have
+   to be downloaded anyway.
 
--------------------------------------------------------------------------------
-       EditThisPage BackLinks PageInfo last changed on Wed Dec 08 15:17:09 2004
+   Moreover the SlackBuilds in Portpkg are a little more consequential in
+   declarations (each SlackBuild has to have the lines VERSION=, ARCH= and
+   BUILD= and its values in plain text) and more consequential in
+   implementation (each port has one SlackBuild, each SlackBuild makes one
+   binary package). Have a look at the .build-scripts, the X11-SlackBuild and
+   the KDE-scipts to see what I mean. This behaviour may change in future to
+   make Portpkg more compatible with the Slackware sources.
+
+   Portpkg ist so konzipiert, dass das Portsarchiv auch ohne portpkg benutzt
+   werden kann (sogenannter Handbetrieb :). Um einen Port ohne Zuhilfenahme
+   von portpkg zu bauen, wuerde man ungefaehr folgendermassen vorgehen:
+
+ # cd /usr/ports/ap/dbus
+ # cat sources | sed "s#\$VERSION#1.2.3#" | wget -i -
+ (...)
+ # sh ./SlackBuild
+ (...)
+ # installpkg /tmp/dbus-*.tgz
+ (...)
+
+   Portpkg listet die Ports "on-the-fly". D.h. eine VERSION-Aenderung in
+   einer SlackBuild-Datei ist sofort verfuegbar und muss nicht erst
+   uebersetzt werden.
+
+   Portpkg soll analog zu installpkg funktionieren, die Kommandozeilensyntax
+   und -ausgabe sind weitgehend aehnlich.
+
+   ---------------------------------------------------------------------------
+
+          [2]EditThisPage [3]BackLinks [4]PageInfo last changed on Wed Dec 08
+                                                                15:17:09 2004
+
+References
+
+   Visible links
+   1. file:///usr/ports/d/portpkg/doc.php?page=links/PortpkgGuide
+   2. file:///usr/ports/d/portpkg/doc.php?page=edit/PortpkgGuide
+   3. file:///usr/ports/d/portpkg/doc.php?page=links/PortpkgGuide
+   4. file:///usr/ports/d/portpkg/doc.php?page=info/PortpkgGuide

@@ -84,7 +84,6 @@ fi
 i_act=true
 source=""
 group=local
-#arch="\${ARCH:-i486}"
 arch=i486
 build_port=false
 # parse options
@@ -127,7 +126,8 @@ done
 stanza "Now we need some information about the port:"
 # source: check if we can guess it, but -u is dominant
 if [ "$name" ] && [ "$group" ] && ! [ "$source" ]; then
-  version=`grep ^VERSION= $PRT_DIR/$group/$name/SlackBuild | cut -d = -f 2`
+  script=`find $PRT_DIR/$group/$name/ -name "*SlackBuild" | head -n 1`
+  version=`grep ^VERSION= $script | cut -d = -f 2`
   source=`decode "$(grep -ve ^$ -e ^# $PRT_DIR/$group/$name/sources | head -n 1)"`
 fi
 ask "Source file [$source]:"
@@ -222,9 +222,11 @@ path=$PRT_DIR/$group/$name
 script=$path/SlackBuild
 old_script=""
 if [ -f $path/stop.autoport ]; then
-  stanza "There's a notice not to autoport this source code:"
-  more $path/stop.autport
-  ask "Continue? (ctrl-c to quit)"
+  stanza "There's a warning not to autoport this source code:"
+  echo "==========================================="
+  more $path/stop.autoport
+  echo "==========================================="
+  ask "Really continue? (ctrl-c to quit)"
 fi
 if [ -d $path ]; then
   ask "Exists already. Really go on? (ctrl-c to quit)"
@@ -464,8 +466,10 @@ sed -i "/^#/d" $script
 $failed && die "There's been an error. Please write SlackBuild by hand."
 stanza "We're done. Port written in $path."
 if [ -f $path/readme.autoport ]; then
-  stanza "There's a readme for you:"
+  stanza "There's a readme for this port:"
+  echo "==========================================="
   more $path/readme.autoport
+  echo "==========================================="
 fi
 if $build_port; then
   ask "Continue? (ctrl-c to quit)"
