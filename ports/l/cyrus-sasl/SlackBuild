@@ -1,0 +1,79 @@
+#!/bin/sh
+#
+# SlackBuild for Cyrus-SASL
+#
+##################################
+## Creator: Stefano Stabellini  ##
+## stefano@stabellini.net       ##
+## http://www.stabellini.net    ##
+##################################
+#
+
+CWD=`pwd`
+if [ "$TMP" = "" ]; then
+  TMP=/tmp
+fi
+
+if [ ! -d $TMP ]; then
+  mkdir -p $TMP # location to build the source
+fi
+PKG=/tmp/package-cyrus-sasl
+
+VERSION=2.1.20
+ARCH=${ARCH:-i486}
+BUILD=1stb
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG
+echo "+=====================+"
+echo "| cyrus-sasl-$VERSION |"
+echo "+=====================+"
+cd $TMP
+rm -rf cyrus-sasl-$VERSION
+tar xvzf $CWD/cyrus-sasl-$VERSION.tar.gz
+cd cyrus-sasl-$VERSION
+chown -R root.root .
+find . -perm 777 -exec chmod 755 {} \;
+find . -perm 775 -exec chmod 755 {} \;
+find . -perm 700 -exec chmod 755 {} \;
+find . -perm 744 -exec chmod 755 {} \;
+find . -perm 666 -exec chmod 644 {} \;
+find . -perm 664 -exec chmod 644 {} \;
+find . -perm 600 -exec chmod 644 {} \;
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure --enable-login --enable-plain --enable-anon --enable-digest --with-static-sasl --with-bdb-libdir=/usr/lib --with-bdb-incdir=/usr/include/db4 --prefix=/usr --sysconfdir=/etc --localstatedir=/var/lib
+make
+make install DESTDIR=$PKG
+strip $PKG/usr/sbin/*
+chown -R root.bin $PKG/usr/bin
+chown -R root.bin $PKG/usr/sbin
+gzip -9 $PKG/usr/man/man3/*
+gzip -9 $PKG/usr/man/cat8/*
+gzip -9 $PKG/usr/man/man8/*
+mkdir -p $PKG/usr/doc/cyrus-sasl-$VERSION
+cp AUTHORS $PKG/usr/doc/cyrus-sasl-$VERSION
+cp COPYRIGHT $PKG/usr/doc/cyrus-sasl-$VERSION
+cp LICENSE $PKG/usr/doc/cyrus-sasl-$VERSION
+cp HISTORY $PKG/usr/doc/cyrus-sasl-$VERSION
+cp doc/* $PKG/usr/doc/cyrus-sasl-$VERSION
+cp ChangeLog $PKG/usr/doc/cyrus-sasl-$VERSION
+cp NEWS $PKG/usr/doc/cyrus-sasl-$VERSION
+cp README $PKG/usr/doc/cyrus-sasl-$VERSION
+cp INSTALL $PKG/usr/doc/cyrus-sasl-$VERSION
+cp README $PKG/usr/doc/cyrus-sasl-$VERSION
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cd $PKG
+makepkg -l y -c n ../cyrus-sasl-$VERSION-$ARCH-$BUILD.tgz
+
