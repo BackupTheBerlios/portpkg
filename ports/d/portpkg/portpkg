@@ -209,7 +209,7 @@ get_info()
   script=`find $path/ -name "*SlackBuild" | head -n 1`
   description=`grep -s ^$name: $path/slack-desc`
   requires=`grep -sv ^# $path/requires`
-  sources=`grep -sv ^# $path/sources | sed "s,\\$VERSION,$version,g"`
+  sources=`grep -sv ^# $path/sources | sed -e "s,\\$NAME,$name,g" -e "s,\\$VERSION,$version,g"`
   # info about cached .tgz-packages
   pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
   size=""
@@ -325,13 +325,19 @@ build_pkg()
       $pseudo && mv $SRC_DIR/$srcname . || ln -s $SRC_DIR/$srcname .
     fi
     # md5sums
-    local md5sum=`grep -s $srcname $path/md5sums`
+    local md5sum=`grep -s " $srcname$" $path/md5sums`
     if [ "$md5sum" ] && ! echo "$md5sum" | md5sum --check >$t.md5sum; then
       cat $t.md5sum
-      error "Failed at integrity checking"
+      error "Integrity checking failed!"
       return 1
     fi
   done
+#  # check any other file
+#  if [ -f $path/md5sum ] && ! md5sum --check $path/md5sums >$t.md5sum; then
+#    cat $t.md5sum
+#    error "Integrity checking failed!"
+#    return 1
+#  fi
   $download_only && return 0
   # build package
   row "Executing $script"
@@ -353,17 +359,21 @@ build_pkg()
   if $maintain; then
     row "Going maintainer mode"
     rm -rf $path/PORT_IS_BROKEN
-    # write the footprint
+    # write a file list of the package (remove creation time)
     row "Writing footprint"
     tar tzvf /tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }'\
     | sort +3 >$path/footprint
-    # write md5sums
-    [ -f $path/sources ] && row "Writing md5sums (assuming these files are integer!)"
+    # write md5sum list
+    row "Writing md5sums (assuming these files are integer!)"
+#    find $path/ -type f | grep -ve md5sums -e arbitrary -e /CVS/ \
+#    | sed "s,^$path/,," | sort | xargs -r md5sum >$path/md5sums
     for src in $sources; do
       local srcname=`basename "$src" | cut -d % -f 2`
       md5sum $srcname
     done >$path/md5sums
-    [ -s $path/md5sums ] || rm $path/md5sums
+# later:
+#    cat $path/md5sums | gpg --clearsign >$path/md5sums
+    [ -s $path/md5sums ]  || rm $path/md5sums
     # is there a package tree?
     if [ -d /tmp/package-$name ]; then
       echo "$requires" >$t.old_req
@@ -383,7 +393,7 @@ build_pkg()
       # sort
       sort -uo $t.bin_req $t.bin_req
       # strip ignore list
-      grep $ignore $t.bin_req | xargs -r -l echo "  --> Ignoring dependency"
+      grep $ignore $t.bin_req | xargs -r echo "  --> Ignoring dependencies:"
       grep -v $ignore $t.bin_req >$t.bin_req.new
       mv $t.bin_req{.new,}
       # check trashed package upgrades
@@ -394,6 +404,7 @@ build_pkg()
       # check for common mistakes
       grep -e /share/doc/ -e /share/man/ -e var/scrollkeeper/ $path/footprint >$t.check_path
       cat $t.check_path | rev | cut -d " " -f 1 | rev | xargs -i -r echo "WARNING: Check this path: /{}"
+      grep "^........w" $path/footprint | xargs -r -l echo "WARNING: Check these permissions:"
       # now generate new "requires" file
       cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$path/requires
       [ -s $path/requires ] || rm -f $path/requires
@@ -429,6 +440,8 @@ add_pkg() # tgz
   if ! [ $pkg_file ] || $rebuild; then
     build_pkg || return 1
     pkg_file=$PKG_DIR/$group/$package.tgz
+  elif $download_only; then
+    stanza "Already built. No need to download source files."
   fi
   # track as finished
   echo $group/$package >>$ADD_SUM.finished

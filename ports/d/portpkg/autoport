@@ -26,7 +26,8 @@ ask()
   echo
   echo -n "$@ "
   s=""
-  $i_act && read s || echo
+  #$i_act && 
+  read s #|| echo
 }
 
 check()
@@ -79,45 +80,51 @@ If autoport doesn't work as expected, please mail at:
 <topf at users dot berlios dot de>"
 
 # defaults
-i_act=true
-set_sources=""
-set_group=local
+#i_act=true
+sources=""
+group=local
 name=""
 arch=i486
 build=""
-build_port=false
+build_pkg=false
 
 # parse options
 if [ "$*" ]; then
   while [ "$1" ]; do
     case $1 in
-      -a)
-        i_act=false
-        shift;;
-      -u)
-        set_sources=$2
+#      -a)
+#        i_act=false
+#        shift;;
+      -s)
+#        set_sources=$2
+        sources=$2
         shift
         shift;;
       -g)
-        set_group=`echo $2 | cut -d / -f 1`
+#        set_group=`echo $2 | cut -d / -f 1`
+        group=`echo $2 | cut -d / -f 1`
         shift
         shift;;
       -n)
         name=`echo $2 | cut -d / -f 1`
         shift
         shift;;
+      -u)
+        get_info $name
+        shift;;
       -b)
-        build_port=true
+        build_pkg=true
         shift;;
       *)
         # usage
-        stanza "Usage: autoport [-a] [-u url] [-g group] [-n name] [-b]
+        stanza "Usage: autoport [-n name] [-u] [-s source url] [-g group] [-b]
 
-  -a        Run non-interactive (use defaults)
-  -u url    Preset URL of source code
-  -g group  Preset group of port
-  -n name   Preset name of port
-  -b        Execute portpkg after port generation"
+  -n name        Preset name of port
+  -u             Update (try to read in existing settings, use after -n)
+  -s source url  Preset URL of source code
+  -g group       Preset group of port
+  -b             Execute portpkg after port generation"
+#  -a        Run non-interactive (use defaults)
         exit 1;;
     esac
   done
@@ -127,23 +134,22 @@ ask "* First step: Collect information. Continue? (ctrl-c to quit)"
 
 # first: do we have tags?
 while ! [ "$MY_TAG" ]; do
-  $i_act && die "No tag specified!"
+#  $i_act && die "No tag specified!"
   ask "What is your tag? (e.g.: 'mich')"
   MY_TAG=`echo $s | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
   [ "$MY_TAG" ] && echo "MY_TAG=$MY_TAG" >>$PRT_DIR/local.conf
 done
 
 # input information
-# try to guess, but set anything else as user wants
-[ "$name" ] && get_info $name 2>/dev/null
-[ "$set_sources" ] && sources=$set_sources
-[ "$set_group" != "local" ] && group=$set_group
 # sources
 ask "Source file URL [$sources]:"
 sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,//prdownloads\.,//dl\.," -e "s,\?download$,,"`
-set_sources=$sources
+# set source_out before user can input a different version
+#source_out=`echo "$sources" | sed "s,$version,\\$VERSION,g"`
+source_out=`encode "$sources"`
+#set_sources=$sources
 # name: guess it, if we haven't yet it
 file=`basename $sources`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
@@ -171,7 +177,7 @@ ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
-source_out=`echo "$sources" | sed "s,$version,\\$VERSION,g"`
+#source_out=`echo "$sources" | sed "s,$version,\\$VERSION,g"`
 # arch
 ask "Arch [$arch]:"
 arch=${s:-$arch}
@@ -202,14 +208,14 @@ desc1=${s:-$desc1}
 stanza "Description (details) (Write or paste and finish with a single '.')"
 echo "[$desc2]"
 s=""
-if $i_act; then
+#if $i_act; then
   while [ "$l" != "." ]; do
     read l
     s="$s
 $l"
   done
   s=`echo "$s" | sed -e "1d" -e "/^\.$/d"`
-fi
+#fi
 desc2=${s:-$desc2}
 # combine $desc1 and $desc2
 if [ "$desc2" ]; then
@@ -232,6 +238,9 @@ echo "$desc"
 
 ask "* Last chance to quit. Port scripts will now be written.
 * Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
+
+# now we should redecode the actual source name
+sources=`decode $source_out`
 
 path=$PRT_DIR/$group/$name
 script=$path/SlackBuild
@@ -566,7 +575,7 @@ fi
 $failed && die "There's been an error. Please write SlackBuild by hand."
 
 # portpkg?
-if $build_port; then
+if $build_pkg; then
   ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   portpkg $group/$name
 fi
@@ -657,7 +666,7 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
   find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
 )
 #!strip
-gzip -9 $PKG/usr/man/man?/*
+find $PKG/usr/man/ | xargs gzip -9
 #!docs
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \

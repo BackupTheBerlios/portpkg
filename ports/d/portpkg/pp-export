@@ -20,18 +20,20 @@ cd $PRT_DIR || die
 
 # variables
 while ! [ "$MY_TAG" ]; do
-  stanza "What is your tag? (e.g.: 'mich')"
+  echo -en "\nWhat is your tag (e.g.: 'mich') ? "
   read MY_TAG
   MY_TAG=`echo $MY_TAG | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
   [ "$MY_TAG" ] && echo "MY_TAG=$MY_TAG" >>$PRT_DIR/local.conf
 done
+
 while ! [ "$MY_REALNAME" ]; do
-  stanza "What is your real name?"
+  echo -en "\nWhat is your real name? "
   read MY_REALNAME
   [ "$MY_REALNAME" ] && echo "MY_REALNAME=\"$MY_REALNAME\"" >>$PRT_DIR/local.conf
 done
+
 while ! [ "$MY_EMAIL" ]; do
-  stanza "What is your mail address?"
+  echo -en "\nWhat is your mail address? "
   read MY_EMAIL
   [ "$MY_EMAIL" ] && echo "MY_EMAIL=$MY_EMAIL" >>$PRT_DIR/local.conf
 done
