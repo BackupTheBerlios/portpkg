@@ -1,0 +1,33 @@
+VERSION=2.6.9
+ARCH=i486
+BUILD=1tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/boot
+
+cd /tmp || exit 1
+rm -rf linux-$VERSION
+cd /usr/src/linux-$VERSION || exit 1
+make mrproper
+cat $CWD/bootsplash-3.1.4-sp3-2.6.9-rc4.diff | patch -p1 --verbose
+cat $CWD/config-bootsplash-$VERSION >.config
+make oldconfig
+make bzImage || exit 1
+cp arch/i386/boot/bzImage $PKG/boot/vmlinuz-bootsplash-$VERSION
+cp System.map $PKG/boot/System.map-bootsplash-$VERSION
+cp $CWD/config-bootsplash-$VERSION $PKG/boot/
+#ln -s vmlinuz-bootsplash-$VERSION $PKG/boot/vmlinuz
+#ln -s System.map-bootsplash-$VERSION $PKG/boot/System.map
+#ln -s config-bootsplash-$VERSION $PKG/boot/config
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
+| sed -r "s,^$PKG/(.*)$,config \1," >>$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
