@@ -9,17 +9,12 @@ to the Portpkg Project hosted on http://portpkg.berlios.de.
 If this is the first time you use pp-export, you will be asked for your mail
 address and real name which is required for maintainers. These will be stored
 world visible to contact you later. You can change this later in
-$PRT_DIR/local.conf.
-
-Schulz!"
+$PRT_DIR/local.conf."
 
 #usage
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
   die "Usage: pp-export [port ..]"
 fi
-
-echo -ne "\nContinue exporting ports with tag '$MY_TAG'? (ctrl-c to quit) "
-read
 
 cd $PRT_DIR || die
 
@@ -40,6 +35,9 @@ while ! [ "$MY_EMAIL" ]; do
   read MY_EMAIL
   [ "$MY_EMAIL" ] && echo "MY_EMAIL=$MY_EMAIL" >>$PRT_DIR/local.conf
 done
+
+echo -ne "\nContinue exporting ports with tag '$MY_TAG'? (ctrl-c to quit) "
+read
 
 # find ports
 stanza "Finding ports:"

@@ -265,38 +265,55 @@ The Configuration Of Portpkg^1
    should be written to exclude.local. A common set of ports that should be
    excluded is in the global file exclude.
 
+   You can read further on in MaintainerGuide!
+
    ---------------------------------------------------------------------------
 
 Contributing Ports
 
    For contributing your ports, you have to make a tarball of your ports
-   first. Use the script export (here you will be asked for your mail address
-   and your real name, so we can contact you later):
+   first. Use the script pp-export (here you will be asked for your mail
+   address and your real name, so we can contact you later):
 
- # cd /usr/ports
- # ./export
+ # pp-export
+
+ pp-export -- A portpkg-addon that packs your ports to a tarball for submission
+ to the Portpkg Project hosted on http://portpkg.berlios.de.
+
+ If this is the first time you use pp-export, you will be asked for your mail
+ address and real name which is required for maintainers. These will be stored
+ world visible to contact you later. You can change this later in
+ /usr/ports/local.conf.
+
+ What is your tag? (e.g. 'mich')? mich
 
  What is your real name? M. Ich
+
  What is your mail address? mich@hier.de
- Continue exporting ports with tag 'mich'? (ctrl-c to quit)
- Found ap/this
- Found n/that
- Copying 2 ports to /tmp/ports-mich
- Removing private files from export: buildlog footprint arbitrary diff maintain CVS...
- Writing info-file (contains mich, mich@hier.de, M. Ich)...
- Creating ports-mich-31022004.tar.bz2...
- Remmoving /tmp/ports-mich...
- Done.
+
+ Continue exporting ports with tag 'tom'? (ctrl-c to quit)
+
+ Finding ports:
+   --> Found ap/this
+   --> Found n/that
+
+ Creating tarball:
+   --> Copying 2 ports to /tmp/ports-mich
+   --> Removing private files from export: buildlog footprint arbitrary diff maintain CVS...
+   --> Writing info-file (contains mich, mich@hier.de, M. Ich)...
+   --> Creating ports-mich-31022004.tar.bz2...
+   --> Removing /tmp/ports-mich...
+
+ Tarball is in /usr/ports/ports-mich-20040231.tar.bz2.
 
    Now there's your tarball in /usr/ports, called
-   ports-mich-31022004.tar.bz2. Please make sure, it's not getting too big!
+   ports-mich-20040231.tar.bz2. Please make sure, it's not getting too big!
    Normally, a port just needs the files SlackBuild, slack-desc, sources and
    requires. You can load it up on http://portpkg.berlios.de.
 
    ---------------------------------------------------------------------------
 
-   You can read further on in MaintainerGuide! Note: ^1 specific to the
-   programme portpkg
+   Note: ^1 specific to the programme portpkg
 
    ---------------------------------------------------------------------------
 
