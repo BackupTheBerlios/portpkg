@@ -12,4 +12,4 @@ checkinstall -S -y \
   --stripso=yes \
   --gzman=yes \
   --backup=no \
-  gst-plugins.build || exit 1
+  "sh gst-plugins.build" || exit 1

@@ -39,7 +39,7 @@ grep -o "\./source/.*/.*/.*" $t.file_list \
     if ! find $s >/dev/null 2>&1; then
 #	echo `echo $s | cut -d / -f 3-`
 #    else
-	echo $DIST/$s
+	echo $DIST/source/$s
     fi | grep -ve "SlackBuild$" -e "^slack-desc$" -e "^doinst.sh" \
     >>`echo $s | cut -d / -f 1-2`/sources
 done
@@ -67,7 +67,7 @@ checkinstall -S -y \\
   --stripso=yes \\
   --gzman=yes \\
   --backup=no \\
-  `basename $s` || exit 1
+  "sh `basename $s`" || exit 1
 EOF
 done
 

@@ -421,9 +421,10 @@ do_add() # pkgex-list
     # summary
     if $verbose; then
         stanza "That was in total:"
-	cat $total_finished | xargs -r -l echo "  --> Compiled successfully"
-	fgrep -vxf $total_finished $total_started | xargs -r -l echo "  --> Failed at"
-	cat $total | xargs -r -l echo "  --> Didn't find"
+	touch $total_finished
+	fgrep -s ".*" $total_finished | xargs -r -l echo "  --> Compiled successfully"
+	fgrep -svxf $total_finished $total_started | xargs -r -l echo "  --> Failed at"
+	fgrep -s ".*" $total | xargs -r -l echo "  --> Didn't find"
     fi
     debug "do_add(): finished: $@"
     return $ret
