@@ -1,6 +1,6 @@
 VERSION=2.8.3
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -24,7 +24,6 @@ cd /tmp || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
-./autogen.sh
 CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
@@ -50,8 +49,8 @@ cp -a \
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed -r "s,^$PKG/(.*)$,config \1," >>$PKG/install/doinst.sh
+find $PKG/ -name "*.schemas" -o -name "*.omf" \
+| sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh
 
 cd $PKG || exit 1
 makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
