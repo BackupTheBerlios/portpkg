@@ -1,4 +1,4 @@
-VERSION=0.9.2
+VERSION=0.9.3
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -32,7 +32,7 @@ CFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux || exit 1
-cat $CWD/*.patch | patch -p1 --verbose
+#cat $CWD/*.patch | patch -p1 --verbose
 make || exit 1
 make install DESTDIR=$PKG || exit 1
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
