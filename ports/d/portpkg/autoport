@@ -388,6 +388,7 @@ else
   snip cd_sdp $script
   srcdir_prefix="."
 fi
+sed -i "s,^\./,," $t/footprint
 sed -i "s,^$srcdir_prefix/,," $t/footprint
 
 # insert fixes
