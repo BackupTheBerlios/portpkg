@@ -259,12 +259,20 @@ desc=`{ echo "$name: $desc1"
         for i in 1 2 3 4 5 6 7 8 9; do
           echo "$name:"
         done; } | head -n 11`
+
+if [ "$script" ]; then
+  path=`dirname $script`
+else
+  path=$PRT_DIR/$group/$name
+  script=$path/SlackBuild
+fi
+
 if $i_act; then
   echo
   echo "Creating now a port with this information:"
   echo
   echo "PACKAGE NAME:  $name-$version-$arch-$build"
-  echo "SCRIPT LOCATION:  $PRT_DIR/$group/$name/SlackBuild"
+  echo "SCRIPT LOCATION:  $script"
   echo "SOURCE LOCATION:  $sources" | fmt -u
   echo "PACKAGE DESCRIPTION:"
   echo "$desc"
@@ -275,8 +283,6 @@ ask "Last chance to quit. Port scripts will now be written.
 
 # now we should redecode the actual source name
 sources=`decode "$source_out"`
-path=$PRT_DIR/$group/$name
-script=$path/SlackBuild
 if [ -f $path/stop.autoport ]; then
   stanza "There's a warning not to autoport this source code:"
   echo "==========================================="
@@ -720,6 +726,11 @@ cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/%srcdirprefix%
+  rm -rf $PKG
+fi
 #!SlackBuild.skel
 
 #!doinst.sh_config
