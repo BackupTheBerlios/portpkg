@@ -521,7 +521,7 @@ do_add() # pkgex-list
     ret=$?
   done
   # summary
-  local stats=$ADM_DIR/portpkg.log
+  local stats=$ADM_DIR/portpkg/log
   echo "+--------------------+" >>$stats
   date >>$stats
   if [ "`cat $ADD_SUM_CALL $ADD_SUM_START $ADD_SUM_FINISH`" ]; then
