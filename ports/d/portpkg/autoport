@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Autoport -- An Automatic SlackBuild Generator
-# Copyright (C) 2004 Thomas Pfaff <topf@users.berlios.de>
+# Copyright (C) 2004, 2005 Thomas Pfaff <topf@users.berlios.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +45,10 @@ check()
 
 snip()
 {
+  # the #!tag ... #!tag method
   sed -i "/^#\!$1$/,/^#\!$1$/d" $2
+  # the xxx ##tag method
+  sed -i "/ *##$1$/d" $2
 }
 
 encode()
@@ -63,7 +66,7 @@ decode()
 
 # preambel
 stanza "Autoport -- An Automatic SlackBuild Generator
-Copyright (C) 2004 Thomas Pfaff <topf at users dot berlios dot de>
+Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
 Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
 are welcome to redistribute it under certain conditions.
 
@@ -75,22 +78,10 @@ script.
 If autoport doesn't work as expected, please mail at:
 <topf at users dot berlios dot de>"
 
-# usage
-if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
-  stanza "Usage: autoport [-a] [-u url] [-g group] [-n name] [-b]
-
-  -a        Run non-interactive (use defaults)
-  -u url    Preset URL of source code
-  -g group  Preset group of port
-  -n name   Preset name of port
-  -b        Execute portpkg after port generation"
-  exit 1
-fi
-
 # defaults
 i_act=true
-source=""
-group=local
+set_sources=""
+set_group=local
 name=""
 arch=i486
 build=""
@@ -104,11 +95,11 @@ if [ "$*" ]; then
         i_act=false
         shift;;
       -u)
-        source=$2
+        set_sources=$2
         shift
         shift;;
       -g)
-        group=`echo $2 | cut -d / -f 1`
+        set_group=`echo $2 | cut -d / -f 1`
         shift
         shift;;
       -n)
@@ -118,13 +109,23 @@ if [ "$*" ]; then
       -b)
         build_port=true
         shift;;
+      *)
+        # usage
+        stanza "Usage: autoport [-a] [-u url] [-g group] [-n name] [-b]
+
+  -a        Run non-interactive (use defaults)
+  -u url    Preset URL of source code
+  -g group  Preset group of port
+  -n name   Preset name of port
+  -b        Execute portpkg after port generation"
+        exit 1;;
     esac
   done
 fi
 
-ask "* First step: Give meta information. Continue? (ctrl-c to quit)"
+ask "* First step: Collect information. Continue? (ctrl-c to quit)"
 
-# do we have tags?
+# first: do we have tags?
 while ! [ "$MY_TAG" ]; do
   $i_act && die "No tag specified!"
   ask "What is your tag? (e.g.: 'mich')"
@@ -133,27 +134,28 @@ while ! [ "$MY_TAG" ]; do
 done
 
 # input information
-# source: check if we can guess it, but -u is dominant
-if [ "$name" ] && ! [ "$source" ]; then
-  script=`find $PRT_DIR/$group/$name/ -name "*SlackBuild" | head -n 1`
-  version=`grep ^VERSION= $script | cut -d = -f 2`
-  source=`decode "$(grep -ve ^$ -e ^# $PRT_DIR/$group/$name/sources | head -n 1)"`
-fi
-ask "Source file [$source]:"
-source=${s:-$source}
-[ "$source" ] || die "Nothing entered. Eh? I can't help you this way!"
-source=`echo "$source" | sed -e "s,//prdownloads\.,//dl\.," -e "s,\?download$,,"`
-# group
-ask "Group [$group]:"
-group=${s:-$group}
+# try to guess, but set anything else as user wants
+get_info $name 2>/dev/null
+[ "$set_sources" ] && sources=$set_source
+[ "$set_group" != "local" ] && group=$set_group
+# sources
+ask "Source file URL [$sources]:"
+sources=${s:-$sources}
+[ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
+sources=`echo "$sources" | sed -e "s,//prdownloads\.,//dl\.," -e "s,\?download$,,"`
 # name: guess it, if we haven't yet it
-file=`basename $source`
+file=`basename $sources`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
 ask "Name [$name]:"
 name=${s:-$name}
-# now check if it exists
-get_info $group/$name
+## try to guess group
+#[ "$group" == "local" ] && get_info $name 2>/dev/null
+# group
+ask "Group [$group]:"
+group=${s:-$group}
+## now check if it exists
+#get_info $name 2>/dev/null
 # version: should be always guessed
 ## version: guess it, if we haven't yet it
 #if ! [ "$version" ]; then
@@ -166,7 +168,7 @@ ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
-source_out=`echo "$source" | sed "s,$version,\\$VERSION,g"`
+source_out=`echo "$sources" | sed "s,$version,\\$VERSION,g"`
 # arch
 ask "Arch [$arch]:"
 arch=${s:-$arch}
@@ -219,14 +221,14 @@ fi
 echo
 echo "Creating now a port with this information:"
 echo
-echo "PORT NAME:  $name-$version-$arch-$build"
-echo "PORT LOCATION:  $PRT_DIR/$group/$name/SlackBuild"
-echo "PORT SOURCE:  $source_out"
-echo "PORT DESCRIPTION:"
+echo "PACKAGE NAME:  $name-$version-$arch-$build"
+echo "SCRIPT LOCATION:  $PRT_DIR/$group/$name/SlackBuild"
+echo "SOURCE LOCATION:  $source_out"
+echo "PACKAGE DESCRIPTION:"
 echo "$desc"
 
 ask "* Last chance to quit. Port scripts will now be written.
-Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
+* Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
 
 path=$PRT_DIR/$group/$name
 script=$path/SlackBuild
@@ -255,16 +257,17 @@ sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
 
 # downlaod source file
-file=`basename $source`
+file=`basename $sources`
 if [ -f $SRC_DIR/$file ]; then
   stanza "$file found in $SRC_DIR/."
 else
   stanza "Downloading source file:"
-  get $source $SRC_DIR/$file || die
+  get $sources $SRC_DIR/$file || die
 fi
 
 # checking
 stanza "Alright, since we have the code, I'll have a look into it:"
+
 # format
 echo -n "  --> Checking format... "
 #format=`file $SRC_DIR/$file | egrep -wo "gzip|bzip2"`
@@ -275,14 +278,16 @@ case $file in
     tar tjf $SRC_DIR/$file >$t.footprint \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".tar.bz2"
-    snip targz $script
+#    snip targz $script
+    sed -i "s,%tarmode%,j," $script
     snip rpm $script;;
   *tar.gz|*.tgz)
     format=targz
     tar tzf $SRC_DIR/$file >$t.footprint \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".tar.gz"
-    snip tarbz2 $script
+#    snip tarbz2 $script
+    sed -i "s,%tarmode%,z," $script
     snip rpm $script;;
   *.src.rpm)
     format=srpm
@@ -294,14 +299,15 @@ case $file in
       tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t.footprint \
       || die "Error while unpacking, maybe wrong URL?" )
     echo ".src.rpm"
-    snip targz $script
-    snip tarbz2 $script;;
+    snip tar $script
+    snip tar $script;;
   *)
     echo "unknown!"
     die "Unknown source format, please write SlackBuild by hand!";;
 esac
 tarball=`encode "$file"`
 sed -i "s,%tarball%,$tarball," $script
+
 # source-prefix
 echo -n "  --> Checking source-prefix... "
 srcdir_prefix=`cat $t.footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
@@ -315,6 +321,7 @@ else
   snip cd_sdp $script
   srcdir_prefix="."
 fi
+
 # docs
 docs=`egrep "/ABOUT$|/ABOUT-NLS$|/ANNOUNCE$|/AUTHORS$|/CONFIGURATION$|/CHANGES$\
 |/COPYING$|/COPYRIGHT$|/CREDITS$|/ChangeLog$|/Changelog$|/CHANGELOG$\
@@ -327,9 +334,11 @@ if [ "$docs" ]; then
   row "Checking docs... $docs."
   sed -i "s,%docs%,$docs," $script
 else
-  snip docs $script
   row "Checking docs... none."
+  snip docs $script
 fi
+
+# extract Makefiles
 mkdir -p $t.src
 case $format in
   tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
@@ -337,6 +346,7 @@ case $format in
   srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
 esac
 sed -i "s,^$srcdir_prefix/,," $t.footprint
+
 # configure/make
 if check "setup.py" "^setup\.py$" $t.footprint; then
   # setup.py seems to be first choice...
@@ -351,6 +361,7 @@ if check "setup.py" "^setup\.py$" $t.footprint; then
   snip inst_PREFIX $script
   snip inst_prefix $script
   snip inst $script
+  # use inst_python
   arch=noarch
 else
   snip inst_python $script
@@ -358,73 +369,80 @@ else
     # ...but Makefile.PL isn't bad either...
     snip cfg_autogen $script
     snip cfg_configure $script
+    # use cfg_perl
     snip cfg_hard $script
-    # perl needs make
+    # use mk
     snip mk_PREFIX $script
     snip mk_prefix $script
-    # perl uses DESTDIR
+    # use inst_destdir
     snip inst_PREFIX $script
     snip inst_prefix $script
     snip inst $script
+    # inst_python disabled
     arch=noarch
   else
     snip cfg_perl $script
     if check "configure" "^configure$" $t.footprint; then
       snip cfg_autogen $script
+      # use cfg_configure
+      # cfg_perl disabled
       snip cfg_hard $script
-      # configure needs make
+      # use mk
       snip mk_PREFIX $script
       snip mk_prefix $script
-      # leave DESTDIR open
-      # leave PREFIX open
-      # leave prefix open
+      # inst_destdir?
+      # inst_PREFIX?
+      # inst_prefix?
+      # inst?
+      # inst_python disabled
     elif check "autogen.sh" "^autogen.sh$" $t.footprint; then
+      # use cfg_autogen
+      # use cfg_configure
+      # cfg_perl disabled
       snip cfg_hard $script
-      # autogen needs make
+      # use mk
       snip mk_PREFIX $script
       snip mk_prefix $script
-      # leave DESTDIR open
-      # leave PREFIX open
-      # leave prefix open
-#      else
-#        snip autogen $script
-#        snip configure $script
-#        if check "Makefile" "^Makefile$" $t.footprint; then
-#          # single Makefile: we need to tell the prefix nevertheless
-#          if check "PREFIX" "\<PREFIX\>" $t.src/$srcdir_prefix/Makefile; then
-#            snip make $script
-#            snip make_prefix $script
-#          elif check "prefix" "\<prefix\>" $t.src/$srcdir_prefix/Makefile; then
-#            snip make $script
-#            snip make_PREFIX $script
-#          elif check "hard coded /usr/local" "/usr/local" $t.src/$srcdir_prefix/Makefile; then
-#            snip make_PREFIX $script
-#            snip make_prefix $script
+      # inst_destdir?
+      # inst_PREFIX?
+      # inst_prefix?
+      # inst?
+      # inst_python disabled
     else
       error "Don't know how to build this package."
       failed=true
     fi
   fi
 fi
+
 # installation prefix
 if check "Makefile" "^Makefile" $t.footprint; then
   if check "DESTDIR" "\<DESTDIR\>" "$t.src/$srcdir_prefix/Makefile*"; then
+    # use inst_destdir
     snip inst_PREFIX $script
     snip inst_prefix $script
     snip inst $script
   else
     snip inst_destdir $script
     if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/Makefile*"; then
+      # inst_destdir disabled
+      # use inst_PREFIX
       snip inst_prefix $script
       snip inst $script
     else
       snip inst_PREFIX $script
       if check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/Makefile*"; then
+        # inst_destdir disabled
+        # inst_PREFIX disabled
+        # use inst_prefix
         snip inst $script
       else
         snip inst_prefix $script
         if check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/Makefile*"; then
-#          snip make $script
+          # inst_destdir disabled
+          # inst_PREFIX disabled
+          # inst_prefix diabled
+          # use inst
           :
         else
           error "Don't know how to install this package (no install-prefix)."
@@ -437,18 +455,21 @@ else
   error "Don't know how to install this package (no Makefile)."
   failed=true
 fi
+
 # cflags
 if check "CFLAGS" "\<CFLAGS\>" "$t.src/$srcdir_prefix/*"; then
   :
 else
   snip cflags $script
 fi
+
 # cxxflags
 if check "CXXFLAGS" "\<CXXFLAGS\>" "$t.src/$srcdir_prefix/*"; then
   :
 else
   snip cxxflags $script
 fi
+
 # gconf schemas and scrollkeeper
 check "gconf schemas" "\.schemas(|\.in|\.in\.in)$" $t.footprint && schemas=true || schemas=false
 check "scrollkeeper" "\.omf$" $t.footprint && omfs=true || omfs=false
@@ -468,6 +489,9 @@ else
     fi
   fi
 fi
+
+#check "wrong doc paths" "/share/doc\>" "$t.src/$srcdir_prefix/Makefile*" || snip pt_doc $script
+#check "wrong man paths" "/share/man\>" "$t.src/$srcdir_prefix/Makefile*" || snip pt_man $script
 ## add mime-installation
 #mime_inst="usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1"
 #if $mime && ! grep -sqx "$mime_inst" $path/doinst.sh; then
@@ -477,19 +501,21 @@ fi
 #  stanza "Remving unneeded mime database intallation from doinst.sh."
 #  sed -i "\,^$mime_inst$,d" $path/doinst.sh
 #fi
+
 # anyways check old config()
 if grep -sq "^config()$" $path/doinst.sh && ! grep -sq "^config .*\.new$" $path/doinst.sh; then
   stanza "There's an old config() in your doinst.sh although you don't need to config
 .new-files! I'll remove it."
   sed -i "/^config()$/,/^}$/d" $path/doinst.sh
 fi
-# if it's emtpy remove it
+
+# if doinst.sh is emtpy remove it
 if [ -f $path/doinst.sh ] && ! [ -s $path/doinst.sh ]; then
   stanza "Removing empty doinst.sh."
   rm $path/doinst.sh
 fi
-# doinst.sh at all?
 [ -f $path/doinst.sh ] || snip doinst $script
+
 # now arch should be known
 case $arch in
   noarch)
@@ -500,6 +526,7 @@ case $arch in
     # we know better than the user ;-)
     sed -i "s,%arch%,\${ARCH:-i486}," $script;;
 esac
+
 # are there patches?
 if [ "`ls $path/*.patch 2>/dev/null`" ]; then
   stanza "There're patches. I'll include them in the SlackBuild, but you should check
@@ -507,18 +534,21 @@ them later."
 else
   snip patch $script
 fi
+
 #if [ -f $path/install.autoport ]; then
 #  stanza "Including install-replacement..."
 #  sed "
 #fi
-# for now...
-snip srcver $script
-snip perms644 $script
-snip perms755 $script
+
 # clean up
 sed -i "/^#/d" $script
-[ -f $path/doinst.sh ] && sed -i "/^#/d" $path/doinst.sh
-$failed && die "There's been an error. Please write SlackBuild by hand."
+sed -i "s, *##[^ ]*,,g" $script
+if [ -f $path/doinst.sh ]; then
+  sed -i "/^#/d" $path/doinst.sh
+  sed -i "s, *##[^ ]*,,g" $path/doinst.sh
+fi
+
+# summary
 stanza "We're done. Port written in $path."
 if [ -f $path/readme.autoport ]; then
   stanza "There's a readme for this port:"
@@ -527,17 +557,22 @@ if [ -f $path/readme.autoport ]; then
   echo "==========================================="
 fi
 
+# any errors?
+$failed && die "There's been an error. Please write SlackBuild by hand."
+
+# portpkg?
 if $build_port; then
   ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   portpkg $group/$name
 fi
+
 exit 0
+
+#----------------------------------------
 
 #!SlackBuild.skel
 VERSION=%version%
-#!srcver
-SRCVER=%srcver%
-#!srcver
+#SRCVER=%srcver% ##srcver
 ARCH=%arch%
 BUILD=%build%
 
@@ -562,46 +597,25 @@ fi
 
 #!cflags
 cd /tmp || exit 1
-#!extra_sdp
-mkdir -p $NAME-$VERSION
-cd $NAME-$VERSION
-#!extra_sdp
+mkdir -p $NAME-$VERSION ##extra_sdp
+cd $NAME-$VERSION ##extra_sdp
 #!rpm
 rm -rf `basename %tarball% .rpm`.tar.gz
 rpm2targz $CWD/%tarball%
 tar xzvf `basename %tarball% .rpm`.tar.gz
 tar xzvf `basename %tarball% .src.rpm`/$NAME-$VERSION.tar.gz
 #!rpm
-#!targz
-tar xzvf $CWD/%tarball% || exit 1
-#!targz
-#!tarbz2
-tar xjvf $CWD/%tarball% || exit 1
-#!tarbz2
-#!cd_sdp
-cd %srcdirprefix% || exit 1
-#!cd_sdp
-#!patch
-cat $CWD/*.patch | patch -p1 --verbose
-#!patch
+tar x%tarmode%vf $CWD/%tarball% || exit 1 ##tar
+cd %srcdirprefix% || exit 1 ##cd_sdp
+cat $CWD/*.patch | patch -p1 --verbose ##patch
 chown -R root.root .
-#!perms644
-find . -perm %perm644% -exec chmod 644 {} \;
-#!perms644
-#!perms755
-find . -perm %perm755% -exec chmod 755 {} \;
-#!perms755
+#find . -perm %perm644% -exec chmod 644 {} \; ##perms644
+#find . -perm %perm755% -exec chmod 755 {} \; ##perms755
 #---here begins configuration---
-#!cfg_autogen
-./autogen.sh || exit 1
-#!cfg_autogen
+./autogen.sh || exit 1 ##cfg_autogen
 #!cfg_configure
-#!cflags
-CFLAGS="$SLKCFLAGS" \
-#!cflags
-#!cxxflags
-CXXFLAGS="$SLKCFLAGS" \
-#!cxxflags
+CFLAGS="$SLKCFLAGS" \ ##cflags
+CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \
@@ -610,40 +624,22 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   $ARCH-slackware-linux || exit 1
 #!cfg_configure
-#!cfg_perl
-perl Makefile.PL || exit 1
-#!cfg_perl
-#!cfg_hard
-sed -i "s,/usr/local/etc,$PKG/etc,g" Makefile
-sed -i "s,/usr/local/var,$PKG/var,g" Makefile
-sed -i "s,/usr/local,$PKG/usr,g" Makefile
-#!cfg_hard
+perl Makefile.PL || exit 1 ##cfg_perl
+sed -i "s,/usr/local/etc,$PKG/etc,g" Makefile ##cfg_hard
+sed -i "s,/usr/local/var,$PKG/var,g" Makefile ##cfg_hard
+sed -i "s,/usr/local,$PKG/usr,g" Makefile ##cfg_hard
+#sed -i "s,/share/doc,/doc,g" Makefile ##pt_doc
+#sed -i "s,/share/man,/man,g" Makefile ##pt_man
 #---here begins making---
-#!mk
-make || exit 1
-#!mk
-#!mk_PREFIX
-make PREFIX=/usr || exit 1
-#!mk_PREFIX
-#!mk_prefix
-make prefix=/usr || exit 1
-#!mk_prefix
+make || exit 1 ##mk
+make PREFIX=/usr || exit 1 ##mk_PREFIX
+make prefix=/usr || exit 1 ##mk_prefix
 #---here begins installation---
-#!inst_destdir
-make install DESTDIR=$PKG || exit 1
-#!inst_destdir
-#!inst_PREFIX
-make install PREFIX=$PKG/usr || exit 1
-#!inst_PREFIX
-#!inst_prefix
-make install prefix=$PKG/usr || exit 1
-#!inst_prefix
-#!inst
-make install || exit 1
-#!inst
-#!inst_python
-python setup.py build install --root=$PKG || exit 1
-#!inst_python
+make install DESTDIR=$PKG || exit 1 ##inst_destdir
+make install PREFIX=$PKG/usr || exit 1 ##inst_PREFIX
+make install prefix=$PKG/usr || exit 1 ##inst_prefix
+make install || exit 1 ##inst
+python setup.py build install --root=$PKG || exit 1 ##inst_python
 #---installation done---
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 #!strip
@@ -652,8 +648,6 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
   find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
 )
 #!strip
-mv $PKG/usr/share/{man,doc} $PKG/usr/ 2>/dev/null
-rmdir $PKG/usr/share 2>/dev/null
 gzip -9 $PKG/usr/man/man?/*
 #!docs
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
@@ -663,10 +657,7 @@ cp -a \
 #!docs
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-#!doinst
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-#!doinst
-#%meta-fix%
+cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 #!config
 find $PKG/ -name "*.schemas" -o -name "*.omf" \
 | sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh
@@ -675,6 +666,7 @@ find $PKG/ -name "*.schemas" -o -name "*.omf" \
 cd $PKG || exit 1
 makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
 #!SlackBuild.skel
+
 #!doinst.sh.skel
 inst()
 {

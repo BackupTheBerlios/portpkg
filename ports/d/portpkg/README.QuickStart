@@ -3,14 +3,16 @@ QuickStart
    This page describes a very short introduction to the most important
    components of the Portpkg Project.
 
-   There are two ways of using the ports collection: the puristic way, only
-   the SlackBuild scripts, is a bit hard to use, or the comfortable way with
-   the administration tool portpkg which is recommended.
+   There are two ways of using the ports collection: The puristic way, which
+   is only the SlackBuild scripts, is a bit hard to use, or the comfortable
+   way with a set of administration tools, which is highly recommended.
 
 The Comfortable Way
 
    If you want to have a quick look into what Portpkg does, download the
-   latest package here and install it as root with:
+   latest package at
+   http://developer.berlios.de/project/showfiles.php?group_id=2486 and
+   install it as root with:
 
  # installpkg portpkg-xxx-noarch-1tom.tgz
 
@@ -36,12 +38,12 @@ The Comfortable Way
 
  portpkg-0.30-noarch-6tom is already installed. Skipping.
 
-   Portpkg uses the directories /usr/ports, /usr/obj/pkg and /usr/src/dist to
-   store the SlackBuild scripts, source packages and binary packages. You can
-   have a list of all available ports with:
+   The Portpkg scripts use the directories /usr/ports, /usr/obj/pkg and
+   /usr/src/dist to store the SlackBuild scripts (the "ports tree"), source
+   packages (that will be downloaded before any compile) and binary packages.
+   You can have a list of all available ports with:
 
  # portpkg --list
- a/slmodem-2.9.10-i486-1tom
  ap/abook-0.5.3-i486-1fu
  ap/athcool-0.3.8-i486-1tom
  ap/bonnie++-1.03a-i486-1tom
@@ -52,7 +54,8 @@ The Comfortable Way
  xap/xvid4conf-1.12-i486-1tom
  xap/zinf-2.2.5-i486-2tom
 
-   To build and install a port to your system, just type in the short name of
+   To "add" (that is to download the source code if needed, to compile,
+   package and install) a port to your system, just type in the short name of
    the port (it is always recommended to use --dryrun first, to see, what
    would happen):
 
@@ -94,8 +97,9 @@ Alternative: The Puristic Way
    "Just the ports, nothing else, please!"
 
    You can use the ports tree without portpkg at all! It looks just like the
-   source/ directory on a Slackware repository. Get the complete tree via
-   CVS:
+   source/ directory on a Slackware repository. This is recommended, if you
+   just want to have a certain build script or something else. You don't need
+   to install any packages with this method. Get the complete tree via CVS:
 
  # cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
 

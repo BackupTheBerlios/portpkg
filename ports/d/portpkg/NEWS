@@ -1,6 +1,25 @@
 News
 
-  18/12/2004
+  01/10/2005
+
+   Portpkg
+           * Release 0.32, code name "Hafenordnung fuer Schlackstoffe".
+
+   Ports
+           * Ports that are needed by Slackware-10.0 systems only are moved
+             to pasture/, which in turn is removed from exclude. So anyone
+             running Portpkg on a Slackware-current system needs to add
+             pasture/ manually to his exclude.local to prevent compiling
+             packages again that are already in the current repositories.
+           * mirrors is renamed to mirrors.de because it's just containing
+             mirrors usable for German users. (Sorry, there aren't any more
+             mirror lists for now). German users have to symlink mirrors.de
+             to mirrors first to use them.
+
+   Platform
+           * Added a fancy search button.
+
+  12/18/2004
 
    Portpkg
            * Moved export from the tree to /usr/bin/pp-export.
@@ -9,7 +28,7 @@ News
            * ...and therefore removed export and obsolete addport, SlackBuild
              and doinst.sh.
 
-  16/12/2004
+  12/16/2004
 
    Portpkg
            * Release 0.31.

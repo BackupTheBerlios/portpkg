@@ -2,21 +2,21 @@
 .SH NAME
 portpkg \- build a package by source and install it
 .SH SYNOPSIS
-portpkg [action] [options] [list ..]
+portpkg [action] [options] [list [...]]
 .PP
-while list can be one of these forms:
+while 'list' can have one of these forms:
 .IP
 group/
 .IP
-[group/]portname[-version-arch-build]
+[group/]name[-version-arch-build]
 .SH DESCRIPTION
-portpkg starts a so called port script (SlackBuild) found in
-/usr/ports/<portgroup>/<portname>/ and installs the resulting package to
-your system.
+Portpkg starts a so called port script (SlackBuild) found in
+/usr/ports/<group>/<name>/ and installs the resulting package to
+the system.
 .SH ACTIONS
 There can be only one alternative action. If none specified, the default
-action is to check for required ports, then download the source, then
-build a binary package and install it.
+action is to check for required packages, then download the source code,
+compile it, build a binary package and install it.
 .IP "-d, --diff"
 List the difference between installed and available port versions.
 .IP "-f, --find"
@@ -28,46 +28,56 @@ Show information about ports.
 .IP "-l, --list"
 List all (or specified) available ports.
 .IP "-s, --sync"
-Synchronise your ports tree in /usr/ports with the official tree.
+Synchronise local ports tree with the official tree.
 .IP "-u, --upgrade"
-Upgrade all (!) outdated ports shown by --diff (so-called "dist-upgrade").
+Upgrade all (!) outdated ports shown by --diff.
 .IP "-v, --version"
-Show version information about portpkg.
+Show version information about Portpkg.
 .SH OPTIONS
 There can be multiple options at once.
 .IP "-o, --download"
-Download source files only.
+Download source code files only.
 .IP "-b, --rebuild"
 Rebuild the package if already build.
 .IP "-e, --reinstall"
 Reinstall the package, if already installed.
 .IP "-g, --verbose"
-Show SlackBuild output instead of piping it to /tmp/buildlog-<portname>.
+Show SlackBuild output instead of logging it.
 .IP "-q, --noreqs"
-Disable checking for required ports.
+Disable checking for required packages.
 .IP "-y, --dryrun"
-Disable downloading, building and installing. Just show what would happen.
+Disable downloading, building and installing. Just simulate.
 .SH EXAMPLES
-.IP "portpkg foobar"
-.IP "portpkg --diff"
-.IP "portpkg --find moz"
-.IP "portpkg --info mozilla galeon"
-.IP "portpkg --list"
-.IP "portpkg --list l/ foo n/arg"
-.IP "portpkg --list foobar-1.0-i486-1"
-.IP "portpkg --sync"
-.IP "portpkg --upgrade"
+.IP "Port 'foobar' (download source code, compile it, build a package, install it and check for any required dependency):"
+portpkg foobar
+.IP "List all installed packages which have a newer availabe version in the ports tree:"
+portpkg --diff
+.IP "Find any ports, that contain the string 'moz' in their description:"
+portpkg --find moz
+.IP "Give information about the ports 'mozilla' and 'galeon':"
+portpkg --info mozilla galeon
+.IP "List all available ports:"
+portpkg --list
+.IP "List all available ports of one group or with certain conditions:"
+portpkg --list l/ foo n/arg foobar-1.0-i486-1
+.IP "Sync the local ports tree with the official ports tree:"
+portpkg --sync
+.IP "Upgrade any port that is listed by --diff:"
+portpkg --upgrade
 .SH DIRECTORIES
 .IP /usr/ports
-The ports archive portpkg needs to build packages.
+The ports tree.
 .IP /usr/src/dist
-The source files portpkg downloaded for ports.
+The source code files archive. Files that were downloaded before compiling.
 .IP /usr/obj/pkg
-The packages portpkg made of ports.
+The binary packages archive.
 .SH FILES
 .IP /usr/ports/local.conf
 The configuration file for optional settings, mostly written by
 interactive scripts.
+.IP /tmp/buildlog-<name>
+The detailed output when a SlackBuild was executed. You can view this instantly
+with --verbose. 
 .PP
 Several configuration files are distributed and can be expanded by \.local files:
 .IP "/usr/ports/mirrors and mirrors.local"

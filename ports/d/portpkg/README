@@ -12,6 +12,8 @@ About
    uploading them onto our server which commits them into an open directory.
    Our Crew will later merge them into the ports tree.
 
+   ---------------------------------------------------------------------------
+
 Todo
 
      o Support for three architectures: i486, s390 and x86_64. i486 will be
@@ -30,8 +32,13 @@ Todo
 
      o Option: Data integrity checking? (MD5? GPG?)
 
+     o Find a way to get over the differences between release (10.0) and
+       current. Some ports need newer versions of a dependency that is not in
+       10.0 (e.g. gtk+2-2.4), but in current (gtk+2-2.6). And current system
+       shouldn't need to compile that again.
+
      o Have some localised mirrors-files. The existing one has just mirros
-       for Germany.
+       for Germany. Maybe a symlink to mirrors.de etc.?
 
      o Feature freeze, then beta-status, documentation, maybe translation.
 

@@ -353,7 +353,7 @@ build_pkg()
       [ -s $t.excl_req ] && warn "Check these requirements: "`cat $t.excl_req`
       # check for common mistakes
       grep -e /share/doc/ -e /share/man/ -e var/scrollkeeper/ $path/footprint >$t.check_path
-      cat $t.chek_path | rev | cut -d " " -f 1 | rev | xargs -i -r echo "WARNING: Check this path: /{}"
+      cat $t.check_path | rev | cut -d " " -f 1 | rev | xargs -i -r echo "WARNING: Check this path: /{}"
       # now generate new "requires" file
       cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$path/requires
       [ -s $path/requires ] || rm -f $path/requires

@@ -1,6 +1,6 @@
 PortpkgGuide
 
-   This page addresses the how and why of the administration tool portpkg and
+   This page addresses the how and why of the administration tool Portpkg and
    its inner work and development. This page is concrete incarnation of the
    term work in progress.
 
@@ -9,6 +9,9 @@ Terminology
    Port
            A set of scripts or files that describe how to make a certain
            binary package.
+
+   Group, or series
+           Directories that seperate ports and packages in topical pools.
 
    Package, or binary package
            A file that contains all files that belong together, prepared for
@@ -22,6 +25,7 @@ Terminology
            or .src.rpm etc.
 
    SlackBuild
+           A Bash-script that is executed to build a package.
 
    Ports tree
            Hierarchy of port scripts.
@@ -35,6 +39,8 @@ Terminology
            In Slackware, the last of the 4 segments in a package descriptor,
            delimited by -. E.g.: 1tom is the build of the package
            mplayer-1.0pre5-i486-1tom.
+
+   ---------------------------------------------------------------------------
 
 Theory
 
@@ -57,7 +63,7 @@ Theory
    make Portpkg more compatible with the Slackware sources.
 
    The concept of Portpkg's ports tree is to provide a functionality without
-   portpkg at all, although it's not that easy to use:
+   Portpkg at all, although it's not that easy to use:
 
  # cd /usr/ports/ap/dbus
  # cat sources | sed "s#\$VERSION#1.2.3#" | wget -i -
@@ -70,13 +76,15 @@ Theory
    Portpkg generates a list of available ports on-the-fly. That means a
    VERSION-change in one SlackBuild of a port is immediatly translated.
 
-   Usage and output of portpkg is mostly analogue to the usage and output of
+   Usage and output of Portpkg is mostly analogue to the usage and output of
    Slackware's installpkg. Again, layout of the ports tree is analogue to the
    layout of Slackware's source/ directory.
 
    ---------------------------------------------------------------------------
 
 File system
+
+   "What directories are used for Portpkg and it's scripts?"
 
    +----------------------------------------+
    |/usr/ports   |Ports tree copy           |
@@ -94,98 +102,69 @@ File system
 
 Ports Tree
 
-   +-----------------------------------------------------+
-   |a/      |Base packages                               |
-   |--------+--------------------------------------------|
-   |ap/     |Applications (not fitting to xap/ or n/)    |
-   |--------+--------------------------------------------|
-   |d/      |Development tools                           |
-   |--------+--------------------------------------------|
-   |gnome/  |Applications, that require the GNOME-desktop|
-   |--------+--------------------------------------------|
-   |kde/    |Applications, that require the KDE          |
-   |--------+--------------------------------------------|
-   |l/      |Libraries                                   |
-   |--------+--------------------------------------------|
-   |n/      |Network servers and clients                 |
-   |--------+--------------------------------------------|
-   |x/      |X server and its fonts and drivers          |
-   |--------+--------------------------------------------|
-   |xap/    |X applications                              |
-   |--------+--------------------------------------------|
-   |pasture/|Packages for compatibility reasons          |
-   |--------+--------------------------------------------|
-   |testing/|Packages for testing                        |
-   +-----------------------------------------------------+
+   This part is sort of phenomenology of the packages tree in Slackware.
+   Let's start with the most common groups:
 
-   Findige Slacker werden hier sicherlich bemerkt haben, dass die Gruppen
-   testing/ und pasture/ eigentlich auf Slackware eine Ebene hoeher liegen.
-   Dies steht natuerlich noch zur Diskussion :)
+   +-------------------------------------------------------+
+   |ap/   |Applications, console based                     |
+   |------+------------------------------------------------|
+   |d/    |Development tools                               |
+   |------+------------------------------------------------|
+   |gnome/|Applications, that require the GNOME-desktop    |
+   |------+------------------------------------------------|
+   |kde/  |Applications, that require the KDE              |
+   |------+------------------------------------------------|
+   |l/    |Libraries, but not X-dependent                  |
+   |------+------------------------------------------------|
+   |n/    |Network servers and clients, but not X-dependent|
+   |------+------------------------------------------------|
+   |xap/  |X-applications and X-libraries                  |
+   +-------------------------------------------------------+
 
-   In zweiter Ebene stehen die Ports, von denen jeder nur in einer Gruppe
-   sein kann. Fuer jeden Port gibt es ein Verzeichnis, in dem die Skripte
-   aufbewahrt werden:
+   These are special groups, that should better only be used for the
+   Slackware distribution:
 
- /usr/ports/
- |-- ap/
- |   |-- abook/
- |   |-- athcool/
- |   |-- bonnie++/
- |   |-- cabextract/
- |   |-- cpudyn/
- |   |-- exiftags/
- |   `-- exifutils/
- |-- d/
- |   |-- fakeroot/
- |   |-- lua/
- |   |-- mono/
- |   |-- portpkg/
- |   |-- ruby/
- |   `-- tla/
- |-- gnome/
- |   |-- aegis-virus-scanner/
- |   |-- at-spi/
- |   |-- balsa/
- (...)
+   +------------------------------------------------------------------------+
+   |  |Base packages, that have to be installed first. Portpkg sorts the    |
+   |a/|ports list, therefore a/ is listed before other groups, and that's   |
+   |  |why pp-sync-dist uses group z/, to make sure, they are used as last  |
+   |  |resort.                                                              |
+   |--+---------------------------------------------------------------------|
+   |x/|X-server and its fonts and drivers, sort of "a/" group of            |
+   |  |X-applications                                                       |
+   +------------------------------------------------------------------------+
 
-   ---------------------------------------------------------------------------
+   These groups have special meanings in Portpkg and are normally marked to
+   be excluded:
 
-Operating Process
+   +------------------------------------------------------------------------+
+   |pasture/|Packages for compatibility reasons, packages a                 |
+   |        |release-based-system needs, but not a current-based-system     |
+   |--------+---------------------------------------------------------------|
+   |testing/|Packages for testing                                           |
+   |--------+---------------------------------------------------------------|
+   |open/   |The open group: a temporary place (special to Portpkg) for     |
+   |        |ports that are uploaded by users with the web interface.       |
+   +------------------------------------------------------------------------+
 
-   Portpkg durchsucht den Portsbaum nach Dateien, die *.SlackBuild oder
-   SlackBuild heissen. Aus diesen wird die Versionsinformation ausgelesen.
-   All das wird zu einer Liste von verfuegbaren Paketen zusammengestellt, die
-   mit portpkg --list angezeigt werden kann. Wenn mit portpkg grip der Port
-   "grip" aufgerufen wird, so geht Portpkg zuerst diese Liste durch und sucht
-   den ersten zutreffenden Port und dessen Verzeichnis (in diesem Falle
-   /usr/ports/xap/grip, dabei wird natuerlich auch sichergestellt, dass z.B.
-   die Suchmaske "nautilus" nicht auf "nautilus-cd-burner" zutrifft), danach
-   geht es eine Checkliste durch:
-
-    1. Ist genau diese verfuegbare Version schon installiert?
-    2. Ist ein fertiges Paket schon in /usr/obj/pkg?
-    3. Ist das Quellpaket schon in /usr/src/dist?
-
-   Erst jetzt wird das SlackBuild aufgerufen, dann bei erfolgreicher
-   Kompilation installiert und nach /usr/obj/pkg verschoben.
+   Note: Smart slackers will yell when reading pasture/ and testing/ being a
+   group or series. In fact these directories are located one level above the
+   package tree. To be discussed :)
 
    ---------------------------------------------------------------------------
 
 Dealing With Ports
 
-   Portpkg uebernimmt einige Aufgaben, die das Erstellen von Ports
-   erleichtern, sowohl wenn man "Maintainer" eines Ports ist (d.h. das der in
-   der Datei /usr/ports/maintain stehende Tag in der Zeile MY_TAG= mit dem
-   Tag des jeweiligen Ports uebereinstimmt), als auch fuer das bauen und
-   installieren von Ports an sich:
+   Portpkg makes using port scripts easier by providing several functions for
+   users and maintainers also. Maintainer mode is automatically initiated
+   when the value of MY_TAG (in /usr/ports/local.conf) matches the build-tag
+   of the port being built.
 
-     o Download der erforderlichen Quelldateien (siehe Datei sources)
-     o Automatisches Ueberpruefen und Ergaenzen (im Maintainermodus) von
-       Abhaengigkeiten (siehe Datei requires)
-     o Sammeln der Quelldateien und Pakte in speziellen Verzeichnissen
-       (/usr/src/dist und /usr/obj/pkg)
-     o Erstellen von diversen Dateien (siehe oben), die dem Maintainer
-       helfen, zu ueberpruefen, ob das Paket richtig gebaut wurde.
+     o Downloads required source packages while resuming aborted downloads
+     o Checks and completes (in maintainer mode) a list of required packages
+       to build a port
+     o Collects source packages and binary packages in seperate directories
+     o Assists maintainers to check if the resulting package is built correct
 
    ---------------------------------------------------------------------------
 

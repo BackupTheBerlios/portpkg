@@ -6,18 +6,18 @@ AutoportGuide
    hard work and implies at least the possibility to shred your system! The
    procedure described here, is subject to certain conditions (one script
    just writes another script, and that could fail). So instead of just using
-   portpkg, writing ports is more difficult and you should now what you are
+   Portpkg, writing ports is more difficult and you should now what you are
    doing, this is at your own risk!
 
 The Tool Autoport
 
    "Packages as mom does"
 
-   The package portpkg contains a script called autoport, an interactive
+   The package Portpkg contains a script called Autoport, an interactive
    step-by-step script that will assist you to prepare a SlackBuild and some
    useful other files if you have a given source code URL. Normally the
    default answers (encluded in [ and ]) should be the right choice, so just
-   press enter.
+   press ENTER.
 
  # autoport
 
@@ -36,7 +36,7 @@ The Tool Autoport
 
  * First step: Give meta information. Continue? (ctrl-c to quit)
 
-   Press enter! If this is the first time you use autoport, you will be asked
+   Press ENTER! If this is the first time you use autoport, you will be asked
    for a tag, which will be stored in /usr/ports/local.conf:
 
  What is your tag? (e.g. 'mich'):
@@ -58,7 +58,7 @@ The Tool Autoport
 
  Build [1mich]:
 
-   Press enter for defaults!
+   Press ENTER for defaults!
 
  Description (1-liner) [lame]:
 
@@ -95,7 +95,7 @@ The Tool Autoport
  * Last chance to quit. Port scripts will now be written.
  Next step: Downloading and checking source code. Continue? (ctrl-c to quit)
 
-   Press enter!
+   Press ENTER!
 
  Downloading source file:
  (...)
@@ -115,7 +115,7 @@ The Tool Autoport
 
  We're done. Port written in /usr/ports/local/lame.
 
-   You can now build it via portpkg:
+   You can now build it via Portpkg:
 
  # portpkg local/lame
 

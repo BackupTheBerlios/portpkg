@@ -5,13 +5,13 @@ MaintainerGuide
 
 Preparing
 
-  Maintainer Mode^1
+  Maintainer Mode
 
-   For maintaining ports, portpkg can make some extra checks to assure the
+   For maintaining ports, Portpkg can make some extra checks to assure the
    ports have been built correct. So maintainers should have their own tag to
-   have portpkg identify their ports (please have a look at
+   have Portpkg identify their ports (please have a look at
    /usr/ports/AUTHORS to see, what tags are already in use). This is done
-   with the first use of autoport and will be written to the file
+   with the first use of Autoport and will be written to the file
    /usr/ports/local.conf, which looks something like this:
 
  MY_TAG=me
@@ -61,7 +61,7 @@ Ports And Their Parts
 
    The file SlackBuild (and also name.SlackBuild) on its own determines the
    layout of the resulting package. It is a bash-script and is executed when
-   portpkg builds a binary package for installation. Generally, SlackBuilds
+   Portpkg builds a binary package for installation. Generally, SlackBuilds
    needs to be specially adjusted to a source package.
 
    In the root directory of the ports tree, there's a SlackBuild-skeleton,
@@ -78,9 +78,10 @@ Ports And Their Parts
    |Prefix       |/usr    |
    +----------------------+
 
-   The Filesystem Hierarchy Standard, which is followed by Slackware, makes
-   exceptions only for very few programmes, that are essential for booting
-   the system or for big and closed software packages like /opt/kde.
+   The Filesystem Hierarchy Standard, which is followed by Slackware in
+   general, makes exceptions only for very few programmes, that are essential
+   for booting the system or for big and closed software packages like
+   /opt/kde.
 
    Executable files in bin/ and sbin/ directories have to be owned by
    root.bin.
@@ -91,7 +92,7 @@ Ports And Their Parts
 
    "Why does my package have such a fantastic compression ratio?"
 
-   Always have a look at footprint^1 to find misfits earlier.
+   Always have a look at footprint to find misfits earlier.
 
    If something doesn't need to be patched, please don't patch it!
 
@@ -131,7 +132,7 @@ Ports And Their Parts
 
    Source package URLs should be written in sources. To make version updates
    later easier, use the string $VERSION where the version number of the
-   package is placed. portpkg will download these files into the port
+   package is placed. Portpkg will download these files into the port
    directory before running the SlackBuild. After that, they will be stored
    in /usr/src/dist. If a file should be saved with a different name than its
    URL calls it, use a "%" before that. Example:
@@ -170,9 +171,10 @@ Ports And Their Parts
   Pseudo^1
 
    The empty file pseudo marks a "pseudo port", as you can see in the ports
-   tree sync-dist builds. These pseudo ports list binary Slackware packages
-   as their souce packages, therefore the presents of slot-in instructs
-   portpkg not to store them in /usr/dist when the installation is done.
+   tree Pp-sync-dist builds. These pseudo ports list binary Slackware
+   packages as their souce packages, therefore the presents of slot-in
+   instructs Portpkg not to store them in /usr/dist when the installation is
+   done.
 
    Nore: This is more for the sake of completeness, it is subject to be
    removed if Portpkg implements a way of interacting with Slackware
@@ -180,13 +182,13 @@ Ports And Their Parts
 
   Requires^1
 
-   The file requires contains dependend packages and ports portpkg tracks in
+   The file requires contains dependend packages and ports Portpkg tracks in
    the maintainer mode after compiling. These packages and ports are required
    for compiling this port, so the next time this port is to be build,
-   portpkg makes sure, this list is met. You shouldn't write this file by
+   Portpkg makes sure, this list is met. You shouldn't write this file by
    hand normally, but there may be dependencies that cannot be found
    automatically, then add them. In requires, no dependencies will be removed
-   by portpkg.
+   by Portpkg.
 
   Miscellaneous
 
@@ -194,21 +196,21 @@ Ports And Their Parts
    the package making process:
 
    +------------------------------------------------------------------------+
-   |PORT_IS_BROKEN|Marks a failure of the last compilation                  |
-   |--------------+---------------------------------------------------------|
-   |arbitrary     |Lists any dependency from requires that couldn't be      |
-   |              |tracked automatically                                    |
-   |--------------+---------------------------------------------------------|
-   |buildlog      |Is a detailed log of the SlackBuild-output               |
-   |--------------+---------------------------------------------------------|
-   |footprint     |Is a file list of the package content                    |
+   |PORT_IS_BROKEN^1|Marks a failure of the last compilation                |
+   |----------------+-------------------------------------------------------|
+   |arbitrary^1     |Lists any dependency from requires that couldn't be    |
+   |                |tracked automatically                                  |
+   |----------------+-------------------------------------------------------|
+   |buildlog^1      |Is a detailed log of the SlackBuild-output             |
+   |----------------+-------------------------------------------------------|
+   |footprint^1     |Is a file list of the package content                  |
    +------------------------------------------------------------------------+
 
    ---------------------------------------------------------------------------
 
-The Configuration Of Portpkg^1
+The Configuration Of Portpkg
 
-   The configuration files of portpkg is located in /usr/ports.
+   The configuration files of Portpkg is located in /usr/ports.
 
   Local.conf
 
@@ -223,15 +225,15 @@ The Configuration Of Portpkg^1
    |MY_REALNAME="real name"|Your real name for contacting you if you plan to|
    |                       |contribute                                      |
    |-----------------------+------------------------------------------------|
-   |MAINTAIN_ALL=true      |Let portpkg always work in maintainer mode      |
+   |MAINTAIN_ALL=true      |Let Portpkg always work in maintainer mode      |
    |-----------------------+------------------------------------------------|
    |DIST_VER=version       |The target Slackware version if you use         |
-   |                       |pp-sync-dist or pp-sync-slack                   |
+   |                       |Pp-sync-dist or Pp-sync-slack                   |
    |-----------------------+------------------------------------------------|
-   |VERBOSE=true           |Let portpkg always work in verbose mode         |
+   |VERBOSE=true           |Let Portpkg always work in verbose mode         |
    |                       |(--verbose)                                     |
    |-----------------------+------------------------------------------------|
-   |NO_REQS=true           |Let portpkg always work without requirements    |
+   |NO_REQS=true           |Let Portpkg always work without requirements    |
    |                       |resolving (--noreqs)                            |
    +------------------------------------------------------------------------+
 
@@ -244,7 +246,7 @@ The Configuration Of Portpkg^1
 
   Ignore And Ignore.local
 
-   Normally, dependencies are tracked automatically by portpkg in the
+   Normally, dependencies are tracked automatically by Portpkg in the
    maintainer mode after compiling and written to the file requires. If you
    find any dependencies in requires that shouldn't be tracked, write them
    into ignore.local:
@@ -270,7 +272,7 @@ The Configuration Of Portpkg^1
 Contributing Ports
 
    For contributing your ports, you have to make a tarball of your ports
-   first. Use the script pp-export (here you will be asked for your mail
+   first. Use the script Pp-export (here you will be asked for your mail
    address and your real name, so we can contact you later):
 
  # pp-export
@@ -311,7 +313,7 @@ Contributing Ports
 
    ---------------------------------------------------------------------------
 
-   Note: ^1 specific to the programme portpkg
+   Note: ^1 This file is specific to Portpkg
 
    ---------------------------------------------------------------------------
 
