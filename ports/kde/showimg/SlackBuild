@@ -1,0 +1,38 @@
+VERSION=0.9.4.1
+ARCH=${ARCH:-i486}
+BUILD=2andreas
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
+
+cd $TMP || exit 1
+tar xjvf $CWD/$NAME-0.9.4-1.tar.bz2 || exit 1
+cd $NAME-0.9.4-1 || exit 1
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/opt/kde \
+  --sysconfdir=/etc/X11 \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  $ARCH-slackware-linux || exit 1
+
+make install DESTDIR=$PKG || exit 1
+cp -a \
+  AUTHORS ChangeLog CHANGES COPYING INSTALL INSTALL.COMPILE_OPTIONS NEWS README \
+  $PKG/usr/doc/$NAME-$VERSION/
+
+cd $PKG || exit 1
+cat $CWD/slack-desc >$PKG/install/slack-desc
+find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
+find -type d | grep /doc/ | xargs -r chmod 755
+find -type f | grep /doc/ | xargs -r chmod 644
+find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
+
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
