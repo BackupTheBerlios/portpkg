@@ -1,54 +1,40 @@
-VERSION=0.14.1
+VERSION=0.93
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1lem
 
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
+PKG=$TMP/package-$NAME
 rm -rf $PKG
-mkdir -p $PKG/usr
+mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
 
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
-
-cd /tmp || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
-./configure --prefix=/usr \
-	    --sysconfdir=/etc \
-	    --localstatedir=/var/lib \
-            --program-prefix="" \
-            --disable-static \
-            $ARCH-slackware-linux || exit 1
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin
-find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-mv $PKG/usr/share/{man,doc} $PKG/usr/
-rmdir $PKG/usr/share
-gzip -9 $PKG/usr/man/man?/*
-mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
-  $PKG/usr/doc/$NAME-$VERSION
-mkdir -p $PKG/install
-cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
+  AUTHORS COPYING ChangeLog INSTALL NEWS README THANKS TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
 
 cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
+find -type d | grep /doc/ | xargs -r chmod 755
+find -type f | grep /doc/ | xargs -r chmod 644
+find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
+find -name "*.omf" -o -name "*.schemas" | sed "s,^\./,inst ," >>$PKG/install/doinst.sh
+
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
