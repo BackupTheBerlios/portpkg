@@ -25,6 +25,7 @@ chown -R root.root .
     chown 0 $LIBNAME.0
     chmod 755 $LIBNAME.0
   done
+)
 mv $PKG/usr/share/{man,doc} $PKG/usr/
 rmdir $PKG/usr/share
 gzip -9 $PKG/usr/man/man?/*

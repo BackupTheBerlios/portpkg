@@ -9,7 +9,7 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 
 cd /tmp || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="-O2 -march=$ARCH -mcpu=i686" \
