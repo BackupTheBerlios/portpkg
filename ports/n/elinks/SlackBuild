@@ -1,4 +1,4 @@
-VERSION=0.9.3
+VERSION=0.10.2
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -21,8 +21,8 @@ else
 fi
 
 cd /tmp || exit 1
-tar xjvf $CWD/$NAME-0.9.3.tar.bz2 || exit 1
-cd $NAME-0.9.3 || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
