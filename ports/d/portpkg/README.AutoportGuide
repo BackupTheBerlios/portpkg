@@ -1,0 +1,171 @@
+AutoportGuide
+
+   This page descibes how to write and maintain ports.
+
+   First of all: Writing new ports can be quite easy, but can also become
+   hard work and implies at least the possibility to shred your system! The
+   procedure described here, is subject to certain conditions (one script
+   just writes another script, and that could fail). So instead of just using
+   portpkg, writing ports is more difficult and you should now what you are
+   doing, this is at your own risk!
+
+1. Working with ports
+
+   "Packages as mom does"
+
+   The package portpkg contains a script called autoport, an interactive
+   step-by-step script that will assist you to prepare a SlackBuild and some
+   useful other files if you have a given source code URL. Normally the
+   default answers (encluded in [ and ]) should be the right choice, so just
+   press enter.
+
+ # autoport
+
+ Autoport -- An Automatic SlackBuild Generator
+ Copyright (C) 2004 Thomas Pfaff <toastbrot@web.de>
+ Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+ are welcome to redistribute it under certain conditions.
+
+ Autoport is quite experimental, but seems to work better than 'addport'. The
+ difference is, autoport will download the source code package you have to
+ enter and searches for different keywords to adjust a suitable SlackBuild
+ script.
+
+ If autoport doesn't work as expected, please mail at:
+ <topf at users dot berlios dot de>
+
+ * First step: Give meta information. Continue? (ctrl-c to quit)
+
+   Press enter! If this is the first time you use autoport, you will be asked
+   for a tag, which will be stored in /usr/ports/local.conf:
+
+ What is your tag? (e.g. 'mich'):
+
+   Enter your tag, e.g. mich!
+
+ Source file []:
+
+   Enter the source code URL, e.g.
+   http://dl.sourceforge.net/lame/lame-3.96.tar.gz!
+
+ Group [local]:
+
+ Name [lame]:
+
+ Version [3.96]:
+
+ Arch [i486]:
+
+ Build [1mich]:
+
+   Press enter for defaults!
+
+ Description (1-liner) [lame]:
+
+   Enter lame (create mp3 audio files)!
+
+ Description (details) (Write or paste and finish with a single '.')
+ []
+
+   Enter:
+
+   LAME is an LGPL MP3 encoder. The Open source development model allowed to
+   improve its quality and speed since 1999. It is now an highly evolved MP3
+   encoder, with quality and speed able to rival state of the art commercial
+   encoders.
+
+   .
+
+   Don't forget a . at the end!
+
+ Creating now a port with this information:
+
+ PORT NAME:  lame-3.96-i486-2mich
+ PORT LOCATION:  /usr/ports/local/lame/SlackBuild
+ PORT SOURCE:  http://dl.sourceforge.net/lame/lame-$VERSION.tar.gz
+ PORT DESCRIPTION:
+ lame: lame (create mp3 audio files)
+ lame:
+ lame: LAME is an LGPL MP3 encoder. The Open source development model
+ lame: allowed to improve its quality and speed since 1999. It is now an
+ lame: highly evolved MP3 encoder, with quality and speed able to rival
+ lame: state of the art commercial encoders.
+ lame:
+
+ * Last chance to quit. Port scripts will now be written.
+ Next step: Downloading and checking source code. Continue? (ctrl-c to quit)
+
+   Press enter!
+
+ Downloading source file:
+ (...)
+
+ Alright, since we have the code, I'll have a look into it:
+   --> Checking format... .tar.gz
+   --> Checking source-prefix... lame-3.96/
+   --> Checking docs... COPYING ChangeLog HACKING INSTALL
+ INSTALL.configure LICENSE README README.WINGTK TODO.
+   --> Checking for setup.py... no
+   --> Checking for Makefile.PL... no
+   --> Checking for configure... yes
+   --> Checking for DESTDIR... yes
+   --> Checking for CFLAGS... yes
+   --> Checking for CXXFLAGS... yes
+   --> Checking for gconf schemas... no
+   --> Checking for scrollkeeper... no
+
+ We're done. Port written in /usr/ports/local/lame.
+
+   You can now build it via portpkg:
+
+ # portpkg local/lame
+
+ Building lame-3.96-i486-1mich:
+ WARNING: Maintainer mode: Port scripts will be modified!
+   --> lame-3.96.tar.gz found in /usr/src/dist/
+   --> Executing /usr/ports/local/lame/SlackBuild
+   --> Going maintainer mode
+   --> Finding requirements
+   --> Moving lame-3.96-i486-1mich to /usr/obj/pkg/local/
+
+ Installing lame to 3.96-i486-1mich...
+ PACKAGE DESCRIPTION:
+ lame: lame (create mp3 audio files)
+ lame:
+ lame: LAME is an LGPL MP3 encoder. The Open source development model
+ lame: allowed to improve its quality and speed since 1999. It is now an
+ lame: highly evolved MP3 encoder, with quality and speed able to rival
+ lame: state of the art commercial encoders.
+ lame:
+ Executing install script for lame...
+
+   We hope you plan to contribute your ports to this project, it is a simple
+   task! First you have to make a tarball of your ports (here you will be
+   asked for your mail address and your real name, so we can contact you
+   later):
+
+ # cd /usr/ports
+ # ./export
+
+ What is your real name? M. Ich
+ What is your mail address? mich@hier.de
+ Continue exporting ports with tag 'mich'? (ctrl-c to quit)
+ Found ap/this
+ Found n/that
+ Copying 2 ports to /tmp/ports-mich
+ Removing private files from export: buildlog footprint arbitrary diff maintain CVS...
+ Writing info-file (contains mich, mich@hier.de, M. Ich)...
+ Creating ports-mich-31022004.tar.bz2...
+ Remmoving /tmp/ports-mich...
+ Done.
+
+   Now there's your tarball in /usr/ports, called
+   ports-mich-31022004.tar.bz2. Please make sure, it's not getting too big!
+   Normally, a port just needs the files SlackBuild, slack-desc, sources and
+   requires. You can load it up on http://portpkg.berlios.de.
+
+   You can read further on in MaintainerGuide!
+
+   ---------------------------------------------------------------------------
+
+     EditThisPage BackLinks PageInfo last changed on Mon Dec 13 17:48:50 2004

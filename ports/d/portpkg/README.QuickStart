@@ -1,6 +1,6 @@
 QuickStart
 
-   This page addresses a very short introduction to the most important
+   This page describes a very short introduction to the most important
    components of the Portpkg Project.
 
    There are two ways of using the ports collection: the puristic way, only
@@ -10,78 +10,82 @@ QuickStart
 1. The comfortable way: portpkg
 
    If you want to have a quick look into what Portpkg does, download the
-   latest package here and install it with:
+   latest package here and install it as root with:
 
  # installpkg portpkg-xxx-noarch-1tom.tgz
 
-   Now you can fetch the complete current ports collection:
+   Now you can fetch the complete current ports collection from our CVS
+   repository:
 
  # portpkg --sync
+
+ Syncing your ports tree with cvs.portpkg.berlios.de:
+   --> Updating ports/AUTHORS
+   --> Updating ports/COPYING
+ (...)
+   --> Updating ports/xap/xvid4conf/sources
+   --> Updating ports/xap/zinf/SlackBuild
+   --> Updating ports/xap/zinf/requires
+   --> Updating ports/xap/zinf/slack-desc
+   --> Updating ports/xap/zinf/sources
 
    After --sync, you can find out if there's an update for portpkg available:
 
  # portpkg portpkg
 
+ portpkg-0.30-noarch-6tom is already installed. Skipping.
+
    Portpkg uses the directories /usr/ports, /usr/obj/pkg and /usr/src/dist to
    store the SlackBuild scripts, source packages and binary packages. You can
    have a list of all available ports with:
 
- $ portpkg --list
+ # portpkg --list
+ a/slmodem-2.9.10-i486-1tom
+ ap/abook-0.5.3-i486-1fu
+ ap/athcool-0.3.8-i486-1tom
+ ap/bonnie++-1.03a-i486-1tom
+ (...)
+ xap/video-dvdrip-0.51.1-i486-1tom
+ xap/xdaf-A.01.11.01-i486-1tom
+ xap/xmbmon-203-i486-1tom
+ xap/xvid4conf-1.12-i486-1tom
+ xap/zinf-2.2.5-i486-2tom
 
    To build and install a port to your system, just type in the short name of
    the port:
 
  # portpkg id3lib
 
-   It is always recommended to do a dry-run first, to see, what would happen:
+ Building id3lib-3.8.3-i486-2tom:
+   --> Downloading id3lib-3.8.3.tar.gz
+ (...)
+   --> Executing /usr/ports/l/id3lib/SlackBuild
+   --> Moving id3lib-3.8.3-i486-2tom to /usr/obj/pkg/l/
 
- # portpkg --dryrun id3lib
+ Installing id3lib-3.8.3-i486-2tom...
+ PACKAGE DESCRIPTION:
+ id3lib: id3lib (id3v1/id3v2 tagging library)
+
+   It is always recommended to use --dryrun first, to see, what would happen.
 
    In doubt you can specify the port with the group and/or the long name to
    define the port more precisely or imply whole groups also, otherwise
    portpkg will use the first port that fits your mask:
 
- $ portpkg --info l/id3lib dia-0.94-i486-1tom gnome/
+ # portpkg --info l/id3lib dia-0.94-i486-1tom gnome/
+
+ PACKAGE NAME:  id3lib-3.8.3-i486-2tom
+ COMPRESSED PACKAGE SIZE:  427 K
+ UNCOMPRESSED PACKAGE SIZE:  1400 K
+ PACKAGE LOCATION:  /usr/obj/pkg/l/id3lib-3.8.3-i486-2tom.tgz
+ SCRIPT LOCATION:  /usr/ports/l/id3lib/SlackBuild
+ SCRIPT REQUIRES:  cxxlibs glibc zlib
+ SCRIPT SOURCES:  http://dl.sourceforge.net/id3lib/id3lib-3.8.3.tar.gz
+ PACKAGE DESCRIPTION:
+ id3lib: id3lib (id3v1/id3v2 tagging library)
+ (...)
 
    Read further on in UserGuide!
-
-  1.1 Working with ports
-
-   "Packages as mom does"
-
-   First of all: Writing new ports can be quite easy, but can also become
-   hard work and implies at least the possibility to shred your system! The
-   procedure described here, is subject to certain conditions (one script
-   just writes another script, and that could fail). So instead of just using
-   portpkg, writing ports is more difficult and you should now what you are
-   doing, this is at your own risk!
-
-   The package portpkg contains a script called autoport, that will assist
-   you to prepare a SlackBuild and some useful other files if you have a
-   given source code URL. Normally the default answers (encluded in [ and ])
-   should be the right choice, so just press enter (if this is the first time
-   you use autoport, you will be asked for a tag, which will be stored in
-   /usr/ports/local.conf).
-
-   Now your desired port can be used if anything goes right:
-
- # autoport
- (...)
- # portpkg my-new-port
-
-   We hope you plan to contribute your ports to this project, it is a simple
-   task! First you have to make a tarball of your ports (here you will be
-   asked for your mail address and your real name, so we can contact you
-   later):
-
- $ cd /usr/ports
- $ ./export
-
-   Now there's your tarball in /usr/ports, called ports-yourtag-date.tar.bz2.
-   Please make sure, it's not getting too big! Normally, a port just needs
-   the files SlackBuild, slack-desc, sources and requires.
-
-   Read further on in MaintainerGuide!
 
    ---------------------------------------------------------------------------
 
@@ -89,14 +93,14 @@ QuickStart
 
    "Just the ports, nothing else, please!"
 
-   You can use the ports tree without portpkg at all! It is just like the
+   You can use the ports tree without portpkg at all! It looks just like the
    source/ directory on a Slackware repository. Get the complete tree via
    CVS:
 
- $ cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
+ # cvs -z9 -d:pserver:!anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
 
    You should definitely have a look at UserGuide and MaintainerGuide now.
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Wed Dec 08 11:39:50 2004
+     EditThisPage BackLinks PageInfo last changed on Thu Dec 16 11:39:39 2004

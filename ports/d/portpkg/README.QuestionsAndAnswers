@@ -1,22 +1,48 @@
 QuestionsAndAnswers
 
-   Just write your questions down, someone will answer. :)
+   Note: This is a Wiki: you can add your questions by clicking EditThisPage
+   below.
 
-   Question: How is Portpkg different from other attempts to do the same, how
-   is Portpkg different from other Slackware tools?
+   ---------------------------------------------------------------------------
 
-   Answer: Other Slackware tools contain "slack" in the project name or at
-   least start with an "s": slapt-get, slackpkg, swaret, slackports,
-   slack-get, spkg...
+  My /tmp is being bloated, why and how to prevent?
+
+   Your /tmp directory will be filled while compiling with source code,
+   object code and packages, which isn't needed anymore, once the package is
+   built. It is recommended to delete that on every boot (see Filesystem
+   Hierarchy Standard in Links):
+
+ echo rm -r /tmp/* >>/etc/rc.d/rc.local
+
+  I get "Cannot find required package xyz! Stopping." so often... ?!
+
+   There are three solutions:
+
+     o You can copy all .tgz-packages you have to /usr/obj/pkg to resolve all
+       dependencies automatically.
+     o If you have an RSYNC'ed tree of Slackware, you can link /usr/obj/pkg
+       to its slackware/ directory.
+     o Use pp-sync-dist which will download Slackware packages on demand.
+
+  I want to recompile Slackware's apmd (or xyz) for my athlon-tbird. How?
+
+   You can use pp-sync-slack to import the original Slackware SlackBuilds to
+   your ports tree, this script is able to import about 90 % of the original
+   SlackBuild scripts as ports. Use them as templates. See UserGuide.
+
+  How is Portpkg different from other attempts to do the same, how is Portpkg
+  different from other Slackware tools?
+
+   Other Slackware tools contain "slack" in the project name or at least
+   start with an "s": slapt-get, slackpkg, swaret, slackports, slack-get,
+   spkg...
 
    Portpkg is unique in this sense of feature: It starts with a "p", goes
    straight on with "ort", just to find its climax with another "p", and ends
    quickly but sudden with "kg".
 
-   ---------------------------------------------------------------------------
-
-   Question: How to cool down a Doener?
+  How to cool down a Doener?
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Mon Nov 29 17:04:58 2004
+     EditThisPage BackLinks PageInfo last changed on Thu Dec 16 23:37:11 2004

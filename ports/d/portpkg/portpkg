@@ -86,12 +86,19 @@ get()
     local master mirror
     while read master mirror; do
       debug "get(): checking for $master <-> $mirror"
-      url=`echo $url | sed "s,^$master,$mirror,"`
+      m_url=`echo $url | sed "s,^$master,$mirror,"`
     done <$t.mirrors
   fi
-  debug "get(): \$url=$url"
-  if wget -c -O $dest.part $url 2>&1; then
+  debug "get(): \$m_url=$m_url"
+  if wget -c -O $dest.part $m_url 2>&1; then
     mv $dest.part $dest
+  elif [ "$url" != "$m_url" ]; then
+    # try master server
+    if wget -c -O $dest.part $url 2>&1; then
+      mv $dest.part $dest
+    else
+      error "Download failed!"
+    fi
   else
     error "Download failed!"
   fi
@@ -151,9 +158,11 @@ ls_locations()
   -e "s, [^ ]*:ARCH=,-,g" \
   -e "s, [^ ]*:BUILD=,-,g" \
   -e "s,\\$\{ARCH:[-=][a-z0-9_]*},$ARCH,g" \
+  -e "s,\\$\{[A-Z]*:[-=]([^}]*)},\1,g" \
   | tr " " "\n" \
   | sort \
   | tee $cache 2>/dev/null
+# fix me: preset $BUILD and $VERSION is not supported, only reset!
 }
 
 # print non-available, but installed ports
@@ -174,9 +183,9 @@ ls_diff() # >list
   local name
   while read name; do
 #    grep -m 1 `regex $name` $t.avail >>$t.avail.check
-#    grep -m 1 `regex $name` $t.inst >>$t.inst.check
+#    grep `regex $name` $t.inst >>$t.inst.check
     grep -m 1 "^$name-[^-]*-[^-]*-[^-]*$" $t.avail >>$t.avail.check
-    grep -m 1 "^$name-[^-]*-[^-]*-[^-]*$" $t.inst >>$t.inst.check
+   grep "^$name-[^-]*-[^-]*-[^-]*$" $t.inst >>$t.inst.check
   done <$t.check.names
   debug "ls_diff(): call: fgrep"
   fgrep -vxf $t.inst.check $t.avail.check
@@ -364,6 +373,7 @@ build_pkg()
       cat $t.bin_req $t.old_req | grep -v ^$ | sort -u >$t.new_req
       # update requires
       cat $t.new_req >$path/requires
+      [ -s $path/requires ] || rm -f $path/requires
       # show tracked dependencies that are not binary
       local diffs=`diff -u $t.old_req $t.bin_req | grep ^[-][^-] | cut -c 2-`
       if [ "$diffs" ]; then
@@ -393,6 +403,8 @@ add_pkg() # tgz
   # remove arg and track as started
   sed -i "\,^$1$,d" $ADD_SUM
   echo $group/$package >>$ADD_SUM.started
+  # skip if we already did that (maybe because of a dependency)
+  fgrep -sqx "$group/$package" $ADD_SUM.finished && continue
   # requirements check
   check_reqs || return 1
   # package file found in cache? (first in its group, then other places)
@@ -432,6 +444,9 @@ add_pkg() # tgz
     error "Installation failed!"
     return 1
   fi
+  # mimicry
+  grep -sq "^install/doinst.sh$" $ADM_DIR/packages/$package \
+  && echo "Executing install script for $name..."
   return 0
 }
 

@@ -30,7 +30,7 @@ UserGuide
 
    Sync the official ports tree with cvs:
 
- # cvs -z9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
+ # cvs -z9 -d:pserver:!anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
 
    The tree is now in ./ports/. The ports tree is divided in groups and
    groups are divided in ports. For each one there is a directory. To compile
@@ -44,7 +44,7 @@ UserGuide
  # cat sources
  http://dl.sourceforge.net/enlightenment/enlightenment-$VERSION.tar.gz
  # wget http://dl.sourceforge.net/enlightenment/enlightenment-0.16.7.1.tar.gz
- [...]
+ (...)
 
    ... and start the script:
 
@@ -59,7 +59,7 @@ UserGuide
  audiofile
  esound
  glibc
- imlib2
+ imlib
  libtool
  x11
  x11-devel
@@ -86,6 +86,7 @@ UserGuide
    as root:
 
  $ su
+ Password:
  # installpkg portpkg-xxx-noarch-1tom.tgz
 
    This will install just the administration tools in /usr/bin. Now, make
@@ -138,11 +139,10 @@ UserGuide
 
     3.2.2 Listing all available ports
 
+   Get a full list with groups and release information with --list:
+
  # portpkg --list
-
-   Gives a full list with groups and release information:
-
- [...]
+ (...)
  xap/mplayer-1.0pre5-i486-4tom
  xap/ogle-0.9.2-i486-2tom
  xap/ogle_gui-0.9.2-i486-1tom
@@ -158,19 +158,23 @@ UserGuide
 
     3.2.3 Print information of certain ports
 
+   Get some meta information about ports with --info:
+
  # portpkg --info dunnodiz
 
-   Prints some meta information about ports:
-
- PORT NAME:  zinf-2.2.5-i486-2tom
+ PORT NAME:  dunnodiz-2.2.5-i486-2tom
  PORT SIZE (compressed):  1520 K
- PORT LOCATION:  /usr/ports/xap/zinf/SlackBuild
+ PORT LOCATION:  /usr/ports/xap/dunnodiz/SlackBuild
  PORT REQUIREMENTS:  alsa-lib atk audiofile cxxlibs esound expat gdbm
     glib2 glibc gtk+2 id3lib libmusicbrainz libogg libvorbis ncurses
     pango x11 x11-devel zlib
- PORT SOURCES:  http://dl.sourceforge.net/zinf/zinf-2.2.5.tar.gz
+ PORT SOURCES:  !http://dl.sourceforge.net/dunnodiz/dunnodiz-2.2.5.tar.gz
  PORT DESCRIPTION:
- zinf: zinf (audio player)
+ dunnodiz: dunnodiz (a package)
+ dunnodiz:
+ dunnodiz: dunnodiz doesn't know anything about itself. This can be realy
+ dunnodiz: annoying since you don't know either anything about it. Strange.
+ dunnodiz:
 
     3.2.4 Finding ports
 
@@ -178,9 +182,9 @@ UserGuide
 
     3.2.5 Listing differences between installed and available ports
 
- # porpkg --diff
-
    Lists all installed packages, that have a newer version in the ports:
+
+ # porpkg --diff
 
  PORT NAME:                 AVAILABLE:              INSTALLED:
  gnome/gparted              0.0.6-i486-2tom         0.0.6-i486-1tom
@@ -196,36 +200,76 @@ UserGuide
 
    ---------------------------------------------------------------------------
 
-4. Hints, Tips and Miscellaneous
+4. Tools
 
-  4.1 Clean up /tmp
+   The package portpkg contains a set of tools, usefull for creating new
+   ports and keeping track of installed and available ports or binary
+   packages.
 
-   Your /tmp directory will be filled while compiling. It is recommended to
-   make a rm -r /tmp/* on every boot (you can write that into
-   /etc/rc.d/rc.local).
+  4.1 Autoport
 
-  4.2 Automatic dependency resolution^1
+   Autoport is a script to create new ports very easy.
 
-   You can copy all .tgz-packages you have to /usr/obj/pkg to resolve all
-   dependencies automatically. Or if you have an RSYNC'ed tree of Slackware,
-   you can link /usr/obj/pkg to its slackware/ directory.
+   See AutoportGuide.
 
-  4.3 Portpkg as a package updater^1
+  4.2 Checkpkg
 
-   You can use sync-dist to create so-called pseudo ports, which make portpkg
-   act like a package management updater: Slackware packages will be
-   downloaded from a Slackware mirror as if they were ports.
+   Checkpkg is a menu controlled programme (similiar to pkgtool) to keep
+   track of installed and available ports.
 
-  4.4 Original Slackware ports^1
+   (For now see Screenshots.)
 
-   You can use sync-slack to import the original Slackware SlackBuilds to
-   your ports tree, this script is able to import about 76% of the original
-   SlackBuild scripts as ports. Use them as templates.
+  4.3 Pp-sync-dist
+
+   Pp-sync-dist is a script that adds binary packages for your Slackware
+   version to your ports tree.
+
+   (...)
+
+  4.4 Pp-sync-slack
+
+   Pp-sync-slack is a script that imports the source code of Slackware to a
+   second ports tree in /usr/ports/z/slack.
+
+ # pp-sync-dist
+
+ pp-sync-dist -- A portpkg-addon to use Slackware's .tgz-packages as if they
+ were ports. Since this script is kind of hack-around (a work-around-hack) it's
+ not that easy to use.
+
+ pp-sync-dist will download some informative files from a Slackware mirror and
+ generates a pseudo ports tree under /usr/ports/z/dist.
+
+ What are 'pseudo ports'? Pseudo ports are SlackBuilds that do nothing else
+ than download binary packages and install them. You will probably have no need
+ for this if you use (alphabetical order) slack-get, slackpkg, slapt-get, swaret
+ or any other Slackware package manager that I missed to name here.
+
+ If this is the first time you use sync-dist, you will be asked for a target
+ distribution version. Choose '10.0' or maybe 'current', but only if you use
+ Slackware-current. You can change this later in /usr/ports/local.conf.
+
+ Enjoy.
+
+ Syncing with ftp.slackware.com:
+   --> Retrieving meta data
+ (...)
+   --> Preparing pseudo ports for extra/
+   --> Preparing pseudo ports for testing/
+   --> Preparing pseudo ports for kernels/
+   --> Preparing pseudo ports for pasture/
+   --> Preparing pseudo ports for slackware/
+
+ Pseudo ports are now in /usr/ports/z/dist.
+
+  4.5 Pp-clean-cache
+
+   (...)
 
    ---------------------------------------------------------------------------
 
-   Notes: ^1 This is Portpkg-specific and belongs only to the use of Portpkg.
+   Notes: ^1 This is specific to the administration tool portpkg.
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Mon Nov 29 16:52:45 2004
+     EditThisPage BackLinks PageInfo last changed on Thu Dec 16 23:19:36 2004

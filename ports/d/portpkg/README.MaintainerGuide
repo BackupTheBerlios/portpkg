@@ -121,6 +121,7 @@ MaintainerGuide
  shortname:
  shortname: Here can be a longer and deeper going description of the package.
  shortname: Note that you do not go behind 75 characters and 11 lines.
+ shortname:
 
   2.5 slot-in^1
 
@@ -194,12 +195,12 @@ MaintainerGuide
    |MAINTAIN_ALL=true      |Let portpkg always work in maintainer mode      |
    |-----------------------+------------------------------------------------|
    |DIST_VER=version       |The target Slackware version if you use         |
-   |                       |sync-dist or sync-slack                         |
+   |                       |pp-sync-dist or pp-sync-slack                   |
    |-----------------------+------------------------------------------------|
-   |verbose=true           |Let portpkg always work in verbose mode         |
+   |VERBOSE=true           |Let portpkg always work in verbose mode         |
    |                       |(--verbose)                                     |
    |-----------------------+------------------------------------------------|
-   |no_reqs=true           |Let portpkg always work without requirements    |
+   |NO_REQS=true           |Let portpkg always work without requirements    |
    |                       |resolving (--noreqs)                            |
    +------------------------------------------------------------------------+
 
@@ -235,4 +236,4 @@ MaintainerGuide
 
    ---------------------------------------------------------------------------
 
-     EditThisPage BackLinks PageInfo last changed on Sat Dec 04 11:50:11 2004
+     EditThisPage BackLinks PageInfo last changed on Wed Dec 15 00:28:39 2004

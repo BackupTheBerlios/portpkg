@@ -72,12 +72,18 @@ difference is, autoport will download the source code package you have to
 enter and searches for different keywords to adjust a suitable SlackBuild
 script.
 
-If autoport doesnt't work as expected, please mail at:
+If autoport doesn't work as expected, please mail at:
 <topf at users dot berlios dot de>"
 
 # usage
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
-  stanza "Usage: autoport [-a] [-u url] [-g group] [-n name] [-b]"
+  stanza "Usage: autoport [-a] [-u url] [-g group] [-n name] [-b]
+
+  -a        Run non-interactive (use defaults)
+  -u url    Preset URL of source code
+  -g group  Preset group of port
+  -n name   Preset name of port
+  -b        Execute portpkg after port generation"
   exit 1
 fi
 
@@ -85,8 +91,11 @@ fi
 i_act=true
 source=""
 group=local
+name=""
 arch=i486
+build=""
 build_port=false
+
 # parse options
 if [ "$*" ]; then
   while [ "$1" ]; do
@@ -113,7 +122,7 @@ if [ "$*" ]; then
   done
 fi
 
-ask "* Next step: Give meta information. Continue? (ctrl-c to quit)"
+ask "* First step: Give meta information. Continue? (ctrl-c to quit)"
 
 # do we have tags?
 while ! [ "$MY_TAG" ]; do
@@ -125,7 +134,7 @@ done
 
 # input information
 # source: check if we can guess it, but -u is dominant
-if [ "$name" ] && [ "$group" ] && ! [ "$source" ]; then
+if [ "$name" ] && ! [ "$source" ]; then
   script=`find $PRT_DIR/$group/$name/ -name "*SlackBuild" | head -n 1`
   version=`grep ^VERSION= $script | cut -d = -f 2`
   source=`decode "$(grep -ve ^$ -e ^# $PRT_DIR/$group/$name/sources | head -n 1)"`
@@ -232,7 +241,7 @@ fi
 if [ -d $path ]; then
   ask "* This port already exists. Really go on? (ctrl-c to quit)"
   old_script=`find $path/ -name "*SlackBuild" | head -n 1`
-  mv ${old_script}{,.old}
+#  mv ${old_script}{,.old}
 #  [ -f $path/doinst.sh ] && mv $path/doinst{.sh,.old}
 fi
 
@@ -296,7 +305,7 @@ sed -i "s,%tarball%,$tarball," $script
 # source-prefix
 echo -n "  --> Checking source-prefix... "
 srcdir_prefix=`cat $t.footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
-if [ `echo $srcdir_prefix | wc -l` == "1" ] && [ "$srcdir_prefix" != "." ]; then
+if [ `echo "$srcdir_prefix" | wc -l` == "1" ] && [ "$srcdir_prefix" != "." ]; then
   echo "$srcdir_prefix/"
   snip extra_sdp $script
   srcdir_prefix_out=`encode "$srcdir_prefix"`
@@ -304,6 +313,7 @@ if [ `echo $srcdir_prefix | wc -l` == "1" ] && [ "$srcdir_prefix" != "." ]; then
 else
   echo "no prefix!"
   snip cd_sdp $script
+  srcdir_prefix="."
 fi
 # docs
 docs=`egrep "/ABOUT$|/ABOUT-NLS$|/ANNOUNCE$|/AUTHORS$|/CONFIGURATION$|/CHANGES$\
@@ -322,95 +332,110 @@ else
 fi
 mkdir -p $t.src
 case $format in
-  tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" 2>/dev/null;;
-  targz)  tar xzf $SRC_DIR/$file -C $t.src/ "*/Makefile*" 2>/dev/null;;
-  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" 2>/dev/null;;
+  tarbz2) tar xjf $SRC_DIR/$file -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
+  targz)  tar xzf $SRC_DIR/$file -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
+  srpm)   tar xzf /tmp/`basename $file .src.rpm`/$name-$version.tar.gz -C $t.src/ "*/Makefile*" Makefile 2>/dev/null;;
 esac
-# installation
-if check "setup.py" "^$srcdir_prefix/setup\.py$" $t.footprint; then
+sed -i "s,^$srcdir_prefix/,," $t.footprint
+# configure/make
+if check "setup.py" "^setup\.py$" $t.footprint; then
   # setup.py seems to be first choice...
-  snip autogen $script
-  snip configure $script
-  snip perl $script
-  snip usrlocal $script
-  snip make $script
-  snip make_PREFIX $script
-  snip make_prefix $script
+  snip cfg_autogen $script
+  snip cfg_configure $script
+  snip cfg_perl $script
+  snip cfg_hard $script
+  snip mk $script
+  snip mk_PREFIX $script
+  snip mk_prefix $script
   snip inst_destdir $script
   snip inst_PREFIX $script
   snip inst_prefix $script
+  snip inst $script
   arch=noarch
 else
-  snip python $script
-  if check "Makefile.PL" "^$srcdir_prefix/Makefile.PL$" $t.footprint; then
+  snip inst_python $script
+  if check "Makefile.PL" "^Makefile.PL$" $t.footprint; then
     # ...but Makefile.PL isn't bad either...
-    snip autogen $script
-    snip configure $script
-    snip usrlocal $script
-    snip make_PREFIX $script
-    snip make_prefix $script
+    snip cfg_autogen $script
+    snip cfg_configure $script
+    snip cfg_hard $script
+    # perl needs make
+    snip mk_PREFIX $script
+    snip mk_prefix $script
+    # perl uses DESTDIR
     snip inst_PREFIX $script
     snip inst_prefix $script
+    snip inst $script
     arch=noarch
   else
-    snip perl $script
-    if check "configure" "^$srcdir_prefix/configure$" $t.footprint; then
-      snip autogen $script
-      snip usrlocal $script
-      snip make_PREFIX $script
-      snip make_prefix $script
+    snip cfg_perl $script
+    if check "configure" "^configure$" $t.footprint; then
+      snip cfg_autogen $script
+      snip cfg_hard $script
+      # configure needs make
+      snip mk_PREFIX $script
+      snip mk_prefix $script
+      # leave DESTDIR open
+      # leave PREFIX open
+      # leave prefix open
+    elif check "autogen.sh" "^autogen.sh$" $t.footprint; then
+      snip cfg_hard $script
+      # autogen needs make
+      snip mk_PREFIX $script
+      snip mk_prefix $script
+      # leave DESTDIR open
+      # leave PREFIX open
+      # leave prefix open
+#      else
+#        snip autogen $script
+#        snip configure $script
+#        if check "Makefile" "^Makefile$" $t.footprint; then
+#          # single Makefile: we need to tell the prefix nevertheless
+#          if check "PREFIX" "\<PREFIX\>" $t.src/$srcdir_prefix/Makefile; then
+#            snip make $script
+#            snip make_prefix $script
+#          elif check "prefix" "\<prefix\>" $t.src/$srcdir_prefix/Makefile; then
+#            snip make $script
+#            snip make_PREFIX $script
+#          elif check "hard coded /usr/local" "/usr/local" $t.src/$srcdir_prefix/Makefile; then
+#            snip make_PREFIX $script
+#            snip make_prefix $script
     else
-      if check "autogen.sh" "^$srcdir_prefix/autogen.sh$" $t.footprint; then
-        snip usrlocal $script
-        snip make_PREFIX $script
-        snip make_prefix $script
+      error "Don't know how to build this package."
+      failed=true
+    fi
+  fi
+fi
+# installation prefix
+if check "Makefile" "^Makefile" $t.footprint; then
+  if check "DESTDIR" "\<DESTDIR\>" "$t.src/$srcdir_prefix/Makefile*"; then
+    snip inst_PREFIX $script
+    snip inst_prefix $script
+    snip inst $script
+  else
+    snip inst_destdir $script
+    if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/Makefile*"; then
+      snip inst_prefix $script
+      snip inst $script
+    else
+      snip inst_PREFIX $script
+      if check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/Makefile*"; then
+        snip inst $script
       else
-        snip autogen $script
-        snip configure $script
-        if check "Makefile" "^$srcdir_prefix/Makefile$" $t.footprint; then
-          # single Makefile: we need to tell the prefix nevertheless
-          if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/*"; then
-            snip make $script
-            snip make_prefix $script
-          elif check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/*"; then
-            snip make $script
-            snip make_PREFIX $script
-          elif check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/*"; then
-            snip make_PREFIX $script
-            snip make_prefix $script
-          else
-            error "Don't know how to build this package."
-            failed=true
-          fi
+        snip inst_prefix $script
+        if check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/Makefile*"; then
+#          snip make $script
+          :
+        else
+          error "Don't know how to install this package (no install-prefix)."
+          failed=true
         fi
       fi
     fi
-    # installation prefix
-    if check "DESTDIR" "\<DESTDIR\>" "$t.src/$srcdir_prefix/*"; then
-      snip inst_PREFIX $script
-      snip inst_prefix $script
-      snip usrlocal $script
-    else
-      snip destdir $script
-      if check "PREFIX" "\<PREFIX\>" "$t.src/$srcdir_prefix/*"; then
-        snip inst_prefix $script
-        snip usrlocal $script
-      else
-        snip inst_PREFIX $script
-        if check "prefix" "\<prefix\>" "$t.src/$srcdir_prefix/*" "$t.src/$srcdir_prefix/*"; then
-          snip usrlocal $script
-        else
-          snip inst_prefix $script
-          if check "hard coded /usr/local" "/usr/local" "$t.src/$srcdir_prefix/*"; then
-            snip make $script
-          else
-            error "Don't know how to install this package."
-            failed=true
-          fi
-        fi
-      fi
-    fi	
   fi
+else
+  error "Don't know how to install this package (no Makefile)."
+  failed=true
 fi
 # cflags
 if check "CFLAGS" "\<CFLAGS\>" "$t.src/$srcdir_prefix/*"; then
@@ -567,10 +592,10 @@ find . -perm %perm644% -exec chmod 644 {} \;
 find . -perm %perm755% -exec chmod 755 {} \;
 #!perms755
 #---here begins configuration---
-#!autogen
-./autogen.sh
-#!autogen
-#!configure
+#!cfg_autogen
+./autogen.sh || exit 1
+#!cfg_autogen
+#!cfg_configure
 #!cflags
 CFLAGS="$SLKCFLAGS" \
 #!cflags
@@ -584,27 +609,26 @@ CXXFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux || exit 1
-#!configure
-#!perl
-perl Makefile.PL PREFIX=/usr SYSCONFDIR=/etc LOCALSTATEDIR=/var/lib || exit 1
-#!perl
-#!usrlocal
-sed -i "s,/usr/local/etc,${PKG}/etc,g" Makefile
-sed -i "s,/usr/local/var,${PKG}/var,g" Makefile
-sed -i "s,/usr/local,${PKG}/usr,g" Makefile
-#!usrlocal
+#!cfg_configure
+#!cfg_perl
+perl Makefile.PL || exit 1
+#!cfg_perl
+#!cfg_hard
+sed -i "s,/usr/local/etc,$PKG/etc,g" Makefile
+sed -i "s,/usr/local/var,$PKG/var,g" Makefile
+sed -i "s,/usr/local,$PKG/usr,g" Makefile
+#!cfg_hard
 #---here begins making---
-#!make
+#!mk
 make || exit 1
-#!make
-#!make_PREFIX
+#!mk
+#!mk_PREFIX
 make PREFIX=/usr || exit 1
-#!make_PREFIX
-#!make_prefix
+#!mk_PREFIX
+#!mk_prefix
 make prefix=/usr || exit 1
-#!make_prefix
+#!mk_prefix
 #---here begins installation---
-#!meta-install
 #!inst_destdir
 make install DESTDIR=$PKG || exit 1
 #!inst_destdir
@@ -614,13 +638,12 @@ make install PREFIX=$PKG/usr || exit 1
 #!inst_prefix
 make install prefix=$PKG/usr || exit 1
 #!inst_prefix
-#!usrlocal
+#!inst
 make install || exit 1
-#!usrlocal
-#!python
+#!inst
+#!inst_python
 python setup.py build install --root=$PKG || exit 1
-#!python
-#!meta-install
+#!inst_python
 #---installation done---
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 #!strip

@@ -7,14 +7,14 @@ source `which portpkg` || exit 1
 TREE=/usr/ports/z/dist
 # this will be mangled through our mirrors-list anyway
 DIST=ftp://ftp.slackware.com/pub/slackware
-SECTIONS=(extra testing kernels pasture slackware)
+SECTIONS=(patches extra testing kernels pasture slackware)
 
 stanza "pp-sync-dist -- A portpkg-addon to use Slackware's .tgz-packages as if they
-were ports.
+were ports. Since this script is kind of hack-around (a work-around-hack) it's
+not that easy to use.
 
-Since this script is kind of hack-around (a work-around-hack) it's not that
-easy to use. pp-sync-dist will download some informative files from a Slackware
-mirror and generates a pseudo ports tree under $TREE.
+pp-sync-dist will download some informative files from a Slackware mirror and
+generates a pseudo ports tree in $TREE.
 
 What are 'pseudo ports'? Pseudo ports are SlackBuilds that do nothing else
 than download binary packages and install them. You will probably have no need
@@ -34,13 +34,13 @@ t=`private`
 is_root || die
 rm -rf $TREE
 mkdir -p $TREE
-[ -f $PRT_DIR/pseudo ] && . $PRT_DIR/pseudo
+#[ -f $PRT_DIR/pseudo ] && . $PRT_DIR/pseudo
 DIST_VER=${DIST_VER:-}
 while ! [ "$DIST_VER" ]; do
   echo
   echo -n "What distribution is your target? (e.g. '10.0', 'current') "
   read DIST_VER
-  echo "DIST_VER=$DIST_VER" >>$PRT_DIR/pseudo
+  echo "DIST_VER=$DIST_VER" >>$PRT_DIR/local.conf
 done
 DIST=$DIST/slackware-$DIST_VER
 stanza "Syncing with `echo $DIST | cut -d / -f 3`:"
@@ -49,10 +49,14 @@ get $DIST/FILELIST.TXT $t.file_list
 get $DIST/PACKAGES.TXT $t.packages
 get $DIST/kernels/VERSIONS.TXT $t.kernel_versions
 cat $t.file_list | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t.files
+n=-1
 for section in ${SECTIONS[@]}; do
   cd $TREE || die
-  mkdir $section
-  cd $section
+  # current has no patches
+  [ "$DIST_VER" == "current" ] && [ "$section" == "patches" ] && continue
+  ((n++))
+  mkdir $n.$section
+  cd $n.$section
   row "Preparing pseudo ports for $section/"
   if [ "$section" == "kernels" ]; then
     kver=`grep -o "[0-9]\.[0-9]\.[0-9][0-9]" $t.kernel_versions`
@@ -60,8 +64,9 @@ for section in ${SECTIONS[@]}; do
     | grep $(regex glibc) | rev | cut -d - -f 2 | rev | head -n 1`
     grep \./kernels/ $t.file_list | grep ^d | rev | cut -d / -f 1 \
     | rev | grep -v modules | while read flavour; do
-      mkdir -p $flavour
-      cat <<EOF >$flavour/SlackBuild
+      path=kernels/$flavour
+      mkdir -p $path
+      cat <<EOF >$path/SlackBuild
 NAME=$flavour
 VERSION=$kver
 ARCH=$karch
@@ -82,14 +87,14 @@ ln -s config-$flavour-$kver config
 cd \$PKG
 makepkg -l y -c n /tmp/\$NAME-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
-      cat <<EOF >$flavour/sources
+      cat <<EOF >$path/sources
 $DIST/kernels/$flavour/bzImage
 $DIST/kernels/$flavour/System.map.gz
 $DIST/kernels/$flavour/config
 EOF
-      echo "$flavour: Linux-$kver ($flavour)" >$flavour/slack-desc
-      touch $flavour/pseudo
-      touch $flavour/slot-in
+      echo "$flavour: Linux-$kver ($flavour)" >$path/slack-desc
+      touch $path/pseudo
+      touch $path/slot-in
     done
     continue
   fi
@@ -104,11 +109,12 @@ EOF
     build=`echo $rel | cut -d - -f 3`
     if [ "$section" == "slackware" ]; then
       group=`echo $s | cut -d / -f 1`
-      path=$group/$name
+#      path=$group/$name
     else
       group=$section
-      path=$name
+#      path=$name
     fi
+    path=$group/$name
     mkdir -p $path
     cat <<EOF >$path/SlackBuild
 VERSION=$ver
