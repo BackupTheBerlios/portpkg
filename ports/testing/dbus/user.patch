@@ -1,0 +1,11 @@
+--- dbus-0.23/bus/system.conf.in.orig	2005-01-21 19:35:04.000000000 +0100
++++ dbus-0.23/bus/system.conf.in	2005-01-21 19:35:25.000000000 +0100
+@@ -15,7 +15,7 @@
+   <type>system</type>
+ 
+   <!-- Run as special user -->
+-  <user>messagebus</user>
++  <user>nobody</user>
+ 
+   <!-- Fork into daemon mode -->
+   <fork/>
