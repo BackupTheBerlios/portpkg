@@ -1,0 +1,144 @@
+#!SlackBuild.skel
+VERSION=0.9.0
+#!srcver
+SRCVER=%srcver%
+#!srcver
+ARCH=%arch%
+BUILD=1tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+mkdir -p $PKG/usr
+
+#!cflags
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+else
+  SLKCFLAGS="-O2"
+fi
+
+#!cflags
+cd /tmp || exit 1
+#!extra_sdp
+mkdir -p $NAME-$VERSION
+cd $NAME-$VERSION
+#!extra_sdp
+#!rpm
+rm -rf `basename %tarball% .rpm`.tar.gz
+rpm2targz $CWD/%tarball%
+tar xzvf `basename %tarball% .rpm`.tar.gz
+tar xzvf `basename %tarball% .src.rpm`/$NAME-$VERSION.tar.gz
+#!rpm
+#!targz
+tar xzvf $CWD/%tarball% || exit 1
+#!targz
+#!tarbz2
+tar xjvf $CWD/%tarball% || exit 1
+#!tarbz2
+#!cd_sdp
+cd %srcdirprefix% || exit 1
+#!cd_sdp
+#!patch
+cat $CWD/*.patch | patch -p1 --verbose
+#!patch
+chown -R root.root .
+#!perms644
+find . -perm %perm644% -exec chmod 644 {} \;
+#!perms644
+#!perms755
+find . -perm %perm755% -exec chmod 755 {} \;
+#!perms755
+#---here begins configuration---
+#!autogen
+./autogen.sh
+#!autogen
+#!configure
+#!cflags
+CFLAGS="$SLKCFLAGS" \
+#!cflags
+#!cxxflags
+CXXFLAGS="$SLKCFLAGS" \
+#!cxxflags
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  $ARCH-slackware-linux || exit 1
+#!configure
+#!perl
+perl Makefile.PL PREFIX=/usr SYSCONFDIR=/etc LOCALSTATEDIR=/var/lib || exit 1
+#!perl
+#!usrlocal
+sed -i "s,/usr/local/etc,${PKG}/etc,g" Makefile
+sed -i "s,/usr/local/var,${PKG}/var,g" Makefile
+sed -i "s,/usr/local,${PKG}/usr,g" Makefile
+#!usrlocal
+#---here begins making---
+#!make
+make || exit 1
+#!make
+#!make_PREFIX
+make PREFIX=/usr || exit 1
+#!make_PREFIX
+#!make_prefix
+make prefix=/usr || exit 1
+#!make_prefix
+#---here begins installation---
+#!meta-install
+#!inst_destdir
+make install DESTDIR=$PKG || exit 1
+#!inst_destdir
+#!inst_PREFIX
+make install PREFIX=$PKG/usr || exit 1
+#!inst_PREFIX
+#!inst_prefix
+make install prefix=$PKG/usr || exit 1
+#!inst_prefix
+#!usrlocal
+make install || exit 1
+#!usrlocal
+#!python
+python setup.py build install --root=$PKG || exit 1
+#!python
+#!meta-install
+#---installation done---
+chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
+#!strip
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
+  find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
+)
+#!strip
+mv $PKG/usr/share/{man,doc} $PKG/usr/ 2>/dev/null
+rmdir $PKG/usr/share 2>/dev/null
+gzip -9 $PKG/usr/man/man?/*
+#!docs
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  %docs% \
+  $PKG/usr/doc/$NAME-$VERSION
+#!docs
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+#!doinst
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+#!doinst
+#%meta-fix%
+#!config
+find $PKG/ -name "*.schemas" -o -name "*.omf" \
+| sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh
+#!config
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+#!SlackBuild.skel
