@@ -1,7 +1,7 @@
 VERSION=1.6.1
 GM_VER=0.11.11
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=4tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -22,6 +22,22 @@ else
 fi
 
 cd /tmp || exit 1
+tar xjvf $CWD/gnome-mag-$GM_VER.tar.bz2
+cd gnome-mag-$GM_VER || exit 1
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  $ARCH-slackware-linux || exit 1
+make || exit 1
+make install DESTDIR=$PKG || exit 1
+make install || exit 1
+
+cd /tmp || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
@@ -36,23 +52,6 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-make install || exit 1
-
-cd /tmp || exit 1
-tar xjvf $CWD/gnome-mag-$GM_VER.tar.bz2
-cd gnome-mag-$GM_VER || exit 1
-chown -R root.root .
-CFLAGS="$SLKCFLAGS" \
-./configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --localstatedir=/var/lib \
-  --program-prefix="" \
-  --disable-static \
-  $ARCH-slackware-linux || exit 1
-make || exit 1
-make install DESTDIR=$PKG || exit 1
-cd /tmp/$NAME-$VERSION || exit 1
 
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 ( cd $PKG
