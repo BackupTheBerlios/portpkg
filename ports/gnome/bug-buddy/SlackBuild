@@ -9,8 +9,8 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 
 cd /tmp || exit 1
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-cd $NAME-$VERSION || exit 1
+tar xjvf $CWD/$NAME-2.8.0.tar.bz2 || exit 1
+cd $NAME-2.8.0 || exit 1
 chown -R root.root .
 ./configure \
   --prefix=/usr \
@@ -36,6 +36,7 @@ cp -a \
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
 find $PKG/ -name "*.schemas" -o -name "*.omf" \
 | sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh
 
