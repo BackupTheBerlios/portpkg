@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.3.4
+VERSION=3.5.1
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -23,7 +23,7 @@ cd $TMP || exit 1
 tar xzvf $CWD/${NAME}src-${VERSION}.tar.gz || exit 1
 cd $NAME || exit 1
 chown -R root.root .
-make -f makefile.unix || exit 1
+CXXFLAGS=$CFLAGS make -f makefile.unix || exit 1
 cp unrar $PKG/usr/bin
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 mkdir -p $PKG/install
@@ -31,3 +31,8 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME
+  rm -rf $PKG
+fi
