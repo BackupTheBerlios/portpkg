@@ -1,29 +1,49 @@
-VERSION=1.061
-ARCH=noarch
-BUILD=2tom
-
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
+PKG=$TMP/package-$NAME
+
+VERSION=1.080
+ARCH=noarch
+BUILD=1lem
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
 rm -rf $PKG
 mkdir -p $PKG/usr
-
-cd /tmp || exit 1
+cd $TMP || exit 1
 tar xzvf $CWD/Glib-$VERSION.tar.gz || exit 1
 cd Glib-$VERSION || exit 1
 chown -R root.root .
 perl Makefile.PL || exit 1
-sed -i "s,/share/man,/man,g" Makefile
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
-find $PKG/usr/man/ -type f | xargs -r gzip -9
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+mv $PKG/usr/share/{man,doc} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS ChangeLog LICENSE MANIFEST NEWS README README.api-changes TODO \
-  $PKG/usr/doc/$NAME-$VERSION
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Glib-$VERSION
+  rm -rf $PKG
+fi
