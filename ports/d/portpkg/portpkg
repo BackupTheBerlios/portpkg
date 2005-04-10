@@ -416,8 +416,9 @@ build_pkg()
     if [ "$flags_var" ]; then
       debug "build_pkg(): use $flags_var for CFLAGS"
     else
-      $maintain && [ "$arch" != "noarch" ] \
-      && warn "No CFLAGS variable found! Compiling with default values"
+      case $package in $name-$version-noarch-*) ;; *)
+        $maintain && warn "No CFLAGS variable found! Compiling with default values";;
+      esac
       flags_var=CFLAGS
     fi
 
@@ -730,7 +731,7 @@ do_sync()
 #    # if it's a CVS root with a CVS-account, then don't overwrite modified files
 #    grep -sq anonymous CVS/Root && local opt="C" || local opt=""
 #    cvs -qz9 up -dP$opt -I arbitrary,local,z
-    cvs -qz9 up -dP -I arbitrary,local,z 2>/dev/null
+    cvs -qz9 up -dP -I local -I 0 -I z 2>/dev/null
   else
     cd `dirname $PRT_DIR` || die
     cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
@@ -813,10 +814,11 @@ Options:
   -b, --rebuild     Rebuild package if already build (implies --reinstall)
   -p, --prepare     Build package, but don't install (implies --noreqs)
   -o, --download    Download source files only
-  -g, --verbose	    Show compile output
+  -g, --verbose	    Show compile/download output
   -y, --dryrun	    Simulate install/build/download/upload
   -q, --noreqs	    Don't install/upgrade dependencies
   -a, --lazy        Don't upgrade dependencies to newest version
+  -m, --maintain    Force maintainer mode
 Lists:
   group/ or [group/]name[-version-arch-build]
 EOF
