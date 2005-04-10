@@ -1,0 +1,82 @@
+#!/bin/sh
+#
+# SlackBuild for nagios
+#
+##################################
+## Creator: Stefano Stabellini  ##
+## stefano@stabellini.net       ##
+## http://www.stabellini.net    ##
+##################################
+#
+
+CWD=`pwd`
+if [ "$TMP" = "" ]; then
+  TMP=/tmp
+fi
+
+if [ ! -d $TMP ]; then
+  mkdir -p $TMP # location to build the source
+fi
+PKG=/tmp/package-nagios
+
+VERSION=1.2
+ARCH=${ARCH:-i486}
+BUILD=1stb
+
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+
+rm -rf $PKG
+mkdir -p $PKG
+echo "+=================+"
+echo "| nagios-$VERSION |"
+echo "+=================+"
+cd $TMP
+rm -rf nagios-$VERSION
+tar xvzf $CWD/nagios-$VERSION.tar.gz
+cd nagios-$VERSION
+chown -R root.root .
+find . -perm 777 -exec chmod 755 {} \;
+find . -perm 775 -exec chmod 755 {} \;
+find . -perm 700 -exec chmod 755 {} \;
+find . -perm 744 -exec chmod 755 {} \;
+find . -perm 666 -exec chmod 644 {} \;
+find . -perm 664 -exec chmod 644 {} \;
+find . -perm 600 -exec chmod 644 {} \;
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure --prefix=/usr/lib/nagios --sysconfdir=/etc/nagios --bindir=/usr/bin --sbindir=/usr/libexec/nagios --datadir=/usr/share/nagios --localstatedir=/var/lib/nagios --mandir=/usr/man --with-cgiurl=/nagios/cgi-bin  --with-htmurl=/nagios --with-nagios-user=root --with-nagios-grp=root
+make all
+make install DESTDIR=$PKG
+make install-config DESTDIR=$PKG
+make install-init DESTDIR=$PKG
+strip $PKG/usr/bin/*
+chown -R root.bin $PKG/usr/bin
+find $PKG -perm 774 -exec chmod 755 {} \;
+find $PKG -perm 775 -exec chmod 755 {} \;
+find $PKG -perm 664 -exec chmod 644 {} \;
+gzip -9 $PKG/usr/man/man1/*
+gzip -9 $PKG/usr/man/man5/*
+gzip -9 $PKG/usr/man/man8/*
+mkdir -p $PKG/usr/doc/nagios-$VERSION
+cp LEGAL $PKG/usr/doc/nagios-$VERSION
+cp README $PKG/usr/doc/nagios-$VERSION
+cp INSTALLING $PKG/usr/doc/nagios-$VERSION
+cp LICENSE $PKG/usr/doc/nagios-$VERSION
+cp UPGRADING $PKG/usr/doc/nagios-$VERSION
+mv $PKG/etc/rc.d/nagios $PKG/etc/rc.d/rc.nagios.new
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+cd $PKG
+makepkg -l y -c n ../nagios-$VERSION-$ARCH-$BUILD.tgz
+
