@@ -29,21 +29,15 @@ chown -R root.root .
 
 #+install-fix
 mkdir -p $PKG/opt/firefox
-
 cp -a \
     * \
     $PKG/opt/firefox
-
 mkdir -p $PKG/usr/bin 
 ( cd $PKG/usr/bin ; ln -s ../../opt/firefox/firefox )
 
-mkdir -p $PKG/usr/share/pixmaps
-cp -a \
-    icons/mozicon50.xpm \
-    $PKG/usr/share/pixmaps
 mkdir -p $PKG/usr/share/applications
 cp -a \
-    $CWD/mozilla-firefox.desktop \
+    $CWD/firefox.desktop \
     $PKG/usr/share/applications
 #+install-fix
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
