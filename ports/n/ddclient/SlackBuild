@@ -1,0 +1,72 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=3.6.6
+ARCH=noarch
+BUILD=2lem
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+#+install-fix
+mkdir $PKG/usr/sbin
+cp -a \
+    ddclient \
+    $PKG/usr/sbin
+
+#+install-fix
+#+post-install-fix
+mkdir -p $PKG/etc/{ddclient,rc.d,dhcpc}
+cp -a \
+    sample-etc_ddclient.conf \
+    $PKG/etc/ddclient/ddclient.conf.new
+    chmod 600 $PKG/etc/ddclient/ddclient.conf.new
+cp -a \
+    $CWD/rc.ddclient.new \
+    $PKG/etc/rc.d/rc.ddclient.new
+    chmod 644 $PKG/etc/rc.d/rc.ddclient.new
+cp -a \
+    sample-etc_dhcpc_dhcpcd-eth0.exe \
+    $PKG/etc/dhcpc/dhcpcd-eth0.exe.new
+chmod 755 $PKG/etc/dhcpc/dhcpcd-eth0.exe.new
+#+post-install-fix
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+mv $PKG/usr/share/{man,doc} $PKG/usr/
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  COPYING COPYRIGHT Changelog README README.cisco \
+  $PKG/usr/doc/$NAME-$VERSION/
+#+post-doc-fix
+cp -a \
+    sample* \
+    $PKG/usr/doc/$NAME-$VERSION
+#+post-doc-fix
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi

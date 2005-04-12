@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.ddclient 
+# 
+# Start/stop/restart/status the ddclient Dynamic DNS IP address updater
+#
+#
+#  To make ddclient start automatically as a daemon at boot, make this
+# file executable:   chmod  755 /etc/rc.d/rc.ddclient
+#  
+# You also have to add following lines into /etc/rc.d/rc.local
+#    
+# if [ -x /etc/rc.d/rc.ddclient ]
+#	then /etc/rc.d/rc.ddclient
+# fi
+
+
+program="/usr/sbin/ddclient"
+pidfile="/var/run/ddclient.pid"
+pids=`pidof ddclient`
+
+
+
+ddclient_start() {
+	
+	if [ $pids ]
+	    then echo "ddclient already running (pid: $pids)";
+	    exit 0
+	fi
+
+        if [ -r /etc/ddclient/ddclient.conf ]; then
+            echo "Starting ddclient:  $program "
+            $program
+        fi
+}
+					       
+ddclient_stop() {
+       echo "Shutting down ddclient... "
+       killall ddclient 2>/dev/null
+       sleep 1
+       [ -f $pidfile ] && rm $pidfile
+}
+									       
+ddclient_restart() {
+       ddclient_stop
+       pids=""
+       sleep 2
+       ddclient_start
+}
+
+ddclient_status() {
+       if test -f "$pidfile" 
+       then
+       echo "$program (pid $pids) is running"
+       else
+       echo "$program is stopped"
+       fi
+																		       }
+
+
+case "$1" in
+    'start')
+	    ddclient_start   
+	    ;;
+    'stop')
+	    ddclient_stop
+	    ;;
+    'restart')
+	    ddclient_restart
+	    ;;
+    'status')
+	    ddclient_status
+	    ;;
+    *)
+	    echo "usage $0 start|stop|restart|status"
+	    ;;
+esac
+
+
+
+
