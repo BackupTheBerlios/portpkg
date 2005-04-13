@@ -1,0 +1,52 @@
+#!/bin/sh
+
+VERSION=0.35
+ARCH=${ARCH:-i486}
+BUILD=1mk
+
+CWD=`pwd`
+NAME=`basename $CWD`
+TMP=/tmp
+PKG=$TMP/package-$NAME
+
+rm -rf $PKG
+
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tgz
+chown -R root:root $NAME-$VERSION
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+cd $NAME-$VERSION || exit 1
+CFLAGS="$SLKCFLAGS" ./configure \
+    --prefix=/usr || exit 1
+make || exit 1
+
+mkdir -p $PKG/usr/lib || exit 1
+mkdir -p $PKG/usr/include || exit 1
+cp src/.libs/libchm.la $PKG/usr/lib || exit 1
+cp src/.libs/libchm.a $PKG/usr/lib || exit 1
+cp src/.libs/libchm.so.0.0.0 $PKG/usr/lib || exit 1
+cp src/chm_lib.h $PKG/usr/include || exit 1
+(cd $PKG/usr/lib && ln -s libchm.so.0.0.0 libchm.so.0)
+(cd $PKG/usr/lib && ln -s libchm.so.0.0.0 libchm.so)
+chmod 644 $PKG/usr/lib/libchm.la
+chmod 644 $PKG/usr/lib/libchm.a
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp AUTHORS COPYING ChangeLog Doxyfile INSTALL NEWS README \
+    $PKG/usr/doc/$NAME-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG || exit 1
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
