@@ -1,0 +1,58 @@
+#!/bin/sh
+
+VERSION=0.6.8
+ARCH=${ARCH:-i486}
+BUILD=1mk
+
+CWD=`pwd`
+NAME=`basename $CWD`
+TMP=/tmp
+PKG=$TMP/package-$NAME
+
+rm -rf $PKG
+
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+
+cd $NAME-$VERSION || exit 1
+gzip -cd $CWD/pinfo-0.6.8.memcorruption.patch.gz | patch -p1
+gzip -cd $CWD/pinfo-0.6.8.memleak.patch.gz | patch -p1
+gzip -cd $CWD/pinfo-0.6.8-mkstemp.patch.gz | patch -p0
+cd $TMP || exit 1
+
+chown -R root:root $NAME-$VERSION
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+cd $NAME-$VERSION || exit 1
+CFLAGS="$SLKCFLAGS" ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc || exit 1
+make || exit 1
+make DESTDIR=$PKG install || exit 1
+
+rm -f $PKG/usr/info/dir
+gzip -9 $PKG/usr/man/man?/*
+gzip -9 $PKG/usr/info/*
+
+chown -R root.bin $PKG{,/usr}/{,s}bin
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README \
+    $PKG/usr/doc/$NAME-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh  >$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+strip usr/bin/*
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
