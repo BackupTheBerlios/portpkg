@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-# configuration
+# configuration (these values can be overwritten by /etc/portpkg/local.conf)
 MAINTAIN_ALL=false
 VERBOSE=false
 DRY_RUN=false
@@ -27,7 +27,6 @@ DEBUG=false
 ARCH=i486
 CFLAGS=""
 MY_TAG=""
-SYNC_ADDON=""
 ADM_DIR=/var/log
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
@@ -36,7 +35,7 @@ CFG_DIR=/etc/portpkg
 TMP=/tmp
 [ -f $CFG_DIR/local.conf ] && source $CFG_DIR/local.conf
 
-# constants
+# constant values
 ENGINE_VER=cvs
 CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
 SUBMIT_URL=http://portpkg.berlios.de/upload.php
@@ -292,7 +291,7 @@ maintainer_mode()
   find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >md5sums
 
 #  # sign md5sums
-#  if [ -d ~/.gnupg ]; then
+#  if [ -d ~/.gnupg ] && [ `which gpg` ]; then
 #    row "Signing md5sums"
 #    cat md5sums | gpg --clearsign >$path/md5sums
 #  fi
@@ -342,9 +341,9 @@ maintainer_mode()
   | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
-  grep -woe "usr/local/.*" -e "usr/share/doc/.*" -e "usr/share/man/.*" \
-  -e "usr/info/dir.*" -e "/$ARCH-slackware-linux-" footprint >$t/check_path
-  grep "^........w" footprint >$t/check_perm
+  grep -woe "usr/\(local/\|etc/\|share/doc/\|share/man/\|info/dir\).*" \
+    -e "/$ARCH-slackware-linux-" footprint >$t/check_path
+  grep -e "^........w" -e " root/root .*\( \|/\)bin/" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
   ls_slk | slk2loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
   | fgrep -vxf - $t/auto_req >>$t/check_req
@@ -653,7 +652,7 @@ do_export()
       tar cjf $ADM_DIR/portpkg/$package.tar.bz2 .
     )
 
-    $DRY_RUN  \
+    $DRY_RUN \
     || curl -F filetoupload=@$ADM_DIR/portpkg/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
     || error "An error occured!"
   done
@@ -713,24 +712,19 @@ do_list() # [pkgex-list] >glist
 
 do_sync()
 {
+  local t=`mktemp -d`
   is_root || die
   has_prog cvs || die
   stanza "Syncing your data base:"
 
   # sync port dir
   row "Syncing $PRT_DIR with `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`"
-  mkdir -p $PRT_DIR
-  local cvs
 
   # unhide .CVS
-  find $PRT_DIR/ -name .CVS -type d | while read cvs; do mv $cvs `dirname $cvs`/CVS; done
-  [ -f ~/.cvspass ] || touch ~/.cvspass
+  find $PRT_DIR/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
 
-  if [ -d CVS ]; then
+  if [ -d $PRT_DIR ]; then
     cd $PRT_DIR || die
-#    # if it's a CVS root with a CVS-account, then don't overwrite modified files
-#    grep -sq anonymous CVS/Root && local opt="C" || local opt=""
-#    cvs -qz9 up -dP$opt -I arbitrary,local,z
     cvs -qz9 up -dP -I local -I 0 -I z 2>/dev/null
   else
     cd `dirname $PRT_DIR` || die
@@ -742,32 +736,25 @@ do_sync()
   -e "s, P , Patching ," \
   -e "s, M , Locally modified ," \
   -e "s, \\? , Unknown entry ,"
-#    -e "/\(.*\)/d" \
 
   # hide CVS
-  find $PRT_DIR/ -name CVS -type d | while read cvs; do mv $cvs `dirname $cvs`/.CVS; done
+  find $PRT_DIR/ -name CVS -depth -exec dirname {} \; | xargs -i mv {}/CVS {}/.CVS
 
-  # sync addons?
-  local addon
-  if [ "$SYNC_ADDON" ]; then
-    for addon in $SYNC_ADDON; do
-      . $addon
-    done
-  fi
+  # start 3rd-party-importers
+  local importer
+  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
+    [ -x $importer ] && $importer
+  done
 
   # sync package dir
-  local t=`mktemp -d`
   row "Syncing $PKG_DIR with $PRT_DIR"
   mkdir -p $PKG_DIR
   ls_slk | slk2loc | loc2gpkg >$t/avail
-
-  # leave group local/ as is
-  ls_pkg | grep -v "^local/" >$t/cache
   local gpkg
   local group
 
   # check groups
-  fgrep -vxf $t/avail $t/cache | while read gpkg; do
+  ls_pkg | fgrep -vxf $t/avail | while read gpkg; do
     group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
     group=${group:-outdated}
     case $gpkg in $group/*) continue;; esac
@@ -877,19 +864,23 @@ maintain,export:"
     esac
     shift
   done
+
   $prepare_only && NO_REQS=true
   $rebuild && reinstall=true
   $remaintain && rebuild=true
   $VERBOSE && output=/dev/stdout
+
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
+
   $NO_REQS && warn "Dependency resolving disabled!"
   $LAZY_CHECKS && warn "Enable lazy dependency checking!"
   $DRY_RUN && warn "Up-/downloading, packaging and installing simulated!"
   $action "$@"
+
   exit $?
 }
 
@@ -901,10 +892,12 @@ init()
   # clean up on exit
   trap "rm -rf $TMPDIR" EXIT
   trap "" PIPE
-  has_prog sed || die
 
   # check
+  has_prog sed || die
   case $ARCH in *-*) die "ARCH value not allowed: $ARCH";; esac
+
+  # read mirrors, ignore and exclude
   mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $CFG_DIR/exclude{.local,}`
@@ -913,6 +906,7 @@ init()
 
   # if not used as include file then start me
   [ `basename $0` == "portpkg" ] && parse_options "$@"
+
   return 0
 }
 
