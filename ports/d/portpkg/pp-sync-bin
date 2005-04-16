@@ -1,6 +1,23 @@
 #!/bin/sh
-# pp-sync-bin -- A portpkg-addon to use Slackware's .tgz-packages as if they
-#                were ports
+#BLURB="Import Slackware binary packages"
+
+source `which portpkg` || exit 1
+
+BIN_PRT_DIR=$PRT_DIR/z
+
+[ "$BIN_PRT_DIR" ] || die "No path set. Please run 'pp-config'!"
+[ "$DIST_VER" ] || die "No distribution target set. Please run 'pp-config'!"
+# this will be mangled through our mirrors-list anyway
+DIST=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+
+slackware_dir=$BIN_PRT_DIR/bin
+# prefer patches and extra (0)
+patches_dir=$BIN_PRT_DIR/bin/0/
+extra_dir=$BIN_PRT_DIR/bin/0/
+# kernels, pasture and testing are "second quality" (z)
+kernels_dir=$BIN_PRT_DIR/bin/z/
+pasture_dir=$BIN_PRT_DIR/bin/z/
+testing_dir=$BIN_PRT_DIR/bin/z/
 
 sync_kernels()
 {
@@ -14,10 +31,11 @@ sync_kernels()
   | grep $(regex glibc) | rev | cut -d - -f 2 | rev | head -n 1`
   grep \./kernels/ $t/file_list | grep ^d | rev | cut -d / -f 1 \
   | rev | grep -v modules | while read flavour; do
-    path=kernels/$flavour
+    path=kernels/kernel-$flavour
     mkdir -p $path
+    # kernel-SlackBuild
     cat <<EOF >$path/SlackBuild
-NAME=$flavour
+NAME=kernel-$flavour
 VERSION=$kver
 ARCH=$karch
 BUILD=1
@@ -31,19 +49,31 @@ cat \$CWD/bzImage >vmlinuz-$flavour-$kver
 cat \$CWD/System.map.gz >System.map-$flavour-$kver.gz
 cat \$CWD/config >config-$flavour-$kver
 gunzip System.map-$flavour-$kver.gz
-#ln -s vmlinuz-$flavour-$kver vmlinuz
-#ln -s System.map-$flavour-$kver System.map
-#ln -s config-$flavour-$kver config
+ln -s vmlinuz-$flavour-$kver vmlinuz-$flavour
+ln -s System.map-$flavour-$kver System.map-$flavour
+ln -s config-$flavour-$kver config-$flavour
+mkdir -p \$PKG/install
+cat \$CWD/slack-desc >\$PKG/install/slack-desc
+
 cd \$PKG
 makepkg -l y -c n /tmp/\$NAME-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
+    # kernel-sources
     cat <<EOF >$path/sources
 $DIST/kernels/$flavour/bzImage
 $DIST/kernels/$flavour/System.map.gz
 $DIST/kernels/$flavour/config
 EOF
+    # kernel-slack-desc
     grep "\./kernels/$flavour/" $t/md5sums | sed "s,  .*/,  ," >$path/md5sums
-    echo "$flavour: Linux-$kver ($flavour)" >$path/slack-desc
+cat <<EOF >$path/slack-desc
+kernel-$flavour: Linux-kernel $kver ($flavour)
+kernel-$flavour:
+kernel-$flavour: This is a Linux-kernel version $kver with $flavour
+kernel-$flavour: configuration, as found on
+kernel-$flavour:   $DIST/kernels/$flavour/
+kernel-$flavour:
+EOF
     touch $path/pseudo
     touch $path/slot-in
   done
@@ -74,6 +104,7 @@ sync_section()
     fi
     path=$group/$name
     mkdir -p $path
+    # SlackBuild
     cat <<EOF >$path/SlackBuild
 VERSION=$ver
 ARCH=$arch
@@ -89,47 +120,33 @@ EOF
   done
 }
 
-if ! [ `basename $0` == portpkg ]; then
-  echo
-  echo "Please run 'pp-config' and start me as: portpkg --sync"
-  exit 1
-fi
-
-[ "${DIST_VER:-}" ] || die "No distribution target set. Please run 'pp-config'!"
-[ "${BIN_PRT_DIR:-}" ] || die "No path set. Please run 'pp-config'!"
-# this will be mangled through our mirrors-list anyway
-DIST=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
-
 t=`mktemp -d`
 row "Syncing $BIN_PRT_DIR with `echo $DIST | cut -d / -f 3`"
-get $DIST/ChangeLog.txt $t/change_log >/dev/null
-if [ -f $BIN_PRT_DIR/ChangeLog.txt ] \
-&& [ "`cat $t/change_log | md5sum`" == "`cat $BIN_PRT_DIR/ChangeLog.txt | md5sum`" ]; then
-  # good
-  :
-else
-  # bad
+get $DIST/ChangeLog.txt $t/change_log #>/dev/null
+if ! [ -f $BIN_PRT_DIR/ChangeLog.txt ] || ! cmp -s $t/change_log $BIN_PRT_DIR/ChangeLog.txt; then
+  # updates
   rm -rf $BIN_PRT_DIR
   mkdir -p $BIN_PRT_DIR
   cd $BIN_PRT_DIR || die
   cp $t/change_log $BIN_PRT_DIR/ChangeLog.txt
+
   row "Retrieving file list"
-  get $DIST/FILELIST.TXT $t/file_list >/dev/null
+  get $DIST/FILELIST.TXT $t/file_list #>/dev/null
   row "Retrieving package info"
-  get $DIST/PACKAGES.TXT $t/packages >/dev/null
+  get $DIST/PACKAGES.TXT $t/packages #>/dev/null
   row "Retrieving md5sums"
-  get $DIST/CHECKSUMS.md5 $t/md5sums >/dev/null
+  get $DIST/CHECKSUMS.md5 $t/md5sums #>/dev/null
   row "Retrieving kernel version"
-  get $DIST/kernels/VERSIONS.TXT $t/kernel_versions >/dev/null
+  get $DIST/kernels/VERSIONS.TXT $t/kernel_versions #>/dev/null
   cat $t/file_list | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t/files
-  sync_section slackware $BIN_PRT_DIR/
-  # these are preferred
-  sync_section patches $BIN_PRT_DIR/0/
-  sync_section extra $BIN_PRT_DIR/0/
-  # and these are "recessive"
-  sync_kernels $BIN_PRT_DIR/z/
-  sync_section pasture $BIN_PRT_DIR/z/
-  sync_section testing $BIN_PRT_DIR/z/
+
+  sync_section slackware $slackware_dir/
+  sync_section patches $patches_dir/
+  sync_section extra $extra_dir/
+  sync_kernels $kernels_dir/
+  sync_section pasture $pasture_dir/
+  sync_section testing $testing_dir/
+
   # make slot-ins for kernel-modules to allow 2.6-modules co-exist with 2.4-modules
   find -name kernel-source -exec touch {}/slot-in \;
   find -name kernel-modules -exec touch {}/slot-in \;
