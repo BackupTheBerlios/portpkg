@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.10.1
 ARCH=${ARCH:-i486}
-BUILD=5tom
+BUILD=6tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mtune=i686"
@@ -37,7 +37,6 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG || exit 1
 GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \
 gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas
-find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm
 rm -rf $PKG/usr/info/dir
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
