@@ -18,28 +18,30 @@ mv README.FrontPage NEWS
 sed -i "0,/^News$/d" NEWS
 sed -i "1s,.*,News\n," NEWS
 
-# exclude lists
+exit
 
-dist_set="10.0 10.1 current"
-for i in $dist_set; do
-  wget -O /tmp/file_list.$i ftp://ftp.slackware.at/slackware-$i/FILELIST.TXT
-  grep -o "slackware/.*\.tgz$" /tmp/file_list.$i | rev | cut -d / -f 1 | cut -d - -f 3- | rev >/tmp/pkg_list.$i
-done
-
-portpkg -l | grep -ve ^pasture/ -e ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
-| rev | cut -d / -f 1 | cut -d - -f 3- | rev >/tmp/pkg_list.ports
-
-for i in $dist_set; do
-  cat exclude >exclude.$i
-  cat >>exclude.$i <<EOF
-
-# these are already part of Slackware $i. (automatic generated list)
-
-EOF
-  fgrep -xf /tmp/pkg_list.ports /tmp/pkg_list.$i | rev | cut -d - -f 2- | rev \
-  | xargs -r portpkg -l | grep -ve ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
-  | rev | cut -d - -f 4- | rev >>exclude.$i
-done
-
-sed -i "\,^pasture/,d" exclude.current
-echo "pasture/" >>exclude.current
+## exclude lists
+#
+#dist_set="10.0 10.1 current"
+#for i in $dist_set; do
+#  wget -O /tmp/file_list.$i ftp://ftp.slackware.at/slackware-$i/FILELIST.TXT
+#  grep -o "slackware/.*\.tgz$" /tmp/file_list.$i | rev | cut -d / -f 1 | cut -d - -f 3- | rev >/tmp/pkg_list.$i
+#done
+#
+#portpkg -l | grep -ve ^pasture/ -e ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
+#| rev | cut -d / -f 1 | cut -d - -f 3- | rev >/tmp/pkg_list.ports
+#
+#for i in $dist_set; do
+#  cat exclude >exclude.$i
+#  cat >>exclude.$i <<EOF
+#
+## these are already part of Slackware $i. (automatic generated list)
+#
+#EOF
+#  fgrep -xf /tmp/pkg_list.ports /tmp/pkg_list.$i | rev | cut -d - -f 2- | rev \
+#  | xargs -r portpkg -l | grep -ve ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
+#  | rev | cut -d - -f 4- | rev >>exclude.$i
+#done
+#
+#sed -i "\,^pasture/,d" exclude.current
+#echo "pasture/" >>exclude.current
