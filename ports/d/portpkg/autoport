@@ -126,45 +126,40 @@ if [ "$*" ]; then
   while [ "$1" ]; do
     case $1 in
       -a)
-        i_act=false
-        shift;;
+        i_act=false;;
       -v)
         version=$2
-        shift
         shift;;
       -g)
         group=`echo $2 | cut -d / -f 1`
-        shift
         shift;;
       -n)
         name=`echo $2 | cut -d / -f 1`
-        shift
         shift;;
       -u)
-        [ "$group" ] && get_info $group/$name || get_info $name
+        get_info $2
         # use abstract url
         sources=`encode "$sources"`
         arch=`echo $package | rev | cut -d - -f 2 | rev`
         shift;;
       -b)
-        build_pkg=true
-        shift;;
+        build_pkg=true;;
       *://*)
-        sources=$1
-        shift;;
+        sources=$1;;
       *)
         # usage
-        stanza "Usage: autoport [-a] [-n name] [-u] [-v version] [-g group] [-b] [source url]
+        stanza "Usage: autoport [-a] [-n name] [-v version] [-g group] [-u port] [-b] [source url]
 Options:
   -a             Run non-interactive (use defaults)
   -n name        Preset name of port
-  -u             Update (try to read-in existing settings, use after -n)
   -v version     Preset version of port
   -g group       Preset group of port
+  -u port        Use port
   -b             Execute portpkg after port generation
   source url     Preset URL of source code (if not found via -u)"
         exit 1;;
     esac
+    shift
   done
 fi
 
@@ -530,7 +525,7 @@ fi
 
 # scrollkeeper
 if check "\.omf$" $t/footprint; then
-  add_inst "usr/bin/scrollkeeper-update" $path/doinst.sh
+  add_inst "usr/bin/scrollkeeper-update -p var/lib/scrollkeeper" $path/doinst.sh
 else
   remove_inst "scrollkeeper-update" $path/doinst.sh
   snip scrollkeeper $script
@@ -547,7 +542,9 @@ fi
 if check "\.desktop(|\.in)$" $t/footprint; then
   add_inst "usr/bin/update-desktop-database" $path/doinst.sh
 else
-  remove_inst "update-desktop-database" $path/doinst.sh
+  #remove_inst "update-desktop-database" $path/doinst.sh
+  grep -sq "update-desktop-database" $path/doinst.sh \
+  && warn "update-desktop-database seems removed. Please check!"
 fi
 
 ## wrong hard-coded doc paths
@@ -638,9 +635,9 @@ BUILD=%build%
 
 #!slkcflags
 if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i386 -mtune=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -700,7 +697,7 @@ make install prefix=$PKG/usr || exit 1 ##inst_prefix
 python setup.py build install --root=$PKG || exit 1 ##python
 GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
-find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
+##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rf $PKG/usr/info/dir
