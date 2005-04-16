@@ -4,7 +4,7 @@
 source `which portpkg` || exit 1
 t=`mktemp -d`
 is_root || die
-newest_slack=10.1
+#newest_slack=10.1
 
 target()
 {
@@ -18,18 +18,22 @@ If unsure enter '$newest_slack'." 0 0 \
   sed -i "/^DIST_VER=/d" $CFG_DIR/local.conf
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$CFG_DIR/local.conf
-#    if [ $DIST_VER == $newest_slack ] || [ $DIST_VER == current ]; then
+    if [ $DIST_VER == current ]; then
+#      if dialog --title "$heading" --yesno \
+#"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
+#Shall I do that for you?
+#If unsure answer 'yes'." 0 0; then
       if dialog --title "$heading" --yesno \
-"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
+"It is recommended to add pasture/ to exclude.local for Slackware-current. \
 Shall I do that for you?
 If unsure answer 'yes'." 0 0; then
-#        # add pasture/ to the list of excluded ports
-#        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
-#        echo "pasture/" >>$CFG_DIR/exclude.local
-         rm -rf $CFG_DIR/exclude
-         ln -s exclude.$DIST_VER $CFG_DIR/exclude
+        # add pasture/ to the list of excluded ports
+        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
+        echo "pasture/" >>$CFG_DIR/exclude.local
+#         rm -rf $CFG_DIR/exclude
+#         ln -s exclude.$DIST_VER $CFG_DIR/exclude
       fi
-#    fi
+    fi
   fi
 }
 
@@ -95,27 +99,17 @@ If unsure answer 'no'." 0 0; then
 resources()
 {
   heading="RESOURCES SETTINGS"
-  use_bin=false
-#  use_src=false
-  dialog --title "$heading" --yesno \
-"Do you want to use Slackware binary packages with portpkg? \
-This will enlarge your base of available ports and resolves dependencies to \
-Slackware packages better. You will be able to install Slackware binary \
-packages.
-If unsure answer 'yes'." 0 0 && use_bin=true
-#  dialog --title "$heading" --defaultno --yesno \
-#"Do you want to use Slackware's source scripts with portpkg? \
-#This will enlarge your base of available ports and resolves dependencies to \
-#Slackware packages better. You will be able to port Slackware package by its \
-#source code scripts. Nevertheless this function is quite unstable.
-#If unsure answer 'no'." 0 0 && use_src=true
-  sed -i "/^BIN_PRT_DIR=/d" $CFG_DIR/local.conf
-  sed -i "/^SRC_PRT_DIR=/d" $CFG_DIR/local.conf
-  sed -i "/^SYNC_ADDON=/d" $CFG_DIR/local.conf
-#  $use_bin || $use_src || return
-  $use_bin && echo "BIN_PRT_DIR=\$PRT_DIR/z/bin" >>$CFG_DIR/local.conf
-  $use_bin && echo "SYNC_ADDON=\"pp-sync-bin\"" >>$CFG_DIR/local.conf
-#  $use_src && echo "SRC_PRT_DIR=\$PRT_DIR/z/src" >>$CFG_DIR/local.conf
+  echo "dialog --title \"$heading\" --checklist \
+\"Select which importers you want to enable when you sync your data base:\" 0 0 0 \\" >$t/menu
+  local importer
+  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
+    echo `basename $importer` \
+      `grep ^#BLURB= $importer | cut -d = -f 2` \
+      `[ -x $importer ] && echo on || echo off`
+    chmod -x $importer
+  done >>$t/menu
+  . $t/menu 2>$t/resources
+  xargs -i chmod +x $CFG_DIR/importers/{} <$t/resources
 }
 
 mirrors()
@@ -123,8 +117,10 @@ mirrors()
   heading="MIRROR SETTINGS"
   echo -n "dialog --title \"$heading\" --menu \
 \"Which of the currently available mirror files do you want to use?\" 0 0 0 " >$t/menu
-  find $CFG_DIR/mirrors.* | xargs -l basename | grep -v mirrors.local \
-  | xargs -i echo "{} \"Mirror list {}\" \\" >>$t/menu
+  local mirror
+  for mirror in `find $CFG_DIR/mirrors.* | grep -v mirrors.local`; do
+    echo `basename $mirror` `grep ^#BLURB= $mirror | cut -d = -f 2` \\
+  done >>$t/menu
   echo "none \"Use primary download URLs\"" >>$t/menu
   . $t/menu 2>$t/out
   out=`cat $t/out`
@@ -218,7 +214,7 @@ If unsure choose 'default'." 0 0 0 \
       sed -i "/^CFLAGS=/d" $CFG_DIR/local.conf
       if [ `cat $t/menu` == optimise ]; then
         echo "ARCH=`arch`"
-        echo "CFLAGS=\"-O2 -march=`arch` -mcpu=`cpu`\""
+        echo "CFLAGS=\"-O2 -march=`arch` -mtune=`cpu`\""
       fi >>$CFG_DIR/local.conf;;
   esac
 }
