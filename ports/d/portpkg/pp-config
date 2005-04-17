@@ -99,17 +99,19 @@ If unsure answer 'no'." 0 0; then
 resources()
 {
   heading="RESOURCES SETTINGS"
-  echo "dialog --title \"$heading\" --checklist \
-\"Select which importers you want to enable when you sync your data base:\" 0 0 0 \\" >$t/menu
+  echo -n "dialog --title \"$heading\" --checklist \
+\"Select which importers you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
   local importer
   for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
-    echo `basename $importer` \
+    echo -n `basename $importer` \
       `grep ^#BLURB= $importer | cut -d = -f 2` \
-      `[ -x $importer ] && echo on || echo off`
+      `[ -x $importer ] && echo on || echo off`" "
     chmod -x $importer
   done >>$t/menu
   . $t/menu 2>$t/resources
-  xargs -i chmod +x $CFG_DIR/importers/{} <$t/resources
+  for importer in `cat $t/resources`; do
+    chmod +x $CFG_DIR/importers/$importer
+  done
 }
 
 mirrors()
