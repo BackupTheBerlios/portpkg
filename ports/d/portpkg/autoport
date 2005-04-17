@@ -491,7 +491,9 @@ if grep -sq "#!meta-install" $script; then
   # as always, check setup.py at last! use configure if possible!
   elif check "^setup\.py$" $t/footprint; then
 #    snip cfg_mk_hard $script
-    :
+    snip inst_destdir $script
+    snip inst_PREFIX $script
+    snip inst_prefix $script
   else
     error "Don't know how to install this package (no Makefile)."
     failed=true
@@ -635,9 +637,9 @@ BUILD=%build%
 
 #!slkcflags
 if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mtune=i686"
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
