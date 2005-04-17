@@ -1,3 +1,7 @@
+2005-04-17 10:05  topf
+
+	* ChangeLog, d/portpkg/ChangeLog: [no log message]
+
 2005-04-17 10:03  topf
 
 	* ChangeLog, d/portpkg/ChangeLog: Added.
@@ -235,21 +239,8 @@
 
 2005-04-13 09:06  topf
 
-	* open/xchm/SlackBuild, open/xchm/footprint, open/xchm/info,
-	  open/xchm/md5sums, open/xchm/requires, open/xchm/slack-desc,
-	  open/xchm/sources, xap/xchm/SlackBuild, xap/xchm/footprint,
-	  xap/xchm/md5sums, xap/xchm/requires, xap/xchm/slack-desc,
-	  xap/xchm/sources: Corrected /usr/bin ownership in SlackBuild.
-	  (mk)
-
-2005-04-13 09:05  topf
-
-	* open/xchm/requires: Changed wxGTK to wxgtk.
-
-2005-04-13 00:20  topf
-
-	* open/xchm/: SlackBuild, footprint, info: Corrected /usr/bin
-	  ownership in SlackBuild. (cronjob)
+	* xap/xchm/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: Corrected /usr/bin ownership in SlackBuild. (mk)
 
 2005-04-13 00:19  hnaz
 
@@ -283,20 +274,9 @@
 
 2005-04-12 20:21  topf
 
-	* open/ddclient/SlackBuild, open/ddclient/doinst.sh,
-	  open/ddclient/footprint, open/ddclient/info,
-	  open/ddclient/md5sums, open/ddclient/rc.ddclient.new,
-	  open/ddclient/requires, open/ddclient/slack-desc,
-	  open/ddclient/sources, n/ddclient/SlackBuild,
-	  n/ddclient/doinst.sh, n/ddclient/footprint, n/ddclient/md5sums,
-	  n/ddclient/rc.ddclient.new, n/ddclient/requires,
-	  n/ddclient/slack-desc, n/ddclient/sources: new entry - repaired
-	  rc.ddclient
-
-2005-04-12 20:20  topf
-
-	* open/xchm/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: First release. (cronjob)
+	* n/ddclient/: SlackBuild, doinst.sh, footprint, md5sums,
+	  rc.ddclient.new, requires, slack-desc, sources: new entry -
+	  repaired rc.ddclient
 
 2005-04-12 20:07  topf
 
@@ -374,24 +354,10 @@
 	* gnome/gnome-themes-extras/: SlackBuild, footprint, md5sums,
 	  sources: Added gnome/gnome-themes-extras-0.8.1-i486-1tom.
 
-2005-04-10 17:20  topf
+2005-04-10 13:17  topf
 
-	* open/ddclient/: SlackBuild, footprint, info, rc.ddclient.new: new
-	  entry - repaired rc.ddclient (cronjob)
-
-2005-04-10 17:20  topf
-
-	* open/ddclient/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  requires, slack-desc, sources: new entry (cronjob)
-
-2005-04-10 13:16  topf
-
-	* open/nagios/SlackBuild, open/nagios/doinst.sh,
-	  open/nagios/footprint, open/nagios/info, open/nagios/md5sums,
-	  open/nagios/slack-desc, open/nagios/sources,
-	  open/nagios/sources~, n/nagios/SlackBuild, n/nagios/doinst.sh,
-	  n/nagios/footprint, n/nagios/md5sums, n/nagios/slack-desc,
-	  n/nagios/sources: Moved open/nagios-1.2-i486-1stb to n/.
+	* n/nagios/: SlackBuild, doinst.sh, footprint, md5sums, slack-desc,
+	  sources: Moved open/nagios-1.2-i486-1stb to n/.
 
 2005-04-10 13:15  topf
 
@@ -414,11 +380,6 @@
 	  Perl modules.  Fixed detection of arbitrary dependencies.  Show
 	  up missing CFLAGS error-message only in maintainer mode and ARCH
 	  != noarch.
-
-2005-04-08 19:20  topf
-
-	* open/nagios/: SlackBuild, doinst.sh, footprint, sources,
-	  sources~:  (cronjob)
 
 2005-04-08 15:38  topf
 
@@ -815,11 +776,6 @@
 2005-04-01 12:34  topf
 
 	* d/portpkg/: pp-export, slack-desc: [no log message]
-
-2005-04-01 12:20  topf
-
-	* open/nagios/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  slack-desc, sources:	(cronjob)
 
 2005-04-01 11:51  topf
 
