@@ -1,0 +1,48 @@
+#!/bin/sh
+
+VERSION=0.5.1
+ARCH=${ARCH:-i486}
+BUILD=1mk
+
+CWD=`pwd`
+NAME=`basename $CWD`
+TMP=/tmp
+PKG=$TMP/package-$NAME
+
+rm -rf $PKG
+
+cd $TMP || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+
+chown -R root:root $NAME-$VERSION
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+cd $NAME-$VERSION || exit 1
+CFLAGS="$SLKCFLAGS" ./configure \
+    --prefix=/usr || exit 1
+make || exit 1
+make DESTDIR=$PKG install || exit 1
+
+gzip -9 $PKG/usr/man/man?/*
+
+chown -R root.bin $PKG{,/usr}/{,s}bin
+find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
+    $PKG/usr/doc/$NAME-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc  >$PKG/install/slack-desc
+
+cd $PKG || exit 1
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
