@@ -1,3 +1,60 @@
+2005-04-17 10:03  topf
+
+	* ChangeLog, d/portpkg/ChangeLog: Added.
+
+2005-04-17 09:59  topf
+
+	* l/tv_grab_cz/: SlackBuild, footprint: fixed file owner to
+	  root.bin (lem)
+
+2005-04-17 09:58  topf
+
+	* n/scponly/: SlackBuild, footprint, slack-desc: Added
+	  --sysconfdir=/etc. (tom)
+
+2005-04-17 09:53  topf
+
+	* n/scponly/: SlackBuild, doinst.sh, footprint, md5sums, requires,
+	  slack-desc, sources: First release. (mk)
+
+2005-04-17 09:51  topf
+
+	* ap/htop/slack-desc: Fixed (too much lines).
+
+2005-04-17 09:50  topf
+
+	* ap/htop/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: First release. (mk)
+
+2005-04-17 09:48  topf
+
+	* kde/amarok/: optional, requires: Moved libtunepimp to optional.
+
+2005-04-17 09:45  topf
+
+	* kde/amarok/: SlackBuild, footprint, md5sums, requires: dumped to
+	  version 1.2.3 (andreas)
+
+2005-04-17 09:41  topf
+
+	* pasture/magicdev/SlackBuild: Reverted to -mcpu.
+
+2005-04-17 09:35  topf
+
+	* gnome/: metacity/SlackBuild, nautilus/SlackBuild,
+	  nautilus-cd-burner/SlackBuild, scrollkeeper/SlackBuild,
+	  totem/SlackBuild, vte/SlackBuild: Reverted to -mcpu.
+
+2005-04-17 09:32  topf
+
+	* gnome/: control-center/SlackBuild, eel/SlackBuild,
+	  epiphany/SlackBuild, file-roller/SlackBuild,
+	  gnome-applets/SlackBuild, gnome-panel/SlackBuild,
+	  gnome-session/SlackBuild, gnome-system-tools/SlackBuild,
+	  gnome-terminal/SlackBuild, gnome-utils/SlackBuild,
+	  gpdf/SlackBuild, gtk-engines/SlackBuild,
+	  hicolor-icon-theme/SlackBuild: Reverted to -mcpu.
+
 2005-04-17 09:19  topf
 
 	* d/portpkg/: autoport, pp-config: Back to -mcpu instead -mtune.
@@ -16,11 +73,6 @@
 
 	* gnome/nautilus/: SlackBuild, footprint: Updated gnome/nautilus to
 	  2.10.1-i486-6tom.
-
-2005-04-17 00:20  topf
-
-	* open/tv_grab_cz/: SlackBuild, footprint, info, md5sums,
-	  slack-desc, sources: fixed file owner to root.bin (cronjob)
 
 2005-04-16 20:43  topf
 
@@ -168,21 +220,6 @@
 	* d/portpkg/portpkg: Check for more common mistakes. Optimimised
 	  CVS sync routine. Changed $SYNC_ADDON system to
 	  /etc/portkpg/importers/\*. Sync also /usr/obj/pkg/local/\*.
-
-2005-04-15 16:20  topf
-
-	* open/amarok/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: dumped to version 1.2.3 (cronjob)
-
-2005-04-15 12:20  topf
-
-	* open/scponly/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  requires, slack-desc, sources: First release. (cronjob)
-
-2005-04-15 00:20  topf
-
-	* open/htop/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: First release. (cronjob)
 
 2005-04-14 17:29  topf
 
@@ -647,18 +684,13 @@
 
 2005-04-06 09:08  topf
 
-	* l/soap-lite/SlackBuild, l/soap-lite/footprint,
-	  l/soap-lite/md5sums, l/soap-lite/requires,
-	  l/soap-lite/slack-desc, l/soap-lite/sources,
-	  l/termreadkey/SlackBuild, l/termreadkey/footprint,
-	  l/termreadkey/md5sums, l/termreadkey/requires,
-	  l/termreadkey/slack-desc, l/termreadkey/sources,
-	  open/tv_grab_cz/SlackBuild, open/tv_grab_cz/footprint,
-	  open/tv_grab_cz/info, open/tv_grab_cz/md5sums,
-	  open/tv_grab_cz/slack-desc, open/tv_grab_cz/sources,
-	  l/tv_grab_cz/SlackBuild, l/tv_grab_cz/footprint,
-	  l/tv_grab_cz/md5sums, l/tv_grab_cz/slack-desc,
-	  l/tv_grab_cz/sources: new entry
+	* l/: soap-lite/SlackBuild, soap-lite/footprint, soap-lite/md5sums,
+	  soap-lite/requires, soap-lite/slack-desc, soap-lite/sources,
+	  termreadkey/SlackBuild, termreadkey/footprint,
+	  termreadkey/md5sums, termreadkey/requires,
+	  termreadkey/slack-desc, termreadkey/sources,
+	  tv_grab_cz/SlackBuild, tv_grab_cz/footprint, tv_grab_cz/md5sums,
+	  tv_grab_cz/slack-desc, tv_grab_cz/sources: new entry
 
 2005-04-06 09:05  topf
 
@@ -714,11 +746,6 @@
 	* xap/gaim-encryption/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: new entry (separate plugin as for Gaim
 	  version 1.2.0)
-
-2005-04-04 23:20  topf
-
-	* open/tv_grab_cz/: SlackBuild, footprint, info, md5sums,
-	  slack-desc, sources: new entry (cronjob)
 
 2005-04-04 18:10  hnaz
 
@@ -1785,20 +1812,9 @@
 	* kde/amarok/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Added kde/amarok-1.2.1-i686-1andreas.
 
-2005-03-12 13:55  topf
-
-	* open/amarok/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: Moved open/amarok-1.2.1-i686-1andreas to
-	  kde/.
-
 2005-03-12 11:55  topf
 
 	* d/valgrind/SlackBuild, xap/gxmessage/SlackBuild: [no log message]
-
-2005-03-12 11:20  topf
-
-	* open/amarok/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: Autocommited via upload.
 
 2005-03-12 09:20  topf
 
