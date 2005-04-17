@@ -11,13 +11,9 @@ scponly:
 scponly: scponly is an alternative shell (of sorts) for system
 scponly: administrators who would like to provide access to remote users
 scponly: to both read and write local files without providing any remote
-scponly: execution priviledges. Functionally, it is best described as
-scponly: a wrapper to the "tried and true" ssh suite of applications.
-scponly:
+scponly: execution priviledges.
 scponly: Note: Chrooted scponly binary is also built. If you want to use
 scponly: chrooted version scponlyc, you must build jail. Please read
 scponly: instructions in /usr/doc/scponly-4.1 carefully.
 scponly: Under root run /usr/doc/scponly-4.1/make_jail/setup_chroot.sh
-scponly:
 scponly: It has homepage at http://www.sublimation.org/scponly/
-scponly: 

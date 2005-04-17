@@ -2,7 +2,7 @@
 
 VERSION=4.1
 ARCH=${ARCH:-i486}
-BUILD=1mk
+BUILD=2mk
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -28,7 +28,8 @@ fi
 
 cd $NAME-$VERSION || exit 1
 CFLAGS="$SLKCFLAGS" PROG_USERADD=/usr/sbin/useradd ./configure \
-    --prefix=/usr --enable-chrooted-binary --enable-rsync-compat || exit 1
+    --prefix=/usr --enable-chrooted-binary --enable-rsync-compat \
+    --sysconfdir=/etc || exit 1
 make || exit 1
 make DESTDIR=$PKG install || exit 1
 
