@@ -1,6 +1,6 @@
 VERSION=0.37.1
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -32,8 +32,8 @@ install -m 755 $CWD/pp-config $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 
-# integrate pp-config into pkgtool
-ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
+## integrate pp-config into pkgtool
+#ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
 
 chown -R root.bin $PKG/usr/bin
 gzip -9 $PKG/usr/man/man?/*
