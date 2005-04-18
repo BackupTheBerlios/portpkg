@@ -80,7 +80,7 @@ install them.\" 21 75 12 " >$t/menu
     removepkg `cat $t/list_remove` 2>&1
     # fake a summary
     echo -e "\nSummary of actions:" >/tmp/portpkg-summary
-    cat $t/list_remove | xargs echo "  --> Finished" >>/tmp/portpkg-summary
+    cat $t/list_remove | xargs -l echo "  --> Finished" >>/tmp/portpkg-summary
     dialog --title "REMOVING PACKAGES" --textbox /tmp/portpkg-summary 0 0
   fi
   for p in `cat $t/pos_names`; do
