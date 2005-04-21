@@ -311,14 +311,6 @@ for i in $sections; do
   [ -s $t/$i-fix ] && row "Found $i-fix" || rm $t/$i-fix
 done
 
-# write skeletons
-failed=false
-sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
-echo `encode "$sources"` >$path/sources
-echo "$desc" >$path/slack-desc
-sed -i "s,%version%,$version," $script
-sed -i "s,%build%,$build," $script
-
 # downlaod source file
 #file=`basename $src`
 if [ -f $SRC_DIR/$file ]; then
@@ -329,6 +321,14 @@ else
   output=/dev/stdout
   get `decode $src` $SRC_DIR/$file || die
 fi
+
+# write skeletons
+failed=false
+sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
+echo `encode "$sources"` >$path/sources
+echo "$desc" >$path/slack-desc
+sed -i "s,%version%,$version," $script
+sed -i "s,%build%,$build," $script
 
 # format
 echo -n "  --> Checking format... "
@@ -546,14 +546,14 @@ else
 fi
 
 # mime-update
-if check "\.(keys|mime)(|\.in)$" $t/footprint; then
+if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint; then
   add_inst "usr/bin/update-mime-database usr/share/mime" $path/doinst.sh
 else
   remove_inst "update-mime-database" $path/doinst.sh
 fi
 
 # desktop-database
-if check "\.desktop(|\.in)$" $t/footprint; then
+if check "\.desktop(|\.in|\.in\.in)$" $t/footprint; then
   add_inst "usr/bin/update-desktop-database" $path/doinst.sh
 else
   #remove_inst "update-desktop-database" $path/doinst.sh
@@ -709,6 +709,7 @@ make install PREFIX=$PKG/usr || exit 1 ##inst_PREFIX
 make install prefix=$PKG/usr || exit 1 ##inst_prefix
 ##make install || exit 1 ##inst
 python setup.py build install --root=$PKG || exit 1 ##python
+mkdir -p $PKG/etc/gconf/gconf.xml.defaults ##schemas
 GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
 ##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
