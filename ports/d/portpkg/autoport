@@ -527,7 +527,16 @@ fi
 grep -sqe "CFLAGS" -e "CXXFLAGS" $script || snip slkcflags $script
 
 # gconf schemas
-if ! check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
+if check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
+  if ! grep -sq "^gconf_inst()" $path/doinst.sh; then
+    row "Adding gconf_inst() to doinst.sh"
+    sed '/^#\!doinst.sh_gconf_inst$/,/^#\!doinst.sh_gconf_inst$/!d' $0 >>$path/doinst.sh
+  fi
+else
+  if grep -sq "^gconf_inst()" $path/doinst.sh; then
+    row "Removing unneeded gconf_inst() from doinst.sh"
+    sed -i "/^gconf_inst()/,/^}$/d" $path/doinst.sh
+  fi
   snip schemas $script
 fi
 
@@ -710,8 +719,8 @@ make install prefix=$PKG/usr || exit 1 ##inst_prefix
 ##make install || exit 1 ##inst
 python setup.py build install --root=$PKG || exit 1 ##python
 mkdir -p $PKG/etc/gconf/gconf.xml.defaults ##schemas
-GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
-gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
+##GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
+##gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
 ##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
@@ -744,6 +753,7 @@ find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
+find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh ##schemas
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
@@ -767,3 +777,9 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 #!doinst.sh_config
+#!doinst.sh_gconf_inst
+gconf_inst() {
+  GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
+  gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
+}
+#!doinst.sh_gconf_inst
