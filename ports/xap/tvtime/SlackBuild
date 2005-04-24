@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.9.15
+VERSION=0.99
 ARCH=${ARCH:-i486}
-BUILD=2lem
+BUILD=1lem
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -36,7 +36,7 @@ make || exit 1
 make install DESTDIR=$PKG || exit 1
 rm -rf $PKG/usr/info/dir
 #+post-install-fix
-mv $PKG/etc/tvtime/tvtime.xml $PKG/etc/tvtime/tvtime.xml.new
+mv $PKG/etc/tvtime/tvtime.xml{,.new}
 #+post-install-fix
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
