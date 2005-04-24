@@ -1,13 +1,14 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Mozilla Firefox
-GenericName=Webbrowser
-Comment=Browse the web
 Version=1.0
 Type=Application
-Exec=/opt/firefox/firefox %U
+Exec=firefox
 Icon=/opt/firefox/icons/mozicon50.xpm
-TryExec=
-Terminal=false
-Categories=Application;Network;
+Name[en_US]=Firefox
+GenericName[en_US]=Firefox
+Comment[en_US]=Web Browser
+Name=Firefox
+GenericName=Firefox
+Comment=Web Browser
+Categories=Application;Network;GNOME;GTK;
 MimeType=text/html;text/xml;application/xhtml+xml;
