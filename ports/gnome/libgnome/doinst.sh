@@ -1,17 +1,21 @@
-config()
-{
-  case $1 in
-  *.new)
-    new=`echo $1 | sed "s,\.new$,,"`
-    if [ ! -f $new ]; then
-      mv $1 $new
-    elif cmp -s $1 $new; then
-      rm $1
-    fi;;
-  *.omf)
-    scrollkeeper-update -p var/lib/scrollkeeper -o $1 >/dev/null 2>&1;;
-  *.schemas)
+gconf() {
+  if [ -x usr/bin/gconftool-2 ]; then
     GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
-    gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1;;
-  esac
+    usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
+  fi
 }
+gconf etc/gconf/schemas/desktop_gnome_accessibility_keyboard.schemas
+gconf etc/gconf/schemas/desktop_gnome_accessibility_startup.schemas
+gconf etc/gconf/schemas/desktop_gnome_applications_browser.schemas
+gconf etc/gconf/schemas/desktop_gnome_applications_help_viewer.schemas
+gconf etc/gconf/schemas/desktop_gnome_applications_terminal.schemas
+gconf etc/gconf/schemas/desktop_gnome_applications_window_manager.schemas
+gconf etc/gconf/schemas/desktop_gnome_background.schemas
+gconf etc/gconf/schemas/desktop_gnome_file_views.schemas
+gconf etc/gconf/schemas/desktop_gnome_interface.schemas
+gconf etc/gconf/schemas/desktop_gnome_lockdown.schemas
+gconf etc/gconf/schemas/desktop_gnome_peripherals_keyboard.schemas
+gconf etc/gconf/schemas/desktop_gnome_peripherals_mouse.schemas
+gconf etc/gconf/schemas/desktop_gnome_sound.schemas
+gconf etc/gconf/schemas/desktop_gnome_thumbnailers.schemas
+gconf etc/gconf/schemas/desktop_gnome_typing_break.schemas
