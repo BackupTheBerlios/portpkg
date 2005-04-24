@@ -1,0 +1,92 @@
+#!/bin/sh
+#
+# SlackBuild for Postfix with SASL support
+#
+##################################
+## Creator: Stefano Stabellini  ##
+## stefano@stabellini.net       ##
+## http://www.stabellini.net    ##
+##################################
+#
+
+CWD=`pwd`
+if [ "$TMP" = "" ]; then
+  TMP=/tmp
+fi
+
+if [ ! -d $TMP ]; then
+  mkdir -p $TMP # location to build the source
+fi
+PKG=/tmp/package-postfix
+
+VERSION=2.2.2
+ARCH=${ARCH:-i486}
+BUILD=1stb
+
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+ 
+
+rm -rf $PKG
+mkdir -p $PKG
+echo "+==================+"
+echo "| postfix-$VERSION |"
+echo "+==================+"
+cd $TMP
+rm -rf postfix-$VERSION
+tar xvzf $CWD/postfix-$VERSION.tar.gz
+cd postfix-$VERSION
+chown -R root.root .
+find . -perm 777 -exec chmod 755 {} \;
+find . -perm 775 -exec chmod 755 {} \;
+find . -perm 700 -exec chmod 755 {} \;
+find . -perm 744 -exec chmod 755 {} \;
+find . -perm 666 -exec chmod 644 {} \;
+find . -perm 664 -exec chmod 644 {} \;
+find . -perm 600 -exec chmod 644 {} \;
+cp $CWD/makedefs ./
+make makefiles CCARGS="$SLKCFLAGS -DUSE_TLS -DUSE_SASL_AUTH -I/usr/include/sasl -DUSE_SSL -I/usr/ssl/include" AUXLIBS="-L/usr/local/lib -lsasl2 -L/usr/local/ssl/lib -lssl -lcrypto" 
+make
+sh postfix-install install_root=/tmp/package-postfix manpage_directory=/usr/man -non-interactive
+strip $PKG/usr/bin/* $PKG/usr/sbin/* $PKG/usr/libexec/postfix/*
+chown -R root.bin $PKG/usr/bin
+chown -R root.bin $PKG/usr/sbin
+gzip -9 $PKG/usr/man/man1/*
+gzip -9 $PKG/usr/man/man5/*
+gzip -9 $PKG/usr/man/man8/*
+mkdir -p $PKG/usr/doc/postfix-$VERSION
+cp COPYRIGHT $PKG/usr/doc/postfix-$VERSION
+cp LICENSE $PKG/usr/doc/postfix-$VERSION
+cp HISTORY $PKG/usr/doc/postfix-$VERSION
+cp RELEASE_NOTES* $PKG/usr/doc/postfix-$VERSION
+cp US_PATENT* $PKG/usr/doc/postfix-$VERSION
+cp COMPATIBILITY $PKG/usr/doc/postfix-$VERSION
+cp AAAREADME $PKG/usr/doc/postfix-$VERSION
+cp PORTING $PKG/usr/doc/postfix-$VERSION
+cp README_FILES/* $PKG/usr/doc/postfix-$VERSION
+cp TLS* $PKG/usr/doc/postfix-$VERSION
+mkdir $PKG/etc/rc.d
+cp $CWD/rc.postfix.new $PKG/etc/rc.d/rc.postfix.new
+for i in $PKG/etc/postfix/*
+	do
+	mv $i $i.new
+	done
+mv $PKG/etc/postfix/main.cf.default.new  $PKG/etc/postfix/main.cf.default 
+mv $PKG/etc/postfix/post-install.new  $PKG/etc/postfix/post-install
+mv $PKG/etc/postfix/postfix-script.new  $PKG/etc/postfix/postfix-script
+mv $PKG/etc/postfix/LICENSE.new  $PKG/etc/postfix/LICENSE
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+#cat $CWD/slack-required > $PKG/install/slack-required
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+cd $PKG
+makepkg -l y -c n ../postfix-$VERSION-$ARCH-$BUILD.tgz
+
