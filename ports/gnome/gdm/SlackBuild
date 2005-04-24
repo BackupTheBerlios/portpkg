@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.0.26
+VERSION=2.6.0.9
 ARCH=${ARCH:-i486}
 BUILD=1lem
 
@@ -20,21 +20,54 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
-CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
+#+config-fix
 ./configure \
   --prefix=/usr \
-  --sysconfdir=/etc \
+  --sysconfdir=/etc/X11 \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux || exit 1
+#+config-fix
 make || exit 1
 make install DESTDIR=$PKG || exit 1
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/var/lib/scrollkeeper
 rm -rf $PKG/usr/info/dir
+#+post-install-fix
+mv $PKG/etc/X11/gdm/gdm.conf{,.new}
+mkdir -p $PKG/usr/share/faces
+
+mkdir -p $PKG/etc/X11/dm/Sessions 
+cp -a \
+    $CWD/*.desktop \
+    $PKG/etc/X11/dm/Sessions
+chmod 755 $PKG/etc/X11/dm/Sessions/*
+
+cp -a \
+    $CWD/Xsession
+    $PKG/etc/X11/gdm
+chmod 755 $PKG/etc/X11/Xsession
+
+chown -R gdm.gdm $PKG/var/lib/gdm
+chmod 750 $PKG/var/lib/gdm
+
+mkdir -p $PKG/var/log/gdm
+rm -rf $PKG/var/lib/log/gdm
+( cd $PKG/var/lib/log/gdm 
+  ln -sf ../../log/gdm .
+)
+(
+cd $PKG/usr/share/applications
+for i in gdmsetup
+do
+ sed -i '/^Exec=/s/=/=gnomesu /' $i.desktop
+done
+)
+#+post-install-fix
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -44,13 +77,14 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 mv $PKG/usr/share/{man,doc} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog NEWS README README.install TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
