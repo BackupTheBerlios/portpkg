@@ -1,3 +1,226 @@
+2005-04-27 15:05  topf
+
+	* open/portpkg/: ChangeLog, NEWS, SlackBuild, footprint, info,
+	  portpkg, repos: Next try. (cronjob)
+
+2005-04-27 14:20  topf
+
+	* open/portpkg/: COPYING, CREDITS, NEWS, README, README.Links,
+	  README.PortpkgGuide, README.QuestionsAndAnswers,
+	  README.QuickStart, SlackBuild, autoport, checkpkg, doinst.sh,
+	  exclude, footprint, ignore, info, mirrors.au, mirrors.de,
+	  mirrors.jp, mirrors.us, portpkg, portpkg.1, portpkg.fork,
+	  pp-config, pp-sync-bin, pp-sync-frg, pp-sync-portpkg,
+	  pp-sync-src, prepare, repos, slack-desc: Testing release.
+	  (cronjob)
+
+2005-04-26 02:25  topf
+
+	* open/gnofract4d/: SlackBuild, doinst.sh, footprint,
+	  gnofract4d.desktop, info, md5sums, requires, slack-desc, sources:
+	  new (cronjob)
+
+2005-04-25 14:59  hnaz
+
+	* n/bittornado/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: New port.
+
+2005-04-25 07:30  hnaz
+
+	* d/fakeroot/: SlackBuild, footprint, md5sums: 1.2.8 >> 1.2.9
+
+2005-04-24 23:20  topf
+
+	* open/: poppler/SlackBuild, poppler/footprint, poppler/info,
+	  poppler/md5sums, poppler/requires, poppler/slack-desc,
+	  poppler/sources, evince/SlackBuild, evince/doinst.sh,
+	  evince/footprint, evince/info, evince/md5sums, evince/requires,
+	  evince/slack-desc, evince/sources: New entry. (cronjob)
+
+2005-04-24 19:59  topf
+
+	* testing/gazpacho/: SlackBuild, doinst.sh, footprint, md5sums,
+	  slack-desc, sources: version bump (lem)
+
+2005-04-24 19:56  topf
+
+	* pasture/shared-mime-info/: SlackBuild, footprint, md5sums,
+	  requires, slack-desc, sources: new entry (lem)
+
+2005-04-24 15:03  topf
+
+	* xap/tvtime/: SlackBuild, footprint, md5sums, requires: version
+	  bump (lem)
+
+2005-04-24 15:01  topf
+
+	* n/postfix/: SlackBuild, doinst.sh, footprint, makedefs, md5sums,
+	  rc.postfix.new, requires, slack-desc, sources: Moved
+	  open/postfix-2.2.2-i486-1stb to n/.
+
+2005-04-24 14:59  topf
+
+	* testing/librsvg/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, slack-desc, sources: version bump, gdk-pixbuf-loaders
+	  update in doinst.sh (lem)
+
+2005-04-24 14:57  topf
+
+	* l/libglade/: SlackBuild, doinst.sh, footprint, slack-desc,
+	  sources: added xmlcatalog support into doinst.sh (lem)
+
+2005-04-24 14:54  topf
+
+	* l/gnet/SlackBuild, l/gnet/footprint, l/gnet/md5sums,
+	  l/gnet/requires, l/gnet/slack-desc, l/gnet/sources,
+	  gnome/gnome-python-extras/SlackBuild,
+	  gnome/gnome-python-extras/footprint,
+	  gnome/gnome-python-extras/md5sums,
+	  gnome/gnome-python-extras/requires,
+	  gnome/gnome-python-extras/slack-desc,
+	  gnome/gnome-python-extras/sources: new entry (lem)
+
+2005-04-24 14:53  topf
+
+	* xap/gfeed/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: removed useless .desktop file (must be launched with
+	  conf file anyway) (lem)
+
+2005-04-24 14:49  topf
+
+	* l/gamin/SlackBuild, l/gamin/footprint, l/gamin/md5sums,
+	  l/gamin/requires, l/gamin/slack-desc, gnome/gdm/SlackBuild,
+	  gnome/gdm/Xsession, gnome/gdm/blackbox.desktop,
+	  gnome/gdm/doinst.sh, gnome/gdm/fluxbox.desktop,
+	  gnome/gdm/footprint, gnome/gdm/fvwm2.desktop,
+	  gnome/gdm/fvwm95.desktop, gnome/gdm/gnome.desktop,
+	  gnome/gdm/kde.desktop, gnome/gdm/md5sums, gnome/gdm/requires,
+	  gnome/gdm/slack-desc, gnome/gdm/sources, gnome/gdm/twm.desktop,
+	  gnome/gdm/windowmaker.desktop, gnome/gdm/xfce.desktop: version
+	  bump (lem)
+
+2005-04-24 14:20  topf
+
+	* open/glade/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: new (cronjob)
+
+2005-04-24 13:20  topf
+
+	* open/: control-center/SlackBuild, control-center/doinst.sh,
+	  control-center/footprint, control-center/info,
+	  control-center/md5sums, control-center/requires,
+	  control-center/slack-desc, control-center/sources,
+	  libgnome/SlackBuild, libgnome/doinst.sh, libgnome/footprint,
+	  libgnome/info, libgnome/md5sums, libgnome/requires,
+	  libgnome/slack-desc, libgnome/sources: Corrected gconf
+	  installation. (cronjob)
+
+2005-04-24 13:18  topf
+
+	* xap/: ed2k-gtk-gui/SlackBuild, ed2k-gtk-gui/doinst.sh,
+	  ed2k-gtk-gui/footprint, ed2k-gtk-gui/md5sums,
+	  ed2k-gtk-gui/requires, ed2k-gtk-gui/slack-desc,
+	  ed2k-gtk-gui/sources, edonkeyclc/SlackBuild,
+	  edonkeyclc/footprint, edonkeyclc/md5sums, edonkeyclc/requires,
+	  edonkeyclc/slack-desc, edonkeyclc/sources: new (lem)
+
+2005-04-24 12:05  topf
+
+	* gnome/libgnome/: SlackBuild, arbitrary, doinst.sh, footprint,
+	  slack-desc: Updated gnome/libgnome to 2.10.0-i486-14tom.
+
+2005-04-23 20:57  topf
+
+	* d/portpkg/autoport: Fixed new old gconf installation.
+
+2005-04-22 21:20  topf
+
+	* d/portpkg/autoport: Switched back to install schemas via
+	  doinst.sh.
+
+2005-04-22 01:21  topf
+
+	* open/libxft/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: library path fixed (cronjob)
+
+2005-04-21 21:20  topf
+
+	* open/sound-juicer/: SlackBuild, doinst.sh, footprint, info,
+	  md5sums, requires, slack-desc, sources: version bump (cronjob)
+
+2005-04-21 17:03  topf
+
+	* d/portpkg/autoport: Write skeleton after downlading source file.
+	  Check for .desktop.in.in.  Mkdir
+	  $PKG/etc/gconf/gconf.xml.defaults for schemas installation to
+	  stop gconf creating using 700 mask.
+
+2005-04-20 21:20  topf
+
+	* open/gnome-system-tools/: SlackBuild, doinst.sh, footprint, info,
+	  md5sums, requires, slack-desc, sources: fixed
+	  /etc/gconf/gconf.xml.defaults permissions, modified desktop files
+	  to use libgnomesu (cronjob)
+
+2005-04-19 21:18  topf
+
+	* d/portpkg/autoport: Removed "prepare", inserted section "strip".
+
+2005-04-19 21:12  topf
+
+	* d/portpkg/autoport: Added section prepare (chowning root.bin and
+	  stripping bins).  Moved beginning of section doc-fix to enclose
+	  only cp -av ... $PKG/usr/doc/...  Leave source tree in $TMP as
+	  portpkg does, for user inspections.
+
+2005-04-18 23:20  topf
+
+	* open/: ontv/SlackBuild, ontv/footprint, ontv/info, ontv/md5sums,
+	  ontv/requires, ontv/slack-desc, ontv/sources, yelp/SlackBuild,
+	  yelp/doinst.sh, yelp/footprint, yelp/info, yelp/md5sums,
+	  yelp/requires, yelp/slack-desc, yelp/sources, zapping/SlackBuild,
+	  zapping/doinst.sh, zapping/footprint, zapping/info,
+	  zapping/md5sums, zapping/optional, zapping/requires,
+	  zapping/slack-desc, zapping/sources: fixed gconf.xml removal
+	  (cronjob)
+
+2005-04-18 23:20  topf
+
+	* open/gedit/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: repaired gconf.xml removal
+	  (cronjob)
+
+2005-04-18 22:20  topf
+
+	* open/gdesklets/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: repaired gconf.xml removal
+	  (cronjob)
+
+2005-04-18 19:20  topf
+
+	* open/conglomerate/: SlackBuild, doinst.sh, footprint, info,
+	  md5sums, requires, slack-desc, sources: leave %gconf.xml
+	  (cronjob)
+
+2005-04-18 14:19  topf
+
+	* d/portpkg/SlackBuild: Removed integration of pp-config in
+	  pkgtool.
+
+2005-04-18 10:45  topf
+
+	* d/portpkg/checkpkg: Fixed summary output dialog of removed
+	  packages.
+
+2005-04-17 20:13  topf
+
+	* d/portpkg/pp-config: Fixed resources menu to work with more than
+	  one importer script.
+
+2005-04-17 16:21  topf
+
+	* ChangeLog, d/portpkg/ChangeLog: Updated.
+
 2005-04-17 15:21  topf
 
 	* ChangeLog, d/portpkg/ChangeLog: Updated.
@@ -17,12 +240,6 @@
 2005-04-17 11:21  topf
 
 	* ChangeLog, d/portpkg/ChangeLog: Updated.
-
-2005-04-17 11:20  topf
-
-	* open/firefox/: SlackBuild, doinst.sh, firefox.desktop, footprint,
-	  info, md5sums, optional, requires, slack-desc, sources,
-	  stop.autoport: version bump (cronjob)
 
 2005-04-17 10:21  topf
 
@@ -292,17 +509,6 @@
 	* xap/tvtime/: SlackBuild, doinst.sh, footprint, slack-desc,
 	  sources: fixed permissions and doinst.sh
 
-2005-04-12 20:25  topf
-
-	* open/firefox/SlackBuild, open/firefox/doinst.sh,
-	  open/firefox/firefox.desktop, open/firefox/footprint,
-	  open/firefox/info, open/firefox/md5sums, open/firefox/optional,
-	  open/firefox/requires, open/firefox/slack-desc,
-	  open/firefox/sources, open/firefox/stop.autoport,
-	  xap/firefox/SlackBuild, xap/firefox/footprint,
-	  xap/firefox/optional, xap/firefox/requires: desktop file + reqs
-	  fix
-
 2005-04-12 20:24  topf
 
 	* xap/desktop-file-utils/: SlackBuild, footprint, md5sums,
@@ -371,11 +577,6 @@
 	* gnome/gpdf/: SlackBuild, doinst.sh, footprint, md5sums, requires,
 	  slack-desc, sources: Updated gnome/gpdf to 2.10.0-i486-1tom.
 
-2005-04-10 21:43  hnaz
-
-	* xap/firefox/: SlackBuild, requires: Reduced requires to a
-	  minimum. Not everyone has gnome ;)
-
 2005-04-10 20:15  topf
 
 	* d/portpkg/portpkg: Fixed mistake with CFLAGS warning.
@@ -384,12 +585,6 @@
 
 	* gnome/totem/: SlackBuild, footprint, md5sums, slack-desc,
 	  sources: Updated gnome/totem to 1.0.1-i486-2tom.
-
-2005-04-10 18:20  topf
-
-	* open/firefox/: SlackBuild, doinst.sh, firefox.desktop, footprint,
-	  info, md5sums, optional, requires, slack-desc, sources,
-	  stop.autoport: desktop file + reqs fix (cronjob)
 
 2005-04-10 18:05  topf
 
@@ -472,24 +667,17 @@
 	* pasture/gtk+2/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: version update
 
-2005-04-08 12:51  topf
+2005-04-08 12:48  topf
 
-	* open/firefox/SlackBuild, open/firefox/doinst.sh,
-	  open/firefox/footprint, open/firefox/info, open/firefox/md5sums,
-	  open/firefox/mozilla-firefox.desktop, open/firefox/requires,
-	  open/firefox/slack-desc, open/firefox/sources,
-	  open/firefox/stop.autoport, xap/firefox/SlackBuild,
-	  xap/firefox/doinst.sh, xap/firefox/footprint,
-	  xap/firefox/md5sums, xap/firefox/mozilla-firefox.desktop,
-	  xap/firefox/requires, xap/firefox/slack-desc,
-	  xap/firefox/sources, xap/firefox/stop.autoport: version changed
-	  (_bin ommited)
-
-2005-04-08 12:49  topf
-
-	* gnome/zapping/: SlackBuild, doinst.sh, footprint, md5sums,
-	  optional, requires, slack-desc, sources: modified dependencies
-	  (rte zvbi moved to optional )
+	* open/zapping/SlackBuild, open/zapping/doinst.sh,
+	  open/zapping/footprint, open/zapping/info, open/zapping/md5sums,
+	  open/zapping/optional, open/zapping/requires,
+	  open/zapping/slack-desc, open/zapping/sources,
+	  gnome/zapping/SlackBuild, gnome/zapping/doinst.sh,
+	  gnome/zapping/footprint, gnome/zapping/md5sums,
+	  gnome/zapping/optional, gnome/zapping/requires,
+	  gnome/zapping/slack-desc, gnome/zapping/sources: modified
+	  dependencies (rte zvbi moved to optional )
 
 2005-04-08 00:50  topf
 
@@ -561,8 +749,8 @@
 
 2005-04-07 23:20  topf
 
-	* open/firefox/: SlackBuild, footprint, info, sources: version
-	  changed (_bin ommited) (cronjob)
+	* open/zapping/: footprint, info, optional, requires: modified
+	  dependencies (rte zvbi moved to optional ) (cronjob)
 
 2005-04-07 22:34  topf
 
@@ -691,6 +879,11 @@
 	* l/xml-twig/: Makefile.PL.patch, SlackBuild, footprint, md5sums,
 	  requires, slack-desc, sources: new entry
 
+2005-04-06 09:17  topf
+
+	* open/ontv/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: [no log message]
+
 2005-04-06 09:14  topf
 
 	* n/wifi-radar/: SlackBuild, doinst.sh, footprint, md5sums,
@@ -762,6 +955,11 @@
 	  slack-desc, sources: new entry (separate plugin as for Gaim
 	  version 1.2.0)
 
+2005-04-05 01:20  topf
+
+	* open/ontv/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: new entry - possibly unstable (cronjob)
+
 2005-04-04 18:10  hnaz
 
 	* l/libevent/: SlackBuild, footprint, md5sums: 1.0b >> 1.0c
@@ -822,12 +1020,6 @@
 	* xap/graveman/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc: Updated xap/graveman to 0.3.9-i686-1tom.
 
-2005-04-01 23:20  topf
-
-	* open/firefox/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  mozilla-firefox.desktop, requires, slack-desc, sources,
-	  stop.autoport: binary-release packager (cronjob)
-
 2005-04-01 20:30  hnaz
 
 	* xap/gaim/: SlackBuild, doinst.sh, footprint, info, md5sums,
@@ -857,6 +1049,11 @@
 
 	* d/portpkg/portpkg: Search /var/log/packages for dependencies to
 	  be ignored, not /usr/ports.
+
+2005-04-01 02:20  topf
+
+	* open/zapping/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: new entry (cronjob)
 
 2005-03-31 23:23  topf
 
@@ -991,8 +1188,11 @@
 
 2005-03-30 07:38  hnaz
 
-	* gnome/yelp/: SlackBuild, requires, slack-desc, sources: Version
-	  bump.
+	* gnome/yelp/SlackBuild, gnome/yelp/requires,
+	  gnome/yelp/slack-desc, gnome/yelp/sources, open/yelp/SlackBuild,
+	  open/yelp/doinst.sh, open/yelp/footprint, open/yelp/info,
+	  open/yelp/md5sums, open/yelp/optional, open/yelp/requires,
+	  open/yelp/slack-desc, open/yelp/sources: Version bump.
 
 2005-03-30 07:35  hnaz
 
@@ -1004,6 +1204,11 @@
 
 	* l/libdnet/: SlackBuild, footprint, info, md5sums, slack-desc,
 	  sources: Integrated -> n/
+
+2005-03-30 03:20  topf
+
+	* open/yelp/: info, optional, requires: mozilla req moved to
+	  optional (cronjob)
 
 2005-03-29 16:34  hnaz
 
@@ -1019,15 +1224,30 @@
 	* xap/gtksourceview/: SlackBuild, footprint, info, md5sums,
 	  requires, slack-desc, sources: Integrated. -> xap/
 
+2005-03-29 14:26  hnaz
+
+	* open/gedit/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: [no log message]
+
 2005-03-29 14:25  hnaz
 
 	* gnome/gedit/: SlackBuild, doinst.sh, requires, slack-desc,
 	  sources: Version bump.
 
+2005-03-29 14:20  hnaz
+
+	* open/conglomerate/: SlackBuild, doinst.sh, footprint, info,
+	  md5sums, requires, slack-desc, sources: [no log message]
+
 2005-03-29 14:19  hnaz
 
 	* gnome/conglomerate/: SlackBuild, doinst.sh, footprint, info,
 	  md5sums, requires, slack-desc, sources: Integrated -> gnome/
+
+2005-03-28 19:20  topf
+
+	* open/conglomerate/: SlackBuild, doinst.sh, footprint, info,
+	  md5sums, requires, slack-desc, sources: added (cronjob)
 
 2005-03-28 15:57  hnaz
 
@@ -1054,6 +1274,32 @@
 
 	* gnome/gdesklets/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc, sources: Update.
+
+2005-03-28 04:30  topf
+
+	* open/yelp/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: upgrade to version 2.9.3 (cronjob)
+
+2005-03-28 04:24  topf
+
+	* open/gedit/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: version 2.10.1 (cronjob)
+
+2005-03-28 03:23  hnaz
+
+	* open/gdesklets/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: [no log message]
+
+2005-03-28 00:26  hnaz
+
+	* open/gdesklets/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: Version bump.
+
+2005-03-27 23:24  topf
+
+	* open/gdesklets/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources: Upgraded to version 0.34.3
+	  (cronjob)
 
 2005-03-27 23:05  hnaz
 
@@ -1453,10 +1699,10 @@
 	  xap/abiword/optional, xap/abiword/requires,
 	  xap/armagetron/requires, xap/avidemux/requires, xap/bmp/requires,
 	  xap/deng/requires, xap/enlightenment/requires,
-	  xap/firefox/requires, xap/hydrogen/requires,
-	  xap/lbreakout2/requires, xap/mplayer/optional, xap/qemu/requires,
-	  xap/wired/requires, xap/zinf/requires: Removed obsolete
-	  dependencies according to updated "ignore" file.
+	  xap/hydrogen/requires, xap/lbreakout2/requires,
+	  xap/mplayer/optional, xap/qemu/requires, xap/wired/requires,
+	  xap/zinf/requires: Removed obsolete dependencies according to
+	  updated "ignore" file.
 
 2005-03-16 21:00  topf
 
@@ -1699,8 +1945,8 @@
 
 2005-03-16 09:00  topf
 
-	* xap/: bmp/requires, enlightenment/requires, firefox/requires,
-	  zinf/requires: [no log message]
+	* xap/: bmp/requires, enlightenment/requires, zinf/requires: [no
+	  log message]
 
 2005-03-16 08:53  topf
 
@@ -2589,13 +2835,24 @@
 
 2005-02-07 12:56  topf
 
-	* pasture/gdm/: .#requires.1.2, Xsession.gz, blackbox.desktop,
-	  doinst.sh, doinst.sh.gz, fluxbox.desktop, footprint,
-	  fvwm2.desktop, fvwm95.desktop, gdm.SlackBuild,
-	  gdm.conf-doinst.sh.gz, gdm.conf-graphical, gdm.quiet.diff.gz,
-	  gnome.desktop, kde.desktop, requires, slack-desc, sources,
-	  stop.autoport, twm.desktop, windowmaker.desktop, xfce.desktop:
-	  Moved gnome/gdm-2.6.0.6-i486-1tom to pasture/.
+	* gnome/gdm/Xsession.gz, gnome/gdm/doinst.sh,
+	  gnome/gdm/doinst.sh.gz, gnome/gdm/gdm.SlackBuild,
+	  gnome/gdm/gdm.conf-doinst.sh.gz, gnome/gdm/gdm.conf-graphical,
+	  gnome/gdm/gdm.quiet.diff.gz, gnome/gdm/requires,
+	  gnome/gdm/slack-desc, gnome/gdm/sources, gnome/gdm/stop.autoport,
+	  pasture/gdm/.#requires.1.2, pasture/gdm/Xsession.gz,
+	  pasture/gdm/blackbox.desktop, pasture/gdm/doinst.sh,
+	  pasture/gdm/doinst.sh.gz, pasture/gdm/fluxbox.desktop,
+	  pasture/gdm/footprint, pasture/gdm/fvwm2.desktop,
+	  pasture/gdm/fvwm95.desktop, pasture/gdm/gdm.SlackBuild,
+	  pasture/gdm/gdm.conf-doinst.sh.gz,
+	  pasture/gdm/gdm.conf-graphical, pasture/gdm/gdm.quiet.diff.gz,
+	  pasture/gdm/gnome.desktop, pasture/gdm/kde.desktop,
+	  pasture/gdm/requires, pasture/gdm/slack-desc,
+	  pasture/gdm/sources, pasture/gdm/stop.autoport,
+	  pasture/gdm/twm.desktop, pasture/gdm/windowmaker.desktop,
+	  pasture/gdm/xfce.desktop: Moved gnome/gdm-2.6.0.6-i486-1tom to
+	  pasture/.
 
 2005-02-05 22:34  topf
 
@@ -2927,8 +3184,13 @@
 
 2005-02-02 21:14  topf
 
-	* gnome/gdesklets/: SlackBuild, doinst.sh, footprint, md5sums,
-	  requires, slack-desc, sources: Moved
+	* open/gdesklets/SlackBuild, open/gdesklets/doinst.sh,
+	  open/gdesklets/footprint, open/gdesklets/md5sums,
+	  open/gdesklets/requires, open/gdesklets/slack-desc,
+	  open/gdesklets/sources, gnome/gdesklets/SlackBuild,
+	  gnome/gdesklets/doinst.sh, gnome/gdesklets/footprint,
+	  gnome/gdesklets/md5sums, gnome/gdesklets/requires,
+	  gnome/gdesklets/slack-desc, gnome/gdesklets/sources: Moved
 	  open/gdesklets-0.33.1-i486-1lem to gnome/.
 
 2005-02-02 20:11  topf
@@ -2947,7 +3209,9 @@
 
 2005-02-02 02:13  topf
 
-	* open/ports-lem-info: Autocommited via upload.
+	* open/: ports-lem-info, gdesklets/SlackBuild, gdesklets/doinst.sh,
+	  gdesklets/footprint, gdesklets/md5sums, gdesklets/requires,
+	  gdesklets/slack-desc, gdesklets/sources: Autocommited via upload.
 
 2005-02-01 01:03  topf
 
@@ -3061,11 +3325,6 @@
 
 	* l/libast/: SlackBuild, footprint, md5sums, sources: Updated
 	  l/libast to 0.6.1-i486-1tom.
-
-2005-01-29 19:19  topf
-
-	* xap/firefox/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: Updated xap/firefox to 1.0_bin-i686-1tom.
 
 2005-01-29 14:29  topf
 
@@ -3651,9 +3910,9 @@
 	  testing/hal/slack-desc, testing/libeina/slack-desc,
 	  testing/libgnomesu/slack-desc, testing/polypaudio/slack-desc,
 	  xap/cire/slack-desc, xap/eterm/slack-desc,
-	  xap/firefox/slack-desc, xap/freedoom/slack-desc,
-	  xap/graphviz/slack-desc, xap/gtk-server/slack-desc,
-	  xap/hydrogen/slack-desc, xap/jimmac/slack-desc: [no log message]
+	  xap/freedoom/slack-desc, xap/graphviz/slack-desc,
+	  xap/gtk-server/slack-desc, xap/hydrogen/slack-desc,
+	  xap/jimmac/slack-desc: [no log message]
 
 2004-12-19 00:42  topf
 
@@ -4132,6 +4391,11 @@
 
 	* gnome/gedit/: SlackBuild, doinst.sh, slack-desc, sources,
 	  stop.autoport: Updated gnome/gedit to 2.8.2-i486-1tom.
+
+2004-12-11 14:06  topf
+
+	* gnome/gdm/: gdm.SlackBuild, stop.autoport: Updated gnome/gdm to
+	  2.6.0.6-i486-1tom.
 
 2004-12-11 14:06  topf
 
@@ -4775,6 +5039,17 @@
 	  gnome/liferea/SlackBuild, gnome/metacity/SlackBuild,
 	  gnome/metacity/sources, xap/abiword/requires: [no log message]
 
+2004-11-24 17:33  topf
+
+	* gnome/gdm/gdm.SlackBuild: [no log message]
+
+2004-11-24 17:32  topf
+
+	* gnome/gdm/: SlackBuild, Xsession.gz, doinst.sh.gz,
+	  gdm.SlackBuild, gdm.conf-doinst.sh.gz, gdm.conf-graphical,
+	  gdm.quiet.diff.gz, slack-desc: Changed to Slackwares' scripts to
+	  include all xinitrcs
+
 2004-11-24 17:19  topf
 
 	* testing/xfce-goodies.metalist: Added Xfce-goodies and
@@ -4998,9 +5273,9 @@
 	  gnome/galeon/requires, gnome/gamp/requires,
 	  gnome/gcalctool/requires, gnome/gconf/requires,
 	  gnome/gconf-editor/requires, gnome/gcursor/requires,
-	  gnome/gedit/requires, gnome/ggv/requires, gnome/glabels/requires,
-	  gnome/gmencoder/requires, gnome/gmpc/requires,
-	  gnome/gnome-applets/requires,
+	  gnome/gdm/requires, gnome/gedit/requires, gnome/ggv/requires,
+	  gnome/glabels/requires, gnome/gmencoder/requires,
+	  gnome/gmpc/requires, gnome/gnome-applets/requires,
 	  gnome/gnome-clipboard-daemon/requires,
 	  gnome/gnome-cpufreq-applet/requires,
 	  gnome/gnome-cups-manager/requires, gnome/gnome-desktop/requires,
@@ -5054,7 +5329,7 @@
 	  testing/gtk-webcore/requires, testing/mplayer-gtk2/requires,
 	  xap/amule/requires, xap/armagetron/requires,
 	  xap/bookmarkbridge/requires, xap/deng/requires, xap/dia/requires,
-	  xap/firefox/requires, xap/giftoxic/requires, xap/giftui/requires,
+	  xap/giftoxic/requires, xap/giftui/requires,
 	  xap/gimp-gap/requires, xap/gksu/requires, xap/gqview/requires,
 	  xap/graphviz/requires, xap/gtklp/requires,
 	  xap/lbreakout2/requires, xap/mplayer/requires,
@@ -5094,16 +5369,6 @@
 	  xap/mplayer/requires, xap/zinf/requires: Fixed requirements
 	  according to updated ignore-list
 
-2004-11-09 12:54  tomtoastbrot
-
-	* xap/firefox/firefox.desktop: [no log message]
-
-2004-11-09 11:31  tomtoastbrot
-
-	* xap/firefox/: SlackBuild, buildlog, diff, doinst.sh,
-	  firefox.desktop, footprint, requires, slack-desc, sources: [no
-	  log message]
-
 2004-11-08 22:04  tomtoastbrot
 
 	* ap/exiftags/slack-desc, ap/exifutils/slack-desc,
@@ -5121,8 +5386,9 @@
 	  gnome/gal/slack-desc, gnome/galeon/slack-desc,
 	  gnome/gcalctool/slack-desc, gnome/gconf/slack-desc,
 	  gnome/gconf-editor/slack-desc, gnome/gconfmm/slack-desc,
-	  gnome/gcursor/slack-desc, gnome/gedit/slack-desc,
-	  gnome/ggv/slack-desc, gnome/gnome-applets/slack-desc,
+	  gnome/gcursor/slack-desc, gnome/gdm/slack-desc,
+	  gnome/gedit/slack-desc, gnome/ggv/slack-desc,
+	  gnome/gnome-applets/slack-desc,
 	  gnome/gnome-cpufreq-applet/slack-desc,
 	  gnome/gnome-desktop/slack-desc, gnome/gnome-dial/slack-desc,
 	  gnome/gnome-games/slack-desc, gnome/gnome-icon-theme/slack-desc,
@@ -5458,10 +5724,12 @@
 	  gnome/gconf/sources, gnome/gconf-editor/SlackBuild,
 	  gnome/gconf-editor/doinst.sh, gnome/gconf-editor/requires,
 	  gnome/gconf-editor/slack-desc, gnome/gconf-editor/sources,
-	  gnome/gedit/SlackBuild, gnome/gedit/doinst.sh,
-	  gnome/gedit/requires, gnome/gedit/slack-desc,
-	  gnome/gedit/sources, gnome/ggv/SlackBuild, gnome/ggv/doinst.sh,
-	  gnome/ggv/requires, gnome/ggv/slack-desc, gnome/ggv/sources,
+	  gnome/gdm/SlackBuild, gnome/gdm/doinst.sh, gnome/gdm/requires,
+	  gnome/gdm/slack-desc, gnome/gdm/sources, gnome/gedit/SlackBuild,
+	  gnome/gedit/doinst.sh, gnome/gedit/requires,
+	  gnome/gedit/slack-desc, gnome/gedit/sources,
+	  gnome/ggv/SlackBuild, gnome/ggv/doinst.sh, gnome/ggv/requires,
+	  gnome/ggv/slack-desc, gnome/ggv/sources,
 	  gnome/gnome-applets/SlackBuild, gnome/gnome-applets/doinst.sh,
 	  gnome/gnome-applets/requires, gnome/gnome-applets/slack-desc,
 	  gnome/gnome-applets/sources, gnome/gnome-desktop/SlackBuild,
@@ -6021,10 +6289,12 @@
 	  gnome/gconf/sources, gnome/gconf-editor/SlackBuild,
 	  gnome/gconf-editor/doinst.sh, gnome/gconf-editor/requires,
 	  gnome/gconf-editor/slack-desc, gnome/gconf-editor/sources,
-	  gnome/gedit/SlackBuild, gnome/gedit/doinst.sh,
-	  gnome/gedit/requires, gnome/gedit/slack-desc,
-	  gnome/gedit/sources, gnome/ggv/SlackBuild, gnome/ggv/doinst.sh,
-	  gnome/ggv/requires, gnome/ggv/slack-desc, gnome/ggv/sources,
+	  gnome/gdm/SlackBuild, gnome/gdm/doinst.sh, gnome/gdm/requires,
+	  gnome/gdm/slack-desc, gnome/gdm/sources, gnome/gedit/SlackBuild,
+	  gnome/gedit/doinst.sh, gnome/gedit/requires,
+	  gnome/gedit/slack-desc, gnome/gedit/sources,
+	  gnome/ggv/SlackBuild, gnome/ggv/doinst.sh, gnome/ggv/requires,
+	  gnome/ggv/slack-desc, gnome/ggv/sources,
 	  gnome/gnome-applets/SlackBuild, gnome/gnome-applets/doinst.sh,
 	  gnome/gnome-applets/requires, gnome/gnome-applets/slack-desc,
 	  gnome/gnome-applets/sources, gnome/gnome-desktop/SlackBuild,
