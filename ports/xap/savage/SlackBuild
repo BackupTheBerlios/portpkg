@@ -1,4 +1,4 @@
-VERSION=20050207
+VERSION=20050419
 ARCH=i386
 BUILD=1tom
 
@@ -17,15 +17,17 @@ chown -R root.root .
 mkdir -p $PKG/usr/X11R6/{bin,lib/modules/{linux,extensions,dri{,vers}}}
 
 bzcat $CWD/Xorg.bz2 >$PKG/usr/X11R6/bin/Xorg
+# patch the background "grey"
 sed -i "s,\x88\x22\x44\x11\x11\x44\x22\x88,\x00\x00\x00\x00\x00\x00\x00\x00," \
   $PKG/usr/X11R6/bin/Xorg
 chmod 4755 $PKG/usr/X11R6/bin/Xorg
 tar xjf $CWD/modules.tar.bz2 -C $PKG/usr/X11R6/lib
 
 cat $CWD/*.patch | patch -p1 --verbose
-sed -i "s,^\(XF86_DIR=\)\(.*\)$,\1$PKG\2," install.sh
-sed -i "s,^\(KERNEL_LIB_DIR=\)\(.*\)$,\1$PKG\2," install.sh
-echo | ./install.sh
+sed -i "/^XF86_DIR=/s,=,=$PKG," install.sh
+sed -i "/^KERNEL_LIB_DIR=/s,=,=$PKG," install.sh
+#echo | 
+./install.sh
 
 cd $PKG
 # uff, make relative symlinks
