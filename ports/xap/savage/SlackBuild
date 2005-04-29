@@ -26,8 +26,7 @@ tar xjf $CWD/modules.tar.bz2 -C $PKG/usr/X11R6/lib
 cat $CWD/*.patch | patch -p1 --verbose
 sed -i "/^XF86_DIR=/s,=,=$PKG," install.sh
 sed -i "/^KERNEL_LIB_DIR=/s,=,=$PKG," install.sh
-#echo | 
-./install.sh
+echo | ./install.sh
 
 cd $PKG
 # uff, make relative symlinks
