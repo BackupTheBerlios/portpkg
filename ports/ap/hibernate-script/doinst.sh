@@ -11,3 +11,4 @@ config() {
 }
 config etc/hibernate/hibernate.conf.new
 config etc/hibernate/blacklisted-modules.new
+config etc/hibernate/ram.conf.new
