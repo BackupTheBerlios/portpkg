@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.10.1
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=4tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -35,25 +35,24 @@ CXXFLAGS="$SLKCFLAGS" \
 make || exit 1
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG || exit 1
-GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \
-gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin}
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/{man,doc} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f | xargs -r chmod 644
-find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/*
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
