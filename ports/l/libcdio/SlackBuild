@@ -1,4 +1,4 @@
-VERSION=0.71
+VERSION=0.73
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -47,6 +47,7 @@ chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 mv $PKG/usr/share/{man,doc} $PKG/usr/ 2>/dev/null
 rmdir $PKG/usr/share 2>/dev/null
 gzip -9 $PKG/usr/man/man?/*
+gzip -9 $PKG/usr/info/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README README.libcdio THANKS TODO \

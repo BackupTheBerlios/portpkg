@@ -1,57 +1,78 @@
-drwxr-xr-x root/root         0 2005-03-20 19:14:48 ./
-drwxr-xr-x root/root         0 2005-03-20 19:14:48 usr/
-drwxr-xr-x root/bin          0 2005-03-20 19:14:47 usr/bin/
--rwxr-xr-x root/bin      17100 2005-03-20 19:14:47 usr/bin/cd-drive
--rwxr-xr-x root/bin      19096 2005-03-20 19:14:47 usr/bin/iso-info
--rwxr-xr-x root/bin      18188 2005-03-20 19:14:47 usr/bin/iso-read
--rwxr-xr-x root/bin      31196 2005-03-20 19:14:47 usr/bin/cd-info
--rwxr-xr-x root/bin      22960 2005-03-20 19:14:47 usr/bin/cd-read
-drwxr-xr-x root/root         0 2005-03-20 19:14:48 usr/doc/
-drwxr-xr-x root/root         0 2005-03-20 19:14:48 usr/doc/libcdio-0.71/
--rw-r--r-- root/root      6285 2004-11-11 05:11:02 usr/doc/libcdio-0.71/NEWS
--rw-r--r-- root/root      3146 2004-10-24 00:14:03 usr/doc/libcdio-0.71/TODO
--rw-r--r-- root/root      2156 2004-07-08 07:09:37 usr/doc/libcdio-0.71/README
--rw-r--r-- root/root      1067 2004-10-24 00:14:03 usr/doc/libcdio-0.71/THANKS
--rw-rw-r-- root/root      2849 2004-08-27 03:58:20 usr/doc/libcdio-0.71/README.libcdio
--rw-rw-r-- root/root        71 2003-03-24 20:01:09 usr/doc/libcdio-0.71/AUTHORS
--rw-r--r-- root/root      9240 2004-08-24 10:21:11 usr/doc/libcdio-0.71/INSTALL
--rw-r--r-- root/root     24687 2004-10-24 13:01:09 usr/doc/libcdio-0.71/ABOUT-NLS
--rw-rw-r-- root/root    202270 2004-11-20 13:58:42 usr/doc/libcdio-0.71/ChangeLog
--rw-r--r-- root/root     17992 2004-08-24 10:21:10 usr/doc/libcdio-0.71/COPYING
-drwxr-xr-x root/root         0 2005-03-20 19:14:48 usr/lib/
-drwxr-xr-x root/root         0 2005-03-20 19:14:47 usr/lib/pkgconfig/
--rw-r--r-- root/root       235 2005-03-20 19:14:47 usr/lib/pkgconfig/libcdio.pc
--rw-r--r-- root/root       233 2005-03-20 19:14:47 usr/lib/pkgconfig/libiso9660.pc
--rwxr-xr-x root/root       790 2005-03-20 19:14:46 usr/lib/libcdio.la
--rwxr-xr-x root/root     34660 2005-03-20 19:14:47 usr/lib/libiso9660.so.3.0.0
--rwxr-xr-x root/root     85340 2005-03-20 19:14:47 usr/lib/libcdio.so.3.0.0
--rwxr-xr-x root/root       831 2005-03-20 19:14:46 usr/lib/libiso9660.la
--rw-r--r-- root/root    125932 2005-03-20 19:14:48 usr/lib/libcdio.a
--rw-r--r-- root/root     34388 2005-03-20 19:14:48 usr/lib/libiso9660.a
-drwxr-xr-x root/root         0 2005-03-20 19:14:47 usr/man/
-drwxr-xr-x root/root         0 2005-03-20 19:14:47 usr/man/man1/
-drwxr-xr-x root/root         0 2005-03-20 19:14:44 usr/info/
--rw-r--r-- root/root       639 2005-03-20 19:14:44 usr/info/dir
--rw-r--r-- root/root     50771 2005-03-20 19:14:44 usr/info/libcdio.info-1
--rw-r--r-- root/root     46406 2005-03-20 19:14:44 usr/info/libcdio.info-2
--rw-r--r-- root/root      2321 2005-03-20 19:14:44 usr/info/libcdio.info
-drwxr-xr-x root/root         0 2005-03-20 19:14:45 usr/include/
-drwxr-xr-x root/root         0 2005-03-20 19:14:45 usr/include/cdio/
--rw-r--r-- root/root      2242 2005-03-20 19:14:45 usr/include/cdio/ds.h
--rw-r--r-- root/root      5560 2005-03-20 19:14:45 usr/include/cdio/xa.h
--rw-r--r-- root/root     14312 2005-03-20 19:14:45 usr/include/cdio/scsi_mmc.h
--rw-r--r-- root/root      2883 2005-03-20 19:14:45 usr/include/cdio/dvd.h
--rw-r--r-- root/root      3842 2005-03-20 19:14:45 usr/include/cdio/logging.h
--rw-r--r-- root/root      5701 2005-03-20 19:14:45 usr/include/cdio/cd_types.h
--rw-r--r-- root/root     32810 2005-03-20 19:14:45 usr/include/cdio/cdio.h
--rw-r--r-- root/root     11047 2005-03-20 19:14:45 usr/include/cdio/sector.h
--rw-r--r-- root/root      2926 2005-03-20 19:14:45 usr/include/cdio/bytesex_asm.h
--rw-r--r-- root/root     28271 2005-03-20 19:14:45 usr/include/cdio/iso9660.h
--rw-r--r-- root/root      5898 2005-03-20 19:14:45 usr/include/cdio/bytesex.h
--rw-r--r-- root/root     12280 2005-03-20 19:14:45 usr/include/cdio/types.h
--rw-r--r-- root/root      2999 2005-03-20 19:14:45 usr/include/cdio/util.h
--rw-r--r-- root/root       365 2005-03-20 19:14:45 usr/include/cdio/version.h
--rw-r--r-- root/root      3531 2005-03-20 19:14:45 usr/include/cdio/cdtext.h
-drwxr-xr-x root/root         0 2005-03-20 19:14:48 install/
--rw-r--r-- root/root       374 2005-03-20 19:14:48 install/doinst.sh
--rw-r--r-- root/root       547 2005-03-20 19:14:48 install/slack-desc
+drwxr-xr-x root/root           0 ./
+drwxr-xr-x root/root           0 install/
+-rw-r--r-- root/root         814 install/doinst.sh
+-rw-r--r-- root/root         547 install/slack-desc
+drwxr-xr-x root/root           0 usr/
+drwxr-xr-x root/bin            0 usr/bin/
+-rwxr-xr-x root/bin        27608 usr/bin/cdda-player
+-rwxr-xr-x root/bin        17556 usr/bin/cd-drive
+-rwxr-xr-x root/bin        33160 usr/bin/cd-info
+-rwxr-xr-x root/bin        29700 usr/bin/cd-paranoia
+-rwxr-xr-x root/bin        22736 usr/bin/cd-read
+-rwxr-xr-x root/bin        20176 usr/bin/iso-info
+-rwxr-xr-x root/bin        18536 usr/bin/iso-read
+drwxr-xr-x root/root           0 usr/doc/
+drwxr-xr-x root/root           0 usr/doc/libcdio-0.73/
+-rw-rw-r-- root/root          71 usr/doc/libcdio-0.73/AUTHORS
+-rw-rw-r-- root/root      292103 usr/doc/libcdio-0.73/ChangeLog
+-rw-r--r-- root/root       17992 usr/doc/libcdio-0.73/COPYING
+-rw-r--r-- root/root        9273 usr/doc/libcdio-0.73/INSTALL
+-rw-r--r-- root/root        7672 usr/doc/libcdio-0.73/NEWS
+-rw-r--r-- root/root        2469 usr/doc/libcdio-0.73/README
+-rw-r--r-- root/root        2852 usr/doc/libcdio-0.73/README.libcdio
+-rw-rw-r-- root/root        1161 usr/doc/libcdio-0.73/THANKS
+-rw-r--r-- root/root        4007 usr/doc/libcdio-0.73/TODO
+drwxr-xr-x root/root           0 usr/include/
+drwxr-xr-x root/root           0 usr/include/cdio/
+-rw-r--r-- root/root        4212 usr/include/cdio/audio.h
+-rw-r--r-- root/root        3117 usr/include/cdio/bytesex_asm.h
+-rw-r--r-- root/root        6931 usr/include/cdio/bytesex.h
+-rw-r--r-- root/root       13017 usr/include/cdio/cdda.h
+-rw-r--r-- root/root        5662 usr/include/cdio/cdio_config.h
+-rw-r--r-- root/root        2268 usr/include/cdio/cdio.h
+-rw-r--r-- root/root        3671 usr/include/cdio/cdtext.h
+-rw-r--r-- root/root        5703 usr/include/cdio/cd_types.h
+-rw-r--r-- root/root       33862 usr/include/cdio/device.h
+-rw-r--r-- root/root        3411 usr/include/cdio/disc.h
+-rw-r--r-- root/root        2952 usr/include/cdio/ds.h
+-rw-r--r-- root/root        2883 usr/include/cdio/dvd.h
+-rw-r--r-- root/root       43994 usr/include/cdio/iso9660.h
+-rw-r--r-- root/root        3842 usr/include/cdio/logging.h
+-rw-r--r-- root/root       29798 usr/include/cdio/mmc.h
+-rw-r--r-- root/root        5126 usr/include/cdio/paranoia.h
+-rw-r--r-- root/root        5709 usr/include/cdio/read.h
+-rw-r--r-- root/root       14658 usr/include/cdio/rock.h
+-rw-r--r-- root/root        1016 usr/include/cdio/scsi_mmc.h
+-rw-r--r-- root/root       11443 usr/include/cdio/sector.h
+-rw-r--r-- root/root        8587 usr/include/cdio/track.h
+-rw-r--r-- root/root        8500 usr/include/cdio/types.h
+-rw-r--r-- root/root        3022 usr/include/cdio/util.h
+-rw-r--r-- root/root         421 usr/include/cdio/version.h
+-rw-r--r-- root/root        7104 usr/include/cdio/xa.h
+drwxr-xr-x root/root           0 usr/info/
+-rw-r--r-- root/root         462 usr/info/dir.gz
+-rw-r--r-- root/root       45046 usr/info/libcdio.info.gz
+drwxr-xr-x root/root           0 usr/lib/
+-rw-r--r-- root/root      154426 usr/lib/libcdio.a
+-rw-r--r-- root/root       30498 usr/lib/libcdio_cdda.a
+-rwxr-xr-x root/root         843 usr/lib/libcdio_cdda.la
+-rwxr-xr-x root/root       25552 usr/lib/libcdio_cdda.so.0.0.0
+-rwxr-xr-x root/root         788 usr/lib/libcdio.la
+-rw-r--r-- root/root       28536 usr/lib/libcdio_paranoia.a
+-rwxr-xr-x root/root         896 usr/lib/libcdio_paranoia.la
+-rwxr-xr-x root/root       27016 usr/lib/libcdio_paranoia.so.0.0.0
+-rwxr-xr-x root/root      102544 usr/lib/libcdio.so.5.0.0
+-rw-r--r-- root/root       47568 usr/lib/libiso9660.a
+-rwxr-xr-x root/root         829 usr/lib/libiso9660.la
+-rwxr-xr-x root/root       46992 usr/lib/libiso9660.so.4.0.0
+drwxr-xr-x root/root           0 usr/lib/pkgconfig/
+-rw-r--r-- root/root         250 usr/lib/pkgconfig/libcdio_cdda.pc
+-rw-r--r-- root/root         264 usr/lib/pkgconfig/libcdio_paranoia.pc
+-rw-r--r-- root/root         235 usr/lib/pkgconfig/libcdio.pc
+-rw-r--r-- root/root         244 usr/lib/pkgconfig/libiso9660.pc
+drwxr-xr-x root/root           0 usr/man/
+drwxr-xr-x root/root           0 usr/man/jp/
+drwxr-xr-x root/root           0 usr/man/jp/man1/
+-rw-r--r-- root/root        9611 usr/man/jp/man1/cd-paranoia.1
+drwxr-xr-x root/root           0 usr/man/man1/
+-rw-r--r-- root/root        4391 usr/man/man1/cd-paranoia.1.gz
