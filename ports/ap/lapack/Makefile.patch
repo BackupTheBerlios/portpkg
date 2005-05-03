@@ -1,0 +1,13 @@
+--- LAPACK/Makefile.orig	2000-05-17 19:33:22.000000000 +0200
++++ LAPACK/Makefile	2005-05-02 22:53:41.000000000 +0200
+@@ -8,8 +8,8 @@
+ 
+ all: install lib testing blas_testing timing blas_timing
+ 
+-lib: lapacklib tmglib
+-#lib: blaslib lapacklib tmglib
++#lib: lapacklib tmglib
++lib: blaslib lapacklib tmglib
+ 
+ clean: cleanlib cleantesting cleantiming
+ 
