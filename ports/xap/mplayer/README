@@ -16,3 +16,12 @@ Note: You can always run portpkg --noreqs mplayer to skip dependencies
 checking at all!
 
 tom
+
+-----------------
+
+EDIT: I moved optional packages to optional and packages that are _really_ required to 'requires'.
+Correct me if this is wrong, but -q isn't a solution cause I need at least the essential packages.
+Think this is more like the main principle - mplayer detects what is installed, so if you have ogg
+and use ogg, it will find and configure the player for ogg-support [for example].
+
+hnaz
