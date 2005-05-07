@@ -1,37 +1,46 @@
-2005-05-03 08:31  topf
+2005-05-06 10:57  topf
 
-	* gnome/: libgtkhtml/SlackBuild, libgtkhtml/footprint,
-	  libgtkhtml/md5sums, libgtkhtml/requires, libgtkhtml/slack-desc,
-	  libgtkhtml/sources, librsvg/SlackBuild, librsvg/requires,
-	  librsvg/slack-desc, librsvg/sources: Moved to pasture/.
+	* open/portpkg/: README, SlackBuild, autoport, footprint, info,
+	  portpkg, repos: Next try.
 
-2005-05-03 07:22  hnaz
+2005-05-06 10:43  topf
 
-	* ap/lapack/: Makefile.patch, SlackBuild, footprint, info, md5sums,
-	  requires, slack-desc, sources: Integrated. Added support for the
-	  user's CFLAGS.
+	* open/portpkg/md5sums: Next try. (cronjob)
 
-2005-05-03 00:20  topf
+2005-05-05 14:40  hnaz
 
-	* open/: lapack/Makefile.patch, lapack/SlackBuild,
-	  lapack/footprint, lapack/info, lapack/md5sums, lapack/slack-desc,
-	  lapack/sources, pysparse/SlackBuild, pysparse/footprint,
-	  pysparse/info, pysparse/md5sums, pysparse/requires,
-	  pysparse/slack-desc, pysparse/sources: new entry (cronjob)
+	* xap/feh/: SlackBuild, footprint, md5sums, requires: 1.3.0 >>
+	  1.3.1
 
-2005-05-02 00:20  topf
+2005-05-05 14:33  hnaz
 
-	* open/gst-python/: SlackBuild, footprint, info, md5sums, requires,
+	* xap/mplayer/: README, SlackBuild, optional, requires: 1.0pre6 >>
+	  1.0pre7 And 'fixed' requires/optional. requires includes now what
+	  _is_ required to built the package, not what could be supported
+	  by mplayer.
+
+2005-05-03 14:49  topf
+
+	* open/portpkg/README, open/portpkg/SlackBuild,
+	  open/portpkg/autoport, open/portpkg/footprint, open/portpkg/info,
+	  open/portpkg/portpkg, open/portpkg/repos, ap/lapack/info,
+	  gnome/conglomerate/info: [no log message]
+
+2005-05-03 14:39  topf
+
+	* open/pyfemax/: SlackBuild, footprint, info, md5sums, requires,
 	  slack-desc, sources: new entry (cronjob)
 
-2005-05-01 14:20  topf
+2005-05-03 13:57  topf
 
-	* open/portpkg/README.cp: New testing release. (cronjob)
+	* kde/superkaramba/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, slack-desc, sources: new port (andreas)
 
-2005-05-01 13:15  topf
+2005-05-03 13:55  topf
 
-	* open/snort/: classification.config.new, gen-msg.map.new,
-	  reference.config.new, sid-msg.map.new, sid.new, snort.conf.new,
+	* n/snort/: SlackBuild, classification.config.new, footprint,
+	  gen-msg.map.new, md5sums, reference.config.new, rules.tar.bz2,
+	  sid-msg.map.new, sid.new, snort.conf.new, sources,
 	  rules/Makefile.am, rules/Makefile.in,
 	  rules/attack-responses.rules, rules/backdoor.rules,
 	  rules/bad-traffic.rules, rules/chat.rules, rules/ddos.rules,
@@ -50,7 +59,85 @@
 	  rules/web-cgi.rules, rules/web-client.rules,
 	  rules/web-coldfusion.rules, rules/web-frontpage.rules,
 	  rules/web-iis.rules, rules/web-misc.rules, rules/web-php.rules,
-	  rules/x11.rules: Added.
+	  rules/x11.rules: Moved open/snort to n/.
+
+2005-05-03 13:48  topf
+
+	* n/sarg/: SlackBuild, footprint, md5sums, sources: Moved open/sarg
+	  to n/.
+
+2005-05-03 13:42  topf
+
+	* l/pysparse/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
+
+2005-05-03 13:39  topf
+
+	* n/postfix/: SlackBuild, footprint, md5sums, sources: Moved
+	  open/postfix to n/.
+
+2005-05-03 13:35  topf
+
+	* l/libcdio/: SlackBuild, footprint, md5sums, requires: Updated to
+	  newest version (sjn)
+
+2005-05-03 13:30  topf
+
+	* gnome/gst-python/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
+
+2005-05-03 13:06  topf
+
+	* xap/abiword/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc: Version bump.
+
+2005-05-03 11:20  topf
+
+	* xap/qemu/: SlackBuild, footprint, md5sums, parallelport.patch,
+	  slack-desc, sources: Updated to 0.7.0.
+
+2005-05-03 11:19  topf
+
+	* n/mutella/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: New entry.
+
+2005-05-03 11:15  topf
+
+	* ap/antiword/SlackBuild, ap/antiword/footprint,
+	  ap/antiword/md5sums, ap/antiword/slack-desc, ap/antiword/sources,
+	  gnome/serpentine/SlackBuild, gnome/serpentine/doinst.sh,
+	  gnome/serpentine/footprint, gnome/serpentine/md5sums,
+	  gnome/serpentine/requires, gnome/serpentine/slack-desc,
+	  gnome/serpentine/sources: New entry.
+
+2005-05-03 11:12  topf
+
+	* pasture/mozilla-firefox/: SlackBuild, doinst.sh, firefox.desktop,
+	  footprint, md5sums, mozilla-firefox.desktop, requires,
+	  slack-desc, sources: Fetched back lem's firefox port from recycle
+	  bin for -10.0 and -10.1 users.  Adjusted to be analogue to
+	  Slackware's package (/usr/lib/firefox-1.0.3).
+
+2005-05-03 09:12  topf
+
+	* ChangeLog: Updated. (cronjob)
+
+2005-05-03 08:31  topf
+
+	* pasture/: libgtkhtml/SlackBuild, libgtkhtml/footprint,
+	  libgtkhtml/md5sums, libgtkhtml/requires, libgtkhtml/slack-desc,
+	  libgtkhtml/sources, librsvg/SlackBuild, librsvg/requires,
+	  librsvg/slack-desc, librsvg/sources: Moved to pasture/.
+
+2005-05-03 07:22  hnaz
+
+	* ap/lapack/: Makefile.patch, SlackBuild, footprint, info, md5sums,
+	  requires, slack-desc, sources: Integrated. Added support for the
+	  user's CFLAGS.
+
+2005-05-01 14:20  topf
+
+	* open/portpkg/README.cp: New testing release. (cronjob)
 
 2005-05-01 12:55  topf
 
@@ -87,12 +174,6 @@
 	* gnome/file-roller/: SlackBuild, doinst.sh, footprint: Fixed gconf
 	  installation.
 
-2005-05-01 12:20  topf
-
-	* open/libcdio/: SlackBuild, footprint, info, md5sums, readme,
-	  requires, slack-desc, sources: Updated to newest version
-	  (cronjob)
-
 2005-05-01 12:19  topf
 
 	* ap/hibernate-script/: SlackBuild, doinst.sh, footprint, md5sums:
@@ -112,28 +193,6 @@
 
 	* l/libsigc++/: SlackBuild, footprint, md5sums, slack-desc,
 	  sources: Updated to 2.0.11.
-
-2005-04-30 19:56  topf
-
-	* open/superkaramba/: SlackBuild, doinst.sh, footprint, info,
-	  md5sums, requires, slack-desc, sources: new port (cronjob)
-
-2005-04-30 19:55  topf
-
-	* open/postfix/: SlackBuild, doinst.sh, footprint, info, makedefs,
-	  md5sums, rc.postfix.new, requires, slack-desc, sources: (cronjob)
-
-2005-04-30 19:52  topf
-
-	* open/: snort/SlackBuild, snort/classification.config.new,
-	  snort/doinst.sh, snort/footprint, snort/gen-msg.map.new,
-	  snort/generators.new, snort/info, snort/md5sums,
-	  snort/reference.config.new, snort/requires,
-	  snort/sid-msg.map.new, snort/sid.new, snort/slack-desc,
-	  snort/snort.conf.new, snort/sources, snort/threshold.conf.new,
-	  snort/unicode.map.new, sarg/SlackBuild, sarg/doinst.sh,
-	  sarg/exclude_hosts.new, sarg/footprint, sarg/info, sarg/md5sums,
-	  sarg/sarg.conf.new, sarg/slack-desc, sarg/sources: (cronjob)
 
 2005-04-30 12:02  topf
 
@@ -184,14 +243,6 @@
 	  snort.conf.new, sources, threshold.conf.new, unicode.map.new:
 	  Moved open/snort to n/. (stb)
 
-2005-04-28 15:38  topf
-
-	* open/snort/: SlackBuild, classification.config.new, doinst.sh,
-	  footprint, gen-msg.map.new, generators.new, info,
-	  reference.config.new, requires, rules.tar.bz2, sid-msg.map.new,
-	  sid.new, slack-desc, snort.conf.new, sources, threshold.conf.new,
-	  unicode.map.new: Moved to n/.
-
 2005-04-28 15:36  topf
 
 	* gnome/libgnome/: arbitrary, footprint: Corrected gconf
@@ -235,24 +286,10 @@
 	* gnome/bluefish/: SlackBuild, doinst.sh, footprint, info, md5sums,
 	  slack-desc, sources: disabled update-mime-database (lem)
 
-2005-04-28 12:25  topf
-
-	* open/abiword/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  requires, slack-desc, sources: Version bump. (tom)
-
 2005-04-27 21:40  topf
 
 	* open/portpkg/: SlackBuild, footprint, info, portpkg: Test 1-2-3.
 	  (cronjob)
-
-2005-04-27 15:47  topf
-
-	* open/snort/: SlackBuild, classification.config.new, doinst.sh,
-	  footprint, gen-msg.map.new, generators.new, info,
-	  reference.config.new, requires, rules.tar.bz2, sid-msg.map.new,
-	  sid.new, slack-desc, snort.conf.new, sources, threshold.conf.new,
-	  unicode.map.new: Repaired CVS entries.  Changed rules/ to
-	  rules.tar.bz2 (cronjob hadproblems with it). (tom)
 
 2005-04-27 15:32  topf
 
@@ -305,14 +342,8 @@
 
 2005-04-24 15:01  topf
 
-	* open/postfix/SlackBuild, open/postfix/doinst.sh,
-	  open/postfix/footprint, open/postfix/info, open/postfix/makedefs,
-	  open/postfix/md5sums, open/postfix/rc.postfix.new,
-	  open/postfix/requires, open/postfix/slack-desc,
-	  open/postfix/sources, n/postfix/SlackBuild, n/postfix/doinst.sh,
-	  n/postfix/footprint, n/postfix/makedefs, n/postfix/md5sums,
-	  n/postfix/rc.postfix.new, n/postfix/requires,
-	  n/postfix/slack-desc, n/postfix/sources: Moved
+	* n/postfix/: SlackBuild, doinst.sh, footprint, makedefs, md5sums,
+	  rc.postfix.new, requires, slack-desc, sources: Moved
 	  open/postfix-2.2.2-i486-1stb to n/.
 
 2005-04-24 14:59  topf
@@ -457,12 +488,6 @@
 
 	* d/portpkg/pp-config: Fixed resources menu to work with more than
 	  one importer script.
-
-2005-04-17 18:20  topf
-
-	* open/postfix/: SlackBuild, doinst.sh, footprint, info, makedefs,
-	  md5sums, rc.postfix.new, requires, slack-desc, sources:
-	  (cronjob)
 
 2005-04-17 16:21  topf
 
@@ -772,14 +797,14 @@
 	* gnome/libbonobo/footprint, gnome/libbonoboui/footprint,
 	  gnome/libgnome/footprint, gnome/libgnomecanvas/footprint,
 	  gnome/libgnomeprint/footprint, gnome/libgnomeprintui/footprint,
-	  gnome/libgnomeui/footprint, gnome/libgtkhtml/footprint,
-	  gnome/liferea/footprint, gnome/mail-notification/footprint,
-	  gnome/orbit2/footprint, l/libglade/footprint,
-	  l/libgpg-error/footprint, l/libtheora/footprint,
-	  l/storable/requires, testing/balsa/footprint,
-	  xap/abiword/footprint, xap/graveman/footprint,
-	  xap/gtk-gnutella/footprint, xap/gtk-gnutella/requires,
-	  xap/mplayer/footprint, xap/xosd/footprint: Synced dir.
+	  gnome/libgnomeui/footprint, gnome/liferea/footprint,
+	  gnome/mail-notification/footprint, gnome/orbit2/footprint,
+	  l/libglade/footprint, l/libgpg-error/footprint,
+	  l/libtheora/footprint, l/storable/requires,
+	  testing/balsa/footprint, xap/abiword/footprint,
+	  xap/graveman/footprint, xap/gtk-gnutella/footprint,
+	  xap/gtk-gnutella/requires, xap/mplayer/footprint,
+	  xap/xosd/footprint: Synced dir.
 
 2005-04-12 20:04  topf
 
@@ -1145,12 +1170,8 @@
 
 2005-04-06 09:05  topf
 
-	* open/sarg/SlackBuild, open/sarg/doinst.sh,
-	  open/sarg/exclude_hosts.new, open/sarg/footprint, open/sarg/info,
-	  open/sarg/md5sums, open/sarg/sarg.conf.new, open/sarg/slack-desc,
-	  open/sarg/sources, n/sarg/SlackBuild, n/sarg/doinst.sh,
-	  n/sarg/exclude_hosts.new, n/sarg/footprint, n/sarg/md5sums,
-	  n/sarg/sarg.conf.new, n/sarg/slack-desc, n/sarg/sources: Moved
+	* n/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
+	  md5sums, sarg.conf.new, slack-desc, sources: Moved
 	  open/sarg-2.0.5-i686-1stb to n/.
 
 2005-04-06 09:03  topf
@@ -1266,11 +1287,6 @@
 
 	* xap/graveman/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc: Updated xap/graveman to 0.3.9-i686-1tom.
-
-2005-04-01 19:20  topf
-
-	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
-	  info, md5sums, sarg.conf.new, slack-desc, sources:  (cronjob)
 
 2005-04-01 12:34  topf
 
@@ -1683,13 +1699,9 @@
 	* ap/vcdimager/: SlackBuild, footprint, md5sums, readme, requires:
 	  Moved open/vcdimager-0.7.21-i686-1sjn to ap/.
 
-2005-03-20 21:13  topf
+2005-03-20 21:14  topf
 
-	* open/libcdio/SlackBuild, open/libcdio/footprint,
-	  open/libcdio/info, open/libcdio/md5sums, open/libcdio/readme,
-	  open/libcdio/requires, open/libcdio/slack-desc,
-	  open/libcdio/sources, l/libcdio/SlackBuild, l/libcdio/footprint,
-	  l/libcdio/md5sums, l/libcdio/requires: Moved
+	* l/libcdio/: SlackBuild, footprint, md5sums, requires: Moved
 	  open/libcdio-0.71-i686-1sjn to l/.
 
 2005-03-20 21:00  topf
@@ -1710,11 +1722,6 @@
 2005-03-20 20:48  topf
 
 	* d/portpkg/portpkg: Adjusted messages in maintainer mode.
-
-2005-03-20 19:20  topf
-
-	* open/libcdio/: SlackBuild, footprint, info, md5sums, readme,
-	  requires, slack-desc, sources: [no log message]
 
 2005-03-20 11:40  topf
 
@@ -2077,12 +2084,6 @@
 
 	* xap/mplayer/: SlackBuild, footprint, readme, requires: Updated
 	  xap/mplayer to 1.0pre6-i686-6tom.
-
-2005-03-16 11:05  topf
-
-	* gnome/libgtkhtml/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: Merged local/libgtkhtml-2.6.3-i686-1tom into
-	  gnome/.
 
 2005-03-16 11:04  topf
 
@@ -2981,9 +2982,8 @@
 	  gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild,
 	  gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild,
 	  gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild,
-	  gnome/librsvg/SlackBuild, gnome/libsoup/SlackBuild,
-	  gnome/libxklavier/SlackBuild, gnome/liferea/SlackBuild,
-	  gnome/mail-notification/SlackBuild,
+	  gnome/libsoup/SlackBuild, gnome/libxklavier/SlackBuild,
+	  gnome/liferea/SlackBuild, gnome/mail-notification/SlackBuild,
 	  gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild,
 	  gnome/muine/SlackBuild, gnome/nautilus-cd-burner/SlackBuild,
 	  gnome/nautilus-media/SlackBuild,
@@ -4459,25 +4459,10 @@
 	* gnome/libsoup/: SlackBuild, slack-desc, sources: Updated
 	  gnome/libsoup to 2.2.1-i486-2tom.
 
-2004-12-11 14:14  topf
-
-	* gnome/librsvg/: SlackBuild, slack-desc, sources: Updated
-	  gnome/librsvg to 2.8.1-i486-2tom.
-
 2004-12-11 14:13  topf
 
 	* gnome/libgtop/: SlackBuild, slack-desc, sources: Updated
 	  gnome/libgtop to 2.8.2-i486-1tom.
-
-2004-12-11 14:13  topf
-
-	* gnome/libgtkhtml/: SlackBuild, requires, slack-desc, sources: [no
-	  log message]
-
-2004-12-11 14:13  topf
-
-	* gnome/libgtkhtml/: SlackBuild, requires, slack-desc, sources:
-	  Added gnome/libgtkhtml-2.6.2-i486-1tom.
 
 2004-12-11 14:12  topf
 
@@ -4881,12 +4866,11 @@
 	  gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild,
 	  gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild,
 	  gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild,
-	  gnome/libgtop/SlackBuild, gnome/librsvg/SlackBuild,
-	  gnome/libsoup/SlackBuild, gnome/libwnck/SlackBuild,
-	  gnome/libxklavier/SlackBuild, gnome/mail-notification/SlackBuild,
-	  gnome/metacity/SlackBuild, gnome/mihais-memfree/SlackBuild,
-	  gnome/monkey-bubble/SlackBuild, gnome/nautilus/SlackBuild,
-	  gnome/nautilus-cd-burner/SlackBuild,
+	  gnome/libgtop/SlackBuild, gnome/libsoup/SlackBuild,
+	  gnome/libwnck/SlackBuild, gnome/libxklavier/SlackBuild,
+	  gnome/mail-notification/SlackBuild, gnome/metacity/SlackBuild,
+	  gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild,
+	  gnome/nautilus/SlackBuild, gnome/nautilus-cd-burner/SlackBuild,
 	  gnome/nautilus-media/SlackBuild, gnome/orbit2/SlackBuild,
 	  gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild,
 	  gnome/seahorse/SlackBuild, gnome/sodipodi/SlackBuild,
@@ -5092,10 +5076,10 @@
 	  gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild,
 	  gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild,
 	  gnome/libgnomeui/SlackBuild, gnome/libgtop/SlackBuild,
-	  gnome/librsvg/SlackBuild, gnome/libsoup/SlackBuild,
-	  gnome/libwnck/SlackBuild, gnome/libxklavier/SlackBuild,
-	  gnome/liferea/SlackBuild, gnome/metacity/SlackBuild,
-	  gnome/nautilus/SlackBuild, gnome/nautilus-cd-burner/SlackBuild,
+	  gnome/libsoup/SlackBuild, gnome/libwnck/SlackBuild,
+	  gnome/libxklavier/SlackBuild, gnome/liferea/SlackBuild,
+	  gnome/metacity/SlackBuild, gnome/nautilus/SlackBuild,
+	  gnome/nautilus-cd-burner/SlackBuild,
 	  gnome/nautilus-media/SlackBuild, gnome/orbit2/SlackBuild,
 	  gnome/ubuntu-artwork/SlackBuild, gnome/vino/SlackBuild,
 	  gnome/ximian-artwork/SlackBuild, gnome/yelp/SlackBuild,
@@ -5544,25 +5528,25 @@
 	  gnome/libgnomecanvasmm/requires, gnome/libgnomedb/requires,
 	  gnome/libgnomemm/requires, gnome/libgnomeprint/requires,
 	  gnome/libgnomeprintui/requires, gnome/libgnomeui/requires,
-	  gnome/libgnomeuimm/requires, gnome/librsvg/requires,
-	  gnome/libwnck/requires, gnome/libxklavier/requires,
-	  gnome/liferea/requires, gnome/mail-notification/requires,
-	  gnome/metacity/requires, gnome/mihais-memfree/requires,
-	  gnome/monkey-bubble/requires, gnome/muine/requires,
-	  gnome/nautilus/requires, gnome/nautilus-cd-burner/requires,
-	  gnome/nautilus-media/requires, gnome/netspeed_applet/requires,
-	  gnome/rhythmbox/requires, gnome/rubrica/requires,
-	  gnome/screem/requires, gnome/seahorse/requires,
-	  gnome/sodipodi/requires, gnome/sound-juicer/requires,
-	  gnome/totem/requires, gnome/totem-gst/requires,
-	  gnome/vino/requires, gnome/ximian-artwork/requires,
-	  gnome/yelp/requires, gnome/zenity/requires, l/bluecurve/requires,
-	  l/bmp-wma/requires, l/exif-browser/requires,
-	  l/flash-plugin/requires, l/gtk-perl/requires,
-	  l/gtk-qt-engine/requires, l/gtk-xfce-engine/requires,
-	  l/libdv/requires, l/out_lame/requires, l/plugger/requires,
-	  l/pygtk/requires, l/wxgtk/requires, l/wxpython/requires,
-	  n/gift/requires, n/pavuk/requires, pasture/gal20/requires,
+	  gnome/libgnomeuimm/requires, gnome/libwnck/requires,
+	  gnome/libxklavier/requires, gnome/liferea/requires,
+	  gnome/mail-notification/requires, gnome/metacity/requires,
+	  gnome/mihais-memfree/requires, gnome/monkey-bubble/requires,
+	  gnome/muine/requires, gnome/nautilus/requires,
+	  gnome/nautilus-cd-burner/requires, gnome/nautilus-media/requires,
+	  gnome/netspeed_applet/requires, gnome/rhythmbox/requires,
+	  gnome/rubrica/requires, gnome/screem/requires,
+	  gnome/seahorse/requires, gnome/sodipodi/requires,
+	  gnome/sound-juicer/requires, gnome/totem/requires,
+	  gnome/totem-gst/requires, gnome/vino/requires,
+	  gnome/ximian-artwork/requires, gnome/yelp/requires,
+	  gnome/zenity/requires, l/bluecurve/requires, l/bmp-wma/requires,
+	  l/exif-browser/requires, l/flash-plugin/requires,
+	  l/gtk-perl/requires, l/gtk-qt-engine/requires,
+	  l/gtk-xfce-engine/requires, l/libdv/requires,
+	  l/out_lame/requires, l/plugger/requires, l/pygtk/requires,
+	  l/wxgtk/requires, l/wxpython/requires, n/gift/requires,
+	  n/pavuk/requires, pasture/gal20/requires,
 	  pasture/gtkhtml30/requires, pasture/gtkmm22/requires,
 	  pasture/magicdev/requires, testing/dbus/requires,
 	  testing/gnome-volume-manager/requires,
@@ -5657,8 +5641,8 @@
 	  gnome/libgnomemm/slack-desc, gnome/libgnomeprint/slack-desc,
 	  gnome/libgnomeprintui/slack-desc, gnome/libgnomeui/slack-desc,
 	  gnome/libgnomeuimm/slack-desc, gnome/libgtop/slack-desc,
-	  gnome/librsvg/slack-desc, gnome/libsoup/slack-desc,
-	  gnome/libwnck/slack-desc, gnome/libxklavier/PORT_IS_BROKEN,
+	  gnome/libsoup/slack-desc, gnome/libwnck/slack-desc,
+	  gnome/libxklavier/PORT_IS_BROKEN,
 	  gnome/mail-notification/slack-desc, gnome/metacity/slack-desc,
 	  gnome/mihais-memfree/slack-desc, gnome/nautilus/slack-desc,
 	  gnome/nautilus-cd-burner/slack-desc,
@@ -6051,8 +6035,6 @@
 	  gnome/libgnomeui/slack-desc, gnome/libgnomeui/sources,
 	  gnome/libgtop/SlackBuild, gnome/libgtop/requires,
 	  gnome/libgtop/slack-desc, gnome/libgtop/sources,
-	  gnome/librsvg/SlackBuild, gnome/librsvg/requires,
-	  gnome/librsvg/slack-desc, gnome/librsvg/sources,
 	  gnome/libsoup/SlackBuild, gnome/libsoup/requires,
 	  gnome/libsoup/slack-desc, gnome/libsoup/sources,
 	  gnome/libwnck/SlackBuild, gnome/libwnck/requires,
@@ -6616,8 +6598,6 @@
 	  gnome/libgnomeui/slack-desc, gnome/libgnomeui/sources,
 	  gnome/libgtop/SlackBuild, gnome/libgtop/requires,
 	  gnome/libgtop/slack-desc, gnome/libgtop/sources,
-	  gnome/librsvg/SlackBuild, gnome/librsvg/requires,
-	  gnome/librsvg/slack-desc, gnome/librsvg/sources,
 	  gnome/libsoup/SlackBuild, gnome/libsoup/requires,
 	  gnome/libsoup/slack-desc, gnome/libsoup/sources,
 	  gnome/libwnck/SlackBuild, gnome/libwnck/requires,
