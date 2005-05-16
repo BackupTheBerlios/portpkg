@@ -3,24 +3,26 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.0.3
+VERSION=1.0.4
 ARCH=i686
-BUILD=1tom
+BUILD=1sjn
+#1tom
 #2lem
 
 if [ "$ARCH" = "i386" ]; then
    SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
+   elif [ "$ARCH" = "i486" ]; then
+     SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+     elif [ "$ARCH" = "s390" ]; then
+       SLKCFLAGS="-O2"
+       elif [ "$ARCH" = "x86_64" ]; then
+         SLKCFLAGS="-O2"
+	 fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
+rm -rf firefox
 tar xzvf $CWD/firefox-$VERSION.tar.gz || exit 1
 cd firefox || exit 1
 chown -R root.root .
@@ -56,6 +58,11 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG || exit 1
+( cd usr/lib
+sed 's/local\///' firefox-$VERSION/firefox >firefox.$$
+mv firefox.$$ firefox-$VERSION/firefox 
+chmod 755 firefox-$VERSION/firefox )
+
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
