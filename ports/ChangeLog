@@ -1,3 +1,21 @@
+2005-05-15 21:16  topf
+
+	* gnome/libgnomesu/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved to gnome/.
+
+2005-05-15 20:20  topf
+
+	* testing/balsa/imagemakefile.patch: [no log message]
+
+2005-05-15 20:20  topf
+
+	* testing/balsa/: SlackBuild, doinst.sh, footprint, md5sums,
+	  slack-desc: Updated to 2.3.2.
+
+2005-05-15 04:13  topf
+
+	* ChangeLog: Updated. (cronjob)
+
 2005-05-14 03:59  topf
 
 	* ChangeLog: Updated. (cronjob)
@@ -2017,8 +2035,6 @@
 
 	* pasture/gdm/.#requires.1.2, pasture/xine-lib/.#requires.1.1,
 	  testing/balsa/.#SlackBuild.1.1, testing/balsa/.#footprint.1.1,
-	  testing/libgnomesu/.#footprint.1.1,
-	  testing/libgnomesu/.#requires.1.1,
 	  xap/redhat-artwork/.#SlackBuild.1.6: [no log message]
 
 2005-03-16 21:15  topf
@@ -2026,8 +2042,7 @@
 	* gnome/gnome-mime-data/requires, gnome/gnome2-user-docs/requires,
 	  gnome/mail-notification/optional, gnome/totem/optional,
 	  n/ibmonitor/requires, pasture/esound/requires,
-	  testing/libgnomesu/optional, testing/totem/optional,
-	  xap/jimmac/requires: Removed empty file.
+	  testing/totem/optional, xap/jimmac/requires: Removed empty file.
 
 2005-03-16 21:13  topf
 
@@ -2092,15 +2107,14 @@
 	  pasture/xine-lib/requires, testing/balsa/requires,
 	  testing/criawips/requires, testing/eina-gnome/requires,
 	  testing/gnome-volume-manager/requires,
-	  testing/libgnomesu/requires, testing/mplayer-gtk2/requires,
-	  testing/polypaudio/requires, testing/totem/requires,
-	  xap/abiword/optional, xap/abiword/requires,
-	  xap/armagetron/requires, xap/avidemux/requires, xap/bmp/requires,
-	  xap/deng/requires, xap/enlightenment/requires,
-	  xap/hydrogen/requires, xap/lbreakout2/requires,
-	  xap/mplayer/optional, xap/qemu/requires, xap/wired/requires,
-	  xap/zinf/requires: Removed obsolete dependencies according to
-	  updated "ignore" file.
+	  testing/mplayer-gtk2/requires, testing/polypaudio/requires,
+	  testing/totem/requires, xap/abiword/optional,
+	  xap/abiword/requires, xap/armagetron/requires,
+	  xap/avidemux/requires, xap/bmp/requires, xap/deng/requires,
+	  xap/enlightenment/requires, xap/hydrogen/requires,
+	  xap/lbreakout2/requires, xap/mplayer/optional, xap/qemu/requires,
+	  xap/wired/requires, xap/zinf/requires: Removed obsolete
+	  dependencies according to updated "ignore" file.
 
 2005-03-16 21:00  topf
 
@@ -2255,16 +2269,6 @@
 	* xap/sqlitebrowser/: SlackBuild, footprint, info, md5sums,
 	  requires, slack-desc, sources: Moved
 	  open/sqlitebrowser-1.1-i686-1andreas to xap/.
-
-2005-03-16 09:33  topf
-
-	* testing/libgnomesu/doinst.sh: [no log message]
-
-2005-03-16 09:32  topf
-
-	* testing/libgnomesu/: .#footprint.1.1, .#requires.1.1, SlackBuild,
-	  footprint, md5sums, optional, slack-desc, sources: Updated
-	  testing/libgnomesu to 0.9.7-i686-1tom.
 
 2005-03-16 09:32  topf
 
@@ -2749,9 +2753,9 @@
 	  l/gift-gnutella/footprint, l/gift-openft/footprint,
 	  n/gift/footprint, ap/giftcurs/footprint, ap/giftcurs/md5sums,
 	  l/gift-fasttrack/md5sums, n/gift/md5sums,
-	  testing/libgnomesu/md5sums, testing/polypaudio/footprint,
-	  testing/polypaudio/md5sums, xap/desktop-file-utils/footprint,
-	  xap/desktop-file-utils/md5sums: [no log message]
+	  testing/polypaudio/footprint, testing/polypaudio/md5sums,
+	  xap/desktop-file-utils/footprint, xap/desktop-file-utils/md5sums:
+	  [no log message]
 
 2005-02-22 00:21  topf
 
@@ -2988,9 +2992,8 @@
 	* testing/: dbus/footprint, dbus/md5sums, dbus/user.patch,
 	  gnome-volume-manager/footprint, gnome-volume-manager/md5sums,
 	  hal/footprint, hal/md5sums, libeina/footprint, libeina/md5sums,
-	  libgnomesu/footprint, ximian-connector/SlackBuild,
-	  ximian-connector/slack-desc, ximian-connector/sources: [no log
-	  message]
+	  ximian-connector/SlackBuild, ximian-connector/slack-desc,
+	  ximian-connector/sources: [no log message]
 
 2005-02-10 20:31  topf
 
@@ -3172,23 +3175,23 @@
 	  pasture/xfce/SlackBuild, pasture/xine-lib/SlackBuild,
 	  testing/criawips/SlackBuild, testing/dbus/SlackBuild,
 	  testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild,
-	  testing/libgnomesu/SlackBuild, testing/polypaudio/SlackBuild,
-	  testing/wxgtk/SlackBuild, testing/xfce-goodies/SlackBuild,
-	  xap/abiword/SlackBuild, xap/amule/SlackBuild,
-	  xap/armagetron/SlackBuild, xap/avidemux/SlackBuild,
-	  xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild,
-	  xap/cire/SlackBuild, xap/deng/SlackBuild,
-	  xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild,
-	  xap/enlightenment/SlackBuild, xap/eterm/SlackBuild,
-	  xap/ettercap-ng/SlackBuild, xap/giftoxic/SlackBuild,
-	  xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild,
-	  xap/gksu/SlackBuild, xap/gqview/SlackBuild,
-	  xap/graphviz/SlackBuild, xap/graveman/SlackBuild,
-	  xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild,
-	  xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild,
-	  xap/linphone/SlackBuild, xap/mplayer/SlackBuild,
-	  xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild,
-	  xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild,
+	  testing/polypaudio/SlackBuild, testing/wxgtk/SlackBuild,
+	  testing/xfce-goodies/SlackBuild, xap/abiword/SlackBuild,
+	  xap/amule/SlackBuild, xap/armagetron/SlackBuild,
+	  xap/avidemux/SlackBuild, xap/bmp/SlackBuild,
+	  xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild,
+	  xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild,
+	  xap/dia/SlackBuild, xap/enlightenment/SlackBuild,
+	  xap/eterm/SlackBuild, xap/ettercap-ng/SlackBuild,
+	  xap/giftoxic/SlackBuild, xap/giftui/SlackBuild,
+	  xap/gimp-gap/SlackBuild, xap/gksu/SlackBuild,
+	  xap/gqview/SlackBuild, xap/graphviz/SlackBuild,
+	  xap/graveman/SlackBuild, xap/gtklp/SlackBuild,
+	  xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild,
+	  xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild,
+	  xap/mplayer/SlackBuild, xap/ogle/SlackBuild,
+	  xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild,
+	  xap/qemu/SlackBuild, xap/tagtool/SlackBuild,
 	  xap/tvtime/SlackBuild, xap/wired/SlackBuild,
 	  xap/xmbmon/SlackBuild, xap/xqf/SlackBuild,
 	  xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild: Patched to use
@@ -4294,11 +4297,10 @@
 	  testing/criawips/slack-desc, testing/dbus/slack-desc,
 	  testing/eina-gnome/slack-desc, testing/gazpacho/slack-desc,
 	  testing/hal/slack-desc, testing/libeina/slack-desc,
-	  testing/libgnomesu/slack-desc, testing/polypaudio/slack-desc,
-	  xap/cire/slack-desc, xap/eterm/slack-desc,
-	  xap/freedoom/slack-desc, xap/graphviz/slack-desc,
-	  xap/gtk-server/slack-desc, xap/hydrogen/slack-desc,
-	  xap/jimmac/slack-desc: [no log message]
+	  testing/polypaudio/slack-desc, xap/cire/slack-desc,
+	  xap/eterm/slack-desc, xap/freedoom/slack-desc,
+	  xap/graphviz/slack-desc, xap/gtk-server/slack-desc,
+	  xap/hydrogen/slack-desc, xap/jimmac/slack-desc: [no log message]
 
 2004-12-18 21:55  topf
 
@@ -5098,16 +5100,6 @@
 2004-12-04 18:20  topf
 
 	* open/ports-fu-info: Autocommited via upload.
-
-2004-12-04 15:33  topf
-
-	* testing/libgnomesu/slack-desc: Updated testing/libgnomesu to
-	  0.9.4-i486-1tom.
-
-2004-12-04 15:21  topf
-
-	* testing/libgnomesu/: SlackBuild, doinst.sh, requires, slack-desc,
-	  sources: Added testing/libgnomesu-0.9.4-i486-1tom.
 
 2004-12-04 15:20  topf
 
