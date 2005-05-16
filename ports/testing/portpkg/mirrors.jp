@@ -1,0 +1,26 @@
+#BLURB="Japanese/Asian mirror sites"
+#
+# Replace these servers with those MIRRORS when downloading files.
+# This is a list of Japanese/Asian mirror sites, to use them make a symlink to
+# 'mirrors' first!
+#
+# Note: This file will be overwritten on upgrades, you should add your own
+# mirrors-list to mirrors.local!
+#
+
+# master server				mirror
+
+http://ftp.gnome.org/pub/GNOME/	        ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
+http://ftp.gnome.org/pub/gnome/		ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
+ftp://ftp.gnome.org/pub/GNOME/		ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
+ftp://ftp.gnome.org/pub/gnome/		ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
+
+ftp://ftp.gimp.org/pub/gimp/	        ftp://SunSITE.sut.ac.jp/pub/archives/packages/gimp/
+ftp://ftp.gtk.org/pub/gtk/		ftp://SunSITE.sut.ac.jp/pub/archives/packages/gtk/
+
+ftp://ftp.kernel.org/			ftp://ftp.jp.kernel.org/
+
+http://.*.dl.sourceforge.net/		http://jaist.dl.sourceforge.net/
+http://dl.sourceforge.net/		http://jaist.dl.sourceforge.net/
+
+ftp://ftp.slackware.com/pub/slackware/	ftp://ftp.nara.wide.ad.jp/1/Linux/Slackware/

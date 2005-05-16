@@ -1,0 +1,48 @@
+#
+# IGNORE these ports for dependencies (when making the "requires" file)
+# Maintainers should add these dependencies manually if really needed
+#
+# Note: This file will be overwritten on upgrades, you should add your own
+# ignore-list to ignore.local!
+#
+
+# Slackware packages that are either installed anyway or just optional
+
+aaa_base
+aaa_elflibs
+gcc
+gcc-g++
+gcc-g77
+gcc-gnat
+gcc-java
+gcc-objc
+#glibc
+glibc-solibs
+glibc-zoneinfo
+glibc-i18n
+glibc-profile
+gpm
+openssl-solibs
+
+# optional packages or ports (also Dropline packages, X-drivers)
+
+elflibs
+freetype
+freetype2
+fontconfig
+savage
+linux-pam
+pam
+
+# requirements maintainers should better add manually
+
+hal
+dbus
+howl
+gamin
+fam
+esound
+arts
+polypaudio
+audiofile
+alsa-lib
