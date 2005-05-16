@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.3.0
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -23,6 +23,7 @@ cd $TMP || exit 1
 tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
+#+config-fix
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -31,7 +32,9 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --disable-poppler-qt \
   $ARCH-slackware-linux || exit 1
+#+config-fix
 make || exit 1
 make install DESTDIR=$PKG || exit 1
 rm -rf $PKG/usr/info/dir
