@@ -1,8 +1,0 @@
-Install GStreamer-setup:
-
-rm -r $PKG/usr/share/doc
-rm -f $PKG/var/lib/cache/gstreamer-0.8/registry.xml
-mkdir -p $PKG/var/lib/cache/gstreamer-0.8
-mkdir -p $PKG/var/log/setup
-zcat $CWD/setup.07.get-register.gz >$PKG/var/log/setup/setup.07.get-register
-chmod 755 $PKG/var/log/setup/setup.07.get-register
