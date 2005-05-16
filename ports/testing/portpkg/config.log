@@ -1,0 +1,6 @@
+Execute: rm -f conf.aotest
+executing test: cc -o _temp _temp.c -I/usr/local/include
+Execute: cc -o _temp _temp.c -I/usr/local/include
+Execute: ./_temp
+Execute: rm -f _temp.c _temp
+Execute: rm conf.aotest

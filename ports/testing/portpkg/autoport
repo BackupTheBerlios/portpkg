@@ -111,6 +111,8 @@ remove_inst() # command_to_remove file
   fi
 }
 
+is_root || die
+
 # first: do we have tags?
 [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
@@ -318,12 +320,18 @@ else
   row "Downloading $file"
   VERBOSE=true
   output=/dev/stdout
-  get `decode $src` $SRC_DIR/$file || die
+  case $src in
+    cvs://*)
+      get `decode $src` $CVS_DIR/$file || die;;
+    *)
+      get `decode $src` $SRC_DIR/$file || die;;
+  esac
 fi
 
 # write skeletons
 failed=false
 sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
+#sed -i "s,%portpkg_version%,$ENGINE_VER," $script
 echo `encode "$sources"` >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
@@ -422,12 +430,12 @@ fi
 # docs
 if grep -sq "#!section-doc" $script; then
   docs=`egrep "^ABOUT$|^ABOUT-NLS$|^ANNOUNCE$|^AUTHORS$|^CONFIGURATION$|^CHANGES$\
-  |^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
-  |^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
-  |^LICENSE$|^LSM$|^MANIFEST$|^NEWS$|README|Readme|^SITES$|RELEASE|^RELNOTES$\
-  |^THANKS$|^TIPS$|^TODO$|^VERSION$|^CONFIGURATION|^GPL$|^License$|^Doc$|^doc$\
-  |^Docs|^docs|^Roadmap$|^ROADMAP$|BUGS|^index.ht|INDEX" $t/footprint \
-  | grep -v / | sort -u | xargs`
+|^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
+|^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
+|^LICENSE$|^LSM$|^MANIFEST$|^NEWS$|README|Readme|^SITES$|RELEASE|^RELNOTES$\
+|^THANKS$|^TIPS$|^TODO$|^VERSION$|^CONFIGURATION|^GPL$|^License$|^Doc$|^doc$\
+|^Docs|^docs|^Roadmap$|^ROADMAP$|BUGS|^index.ht|INDEX" $t/footprint \
+| grep -v / | sort -u | xargs`
   if [ "$docs" ]; then
     row "Checking docs... $docs."
     sed -i "s,%docs%,$docs," $script
@@ -446,31 +454,41 @@ if grep -sqe "#!section-config" -e "#!section-make" $script; then
     arch=noarch
   else
     snip perl $script
-    if check "^configure$" $t/footprint; then
+    if check "^configure(|\.in|\.in\.in)$" $t/footprint; then
       if check "KDEDIRS" $TMP/$srcdir_prefix/configure; then
         sed -i "s,%prefix%,opt/kde,g" $script
         snip ac_sysconfdir $script
         snip ac_localstatedir $script
-#        snip chownbin $script
       else
-        check "--prefix" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
-        check "--sysconfdir" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
-        check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
+        check "--prefix" $TMP/$srcdir_prefix/configure* || snip ac_prefix $script
+        check "--sysconfdir" $TMP/$srcdir_prefix/configure* || snip ac_sysconfdir $script
+        check "--localstatedir" $TMP/$srcdir_prefix/configure* || snip ac_localstatedir $script
       fi
-      check "--program-prefix" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
-      check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
+      check "--program-prefix" $TMP/$srcdir_prefix/configure* || snip ac_program_prefix $script
+      check "--disable-static" $TMP/$srcdir_prefix/configure* || snip ac_disable_static $script
       snip cfg_autogen $script
     elif check "^autogen.sh$" $t/footprint; then
       :
     else
       snip cfg_configure $script
       snip cfg_autogen $script
-      if check "^setup\.py$" $t/footprint; then
-        snip mk $script
+      snip mk $script
+      if check "^Makefile$" $t/footprint; then
+        if check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
+          snip cfg_prefix $script
+        else
+          snip cfg_PREFIX $script
+          if check "prefix" $TMP/$srcdir_prefix/Makefile*; then
+            :
+          else
+            snip cfg_prefix $script
+            warn "Don't know how to configure this package."
+          fi
+        fi
+      elif check "^setup\.py$" $t/footprint; then
         arch=noarch
       else
-        error "Don't know how to build this package."
-        failed=true
+        warn "Don't know how to configure this package."
       fi
     fi
   fi
@@ -481,7 +499,9 @@ sed -i "s,%prefix%,usr,g" $script
 
 # installation prefix
 if grep -sq "#!section-install" $script; then
-  if check "^Makefile" $t/footprint; then
+  # make sure not to leave make install when setup.py is there!
+  if ! grep -sq "^setup\.py$" $t/footprint \
+  && check "^Makefile" $t/footprint; then
     snip python $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
@@ -498,17 +518,14 @@ if grep -sq "#!section-install" $script; then
           :
         else
           snip inst_prefix $script
-          if check "/usr/local" $TMP/$srcdir_prefix/{,*/}Makefile*; then
-            :
-          else
-            error "Don't know how to install this package (no install-prefix)."
-            failed=true
-          fi
+          error "Don't know how to install this package (no install-prefix)."
+          failed=true
         fi
       fi
     fi
   # as always, check setup.py at last! use configure if possible!
   elif check "^setup\.py$" $t/footprint; then
+    snip mk $script
     snip inst_destdir $script
     snip inst_PREFIX $script
     snip inst_prefix $script
@@ -536,13 +553,13 @@ if ! check "CFLAGS" $TMP/$srcdir_prefix/*; then
 fi
 
 # cxxflags
-use_cxxflags=true
+#use_cxxflags=true
 if ! check "CXXFLAGS" $TMP/$srcdir_prefix/*; then
   snip cxxflags $script
 fi
 
 # slkcflags
-grep -sqe "CFLAGS" -e "CXXFLAGS" $script || snip slkcflags $script
+grep -sqe "^CFLAGS" -e "^CXXFLAGS" $script || snip slkcflags $script
 
 # gconf schemas (first remove gconf() and all gconf calls in doinst.sh)
 if [ -f $path/doinst.sh ]; then
@@ -553,8 +570,8 @@ if check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
   row "Adding gconf() to doinst.sh"
   sed '/^#\!doinst.sh_gconf$/,/^#\!doinst.sh_gconf$/!d' $0 >>$path/doinst.sh
   row "Adding gconf schemas installations in doinst.sh"
-  egrep "\.schemas(|\.in|\.in\.in)$" $t/footprint \
-  | sed "s,^.*\([^/]*\.schemas\).*$,gconf etc/gconf/schemas/\1,g" | sort -u >>$path/doinst.sh
+  find $TMP/$srcdir_prefix/ -name "*.schemas*" -exec basename {} \; \
+  | sed -r "s,^(.*)\.schemas.*$,gconf etc/gconf/schemas/\1.schemas,g" | sort -u >>$path/doinst.sh
 else
   snip schemas $script
 fi
@@ -727,6 +744,8 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 #!cfg_configure
 ##perl Makefile.PL || exit 1 ##perl
 perl Makefile.PL ##perl
+make PREFIX=/%prefix% ##cfg_PREFIX
+make prefix=/%prefix% ##cfg_prefix
 #!section-config
 #%config-fix%
 #%post-config-fix%
@@ -744,7 +763,7 @@ make install prefix=$PKG/%prefix% ##inst_prefix
 ##python setup.py build install --root=$PKG || exit 1 ##python
 python setup.py build install --root=$PKG ##python
 rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
-rmdir -p $PKG/usr/lib/perl?/?.?.?/*-linux/ || true ##perl
+##rmdir -p $PKG/usr/lib/perl?/?.?.?/*-linux/ || true ##perl
 ##find $PKG/usr/lib/python?.?/site-packages/ -name "*.py[co]" -exec rm -v {} \; ##pyco
 rm -rfv $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rfv $PKG/usr/info/dir
@@ -765,6 +784,7 @@ chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
 #!strip
 #!section-strip
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #!section-doc
 cp -a \ ##docs
@@ -775,7 +795,6 @@ cp -a \ ##docs
 #%post-doc-fix%
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
 ##find $PKG/usr/{man,info} -type f -exec gzip -9 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
@@ -790,6 +809,7 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/%srcdirprefix%
   rm -rf $PKG
 fi
+###:autoport %portpkg_version%
 #!SlackBuild.skel
 
 #!doinst.sh_config

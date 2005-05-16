@@ -24,6 +24,7 @@ into.\" 0 0 0 " >$t/menu
   -e "s,^l$,& \"Libraries\" ," \
   -e "s,^local$,& \"Local ports\" ," \
   -e "s,^n$,& \"Network utilities\" ," \
+  -e "s,^open$,& \"Contributed (untested)\" ," \
   -e "s,^patches$,& \"Security updates\" ," \
   -e "s,^pasture$,& \"Compatibility packages\" ," \
   -e "s,^rootdisks$,& \"Boot programmes\" ," \
@@ -57,14 +58,14 @@ install them.\" 21 75 12 " >$t/menu
   while read name; do
     loc=`grep -m 1 $(regex $name) $t/locs`
     pkg=`echo $loc | sed "s,^.*/,,"`
-    desc=`grep -sv ^# $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2-` #| tr " " "_"`
+    desc=`grep -s ^$name: $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | sed "s,[\"],',g"`
     desc=${desc:-}
     [ $(fgrep -xm 1 $pkg $t/inst) ] \
     && echo \"$name\" \"$desc\" on \"$pkg\" \\>>$t/list \
     || echo \"$name\" \"$desc\" off \"$pkg\" \\>>$t/list
     ((i++))
     echo $((100*i/count))
-  done <$t/unames | dialog --gauge "Searching ports..." 0 40
+  done <$t/unames | dialog --gauge "Searching group $1/..." 0 40
   sort $t/list -o $t/list
   cat $t/list >>$t/menu
   . $t/menu 2>$t/pos_names
@@ -78,10 +79,10 @@ install them.\" 21 75 12 " >$t/menu
   if [ -s $t/list_remove ]; then
     clear
     removepkg `cat $t/list_remove` 2>&1
-    # fake a summary
-    echo -e "\nSummary of actions:" >/tmp/portpkg-summary
-    cat $t/list_remove | xargs -l echo "  --> Finished" >>/tmp/portpkg-summary
-    dialog --title "REMOVING PACKAGES" --textbox /tmp/portpkg-summary 0 0
+#    # fake a summary
+#    echo -e "\nSummary of actions:" >/tmp/portpkg-summary
+#    cat $t/list_remove | xargs -l echo "  --> Removed" >>/tmp/portpkg-summary
+#    dialog --title "REMOVING PACKAGES" --textbox /tmp/portpkg-summary 0 0
   fi
   for p in `cat $t/pos_names`; do
     pkg=`grep -m 1 $(regex $p) $t/pkgs`
@@ -90,7 +91,7 @@ install them.\" 21 75 12 " >$t/menu
   if [ -s $t/list_install ]; then
     clear
     portpkg `cat $t/list_install` 2>&1
-    dialog --title "ADDING PACKAGES" --textbox /tmp/portpkg-summary 0 0
+#    dialog --title "ADDING PACKAGES" --textbox /tmp/portpkg-summary 0 0
   fi
 }
 

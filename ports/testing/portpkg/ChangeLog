@@ -1,3 +1,49 @@
+2005-04-27 15:27  topf
+
+	* ChangeLog: Updated. (cronjob)
+
+2005-04-23 20:57  topf
+
+	* autoport: Fixed new old gconf installation.
+
+2005-04-22 21:20  topf
+
+	* autoport: Switched back to install schemas via doinst.sh.
+
+2005-04-21 17:03  topf
+
+	* autoport: Write skeleton after downlading source file.  Check for
+	  .desktop.in.in.  Mkdir $PKG/etc/gconf/gconf.xml.defaults for
+	  schemas installation to stop gconf creating using 700 mask.
+
+2005-04-19 21:18  topf
+
+	* autoport: Removed "prepare", inserted section "strip".
+
+2005-04-19 21:12  topf
+
+	* autoport: Added section prepare (chowning root.bin and stripping
+	  bins).  Moved beginning of section doc-fix to enclose only cp -av
+	  ... $PKG/usr/doc/...	Leave source tree in $TMP as portpkg does,
+	  for user inspections.
+
+2005-04-18 14:19  topf
+
+	* SlackBuild: Removed integration of pp-config in pkgtool.
+
+2005-04-18 10:45  topf
+
+	* checkpkg: Fixed summary output dialog of removed packages.
+
+2005-04-17 20:13  topf
+
+	* pp-config: Fixed resources menu to work with more than one
+	  importer script.
+
+2005-04-17 16:21  topf
+
+	* ChangeLog: Updated.
+
 2005-04-17 15:21  topf
 
 	* ChangeLog: Updated.
