@@ -1,0 +1,11 @@
+psyco: Python compiler
+psyco:
+psyco: Think of Psyco as a kind of just-in-time (JIT) compiler, a little
+psyco: bit like Java's, that emit machine code on the fly instead of
+psyco: interpreting your Python program step by step. The difference is that
+psyco: Psyco writes several version of the same blocks (a block is a bit of
+psyco: a function), which are optimized by being specialized to some kinds
+psyco: of variables (a "kind" can mean a type, but it is more general). The
+psyco: result is that your unmodified Python programs run faster.
+psyco:
+psyco:
