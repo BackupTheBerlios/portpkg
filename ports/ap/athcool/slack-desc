@@ -2,10 +2,10 @@ athcool: athcool (powersaving mode for AMD Athlon/Duron processors)
 athcool:
 athcool: Since enabling Powersaving mode, you can save power consumption,
 athcool: lower CPU temperature when CPU is idle.
-athcool:
+athcool: 
 athcool: Powersaving works if your kernel support ACPI (APM not work),
 athcool: because athcool only set/unset "Disconnect enable when STPGNT
-athcool: detected" bits in the Northbridge of Chipset. To really save
-athcool: power, someone has to send the STPGNT signal when idle. This is
-athcool: done by the ACPI subsystem when C2 state enterd.
+athcool: detected" bits in the Northbridge of Chipset. To really save power,
+athcool: someone has to send the STPGNT signal when idle. This is done by
+athcool: the ACPI subsystem when C2 state enterd.
 athcool:
