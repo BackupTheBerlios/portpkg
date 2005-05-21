@@ -1,3 +1,26 @@
+2005-05-21 03:54  topf
+
+	* open/: sarg/SlackBuild, sarg/doinst.sh, sarg/exclude_hosts.new,
+	  sarg/footprint, sarg/info, sarg/md5sums, sarg/sarg.conf.new,
+	  sarg/slack-desc, sarg/sources, cyrus-sasl/SlackBuild,
+	  cyrus-sasl/footprint, cyrus-sasl/info, cyrus-sasl/md5sums,
+	  cyrus-sasl/requires, cyrus-sasl/slack-desc, cyrus-sasl/sources,
+	  xmame/SlackBuild, xmame/footprint, xmame/info,
+	  xmame/makefile.unix, xmame/md5sums, xmame/requires,
+	  xmame/slack-desc, xmame/sources:  (cronjob)
+
+2005-05-20 22:25  hnaz
+
+	* l/libevent/: SlackBuild, footprint, md5sums: 1.0e >> 1.1
+
+2005-05-20 22:23  hnaz
+
+	* ap/nano/: SlackBuild, footprint, md5sums: 1.2.4 >> 1.2.5
+
+2005-05-20 04:03  topf
+
+	* ChangeLog: Updated. (cronjob)
+
 2005-05-19 12:51  topf
 
 	* gnome/epiphany-extensions/: SlackBuild, footprint, md5sums,
@@ -267,8 +290,11 @@
 
 2005-05-03 13:48  topf
 
-	* n/sarg/: SlackBuild, footprint, md5sums, sources: Moved open/sarg
-	  to n/.
+	* open/sarg/SlackBuild, n/sarg/SlackBuild, n/sarg/footprint,
+	  n/sarg/md5sums, n/sarg/sources, open/sarg/doinst.sh,
+	  open/sarg/exclude_hosts.new, open/sarg/footprint, open/sarg/info,
+	  open/sarg/md5sums, open/sarg/sarg.conf.new, open/sarg/slack-desc,
+	  open/sarg/sources: Moved open/sarg to n/.
 
 2005-05-03 13:42  topf
 
@@ -393,6 +419,11 @@
 
 	* l/libsigc++/: SlackBuild, footprint, md5sums, slack-desc,
 	  sources: Updated to 2.0.11.
+
+2005-04-30 19:54  topf
+
+	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
+	  info, md5sums, sarg.conf.new, slack-desc, sources: (cronjob)
 
 2005-04-30 12:02  topf
 
@@ -1357,8 +1388,12 @@
 
 2005-04-06 09:05  topf
 
-	* n/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
-	  md5sums, sarg.conf.new, slack-desc, sources: Moved
+	* open/sarg/SlackBuild, open/sarg/doinst.sh,
+	  open/sarg/exclude_hosts.new, open/sarg/footprint, open/sarg/info,
+	  open/sarg/md5sums, open/sarg/sarg.conf.new, open/sarg/slack-desc,
+	  open/sarg/sources, n/sarg/SlackBuild, n/sarg/doinst.sh,
+	  n/sarg/exclude_hosts.new, n/sarg/footprint, n/sarg/md5sums,
+	  n/sarg/sarg.conf.new, n/sarg/slack-desc, n/sarg/sources: Moved
 	  open/sarg-2.0.5-i686-1stb to n/.
 
 2005-04-06 09:03  topf
@@ -1475,6 +1510,11 @@
 	* xap/graveman/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc: Updated xap/graveman to 0.3.9-i686-1tom.
 
+2005-04-01 19:20  topf
+
+	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
+	  info, md5sums, sarg.conf.new, slack-desc, sources:  (cronjob)
+
 2005-04-01 12:41  topf
 
 	* testing/portpkg/: COPYING, CREDITS, NEWS, README, README.Links,
@@ -1541,6 +1581,12 @@
 	* kde/k3bmonkeyaudioplugin/: SlackBuild, footprint, md5sums,
 	  requires, slack-desc, sources: Moved
 	  open/k3bmonkeyaudioplugin-0.11.23-i686-1sjn to kde/.
+
+2005-03-31 23:10  topf
+
+	* open/cyrus-sasl/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: Moved open/cyrus-sasl-2.1.20-i686-1stb to
+	  l/.
 
 2005-03-31 23:07  topf
 
@@ -1663,6 +1709,10 @@
 	* open/yelp/: info, optional, requires: mozilla req moved to
 	  optional (cronjob)
 
+2005-03-29 20:20  topf
+
+	* open/cyrus-sasl/SlackBuild:  (cronjob)
+
 2005-03-29 16:34  hnaz
 
 	* ap/cabextract/slack-desc: More precise ;)
@@ -1696,6 +1746,11 @@
 
 	* gnome/conglomerate/: SlackBuild, doinst.sh, footprint, info,
 	  md5sums, requires, slack-desc, sources: Integrated -> gnome/
+
+2005-03-28 20:20  topf
+
+	* open/cyrus-sasl/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources:	(cronjob)
 
 2005-03-28 19:20  topf
 
