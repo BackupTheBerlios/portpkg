@@ -1,0 +1,42 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=3.1.1
+ARCH=noarch
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION
+chown -R root.root .
+perl Makefile.PL
+make PREFIX=/usr
+make prefix=/usr
+make
+make install DESTDIR=$PKG
+rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rfv $PKG/usr/info/dir
+find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
+chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  CHANGES COPYING COPYRIGHT INSTALL KNOWN_BUGS MANIFEST README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi
