@@ -1,3 +1,42 @@
+2005-05-23 03:54  topf
+
+	* open/amarok/: SlackBuild, footprint, info, md5sums, optional,
+	  requires, slack-desc, sources: version 1.2.4 (cronjob)
+
+2005-05-22 21:56  topf
+
+	* gnome/gnomemeeting/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, slack-desc, sources: New entry.
+
+2005-05-22 21:29  topf
+
+	* l/: pwlib/SlackBuild, pwlib/footprint, pwlib/md5sums,
+	  pwlib/requires, pwlib/slack-desc, pwlib/sources,
+	  openh323/SlackBuild, openh323/footprint, openh323/md5sums,
+	  openh323/requires, openh323/slack-desc, openh323/sources: New
+	  entry.
+
+2005-05-22 18:35  topf
+
+	* ap/swatch/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: New entry.
+
+2005-05-22 18:33  topf
+
+	* l/: datemanip/SlackBuild, datemanip/footprint, datemanip/md5sums,
+	  datemanip/slack-desc, timedate/SlackBuild, timedate/footprint,
+	  timedate/md5sums, timedate/requires, timedate/slack-desc:
+	  Regenerated script.
+
+2005-05-22 18:32  topf
+
+	* l/date-calc/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: New entry.
+
+2005-05-22 04:21  topf
+
+	* ChangeLog: Updated. (cronjob)
+
 2005-05-22 03:55  topf
 
 	* open/gnome-panel/: SlackBuild, doinst.sh, footprint, info,
@@ -770,8 +809,11 @@
 
 2005-04-17 09:45  topf
 
-	* kde/amarok/: SlackBuild, footprint, md5sums, requires: dumped to
-	  version 1.2.3 (andreas)
+	* open/amarok/SlackBuild, open/amarok/footprint, open/amarok/info,
+	  open/amarok/md5sums, open/amarok/requires,
+	  open/amarok/slack-desc, open/amarok/sources,
+	  kde/amarok/SlackBuild, kde/amarok/footprint, kde/amarok/md5sums,
+	  kde/amarok/requires: dumped to version 1.2.3 (andreas)
 
 2005-04-17 09:41  topf
 
@@ -958,6 +1000,11 @@
 	* d/portpkg/portpkg: Check for more common mistakes. Optimimised
 	  CVS sync routine. Changed $SYNC_ADDON system to
 	  /etc/portkpg/importers/\*. Sync also /usr/obj/pkg/local/\*.
+
+2005-04-15 16:20  topf
+
+	* open/amarok/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: dumped to version 1.2.3 (cronjob)
 
 2005-04-14 17:29  topf
 
@@ -2588,9 +2635,20 @@
 	* kde/amarok/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Added kde/amarok-1.2.1-i686-1andreas.
 
+2005-03-12 13:55  topf
+
+	* open/amarok/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved open/amarok-1.2.1-i686-1andreas to
+	  kde/.
+
 2005-03-12 11:55  topf
 
 	* d/valgrind/SlackBuild, xap/gxmessage/SlackBuild: [no log message]
+
+2005-03-12 11:20  topf
+
+	* open/amarok/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Autocommited via upload.
 
 2005-03-12 09:20  topf
 
@@ -5791,6 +5849,11 @@
 
 	* gnome/libghttp/sources: Forgotten
 
+2004-11-10 15:40  tomtoastbrot
+
+	* gnome/gnomemeeting/: SlackBuild, sources: Removed
+	  gnome/gnomemeeting (broken)
+
 2004-11-10 15:21  tomtoastbrot
 
 	* gnome/drwright/requires, gnome/gnome-clipboard-daemon/SlackBuild,
@@ -6385,7 +6448,8 @@
 	  gnome/gnome-blog/slack-desc, gnome/gnome-blog/sources,
 	  gnome/gnome-schedule/SlackBuild, gnome/gnome-schedule/doinst.sh,
 	  gnome/gnome-schedule/requires, gnome/gnome-schedule/slack-desc,
-	  gnome/gnome-schedule/sources, gnome/gnomevfs-mount/SlackBuild,
+	  gnome/gnome-schedule/sources, gnome/gnomemeeting/SlackBuild,
+	  gnome/gnomemeeting/sources, gnome/gnomevfs-mount/SlackBuild,
 	  gnome/gnomevfs-mount/doinst.sh, gnome/gnomevfs-mount/requires,
 	  gnome/gnomevfs-mount/slack-desc, gnome/gnomevfs-mount/sources,
 	  gnome/gtorrentviewer/SlackBuild, gnome/gtorrentviewer/doinst.sh,
@@ -6948,7 +7012,8 @@
 	  gnome/gnome-blog/slack-desc, gnome/gnome-blog/sources,
 	  gnome/gnome-schedule/SlackBuild, gnome/gnome-schedule/doinst.sh,
 	  gnome/gnome-schedule/requires, gnome/gnome-schedule/slack-desc,
-	  gnome/gnome-schedule/sources, gnome/gnomevfs-mount/SlackBuild,
+	  gnome/gnome-schedule/sources, gnome/gnomemeeting/SlackBuild,
+	  gnome/gnomemeeting/sources, gnome/gnomevfs-mount/SlackBuild,
 	  gnome/gnomevfs-mount/doinst.sh, gnome/gnomevfs-mount/requires,
 	  gnome/gnomevfs-mount/slack-desc, gnome/gnomevfs-mount/sources,
 	  gnome/gtorrentviewer/SlackBuild, gnome/gtorrentviewer/doinst.sh,
