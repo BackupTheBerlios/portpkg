@@ -300,7 +300,7 @@ mkdir -p $path
 touch $script
 
 # check the script for inline-fixes
-for fix in `grep "^#[+-].*-fix$" | cut -c 3-`; do
+for fix in `grep "^#[+-].*-fix$" $script | cut -c 3-`; do
   # "#+tag...#+tag"-style
   sed -n "/^#+$fix$/,/^#+$fix$/p" $script >$t/$fix
   # "#-tag"
@@ -409,7 +409,7 @@ sed -i "s,^\./,," $t/footprint
 sed -i "s,^$srcdir_prefix/,," $t/footprint
 
 # re-insert the fixes
-for fix in `find $t/*-fix -exec basename {} \;`; do
+for fix in `find $t/*-fix -exec basename {} \; 2>/dev/null`; do
   sec=`basename $fix -fix`
   row "Fixing $sec"
   # if it's not a post-fix, then it's meant to replace the section
@@ -434,7 +434,7 @@ else
 fi
 
 # docs
-if grep -sq "#!section-doc" $script; then
+if grep -sq "#!doc" $script; then
   docs=`egrep "^ABOUT$|^ABOUT-NLS$|^ANNOUNCE$|^AUTHORS$|^CONFIGURATION$|^CHANGES$\
 |^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
 |^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
@@ -452,7 +452,7 @@ if grep -sq "#!section-doc" $script; then
 fi
 
 # configure
-if grep -sqe "#!section-config" -e "#!section-make" $script; then
+if grep -sqe "#!config" -e "#!make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
 #    snip cfg_autogen $script
@@ -510,7 +510,7 @@ fi
 sed -i "s,%prefix%,usr,g" $script
 
 # installation prefix
-if grep -sq "#!section-install" $script; then
+if grep -sq "#!install" $script; then
   # make sure not to leave make install when setup.py is there!
   if ! grep -sq "^setup\.py$" $t/footprint \
   && check "^Makefile" $t/footprint; then
