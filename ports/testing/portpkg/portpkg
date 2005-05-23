@@ -41,6 +41,7 @@ TMP=/tmp
 
 SUBMIT_URL="http://portpkg.berlios.de/upload.php"
 SUBMIT_CMD="curl -F filetoupload=@\$ADM_DIR/portpkg/\$package.tar.bz2 \$SUBMIT_URL >/dev/null 2>&1"
+SUBMIT_SUB=submit_tarball
 
 [ -f $CFG_DIR/local.conf ] && source $CFG_DIR/local.conf
 
@@ -71,8 +72,8 @@ declare \
 ls_inst() { find $ADM_DIR/packages/ -type f | sed "s,^.*/,," 2>/dev/null
             cat $FAKED_INST 2>/dev/null; }
 ls_pkg()  { find $PKG_DIR/ -name "*.tgz" -follow | sed -r "s,^.*/(.*/.*)\.tgz$,\1," 2>/dev/null; }
-ls_slk()  { find $PRT_DIR/local -name "*SlackBuild" -follow | sort
-            find $PRT_DIR/ ! -path "$PRT_DIR/local/*" -name "*SlackBuild" -follow | sort; }
+ls_slk()  { find $PRT_DIR/local/ -name "*SlackBuild" -follow | sort
+            find $PRT_DIR/ ! -path "$PRT_DIR/local/*" -name "*SlackBuild" | sort; }
 #ls_slk()  { find $PRT_DIR/ -name "*SlackBuild" -follow \
 #  | sed "s,/local/,/0local/," | sort | sed "s,/0local/,/local/," 2>/dev/null; }
 
@@ -203,15 +204,15 @@ ls_diff() # >list
     grep -xm 1 "$check" $t/avail >>$t/avail.check
     grep -xm 1 "$check" $t/inst >>$t/inst.check
   done
-# FIXME: support lazy checks!
-#  if $LAZY_CHECKS; then
-#    sed -i "s,\(.*-.*\)-.*-.*,\1," $t/avail.check
-#    sed -i "s,\(.*-.*\)-.*-.*,\1," $t/inst.check
-#    fgrep -vxf $t/inst.check $t/avail.check | sort -u \
-#    | xargs -i echo "{}-[^-]*-[^-]*$" | grep -f - $t/avail
-#  else
+  if $LAZY_CHECKS; then
+    # since lazy-checks wouldn't make sence for --diff, it has a slightly
+    # different meaning here: don't care about architecture differences!
+    sed -i "s,\(.*-.*\)-.*-\(.*\),\1-.*-\2," $t/avail.check
+    sed -i "s,\(.*-.*\)-.*-\(.*\),\1-.*-\2," $t/inst.check
+    fgrep -vxf $t/inst.check $t/avail.check | sort -u | grep -f - $t/avail
+  else
     fgrep -vxf $t/inst.check $t/avail.check | sort -u
-#  fi
+  fi
   debug "ls_diff(): finished"
 }
 
@@ -336,7 +337,7 @@ update_meta_info()
   cat $t/old_req requires >>$t/requires 2>/dev/null
 
   # now generate new "requires" file
-  sed -i "/^# opt/d" requires
+  sed -i "/^# opt/d" $t/requires
   cat $t/old_opt | xargs -r -l echo "# optional:" >>$t/requires
   sort -uo $t/requires $t/requires
   sed -i "/^$/d" $t/requires
@@ -346,7 +347,7 @@ update_meta_info()
   fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "  --> Ignoring dependencies:"
   fgrep -xvf $t/old_req $t/new_req | xargs -r echo "  --> New dependencies:"
   fgrep -xf $t/old_opt $t/auto_req | xargs -r echo "  --> Dependant options:"
-  fgrep -xvf $t/auto_req $t/new_req | xargs -r echo "  --> Arbitrary dependencies:"
+  fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
   grep -woe "usr/\(local/\|etc/\|share/doc/\|share/man/\|info/dir\).*" \
@@ -533,7 +534,7 @@ check_reqs()
   debug "check_reqs(): starting: $@"
 
   # check out "use"-list
-  explicit `grep -sve ^# -e ^$ $CFG_DIR/use` >$t/use
+  explicit `grep -sve ^# -e ^$ $CFG_DIR/use.local` >$t/use
   local use=`echo "$optional" | fgrep -xf $t/use -`
   debug "check_reqs(): $name requires: "$requires
   debug "check_reqs(): using optional: "$use
@@ -577,13 +578,12 @@ check_reqs()
       # add it
       elif add_pkg $avail_pkg; then
         debug "check_reqs(): added $req"
+        # after that add_pkg, we have to refresh
+        get_info $gpkg
       else
         error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | cut -d / -f 2`."
         return 1
       fi
-
-      # after that add_pkg, we have to refresh
-      get_info $gpkg
     else
       error "Cannot find required package $req! Stopping."
       return 1
@@ -662,6 +662,59 @@ add_pkg() # pkgex
   return 0
 }
 
+# commit the current port via tarball
+submit_tarball()
+{
+  local t=`mktemp -d`
+  has_prog curl || return 1
+
+# FIXME: use at least 7.12.2 (Slackware 10.1)
+  case `curl -V | head -n 1 | cut -d " " -f 2` in
+    7.12.0|7.12.1) die "You need curl >= 7.12.2";;
+    7.12.*)        ;;
+    *)             die "You need curl >= 7.12.2";;
+  esac
+
+  [ "$MY_TAG" ] || die "No tag configured. Please run: pp-config"
+  [ "$MY_EMAIL" ] || die "No mail address configured. Please run: pp-config"
+  [ "$MY_REALNAME" ] || die "No real name configured. Please run: pp-config"
+
+  # make tarball with the port scripts
+  rm -rf $ADM_DIR/portpkg/$package.tar.bz2
+  mkdir -p $t/$package
+  cp -a $path $t/$package
+  find $t/$package/ -depth -path "*CVS*" -exec rm -r {} \;
+  rm -rf $t/$package/arbitrary
+  cat >$t/$package/$name/info <<EOF
+Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>
+Intended group:  $group/
+ChangeLog entry:  $export_opt
+EOF
+  tar cjf $ADM_DIR/portpkg/$package.tar.bz2 -C $t/$package .
+  # upload where ever it should be
+  eval $SUBMIT_CMD || error "An error occured!"
+}
+
+# commit the current port to the CVS repository
+# this is only usefull if the ports tree already has a valid CVS account!
+submit_cvs()
+{
+  local t=`mktemp -d`
+  has_prog cvs || return 1
+  cd $path || die
+  # check if this path is already in the repository
+  [ "`find -path "*CVS*"`" ] || ( cd .. && cvs -qz9 add `basename $path`; )
+  # compare local tree with CVS
+  find ! -path "*CVS*" ! -path "." | sort >$t/local
+  find -name Entries -path "*CVS*" -exec grep -H / {} \; \
+  | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
+  # remove entries that are not here anymore
+  fgrep -vxf $t/local $t/cvs | xargs -rl cvs -qz9 rm
+  # add entries that are new here
+  fgrep -vxf $t/cvs $t/local | xargs -rl cvs -qz9 add
+  cvs -qz9 ci -m "$export_opt"
+}
+
 # prepare and install ports
 do_add() # pkgex-list
 {
@@ -698,7 +751,8 @@ do_diff()
   has_ports || die
   local diff_list=`ls_diff`
   [ "$diff_list" ] || die "No differences found."
-  stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
+#  stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
+  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
   ls_inst >$t/inst
   local pkg
   for pkg in $diff_list; do
@@ -708,33 +762,21 @@ do_diff()
     local inst_rel=`grep -m 1 $(regex $name) $t/inst | pkg2rel`
     avail=${avail:-$name}
     avail_rel=${avail_rel:-(n/a)}
-    echo -e "$name\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
+#    echo -e "$name\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
+    printf "%-31s %-23s %s\n" "$name" "$avail_rel" "$inst_rel"
   done
 }
 
 do_export()
 {
-  local t=`mktemp -d`
   is_root || die
   has_args "$@" || die
   has_ports || die
-  has_prog curl || die
 
-  # let's check the user didn't accidently give a port for summary
+  # make sure, the user didn't accidently give a port for summary
   case "$export_opt" in *\ *) ;; *) die "Summary must be at least two words!";; esac
 
-# FIXME: use at least 7.12.2 (Slackware 10.1)
-  case `curl -V | head -n 1 | cut -d " " -f 2` in
-    7.12.0|7.12.1) die "You need curl >= 7.12.2";;
-    7.12.*)        ;;
-    *)             die "You need curl >= 7.12.2";;
-  esac
-
-  [ "$MY_TAG" ] || die "No tag configured. Please run: pp-config"
-  [ "$MY_EMAIL" ] || die "No mail address configured. Please run: pp-config"
-  [ "$MY_REALNAME" ] || die "No real name configured. Please run: pp-config"
-
-  stanza "Exporting to `dirname $SUBMIT_URL`:"
+  stanza "Exporting:"
   local arg
   for arg in `explicit "$@"`; do
     debug "do_export(): \$arg=$arg"
@@ -742,12 +784,12 @@ do_export()
 
     # check if it's broken
     if [ -f $path/PORT_IS_BROKEN ]; then
-      error "Cannot export broken ports. Please fix first: $group/$name"
+      error "Cannot export broken ports: $group/$name"
       continue
     fi
 
     # check if it's already run
-    if ! [ -f $path/footprint ] || ! [ $path/footprint -nt $script ]; then
+    if ! [ -f $path/footprint ] || [ $path/footprint -ot $script ]; then
       error "No or too old footprint: $group/$name"
       continue
     fi
@@ -758,20 +800,21 @@ do_export()
       continue
     fi
 
-    row "Uploading $group/$package"
-    rm -rf $ADM_DIR/portpkg/$package.tar.bz2
-    mkdir -p $t/$package
-    cp -a $path $t/$package
-    find $t/$package/ -depth -path "*CVS*" -exec rm -r {} \;
-    rm -rf $t/$package/arbitrary
-    cat >$t/$package/$name/info <<EOF
-Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>
-Intended group:  $group/
-ChangeLog entry:  $export_opt
-EOF
-    tar cjf $ADM_DIR/portpkg/$package.tar.bz2 -C $t/$package .
+    # check description
+    if [ `grep -s ^$name: $path/slack-desc | grep :. | wc -l` -lt 3 ]; then
+      error "Too short description: $group/$name"
+      continue
+    fi
 
-    $DRY_RUN || eval $SUBMIT_CMD || error "An error occured!"
+    # check for links
+    if [ "`find $path/ -type l`" ]; then
+      error "Remove Links before export: $group/$name"
+      continue
+    fi
+
+    row "Exporting $group/$package"
+
+    $DRY_RUN || $SUBMIT_CMD
   done
 }
 
@@ -841,27 +884,16 @@ do_sync()
   local tree url
   while read tree url; do
     row "Syncing $PRT_DIR/$tree/" | sed "s,/\./,/,"
-    case $url in
-      cvs://*|httpup://*)
-        get $url $PRT_DIR/$tree | sed -r \
-          -e "/^Connecting/d" \
-          -e "/^Updating/d" \
-          -e "/^Finished/d" \
-          -e "s,^U , Updating ," \
-          -e "s,^C , Conflict with ," \
-          -e "s,^P , Patching ," \
-          -e "s,^M , Locally modified ," \
-          -e "s,^\\? , Unknown entry ," \
-          -e "s,^ *,  --> ,";;
-      *)
-        # repository delivered by bz2-tarballs
-        local file=`basename $url`
-        get $url $PRT_DIR/$tree/$file
-        cd $PRT_DIR/$tree
-        # remove old files first
-        [ -f .filelist ] && xargs -r rm -f <.filelist
-        tar xjvf $file >.filelist;;
-    esac
+    get $url $PRT_DIR/$tree | sed -r \
+      -e "/^Connecting/d" \
+      -e "/^Updating/d" \
+      -e "/^Finished/d" \
+      -e "s,^U , Updating ," \
+      -e "s,^C , Conflict with ," \
+      -e "s,^P , Patching ," \
+      -e "s,^M , Locally modified ," \
+      -e "s,^\\? , Unknown entry ," \
+      -e "s,^ *,  --> ,"
   done <$t/repos
 
   # sync package dir
@@ -910,10 +942,10 @@ Actions (alternative):
   -i, --info        View information about specified ports
   -f, --find strs   Find ports by matching pattern strings
   -l, --list        List (all or certain) available ports
-  -s, --sync        Sync local ports tree [$PRT_DIR]
+  -s, --sync        Sync local ports tree in [$PRT_DIR]
   -u, --upgrade     Upgrade all (!) outdated ports (see --diff)
   -v, --version	    View version information
-  -x, --export msg  Upload ports to [`dirname $SUBMIT_URL`]
+  -x, --export msg  Submit ports
 Options:
   -e, --reinstall   Reinstall package if already installed
   -b, --rebuild     Rebuild package if already built (implies --reinstall)

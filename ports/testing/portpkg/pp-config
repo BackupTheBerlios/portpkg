@@ -204,10 +204,10 @@ you?"; then
       fi;;
     *)
       dialog --title "$heading" --menu \
-"Do you want to optimise for your CPU? Your CPU is identified as `cpu` of \
-family `arch`. You can only optimise for your current architecture. If you \
-want to hack on different flags, edit $CFG_DIR/local.conf. Note, that not all \
-SlackBuilds support custom compiler flags.
+"Do you want to optimise for your CPU? Your CPU is identified as \``cpu`' of \
+family \``arch`'. You should only optimise for your current architecture if at \
+all. If you want to hack on different flags, edit $CFG_DIR/local.conf. Note, \
+that not all SlackBuilds support custom compiler flags.
 If unsure choose 'default'." 0 0 0 \
     "default"  "Build for i486, optimise for i686" \
     "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/menu

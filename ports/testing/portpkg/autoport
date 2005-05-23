@@ -49,8 +49,8 @@ snip()
 {
   # the "#!tag ... #!tag" method
   sed -i "/^#\!$1$/,/^#\!$1$/d" $2
-  # the "xxx ##tag" method
-  sed -i "/ *##$1$/d" $2
+  # the "xxx ##tag1 tag2" method
+  sed -i "/##\(\|.* \)$1\($\| \)/d" $2
 }
 
 encode()
@@ -299,18 +299,21 @@ stanza "Autoporting $group/$name-$version-$arch-$build:"
 mkdir -p $path
 touch $script
 
-# check for fixes in the script (style: #+post-config-fix)
-for i in $sections; do
-  sed -n "/^#+$i-fix$/,/^#+$i-fix$/p" $script >$t/$i-fix
+# check the script for inline-fixes
+for fix in `grep "^#[+-].*-fix$" | cut -c 3-`; do
+  # "#+tag...#+tag"-style
+  sed -n "/^#+$fix$/,/^#+$fix$/p" $script >$t/$fix
+  # "#-tag"
+  sed -n "/^#-$fix$/p" $script >>$t/$fix
   # ...and old-style (post-config-fix.autoport) files
-  if [ -f $path/$i-fix.autoport ]; then
-    echo "#+$i-fix" >$t/$i-fix
-    cat $path/$i-fix.autoport >>$t/$i-fix
-    echo "#+$i-fix" >>$t/$i-fix
+  if [ -f $path/$fix.autoport ]; then
+    echo "#+$fix" >$t/$fix
+    cat $path/$fix.autoport >>$t/$fix
+    echo "#+$fix" >>$t/$fix
     # obsolete
-    rm $path/$i-fix.autoport
+    rm $path/$fix.autoport
   fi
-  [ -s $t/$i-fix ] && row "Found $i-fix" || rm $t/$i-fix
+  [ -s $t/$fix ] && row "Found $fix" || rm $t/$fix
 done
 
 # downlaod source file
@@ -405,14 +408,17 @@ mv $t/src/* $TMP/
 sed -i "s,^\./,," $t/footprint
 sed -i "s,^$srcdir_prefix/,," $t/footprint
 
-# insert fixes
-for i in $sections; do
-  if [ -f $t/$i-fix ]; then
-    row "Fixing $i"
-    sed -i "\,^#%$i-fix%$,r$t/$i-fix" $script
-    # if it's not a post-xxx, then it's meant to replace the section
-    case $section in post-*) ;; *) snip section-$i $script;; esac
-  fi
+# re-insert the fixes
+for fix in `find $t/*-fix -exec basename {} \;`; do
+  sec=`basename $fix -fix`
+  row "Fixing $sec"
+  # if it's not a post-fix, then it's meant to replace the section
+  case $sec in post-*) ;; *)
+    sec=`echo $sec | sed "s,^post-,,"`
+    snip `basename $sec -fix` $script;;
+    # snip the base-section and continue as $sec was not post-xxx
+  esac
+  sed -i "\,^#%$fix%$,r$t/$fix" $script
 done
 
 # include patches
@@ -441,16 +447,18 @@ if grep -sq "#!section-doc" $script; then
     sed -i "s,%docs%,$docs," $script
   else
     row "Checking docs... none."
-    snip docs $script
+    snip doc $script
   fi
 fi
 
-# configure/make
+# configure
 if grep -sqe "#!section-config" -e "#!section-make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
-    snip cfg_autogen $script
+#    snip cfg_autogen $script
     snip cfg_configure $script
+    snip cfg_prefix $script
+    snip cfg_PREFIX $script
     arch=noarch
   else
     snip perl $script
@@ -467,11 +475,13 @@ if grep -sqe "#!section-config" -e "#!section-make" $script; then
       check "--program-prefix" $TMP/$srcdir_prefix/configure* || snip ac_program_prefix $script
       check "--disable-static" $TMP/$srcdir_prefix/configure* || snip ac_disable_static $script
       snip cfg_autogen $script
+      snip cfg_prefix $script
+      snip cfg_PREFIX $script
     elif check "^autogen.sh$" $t/footprint; then
       :
     else
       snip cfg_configure $script
-      snip cfg_autogen $script
+#      snip cfg_autogen $script
       snip mk $script
       if check "^Makefile$" $t/footprint; then
         if check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
@@ -486,6 +496,8 @@ if grep -sqe "#!section-config" -e "#!section-make" $script; then
           fi
         fi
       elif check "^setup\.py$" $t/footprint; then
+        snip cfg_prefix $script
+        snip cfg_PREFIX $script
         arch=noarch
       else
         warn "Don't know how to configure this package."
@@ -687,7 +699,6 @@ NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
 VERSION=%version%
-##SRCVER=%srcver% ##srcver
 ARCH=%arch%
 BUILD=%build%
 
@@ -705,32 +716,21 @@ fi
 #!slkcflags
 rm -rf $PKG
 mkdir -p $PKG/%prefix%
-##cd $TMP || exit 1
 cd $TMP
-##rm -rf $NAME-$VERSION || exit 1 ##extra_sdp
 rm -rf $NAME-$VERSION ##extra_sdp
 mkdir -p $NAME-$VERSION ##extra_sdp
-##cd $NAME-$VERSION || exit 1 ##extra_sdp
 cd $NAME-$VERSION ##extra_sdp
-##rm -rf %srcdirprefix% || exit 1 ##cd_sdp
-#!rpm
-rpm2targz $CWD/%tarball%
-tar xzvf `basename %tarball% .rpm`.tar.gz
-tar xzvf $NAME-$VERSION.tar.gz
-#!rpm
-##tar x%tarmode%vf $CWD/%tarball% || exit 1 ##tar
+rpm2targz $CWD/%tarball% ##rpm
+tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
+tar xzvf $NAME-$VERSION.tar.gz ##rpm
 tar x%tarmode%vf $CWD/%tarball% ##tar
-##cd %srcdirprefix% || exit 1 ##cd_sdp
 cd %srcdirprefix% ##cd_sdp
 cat $CWD/*.patch | patch -p1 --verbose ##patch
 zcat $CWD/*.patch.gz | patch -p1 --verbose ##patchgz
 chown -R root.root .
-##find . -perm %perm644% -exec chmod 644 {} \; ##perms644
-##find . -perm %perm755% -exec chmod 755 {} \; ##perms755
-#!section-config
-##./autogen.sh || exit 1 ##cfg_autogen
-./autogen.sh ##cfg_autogen
+#!config
 #!cfg_configure
+./autogen.sh ##cfg_autogen
 CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 ./configure \
@@ -739,42 +739,27 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
-##  $ARCH-slackware-linux || exit 1
   $ARCH-slackware-linux
 #!cfg_configure
-##perl Makefile.PL || exit 1 ##perl
 perl Makefile.PL ##perl
 make PREFIX=/%prefix% ##cfg_PREFIX
 make prefix=/%prefix% ##cfg_prefix
-#!section-config
+#!config
 #%config-fix%
-#%post-config-fix%
-#!section-install
-##make || exit 1 ##mk
+#!install
+python setup.py build install --root=$PKG ##python
 make ##mk
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
-##make install DESTDIR=$PKG || exit 1 ##inst_destdir
 make install DESTDIR=$PKG ##inst_destdir
-##make install PREFIX=$PKG/%prefix% || exit 1 ##inst_PREFIX
 make install PREFIX=$PKG/%prefix% ##inst_PREFIX
-##make install prefix=$PKG/%prefix% || exit 1 ##inst_prefix
-##GTK_UPDATE_ICON_CACHE="" \ ##upd_icons
 make install prefix=$PKG/%prefix% ##inst_prefix
-##python setup.py build install --root=$PKG || exit 1 ##python
-python setup.py build install --root=$PKG ##python
 rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
-##rmdir -p $PKG/usr/lib/perl?/?.?.?/*-linux/ || true ##perl
-##find $PKG/usr/lib/python?.?/site-packages/ -name "*.py[co]" -exec rm -v {} \; ##pyco
 rm -rfv $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rfv $PKG/usr/info/dir
 find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-##find $PKG/usr/share/ -name icon-theme.cache -exec rm {} \; ##upd_icons
-#!section-install
+#!install
 #%install-fix%
-#%post-install-fix%
 chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
-##find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin ##chownbin
-#!section-strip
 #!strip
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -782,26 +767,23 @@ chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
   find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
 )
 #!strip
-#!section-strip
+#%strip-fix%
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-#!section-doc
-cp -a \ ##docs
-  %docs% \ ##docs
-  $PKG/usr/doc/$NAME-$VERSION/ ##docs
-#!section-doc
+#!doc
+cp -a \
+  %docs% \
+  $PKG/usr/doc/$NAME-$VERSION/
+#!doc
 #%doc-fix%
-#%post-doc-fix%
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
-##find $PKG/usr/{man,info} -type f -exec gzip -9 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 zcat $CWD/doinst.sh.gz >$PKG/install/doinst.sh ##doinstgz
 
-##cd $PKG || exit 1
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
@@ -809,7 +791,6 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/%srcdirprefix%
   rm -rf $PKG
 fi
-###:autoport %portpkg_version%
 #!SlackBuild.skel
 
 #!doinst.sh_config

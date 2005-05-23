@@ -40,6 +40,8 @@ Portpkg:
 * Don't log a dry-run
 * Execute SlackBuilds with "sh -e"
 * Try to GPG-sign md5sums
+* Developers: CVS submit via --export ("SUBMIT_CMD=cvs_submit")
+* --lazy in --diff means: neglect architecture
 *
 
 Autoport:
