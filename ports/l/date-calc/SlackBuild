@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=5.4
 ARCH=noarch
-BUILD=2tom
+BUILD=3tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -14,8 +14,6 @@ tar xzvf $CWD/Date-Calc-$VERSION.tar.gz
 cd Date-Calc-$VERSION
 chown -R root.root .
 perl Makefile.PL
-make PREFIX=/usr
-make prefix=/usr
 make
 make install DESTDIR=$PKG
 rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod

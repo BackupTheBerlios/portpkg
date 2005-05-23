@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=3.1.1
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -14,8 +14,6 @@ tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
 chown -R root.root .
 perl Makefile.PL
-make PREFIX=/usr
-make prefix=/usr
 make
 make install DESTDIR=$PKG
 rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
