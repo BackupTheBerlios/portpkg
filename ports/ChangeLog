@@ -1,3 +1,47 @@
+2005-05-24 03:56  topf
+
+	* open/: kernel-modules/README, kernel-modules/SlackBuild,
+	  kernel-modules/config-2.6.11.10, kernel-modules/doinst.sh,
+	  kernel-modules/footprint, kernel-modules/info,
+	  kernel-modules/rc.modules-2.6.11.10.new,
+	  kernel-modules/slack-desc, kernel-modules/slot-in,
+	  kernel-modules/sources, kernel-generic/README,
+	  kernel-generic/SlackBuild, kernel-generic/config-2.6.11.10,
+	  kernel-generic/footprint, kernel-generic/info,
+	  kernel-generic/logo_linux_clut224.ppm, kernel-generic/slack-desc,
+	  kernel-generic/slot-in, kernel-generic/sources: experimental
+	  stuff (please test it yourself) (cronjob)
+
+2005-05-24 03:56  topf
+
+	* open/htop/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: Upgraded to version 0.5.2 (cronjob)
+
+2005-05-23 22:13  topf
+
+	* testing/portpkg/autoport: Small fixes.
+
+2005-05-23 22:07  topf
+
+	* testing/portpkg/: README, SlackBuild, autoport, footprint,
+	  md5sums, portpkg, portpkg.1, pp-config, repos: New release.
+
+2005-05-23 08:35  topf
+
+	* l/datemanip/SlackBuild, l/datemanip/md5sums,
+	  l/date-calc/SlackBuild, l/date-calc/md5sums,
+	  ap/swatch/SlackBuild, ap/swatch/footprint, ap/swatch/md5sums,
+	  ap/swatch/requires, ap/swatch/slack-desc: Fixed 'make PREFIX'
+	  mistake.
+
+2005-05-23 08:35  topf
+
+	* l/timedate/: SlackBuild, md5sums: Fixed  mistake.
+
+2005-05-23 04:16  topf
+
+	* ChangeLog: Updated. (cronjob)
+
 2005-05-23 03:54  topf
 
 	* open/amarok/: SlackBuild, footprint, info, md5sums, optional,
@@ -800,8 +844,11 @@
 
 2005-04-17 09:50  topf
 
-	* ap/htop/: SlackBuild, footprint, md5sums, requires, slack-desc,
-	  sources: First release. (mk)
+	* open/htop/SlackBuild, open/htop/footprint, open/htop/info,
+	  open/htop/md5sums, open/htop/requires, open/htop/slack-desc,
+	  open/htop/sources, ap/htop/SlackBuild, ap/htop/footprint,
+	  ap/htop/md5sums, ap/htop/requires, ap/htop/slack-desc,
+	  ap/htop/sources: First release. (mk)
 
 2005-04-17 09:48  topf
 
@@ -1005,6 +1052,11 @@
 
 	* open/amarok/: SlackBuild, footprint, info, md5sums, requires,
 	  slack-desc, sources: dumped to version 1.2.3 (cronjob)
+
+2005-04-15 00:20  topf
+
+	* open/htop/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: First release. (cronjob)
 
 2005-04-14 17:29  topf
 
