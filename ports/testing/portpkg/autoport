@@ -49,8 +49,9 @@ snip()
 {
   # the "#:tag ... #:tag" method
   sed -i "/^#:$1$/,/^#:$1$/d" $2
-  # the "xxx ##tag1 tag2" method
-  sed -i "/##\(\|.* \)$1\($\| \)/d" $2
+  # the "xxx ##tag" method
+  sed -i "/##$1$/d" $2
+#  sed -i "/##\(\|.* \)$1\($\| \)/d" $2
 }
 
 encode()
@@ -158,14 +159,12 @@ Options:
   -n name        Preset name of port
   -v version     Preset version of port
   -g group       Preset group of port
-  -u port        Use port
+  -u port        Re-use settings of existing port
   -b             Execute portpkg after port generation
   source url     Preset URL of source code (if not found via -u)
 
-Switches available for remove (#-):
-  "`grep "^#:.*$" $0 | sort -u | cut -c 3-`"
-Switches available for insert (#+) and replace (#=):
-  "`grep "^#%post-.*$" $0 | sed "s,^#%post-,,;s,%$,,"`
+Switches available:
+  "`grep "^#:.*$" $0 | sort -u | cut -c 3-`
         exit 1;;
     esac
     shift
@@ -423,7 +422,7 @@ else
   rm -rf $TMP/$name-$version
 fi
 
-# now, move it to $TMP as user expects it to be
+# now, move it to $TMP as portpkg does it
 chown nobody.nogroup -R $t/src/*
 rm -rf $TMP/$srcdir_prefix
 mv $t/src/* $TMP/
@@ -446,6 +445,8 @@ for i in `find $t/[+-=]* -exec basename {} \; 2>/dev/null`; do
   esac
   row "Inserting $fix-fix"
   sed -i "\,^#%post-$fix%$,r$t/$i" $script
+  # add the fix to the script if it isn't in now
+  grep -sq "^#$i$" $script || echo "#$i" >>$script
 done
 
 # include patches
@@ -483,7 +484,6 @@ if grep -sqe "#:config" -e "#:make" $script; then
   row "Checking config method"
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
-#    snip autogen $script
     snip configure $script
     snip make_PREFIX $script
     snip make_prefix $script
@@ -509,7 +509,6 @@ if grep -sqe "#:config" -e "#:make" $script; then
       :
     else
       snip configure $script
-#      snip autogen $script
       snip make $script
       if check "^Makefile$" $t/footprint; then
         if check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
@@ -757,6 +756,7 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --disable-static \ ##configure_disable_static
   $ARCH-slackware-linux
 #:configure
+#%post-configure%
 perl Makefile.PL ##perl
 make PREFIX=/%prefix% ##make_PREFIX
 make prefix=/%prefix% ##make_prefix

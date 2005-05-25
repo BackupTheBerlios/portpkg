@@ -286,13 +286,12 @@ update_meta_info()
   | sort +3 >footprint
 
   # write md5sums (build_pkg has already made "md5sums.new" here)
-  md5sum `basename $script` footprint >>md5sums.new
-  mv md5sums{.new,}
+  md5sum `basename $script` footprint >>$t/md5sums
+  mv {$t/,}md5sums
 
   # sign md5sums
-  if has_prog gpg; then
-    cat md5sums | gpg --clearsign >md5sums.new
-    mv md5sums{.new,}
+  if has_prog gpg && cat md5sums | gpg --clearsign >$t/md5sums; then
+    mv {$t/,}md5sums
   fi
 
   # explodepkg package tree?
@@ -734,12 +733,9 @@ do_add() # pkgex-list
   local stats=$ADM_DIR/portpkg/log
   $DRY_RUN && stats=/dev/null
   if [ -s $ADD_LOG ]; then
-#    echo "+--------------------+" >>$stats
-#    date >>$stats
-#    stanza "Summary of actions:"
     echo
     cat $FAKED_INST | xargs -r -l echo `date` "ADDED:"
-    cat $ADD_LOG | xargs -r -l echo `date` "FAILED AT:"
+    cat $ADD_LOG | xargs -r -l echo `date` "FAILED:"
   fi | tee -a $stats >$output
   debug "do_add(): finished: $@"
   return $ret
