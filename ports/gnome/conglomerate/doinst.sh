@@ -1,5 +1,12 @@
+gconf() {
+  if [ -x usr/bin/gconftool-2 ]; then
+    GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
+    usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
+  fi
+}
+gconf etc/gconf/schemas/conglomerate.schemas
 if [ -x usr/bin/scrollkeeper-update ]; then
-  usr/bin/scrollkeeper-update >/dev/null 2>&1
+  usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1
 fi
 if [ -x usr/bin/update-mime-database ]; then
   usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1
