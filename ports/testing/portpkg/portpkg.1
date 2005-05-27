@@ -2,7 +2,7 @@
 .SH NAME
 portpkg \- build a package by source and install it
 .SH SYNOPSIS
-portpkg [<action>] [<options>] [<list> [...]]
+portpkg [<options>] [<action>] [<list> [...]]
 .PP
 While `list' can have one of these forms:
 .IP
@@ -11,24 +11,25 @@ While `list' can have one of these forms:
 [<group>/]<name>[-<version>-<arch>-<build>]
 .SH DESCRIPTION
 Portpkg starts a build script (SlackBuild) found in /usr/ports/ and
-installs the resulting package to the system. The default behaviour will
+installs the resulting package on the system. The default behaviour will
 let it check for dependant ports and packages and build them in order to
-satisfy requirements. Portpkg will always try to shorten and reuse
-existing files: It resumes automatically partly downloaded source files
-and makes use of its cache directories.
+satisfy requirements. Portpkg will always try to shorten unnecessary
+things and reuse existing files: It resumes automatically partly
+downloaded source files and makes use of its cache directories for
+already built packages or already downloaded source files.
 .SH ACTIONS
 If no action is explicitly specified, the default action is to install a
 port, which includes downloading source code, compiling and packaging if
 neccessary. There can be only one alternative action:
 .IP "-d, --diff"
 List the difference between installed and available port versions.
-.IP "-f, --find <strings>"
+.IP "-f, --find <string> [...]"
 Find ports by search patterns.
 .IP "-h, --help"
 Show help page.
-.IP "-i, --info"
+.IP "-i, --info <list>"
 Show detailed information about ports.
-.IP "-l, --list"
+.IP "-l, --list [<list> [...]]"
 List all (or specified) available ports.
 .IP "-s, --sync"
 Sync the ports tree with the official tree and the package directory
@@ -37,37 +38,45 @@ with the ports tree.
 Upgrade all (!) outdated ports shown by --diff.
 .IP "-v, --version"
 Show version information about portpkg.
-.IP "-x, --export <message>"
+.IP "-x, --export <message> <list> [...]"
 Submit ports to the Portpkg Project.
 .SH OPTIONS
 There can be multiple options at once to customise portpkg's behaviour
 (some of them can also be defined in /etc/portpkg/local.conf):
-.IP "-e, --reinstall"
-Reinstall a package, if already installed.
-.IP "-b, --rebuild"
-Rebuild the package if already build (implies --reinstall).
 .IP "-p, --prepare"
 Build package, but don't install (implies --noreqs).
 .IP "-o, --download"
 Download source code files only.
-.IP "-g, --verbose"
-Show more output (VERBOSE=true).
+.IP "-r, --remaintain"
+Run only maintainer mode (update meta information) (implies --rebuild).
 .IP "-y, --dryrun"
 Simulate building/installing/up-/downloading.
-.IP "-q, --noreqs"
-Don't check for dependencies. This can lead to build failures, that must
-be solved by hand! (NO_REQS=true).
-.IP "-a, --lazy"
-Don't upgrade dependencies to newest available version. A requirement is
-satisfied if a package of any version is installed. This can lead to
-build failures, that must be solved by hand! In --diff and --upgrade:
-Disregard architecture differences (LAZY_CHECKS=true).
+.IP "-g, --verbose"
+Show more output (VERBOSE=true).
+.IP "-z, --debug"
+Show debug messages.
+.IP "-b, --rebuild"
+Rebuild the package if already build (implies --reinstall).
+.IP "-e, --reinstall"
+Reinstall a package, if already installed.
 .IP "-m, --maintain"
 Force maintainer mode. The maintainer mode is fundamentally different
 for package building time. Checks (PGP/MD5SUM) will not be done, and
 meta information (the files md5sums, footprint and requires) will be
 regenerated or appended. Normally, maintainer mode is active when the
 current port has a tag that matches MY_TAG=<tag> (MAINTAIN_ALL=true).
+.IP "-q, --noreqs"
+Don't check for dependencies. This can lead to build failures, that must
+be solved manually! (NO_REQS=true).
+.IP "-a, --lazy"
+Don't upgrade dependencies to newest available version. A requirement is
+satisfied if a package of any version is installed. This can lead to
+build failures, that must be solved by hand! (LAZY_CHECKS=true).
+.IP "-n, --ignorearch"
+Ignore differences in arch when checking for newest version of a port.
+This option can be comfortable e.g. when you have changed from i486 to
+i686 and don't want to recompile all packages when doing an --upgrade
+(IGNORE_ARCH=true).
 .SH EXAMPLES
 .IP "portpkg -gq foobar"
 Port `foobar' (download source code, compile, package, install), show
@@ -104,7 +113,7 @@ The configuration file for optional settings. Empty or non-existing
 leads to defaults.
 .IP "/etc/portpkg/repos"
 List of relative paths to the ports tree and URLs where to sync them with.
-.IP "/etc/portpkg/use"
+.IP "/etc/portpkg/use.local"
 List of ports to handle as required dependencies rather than optional.
 .PP
 Several configuration files are distributed and can be expanded by \.local files:
