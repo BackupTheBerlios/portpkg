@@ -316,6 +316,8 @@ update_meta_info()
   fi
 
   # generate requires/optional list
+  local ignore=`regex $(grep -shve ^# -e ^$ $CFG_DIR/ignore{.local,})`
+  ls_inst | grep $ignore | pkg2name | cut -d / -f 2 >$t/ignore
   echo "$requires" >$t/old_req
   echo "$optional" >$t/old_opt
   find $tmp/package-$name/ -type f -exec file {} \; >$t/ftypes
@@ -326,8 +328,8 @@ update_meta_info()
     grep -ie ":.*perl" -e "\.pm:" $t/ftypes | cut -d : -f 1 \
     | xargs sed -n "s,^\ *use *\([A-Z][a-z][^';<> ]*\).*,\1,p" | xargs -i echo "/man./{}\."
   } | sed "s,/\./,/,g" | grep -lf - $ADM_DIR/packages/* | rev | cut -d / -f 1 \
-  | cut -d - -f 4- | rev| pkg2name | rev | cut -d / -f 1 | rev \
-  | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/auto_req_raw
+  | rev | pkg2name | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," \
+    -e "/^$name$/d" >$t/auto_req_raw
   # perl or python in general?
   grep -qie ":.*perl" -e "\.pm:" $t/ftypes && echo perl >>$t/auto_req_raw
   grep -qie ":.*python" -e "\.py:" $t/ftypes && echo python >>$t/auto_req_raw
@@ -335,31 +337,31 @@ update_meta_info()
   sort -uo $t/auto_req_raw $t/auto_req_raw
 
   # find and strip ignore list, optional dependencies
-  local ignore=`regex $(grep -shve ^# -e ^$ $CFG_DIR/ignore{.local,})`
-  ls_inst | grep $ignore | pkg2name | cut -d / -f 2 >$t/ignore
-  fgrep -vxf $t/ignore $t/auto_req_raw | sort -u >$t/auto_req
-  fgrep -vxf $t/old_opt $t/auto_req | sort -u >$t/new_req
+  fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
+  fgrep -vxf $t/old_req $t/auto_req >$t/new_req
+
+  grep -o "No package '.*' found" $ADM_DIR/portpkg/$name.buildlog \
+  | cut -d \' -f 2 | xargs -r echo "  --> According to the log these pc-packages can be optional:"
 
   # if "requires" exists, new dependencies are optional
   if [ "$requires" ]; then
-    fgrep -xvf $t/old_req $t/new_req >>$t/old_opt
-    sort -uo $t/old_opt $t/old_opt
-  else
-    cat $t/new_req >$t/requires
+    cat $t/new_req >>$t/new_opt
+    >$t/new_req
   fi
-  cat $t/old_req requires >>$t/requires 2>/dev/null
 
   # now generate new "requires" file
+  cat $path/requires $t/new_req >$t/requires
   sed -i "/^# opt/d" $t/requires
-  cat $t/old_opt | xargs -r -l echo "# optional:" >>$t/requires
+  cat $t/old_opt $t/new_opt | xargs -r -l echo "# optional:" >>$t/requires
   sort -uo $t/requires $t/requires
   sed -i "/^$/d" $t/requires
   mv {$t,$path}/requires
 
   # show a few statistics
-  fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "  --> Ignoring dependencies:"
-  fgrep -xvf $t/old_req $t/new_req | xargs -r echo "  --> New dependencies:"
-  fgrep -xf $t/old_opt $t/auto_req | xargs -r echo "  --> Dependant options:"
+  debug "ignoring dependencies: "`fgrep -xf $t/ignore $t/auto_req_raw`
+  cat $t/new_req | xargs -r echo "  --> New dependencies:"
+  cat $t/new_opt | xargs -r echo "  --> New options:"
+  fgrep -xf $t/old_opt -f $t/new_opt $t/auto_req | xargs -r echo "  --> Dependant options:"
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
@@ -857,6 +859,7 @@ do_sync()
   local tree url
   while read tree url; do
     row "Syncing $PRT_DIR/$tree/" | sed "s,/\./,/,"
+    debug "repo line is: $tree $url"
     get $url $PRT_DIR/$tree | sed -r \
       -e "/^Connecting/d" \
       -e "/^Updating/d" \
