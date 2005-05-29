@@ -1,3 +1,40 @@
+2005-05-29 15:37  topf
+
+	* xap/mplayer-skins/: footprint, md5sums, sources: Added default
+	  skin Blue that I removed from the mplayer package.
+
+2005-05-29 15:24  topf
+
+	* xap/mplayer-codecs/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Updated version. Moved from l/win32codecs.
+	  Changed install location to /usr/lib/codecs (thanks to lem).
+
+2005-05-29 15:22  topf
+
+	* xap/mplayer/: SlackBuild, footprint, md5sums, optional, requires,
+	  sources: Removed default skin, since we have now mplayer-skins.
+
+2005-05-29 15:21  topf
+
+	* l/win32codecs/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved to xap/mplayer-codecs. Changed install
+	  location to /usr/lib/codecs.
+
+2005-05-29 11:29  topf
+
+	* l/speex/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: New entry.
+
+2005-05-29 11:15  topf
+
+	* xap/xf86-corefonts/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: Renamed from corefonts and moved font installation to
+	  /usr/share/fonts.
+
+2005-05-28 13:10  topf
+
+	* ChangeLog: Updated. (cronjob)
+
 2005-05-28 08:53  topf
 
 	* testing/portpkg/portpkg: Rewrote parts of update_meta_info().
@@ -1522,6 +1559,11 @@
 	* pasture/libxml2/: SlackBuild, footprint, md5sums, requires,
 	  sources: Updated pasture/libxml2 to 2.6.17-i486-8tom.
 
+2005-04-07 12:36  topf
+
+	* l/libxml2/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: Moved l/libxml2-2.6.17-i486-8tom to pasture/.
+
 2005-04-06 16:00  topf
 
 	* ap/hibernate-script/: SlackBuild, config-fix.autoport, doinst.sh,
@@ -2120,6 +2162,11 @@
 
 	* gnome/orbit2/: SlackBuild, footprint, md5sums, requires, sources:
 	  Merged local/orbit2-2.12.1-i686-5tom into gnome/.
+
+2005-03-18 00:18  topf
+
+	* l/libxml2/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: Merged local/libxml2-2.6.17-i686-8tom into l/.
 
 2005-03-18 00:16  topf
 
@@ -3229,8 +3276,11 @@
 
 2005-02-11 20:05  topf
 
-	* pasture/libxml2/: SlackBuild, requires, slack-desc, sources:
-	  Moved l/libxml2-2.6.16-i486-1tom to pasture/.
+	* l/libxml2/SlackBuild, l/libxml2/requires, l/libxml2/slack-desc,
+	  l/libxml2/sources, pasture/libxml2/SlackBuild,
+	  pasture/libxml2/requires, pasture/libxml2/slack-desc,
+	  pasture/libxml2/sources: Moved l/libxml2-2.6.16-i486-1tom to
+	  pasture/.
 
 2005-02-11 00:07  topf
 
@@ -3443,7 +3493,7 @@
 	  l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild,
 	  l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild,
 	  l/libsigc++/SlackBuild, l/libsndfile/SlackBuild,
-	  l/libwpd/SlackBuild, l/libxml++/SlackBuild,
+	  l/libwpd/SlackBuild, l/libxml++/SlackBuild, l/libxml2/SlackBuild,
 	  l/openldap/SlackBuild, l/out_lame/SlackBuild,
 	  l/plugger/SlackBuild, l/portaudio/SlackBuild, l/pygtk/SlackBuild,
 	  l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/smpeg/SlackBuild,
@@ -4405,11 +4455,6 @@
 
 2005-01-12 11:16  topf
 
-	* xap/corefonts/: SlackBuild, requires, slack-desc, sources: Added
-	  xap/corefonts-0.2.1-noarch-3tom.
-
-2005-01-12 11:16  topf
-
 	* xap/arphicfonts/: SlackBuild, license, readme, requires,
 	  slack-desc, sources: Added xap/arphicfonts-0-noarch-5tom.
 
@@ -4592,7 +4637,7 @@
 	  l/gtk-xfce-engine/slack-desc, l/imlib2/slack-desc,
 	  l/libast/slack-desc, l/libcddb/slack-desc, l/libcdio/slack-desc,
 	  l/libglade/slack-desc, l/libsndfile/slack-desc,
-	  l/slmodem/slack-desc, n/email/slack-desc,
+	  l/libxml2/slack-desc, l/slmodem/slack-desc, n/email/slack-desc,
 	  testing/criawips/slack-desc, testing/dbus/slack-desc,
 	  testing/eina-gnome/slack-desc, testing/gazpacho/slack-desc,
 	  testing/hal/slack-desc, testing/libeina/slack-desc,
@@ -5162,6 +5207,11 @@
 
 	* pasture/pango/: SlackBuild, doinst.sh, requires, slack-desc,
 	  sources: Updated l/pango to 1.6.0-i486-1tom.
+
+2004-12-09 22:57  topf
+
+	* l/libxml2/: SlackBuild, requires, slack-desc, sources: Added
+	  l/libxml2-2.6.16-i486-1tom.
 
 2004-12-09 22:57  topf
 
