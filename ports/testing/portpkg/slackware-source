@@ -1,0 +1,102 @@
+# slackware-source (pp-sync-src) -- A portpkg-addon that imports Slackware's source
+#BLURB="Slackware source scripts"
+
+if [ `basename $0` != portpkg ]; then
+  echo
+  echo "Please run 'pp-config' and start me as: portpkg --sync"
+  exit 1
+fi
+
+[ "${DIST_VER:-}" ] || die "No distribution target set. Please run 'pp-config'!"
+
+# this will be mangled through our mirrors-list anyway
+RSYNC=rsync://rsync.slackware.at/slackware/slackware-$DIST_VER/source
+DIST=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+tree=$PRT_DIR/z/slackware
+
+t=`mktemp -d`
+row "Syncing $tree/"
+warn "This plug-in is experimental!"
+
+mkdir -p $tree
+cd $tree || die
+has_prog rsync || die
+
+# sync source/ and remove files we don't need
+rsync -qavz --delete \
+--exclude "FILE_LIST" \
+--exclude "MANIFEST.*" \
+--exclude "CHECKSUMS*" \
+--exclude "README.TXT" \
+--exclude "*.tar.gz" \
+--exclude "*.tar.bz2" \
+--exclude "*.tgz" \
+--exclude "*.tar.Z" \
+--exclude "*.bin" \
+--exclude "*.zip" \
+$RSYNC/* . | xargs -rl echo "  -->"
+
+# write missing files into sources-files
+row "Retrieving file list"
+get $DIST/FILELIST.TXT $t/file_list >$output
+cp $t/file_list $tree/FILELIST.TXT
+row "Completing the `find $tree/ -name "*SlackBuild" -o -name "*.build" | wc -l` ports"
+# for any file
+grep -o "\./source/.*/.*/.*" $t/file_list \
+| cut -d " " -f 1 | cut -d / -f 3- | while read s; do
+  # if not found, add it to "sources" (with %)
+  if ! find $s >/dev/null 2>&1; then
+    echo "$DIST/source/$s%`basename $s`"
+  fi | grep -ve "SlackBuild$" -e "^slack-desc$" -e "^doinst.sh" \
+  >>`echo $s | cut -d / -f 1-2`/sources
+done
+
+# patches
+sed -i "s,^export \(ARCH=.*\)$,\1\nexport ARCH," $tree/*/*/*SlackBuild
+mkdir $tree/e/emacs
+mv $tree/e/* $tree/e/emacs/ 2>/dev/null
+
+row "Constructing `find $tree/ -name "*.build" | wc -l` .build-wrappers"
+find -name "*.build" | while read s; do
+  dir=`dirname $s`
+  gname=`dirname $s | cut -c 3-`
+  if [ "`find $dir/ -name "*SlackBuild"`" ]; then
+    row "Skipping `basename $s` (SlackBuild already there)"
+    continue
+  fi
+  group=`echo $gname | cut -d / -f 1`
+  name=`echo $gname | cut -d / -f 2`
+  ver=`grep ^VERSION= $s | cut -d = -f 2-`
+  arch=`grep ^ARCH= $s | cut -d = -f 2- | sed -re "s,\\\\$\\{[A-Z]*:-,," -e "s,},,"`
+  build=
+  if ! [ "$ver" ] || ! [ "$arch" ]; then
+    row "Guessing release for $gname"
+  fi
+  pkg=`sed -n "s,^.*/\($gname-[^-]*-[^-]*-[^-]*\)\.tgz$,\1,p" $t/file_list | loc2gpkg | cut -d / -f 2`
+  [ "$ver" ] || ver=`echo $pkg | pkg2ver`
+  [ "$arch" ] || arch=`echo $pkg | pkg2rel | cut -d - -f 2`
+  build=`echo $pkg | pkg2rel | cut -d - -f 3`
+  if ! [ "$ver" ] || ! [ "$arch" ] || ! [ "$build" ]; then
+    row "$gname is invalid. Sorry."
+    continue
+  fi
+  cat <<EOF >$dir/SlackBuild
+NAME=$name
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
+TMP=\${TMP:-/tmp}
+
+checkinstall -S -y \\
+  --pkgname=\$NAME \\
+  --pkgversion=\$VERSION \\
+  --pkgarch=\$ARCH \\
+  --pkgrelease=\$BUILD \\
+  --pakdir=\$TMP \\
+  --strip=yes \\
+  --stripso=yes \\
+  --gzman=yes \\
+  --backup=no \\
+  "sh `basename $s`"
+EOF
+done

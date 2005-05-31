@@ -1,27 +1,27 @@
-VERSION=0.38test8
+CWD=`pwd`
+NAME=`basename $CWD`
+TMP=${TMP:-/tmp}
+PKG=$TMP/package-$NAME
+rm -rf $PKG
+
+VERSION=0.38test9
 ARCH=noarch
 BUILD=1tom
 
-CWD=`pwd`
-NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
-rm -rf $PKG
-
 # directories
-mkdir -p $PKG/etc/portpkg
+mkdir -p $PKG/etc/portpkg/importers
 mkdir -p $PKG/usr/bin
 mkdir -p $PKG/usr/man/man1
 mkdir -p $PKG/var/log/portpkg
-#mkdir -p $PKG/var/log/setup
+mkdir -p $PKG/var/log/setup
 
 # configuration
 install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/
 install -m 644 $CWD/ignore $PKG/etc/portpkg/
-#install -m 644 $CWD/exclude.* $PKG/etc/portpkg/
 install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude #.new
-#install -m 644 $CWD/pp-sync-bin $PKG/etc/portpkg/importers/pp-sync-bin.new
-#install -m 644 $CWD/pp-sync-src $PKG/etc/portpkg/importers/
-install -m 644 $CWD/repos $PKG/etc/portpkg/repos.new
+install -m 644 $CWD/pseudo-ports $PKG/etc/portpkg/importers/pseudo-ports.new
+install -m 644 $CWD/slackware-source $PKG/etc/portpkg/importers/slackware-source.new
+#install -m 644 $CWD/repos $PKG/etc/portpkg/repos.new
 
 # man page
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
@@ -33,8 +33,8 @@ install -m 755 $CWD/pp-config $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 
-## integrate pp-config into pkgtool
-#ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
+# integrate pp-config into pkgtool
+ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
 
 chown -R root.bin $PKG/usr/bin
 gzip -9 $PKG/usr/man/man?/*
@@ -47,4 +47,4 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz

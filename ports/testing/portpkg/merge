@@ -1,0 +1,46 @@
+#!/bin/sh
+# merge -- developer tool to merge ports from open/ to another group
+
+source `which portpkg` || exit 1
+
+HELP="Usage: `basename $0` name new_group
+  Merges \`name' from open/ to \`new_group/.'"
+
+[ "$1" ] || die "$HELP"
+get_info open/$1 || die
+
+# look if we have an info file
+if [ -f $path/info ]; then
+  new_group=`grep -i "^Intended group:" $path/info | cut -d " " -f 3- | xargs | sed "s,\.$,,;s,/$,,"`
+  msg=`grep -i "^Changelog entry:" $path/info | cut -d " " -f 3- | xargs`
+fi
+
+new_group=${$2:-$new_group}
+[ "$new_group" ] || die "$HELP"
+tag=`echo $package | egrep -o "[a-z]+$"`
+msg=${msg:-Moved $group/$package to $new_group/.}
+
+cat <<EOF
+Merging $group/$name to $new_group/
+ChangeLog entry: "$msg ($tag)"
+
+Continue? (ctrl-c to cancel)
+EOF
+read
+
+# first clean new_group/
+find $PRT_DIR/$new_group/$name -type f ! -path "*CVS*" -exec rm -rf {} \;
+
+# copy files
+rm -rf $path/$name/info
+find $path/$name ! -path "*CVS*" -exec cp -P --parents {} $PRT_DIR/$new_group/ \;
+#sleep 1
+#touch $PRT_DIR/$new_group/$name/footprint
+
+# export new_group/name
+portpkg -mx "$msg ($tag)" $new_group/$name || die
+
+# remove old entry
+cd `dirname $path`
+cvs rm -f $name
+cvs ci -m "$msg ($tag)" $name

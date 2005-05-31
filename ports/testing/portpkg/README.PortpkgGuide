@@ -42,46 +42,19 @@ Introduction
 
   Overview of this guide
 
-     o Installing Portpkg
+     o Installing portpkg
      o Using the ports
 
           o Building and installing ports
-          o Listing all available ports
-          o Viewing information of ports
-          o Finding ports
-          o Listing outdated packages
-          o Upgrading all outdated packages
-          o The tool Checkpkg
+          o Usage of portpkg
+          o Additional tools
 
      o Writing ports
 
           o Preparing
-
-               o Maintainer mode
-               o Classifying ports
-
           o Ports and their parts
-
-               o SlackBuild
-               o Doinst.sh
-               o Slack-desc
-               o Sources
-               o Slot-in
-               o Pseudo
-               o Requires
-               o Optional
-               o No-fakeroot
-               o Ignore
-               o Miscellaneous
-
-          o Configuration of Portpkg
-
-               o Local.conf
-               o Mirrors ans mirrors.local
-               o Ignore and ignore.local
-               o Exclude and exclude.local
-
-          o The tool Autoport
+          o Configuration of portpkg
+          o Additional tools
 
      o Contribute to the Portpkg Project
      o Backgrounds
@@ -96,7 +69,7 @@ Introduction
 
    --------------------------------------------------------------------------
 
-Installing Portpkg
+Installing portpkg
 
    First, make sure you have permissions to switch to root! If you are not
    allowed, Portpkg makes no sense to you. You will also need access to the
@@ -193,7 +166,9 @@ Using the ports
    |--lazy     |Don't upgrade dependencies to newest version          |
    +------------------------------------------------------------------+
 
-  Listing all available ports
+  Usage of portpkg
+
+    Listing all available ports
 
    Portpkg has a few alternative actions, that means it will have a different
    behaviour with them enabled. Get a full list of available ports (groups
@@ -214,7 +189,7 @@ Using the ports
  xap/xvid4conf-1.12-i486-1tom
  xap/zinf-2.2.5-i486-2tom
 
-  Viewing information of ports
+    Viewing information of ports
 
    Get detailed information about certain ports with --info:
 
@@ -234,14 +209,18 @@ Using the ports
  dunnodiz: annoying since you don't know either anything about it. Strange.
  dunnodiz:
 
-  Finding ports
+
+    Finding ports
 
    Find ports by keywords:
 
- # portpkg --find gui
+ # portpkg --find id3 tag
+ l/id3lib-3.8.3-i686-2tom
+ l/pyid3lib-0.5.1-noarch-1tom
+ l/libid3tag-0.15.1b-i486-1
+ l/taglib-1.3.1-i486-1
 
-
-  Listing outdated packages
+    Listing outdated packages
 
    List all installed packages, that have a newer version in the ports
    collection:
@@ -253,14 +232,16 @@ Using the ports
  l/bluecurve                1.0-i486-11tom          1.0-i486-10tom
  gnome/epiphany             1.4.5-i486-1tom         1.4.4-i486-1tom
 
-  Upgrading all outdated packages
+    Upgrading all outdated packages
 
    Upgrading is not always recommended, although it just balances what --diff
-   lists. You should do this first with the option --dry-run:
+   lists. You should do this first with the option --dryrun:
 
  # portpkg --upgrade
 
-  The tool Checkpkg
+  Additional tools
+
+    Checkpkg
 
    Checkpkg is a menu controlled programme (similiar to pkgtool) to keep
    track of installed and available ports.
@@ -316,13 +297,21 @@ Writing ports
  name              ver.arch.  revision
 
    Example
-           On naming a new port it is best to come from the source package:
-           http://download.sourceforge.net/mjpeg/mjpegtools-1.6.2.tar.gz.
-           Here the name is mjpegtools, the version is 1.6.2, the
-           architecture would be i486 an a x86 machine. So our port will be
-           called mjpegtools-1.6.2-i486-1me.tgz, because it is our first try.
-           Now, we make a directory called mjpegtools in our group (which is
-           here ap/) where all the scripts can be written for this port.
+           * On naming a new port it is best to come from the source package:
+             http://download.sourceforge.net/mjpeg/mjpegtools-1.6.2.tar.gz.
+             Here, the name is mjpegtools, the version is 1.6.2, the
+             architecture would be i486 an a x86 machine. So our port will be
+             called mjpegtools-1.6.2-i486-1me, because it is our first try.
+             Now, we make a directory called mjpegtools in our group (which
+             is here ap/) where all files for this port can be written.
+           * If you make changes to the build script (SlackBuild) while the
+             VERSION variable remains the same, you must increment the build
+             number, even though you're not the previous maintainer! (If you
+             want to suggest a change for mjpegtools-1.6.2-i486-1me and you
+             tag is meow, then change the build variable to BUILD=2meow, but
+             if you want to suggest version 1.1, regardless if you make a
+             change somewhere else in the script, then count starting from 1
+             again!)
 
    Why is that so important? -- Ports can be tracked as requirements later by
    other ports. To avoid cluttering we should follow a naming scheme.
@@ -355,17 +344,19 @@ Writing ports
 
    Please follow the basic filesystem layout in Slackware:
 
-   +----------------------+
-   |Configuration|/etc    |
-   |-------------+--------|
-   |Variable data|/var/lib|
-   |-------------+--------|
-   |Prefix       |/usr    |
-   |-------------+--------|
-   |Documentation|/usr/doc|
-   |-------------+--------|
-   |Manpages     |/usr/man|
-   +----------------------+
+   +---------------------------------------+
+   |             |normal  |KDE-Applications|
+   |-------------+--------+----------------|
+   |Prefix       |/usr    |/opt/kde        |
+   |-------------+--------+----------------|
+   |Configuration|/etc    |                |
+   |-------------+--------+----------------|
+   |Variable data|/var/lib|                |
+   |-------------+--------+----------------|
+   |Documentation|/usr/doc|/usr/doc        |
+   |-------------+--------+----------------|
+   |Manpages     |/usr/man|/usr/man        |
+   +---------------------------------------+
 
    The Filesystem Hierarchy Standard, which should be followed in general,
    makes exceptions only for very few programmes, that are essential for
@@ -461,14 +452,19 @@ Writing ports
 
     Sources^1
 
-   In order to reduce bandwidth for the Portpkg Project and for you, source
-   package URLs should be written in sources. This file is special to
-   Portpkg. To make version updates later easier, use the string $VERSION
+   In order to reduce bandwidth for the Portpkg Project and for you, any URL
+   of used source packages should be written in sources. This file is special
+   to Portpkg. To make version updates later easier, use the string $VERSION
    where the version number of the package is placed. You can also use $NAME.
    Portpkg will download these files into the port directory before running
-   the SlackBuild, then they will be stored in /usr/src/dist. If a file
-   should be saved with a different name than its URL calls it, use a %
-   before its URL.
+   the SlackBuild, after that they will be stored in /usr/src/dist.
+
+   Certain files cannot be saved with the basename of its URL (e.g. PHP
+   script outputs), so you should use a % to declare a different name
+   (http://url.com/php%filename). Beware that those files will not be saved
+   in /usr/src/dist like normal downloads, since those files normally cannot
+   be distinguished by name. They will be downloaded on every package
+   building process!
 
    Example
 
@@ -490,12 +486,12 @@ Writing ports
    portpkg mplayer removes the first one to install the last one.
 
    If this behaviour is not intended, and you want Portpkg not to remove the
-   older package (this is mostly for packages as kernels or kernel-modules),
-   there's the possibility to mark a port as a "slot-in":
+   older package (this is mostly for packages like kernels or
+   kernel-modules), there's the possibility to mark a port as a "slot-in":
 
  # touch slot-in
 
-    Pseudo^1
+    Pseudo^1, 3
 
    The empty file pseudo marks a "pseudo port", as you can see in the ports
    tree Pp-sync-bin builds. These pseudo ports list binary Slackware packages
@@ -517,7 +513,7 @@ Writing ports
    automatically, then add them. Portpkg won't remove any item you write to
    requires.
 
-    Optional^2
+    Optional^3
 
    The file optional contains dependencies, that can occur, but needn't to.
    Since requires is obligatory at build time and written automatically, this
@@ -526,6 +522,12 @@ Writing ports
    dependencies listed in requires, that are indeed optional. Add this
    package name to optional and remove it from requires. After all, this file
    is an advisory information for non-maintainers.
+
+   Note
+           * Maintainers should move as much as possible from requires to
+             optional!
+           * The contents of this file will soon be moved to requires in the
+             form # optional: package
 
     No-fakeroot^1
 
@@ -537,10 +539,6 @@ Writing ports
    However, there are few ports that cannot be build with fakeroot, the
    Maintainer must mark them with an empty file no-fakeroot.
 
-    Ignore^1, 2
-
-   The file ignore.
-
     Miscellaneous
 
    Several files are available in maintainer mode to indicate the result of
@@ -549,24 +547,28 @@ Writing ports
    +------------------------------------------------------------------------+
    |PORT_IS_BROKEN^1|Marks a failure of the last compilation                |
    |----------------+-------------------------------------------------------|
-   |arbitrary^1     |List of dependencies that couldn't be tracked          |
+   |arbitrary^1, 3  |List of dependencies that couldn't be tracked          |
    |                |automatically and should be checked                    |
-   |----------------+-------------------------------------------------------|
-   |buildlog^1      |Detailed log of the SlackBuild-output                  |
-   |----------------+-------------------------------------------------------|
-   |footprint^1     |File list of the package content                       |
    +------------------------------------------------------------------------+
 
-  Configuration of Portpkg
+   +------------------------------------------------------------------------+
+   |name.buildlog^1|Detailed log of the SlackBuild-output (in               |
+   |               |/var/log/portpkg)                                       |
+   |---------------+--------------------------------------------------------|
+   |footprint^1    |File list of the package content                        |
+   +------------------------------------------------------------------------+
 
-   The configuration files are located in /usr/ports. Generally, there are
+  Configuration of portpkg
+
+   The configuration files are located in /etc/portpkg. Generally, there are
    configuration files that are distributed (mirrors, ignore and exclude),
-   don't edit them. Use a host specific file instead (mirrors.local,
+   don't edit them! Use a host specific file instead (mirrors.local,
    ignore.local and exclude.local) that won't be overwritten.
 
     Local.conf
 
-   You can customise portpkg with several variables in local.conf:
+   local.conf is an optional confiiguration file. You can customise portpkg's
+   default values with several variables here:
 
    +------------------------------------------------------------------------+
    |MY_TAG=tag             |Your personal tag                               |
@@ -577,26 +579,37 @@ Writing ports
    |MY_REALNAME="real name"|Your real name for contacting you if you plan to|
    |                       |contribute                                      |
    |-----------------------+------------------------------------------------|
-   |MAINTAIN_ALL=true      |Let Portpkg always work in maintainer mode      |
+   |MAINTAIN_ALL=true      |Run portpkg always in maintainer mode           |
+   |                       |(--maintain, default no)                        |
    |-----------------------+------------------------------------------------|
-   |DIST_VER=version       |The target Slackware version if you use         |
-   |                       |Pp-sync-bin or Pp-sync-src                      |
+   |VERBOSE=true           |Run portpkg always in verbose mode (--verbose,  |
+   |                       |default no)                                     |
    |-----------------------+------------------------------------------------|
-   |BIN_PRT_DIR=path       |The path of your binary pseudo ports tree       |
-   |                       |(/usr/ports/z/bin is recommended)               |
+   |NO_REQS=true           |Run portpkg always without checking for         |
+   |                       |dependencies (--noreqs, default no)             |
    |-----------------------+------------------------------------------------|
-   |VERBOSE=true           |Let Portpkg always work in verbose mode         |
-   |                       |(--verbose)                                     |
+   |LAZY_CHECKS=true       |Don't upgrade dependencies (--lazy, default no) |
    |-----------------------+------------------------------------------------|
-   |NO_REQS=true           |Let Portpkg always work without requirements    |
-   |                       |resolving (--noreqs)                            |
+   |ARCH=arch              |Architecture of the target platform (default    |
+   |                       |i486)                                           |
    |-----------------------+------------------------------------------------|
-   |LAZY_CHECKS=true       |Don't upgrade dependencies (--lazy)             |
-   |-----------------------+------------------------------------------------|
-   |ARCH=arch              |Architecture of the target platform             |
-   |-----------------------+------------------------------------------------|
-   |CFLAGS=cflags          |Compiler optimisations flags                    |
+   |CFLAGS=cflags          |Compiler optimisation flags (default -O2        |
+   |                       |-march=i486 -mcpu=i686)                         |
    +------------------------------------------------------------------------+
+
+    Use.local^2
+
+   Any package expression declared in use.local (actually there's no file
+   use, since it's always a host-specific file) that matches optional
+   dependencies of a port will be handled as a required dependency. In this
+   example of a use.local-file, libfancy or any package found in l/ will be
+   installed only if it is an optional dependency of the port that is
+   currently installed.
+
+   Example
+
+ l/
+ libfancy
 
     Mirrors and mirrors.local
 
@@ -628,7 +641,9 @@ Writing ports
    normal via portpkg --list, but won't be available, unless it is your
    intention: specify them via portpkg group/name!
 
-  The tool Autoport
+  Additional tools
+
+    Autoport
 
    -- "Packages as mom does"
 
@@ -745,6 +760,108 @@ Writing ports
  lame:
  Executing install script for lame...
 
+   Advanced script control
+
+   A very comfortable function of autoport is to update an existing port
+   automatically e.g. to a different version. To influence parts of the
+   resulting script, autoport divides a SlackBuild into several seamless
+   sections, that can be modified with inline tags.
+
+   +------------------------------------------------------------------------+
+   |head             |Set header variables                                  |
+   |-----------------+------------------------------------------------------|
+   |slkcflags        |Set SLKCFLAGS                                         |
+   |-----------------+------------------------------------------------------|
+   |prepare          |Unpack source code, chown root.root it and apply      |
+   |                 |patches                                               |
+   |-----------------+------------------------------------------------------|
+   |config           |Configure or simply make prefix=/usr                  |
+   |-----------------+------------------------------------------------------|
+   |therein configure|Command line ./autogen.sh and/or ./configure          |
+   |-----------------+------------------------------------------------------|
+   |install          |Compile and install the code into $PKG                |
+   |-----------------+------------------------------------------------------|
+   |refine           |Remove unwanted files, chown root.bin binaries        |
+   |-----------------+------------------------------------------------------|
+   |strip            |Strip binaries                                        |
+   |-----------------+------------------------------------------------------|
+   |doc              |Prepare documentation                                 |
+   |-----------------+------------------------------------------------------|
+   |therein docfiles |Command to copy files into /usr/doc/$NAME-$VERSION    |
+   |-----------------+------------------------------------------------------|
+   |tail             |Prepare /install, package and cleanup                 |
+   +------------------------------------------------------------------------+
+
+   Each section can be removed, appended or replaced:
+
+ # force autoport not to strip binaries
+ #-strip
+
+ # append these lines to a generic install method
+ #+install
+ echo "Install done!"
+ #+install
+
+ # Replace section "prepare" with those lines
+ #=prepare
+ code
+ #=prepare
+
+   Example for a SlackBuild for bittorrent:
+
+ TMP=${TMP:-/tmp}
+ CWD=`pwd`
+ NAME=`basename $CWD`
+ PKG=$TMP/package-$NAME
+
+ VERSION=4.0.1
+ ARCH=noarch
+ BUILD=2tom
+
+ rm -rf $PKG
+ mkdir -p $PKG/usr
+ cd $TMP
+ tar xzvf $CWD/BitTorrent-$VERSION.tar.gz
+ cd BitTorrent-$VERSION
+ chown -R root.root .
+ python setup.py build install --root=$PKG
+ #+install
+ # Add btdownloadxterm.sh (this just opens an xterm for btdownloadcurses.py so
+ # that it can work as a MIME handler from mailcap):
+ mkdir -p $PKG/usr/bin
+ zcat $CWD/btdownloadxterm.sh > $PKG/usr/bin/btdownloadxterm.sh
+ chmod 755 $PKG/usr/bin/btdownloadxterm.sh
+ #+install
+ rm -rfv $PKG/usr/info/dir
+ find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
+ chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+ mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+ gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+ mkdir -p $PKG/usr/doc/$NAME-$VERSION
+ #=docfiles
+ cp -a \
+   BUILD.windows.txt LICENSE.txt README.txt credits.txt \
+   $PKG/usr/doc/BitTorrent-$VERSION
+ #=docfiles
+ find $PKG/usr/doc -type f -exec chmod 644 {} \;
+ find $PKG/usr/doc -type d -exec chmod 755 {} \;
+ mkdir -p $PKG/install
+ cat $CWD/slack-desc >$PKG/install/slack-desc
+ cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+ cd $PKG
+ makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+ if [ "$1" = "--cleanup" ]; then
+   rm -rf $TMP/BitTorrent-$VERSION
+   rm -rf $PKG
+ fi
+
+   This port can later easily be updated via autoport -u bittorrent -v 5.0.0
+   -a. Anything else will be regenerated by autoport. Note, that only #-
+   switches and those line between #+ and #= will be picked up and inserted
+   into the new SlackBuild!
+
    We hope you plan to contribute your ports to this project, it is a simple
    task!
 
@@ -777,7 +894,7 @@ Backgrounds
    Portpkg uses CVS to collect and distribute the ports scripts. To sync with
    the official ports tree do:
 
- # cvs -qz9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co ports
+ # cvs -qz9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co -P ports
 
    You have now a local copy in ports/. This ports tree is divided in groups
    and groups are subdivided in ports. For each one there is a directory. To
@@ -975,19 +1092,21 @@ Backgrounds
        set)
      o It must run without parameters
      o It must have all its relating files in the same directory
-     o It must not write to anything but /tmp
+     o It must not write to anything but /tmp or $TMP
      o It must have the lines VERSION=version, ARCH=arch and BUILD=build
        without spaces or tabs or variables, beside the form ${ARCH:-i486}
      o It must name its package name-$VERSION-$ARCH-$BUILD.tgz, while name is
        the directory it's located in
-     o It must leave its package in /tmp
+     o It must leave its package in /tmp or $TMP
 
      o It may use a custom $ARCH (see above)
      o It may remove the source tree invoked by parameter --cleanup
 
+     o It should use TMP=${TMP:-/tmp}
+
    What SlackBuild do definitely not work with Portpkg?
 
-     o If it builds no or more than one .tgz-package (meta-SlackBuilds)
+     o If it builds no or more than one .tgz-packages (meta-SlackBuilds)
 
   Dealing with ports
 
@@ -1005,7 +1124,8 @@ Backgrounds
    --------------------------------------------------------------------------
 
    Notes
-           ^1 This file is specific to Portpkg, ^2 Planning
+           ^1 This feature is specific to Portpkg, ^2 Planned feature, ^3
+           Obsolete feature, to be removed soon
 
    --------------------------------------------------------------------------
 
@@ -1013,49 +1133,28 @@ Backgrounds
 References
 
    Visible links
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-3
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-4
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-5
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-6
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#2-7
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-1-1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-1-2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-3
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-4
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-5
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-6
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-7
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-8
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-9
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-10
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-2-11
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-3
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-3-4
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#3-4
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#4
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-1
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-2
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-3
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-4
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-5
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-6
-   . file:///usr/ports/d/portpkg/PortpkgGuide.html#5-7
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#1
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#2
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#2-1
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#2-2
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#2-3
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#3
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#3-1
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#3-2
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#3-3
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#3-4
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#4
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-1
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-2
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-3
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-4
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-5
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-6
+   . file:///usr/ports/testing/portpkg/PortpkgGuide.html#5-7
    . http://developer.berlios.de/project/showfiles.php?group_id=2486
-   . file:///usr/ports/d/portpkg/doc.php?page=Screenshots
+   . file:///usr/ports/testing/portpkg/doc.php?page=Screenshots
    . http://www.pathname.com/fhs/pub/fhs-2.3.html
-   . file:///usr/ports/d/portpkg/doc.php?page=edit/PortpkgGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=links/PortpkgGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=info/PortpkgGuide
+   . file:///usr/ports/testing/portpkg/doc.php?page=edit/PortpkgGuide
+   . file:///usr/ports/testing/portpkg/doc.php?page=links/PortpkgGuide
+   . file:///usr/ports/testing/portpkg/doc.php?page=info/PortpkgGuide

@@ -90,7 +90,14 @@ Find any ports, that contain the string `moz' in their description.
 Give information about the ports `mozilla' and `galeon'.
 .IP "portpkg --list"
 List all available ports.
-.IP "portpkg -l l/ foo n/arg foobar-1.0-i486-1"
+.IP "portpkg -l l/"
+List all ports in group `l/'.
+.IP "portpkg -l foo"
+.IP "portpkg -l l/foo"
+.IP "portpkg -l foo-1.0-i486-1"
+.IP "portpkg -l l/foo-1.0-i486-1"
+Different ways to list ports with name foo and other conditions.
+.IP "portpkg -l bla n/arg bar-1.0-i486-1"
 List all available ports of one group or with certain conditions.
 .IP "portpkg --sync"
 Sync the local ports tree with the official ports tree.
@@ -111,8 +118,6 @@ The binary packages archive (PKG_DIR=<path>).
 .IP /etc/portpkg/local.conf
 The configuration file for optional settings. Empty or non-existing
 leads to defaults.
-.IP "/etc/portpkg/repos"
-List of relative paths to the ports tree and URLs where to sync them with.
 .IP "/etc/portpkg/use.local"
 List of ports to handle as required dependencies rather than optional.
 .PP

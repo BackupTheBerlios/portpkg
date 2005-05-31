@@ -1,5 +1,6 @@
 #!/bin/sh
 #BLURB="Configure Portpkg"
+# don't use " # B L U R B " as above in this script since it'll break pkgtool!
 
 source `which portpkg` || exit 1
 t=`mktemp -d`
@@ -13,16 +14,12 @@ target()
 "What distribution do you focus? Possible answers are '10.0', '10.1' or \
 'current'.
 If unsure enter '$newest_slack'." 0 0 \
-    "$DIST_VER" 2>$t/dist-ver || exit
-  DIST_VER=`cat $t/dist-ver`
+    "$DIST_VER" 2>$t/res || exit
+  DIST_VER=`cat $t/res`
   sed -i "/^DIST_VER=/d" $CFG_DIR/local.conf
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$CFG_DIR/local.conf
     if [ $DIST_VER == current ]; then
-#      if dialog --title "$heading" --yesno \
-#"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
-#Shall I do that for you?
-#If unsure answer 'yes'." 0 0; then
       if dialog --title "$heading" --yesno \
 "It is recommended to add pasture/ to exclude.local for Slackware-current. \
 Shall I do that for you?
@@ -30,8 +27,6 @@ If unsure answer 'yes'." 0 0; then
         # add pasture/ to the list of excluded ports
         sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
         echo "pasture/" >>$CFG_DIR/exclude.local
-#         rm -rf $CFG_DIR/exclude
-#         ln -s exclude.$DIST_VER $CFG_DIR/exclude
       fi
     fi
   fi
@@ -43,26 +38,34 @@ maintain()
   dialog --title "$heading" --inputbox \
 "If you plan to write ports, what tag would you like to use? Only lower case \
 letters allowed (e.g. 'mich').
-Leave this empty if unsure or you don't plan to write ports." 0 0 "$MY_TAG" 2>$t/my-tag || exit
-  MY_TAG=`cat $t/my-tag | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
+Leave this empty if unsure or you don't plan to write ports." 0 0 "$MY_TAG" 2>$t/res || exit
+  MY_TAG=`cat $t/res | tr "A-Z" "a-z" | sed "s,[^a-z],,g"`
   sed -i "/^MY_TAG=/d" $CFG_DIR/local.conf
   sed -i "/^MY_EMAIL=/d" $CFG_DIR/local.conf
   sed -i "/^MY_REALNAME=/d" $CFG_DIR/local.conf
-  if [ "$MY_TAG" ]; then
-    echo "MY_TAG=\"$MY_TAG\"" >>$CFG_DIR/local.conf
-    dialog --title "$heading" --inputbox \
+  sed -i "/^MY_CVSTAG=/d" $CFG_DIR/local.conf
+  sed -i "/^SUBMIT_METHOD=/d" $CFG_DIR/local.conf
+  [ "$MY_TAG" ] || return 0
+  echo "MY_TAG=\"$MY_TAG\"" >>$CFG_DIR/local.conf
+  dialog --title "$heading" --inputbox \
 "If you plan to contrib your ports to the Portpkg Project, you need to enter \
 your mail address.
-Leave this empty if you don't plan to contribute ports." 0 0 "$MY_EMAIL" 2>$t/my-email || exit
-    MY_EMAIL=`cat $t/my-email`
-    if [ "$MY_EMAIL" ]; then
-      echo "MY_EMAIL=\"$MY_EMAIL\"" >>$CFG_DIR/local.conf
-      dialog --title "$heading" --inputbox \
-"Please enter your real name." 0 0 "$MY_REALNAME" 2>$t/my-realname || exit
-      MY_REALNAME=`cat $t/my-realname`
-      echo "MY_REALNAME=\"$MY_REALNAME\"" >>$CFG_DIR/local.conf
-    fi
-  fi
+Leave this empty if you don't plan to contribute ports." 0 0 "$MY_EMAIL" 2>$t/res || exit
+  MY_EMAIL=`cat $t/res`
+  [ "$MY_EMAIL" ] || return 0
+  echo "MY_EMAIL=\"$MY_EMAIL\"" >>$CFG_DIR/local.conf
+  dialog --title "$heading" --inputbox \
+"Since you want to contribute, we need your real name to contact you." 0 0 "$MY_REALNAME" 2>$t/res || exit
+  MY_REALNAME=`cat $t/res`
+  echo "MY_REALNAME=\"$MY_REALNAME\"" >>$CFG_DIR/local.conf
+  dialog --title "$heading" --inputbox \
+"If you have a developer account for the CVS tree, you can export directly to \
+CVS. If you want that feature, enter your account name here.
+If unsure leave this field empty." 0 0 "$MY_CVSTAG" 2>$t/res || exit
+  MY_CVSTAG=`cat $t/res`
+  [ "$MY_CVSTAG" ] || return 0
+  echo "MY_CVSTAG=\"$MY_CVSTAG\"" >>$CFG_DIR/local.conf
+  echo "SUBMIT_METHOD=cvs" >>$CFG_DIR/local.conf
 }
 
 output()
@@ -85,10 +88,10 @@ dependencies()
 "Do you want to have dependency resolution always enabled?
 If unsure answer 'yes'." 0 0; then
     if dialog --title "$heading" --defaultno --yesno \
-"Do you want to have lazy upgrading always enabled? Dependencies will normally \
+"Do you want to enable \`lazy upgrading'? Dependencies will normally \
 being upgraded if possible. Lazy upgrading cuts that off, but can cause ports \
 fail to build.
-If unsure answer 'no'." 0 0; then
+If unsure answer 'no'." 0 0 0; then
       echo "LAZY_CHECKS=true" >>$CFG_DIR/local.conf
     fi
   else
@@ -102,14 +105,14 @@ resources()
   echo -n "dialog --title \"$heading\" --checklist \
 \"Select which importers you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
   local importer
-  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
+  for importer in `grep -l "^#""BLURB=" $CFG_DIR/importers/*`; do
     echo -n `basename $importer` \
-      `grep ^#BLURB= $importer | cut -d = -f 2` \
+      `grep ^#""BLURB= $importer | cut -d = -f 2` \
       `[ -x $importer ] && echo on || echo off`" "
     chmod -x $importer
   done >>$t/menu
-  . $t/menu 2>$t/resources
-  for importer in `cat $t/resources`; do
+  . $t/menu 2>$t/res
+  for importer in `cat $t/res`; do
     chmod +x $CFG_DIR/importers/$importer
   done
 }
@@ -118,14 +121,14 @@ mirrors()
 {
   heading="MIRROR SETTINGS"
   echo -n "dialog --title \"$heading\" --menu \
-\"Which of the currently available mirror files do you want to use?\" 0 0 0 " >$t/menu
+\"Which set of mirror files do you want to use?\" 0 0 0 " >$t/menu
   local mirror
-  for mirror in `find $CFG_DIR/mirrors.* | grep -v mirrors.local`; do
-    echo `basename $mirror` `grep ^#BLURB= $mirror | cut -d = -f 2` \\
+  for mirror in `grep -l "^#""BLURB=" $CFG_DIR/mirrors.*`; do
+    echo `basename $mirror` `grep ^#""BLURB= $mirror | cut -d = -f 2` \\
   done >>$t/menu
   echo "none \"Use primary download URLs\"" >>$t/menu
-  . $t/menu 2>$t/out
-  out=`cat $t/out`
+  . $t/menu 2>$t/res
+  out=`cat $t/res`
   rm -rf $PRT_DIR/mirrors
   if [ "$out" != "none" ]; then
     rm -rf $CFG_DIR/mirrors
@@ -205,51 +208,36 @@ you?"; then
     *)
       dialog --title "$heading" --menu \
 "Do you want to optimise for your CPU? Your CPU is identified as \``cpu`' of \
-family \``arch`'. You should only optimise for your current architecture if at \
-all. If you want to hack on different flags, edit $CFG_DIR/local.conf. Note, \
-that not all SlackBuilds support custom compiler flags.
+family \``arch`'. It is recommended to only optimise for your current \
+architecture if at all. If you want to hack on different flags, edit \
+$CFG_DIR/local.conf. Note, that not all SlackBuilds support custom compiler \
+flags.
 If unsure choose 'default'." 0 0 0 \
     "default"  "Build for i486, optimise for i686" \
-    "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/menu
+    "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/res
       [ $? == 0 ] || return
       sed -i "/^ARCH=/d" $CFG_DIR/local.conf
       sed -i "/^CFLAGS=/d" $CFG_DIR/local.conf
-      if [ `cat $t/menu` == optimise ]; then
+      if [ `cat $t/res` == optimise ]; then
         echo "ARCH=`arch`"
         echo "CFLAGS=\"-O2 -march=`arch` -mcpu=`cpu`\""
       fi >>$CFG_DIR/local.conf;;
   esac
 }
 
-paths()
-{
-  heading="PATH SETTINGS"
-  eval "BIN_PRT_DIR=`grep ^BIN_PRT_DIR= $CFG_DIR/local.conf | cut -d = -f 2`"
-  dialog --title "$heading" --extra-label "Change" --inputmenu \
-"Set different values for sources and binaries (.tgz-packages) here:
-If unsure leave as is." 0 0 9 \
-  "sources"  "$SRC_DIR" \
-  `if [ "$BIN_PRT_DIR" ]; then
-    echo "bin-pseudos $BIN_PRT_DIR"
-  fi` \
-  "binaries" "$PKG_DIR" 2>$t/menu
-}
-
-rc=0
-while [ $rc == 0 ]; do 
-  dialog --title "PORTPKG-CONFIGURATION MAIN MENU" \
-  --cancel-label "Quit" --menu \
+last="target"
+while true; do 
+  dialog --title "PORTPKG-CONFIGURATION" \
+  --cancel-label "Quit" --default-item $last --menu \
 "This is a configuration tool for Portpkg.
 Select what you want to configure:" 0 0 0 \
   target "Set distribution target" \
-  resources "Set wich resources to use" \
-  maintain "Set ports tag string" \
+  resources "Set which resources to use" \
+  maintain "Set your tag string" \
   output "Set output level" \
   mirrors "Set mirrors for downloads" \
   optimise "Set processor optimising" \
-  dependencies "Set dependency handling" 2>$t/sub
-#  paths "Set paths for sources and binaries" \
-  rc=$?
-  sub=`cat $t/sub`
-  [ $rc == 0 ] && $sub
+  dependencies "Set dependency handling" 2>$t/res || break
+  last=`cat $t/res`
+  $last
 done

@@ -10,12 +10,14 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 #config etc/portpkg/exclude.new
-config etc/portpkg/repos.new
+#config etc/portpkg/repos.new
 
-#if [ -x etc/portpkg/importers/pp-sync-bin ]; then
-#  chmod 755 etc/portpkg/importers/pp-sync-bin.new
-#fi
-#mv etc/portpkg/importers/pp-sync-bin{.new,}
+for i in pseudo-ports slackware-source; do
+  if [ -x etc/portpkg/importers/$i ]; then
+    chmod 755 etc/portpkg/importers/$i.new
+  fi
+  mv etc/portpkg/importers/$i{.new,}
+done
 
 ## ok this is a hot-fix for 0.35cvs-7tom/8tom:
 #if ! [ -c dev/stdout ] && ! [ -L dev/stdout ]; then

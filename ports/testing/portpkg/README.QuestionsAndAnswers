@@ -6,10 +6,11 @@ QuestionsAndAnswers
 
   Why?
 
-   Well, in every case I come to the final point that I cannot explain: I
-   like the idea of a ports system for Slackware. And more technically: I
-   want to fill the gap in the causal connexion between .tgz-packages and
-   SlackBuilds.
+   Well, in every case when I try to explain, I come to the final point that
+   I can't: I simply like the idea of a ports system for Slackware. And more
+   technically: I want to fill the gap in the causal connexion between
+   .tgz-packages and SlackBuilds. Slackware is my favourite distribution and
+   I'm certain that it could can benefit of a ports system.
 
    But generally, building packages by source gives you control over how it
    is compiled (included features) and what it will be. More than this,
@@ -19,11 +20,13 @@ QuestionsAndAnswers
 
    I want to target as much users as possible: For the puristic slacker it
    could be a helpful reference, kept in a simple CVS tree. For the novice it
-   could be a installer that is easy to use. For the bleeding-edge-user it
+   could be an installer that is easy to use. For the bleeding-edge-user it
    could be a system to have all your software up-to-date and made for your
    system.
 
   Why is it written in Bash?
+
+   (I find no words.)
 
   Why not use Checkinstall?
 
@@ -31,9 +34,9 @@ QuestionsAndAnswers
    to redirect installation destinations: If make install
    DESTDIR=/tmp/package is not supported, checkinstall could be an
    alternative. Although a lot of people think Checkinstall does the same as
-   Portpkg does, the results are quite different: Apart from some cosmetics
-   (stripping and chowning root.bin binaries, gzipping manpages and infos
-   etc. pp.), the package building method is not saved, neither is the
+   Portpkg does but simpler, the results are quite different: Apart from some
+   cosmetics (stripping and chowning root.bin binaries, gzipping manpages and
+   infos etc. pp.), the package building method is not saved, neither is the
    process logged. Naturally, both ways allow removepkg package afterwards.
 
   Why not use binary packages?
@@ -63,7 +66,7 @@ QuestionsAndAnswers
 
   Can I turn off "dependencies" and "requirements"?
 
-   Yes, you can. Use -q in the command line or add NO_REQS=true in
+   Yes, of course. Use -q in the command line or add NO_REQS=true in
    /etc/portpkg/local.conf.
 
   Does it work with installpkg and removepkg?
@@ -75,10 +78,10 @@ QuestionsAndAnswers
 
   How can I recompile a Slackware package for my CPU?
 
-   Get your favorite SlackBuild (and all other files), add a proper entry in
+   Get your favorite SlackBuild (and all its files), add a proper entry in
    your ports tree (beneath local/) and add CFLAGS="$SLKCFLAGS" \ right
    before ./configure if it doesn't exist. You must set ARCH and CFLAGS in
-   your /etc/portpkg/local.conf (best with pp-config). See PortpkgGuide.
+   your /etc/portpkg/local.conf (use pp-config). See PortpkgGuide.
 
   Why is /tmp filled with so much data?
 
@@ -87,25 +90,32 @@ QuestionsAndAnswers
    recommended to delete that on every boot (see Filesystem Hierarchy
    Standard in Links):
 
- echo 'rm -rf /tmp/*' >>/etc/rc.d/rc.local
+ # echo 'rm -rf /tmp/*' >>/etc/rc.d/rc.local
+
+  Can I redirect /tmp?
+
+   Yes, you can. Add TMP=directory to /etc/portpkg/local.conf.
 
   What means "Cannot find required package xyz! Stopping."?
 
    It simply means that you need another package before you can install this
-   one. As it couldn't be found, I assume it is a package of the Slackware
-   distribution. You can install it by hand (installpkg xyz) or you can
-   import all Slackware packages to your ports tree: Run pp-config and
-   configure it to use Slackware's binaries (resources). After next portpkg
-   --sync Portpkg resolves dependencies to Slackware packages automatically.
+   one. As it is registered in the dependencies list of that port and
+   couldn't be found on your system, I assume it is a package of the
+   Slackware distribution. You can install it by hand (download that package
+   from slackware.com and installpkg package) or you can import all Slackware
+   packages to your ports tree: Run pp-config and configure it to use
+   Slackware's binaries (resources). After next portpkg --sync Portpkg
+   resolves dependencies to Slackware packages automatically.
 
   Why are there so few mirror list files? None of them fits my needs?
 
    You can use Portpkg without mirrors. You can add your own preferred mirror
-   sites to mirrors.local.
+   sites to mirrors.local. (And you can always propose mirror site that we
+   can add to the public lists.)
 
   How can I customise download behaviour?
 
-   Portpkg uses wget as download backend. Use man wget to know how to adjust
+   Portpkg uses wget as download backend. Use man wget to learn how to adjust
    /etc/wgetrc.
 
   Can I use ccache with Portpkg?
@@ -115,9 +125,15 @@ QuestionsAndAnswers
    will be run as user nobody with home directory /tmp, to set e.g. the max
    cache size, run su nobody and then export HOME=/tmp; ccache -M size.
 
-  Can I redirect /tmp?
+  Why are some ports that are listed with --list not available?
 
-   Yes, you can. Add TMP=directory to /etc/portpkg/local.conf.
+   Generally, you can exclude ports (see /etc/portpkg/exclude and
+   exclude.local). By default, the groups testing/ and open/ are excluded.
+   However, you can use them when you call them with their group name
+   (explicit): portpkg testing/experimental. Alternatively you can unlock
+   ports if link them e.g. in local/:
+
+ # ln -s ../testing/experimental /usr/ports/local/
 
   I'm using this Slackware-binaries-sync-addon-thing, but I want to use gcc-3.4
   from testing/. Portpkg always wants to downgrade to gcc-3.3 from d/. Hm?
@@ -133,16 +149,16 @@ QuestionsAndAnswers
  local/gcc-3.4.3-i486-1
  (...)
 
-   You will now have the gcc version in testing/ as default.
+   Now, you will have the gcc version in testing/ as default.
 
-  How is Portpkg different from other attempts to do the same, how is Portpkg
-  different from other Slackware tools?
+  With all those pseudo ports, how is Portpkg different from other attempts to
+  do the same, how is Portpkg different from other Slackware tools?
 
    Other Slackware tools contain "slack" in the project name or at least
    start with an "s": slapt-get, slackpkg, swaret, slackports, slack-get,
    spkg... Portpkg is unique in this sense of feature: It starts with a "p",
    goes straight on with "ort", just to find its climax with another "p", and
-   ends quickly but sudden with "kg".
+   ends quick but sudden with "kg".
 
   After reading the main parts of this page, it seems to me, that portpkg only
   works with Slackware 10.0. But what's about Slackware 10.1 or the 9.x series?
@@ -160,8 +176,8 @@ References
 
    Visible links
    . http://portpkg.berlios.de/doc.php?page=edit/QuestionsAndAnswers
-   . file:///usr/ports/d/portpkg/doc.php?page=PortpkgGuide
-   . file:///usr/ports/d/portpkg/doc.php?page=Links
-   . file:///usr/ports/d/portpkg/doc.php?page=edit/QuestionsAndAnswers
-   . file:///usr/ports/d/portpkg/doc.php?page=links/QuestionsAndAnswers
-   . file:///usr/ports/d/portpkg/doc.php?page=info/QuestionsAndAnswers
+   . file:///usr/ports/testing/portpkg/doc.php?page=PortpkgGuide
+   . file:///usr/ports/testing/portpkg/doc.php?page=Links
+   . file:///usr/ports/testing/portpkg/doc.php?page=edit/QuestionsAndAnswers
+   . file:///usr/ports/testing/portpkg/doc.php?page=links/QuestionsAndAnswers
+   . file:///usr/ports/testing/portpkg/doc.php?page=info/QuestionsAndAnswers

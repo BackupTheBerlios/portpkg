@@ -1,0 +1,63 @@
+#!/bin/sh
+# checktree -- developer tool to make some random checks to the ports tree
+#              run this from time to time
+
+source `which portpkg` || exit 1
+
+check_ports()
+{
+  ports_all=`do_list | grep -v $exclude -e ^local/`
+  ports=`echo "$ports_all" | grep -v "[0-9]$"`
+  max=`echo "$ports" | wc -l | xargs`
+  percent=5
+  count=$((max*percent/100))
+  stanza "Checking now $count ($percent %) of $max random ports:"
+  for n in `seq 1 $count`; do
+    rnd=$((RANDOM*$max/32768))
+    port=`echo "$ports" | sed -n "$(random $max)p"`
+    get_info $port
+    row "Checking $group/$package ($rnd/$max)"
+    for src in $sources; do
+      curl -f -m 30 -I $src >/dev/null 2>&1 || row "$src failed"
+    done
+    for dep in $requires $optional; do
+      if ! echo "$ports_all" | grep -sq `regex $dep`; then
+        row "$dep not found"
+      fi
+    done
+  done
+}
+
+check_overlaps()
+{
+  stanza "Checking now overlaps with Slackware-10.0, -10.1 and -current:"
+  local t=`mktemp -d`
+  list="current" #10.1 10.0"
+  for i in $list; do
+    get ftp://ftp.slackware.com/pub/slackware/slackware-$i/FILELIST.TXT $t/file_list.$i >$output
+    grep -o "slackware/.*\.tgz$" $t/file_list.$i | rev | cut -d / -f 1 | cut -d . -f 2- | rev >$t/list.$i
+    cat $t/list.$i | rev | cut -d - -f 4- | rev >$t/list.$i.short
+  done
+
+  do_list | grep -v "[0-9]$" >$t/list_ports.gn
+  cat $t/list_ports.gn | grep -ve testing/ -e open/ | cut -d / -f 2 >$t/list_ports
+  cat $t/list_ports | rev | cut -d - -f 4- | rev >$t/list_ports.short
+  cat $t/list_ports.gn | grep -ve testing/ -e open/ -e pasture/ | cut -d / -f 2 | rev | cut -d - -f 4- | rev >$t/list_ports.current.short
+
+  for i in $list; do
+    printf "\n%-22s %-22s %-22s\n" "PACKAGE NAME:" "SLACKWARE-current:" "PORTS:"
+    case $i in
+      current)
+        grep -xf $t/list.$i.short $t/list_ports.current.short;;
+      *)
+        grep -xf $t/list.$i.short $t/list_ports.short;;
+    esac | while read s; do
+      s1=`grep "^$s-[^-]*-[^-]*-[^-]*$" $t/list.$i | sed "s,^$s-,,"`
+      s2=`grep "^$s-[^-]*-[^-]*-[^-]*$" $t/list_ports | sed "s,^$s-,," | head -n 1`
+      printf "%-22s %-22s %-22s\n" $s $s1 $s2
+    done
+  done
+}
+
+check_ports
+check_overlaps
