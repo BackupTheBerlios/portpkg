@@ -1,3 +1,8 @@
+# optional: cxxlibs
+# optional: libmusicbrainz
+# optional: mozilla
+# optional: nautilus
+# optional: totem
 atk
 expat
 gconf
@@ -6,7 +11,10 @@ glibc
 gnome-desktop
 gnome-keyring
 gnome-vfs
+gst-plugins
+gstreamer
 gtk+2
+iso-codes
 libart_lgpl
 libbonobo
 libbonoboui
@@ -25,33 +33,4 @@ startup-notification
 x11
 x11-devel
 xine-lib
-zlib
-atk
-expat
-gconf
-glib2
-glibc
-gnome-desktop
-gnome-keyring
-gnome-vfs
-gst-plugins
-gstreamer
-gtk+2
-libart_lgpl
-libbonobo
-libbonoboui
-libglade
-libgnome
-libgnomecanvas
-libgnomeui
-libjpeg
-libxml2
-nautilus-cd-burner
-openssl
-orbit2
-pango
-popt
-startup-notification
-x11
-x11-devel
 zlib
