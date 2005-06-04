@@ -1,6 +1,6 @@
 VERSION=1.12
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=4tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -27,7 +27,7 @@ chown -R root.bin $PKG{,/usr}/{,s}bin
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  Changelog INSTALL README* docs \
+  Changelog INSTALL README* docs/* \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
