@@ -1,3 +1,14 @@
+gconf() {
+  if [ -x usr/bin/gconftool-2 ]; then
+    GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
+    usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
+  fi
+}
+gconf etc/gconf/schemas/gdict.schemas
+gconf etc/gconf/schemas/gfloppy.schemas
+gconf etc/gconf/schemas/gnome-screenshot.schemas
+gconf etc/gconf/schemas/gnome-search-tool.schemas
+gconf etc/gconf/schemas/logview.schemas
 if [ -x usr/bin/scrollkeeper-update ]; then
   usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1
 fi
