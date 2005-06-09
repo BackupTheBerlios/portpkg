@@ -161,7 +161,7 @@ Options:
   -a             Run non-interactive (use defaults)
   -n name        Preset name of port
   -v version     Preset version of port
-  -g group       Preset group of port
+  -g group       Preset group of port (don't use with -u)
   -u port        Re-use settings of existing port
   -b             Execute portpkg after port generation
 Source:
@@ -281,7 +281,7 @@ if $i_act; then
   echo
   echo "PACKAGE NAME:  $name-$version-$arch-$build"
   echo "SCRIPT LOCATION:  $script"
-  echo "SOURCE LOCATION:  $sources" | fmt -u
+  echo "SOURCE LOCATION:  `encode "$sources"`" | fmt -u
   echo "PACKAGE DESCRIPTION:"
   echo "$desc"
 fi
@@ -547,6 +547,7 @@ if grep -sqe "#:config" -e "#:make" $script; then
         if check "^setup\.py$" $t/footprint; then
           arch=noarch
         else
+          snip python $script
           warn "Don't know how to configure this package."
         fi
       fi
@@ -591,6 +592,10 @@ if grep -sq "#:install" $script; then
     snip install_PREFIX $script
     snip install_prefix $script
   else
+    snip python $script
+    snip install_destdir $script
+    snip install_prefix $script
+    snip install_PREFIX $script
     error "Don't know how to install this package (no Makefile)."
     failed=true
   fi

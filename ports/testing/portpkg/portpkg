@@ -40,11 +40,6 @@ PRT_DIR=/usr/ports
 CFG_DIR=/etc/portpkg
 TMP=/tmp
 
-PRT_ROOT="cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports"
-SUBMIT_TAR_URL="http://portpkg.berlios.de/upload.php"
-SUBMIT_TAR_CMD="curl -F filetoupload=@\$ADM_DIR/portpkg/\$package.tar.bz2 \$SUBMIT_TAR_URL >/dev/null 2>&1"
-SUBMIT_METHOD=tarball
-
 # include host-specific configuration overlay
 [ -f $CFG_DIR/local.conf ] && source $CFG_DIR/local.conf
 
@@ -53,6 +48,8 @@ ENGINE_VER=cvs
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 FAKED_INST=`mktemp`
+#USE_LIST=`mktemp`
+#AVAIL_LIST=`mktemp`
 
 # default arguments
 action=do_add
@@ -78,11 +75,6 @@ declare \
 # gname group/name              "l/bla"
 # scr   path/SlackBuild         "/usr/ports/l/bla/SlackBuild"
 # loc   path-rel                "/usr/ports/l/bla-1.0-i486-3"
-
-# pkgex         group/ or [group/]name[-rel]
-# regex         regular expression
-# pkgex_list    pkgex [...]
-# regex_list    regex [...]
 
 # converters
 pkg2name()   { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -121,14 +113,12 @@ is_root()   { [ "$UID" == "0" ] || error "You must be root to run this action!";
 has_prog()  { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
 has_ports() { [ -d $PRT_DIR ] || error "No ports found! Try: portpkg --sync"; }
 
-# download a source and make use of mirrors (supports cvs:// and httpup://)
-get() # url dest
+# find a mirror
+mirror() # url >url
 {
   debug "$FUNCNAME() $@"
-  local url=$1 orig_url=$1 dest=$2
+  local url=$1
   local t=`mktemp -d`
-
-  # find a mirror
   if [ -s $CFG_DIR/mirrors.local ] || [ -s $CFG_DIR/mirrors ]; then
     grep -shve ^# -e ^$ $CFG_DIR/mirrors{.local,} >$t/mirrors
     local master mirror
@@ -139,17 +129,28 @@ get() # url dest
     done <$t/mirrors
   fi
   debug "using $url"
+  echo "$url"
+}
+
+# download a source and make use of mirrors (supports cvs:// and httpup://)
+get() # url dest
+{
+  debug "$FUNCNAME() $@"
+  local url=$1 dest=$2
+  local t=`mktemp -d`
+  local mirror=`mirror $url`
+
   $DRY_RUN && return 0
   mkdir -p `dirname $dest`
 
-  case $url in
+  case $mirror in
     httpup://*)
-      url=${url#*://}
+      mirror=${mirror#*://}
       mkdir -p $dest
       has_prog httpup || continue
-      httpup sync http://$url $dest 2>/dev/null;;
+      httpup sync http://$mirror $dest 2>/dev/null;;
     cvs://*)
-      url=${url#*://}
+      mirror=${mirror#*://}
       has_prog cvs || continue
       if [ -d $dest ]; then
         ( cd $dest
@@ -157,10 +158,8 @@ get() # url dest
         )
       else
         mkdir -p $dest
-        local cvs_root=`dirname $url`
-        local cvs_mod=`basename $url`
         ( cd `dirname $dest`
-          cvs -qz9 -d $cvs_root co -Pd `basename $dest` $cvs_mod 2>/dev/null
+          cvs -qz9 -d `dirname $mirror` co -Pd `basename $dest` `basename $mirror` 2>/dev/null
         )
       fi;;
     rsync://*)
@@ -171,10 +170,10 @@ get() # url dest
       error "SVN is not supported!";;
     *)
       # try primary url if mirror fails
-#FIXME: don't use $orig_url if $url is the same
       has_prog wget || die
-      if wget -c -O $dest.part $url 2>&1 \
-      || wget -c -O $dest.part $orig_url 2>&1; then
+      if wget -c -O $dest.part $mirror 2>&1; then
+        mv $dest.part $dest
+      elif [ $url != $mirror ] && wget -c -O $dest.part $url 2>&1; then
         mv $dest.part $dest
       else
         error "Download failed!"
@@ -226,15 +225,14 @@ ls_diff() # >pkgex_list
 
   # find installed packages that are available
   local check
-  fgrep -xf $t/avail.names $t/inst.names \
-  | sed "s,.*,&-[^-]*-[^-]*-[^-]*," | while read check; do
-    grep -xm 1 "$check" $t/avail >>$t/avail.check
-    grep -xm 1 "$check" $t/inst >>$t/inst.check
+  fgrep -xf $t/avail.names $t/inst.names | while read check; do
+    grep -xm 1 "$check-[^-]*-[^-]*-[^-]*" $t/avail >>$t/avail.check
+    grep -xm 1 "$check-[^-]*-[^-]*-[^-]*" $t/inst >>$t/inst.check
   done
 
   # print differences
   if $IGNORE_ARCH; then
-    # don't care about architecture differences!
+    # don't care about architecture differences
     sed -i "s,\(.*-.*\)-.*-\(.*\),\1-.*-\2," $t/avail.check
     sed -i "s,\(.*-.*\)-.*-\(.*\),\1-.*-\2," $t/inst.check
     fgrep -vxf $t/inst.check $t/avail.check | sort -u | grep -f - $t/avail
@@ -254,7 +252,7 @@ get_info() # pkgex
   # maybe an exluded one explicitly named?
   [ "$loc" ] || case $1 in */*)
     loc=`ls_scr | scr2loc | grep -m 1 $(regex $1)`
-    debug "Excluded port specified explicitly!";;
+    debug "excluded port specified explicitly!";;
   esac
 
   if ! [ "$loc" ]; then
@@ -311,8 +309,9 @@ update_meta_info()
   rm -rf $path/{md5sums,footprint}
 
   # write a file list of the package (remove creation time)
-  tar tzvf $tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
-  | sort +3 >$path/footprint
+#  tar tzvf $tmp/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
+  tar tzvf $tmp/$package.tgz | sort +5 | awk '{ print $1,$2,$3,$6 }' \
+  | column -t >$path/footprint
 
   # write md5sums
   local link
@@ -323,10 +322,10 @@ update_meta_info()
   md5sum $script $path/footprint >>$path/md5sums
   sed -i "s, $path/, ," $path/md5sums
 
-  # sign md5sums
-  if has_prog gpg && cat $path/md5sums | gpg --clearsign >$t/md5sums; then
-    mv {$t,$path}/md5sums
-  fi
+#  # sign md5sums
+#  if has_prog gpg && cat $path/md5sums | gpg --clearsign >$t/md5sums; then
+#    mv {$t,$path}/md5sums
+#  fi
 
   # explodepkg package tree?
   if ! [ -d $tmp/package-$name ]; then
@@ -358,6 +357,9 @@ update_meta_info()
   fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
   fgrep -vxf $t/old_req -f $t/old_opt $t/auto_req >$t/new_req
 
+  # save the "actual" dependencies list of the current port
+  cat $t/auto_req_raw >$ADM_DIR/portpkg/$package.deps
+
   # if "requires" exists, new dependencies are optional
   if [ "$requires" ]; then
     cat $t/new_req >$t/new_opt
@@ -382,10 +384,10 @@ update_meta_info()
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
-  grep -woe "usr/\(local/\|etc/\|share/doc/\|share/man/\|info/dir\).*" \
+  egrep -woe "usr/(local/|etc/|share/doc/|share/man/|info/dir).*" \
     -e "/$ARCH-slackware-linux-" $path/footprint >$t/check_path
-  grep -e "^........w" -e " root/root .*\( \|/\)bin/" $path/footprint >$t/check_perm
-  grep -e "-upgraded$" $t/auto_req >$t/check_req
+  egrep -e "^........w" -e " root/root .*( |/)(|s)bin/" $path/footprint >$t/check_perm
+  egrep -e "-upgraded$" $t/auto_req >$t/check_req
   ls_scr | scr2loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
   | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
@@ -419,8 +421,8 @@ build_pkg()
   local src
   for src in $sources; do
     # the source filename can have an arbitrary name written behind a %
-    local srcname=`basename "$src" | cut -d % -f 2`
-    src=`echo "$src" | cut -d % -f 1`
+    local srcname=`basename ${src##*%}`
+    src=${src%\%*}
     case $src in
       cvs://*)
         row "Syncing CVS $srcname"
@@ -439,13 +441,12 @@ build_pkg()
 
   # check signature and md5sums when non-maintainer-mode
   if ! $maintain && ! $DRY_RUN && [ -f $path/md5sums ]; then
-    if grep -sq PGP $path/md5sums && has_prog gpg && ! gpg --verify $path/md5sums 2>/dev/null; then
-      error "Integrity checking failed (bad signature)!"
-      return 1
-    fi
+#    if grep -sq PGP $path/md5sums && has_prog gpg && ! gpg --verify $path/md5sums 2>/dev/null; then
+#      error "Integrity checking failed (bad signature)!"
+#      return 1
+#    fi
     cd $path
     if ! md5sum -c $path/md5sums >$t/output 2>&1; then
-#      sed -n "/FAILED/s,\(.*\):.*,\1,p" $t/md5sum | xargs -r echo "  --> MD5SUM mismatch:"
       cat $t/output
       error "Integrity checking failed!"
       return 1
@@ -551,16 +552,18 @@ build_pkg()
 check_reqs()
 {
   debug "$FUNCNAME() $@"
-  local t=`mktemp -d`
+#  local t=`mktemp -d`
+  local use_list=$TMPDIR/check_reqs_use_list
+  local avail_list=$TMPDIR/check_reqs_avail_list
 
   # check out "use"-list
-  explicit `grep -sve ^# -e ^$ $CFG_DIR/use.local` >$t/use
-  local use=`echo "$optional" | fgrep -xf $t/use -`
+  [ -s $use_list ] || explicit `grep -sve ^# -e ^$ $CFG_DIR/use.local` >$use_list
+  local use=`echo "$optional" | fgrep -xf $use_list -`
   debug "$name requires: "$requires
   debug "using optional: "$use
 
   # find packages to check
-  ls_scr | scr2loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$t/avail
+  [ -s $avail_list ] || ls_scr | scr2loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$avail_list
   deps=`echo -e "$requires\n$use"`
 
   debug "checking: "$deps
@@ -570,7 +573,7 @@ check_reqs()
 
     # always read-in installed packages
     local inst_pkg=`ls_inst | grep -m 1 $(regex $req)`
-    local avail_pkg=`grep -m 1 $(regex $req) $t/avail`
+    local avail_pkg=`grep -m 1 $(regex $req) $avail_list`
 
     # is the dependency available?
     if [ "$avail_pkg" ]; then
@@ -661,63 +664,13 @@ add_pkg()
   return 0
 }
 
-# commit the current port via tarball
-submit_tarball()
-{
-  local t=`mktemp -d`
-  has_prog curl || return 1
-
-#FIXME: use at least 7.12.2 (Slackware 10.1)
-  case `curl -V | head -n 1 | cut -d " " -f 2` in
-    7.12.0|7.12.1) die "You need curl >= 7.12.2";;
-    7.12.*)        ;;
-    *)             die "You need curl >= 7.12.2";;
-  esac
-
-  [ "$MY_TAG" ] || die "No tag configured. Please run: pp-config"
-  [ "$MY_EMAIL" ] || die "No mail address configured. Please run: pp-config"
-  [ "$MY_REALNAME" ] || die "No real name configured. Please run: pp-config"
-
-  # make tarball with the port scripts and include info file
-  cat >$path/info <<EOF
-Maintainer:  $MY_TAG: $MY_REALNAME <$MY_EMAIL>
-Intended group:  $group/
-ChangeLog entry:  $export_opt
-EOF
-#  rm -rf $ADM_DIR/portpkg/$package.tar.bz2
-  tar cjf $ADM_DIR/portpkg/$package.tar.bz2 --exclude "*CVS*" -C `dirname $path` $name
-  rm $path/info
-  # upload where ever it should be
-  eval $SUBMIT_TAR_CMD || error "An error occured!"
-}
-
-# commit the current port to the CVS repository
-# this is only usefull if the ports tree already has a valid CVS account!
-submit_cvs()
-{
-  local t=`mktemp -d`
-  has_prog cvs || return 1
-  cd $path || die
-  # check if this path is already in the repository
-  [ "`find -path "*CVS*"`" ] || ( cd .. && cvs -qz9 add `basename $path`; )
-  # compare local tree with CVS
-  find ! -path "*CVS*" ! -path "." | sort >$t/local
-  find -name Entries -path "*CVS*" -exec grep -H / {} \; \
-  | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
-  # remove entries that are not here anymore
-  fgrep -vxf $t/local $t/cvs | xargs -rl cvs -qz9 rm
-  # add entries that are new here
-  fgrep -vxf $t/cvs $t/local | xargs -rl cvs -qz9 add
-  cvs -qz9 ci -m "$export_opt"
-}
-
-# prepare and install ports
 do_add() # pkgex_list
 {
   local t=`mktemp -d`
   has_args "$@" || die
   has_ports || die
   is_root || die
+
   local arg
   for arg in `explicit "$@"`; do
     debug "adding now: "$arg
@@ -753,18 +706,20 @@ do_diff()
   has_ports || die
   local diff_list=`ls_diff`
   [ "$diff_list" ] || die "No differences found."
-  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
+#  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
   ls_inst >$t/inst
   local pkg
-  for pkg in $diff_list; do
+  for pkg in 0 $diff_list; do
+    [ "$pkg" == "0" ] && echo -e "\nPACKAGE: AVAILABLE: INSTALLED:" && continue
     debug "processing now: $pkg"
     local avail_rel=`echo $pkg | pkg2rel`
     local name=`echo $pkg | pkg2name`
     local inst_rel=`grep -m 1 $(regex $name) $t/inst | pkg2rel`
     avail=${avail:-$name}
     avail_rel=${avail_rel:-(n/a)}
-    printf "%-31s %-23s %s\n" "$name" "$avail_rel" "$inst_rel"
-  done
+#    printf "%-31s %-23s %s\n" "$name" "$avail_rel" "$inst_rel"
+    echo "$name $avail_rel $inst_rel"
+  done | column -t
 }
 
 do_export() # pkgex_list
@@ -776,32 +731,33 @@ do_export() # pkgex_list
   # make sure, the user didn't accidently give a port for summary
   case "$export_opt" in *\ *) ;; *) die "Summary must be at least two words!";; esac
 
-  stanza "Exporting via $SUBMIT_METHOD:"
+  stanza "Exporting:"
   local arg
   for arg in `explicit "$@"`; do
     debug "processing now: $arg"
     get_info $arg || continue
 
-    # check "ownership"
+    # make some check before exporting
     if ! $maintain; then
       error "$group/$name is not your port. Skipping."
-    # check if it's broken
     elif [ -f $path/PORT_IS_BROKEN ]; then
       error "Cannot export broken ports: $group/$name"
-    # check if it's already run
     elif ! [ -f $path/footprint ] || [ $path/footprint -ot $script ]; then
       error "No or too old footprint: $group/$name"
-    # check description
     elif [ `grep -s ^$name: $path/slack-desc | grep :.. | wc -l` -lt 2 ]; then
-      error "Too few description: $group/$name"
-    # check for links
+      error "Too short description: $group/$name"
     elif [ "`find $path/ -type l`" ]; then
       error "Remove links before export: $group/$name"
     fi
     [ $? != 0 ] && continue
 
-    row "Submitting $group/$package"
-    $DRY_RUN || submit_$SUBMIT_METHOD
+    # start 3rd-party-exporter
+    if [ -f $CFG_DIR/export ]; then
+      $DRY_RUN || ( source $CFG_DIR/export; )
+    else
+      error "Export method not defined. Please run: pp-config"
+      continue
+    fi
   done
 }
 
@@ -857,23 +813,12 @@ do_sync()
   local t=`mktemp -d`
   is_root || die
   has_prog cvs || die
-  stanza "Syncing your data base:"
-
-  row "Syncing $PRT_DIR/"
-  [ -d $PRT_DIR/.CVS ] && rename .CVS CVS `find $PRT_DIR/ -name .CVS`
-#  && find $PRT_DIR/ -name .CVS -exec basename {} -depth \; | xargs -i mv {}/.CVS {}/CVS
-  get $PRT_ROOT $PRT_DIR/ | sed -r \
-    -e "s,^U , Updating ," \
-    -e "s,^C , Conflict with ," \
-    -e "s,^P , Patching ," \
-    -e "s,^M , Locally modified ," \
-    -e "s,^\\? , Unknown entry ," \
-    -e "s,.*,  --> ,"
+  stanza "Syncing your ports:"
 
   # start 3rd-party-importers
   local importer
   for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
-    [ -x $importer ] && ( . $importer; )
+    [ -x $importer ] && ( source $importer; )
   done
 
   # sync package dir
@@ -884,7 +829,7 @@ do_sync()
 
   # check groups
   ls_pkg | fgrep -vxf $t/avail | while read gpkg; do
-    group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
+    group=`grep -m 1 /${gpkg#*/}$ $t/avail | cut -sd / -f 1`
     group=${group:-outdated}
     case $gpkg in $group/*) continue;; esac
     row "Moving $gpkg to $group/"

@@ -3,28 +3,41 @@
 #              run this from time to time
 
 source `which portpkg` || exit 1
+summary=`mktemp -d`
 
 check_ports()
 {
+  local t=`mktemp -d`
   ports_all=`do_list | grep -v $exclude -e ^local/`
   ports=`echo "$ports_all" | grep -v "[0-9]$"`
   max=`echo "$ports" | wc -l | xargs`
-  percent=5
+  percent=2
   count=$((max*percent/100))
   stanza "Checking now $count ($percent %) of $max random ports:"
   for n in `seq 1 $count`; do
     rnd=$((RANDOM*$max/32768))
     port=`echo "$ports" | sed -n "$(random $max)p"`
     get_info $port
-    row "Checking $group/$package ($rnd/$max)"
+    row "Checking $group/$name ($rnd/$max)"
     for src in $sources; do
-      curl -f -m 30 -I $src >/dev/null 2>&1 || row "$src failed"
+      if ! curl -f -m 30 -I ${src%\%*} >/dev/null 2>&1; then
+        echo "$port ${src%\%*}" >>$summary/srcs
+      fi
     done
     for dep in $requires $optional; do
       if ! echo "$ports_all" | grep -sq `regex $dep`; then
-        row "$dep not found"
+        echo "$port $dep" >>$summary/deps
       fi
     done
+    fmver=`lynx -dump http://freshmeat.net/projects-xml/$name | grep latest_release_version | sed "s,.*>\(.*\)<.*,\1,"`
+    if [ "$fmver" ] && [ "$fmver" != "$version" ]; then
+      # fm has a different version, test it now
+      for src in $sources; do
+        if curl -f -m 30 -I ${src//$version/$fmver} >/dev/null 2>&1; then
+          echo "$port $fmver" >>$summary/vers
+        fi
+      done
+    fi
   done
 }
 
@@ -45,7 +58,7 @@ check_overlaps()
   cat $t/list_ports.gn | grep -ve testing/ -e open/ -e pasture/ | cut -d / -f 2 | rev | cut -d - -f 4- | rev >$t/list_ports.current.short
 
   for i in $list; do
-    printf "\n%-22s %-22s %-22s\n" "PACKAGE NAME:" "SLACKWARE-current:" "PORTS:"
+    stanza "PACKAGE: SLACKWARE-current: PORTS:"
     case $i in
       current)
         grep -xf $t/list.$i.short $t/list_ports.current.short;;
@@ -54,10 +67,28 @@ check_overlaps()
     esac | while read s; do
       s1=`grep "^$s-[^-]*-[^-]*-[^-]*$" $t/list.$i | sed "s,^$s-,,"`
       s2=`grep "^$s-[^-]*-[^-]*-[^-]*$" $t/list_ports | sed "s,^$s-,," | head -n 1`
-      printf "%-22s %-22s %-22s\n" $s $s1 $s2
+      echo "$s $s1 $s2"
     done
-  done
+  done | column -t
+}
+
+check_open()
+{
+#TODO: check for ports in open/ that are old enough to suggest a merge
+  :
+}
+
+summary()
+{
+  stanza "CHECK THESE PORTS FOR VALID URLS:"
+  cat $summary/srcs 2>/dev/null | column -t
+  stanza "CHECK THESE PORTS FOR VALID DEPENDENCIES:"
+  cat $summary/deps 2>/dev/null | column -t
+  stanza "CHECK THESE PORTS FOR UPDATES:"
+  cat $summary/vers 2>/dev/null | column -t
 }
 
 check_ports
 check_overlaps
+check_open
+summary

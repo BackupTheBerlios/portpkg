@@ -1,15 +1,19 @@
 WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
 
-* Due to some changes to the download subroutine, there's a change in the
-  repos layout! Please watch out! It should be now possible to use CVS as a
-  resource in your ports. E.g. the "sources" file will look like this (as in
-  "repos" now):
+Major changes:
+
+* CVS and HTTPUP support (sources, mirrors and importer scripts)
+
+  Due to some changes to the download subroutine, there's a change in
+  the repos layout! Please watch out! It should be now possible to use
+  CVS as a resource in your ports. E.g. the "sources" file will look
+  like this (as in "repos" now):
 
   cvs://:pserver:anonymouse@cvs.bla.net:/cvsroot/bla/$NAME
 
-  The default CVS storage dir is /usr/src/cvs and can be changed by CVS_DIR=...
-  in /etc/portpkg/local.conf. Portpkg makes a symlink to the port dir before
-  starting the SlackBuild. Use it in your SlackBuild as
+  The default CVS storage dir is /usr/src/cvs and can be changed by
+  CVS_DIR=... in /etc/portpkg/local.conf. Portpkg makes a symlink to the
+  port dir before starting the SlackBuild. Use it in your SlackBuild as
 
   ...
   # here would be normal tar xjvf $CWD/$NAME-$VERSION.tar.bz2
@@ -17,14 +21,20 @@ WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
   cd $NAME || exit 1
   ...
 
-* PGP/GPG-Support
+* Import/export system
 
-  In maintainer mode "md5sums" files are signed. It is verified in
-  non-maintainer mode.
+  The ports collection of Portpkg is a seperate importer script now, 
+  that can be turned on and off with pp-config. Also, an export method
+  can be defined to submit ports anonymously via HTTP (goes into open/)
+  or via CVS if you have an developer account. The CVS server can
+  neverteless be modified in a mirrors file.
 
-* OK, I restored the old importers style and delayed the "repo" config file,
-  as it seems to be unneccessary. The CVS server can neverteless be 
-  modified in a mirrors file.
+* Use.local
+
+  Dependencies that are optional AND shall be installed by portpkg when
+  needed can be written to this list. Best known example is if you WANT
+  GNOME dependencies for packages you are building, you SHOULD add
+  gnome/ here!
 
 Furthermore:
 
@@ -33,16 +43,12 @@ Portpkg:
 * Add newly found dependencies as optional.
 * Connect arguments in --find with AND not OR.
 * Fixed using of custom $TMP
-* Use cvs:// in sources
 * Removed "pseudo" files
 * Remove arbitrary source files (%-style in "sources") after package building
 * No more "arbitrary" files, only warning message
-* Use "use"-list: install optional dependencies listed in /etc/portpkg/use
 * No more ".wgetlogs"
 * Don't log a dry-run
 * Execute SlackBuilds with "sh -e" on default
-* Try to GPG-sign md5sums
-* Developers: CVS submit via --export ("SUBMIT_METHOD=cvs")
 * --ignorearch: neglect architecture diffs
 * Improvements to the Slackware source importer
 *
@@ -64,3 +70,4 @@ Enjoy.
 Delayed:
 * Added support for different repositories (CVS and HTTPUP) (see /etc/portpkg/repos).
 * Removed "importers" subsystem.
+* PGP/GPG-Support

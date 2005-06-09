@@ -107,7 +107,7 @@ EOF
 
 t=`mktemp -d`
 
-row "Syncing $tree"
+row "Syncing $tree/"
 mkdir -p $tree
 
 $DRY_RUN && exit 0

@@ -1,0 +1,24 @@
+#BLURB="Export to Portpkg via CVS account"
+
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
+
+row "Submitting $group/$package via CVS"
+
+t=`mktemp -d`
+has_prog cvs || return 1
+cd $path || die
+# check if this path is already in the repository
+[ "`find -path "*CVS*"`" ] || ( cd .. && cvs -qz9 add `basename $path`; )
+# compare local tree with CVS
+find ! -path "*CVS*" ! -path "." | sort >$t/local
+find -name Entries -path "*CVS*" -exec grep -H / {} \; \
+| rev | cut -d / -f 5,8- | rev | sort >$t/cvs
+# remove entries that are not here anymore
+fgrep -vxf $t/local $t/cvs | xargs -rl cvs -qz9 rm
+# add entries that are new here
+fgrep -vxf $t/cvs $t/local | xargs -rl cvs -qz9 add
+cvs -qz9 ci -m "$export_opt"

@@ -1,6 +1,7 @@
 #!/bin/sh
 # update_ports -- developer tool to import uploaded ports into open/
 #                 at least one developer should run this from time to time!
+#                 ENABLE CVS EXPORT METHOD BEFORE YOU RUN THIS SCRIPT!
 
 source `which portpkg` || exit 1
 
@@ -52,23 +53,6 @@ else
   row "No uploads"
 fi
 
-# if we have an argument, we do the long walk
-[ "$1" ] || exit 0
-
-# make ChangeLogs
-stanza "Update ChangeLogs:"
-t=`mktemp`
-for i in . d/portpkg; do
-  cd $PRT_DIR/$i
-  has_prog cvs2cl.pl || continue
-  cvs2cl.pl -g -qz9 -f $t -I ChangeLog
-  if ! cmp -s $t ChangeLog; then
-    row "ChangeLog in $i changed"
-    cat $t >ChangeLog
-    cvs -qz9 ci -m "Updated." ChangeLog
-  fi
-done
-
 # httpup support is broken now :-(
 ## create httpup-repo
 #cd $ports
@@ -97,3 +81,20 @@ scp $t/amount $MY_CVSTAG@shell.berlios.de:$pp_home/ports.amount
 row "Uploading recent changes list"
 scp $t/recent $MY_CVSTAG@shell.berlios.de:$pp_home/ports.recent
 #scp ./index.php $MY_CVSTAG@shell.berlios.de:$pp_home/index.php
+
+# if we have an argument, we do the long walk
+[ "$1" ] || exit 0
+
+# make ChangeLogs
+stanza "Update ChangeLogs:"
+t=`mktemp`
+for i in . d/portpkg; do
+  cd $PRT_DIR/$i
+  has_prog cvs2cl.pl || continue
+  cvs2cl.pl -g -qz9 -f $t -I ChangeLog
+  if ! cmp -s $t ChangeLog; then
+    row "ChangeLog in $i changed"
+    cat $t >ChangeLog
+    cvs -qz9 ci -m "Updated." ChangeLog
+  fi
+done

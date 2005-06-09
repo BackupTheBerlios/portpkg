@@ -1,0 +1,23 @@
+#BLURB="The Portpkg ports collection"
+
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
+
+row "Syncing $PRT_DIR/"
+root="cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports"
+
+t=`mktemp -d`
+has_prog cvs || die
+
+[ -d $PRT_DIR/.CVS ] && rename .CVS CVS `find $PRT_DIR/ -name .CVS`
+
+get $root $PRT_DIR/ | sed -r \
+  -e "s,^U ,Updating ," \
+  -e "s,^C ,Conflict with ," \
+  -e "s,^P ,Patching ," \
+  -e "s,^M ,Locally modified ," \
+  -e "s,^\\? ,Unknown entry ," \
+  -e "s,.*,  --> &,"

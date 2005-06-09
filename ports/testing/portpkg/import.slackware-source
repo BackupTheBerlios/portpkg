@@ -1,0 +1,142 @@
+# slackware-source (pp-sync-src) -- A portpkg-addon that imports Slackware's source
+#BLURB="Slackware source scripts (experimental)"
+
+if [ `basename $0` != portpkg ]; then
+  echo
+  echo "Please run 'pp-config' and start me as: portpkg --sync"
+  exit 1
+fi
+
+[ "${DIST_VER:-}" ] || die "No distribution target set. Please run 'pp-config'!"
+
+# this will be mangled through our mirrors-list anyway
+rsync=rsync://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+tree=$PRT_DIR/z/slackware
+
+t=`mktemp -d`
+row "Syncing $tree/"
+warn "This plug-in is experimental!"
+
+mkdir -p $tree
+has_prog rsync || die
+
+# check if there're updates
+get {$dist,$t}/ChangeLog.txt >$output
+if [ -f $tree/ChangeLog.txt ] && cmp -s $tree/ChangeLog.txt $t/ChangeLog.txt; then
+  exit 0
+fi
+
+# sync source/ and remove files we don't need
+#cd $tree || die
+rsync -avz --delete \
+  --exclude "FILE_LIST" \
+  --exclude "MANIFEST.*" \
+  --exclude "CHECKSUMS*" \
+  --exclude "README.TXT" \
+  --exclude "rootdisks" \
+  --exclude "*.tar.gz" \
+  --exclude "*.tar.bz2" \
+  --exclude "*.tgz" \
+  --exclude "*.tar.Z" \
+  --exclude "*.bin" \
+  --exclude "*.zip" \
+  `mirror $rsync`/source/* $tree | xargs -rl echo "  -->"
+
+row "Retrieving file list"
+get {$dist,$tree}/FILELIST.TXT >$output
+
+# patches
+sed -i "s,^export \(ARCH=.*\)$,\1\nexport ARCH," $tree/*/*/*SlackBuild
+mkdir $tree/e/emacs
+mv $tree/e/* $tree/e/emacs/ 2>/dev/null
+
+# .build-wrapper
+row "Constructing `find $tree/ -name "*.build" | wc -l` .build-wrappers"
+find $tree -name "*.build" | while read s; do
+  dir=`dirname $s`
+  gname=`echo $s | scr2gname`
+  if [ "`find $dir/ -name "*SlackBuild"`" ]; then
+    row "Skipping `basename $s` (SlackBuild already there)"
+    continue
+  fi
+  group=`echo $gname | cut -d / -f 1`
+  name=`echo $gname | cut -d / -f 2`
+  ver=`grep ^VERSION= $s | cut -d = -f 2-`
+  arch=`grep ^ARCH= $s | cut -d = -f 2- | sed -re "s,\\\\$\\{[A-Z]*:-,," -e "s,},,"`
+  build=
+  cat <<EOF >$dir/SlackBuild
+NAME=$name
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
+TMP=\${TMP:-/tmp}
+
+checkinstall -S -y \\
+  --pkgname=\$NAME \\
+  --pkgversion=\$VERSION \\
+  --pkgarch=\$ARCH \\
+  --pkgrelease=\$BUILD \\
+  --pakdir=\$TMP \\
+  --strip=yes \\
+  --stripso=yes \\
+  --gzman=yes \\
+  --backup=no \\
+  "sh `basename $s`"
+EOF
+done
+
+# wrong depth of SlackBuild
+find $tree/ -name "*SlackBuild" -mindepth 4 | while read s; do
+  row "Disabling $s"
+  mv $s{,.disabled}
+done
+find $tree/ -name "*SlackBuild" -maxdepth 2 | while read s; do
+  row "Disabling $s"
+  mv $s{,.disabled}
+done
+
+# incomplete vars
+find $tree/ -name "*SlackBuild" | while read s; do
+  if ! grep -sq "^VERSION=." $s \
+  || ! grep -sq "^ARCH=." $s \
+  || ! grep -sq "^BUILD=." $s; then
+    gname=`echo $s | scr2gname`
+    name=`echo $gname | cut -d / -f 2`
+    rel=`sed -n "s,^.*/\($name-[^-]*-[^-]*-[^-]*\)\.tgz$,\1,p" $tree/FILELIST.TXT | loc2gpkg | pkg2rel`
+    row "Adding release info to $gname: $rel"
+    ver=`echo $rel | cut -d - -f 1`
+    arch=`echo $rel | cut -d - -f 2`
+    build=`echo $rel | cut -d - -f 3`
+    if ! [ "$ver" ] || ! [ "$arch" ] || ! [ "$build" ]; then
+      row "$gname is invalid. Disabled."
+      continue
+    fi
+    sed -i "/^VERSION=/d" $s
+    sed -i "/^ARCH=/d" $s
+    sed -i "/^BUILD=/d" $s
+    if grep -sq "^#!/" $s; then
+      sed -i "2s,.*,\nVERSION=$ver\nARCH=$arch\nBUILD=$build\n\n&," $s
+    else
+      sed -i "1s,.*,VERSION=$ver\nARCH=$arch\nBUILD=$build\n\n&," $s
+    fi
+  fi
+done
+
+# write missing files into sources-files
+row "Completing sources files of `find $tree/ -name "*SlackBuild" | wc -l` ports"
+# for any file
+grep -o "\./source/.*/.*/.*" $tree/FILELIST.TXT | grep -v /rootdisks/ \
+| cut -d " " -f 1 | cut -d / -f 3- | while read s; do
+  # if not found, add it to "sources"
+  if ! find $tree/$s >/dev/null 2>&1; then
+    # if it contains no version number, use %-style
+    echo $s | grep -sq "[0-9]\.[0-9]" \
+    && echo "$dist/source/$s" \
+    || echo "$dist/source/$s%`basename $s`"
+  fi | grep -ve "SlackBuild$" -e "^slack-desc$" -e "^doinst.sh" \
+  >>$tree/`echo $s | cut -d / -f 1-2`/sources
+done
+
+# make the changes valid
+cp {$t,$tree}/ChangeLog.txt

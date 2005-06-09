@@ -65,7 +65,9 @@ If unsure leave this field empty." 0 0 "$MY_CVSTAG" 2>$t/res || exit
   MY_CVSTAG=`cat $t/res`
   [ "$MY_CVSTAG" ] || return 0
   echo "MY_CVSTAG=\"$MY_CVSTAG\"" >>$CFG_DIR/local.conf
-  echo "SUBMIT_METHOD=cvs" >>$CFG_DIR/local.conf
+  rm -rf $CFG_DIR/export
+  ln -s export.cvs $CFG_DIR/export
+#  echo "SUBMIT_METHOD=cvs" >>$CFG_DIR/local.conf
 }
 
 output()
@@ -103,7 +105,8 @@ resources()
 {
   heading="RESOURCES SETTINGS"
   echo -n "dialog --title \"$heading\" --checklist \
-\"Select which importers you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
+\"Select which importers you want to enable when you sync your data base.
+If unsure select only \\\`portpkg-tree'.\" 0 0 0 " >$t/menu
   local importer
   for importer in `grep -l "^#""BLURB=" $CFG_DIR/importers/*`; do
     echo -n `basename $importer` \
@@ -115,6 +118,20 @@ resources()
   for importer in `cat $t/res`; do
     chmod +x $CFG_DIR/importers/$importer
   done
+#  # exit if no email set
+#  [ "$MY_EMAIL" ] || return 0
+#  echo -n "dialog --title \"$heading\" --menu \
+#\"Select which exporter you want to use to submit ports.
+#If unsure choose \\\`http'.\" 0 0 0 " >$t/menu
+#  local exporter
+#  for exporter in `grep -l "^#""BLURB=" $CFG_DIR/export.*`; do
+#    echo -n `basename $exporter` \
+#      `grep ^#""BLURB= $exporter | cut -d = -f 2`" "
+#  done >>$t/menu
+#  . $t/menu 2>$t/res
+#  exporter=`cat $t/res`
+#  rm -rf $CFG_DIR/export
+#  ln -sf $exporter $CFG_DIR/export
 }
 
 mirrors()

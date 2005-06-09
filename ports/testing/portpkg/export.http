@@ -1,0 +1,38 @@
+#BLURB="Export to Portpkg via http (anonymously)"
+
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
+
+row "Submitting $group/$package via HTTP"
+export_root="http://portpkg.berlios.de/upload.php"
+
+t=`mktemp -d`
+has_prog curl || return 1
+
+#FIXME: use at least 7.12.2 (Slackware 10.1)
+case `curl -V | head -n 1 | cut -d " " -f 2` in
+  7.12.0|7.12.1) die "You need curl >= 7.12.2";;
+  7.12.*)        ;;
+  *)             die "You need curl >= 7.12.2";;
+esac
+
+[ "$MY_TAG" ] || die "No tag configured. Please run: pp-config"
+[ "$MY_EMAIL" ] || die "No mail address configured. Please run: pp-config"
+[ "$MY_REALNAME" ] || die "No real name configured. Please run: pp-config"
+
+# make tarball with the port scripts and include info file
+cat >$path/info <<EOF
+Maintainer:  $MY_TAG: $MY_REALNAME <$MY_EMAIL>
+Intended group:  $group/
+ChangeLog entry:  $export_opt
+EOF
+#  rm -rf $ADM_DIR/portpkg/$package.tar.bz2
+tar cjf $ADM_DIR/portpkg/$package.tar.bz2 --exclude "*CVS*" -C `dirname $path` $name
+rm $path/info
+
+# upload where ever it should be
+curl -F filetoupload=@$ADM_DIR/portpkg/$package.tar.bz2 $export_root >/dev/null 2>&1 \
+|| error "An error occured!"

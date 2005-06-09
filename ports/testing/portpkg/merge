@@ -15,7 +15,7 @@ if [ -f $path/info ]; then
   msg=`grep -i "^Changelog entry:" $path/info | cut -d " " -f 3- | xargs`
 fi
 
-new_group=${$2:-$new_group}
+[ "$2" ] && new_group=$2
 [ "$new_group" ] || die "$HELP"
 tag=`echo $package | egrep -o "[a-z]+$"`
 msg=${msg:-Moved $group/$package to $new_group/.}
@@ -32,8 +32,9 @@ read
 find $PRT_DIR/$new_group/$name -type f ! -path "*CVS*" -exec rm -rf {} \;
 
 # copy files
-rm -rf $path/$name/info
-find $path/$name ! -path "*CVS*" -exec cp -P --parents {} $PRT_DIR/$new_group/ \;
+rm -rf $path/info
+cd `dirname $path`
+find $name/ ! -path "*CVS*" -exec cp -P --parents {} $PRT_DIR/$new_group/ \;
 #sleep 1
 #touch $PRT_DIR/$new_group/$name/footprint
 
