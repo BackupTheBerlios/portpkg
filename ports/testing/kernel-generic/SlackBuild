@@ -1,0 +1,59 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=2.6.11.10
+ARCH=${ARCH:-i486}
+BUILD=1lem
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/linux-$VERSION.tar.bz2
+cd linux-$VERSION
+chown -R root.root .
+#+config-fix
+cp $CWD/config-${VERSION}  $TMP/linux-$VERSION/.config
+cp $CWD/logo_linux_clut224.ppm $TMP/linux-$VERSION/drivers/video/logo
+#+config-fix
+#+install-fix
+TMP_ARCH=$ARCH
+ARCH=i386 #force arch
+make bzImage
+ARCH=$TMP_ARCH
+mkdir -p $PKG/boot
+cp arch/i386/boot/bzImage $PKG/boot/vmlinuz-$VERSION
+cp System.map $PKG/boot/System.map-$VERSION
+cp .config $PKG/boot/config-$VERSION
+
+cd $PKG/boot
+ln -sf vmlinuz-$VERSION vmlinuz
+ln -sf System.map-$VERSION System.map
+ln -sf config-$VERSION config
+
+#+install-fix
+chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+#+strip-fix
+#	don't strip anything
+#+strip-fix
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+#+doc-fix
+#+doc-fix
+#+post-doc-fix
+rm -rf $PKG/usr/
+#+post-doc-fix
+#find $PKG/usr/doc -type f -exec chmod 644 {} \;
+#find $PKG/usr/doc -type d -exec chmod 755 {} \;
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/linux-$VERSION
+  rm -rf $PKG
+fi

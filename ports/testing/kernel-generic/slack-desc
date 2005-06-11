@@ -1,0 +1,11 @@
+kernel-generic: kernel-generic (a general purpose Linux kernel)
+kernel-generic:
+kernel-generic: This is a Linux kernel with built-in support for most
+kernel-generic: IDE controllers and the ext2 filesystem.  If you need
+kernel-generic: more advanced filesystems, or need to load support for a
+kernel-generic: SCSI or other controller, then you'll need to load one or
+kernel-generic: more kernel modules using an initial ramdisk, or initrd.
+kernel-generic: For more information about creating an initrd, see the
+kernel-generic: README.initrd file in the /boot directory.
+kernel-generic:
+kernel-generic:

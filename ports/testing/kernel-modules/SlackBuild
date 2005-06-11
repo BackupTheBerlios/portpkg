@@ -1,0 +1,56 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=2.6.11.10
+ARCH=${ARCH:-i486}
+BUILD=1lem
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/linux-$VERSION.tar.bz2
+cd linux-$VERSION
+chown -R root.root .
+#+config-fix
+cp $CWD/config-${VERSION}  $TMP/linux-$VERSION/.config
+#+config-fix
+#+install-fix
+TMP_ARCH=$ARCH
+ARCH=i386 #force arch
+make modules
+mkdir -p $PKG/lib/modules
+make INSTALL_MOD_PATH=$PKG modules_install || exit 1
+ARCH=$TMP_ARCH
+#+install-fix
+( cd $PKG/lib/modules/$VERSION ; rm -rf source )
+( cd $PKG/lib/modules/$VERSION ; ln -sf /usr/src/linux-$VERSION source )
+( cd $PKG/lib/modules/$VERSION ; rm -rf build )
+( cd $PKG/lib/modules/$VERSION ; ln -sf /usr/src/linux-$VERSION build )
+mkdir -p $PKG/etc/rc.d
+cp $CWD/rc.modules-${VERSION}.new $PKG/etc/rc.d/
+#+install-fix
+chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+#+doc-fix
+rm -rf $PKG/usr/doc/$NAME-$VERSION
+#+doc-fix
+#+strip-fix
+#+strip-fix
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/linux-$VERSION
+  rm -rf $PKG
+fi
