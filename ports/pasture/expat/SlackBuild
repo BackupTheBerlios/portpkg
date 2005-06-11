@@ -1,0 +1,68 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.95.8
+ARCH=${ARCH:-i486}
+BUILD=1lem
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  $ARCH-slackware-linux
+make
+make install prefix=$PKG/usr
+rm -rfv $PKG/usr/info/dir
+find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
+chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  COPYING MANIFEST README \
+  $PKG/usr/doc/$NAME-$VERSION/
+
+#+docfiles
+cp -a doc/* examples \
+    $PKG/usr/doc/$NAME-$VERSION
+#+docfiles
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi
