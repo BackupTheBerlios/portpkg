@@ -1,3 +1,69 @@
+2005-06-17 10:41  topf
+
+	* kde/superkaramba/requires: Removed "python-2.4".
+
+2005-06-17 10:41  topf
+
+	* xap/amyedit/requires: Removed aaa_elflibs, gcc and gcc-g++.
+
+2005-06-11 20:49  topf
+
+	* l/id3lib/slack-desc: [no log message]
+
+2005-06-11 20:03  topf
+
+	* n/sarg/: SlackBuild, footprint, md5sums, sources: Moved
+	  open/sarg-2.0.8-i686-1stb to n/. (stb)
+
+2005-06-11 20:02  topf
+
+	* testing/mono/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: version bump (lem)
+
+2005-06-11 20:00  topf
+
+	* pasture/expat/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: version bump - gdesklets may need this version to run
+	  correctly (lem)
+
+2005-06-11 19:57  topf
+
+	* pasture/aalib/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved open/aalib-1.2-i686-1stb to pasture/.
+	  (stb)
+
+2005-06-11 19:51  topf
+
+	* testing/: kernel-generic/README, kernel-generic/SlackBuild,
+	  kernel-generic/config-2.6.11.10, kernel-generic/footprint,
+	  kernel-generic/logo_linux_clut224.ppm, kernel-generic/slack-desc,
+	  kernel-generic/slot-in, kernel-generic/sources,
+	  kernel-modules/README, kernel-modules/SlackBuild,
+	  kernel-modules/config-2.6.11.10, kernel-modules/doinst.sh,
+	  kernel-modules/footprint,
+	  kernel-modules/rc.modules-2.6.11.10.new,
+	  kernel-modules/slack-desc, kernel-modules/slot-in,
+	  kernel-modules/sources: experimental stuff (please test it
+	  yourself) (lem)
+
+2005-06-11 19:36  topf
+
+	* open/squid/: SlackBuild, doinst.sh, footprint:  ()
+
+2005-06-11 13:37  topf
+
+	* open/squid/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources, squid.init, squid.logrotate,
+	  patches/squid-2.5.STABLE9-config.patch.gz,
+	  patches/squid-2.5.STABLE9-errors.patch.gz,
+	  patches/squid-2.5.STABLE9-icons.patch.gz,
+	  patches/squid-2.5.STABLE9-src.patch.gz:  ()
+
+2005-06-11 13:35  topf
+
+	* pasture/gnet/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved from l/.
+
 2005-06-09 09:38  topf
 
 	* testing/portpkg/: README, README.cp, SlackBuild, autoport,
@@ -17,21 +83,10 @@
 	* n/pavuk/: SlackBuild, doinst.sh, footprint, md5sums, requires,
 	  slack-desc, sources: Version update.
 
-2005-06-08 10:07  topf
-
-	* open/expat/: SlackBuild, footprint, info, md5sums, slack-desc,
-	  sources: version bump - gdesklets may need this version to run
-	  correctly ()
-
 2005-06-08 09:36  topf
 
 	* l/libwpd/: SlackBuild, footprint, md5sums, slack-desc, sources:
 	  Version update.
-
-2005-06-07 10:53  topf
-
-	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
-	  info, md5sums, sarg.conf.new, slack-desc, sources:  ()
 
 2005-06-05 10:42  topf
 
@@ -40,11 +95,6 @@
 2005-06-05 10:23  topf
 
 	* pasture/gimp/requires: Made GNOME dependencies optional.
-
-2005-06-04 16:08  topf
-
-	* open/mono/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: version bump ()
 
 2005-06-04 12:16  topf
 
@@ -319,11 +369,8 @@
 
 2005-05-26 11:34  topf
 
-	* n/sarg/SlackBuild, n/sarg/footprint, n/sarg/md5sums,
-	  n/sarg/sources, open/sarg/SlackBuild, open/sarg/doinst.sh,
-	  open/sarg/exclude_hosts.new, open/sarg/footprint, open/sarg/info,
-	  open/sarg/md5sums, open/sarg/sarg.conf.new, open/sarg/slack-desc,
-	  open/sarg/sources: Moved open/sarg-2.0.7-i686-1stb to n/. (stb)
+	* n/sarg/: SlackBuild, footprint, md5sums, sources: Moved
+	  open/sarg-2.0.7-i686-1stb to n/. (stb)
 
 2005-05-26 11:33  topf
 
@@ -373,20 +420,6 @@
 2005-05-24 12:54  topf
 
 	* testing/portpkg/autoport: Massive updates.
-
-2005-05-24 03:56  topf
-
-	* open/: kernel-modules/README, kernel-modules/SlackBuild,
-	  kernel-modules/config-2.6.11.10, kernel-modules/doinst.sh,
-	  kernel-modules/footprint, kernel-modules/info,
-	  kernel-modules/rc.modules-2.6.11.10.new,
-	  kernel-modules/slack-desc, kernel-modules/slot-in,
-	  kernel-modules/sources, kernel-generic/README,
-	  kernel-generic/SlackBuild, kernel-generic/config-2.6.11.10,
-	  kernel-generic/footprint, kernel-generic/info,
-	  kernel-generic/logo_linux_clut224.ppm, kernel-generic/slack-desc,
-	  kernel-generic/slot-in, kernel-generic/sources: experimental
-	  stuff (please test it yourself) (cronjob)
 
 2005-05-23 22:13  topf
 
@@ -443,11 +476,6 @@
 
 	* open/codecs-essential/: SlackBuild, footprint, info, requires,
 	  slack-desc, sources: new entry (cronjob)
-
-2005-05-21 03:54  topf
-
-	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
-	  info, md5sums, sarg.conf.new, slack-desc, sources:  (cronjob)
 
 2005-05-20 22:25  hnaz
 
@@ -660,11 +688,8 @@
 
 2005-05-03 13:48  topf
 
-	* open/sarg/SlackBuild, n/sarg/SlackBuild, n/sarg/footprint,
-	  n/sarg/md5sums, n/sarg/sources, open/sarg/doinst.sh,
-	  open/sarg/exclude_hosts.new, open/sarg/footprint, open/sarg/info,
-	  open/sarg/md5sums, open/sarg/sarg.conf.new, open/sarg/slack-desc,
-	  open/sarg/sources: Moved open/sarg to n/.
+	* n/sarg/: SlackBuild, footprint, md5sums, sources: Moved open/sarg
+	  to n/.
 
 2005-05-03 13:42  topf
 
@@ -785,11 +810,6 @@
 
 	* l/libsigc++/: SlackBuild, footprint, md5sums, slack-desc,
 	  sources: Updated to 2.0.11.
-
-2005-04-30 19:54  topf
-
-	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
-	  info, md5sums, sarg.conf.new, slack-desc, sources: (cronjob)
 
 2005-04-30 12:02  topf
 
@@ -924,16 +944,10 @@
 	* l/libglade/: SlackBuild, doinst.sh, footprint, slack-desc,
 	  sources: added xmlcatalog support into doinst.sh (lem)
 
-2005-04-24 14:54  topf
+2005-04-24 14:55  topf
 
-	* l/gnet/SlackBuild, l/gnet/footprint, l/gnet/md5sums,
-	  l/gnet/requires, l/gnet/slack-desc, l/gnet/sources,
-	  gnome/gnome-python-extras/SlackBuild,
-	  gnome/gnome-python-extras/footprint,
-	  gnome/gnome-python-extras/md5sums,
-	  gnome/gnome-python-extras/requires,
-	  gnome/gnome-python-extras/slack-desc,
-	  gnome/gnome-python-extras/sources: new entry (lem)
+	* gnome/gnome-python-extras/: SlackBuild, footprint, md5sums,
+	  requires, slack-desc, sources: new entry (lem)
 
 2005-04-24 14:53  topf
 
@@ -1662,12 +1676,8 @@
 
 2005-04-06 09:05  topf
 
-	* open/sarg/SlackBuild, open/sarg/doinst.sh,
-	  open/sarg/exclude_hosts.new, open/sarg/footprint, open/sarg/info,
-	  open/sarg/md5sums, open/sarg/sarg.conf.new, open/sarg/slack-desc,
-	  open/sarg/sources, n/sarg/SlackBuild, n/sarg/doinst.sh,
-	  n/sarg/exclude_hosts.new, n/sarg/footprint, n/sarg/md5sums,
-	  n/sarg/sarg.conf.new, n/sarg/slack-desc, n/sarg/sources: Moved
+	* n/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
+	  md5sums, sarg.conf.new, slack-desc, sources: Moved
 	  open/sarg-2.0.5-i686-1stb to n/.
 
 2005-04-06 09:03  topf
@@ -1778,11 +1788,6 @@
 
 	* xap/graveman/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc: Updated xap/graveman to 0.3.9-i686-1tom.
-
-2005-04-01 19:20  topf
-
-	* open/sarg/: SlackBuild, doinst.sh, exclude_hosts.new, footprint,
-	  info, md5sums, sarg.conf.new, slack-desc, sources:  (cronjob)
 
 2005-04-01 12:41  topf
 
