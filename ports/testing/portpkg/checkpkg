@@ -1,7 +1,7 @@
 #!/bin/sh
 # checkpkg - a small dialog interface for portpkg portsystem
 
-source `which portpkg` || exit 1
+. `which portpkg` || exit 1
 
 main_menu()
 {
@@ -63,8 +63,8 @@ install them.\" 21 75 12 " >$t/menu
     [ $(fgrep -xm 1 $pkg $t/inst) ] \
     && echo \"$name\" \"$desc\" on \"$pkg\" \\>>$t/list \
     || echo \"$name\" \"$desc\" off \"$pkg\" \\>>$t/list
-    ((i++))
-    echo $((100*i/count))
+    i=`expr $i + 1`
+    echo `expr 100 \* $i / $count`
   done <$t/unames | dialog --gauge "Searching group $1/..." 0 40
   sort $t/list -o $t/list
   cat $t/list >>$t/menu

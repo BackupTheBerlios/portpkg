@@ -72,7 +72,7 @@ sync_section()
 {
   section=$1
   # current has no patches
-  [ "$DIST_VER" == "current" ] && [ "$section" == "patches" ] && return
+  [ "$DIST_VER" = "current" ] && [ "$section" = "patches" ] && return
   row "Preparing pseudo ports for $section/"
   grep "^$section/.*\.tgz$" $t/files | grep -v /source/ \
   | sed -r "s,^[^/]*/(.*)\.tgz$,\1," \
@@ -83,8 +83,10 @@ sync_section()
     ver=`echo $rel | cut -d - -f 1`
     arch=`echo $rel | cut -d - -f 2`
     build=`echo $rel | cut -d - -f 3`
-    if [ "$section" == "slackware" ]; then
+    if [ "$section" = "slackware" ]; then
       path=$tree/`echo $s | cut -d / -f 1`/$name
+    elif [ "$section" = "patches" ]; then
+      path=$tree/0/$section/$name
     else
       path=$tree/z/$section/$name
     fi
@@ -113,7 +115,7 @@ mkdir -p $tree
 $DRY_RUN && exit 0
 
 # check if there're updates
-get {$dist,$t}/ChangeLog.txt >$output
+get $dist/ChangeLog.txt $t/ChangeLog.txt >$output
 if [ -f $tree/ChangeLog.txt ] && cmp -s $tree/ChangeLog.txt $t/ChangeLog.txt; then
   exit 0
 fi
@@ -123,13 +125,13 @@ rm -rf $tree
 mkdir -p $tree/z/kernels
 
 row "Retrieving file list"
-get {$dist,$tree}/FILELIST.TXT >$output
+get $dist/FILELIST.TXT $tree/FILELIST.TXT >$output
 row "Retrieving package info"
-get {$dist,$tree}/PACKAGES.TXT >$output
+get $dist/PACKAGES.TXT $tree/PACKAGES.TXT >$output
 row "Retrieving md5sums"
-get {$dist,$tree}/CHECKSUMS.md5 >$output
+get $dist/CHECKSUMS.md5 $tree/CHECKSUMS.md5 >$output
 row "Retrieving kernel version"
-get {$dist,$tree/z}/kernels/VERSIONS.TXT >$output
+get $dist/kernels/VERSIONS.TXT $tree/z/kernels/VERSIONS.TXT >$output
 
 # make a simple file list
 cat $tree/FILELIST.TXT | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t/files

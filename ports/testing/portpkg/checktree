@@ -2,7 +2,9 @@
 # checktree -- developer tool to make some random checks to the ports tree
 #              run this from time to time
 
-source `which portpkg` || exit 1
+# with some great ideas supposed by hnaz
+
+. `which portpkg` || exit 1
 summary=`mktemp -d`
 
 check_ports()
@@ -12,10 +14,10 @@ check_ports()
   ports=`echo "$ports_all" | grep -v "[0-9]$"`
   max=`echo "$ports" | wc -l | xargs`
   percent=2
-  count=$((max*percent/100))
+  count=`expr $max \* $percent / 100`
   stanza "Checking now $count ($percent %) of $max random ports:"
   for n in `seq 1 $count`; do
-    rnd=$((RANDOM*$max/32768))
+    rnd=`expr $RANDOM \* $max / 32768`
     port=`echo "$ports" | sed -n "$(random $max)p"`
     get_info $port
     row "Checking $group/$name ($rnd/$max)"

@@ -1,8 +1,8 @@
 #!/bin/sh
 #BLURB="Configure Portpkg"
-# don't use " # B L U R B " as above in this script since it'll break pkgtool!
+# don't use "# B L U R B " as above in this script since it'll break pkgtool!
 
-source `which portpkg` || exit 1
+. `which portpkg` || exit 1
 t=`mktemp -d`
 is_root || die
 #newest_slack=10.1
@@ -19,7 +19,7 @@ If unsure enter '$newest_slack'." 0 0 \
   sed -i "/^DIST_VER=/d" $CFG_DIR/local.conf
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$CFG_DIR/local.conf
-    if [ $DIST_VER == current ]; then
+    if [ $DIST_VER = current ]; then
       if dialog --title "$heading" --yesno \
 "It is recommended to add pasture/ to exclude.local for Slackware-current. \
 Shall I do that for you?
@@ -232,10 +232,10 @@ flags.
 If unsure choose 'default'." 0 0 0 \
     "default"  "Build for i486, optimise for i686" \
     "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/res
-      [ $? == 0 ] || return
+      [ $? = 0 ] || return
       sed -i "/^ARCH=/d" $CFG_DIR/local.conf
       sed -i "/^CFLAGS=/d" $CFG_DIR/local.conf
-      if [ `cat $t/res` == optimise ]; then
+      if [ `cat $t/res` = optimise ]; then
         echo "ARCH=`arch`"
         echo "CFLAGS=\"-O2 -march=`arch` -mcpu=`cpu`\""
       fi >>$CFG_DIR/local.conf;;

@@ -3,16 +3,17 @@
 #                 at least one developer should run this from time to time!
 #                 ENABLE CVS EXPORT METHOD BEFORE YOU RUN THIS SCRIPT!
 
-source `which portpkg` || exit 1
+. `which portpkg` || exit 1
 
 is_root || die
 [ "$MY_CVSTAG" ] || die "Please add your CVS account name as MY_CVSTAG in $CFG_DIR/local.conf!"
 
+# portpkg's home directory on the server
 pp_home=/home/groups/portpkg/htdocs
 
 # check out new ports
 stanza "Checking uploads:"
-new_ports=`lynx -dump http://portpkg.berlios.de:/upload \
+new_ports=`lynx -dump http://portpkg.berlios.de/upload \
 | sed "0,/^Refer/d"| grep -o "http://.*-.*-.*-.*\.tar\.bz2$"`
 
 # quit if there are none
@@ -24,7 +25,7 @@ if [ "$new_ports" ]; then
 
     # move it (maybe not first post today?)
     row "Moving out of upload/"
-    ssh $MY_CVSTAG@shell.berlios.de "mv -f $pp_home/upload/{,merged/}$pkg"
+    ssh $MY_CVSTAG@shell.berlios.de "mv -f $pp_home/upload/$pkg $pp_home/upload/merged/"
   
     row "Mergeing $pkg"
     name=`basename $pkg .tar.bz2 | pkg2name`
@@ -34,7 +35,7 @@ if [ "$new_ports" ]; then
     fi
   
     # clean port dir and extract tarball
-    find $PRT_DIR/open/$name/ -type f ! -path "*/CVS/*" -exec rm -v {} \;
+    find $PRT_DIR/open/$name/ -type f ! -path "*CVS*" -exec rm -v {} \;
     tar xjvf $PRT_DIR/open/$pkg --exclude "*CVS*" -C $PRT_DIR/open/
     rm $PRT_DIR/open/$pkg
   

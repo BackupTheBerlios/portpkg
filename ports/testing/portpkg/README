@@ -2,12 +2,10 @@ WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
 
 Major changes:
 
-* CVS and HTTPUP support (sources, mirrors and importer scripts)
+* CVS support (sources, mirrors and importer scripts)
 
-  Due to some changes to the download subroutine, there's a change in
-  the repos layout! Please watch out! It should be now possible to use
-  CVS as a resource in your ports. E.g. the "sources" file will look
-  like this (as in "repos" now):
+  It should be now possible to use CVS as a resource in your ports. E.g.
+  the "sources" file will look like this (as in "repos" now):
 
   cvs://:pserver:anonymouse@cvs.bla.net:/cvsroot/bla/$NAME
 
@@ -26,8 +24,8 @@ Major changes:
   The ports collection of Portpkg is a seperate importer script now, 
   that can be turned on and off with pp-config. Also, an export method
   can be defined to submit ports anonymously via HTTP (goes into open/)
-  or via CVS if you have an developer account. The CVS server can
-  neverteless be modified in a mirrors file.
+  or via CVS if you have a developer account. Nevertheless, the CVS
+  server url can be modified in a mirrors file.
 
 * Use.local
 
@@ -51,6 +49,11 @@ Portpkg:
 * Execute SlackBuilds with "sh -e" on default
 * --ignorearch: neglect architecture diffs
 * Improvements to the Slackware source importer
+* Use pathname expansion rather than regular expressions in mirror files
+  (http://*.dl.sf.net/ instead of http://.*\.dl\.net/)
+* Ignore case in package expressions, dependencies and --diff
+* Removed Bash-specific syntax (should work now with ash)
+* Some speed enhancements
 *
 
 Autoport:
@@ -60,14 +63,15 @@ Autoport:
 * Removed "|| exit 1"
 * Remove empty files in /usr/share/mime/
 * Support CVS sources
+* Removed Bash-specific syntax (should work now with ash)
 *
 
-* Some more changes.
+* Some more changes
 
 Enjoy.
 --tom
 
 Delayed:
-* Added support for different repositories (CVS and HTTPUP) (see /etc/portpkg/repos).
-* Removed "importers" subsystem.
+* Support for different repositories (CVS and HTTPUP) (/etc/portpkg/repos)
+* Removed "importers" subsystem
 * PGP/GPG-Support

@@ -9,9 +9,6 @@ fi
 row "Syncing $PRT_DIR/"
 root="cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports"
 
-t=`mktemp -d`
-has_prog cvs || die
-
 [ -d $PRT_DIR/.CVS ] && rename .CVS CVS `find $PRT_DIR/ -name .CVS`
 
 get $root $PRT_DIR/ | sed -r \

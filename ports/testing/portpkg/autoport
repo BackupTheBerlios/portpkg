@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -u
 #
 # Autoport -- An Automatic SlackBuild Generator
 # Copyright (C) 2004, 2005 Thomas Pfaff <topf@users.berlios.de>
@@ -17,18 +17,27 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-source `which portpkg` || exit 1
+. `which portpkg` || exit 1
+
+# defaults
 t=`mktemp -d`
+i_act=true
+#sources=""
+#name=""
+#group=""
+arch=$ARCH
+#build=""
+build_pkg=false
+move_path=""
 
-#sections="config post-config install post-install strip doc post-doc"
-
-ask()
+ask() # var text
 {
+  local var=$1
+  eval "$var=\"\""
   $i_act || return
-  echo
-  echo -n "$@ "
-  s=""
-  read s
+  shift
+  echo -e -n "\n$@ "
+  read $var
 }
 
 check()
@@ -56,14 +65,14 @@ snip()
 
 encode()
 {
-  local ver=`echo $version | sed "s,\.,\.,g"`
-  local enc=`echo "$@" | sed -e "s,$name,\\$NAME,g" -e "s,$ver,\\$VERSION,g"`
+  local ver=`echo $version | sed "s/\./\./g"`
+  local enc=`echo "$@" | sed -e "s/$name/\\$NAME/g" -e "s/$ver/\\$VERSION/g"`
   local test
   local NAME=$name
   local VERSION=$version
-  eval test=\"$enc\"
+  eval "test=\"$enc\""
   # try ${NAME} and ${VERSION}
-  [ "$test" != "$@" ] && enc=`echo "$@" | sed -e "s,$name,\\${NAME},g" -e "s,$ver,\\${VERSION},g"`
+  [ "$test" != "$@" ] && enc=`echo "$@" | sed -e "s/$name/\\${NAME}/g" -e "s/$ver/\\${VERSION}/g"`
   echo "$enc"
 }
 
@@ -71,7 +80,7 @@ decode()
 {
   local NAME=$name
   local VERSION=$version
-  eval echo \"$@\"
+  eval "echo \"$@\""
 }
 
 add_inst() # rel/path/to/command_to_add file
@@ -117,21 +126,12 @@ is_root || die
 # first: do we have tags?
 [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
-# defaults
-i_act=true
-sources=""
-name=""
-group=""
-arch=$ARCH
-build=""
-build_pkg=false
-
 args=`getopt -qo "av:g:n:u:bh" -- "$@"`
-[ "$?" == "0" ] || die "Bad arguments! Try: autoport -h"
+[ "$?" = "0" ] || die "Bad arguments! Try: autoport -h"
 eval set -- "$args"
 
 # parse options
-while [ "$1" ]; do
+while [ "$*" ]; do
   case $1 in
     -a)
       i_act=false;;
@@ -140,7 +140,8 @@ while [ "$1" ]; do
       shift;;
     -g)
       group=`echo $2 | cut -d / -f 1`
-      shift;;
+      shift
+      [ "$path" ] && move_path=$path;;
     -n)
       name=`echo $2 | cut -d / -f 1`
       shift;;
@@ -193,23 +194,23 @@ unpack the code and searche for different keywords to adjust a suitable
 SlackBuild script. If autoport doesn't work as expected, please mail at:
 <topf at users dot berlios dot de>"
 
-ask "* First step: Collect information. Continue? (ctrl-c to quit)"
+ask s "* First step: Collect information. Continue? (ctrl-c to quit)"
 
 # sources
-ask "Source file URL [$sources]:"
+ask s "Source file URL [$sources]:"
 sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
-# we can only handle _one_ source file
+# we can only handle _one_ source file here
 src=`echo "$sources" | head -n 1`
 # name: guess it, if we haven't yet it
 file=`basename $(decode $src)`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
-ask "Name [$name]:"
+ask s "Name [$name]:"
 name=${s:-$name}
 # group
-ask "Group [$group]:"
+ask s "Group [$group]:"
 group=${s:-$group}
 # version
 if ! [ "$version" ]; then
@@ -220,12 +221,12 @@ if ! [ "$version" ]; then
   version=`basename $version .tgz`
   case $src in cvs://*) version=cvs;; esac
 fi
-ask "Version [$version]:"
+ask s "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
 # arch
-ask "Arch [$arch]:"
+ask s "Arch [$arch]:"
 arch=${s:-$arch}
 # build: check if we need to increment
 n=1
@@ -234,9 +235,9 @@ if [ $gpkg ]; then
   $i_act && stanza "There is already $group/$name-$version."
   n=`echo $gpkg | pkg2rel | cut -d - -f 3 | sed "s,[a-z]*$,,"`
   # now that we found it, we can find a bigger number too!
-  ((n++))
+  n=`expr $n + 1`
 fi
-ask "Build [$n$MY_TAG]:"
+ask s "Build [$n$MY_TAG]:"
 build=${s:-$n$MY_TAG}
 # desc
 if [ "$description" ]; then
@@ -244,13 +245,16 @@ if [ "$description" ]; then
   desc2=`echo "$description" | sed "s,^$name:[ ]*,," | sed "1,2d"`
 else
   desc1=$raw_name
+  desc2=""
 fi
-ask "Description (1-liner) [$desc1]:"
+ask s "Description (1-liner) [$desc1]:"
 desc1=${s:-$desc1}
+s=""
 if $i_act; then
   stanza "Description (details) (Write or paste and finish with a single '.')"
   echo "[$desc2]"
   s=""
+  l=""
   while [ "$l" != "." ]; do
     read l
     s="$s
@@ -263,17 +267,17 @@ desc2=${s:-$desc2}
 len=${#name}
 desc=`{ echo "$name: $desc1"
         echo "$name:"
-        echo "$desc2" | fmt -u -w $((75-len)) | sed "s,^,$name: ,"
+        echo "$desc2" | fmt -u -w $(expr 75 - $len) | sed "s,^,$name: ,"
         for i in 1 2 3 4 5 6 7 8 9; do
           echo "$name:"
         done; } | head -n 11`
 
-if [ "$group" != "local" ] && [ "$script" ]; then
-  path=`dirname $script`
-else
+#if [ "$group" != "local" ] && [ "$script" ]; then
+#  path=`dirname $script`
+#else
   path=$PRT_DIR/$group/$name
   script=$path/SlackBuild
-fi
+#fi
 
 if $i_act; then
   echo
@@ -281,28 +285,35 @@ if $i_act; then
   echo
   echo "PACKAGE NAME:  $name-$version-$arch-$build"
   echo "SCRIPT LOCATION:  $script"
-  echo "SOURCE LOCATION:  `encode "$sources"`" | fmt -u
+  echo "SOURCE LOCATION:  "`encode "$sources"` | fmt -t
   echo "PACKAGE DESCRIPTION:"
   echo "$desc"
 fi
 
-ask "Last chance to quit. Port scripts will now be written.
+ask s "Last chance to quit. Port scripts will now be written.
 * Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
 
 # now we should redecode the actual source name
 sources=`decode "$sources"`
-src=`echo "$sources" | head -n 1`
-file=`basename $(decode $src)`
+#src=`echo "$sources" | head -n 1`
+#files=`for i in $sources; do basename $(decode $i); done`
+
+if [ "$move_path" ] && [ "$path" != "$move_path" ]; then
+  # copy old scripts in case we use -u with -g to
+  mkdir -p $path
+  cp -a $move_path/* $path/
+fi
 
 if [ -f $path/stop.autoport ]; then
   stanza "There's a warning not to autoport this source code:"
   echo "==========================================="
-  more $path/stop.autoport
+  cat $path/stop.autoport
   echo "==========================================="
   die
 fi
+
 if [ -d $path ]; then
-  ask "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
+  ask s "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
 fi
 
 stanza "Autoporting $group/$name-$version-$arch-$build:"
@@ -345,19 +356,24 @@ for i in `grep "^#[+-=]" $script | cut -c 2-`; do
   esac
 done
 
-# downlaod source file
-if [ -f $SRC_DIR/$file ]; then
-  row "$file found in $SRC_DIR/"
-else
-  case $src in
-    cvs://*)
-      row "Syncing CVS $file"
-      get `decode $src` $CVS_DIR/$file || die;;
-    *)
-      row "Downloading $file"
-      get `decode $src` $SRC_DIR/$file || die;;
-  esac
-fi
+# downlaod source files
+find $path/ -type l -exec rm -rf {} \;
+get_sources || die
+#for src in $sources; do
+#  file=`basename $src`
+#  if [ -f $SRC_DIR/$file ]; then
+#    row "$file found in $SRC_DIR/"
+#  else
+#    case $src in
+#      cvs://*)
+#        row "Syncing CVS $file"
+#        get `decode $src` $CVS_DIR/$file || die;;
+#      *)
+#        row "Downloading $file"
+#        get `decode $src` $SRC_DIR/$file || die;;
+#    esac
+#  fi
+#done
 
 # write skeletons
 failed=false
@@ -372,7 +388,8 @@ sed -i "s,%build%,$build," $script
 echo -n "  --> Checking format... "
 mkdir -p $t/src
 #case $file in
-case $src in
+file=`basename $(echo "$sources" | head -n 1)`
+case `echo "$sources" | head -n 1` in
   *.tar.bz2)
     format=tarbz2
     tar xjf $SRC_DIR/$file -C $t/src/ || die "Error while unpacking, maybe wrong URL?"
@@ -409,7 +426,7 @@ case $src in
     format=dir
     find $CVS_DIR/$file | sed "s,^$CVS_DIR/,," >$t/footprint
     cp -a $CVS_DIR/$file $t/src/
-    sed -i "s,%cvsdir%,`basename $src`," $script
+    sed -i "s,%cvsdir%,`basename $(echo "$sources" | head -n 1)`," $script
     snip rpm $script
     snip tar $script;;
   *)
@@ -421,9 +438,9 @@ echo "$format"
 # source-prefix
 echo -n "  --> Checking source-prefix... "
 srcdir_prefix=`cat $t/footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
-if [ `echo "$srcdir_prefix" | wc -l` == 1 ] && [ "$srcdir_prefix" != "." ]; then
+if [ `echo "$srcdir_prefix" | wc -l` = 1 ] && [ "$srcdir_prefix" != "." ]; then
   echo "$srcdir_prefix/"
-  if [ "$format" == "srpm" ]; then
+  if [ "$format" = "srpm" ]; then
     :
   else
     snip extra_sdp $script
@@ -649,10 +666,12 @@ else
 fi
 
 # mime-update
-if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint; then
+#if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint; then
+if check "shared-mime-info" $TMP/$srcdir_prefix/*; then
   add_inst "usr/bin/update-mime-database usr/share/mime" $path/doinst.sh
 else
   remove_inst "update-mime-database" $path/doinst.sh
+  snip mime $script
 fi
 
 # desktop-database
@@ -720,7 +739,7 @@ $failed && die "There's been an error. Please write SlackBuild manually."
 
 # portpkg?
 if $build_pkg; then
-  ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
+  ask s "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   # ok, if this port is new, it has no dependencies, if it's rewritten,
   # let's assume, the user wants to rebuild only this port
   portpkg -q $group/$name
@@ -803,11 +822,12 @@ make install prefix=$PKG/%prefix% ##install_prefix
 #:install
 #%post-install%
 #:refine
-rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rfv $PKG/var/lib/scrollkeeper ##scrollkeeper
+rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rfv $PKG/usr/info/dir
-find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+##find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true ##mime
+rm -fv $PKG/usr/share/mime/* || true ##mime
+chown -R root.bin $PKG/%prefix%/bin $PKG/%prefix%/sbin || true
 #:refine
 #%post-refine%
 #:strip
@@ -819,8 +839,8 @@ chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
 #:strip
 #%post-strip%
 #:doc
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
+gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #:docfiles
 cp -a \

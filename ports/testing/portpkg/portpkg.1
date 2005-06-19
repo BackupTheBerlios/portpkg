@@ -2,7 +2,10 @@
 .SH NAME
 portpkg \- build a package by source and install it
 .SH SYNOPSIS
-portpkg [<options>] [<action>] [<list> [...]]
+.PP
+portpkg [<options>] <list> [...]
+.PP
+portpkg <action> [<options>] [<list> [...]]
 .PP
 While `list' can have one of these forms:
 .IP
@@ -103,6 +106,8 @@ List all available ports of one group or with certain conditions.
 Sync the local ports tree with the official ports tree.
 .IP "portpkg --upgrade"
 Upgrade any port that is listed by --diff.
+.IP "portpkg -x 'Version update.' lib
+Exports \`lib' with the default exporter (/etc/portpkg/export).
 .SH DIRECTORIES
 .IP /usr/ports
 The ports tree (PRT_DIR=<path>).

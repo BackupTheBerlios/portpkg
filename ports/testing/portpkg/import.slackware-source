@@ -22,7 +22,7 @@ mkdir -p $tree
 has_prog rsync || die
 
 # check if there're updates
-get {$dist,$t}/ChangeLog.txt >$output
+get $dist/ChangeLog.txt $t/ChangeLog.txt >$output
 if [ -f $tree/ChangeLog.txt ] && cmp -s $tree/ChangeLog.txt $t/ChangeLog.txt; then
   exit 0
 fi
@@ -44,7 +44,7 @@ rsync -avz --delete \
   `mirror $rsync`/source/* $tree | xargs -rl echo "  -->"
 
 row "Retrieving file list"
-get {$dist,$tree}/FILELIST.TXT >$output
+get $dist/FILELIST.TXT $tree/FILELIST.TXT >$output
 
 # patches
 sed -i "s,^export \(ARCH=.*\)$,\1\nexport ARCH," $tree/*/*/*SlackBuild
@@ -66,11 +66,13 @@ find $tree -name "*.build" | while read s; do
   arch=`grep ^ARCH= $s | cut -d = -f 2- | sed -re "s,\\\\$\\{[A-Z]*:-,," -e "s,},,"`
   build=
   cat <<EOF >$dir/SlackBuild
-NAME=$name
+CWD=\`pwd\`
+NAME=\`basename \$CWD\`
+TMP=\${TMP:-/tmp}
+
 VERSION=$ver
 ARCH=$arch
 BUILD=$build
-TMP=\${TMP:-/tmp}
 
 checkinstall -S -y \\
   --pkgname=\$NAME \\
@@ -82,18 +84,18 @@ checkinstall -S -y \\
   --stripso=yes \\
   --gzman=yes \\
   --backup=no \\
-  "sh `basename $s`"
+  "sh -e \$CWD/`basename $s`"
 EOF
 done
 
 # wrong depth of SlackBuild
 find $tree/ -name "*SlackBuild" -mindepth 4 | while read s; do
   row "Disabling $s"
-  mv $s{,.disabled}
+  mv $s $s.disabled
 done
 find $tree/ -name "*SlackBuild" -maxdepth 2 | while read s; do
   row "Disabling $s"
-  mv $s{,.disabled}
+  mv $s $s.disabled
 done
 
 # incomplete vars
@@ -139,4 +141,4 @@ grep -o "\./source/.*/.*/.*" $tree/FILELIST.TXT | grep -v /rootdisks/ \
 done
 
 # make the changes valid
-cp {$t,$tree}/ChangeLog.txt
+cp $t/ChangeLog.txt $tree/ChangeLog.txt

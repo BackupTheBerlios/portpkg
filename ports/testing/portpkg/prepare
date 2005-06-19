@@ -14,7 +14,7 @@ for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers L
   rm $doc.html
 done
 
-mv README{.TodoBugsAbout,}
+mv README.TodoBugsAbout README
 mv README.FrontPage NEWS
 sed -i "0,/^News$/d" NEWS
 sed -i "1s,.*,News\n," NEWS
