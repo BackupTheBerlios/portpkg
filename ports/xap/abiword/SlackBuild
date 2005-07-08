@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.2.7
+VERSION=2.2.8
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -19,11 +19,11 @@ fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
-cd $TMP || exit 1
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-cd $NAME-$VERSION || exit 1
+cd $TMP
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2
+cd $NAME-$VERSION
 chown -R root.root .
-#+config-fix
+#=config
 for i in abi abiword-plugins; do
 cd $i || exit 1
 CFLAGS="$SLKCFLAGS" \
@@ -33,35 +33,36 @@ CFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --disable-static \
   $ARCH-slackware-linux || exit 1
-#+config-fix
-#+install-fix
+#=config
+#=install
 make || exit 1
 make install DESTDIR=$PKG || exit 1
 cd ..
 done
-#+install-fix
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+#=install
+rm -rfv $PKG/usr/info/dir
+chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
+gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-#+doc-fix
+#=docfiles
 cd abi
 cp -a \
   BUILD.TXT BiDiReadme.txt COPYING COPYRIGHT.TXT CREDITS.TXT README.TXT \
   $PKG/usr/doc/$NAME-$VERSION/
-#+doc-fix
-find $PKG/usr/doc -type f | xargs -r chmod 644
-find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+#=docfiles
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
-cd $PKG || exit 1
+cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
