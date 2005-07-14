@@ -6,15 +6,16 @@ if [ "`basename $0`" != "portpkg" ]; then
   exit 1
 fi
 
-row "Syncing $PRT_DIR/"
 root="cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports"
+
+row "Syncing $PRT_DIR/ with `mirror $root | cut -d @ -f 2`"
 
 [ -d $PRT_DIR/.CVS ] && rename .CVS CVS `find $PRT_DIR/ -name .CVS`
 
-get $root $PRT_DIR/ | sed -r \
+get $root $PRT_DIR/ 2>&1 | sed -r \
   -e "s,^U ,Updating ," \
-  -e "s,^C ,Conflict with ," \
   -e "s,^P ,Patching ," \
-  -e "s,^M ,Locally modified ," \
+  -e "s,^C \(.*\)$,\1 conflicts with repository," \
+  -e "s,^M \(.*\)$,\1 is locally modified," \
   -e "s,^\\? ,Unknown entry ," \
   -e "s,.*,  --> &,"

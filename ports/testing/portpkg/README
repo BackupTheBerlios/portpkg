@@ -2,6 +2,20 @@ WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
 
 Major changes:
 
+* "Turbo mode": like *BSD portsystems:
+
+  # cd /usr/ports/xap/mozilla
+  # portpkg
+
+  This is also a bit faster, because portpkg doesn't need to search the ports
+  tree first in this mode.
+
+* No more .local files in /etc/portpkg!
+
+  Portpkg now uses the normal Slackware style for etc-files (.new
+  files). Please edit your files in /etc/portpkg/ to your needs, they
+  won't be overwritten on upgrades.
+
 * CVS support (sources, mirrors and importer scripts)
 
   It should be now possible to use CVS as a resource in your ports. E.g.
@@ -54,6 +68,7 @@ Portpkg:
 * Ignore case in package expressions, dependencies and --diff
 * Removed Bash-specific syntax (should work now with ash)
 * Some speed enhancements
+* Use unlisted packages in cache for dependencies
 *
 
 Autoport:

@@ -1,16 +1,5 @@
 #BLURB="Slackware binary packages"
 
-# check that we're a plug-in
-if [ "`basename $0`" != "portpkg" ]; then
-  echo "Don't run me directly!"
-  exit 1
-fi
-
-[ "${DIST_VER:-}" ] || die "Please add DIST_VER=\`slackware-version' in $CFG_DIR/local.conf!"
-
-tree=$PRT_DIR/z/pseudo
-dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
-
 sync_kernels()
 {
   row "Preparing pseudo ports for kernels/"
@@ -107,12 +96,23 @@ EOF
   done
 }
 
-t=`mktemp -d`
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
 
-row "Syncing $tree/"
-mkdir -p $tree
+is_defined DIST_VER || die
+
+tree=$PRT_DIR/z/pseudo
+dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+
+row "Syncing $tree/ with `mirror $dist | cut -d / -f 3` for $DIST_VER"
 
 $DRY_RUN && exit 0
+
+t=`mktemp -d`
+mkdir -p $tree
 
 # check if there're updates
 get $dist/ChangeLog.txt $t/ChangeLog.txt >$output

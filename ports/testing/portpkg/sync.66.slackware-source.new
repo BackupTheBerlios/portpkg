@@ -1,4 +1,3 @@
-# slackware-source (pp-sync-src) -- A portpkg-addon that imports Slackware's source
 #BLURB="Slackware source scripts (experimental)"
 
 if [ `basename $0` != portpkg ]; then
@@ -7,17 +6,17 @@ if [ `basename $0` != portpkg ]; then
   exit 1
 fi
 
-[ "${DIST_VER:-}" ] || die "No distribution target set. Please run 'pp-config'!"
+is_defined DIST_VER || die
 
 # this will be mangled through our mirrors-list anyway
 rsync=rsync://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
 dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
 tree=$PRT_DIR/z/slackware
 
-t=`mktemp -d`
-row "Syncing $tree/"
+row "Syncing $tree/ with `mirror $dist | cut -d / -f 3` for $DIST_VER"
 warn "This plug-in is experimental!"
 
+t=`mktemp -d`
 mkdir -p $tree
 has_prog rsync || die
 
@@ -105,7 +104,7 @@ find $tree/ -name "*SlackBuild" | while read s; do
   || ! grep -sq "^BUILD=." $s; then
     gname=`echo $s | scr2gname`
     name=`echo $gname | cut -d / -f 2`
-    rel=`sed -n "s,^.*/\($name-[^-]*-[^-]*-[^-]*\)\.tgz$,\1,p" $tree/FILELIST.TXT | loc2gpkg | pkg2rel`
+    rel=`sed -n "s,^.*/\($name-[^-]*-[^-]*-[^-]*\)\.tgz$,\1,p" $tree/FILELIST.TXT | virt2gpkg | pkg2rel`
     row "Adding release info to $gname: $rel"
     ver=`echo $rel | cut -d - -f 1`
     arch=`echo $rel | cut -d - -f 2`
@@ -139,6 +138,9 @@ grep -o "\./source/.*/.*/.*" $tree/FILELIST.TXT | grep -v /rootdisks/ \
   fi | grep -ve "SlackBuild$" -e "^slack-desc$" -e "^doinst.sh" \
   >>$tree/`echo $s | cut -d / -f 1-2`/sources
 done
+
+#TODO: check for "multi-ports" (one script makes multiple packages):
+#      grep makepkg in scripts, link dirs
 
 # make the changes valid
 cp $t/ChangeLog.txt $tree/ChangeLog.txt

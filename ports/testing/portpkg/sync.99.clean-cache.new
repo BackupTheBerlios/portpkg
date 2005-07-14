@@ -1,0 +1,31 @@
+#BLURB="Clean up the package directory"
+
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
+
+row "Syncing $PKG_DIR/ with $PRT_DIR/"
+
+local t=`mktemp -d`
+mkdir -p $PKG_DIR
+ls_virt | virt2gpkg >$t/avail
+local gpkg group
+
+# check groups
+ls_pkg | virt2gpkg | fgrep -vxf $t/avail | while read gpkg; do
+  group=`grep -m 1 /${gpkg#*/}$ $t/avail | cut -sd / -f 1`
+  group=${group:-outdated}
+  case $gpkg in $group/*) continue; esac
+  row "Moving $gpkg to $group/"
+  mkdir -p $PKG_DIR/$group
+  $DRY_RUN || mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
+done
+
+# check for empty dirs
+local dir
+find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
+  row "Deleting empty directory $dir/"
+  $DRY_RUN || rmdir $dir
+done

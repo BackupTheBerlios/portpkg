@@ -3,9 +3,6 @@
 # resolution etc.)
 # These ports can only be used by explicit naming ("group/name")
 #
-# Note: This file will be overwritten on upgrades, you should add your own
-# exclude-list to exclude.local!
-#
 
 # exclude all testing/ and open/ packages
 
@@ -16,3 +13,11 @@ open/
 
 a/aaa_base
 a/aaa_elflibs
+
+# it's better to exclude kernel related packages, too
+
+alsa-driver
+kernel-ide
+kernel-generic
+kernel-modules
+kernel-source

@@ -17,31 +17,30 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-# default configuration
-MAINTAIN_ALL=false
-VERBOSE=false
-DRY_RUN=false
-NO_REQS=false
-LAZY_CHECKS=false
-IGNORE_ARCH=false
-DEBUG=false
-
-ARCH=i486
-CFLAGS=""
-MY_TAG=""
-MY_EMAIL=""
-MY_REALNAME=""
-
-ADM_DIR=/var/log
-SRC_DIR=/usr/src/dist
-CVS_DIR=/usr/src/cvs
-PKG_DIR=/usr/obj/pkg
-PRT_DIR=/usr/ports
-CFG_DIR=/etc/portpkg
-TMP=/tmp
-
 # include host-specific configuration overlay
-[ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
+[ -f /etc/portpkg/local.conf ] && . /etc/portpkg/local.conf
+
+# default configuration
+MAINTAIN_ALL=${MAINTAIN_ALL:-false}
+VERBOSE=${VERBOSE:-false}
+DRY_RUN=${DRY_RUN:-false}
+NO_REQS=${NO_REQS:-false}
+LAZY_CHECKS=${LAZY_CHECKS:-false}
+
+ARCH=${ARCH:-i486}
+CFLAGS=${CFLAGS:-""}
+MY_TAG=${MY_TAG:-""}
+MY_EMAIL=${MY_EMAIL:-""}
+MY_REALNAME=${MY_REALNAME:-""}
+
+ROOT=${ROOT:-}
+ADM_DIR=${ADM_DIR:-$ROOT/var/log}
+SRC_DIR=${SRC_DIR:-$ROOT/usr/src/dist}
+CVS_DIR=${CVS_DIR:-$ROOT/usr/src/cvs}
+PKG_DIR=${PKG_DIR:-$ROOT/usr/obj/pkg}
+PRT_DIR=${PRT_DIR:-$ROOT/usr/ports}
+CFG_DIR=${CFG_DIR:-$ROOT/etc/portpkg}
+TMP=${TMP:-/tmp}
 
 # constant values, temporary dirs, cache files
 ENGINE_VER=cvs
@@ -51,6 +50,8 @@ INST_CACHE=`mktemp`
 PKG_CACHE=`mktemp`
 SCR_CACHE=`mktemp`
 LOC_CACHE=`mktemp`
+AVAIL_CACHE=`mktemp`
+use_list=`mktemp`
 
 # default arguments
 action=do_add
@@ -59,7 +60,8 @@ prepare_only=false
 reinstall=false
 rebuild=false
 remaintain=false
-output=/dev/null
+ignore_arch=false
+#$VERBOSE && output=/dev/stdout || output=/dev/null
 
 # global variables
 exclude="" export_opt=""
@@ -73,65 +75,75 @@ pkg_file="" maintain="" tmp=""
 # gpkg  group/pkg               "l/bla-1.0-i486-3"
 # gname group/name              "l/bla"
 # scr   path/SlackBuild         "/usr/ports/l/bla/SlackBuild"
-# loc   path-rel                "/usr/ports/l/bla-1.0-i486-3"
+# virt  path-rel                "/usr/ports/l/bla-1.0-i486-3"
 
 # message system
 stanza() { [ "$*" ] && echo -e "\n$@"; }
 row()    { echo -e "  --> $@"; }
 warn()   { echo -e "WARNING: $@"; }
-error()  { stanza "$@" >&2; return 1; }
+error()  { stanza "$@"; return 1; }
 die()    { error "$@"; exit 1; }
-debug()  { $DEBUG && echo "debug: $@" >&2; }
 
-# cache the output of "action"
-cache() # file action
+run_quiet() # command
+{
+  local t=`mktemp -d`
+  $VERBOSE && local output=/dev/stdout || local output=$t/log
+  if ! eval "$@" >$output; then
+    $VERBOSE || tail $t/log
+    return 1
+  fi
+  return 0
+}
+
+# cache the output of "action" and grep a regex
+cache() # file action regex
 {
   local file=$1 action=$2
+  shift 2
+  [ "$*" ] && local filter="grep $@" || local filter="cat"
   if [ -s $file ]; then
-    cat $file 2>/dev/null
+    $filter $file
   else
-    debug "caching $file"
-    eval "$action" | tee $file 2>/dev/null
+    eval "$action" | tee $file | $filter -
   fi
 }
 
 # listers
-ls_inst() # >pkg_list
-{ cache $INST_CACHE "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\""; }
-ls_pkg() # >gpkg_list
-{ cache $PKG_CACHE "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\""; }
-ls_scr() # >scr_list
-{ cache $SCR_CACHE "find $PRT_DIR/local/ -name \"*SlackBuild\" -follow | sort
-                    find $PRT_DIR/ ! -path \"$PRT_DIR/local/*\" -name \"*SlackBuild\" | sort"; }
-ls_loc() # >gpkg_list
-{ cache $LOC_CACHE "ls_scr | scr2loc"; }
+ls_inst() # regex >pkg_list
+{ cache $INST_CACHE "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\"" "$@"; }
+ls_pkg() # regex >virt_list
+{ cache $PKG_CACHE "find $PKG_DIR/ -name \"*.tgz\" -follow | sed \"s,\.tgz$,,\"" "$@"; }
+ls_scr() # regex >scr_list
+{ cache $SCR_CACHE "find $PRT_DIR/ -name \"*SlackBuild\" -follow | sed \"s,^$PRT_DIR/local/,/0/,\" | sort -u | sed \"s,^/0/,$PRT_DIR/local/,\"" "$@"; }
+ls_virt() # regex >virt_list
+{ cache $LOC_CACHE "ls_scr | scr2virt" "$@"; }
 
 # converters
 pkg2name()   { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()    { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()    { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
-loc2gpkg()   { sed -r "s,^.*/(.*/.*)$,\1," 2>/dev/null; }
+virt2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1,"; }
 scr2gname()  { sed -r "s,.*/(.*/.*)/.*$,\1,"; }
-scr2loc()    { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 2>/dev/null \
-               | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}" 2>/dev/null; }
+scr2virt()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
+               | sed -un "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}"; }
 #FIXME: preset $BUILD and $VERSION is not supported, only reset!
 #gpkg2gname() { pkg2name "$@"; }
 #gpkg2ver()   { pkg2ver "$@"; }
 #gpkg2rel()   { pkg2rel "$@"; } 
 
 # checks
-has_args()  { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
-is_root()   { [ "`whoami`" = "root" ] || error "You must be root to run this action!"; }
-has_prog()  { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
-has_ports() { [ -d $PRT_DIR ] || error "No ports found! Try: portpkg --sync"; }
+has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
+is_root()    { [ "`whoami`" = "root" ] || error "You must be root to run this action!"; }
+has_prog()   { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
+has_ports()  { [ -d $PRT_DIR ] || error "No ports found! Try: portpkg --sync"; }
+is_defined() { [ "`eval "echo \$$1"`" ] || error "Please define $1 in $CFG_DIR/local.conf!"; }
 
 # find a mirror
 mirror() # url >url
 {
-  debug "$FUNCNAME() $@"
   local url=$1 t=`mktemp -d`
-  if [ -s $CFG_DIR/mirrors.local ] || [ -s $CFG_DIR/mirrors ]; then
-    grep -shve "^#" -e "^$" $CFG_DIR/mirrors.local $CFG_DIR/mirrors >$t/mirrors
+  if [ -s $CFG_DIR/mirrors ]; then
+    grep -shve "^#" -e "^$" $CFG_DIR/mirrors >$t/mirrors
     local master mirror
     while read master mirror; do
       # use pathname expansion instead of regular expressions here
@@ -140,14 +152,12 @@ mirror() # url >url
       esac
     done <$t/mirrors
   fi
-  debug "using $url"
   echo "$url"
 }
 
 # download a source and make use of mirrors (supports cvs:// and httpup://)
 get() # url dest
 {
-  debug "$FUNCNAME() $@"
   local url=$1 dest=$2 t=`mktemp -d`
   local mirror=`mirror $url`
 
@@ -161,19 +171,19 @@ get() # url dest
       local cwd=`pwd`
       if [ -d $dest ]; then
         cd $dest
-        cvs -qz9 up -dP -I z -I 0 . 2>/dev/null
+        cvs -qz9 up -dP -I z -I 0 .
       else
         mkdir -p $dest
         cd `dirname $dest`
-        cvs -qz9 -d `dirname $mirror` co -Pd `basename $dest` `basename $mirror` 2>/dev/null
+        cvs -qz9 -d `dirname $mirror` co -Pd `basename $dest` `basename $mirror`
       fi
       cd $cwd;;
     *)
       # try primary url if mirror fails
       has_prog wget || die
-      if wget -c -O $dest.part $mirror 2>&1; then
+      if wget -c -O $dest.part $mirror; then
         mv $dest.part $dest
-      elif [ $url != $mirror ] && wget -c -O $dest.part $url 2>&1; then
+      elif [ $url != $mirror ] && wget -c -O $dest.part $url; then
         mv $dest.part $dest
       else
         error "Download failed!"
@@ -188,12 +198,10 @@ regex() # pkgex_list >regex_list
   local arg
   for arg; do
     case $arg in
-      */)
-        # groups
-        echo -n "$pre\(^\|\/\)$arg";;
-      *)
-        # (g)names and (g)packages
-        echo -n "$pre\(^\|\/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
+      */) # groups
+          echo -n "$pre\(^\|\/\)$arg";;
+      *)  # (g)names and (g)packages
+          echo -n "$pre\(^\|\/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
   done
   [ $# = 0 ] && echo "^$" || true
@@ -206,20 +214,21 @@ explicit() # pkg_list >pkgex-list
   local arg
   for arg; do
     case $arg in
-      */) ls_scr | scr2gname | grep `regex $arg` | cut -d / -f 2;;
+      */) ls_scr `regex $arg` | scr2gname | cut -d / -f 2;;
       *)  echo $arg;;
     esac
   done
+  # "turbo mode": port is current dir
+  [ $# = 0 ] && echo . || true
 }
 
 # print non-available, but installed ports
 ls_diff() # >pkgex_list
 {
-  debug "$FUNCNAME() $@"
   local t=`mktemp -d`
 
   # generate installed and available lists
-  ls_loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$t/avail
+  ls_virt | grep -v $exclude | virt2gpkg | cut -d / -f 2 >$t/avail
   ls_inst >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -232,11 +241,11 @@ ls_diff() # >pkgex_list
   done
 
   # print differences
-  if $IGNORE_ARCH; then
+  if $ignore_arch; then
     # don't care about architecture differences
-    sed -i "s,\(.*-.*\)-.*-\(.*\),\1-\.*-\2," $t/avail.check
-    sed -i "s,\(.*-.*\)-.*-\(.*\),\1-\.*-\2," $t/inst.check
-    fgrep -ivxf $t/inst.check $t/avail.check | sort -u | grep -f - $t/avail
+    sed -i "s,\(.*-.*\)-.*-\(.*\),\1-.*-\2," $t/avail.check
+    sed -i "s,\(.*-.*\)-.*-\(.*\),\1-.*-\2," $t/inst.check
+    fgrep -ivxf $t/inst.check $t/avail.check | sort -u | grep -xf - $t/avail
   else
     fgrep -vxf $t/inst.check $t/avail.check | sort -u
   fi
@@ -245,39 +254,46 @@ ls_diff() # >pkgex_list
 # get information about a port and write it into global variables
 get_info() # pkgex
 {
-  debug "$FUNCNAME() $@"
+  script=""
+  pkg_file=""
+  if [ "$1" = "." ]; then
+    # "turbo mode"
+    name=`basename $(pwd)`
+    script=`{ find $(pwd)/ -name "$name.SlackBuild"
+              find $(pwd)/ -name "*SlackBuild"; } | head -n 1`
+    local virt=`echo $script | scr2virt`
+    NO_REQS=true
+  else
+    # find port (maybe an exluded one explicitly named?)
+    case $1 in
+      */*) local virt=`ls_virt $(regex $1) | head -n 1`;;
+      *)   local virt=`ls_virt $(regex $1) | grep -v $exclude | head -n 1`;;
+    esac
+    script=""
+  fi
 
-  # find port, take the first if more than one available
-  local loc=`ls_loc | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
-
-  # maybe an exluded one explicitly named?
-  [ "$loc" ] || case $1 in */*)
-    loc=`ls_loc | grep -m 1 $(regex $1)`
-    debug "excluded port specified explicitly!"
-  esac
-
-  if ! [ "$loc" ]; then
-    error "No such port: $1"
+  if ! [ "$virt" ]; then
+    error "No such port: $1. Maybe locked?"
     return 1
   fi
 
-  group=`echo $loc | loc2gpkg | cut -d / -f 1`
-  package=`echo $loc | loc2gpkg | cut -d / -f 2`
+  group=`echo $virt | virt2gpkg | cut -d / -f 1`
+  package=`echo $virt | virt2gpkg | cut -d / -f 2`
   name=`echo $package | pkg2name`
   version=`echo $package | pkg2ver`
-  path=`dirname $loc`/$name
-#  script=`find $path/ -name "*SlackBuild" | head -n 1`
-  script=`ls_scr | grep "^$path/" | head -n 1`
-  description=`grep -s ^$name: $path/slack-desc`
+  path=`dirname $virt`/$name
+  [ "$script" ] || script=`{ ls_scr "^$path/$name.SlackBuild$"
+                             ls_scr "^$path/"; } | head -n 1`
+  description=`grep -sh ^$name: $path/slack-desc $path/$name.slack-desc $path/slack-desc/*`
   requires=`grep -sve ^# -e ^$ $path/requires`
   optional=`grep -sve ^# -e ^$ $path/optional
             grep -s "^# opt" $path/requires | rev | cut -d " " -f 1 | rev`
   sources=`grep -sve ^# -e ^$ $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
-  
+
   # cached .tgz-packages
-  pkg_file=`ls_pkg | grep -xm 1 "$group/$package"`
-  [ "$pkg_file" ] || pkg_file=`ls_pkg | grep -m 1 "/$package$"`
-  [ "$pkg_file" ] && pkg_file=$PKG_DIR/$pkg_file.tgz
+  [ "$pkg_file" ] || pkg_file=`{ ls_pkg "/$group/$package$"
+                                 ls_pkg "/$package$"; } | head -n 1`
+  [ "$pkg_file" ] && pkg_file=$pkg_file.tgz
 
   # maintained port?
   maintain=false
@@ -287,7 +303,8 @@ get_info() # pkgex
   # check TMP
   grep -sq "^TMP=\${TMP:-" $script && tmp=$TMP || tmp=/tmp
 
-  debug "$@ is known as $group/$package"
+#TODO: "multiports"
+
   return 0
 }
 
@@ -327,8 +344,8 @@ update_meta_info()
   fi
 
   # generate requires/optional list
-  local ignore=`regex $(grep -shve ^# -e ^$ $CFG_DIR/ignore.local $CFG_DIR/ignore)`
-  ls_inst | grep $ignore | pkg2name | cut -d / -f 2 >$t/ignore
+  local ignore=`regex $(grep -shve ^# -e ^$ $CFG_DIR/ignore)`
+  ls_inst $ignore | pkg2name | cut -d / -f 2 >$t/ignore
   echo "$requires" >$t/old_req
   echo "$optional" >$t/old_opt
   find $tmp/package-$name/ -type f -exec file {} \; >$t/ftypes
@@ -349,8 +366,8 @@ update_meta_info()
   fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
   fgrep -vxf $t/old_req -f $t/old_opt $t/auto_req >$t/new_req
 
-  # save the "actual" dependencies list of the current port
-  cat $t/auto_req_raw >$ADM_DIR/portpkg/$package.deps
+#  # save the "actual" dependencies list of the current port
+#  cat $t/auto_req_raw >$ADM_DIR/portpkg/$package.deps
 
   # if "requires" exists, new dependencies are optional
   if [ "$requires" ]; then
@@ -361,7 +378,7 @@ update_meta_info()
   fi
 
   # now generate new "requires" file
-  cat $path/requires $t/new_req >$t/requires 2>/dev/null
+  cat $path/requires $t/new_req >$t/requires
   sed -i "/^# opt/d" $t/requires
   cat $t/old_opt $t/new_opt | xargs -r -l echo "# optional:" >>$t/requires
   sort -uo $t/requires $t/requires
@@ -369,7 +386,6 @@ update_meta_info()
   mv $t/requires $path/requires
 
   # show a few statistics
-  debug "ignoring dependencies: "`fgrep -xf $t/ignore $t/auto_req_raw`
   cat $t/new_req | xargs -r echo "  --> New dependencies:"
   cat $t/new_opt | xargs -r echo "  --> New options:"
   fgrep -xf $t/old_opt -f $t/new_opt $t/auto_req | xargs -r echo "  --> Dependant options:"
@@ -380,7 +396,7 @@ update_meta_info()
     -e "/$ARCH-slackware-linux-" $path/footprint >$t/check_path
   egrep -e "^........w" -e " root/root .*( |/)(|s)bin/" $path/footprint >$t/check_perm
   egrep -e "-upgraded$" $t/auto_req >$t/check_req
-  ls_loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
+  ls_virt | grep -v $exclude | virt2gpkg | pkg2name | cut -d / -f 2 \
   | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
   cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
@@ -404,14 +420,14 @@ get_sources()
     case $src in
       cvs://*)
         row "Syncing CVS $srcname"
-        get $src $CVS_DIR/$srcname >$output
+        get $src $CVS_DIR/$srcname || return 1
         $DRY_RUN || ln -s $CVS_DIR/$srcname $path/;;
       *)
         if [ -f $SRC_DIR/$srcname ]; then
           row "$srcname found in $SRC_DIR/"
         else
           row "Downloading $srcname"
-          get $src $SRC_DIR/$srcname >$output || return 1
+          get $src $SRC_DIR/$srcname || return 1
         fi
         $DRY_RUN || ln -s $SRC_DIR/$srcname $path/;;
     esac
@@ -433,19 +449,19 @@ build_pkg()
   fi
 
   # assume, all symlinks here are old links to logs or source files
+  [ "$path" ] || die "Internal error!"
   find $path/ -type l -exec rm {} \;
 
   get_sources || return 1
 
   # check signature and md5sums when non-maintainer-mode
   if ! $maintain && ! $DRY_RUN && [ -f $path/md5sums ]; then
-#    if grep -sq PGP $path/md5sums && has_prog gpg && ! gpg --verify $path/md5sums 2>/dev/null; then
+#    if grep -sq PGP $path/md5sums && has_prog gpg && ! gpg --verify $path/md5sums; then
 #      error "Integrity checking failed (bad signature)!"
 #      return 1
 #    fi
     cd $path
-    if ! md5sum -c $path/md5sums >$t/output 2>&1; then
-      cat $t/output
+    if ! run_quiet "md5sum -c $path/md5sums"; then
       error "Integrity checking failed!"
       return 1
     fi
@@ -463,10 +479,11 @@ build_pkg()
     # find CFLAGS substitution (CFLAGS="$SLKCFLAGS")
     local cflags_var=`grep -o "CFLAGS=\\"*\\$[^ ]*" $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
     if [ "$cflags_var" ]; then
-      debug "substituting CFLAGS to $cflags_var"
+      :
     else
-      case $package in $name-$version-noarch-*) ;; *)
-        $maintain && warn "No CFLAGS variable found! Compiling with default values"
+#    if ! grep -sq "^CFLAGS=\"\$SLKCFLAGS\"" $script; then
+      $maintain && case $package in $name-$version-noarch-*) ;; *)
+        warn "No CFLAGS usage in script! Compiling with default values"
       esac
       # this is just a wild guess
       cflags_var=CFLAGS
@@ -474,7 +491,6 @@ build_pkg()
 
     # check if the script supports break-on-errors ("|| exit 1")
     if ! grep -sq "|| exit 1$" $script; then
-      debug "running script via sh -e"
       local sh_opt="-e"
     else
       local sh_opt=""
@@ -487,32 +503,23 @@ build_pkg()
     fi
 
     # execute SlackBuild
-    if ! [ -f $path/no-fakeroot ] && has_prog fakeroot; then
+     if ! [ -f $path/no-fakeroot ] && has_prog fakeroot; then
       # run fakerooted SlackBuild as nobody
-      row "Executing (fakerooted) $script $script_opt"
-      cd $path || return 1
-      su nobody -c "ARCH=$ARCH \
-                    $cflags_var=\"$CFLAGS\" \
-                    HOME=$tmp \
-                    TMPDIR=$tmp \
-                    TMP=$tmp \
-                    PATH=\$PATH:/sbin \
-                    fakeroot sh $sh_opt $script $script_opt" 2>&1 \
-      | tee $ADM_DIR/portpkg/$name.buildlog >$output
+      local build="su nobody -c \"ARCH=$ARCH $cflags_var=\\\"$CFLAGS\\\" \
+                   HOME=$tmp TMPDIR=$tmp TMP=$tmp PATH=\$PATH:/sbin \
+                   fakeroot sh $sh_opt $script $script_opt\""
     else
+      local build="ARCH=$ARCH $cflags_var=\"$CFLAGS\" TMP=$tmp \
+                   sh $sh_opt $script $script_opt"
       [ -f $path/no-fakeroot ] && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
       $prepare_only && warn "Preparing without fakeroot is not recommended!"
-      row "Executing $script $script_opt"
-      cd $path || return 1
-      eval "ARCH=$ARCH \
-            $cflags_var=\"$CFLAGS\" \
-            TMP=$tmp \
-            sh $sh_opt $script $script_opt" 2>&1 \
-      | tee $ADM_DIR/portpkg/$name.buildlog >$output
-      # this is a hack-around for some faulty install scripts
-      chmod 1777 /tmp
     fi
+    row "Executing $script $script_opt"
+    cd $path || return 1
+    eval "$build" 2>&1 | tee $ADM_DIR/portpkg/$name.buildlog >&2
+#    # this is a hack-around for some faulty install scripts
+#    chmod 1777 /tmp
 
     # success? (this is the most promising test to ensure it worked)
     if [ -f $tmp/$package.tgz ]; then
@@ -550,43 +557,30 @@ build_pkg()
 # check if all required packages of the current port are installed
 check_reqs()
 {
-  debug "$FUNCNAME() $@"
-  local use_list=$TMPDIR/tmp.1Z7kH3x
-  local avail_list=$TMPDIR/tmp.3kBdbVx
-
   # check out "use"-list
-  [ -s $use_list ] || explicit `grep -sve ^# -e ^$ $CFG_DIR/use.local` >$use_list
   local use=`echo "$optional" | fgrep -xf $use_list -`
-  debug "$name requires: "$requires
-  debug "using optional: "$use
 
   # find packages to check
-  [ -s $avail_list ] || ls_loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$avail_list
   deps=`echo -e "$requires\n$use"`
 
   local req
   for req in $deps; do
-    debug "checking now: $req"
-
-    # always read-in installed packages
-    local inst_pkg=`ls_inst | grep -m 1 $(regex $req)`
-    local avail_pkg=`grep -m 1 $(regex $req) $avail_list`
+    local inst_pkg=`ls_inst $(regex $req) | head -n 1`
+    local avail_pkg=`ls_virt $(regex $req) | grep -v $exclude | virt2gpkg | cut -d / -f 2 | head -n 1`
 
     # is the dependency available?
     if [ "$avail_pkg" ]; then
-      debug "$req available as $avail_pkg"
-
       # prepare patterns to compare
       if $LAZY_CHECKS; then
         inst_pkg=`echo $inst_pkg | sed "s,^\(.*\)-.*-.*-.*$,\1-[^-]*-[^-]*-[^-]*,"`
-      elif $IGNORE_ARCH; then
-#      else
+      elif $ignore_arch; then
         inst_pkg=`echo $inst_pkg | sed "s,^\(.*-.*\)-.*-\(.*\)$,\1-[^-]*-\2,"`
       fi
 
       # is it up-to-date?
       if echo $avail_pkg | grep -xsq "$inst_pkg"; then
-        debug "installed package matches $inst_pkg"
+#      if [ "`ls_inst ^$avail_pkg$`" ]; then
+        :
       # add it
       else
         # remember group and name
@@ -599,21 +593,23 @@ check_reqs()
         # after that add_pkg, we have to refresh
         get_info $gpkg
       fi
+    # is such a package installed?
     elif [ "$inst_pkg" ]; then
-      debug "installed package $inst_pkg should be sufficient"
+      :
+    # is maybe a package in the cache?
+    elif [ "`ls_pkg $(regex $req)`" ]; then
+      $DRY_RUN || installpkg `ls_pkg $(regex $req) | head -n 1`.tgz
     else
       error "Cannot find required package $req! Stopping."
       return 1
     fi
   done
-  debug "finished: $FUNCNAME() $@"
   return 0
 }
 
 # really (re)install/upgrade current port
 add_pkg()
 {
-  debug "$FUNCNAME() $@"
   local t=`mktemp -d`
   # requirements check
   $NO_REQS || check_reqs $package || return 1
@@ -630,29 +626,29 @@ add_pkg()
   $prepare_only && return 0
 
   # install the package
-  if ls_inst | fgrep -qx $package && ! $reinstall; then
+  if [ "`ls_inst ^$package$`" ] && ! $reinstall; then
     stanza "$package is already installed. Skipping."
     return 0
   fi
   [ -f $path/slot-in ] && warn "Slot-in: Other releases will stay installed!"
 
   # what to display?
-  ls_inst >$t/inst
-  if ! [ -f $path/slot-in ] && fgrep -qx $package $t/inst; then
+  if ! [ -f $path/slot-in ] && [ "`ls_inst ^$package$`" ]; then
     stanza "Reinstalling $package..."
-  elif ! [ -f $path/slot-in ] && grep -q $(regex $name) $t/inst; then
+  elif ! [ -f $path/slot-in ] && [ "`ls_inst $(regex $name)`" ]; then
     stanza "Upgrading $name to `echo $package | pkg2rel`..."
+    sed -i "s,`regex $name`,$package," $INST_CACHE
   else
     stanza "Installing $package..."
+    echo $package >>$INST_CACHE
   fi
-  echo $package >>$INST_CACHE
 
   $DRY_RUN && echo "$description" && return 0
 
   # call the install-command
   local add="upgradepkg --reinstall --install-new"
   if ! su -c "$add $pkg_file | tee $t/output | grep -e ^PACKAGE \
-  -e ^$name: -e ^Executing"; then
+              -e ^$name: -e ^Executing"; then
     cat $t/output
     error "Installation failed!"
     return 1
@@ -663,15 +659,15 @@ add_pkg()
 do_add() # pkgex_list
 {
   local t=`mktemp -d`
-  has_args "$@" || die
+  has_args `explicit "$@"` || die
   has_ports || die
   is_root || die
   ls_inst >$t/inst
-  : >$t/building
+  >$t/building
+  $NO_REQS || explicit `grep -sve ^# -e ^$ $CFG_DIR/use` >$use_list
 
   local arg
   for arg in `explicit "$@"`; do
-    debug "adding now: "$arg
     echo "$arg" >>$t/started
     get_info $arg || continue
     # if the current port is already tracked as started and not finished, it is
@@ -693,9 +689,8 @@ do_add() # pkgex_list
   { stanza "Summary `date`:"
     cat $t/started $t/building | xargs -r -l echo "  --> Failed"
     ls_inst | fgrep -vxf $t/inst | xargs -r -l echo "  --> Added"
-  } | tee -a $stats >$output
+  } | tee -a $stats >&2
 
-  debug "finished: $FUNCNAME() $@"
   return $ret
 }
 
@@ -709,7 +704,6 @@ do_diff()
   local pkg
   for pkg in 0 $diff_list; do
     [ "$pkg" = "0" ] && echo -e "\nPACKAGE: AVAILABLE: INSTALLED:" && continue
-    debug "processing now: $pkg"
     local avail_rel=`echo $pkg | pkg2rel`
     local name=`echo $pkg | pkg2name`
     local inst_rel=`grep -m 1 $(regex $name) $t/inst | pkg2rel`
@@ -722,7 +716,7 @@ do_diff()
 do_export() # pkgex_list
 {
   is_root || die
-  has_args "$@" || die
+  has_args `explicit "$@"` || die
   has_ports || die
 
   # make sure, the user didn't accidently give a port for summary
@@ -731,7 +725,6 @@ do_export() # pkgex_list
   stanza "Exporting:"
   local arg
   for arg in `explicit "$@"`; do
-    debug "processing now: $arg"
     get_info $arg || continue
 
     # make some check before exporting
@@ -776,14 +769,14 @@ do_find() # text [...] >pkgex_list
 do_info() # pkgex-list
 {
   has_ports || die
-  has_args "$@" || die
+  has_args `explicit "$@"` || die
   local arg
   for arg in `explicit "$@"`; do
     get_info $arg || continue
     echo
     echo "PACKAGE NAME:  $package"
     if [ "$pkg_file" ]; then
-      local s=`gzip -l $pkg_file 2>/dev/null | tail -n 1`
+      local s=`gzip -l $pkg_file | tail -n 1`
       local size=`echo $s | awk '{ print $1 }'`
       local u_size=`echo $s | awk '{ print $2 }'`
       echo "COMPRESSED PACKAGE SIZE:  `expr $size / 1024` K"
@@ -791,9 +784,9 @@ do_info() # pkgex-list
       echo "PACKAGE LOCATION:  $pkg_file"
     fi
     echo "SCRIPT LOCATION:  $script"
-    [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t 2>/dev/null
-    [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t 2>/dev/null
-    [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t 2>/dev/null
+    [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
+    [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
+    [ "$sources" ] && echo "SOURCE LOCATIONS:  "`mirror $sources` | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
 }
@@ -802,46 +795,24 @@ do_info() # pkgex-list
 do_list() # [pkgex-list] >pkgex_list
 {
   has_ports || die
-  # grep arguments
-  local regex
-  [ "$*" ] && regex=`regex $*` || regex="-v ^$"
-  ls_loc | grep $regex 2>/dev/null | loc2gpkg
+  if [ "$*" ]; then
+    # grep arguments
+    ls_virt `regex "$@"`
+  else
+    ls_virt
+  fi | virt2gpkg
 }
 
 do_sync()
 {
   local t=`mktemp -d`
   is_root || die
-  has_prog cvs || die
   stanza "Syncing your ports:"
 
   # start 3rd-party-importers
   local importer
-  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
+  for importer in `find $CFG_DIR/plugins/sync.*`; do
     [ -x $importer ] && (. $importer)
-  done
-
-  # sync package dir
-  row "Syncing $PKG_DIR/"
-  mkdir -p $PKG_DIR
-  ls_loc | loc2gpkg >$t/avail
-  local gpkg group
-
-  # check groups
-  ls_pkg | fgrep -vxf $t/avail | while read gpkg; do
-    group=`grep -m 1 /${gpkg#*/}$ $t/avail | cut -sd / -f 1`
-    group=${group:-outdated}
-    case $gpkg in $group/*) continue; esac
-    row "Moving $gpkg to $group/"
-    mkdir -p $PKG_DIR/$group
-    $DRY_RUN || mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
-  done
-
-  # check for empty dirs
-  local dir
-  find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
-    row "Deleting empty directory $dir/"
-    $DRY_RUN || rmdir $dir
   done
 }
 
@@ -858,38 +829,29 @@ help()
 {
   cat <<EOF
 
-Usage: portpkg [options] list [...]
-       portpkg action [options] [list [...]]
-
-Build package by a script and install it.
-
+Usage:  portpkg [action] [options] [list [...]]
+  Build package by a script and install it.
 Actions (alternative):
-  -d, --diff        Compare installed versions with availables
-  -i, --info        View information about specified ports
-  -f, --find strs   Find ports by matching pattern strings
-  -l, --list        List (all or certain) available ports
-  -s, --sync        Sync local ports tree in [$PRT_DIR]
-  -u, --upgrade     Upgrade all (!) outdated ports (see --diff)
-  -v, --version	    View version information
-  -x, --export msg  Submit ports
-
-Options [implied options]:
-  -p, --prepare     Build only, don't install [--noreqs]
-  -o, --download    Download only, don't build/install
-  -r, --remaintain  Maintain only, skip building [--rebuild]
-  -y, --dryrun	    Simulate only, don't build/install/up-/download
-  -b, --rebuild     Force building, if already built  [--reinstall]
-  -e, --reinstall   Force installing, if already installed
-  -m, --maintain    Force maintaining, update meta info
-  -q, --noreqs      Ignore dependencies
-  -a, --lazy        Ignore release differences, don't upgrade dependencies
-  -n, --ignorearch  Ignore arch differences
-  -g, --verbose     More output
-  -z, --debug       Debug messages
-
-Lists:
-  group/ or
-  [group/]name[-version-arch-build]
+  -d, --diff         Compare installed versions with availables
+  -x, --export text  Submit ports via $CFG_DIR/export
+  -f, --find text    Find ports by matching pattern strings
+  -i, --info         View information about specified ports
+  -l, --list         List (all or certain) available ports
+  -s, --sync         Sync local ports tree in [$PRT_DIR]
+  -u, --upgrade      Upgrade all (!) outdated ports (see --diff)
+  -v, --version	     View version information
+Options:
+  -p, --prepare      Build only, don't install [implies --noreqs]
+  -o, --download     Download only, don't build/install
+  -r, --remaintain   Maintain only, skip building [implies --rebuild]
+  -y, --dryrun	     Simulate only, don't build/install/up-/download
+  -b, --rebuild      Force building, if already built [implies --reinstall]
+  -e, --reinstall    Force installing, if already installed
+  -m, --maintain     Force maintaining, update meta info
+  -q, --noreqs       Ignore dependencies
+  -a, --lazy         Ignore release differences, don't upgrade dependencies
+  -g, --verbose      More output
+Lists:  group/ or [group/]name[-version-arch-build] or nothing for current dir
 EOF
 }
 
@@ -906,10 +868,10 @@ EOF
 
 parse_options()
 {
-  local shorts="diflsuvhebogyqx:zarpmn"
+  local shorts="diflsuvhebogyqx:zarpm"
   local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
-rebuild,download,verbose,dryrun,noreqs,debug,lazy,remaintain,prepare,\
-maintain,export:,ignorearch"
+rebuild,download,verbose,dryrun,debug,noreqs,lazy,remaintain,prepare,\
+maintain,export:"
 
   local args
   args=`getopt -qo $shorts -l $longs -- "$@"`
@@ -919,28 +881,28 @@ maintain,export:,ignorearch"
   while [ "$1" ]; do
     case $1 in
       -d|--diff)        action=do_diff;;
-      -i|--info)      	action=do_info;;
+      -x|--export)      action=do_export
+                        export_opt="$2"
+                        shift;;
       -f|--find)        action=do_find;;
+      -h|--help)      	action=help;;
+      -i|--info)      	action=do_info;;
       -l|--list)      	action=do_list;;
       -s|--sync)        action=do_sync;;
       -u|--upgrade)     action=do_upgrade;;
       -v|--version)     action=version;;
-      -x|--export)      action=do_export
-                        export_opt="$2"
-                        shift;;
-      -h|--help)      	action=help;;
       -p|--prepare)     prepare_only=true;;
       -o|--download)    download_only=true;;
       -r|--remaintain)  remaintain=true;;
       -y|--dryrun)      DRY_RUN=true;;
       -g|--verbose)   	VERBOSE=true;;
-      -z|--debug)       DEBUG=true;;
+      -z|--debug)       set -x -v
+                        VERBOSE=true;;
       -b|--rebuild)     rebuild=true;;
       -e|--reinstall)   reinstall=true;;
       -m|--maintain)    MAINTAIN_ALL=true;;
       -q|--noreqs)      NO_REQS=true;;
       -a|--lazy)        LAZY_CHECKS=true;;
-      -n|--ignorearch)  IGNORE_ARCH=true;;
       --)               shift
                         break;;
     esac
@@ -950,17 +912,10 @@ maintain,export:,ignorearch"
   $prepare_only && NO_REQS=true
   $rebuild && reinstall=true
   $remaintain && rebuild=true
-  $VERBOSE && output=/dev/stdout
 
-  debug "exclude=\"$exclude\""
-  debug "ARCH=$ARCH"
-  debug "$FUNCNAME() $args"
-  $prepare_only && debug "prepare-only is enabled"
-  $LAZY_CHECKS && debug "lazy-checks is enabled"
-  $IGNORE_ARCH && debug "ignore-arch is enabled"
-  $DRY_RUN && debug "dry-run is enabled"
+  $VERBOSE && local output=/dev/stdout || local output=/dev/null
 
-  $action "$@"
+  $action "$@" 2>$output
 }
 
 init()
@@ -971,10 +926,13 @@ init()
 
   # check
   has_prog sed || die
-  case $ARCH in *-*) die "ARCH value not allowed: $ARCH"; esac
+  case $ARCH in
+    i?86) ignore_arch=true;;
+    *-*)  die "ARCH value not allowed: $ARCH";;
+  esac
 
   # read-in exclude-list
-  exclude=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude.local $CFG_DIR/exclude)`
+  exclude=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude)`
 
   # if not used as include file then start me
   [ `basename $0` = "portpkg" ] && parse_options "$@"

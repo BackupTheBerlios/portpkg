@@ -1,6 +1,6 @@
 #!/bin/sh
 #BLURB="Configure Portpkg"
-# don't use "# B L U R B " as above in this script since it'll break pkgtool!
+# don't use "# B L U R B" as above in this script since it'll break pkgtool!
 
 . `which portpkg` || exit 1
 t=`mktemp -d`
@@ -21,12 +21,12 @@ If unsure enter '$newest_slack'." 0 0 \
     echo "DIST_VER=\"$DIST_VER\"" >>$CFG_DIR/local.conf
     if [ $DIST_VER = current ]; then
       if dialog --title "$heading" --yesno \
-"It is recommended to add pasture/ to exclude.local for Slackware-current. \
+"It is recommended to add pasture/ to $CFG_DIR/exclude for Slackware-current. \
 Shall I do that for you?
 If unsure answer 'yes'." 0 0; then
         # add pasture/ to the list of excluded ports
-        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
-        echo "pasture/" >>$CFG_DIR/exclude.local
+        sed -i "/^pasture\/$/d" $CFG_DIR/exclude
+        echo "pasture/" >>$CFG_DIR/exclude
       fi
     fi
   fi
@@ -66,7 +66,7 @@ If unsure leave this field empty." 0 0 "$MY_CVSTAG" 2>$t/res || exit
   [ "$MY_CVSTAG" ] || return 0
   echo "MY_CVSTAG=\"$MY_CVSTAG\"" >>$CFG_DIR/local.conf
   rm -rf $CFG_DIR/export
-  ln -s export.cvs $CFG_DIR/export
+  ln -s plugins/export.cvs $CFG_DIR/export
 #  echo "SUBMIT_METHOD=cvs" >>$CFG_DIR/local.conf
 }
 
@@ -105,10 +105,10 @@ resources()
 {
   heading="RESOURCES SETTINGS"
   echo -n "dialog --title \"$heading\" --checklist \
-\"Select which importers you want to enable when you sync your data base.
+\"Select which plugins you want to enable when you sync your data base.
 If unsure select only \\\`portpkg-tree'.\" 0 0 0 " >$t/menu
   local importer
-  for importer in `grep -l "^#""BLURB=" $CFG_DIR/importers/*`; do
+  for importer in `grep -l "^#""BLURB=" $CFG_DIR/plugins/sync.*`; do
     echo -n `basename $importer` \
       `grep ^#""BLURB= $importer | cut -d = -f 2` \
       `[ -x $importer ] && echo on || echo off`" "
@@ -116,7 +116,7 @@ If unsure select only \\\`portpkg-tree'.\" 0 0 0 " >$t/menu
   done >>$t/menu
   . $t/menu 2>$t/res
   for importer in `cat $t/res`; do
-    chmod +x $CFG_DIR/importers/$importer
+    chmod +x $CFG_DIR/plugins/$importer
   done
 #  # exit if no email set
 #  [ "$MY_EMAIL" ] || return 0
@@ -134,24 +134,24 @@ If unsure select only \\\`portpkg-tree'.\" 0 0 0 " >$t/menu
 #  ln -sf $exporter $CFG_DIR/export
 }
 
-mirrors()
-{
-  heading="MIRROR SETTINGS"
-  echo -n "dialog --title \"$heading\" --menu \
-\"Which set of mirror files do you want to use?\" 0 0 0 " >$t/menu
-  local mirror
-  for mirror in `grep -l "^#""BLURB=" $CFG_DIR/mirrors.*`; do
-    echo `basename $mirror` `grep ^#""BLURB= $mirror | cut -d = -f 2` \\
-  done >>$t/menu
-  echo "none \"Use primary download URLs\"" >>$t/menu
-  . $t/menu 2>$t/res
-  out=`cat $t/res`
-  rm -rf $PRT_DIR/mirrors
-  if [ "$out" != "none" ]; then
-    rm -rf $CFG_DIR/mirrors
-    ln -s $out $CFG_DIR/mirrors
-  fi
-}
+#mirrors()
+#{
+#  heading="MIRROR SETTINGS"
+#  echo -n "dialog --title \"$heading\" --menu \
+#\"Which set of mirror files do you want to use?\" 0 0 0 " >$t/menu
+#  local mirror
+#  for mirror in `grep -l "^#""BLURB=" $CFG_DIR/mirrors.*`; do
+#    echo `basename $mirror` `grep ^#""BLURB= $mirror | cut -d = -f 2` \\
+#  done >>$t/menu
+#  echo "none \"Use primary download URLs\"" >>$t/menu
+#  . $t/menu 2>$t/res
+#  out=`cat $t/res`
+#  rm -rf $PRT_DIR/mirrors
+#  if [ "$out" != "none" ]; then
+#    rm -rf $CFG_DIR/mirrors
+#    ln -s $out $CFG_DIR/mirrors
+#  fi
+#}
 
 cpu()
 {
@@ -252,9 +252,9 @@ Select what you want to configure:" 0 0 0 \
   resources "Set which resources to use" \
   maintain "Set your tag string" \
   output "Set output level" \
-  mirrors "Set mirrors for downloads" \
   optimise "Set processor optimising" \
   dependencies "Set dependency handling" 2>$t/res || break
+#  mirrors "Set mirrors for downloads" \
   last=`cat $t/res`
   $last
 done

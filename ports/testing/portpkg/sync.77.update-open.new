@@ -1,20 +1,20 @@
-#!/bin/sh
-# update_ports -- developer tool to import uploaded ports into open/
-#                 at least one developer should run this from time to time!
-#                 ENABLE CVS EXPORT METHOD BEFORE YOU RUN THIS SCRIPT!
+#BLURB="HTTP-submitted ports (developers only)"
 
-. `which portpkg` || exit 1
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
 
-is_root || die
-[ "$MY_CVSTAG" ] || die "Please add your CVS account name as MY_CVSTAG in $CFG_DIR/local.conf!"
+is_defined MY_CVSTAG || die
 
 # portpkg's home directory on the server
 pp_home=/home/groups/portpkg/htdocs
+upload_root=http://portpkg.berlios.de/upload
 
 # check out new ports
-stanza "Checking uploads:"
-new_ports=`lynx -dump http://portpkg.berlios.de/upload \
-| sed "0,/^Refer/d"| grep -o "http://.*-.*-.*-.*\.tar\.bz2$"`
+row "Syncing $PRT_DIR/open/ with $upload_root"
+new_ports=`lynx -dump $upload_root | sed "0,/^Refer/d"| grep -o "http://.*-.*-.*-.*\.tar\.bz2$"`
 
 # quit if there are none
 if [ "$new_ports" ]; then
@@ -47,11 +47,9 @@ if [ "$new_ports" ]; then
   
     # commit
     msg=`grep -si "^ChangeLog" $PRT_DIR/open/$name/info | cut -d : -f 2 | xargs`
-    tag=${pkg##*[0-9]}
+    tag=`basename ${pkg##*[0-9-][0-9]} .tar.bz2`
     portpkg -mx "$msg ($tag)" open/$name
   done
-else
-  row "No uploads"
 fi
 
 # httpup support is broken now :-(
@@ -61,11 +59,12 @@ fi
 #sed -i "/CVS/d" REPO
 
 # create recent changes and amount of ports
-stanza "Generating recent changes list..."
+row "Generating recent changes list"
 ARCH=i486
 t=`mktemp -d`
 find $PRT_DIR/ -name Entries -exec grep -H "^/" {} \; \
 | grep SlackBuild | wc -l >$t/amount
+last_date=""
 find $PRT_DIR/ -name Entries -exec grep -H "^/" {} \; \
 | grep SlackBuild | sort -k 5r -k 2Mr -k 3r -k 4r 2>/dev/null | head -n 20 \
 | while read s; do
@@ -73,28 +72,30 @@ find $PRT_DIR/ -name Entries -exec grep -H "^/" {} \; \
   [ "$date" != "$last_date" ] && echo "<i>$date</i><br>"
   port=`echo $s | rev | cut -d / -f 5,8- | rev`
   gname=`echo $port | scr2gname`
-  rel=`echo $port | scr2loc | loc2gpkg | pkg2rel`
+  rel=`echo $port | scr2virt | virt2gpkg | pkg2rel`
   echo "<a href=http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/$gname>$gname</a>-$rel<br>"
   last_date=$date
 done >$t/recent
-row "Uploading ports number"
+#row "Uploading data"
 scp $t/amount $MY_CVSTAG@shell.berlios.de:$pp_home/ports.amount
-row "Uploading recent changes list"
+ #>$output
+#row "Uploading recent changes list"
 scp $t/recent $MY_CVSTAG@shell.berlios.de:$pp_home/ports.recent
+ #>$output
 #scp ./index.php $MY_CVSTAG@shell.berlios.de:$pp_home/index.php
 
 # if we have an argument, we do the long walk
 [ "$1" ] || exit 0
 
 # make ChangeLogs
-stanza "Update ChangeLogs:"
+#row "Update ChangeLogs"
 t=`mktemp`
 for i in . d/portpkg; do
   cd $PRT_DIR/$i
   has_prog cvs2cl.pl || continue
   cvs2cl.pl -g -qz9 -f $t -I ChangeLog
   if ! cmp -s $t ChangeLog; then
-    row "ChangeLog in $i changed"
+    row "Updating $i/ChangeLog"
     cat $t >ChangeLog
     cvs -qz9 ci -m "Updated." ChangeLog
   fi
