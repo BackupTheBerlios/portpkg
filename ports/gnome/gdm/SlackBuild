@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.8.0.1
 ARCH=i686
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -50,7 +50,7 @@ rm -rf $PKG/var/lib/log/gdm
 )
 
 # make it work with rc.4
-ln -s ../sbin/gdm /usr/bin/
+ln -s /usr/sbin/gdm /usr/bin/gdm
 #+install
 rm -rfv $PKG/var/lib/scrollkeeper
 rm -rfv $PKG/usr/info/dir
