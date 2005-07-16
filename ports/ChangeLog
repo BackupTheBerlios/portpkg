@@ -1,3 +1,183 @@
+2005-07-16 14:23  topf
+
+	* ap/athcool/md5sums, ap/fuse/md5sums, ap/html2text/md5sums,
+	  ap/lapack/md5sums, ap/ogmtools/md5sums, ap/pnm2ppa/md5sums,
+	  ap/swatch/md5sums, d/stow/md5sums,
+	  kde/k3bmonkeyaudioplugin/md5sums, l/compress-zlib/md5sums,
+	  l/date-calc/md5sums, l/datemanip/md5sums, l/faac/md5sums,
+	  l/faad2/md5sums, l/flash-plugin/md5sums,
+	  l/gtk2-gladexml-perl/md5sums, l/gtk2-glext-perl/md5sums,
+	  l/gtk2-html2-perl/md5sums, l/gtk2-mozembed-perl/md5sums,
+	  l/gtk2-perl/md5sums, l/gtk2-spell-perl/md5sums,
+	  l/gtk2-trayicon-perl/md5sums, l/howl/md5sums,
+	  l/libmodplug/md5sums, l/libmpcdec/md5sums, l/libnet/md5sums,
+	  l/libsamplerate/md5sums, l/libwpd/md5sums,
+	  l/locale-gettext/md5sums, l/mpeg2dec/md5sums, l/openh323/md5sums,
+	  l/poppler/md5sums, l/pwlib/md5sums, l/pyao/md5sums,
+	  l/pyflac/md5sums, l/pyid3lib/md5sums, l/pymad/md5sums,
+	  l/pymodplug/md5sums, l/pymusepack/md5sums, l/pyvorbis/md5sums,
+	  l/speex/md5sums, l/timedate/md5sums, l/tv_grab_cz/md5sums,
+	  l/uri/md5sums, l/wxgtk/md5sums, l/wxpython/md5sums,
+	  l/xml-simple/md5sums, n/pavuk/md5sums, xap/gtk-server/md5sums,
+	  xap/mbox/md5sums, xap/quodlibet/md5sums, xap/tagtool/md5sums,
+	  gnome/aegis-virus-scanner/md5sums, gnome/epiphany/md5sums,
+	  gnome/epiphany-extensions/md5sums, gnome/gdesklets/md5sums,
+	  gnome/gedit/md5sums, gnome/gnome-applets/md5sums,
+	  gnome/gnome-btdownload/md5sums, gnome/gnome-games/md5sums,
+	  gnome/gnome-pkgtool/md5sums, gnome/gnome-session/md5sums,
+	  gnome/gnome-terminal/md5sums, gnome/gnome-utils/md5sums,
+	  gnome/gnome-vfs/md5sums, gnome/gnome2-canvas-perl/md5sums,
+	  gnome/gnome2-dia-perl/md5sums, gnome/gnome2-gconf-perl/md5sums,
+	  gnome/gnome2-perl/md5sums, gnome/gnome2-print-perl/md5sums,
+	  gnome/gnome2-rsvg-perl/md5sums, gnome/gnome2-vfs-perl/md5sums,
+	  gnome/gnome2-vte-perl/md5sums, gnome/gnome2-wnck-perl/md5sums,
+	  gnome/gnomemeeting/md5sums, gnome/gnomevfs-mount/md5sums,
+	  gnome/gpdf/md5sums, gnome/gst-plugins/md5sums,
+	  gnome/gstreamer/md5sums, gnome/libgnomesu/md5sums,
+	  gnome/liferea/md5sums, gnome/mail-notification/md5sums,
+	  gnome/nautilus/md5sums, gnome/rhythmbox/md5sums,
+	  gnome/sclog/md5sums, gnome/seahorse/md5sums,
+	  gnome/yarssr/md5sums, pasture/esound/md5sums,
+	  pasture/expat/md5sums, testing/libgsf/md5sums,
+	  testing/mono/md5sums, testing/seahorse/md5sums,
+	  xap/acidrip/md5sums, xap/gnumeric/md5sums, xap/mplayer/md5sums,
+	  xap/mplayer-codecs/md5sums, xap/mplayer-skins/md5sums,
+	  xap/perlpanel/md5sums, xap/savage/md5sums,
+	  xap/sylpheed-claws-themes/md5sums, xap/xf86-corefonts/md5sums,
+	  xap/xmbmon/md5sums: Cleaned up.  Removed filenames without
+	  version numbers.  Removed PGP signatures.
+
+2005-07-16 12:34  topf
+
+	* l/wxpython/: SlackBuild, doinst.sh, footprint, md5sums, requires,
+	  slack-desc, sources: Version update.
+
+2005-07-16 12:24  topf
+
+	* gnome/: gnome-themes-extras/slack-desc, jamboree/footprint,
+	  jamboree/md5sums, jamboree/slack-desc: [no log message]
+
+2005-07-16 12:20  topf
+
+	* ap/jhead/: footprint, md5sums, requires: [no log message]
+
+2005-07-16 12:15  topf
+
+	* gnome/gdm/SlackBuild: Fixed symlink for /usr/bin/gdm.
+
+2005-07-16 00:16  topf
+
+	* gnome/libgnome/.#footprint.1.3: [no log message]
+
+2005-07-16 00:14  topf
+
+	* gnome/: libgnome/.#footprint.1.3, libgnome/SlackBuild,
+	  libgnome/doinst.sh, libgnome/footprint, libgnome/md5sums,
+	  libwnck/SlackBuild, libwnck/footprint, libwnck/md5sums,
+	  gdm/SlackBuild, gdm/doinst.sh, gdm/footprint, gdm/md5sums,
+	  gdm/sources, gal/SlackBuild, gal/footprint, gal/md5sums,
+	  gal/slack-desc, gal/sources, libsoup/SlackBuild,
+	  libsoup/footprint, libsoup/md5sums, libsoup/requires,
+	  libsoup/slack-desc, libsoup/sources,
+	  evolution-data-server/SlackBuild,
+	  evolution-data-server/footprint, evolution-data-server/md5sums,
+	  evolution-data-server/requires, evolution-data-server/slack-desc,
+	  evolution-data-server/sources, gtkhtml/SlackBuild,
+	  gtkhtml/footprint, gtkhtml/md5sums, evolution-webcal/SlackBuild,
+	  evolution-webcal/doinst.sh, evolution-webcal/footprint,
+	  evolution-webcal/md5sums, evolution-webcal/requires,
+	  evolution-webcal/slack-desc, evolution-webcal/sources,
+	  evolution/SlackBuild, evolution/doinst.sh, evolution/footprint,
+	  evolution/md5sums, evolution/requires, evolution/slack-desc,
+	  evolution/sources: Version update.
+
+2005-07-15 08:23  topf
+
+	* open/ardour/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
+
+2005-07-14 09:54  topf
+
+	* testing/totem/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, sources: Version update.
+
+2005-07-14 09:49  topf
+
+	* testing/balsa/: SlackBuild, footprint, md5sums: Version update.
+
+2005-07-14 09:47  topf
+
+	* testing/gtk-sharp/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved to testing/.
+
+2005-07-14 09:45  topf
+
+	* l/gtk-sharp/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Returned to stable branch.
+
+2005-07-14 09:42  topf
+
+	* l/gtk-qt-engine/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, slack-desc, sources: Version update.
+
+2005-07-14 09:31  topf
+
+	* l/gamin/: SlackBuild, footprint, md5sums: Version update.
+
+2005-07-14 08:29  topf
+
+	* open/torsmo/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
+
+2005-07-14 08:28  topf
+
+	* open/mozilla-firefox/: SlackBuild, doinst.sh, firefox.desktop,
+	  footprint, info, md5sums, mozilla-firefox.desktop, requires,
+	  slack-desc, sources: version update (lem)
+
+2005-07-14 08:09  topf
+
+	* testing/portpkg/: README, SlackBuild, autoport, checkpkg,
+	  doinst.sh, exclude, exclude.new, footprint, ignore, ignore.new,
+	  import.portpkg-tree, import.pseudo-ports,
+	  import.slackware-source, mirrors.au, mirrors.de, mirrors.jp,
+	  mirrors.new, mirrors.us, portpkg, pp-config,
+	  sync.00.portpkg-tree.new, sync.55.pseudo-ports.new,
+	  sync.66.slackware-source.new, sync.77.update-open.new,
+	  sync.99.clean-cache.new, update-ports, use.new: Release
+	  0.38test12.
+
+2005-07-10 01:28  hnaz
+
+	* n/msmtp/: SlackBuild, md5sums: 1.4.1 >> 1.4.2
+
+2005-07-09 09:09  topf
+
+	* n/tmsnc/: SlackBuild, doinst.sh, footprint, md5sums, requires,
+	  slack-desc, sources: New entry.
+
+2005-07-08 11:12  topf
+
+	* gnome/gnome-themes/: SlackBuild, footprint, md5sums: Version
+	  update.
+
+2005-07-08 10:56  topf
+
+	* gnome/: totem/SlackBuild, totem/doinst.sh, totem/footprint,
+	  totem/md5sums, totem/requires, totem/sources,
+	  metacity/SlackBuild, metacity/doinst.sh, metacity/footprint,
+	  metacity/md5sums: Version update.
+
+2005-07-08 10:49  topf
+
+	* xap/gtklp/: SlackBuild, doinst.sh, footprint, md5sums,
+	  slack-desc, sources: Version update.
+
+2005-07-08 10:46  topf
+
+	* xap/abiword/: SlackBuild, footprint, md5sums, requires: Version
+	  update.
+
 2005-07-07 21:37  topf
 
 	* l/liblrdf/: SlackBuild, footprint, md5sums, requires, slack-desc,
@@ -622,9 +802,18 @@
 
 2005-05-16 14:05  topf
 
-	* pasture/mozilla-firefox/: SlackBuild, footprint, md5sums,
-	  requires: Updated version, added line 62,63,64 in SlackBuild
-	  (patch moz_libdir,MRE_HOME path) (sjn)
+	* pasture/mozilla-firefox/SlackBuild,
+	  pasture/mozilla-firefox/footprint,
+	  pasture/mozilla-firefox/md5sums,
+	  pasture/mozilla-firefox/requires,
+	  open/mozilla-firefox/SlackBuild, open/mozilla-firefox/doinst.sh,
+	  open/mozilla-firefox/firefox.desktop,
+	  open/mozilla-firefox/footprint, open/mozilla-firefox/info,
+	  open/mozilla-firefox/md5sums,
+	  open/mozilla-firefox/mozilla-firefox.desktop,
+	  open/mozilla-firefox/requires, open/mozilla-firefox/slack-desc,
+	  open/mozilla-firefox/sources: Updated version, added line
+	  62,63,64 in SlackBuild (patch moz_libdir,MRE_HOME path) (sjn)
 
 2005-05-16 14:04  topf
 
@@ -684,6 +873,13 @@
 
 	* testing/balsa/: SlackBuild, doinst.sh, footprint, md5sums,
 	  slack-desc: Updated to 2.3.2.
+
+2005-05-14 03:54  topf
+
+	* open/mozilla-firefox/: SlackBuild, doinst.sh, firefox.desktop,
+	  footprint, info, md5sums, mozilla-firefox.desktop, requires,
+	  slack-desc, sources: Updated version, added line 62,63,64 in
+	  SlackBuild (patch moz_libdir,MRE_HOME path) (cronjob)
 
 2005-05-10 11:15  topf
 
