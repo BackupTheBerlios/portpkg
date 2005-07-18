@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.2
+VERSION=1.4.3
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -38,11 +38,10 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 )
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README README.dos README.gsasl README.hpux README.md5 README.win32 THANKS \
+  AUTHORS COPYING ChangeLog NEWS README README.dos README.gsasl README.hpux README.win32 THANKS \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
 find $PKG/usr/info -name dir | xargs -r rm
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
@@ -50,3 +49,8 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/msmtp-$VERSION
+  rm -rf $PKG
+fi
