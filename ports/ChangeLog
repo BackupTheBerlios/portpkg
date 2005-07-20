@@ -1,3 +1,47 @@
+2005-07-20 08:28  topf
+
+	* open/nautilus-cd-burner/: SlackBuild, doinst.sh, footprint, info,
+	  md5sums, requires, slack-desc, sources: version update (lem)
+
+2005-07-20 08:20  topf
+
+	* gnome/: gnome2-canvas-perl/SlackBuild,
+	  gnome2-canvas-perl/footprint, gnome2-canvas-perl/slack-desc,
+	  gnome2-vfs-perl/SlackBuild, gnome2-vfs-perl/footprint,
+	  gnome2-vfs-perl/md5sums, gnome2-vfs-perl/slack-desc,
+	  gnome2-perl/SlackBuild, gnome2-perl/footprint,
+	  gnome2-perl/md5sums, gnome2-perl/slack-desc: Version update.
+
+2005-07-20 08:03  topf
+
+	* l/: gtk2-perl/SlackBuild, gtk2-perl/footprint, gtk2-perl/md5sums,
+	  gtk2-perl/slack-desc, gtk2-perl/sources, glib-perl/SlackBuild,
+	  glib-perl/footprint, glib-perl/md5sums: Version update.
+
+2005-07-18 08:23  hnaz
+
+	* l/sqlite/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: 2.6.14 >> 2.6.18
+
+2005-07-18 02:21  hnaz
+
+	* n/msmtp/: SlackBuild, footprint, md5sums: 1.4.2 >> 1.4.3
+
+2005-07-17 22:24  topf
+
+	* l/libdvdcss/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: Version update.
+
+2005-07-17 22:05  topf
+
+	* l/libcddb/: SlackBuild, footprint, md5sums, slack-desc, sources:
+	  Version update.
+
+2005-07-17 07:34  topf
+
+	* pasture/libwpd/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved from l/.
+
 2005-07-16 14:23  topf
 
 	* ap/athcool/md5sums, ap/fuse/md5sums, ap/html2text/md5sums,
@@ -11,15 +55,15 @@
 	  l/gtk2-perl/md5sums, l/gtk2-spell-perl/md5sums,
 	  l/gtk2-trayicon-perl/md5sums, l/howl/md5sums,
 	  l/libmodplug/md5sums, l/libmpcdec/md5sums, l/libnet/md5sums,
-	  l/libsamplerate/md5sums, l/libwpd/md5sums,
-	  l/locale-gettext/md5sums, l/mpeg2dec/md5sums, l/openh323/md5sums,
-	  l/poppler/md5sums, l/pwlib/md5sums, l/pyao/md5sums,
-	  l/pyflac/md5sums, l/pyid3lib/md5sums, l/pymad/md5sums,
-	  l/pymodplug/md5sums, l/pymusepack/md5sums, l/pyvorbis/md5sums,
-	  l/speex/md5sums, l/timedate/md5sums, l/tv_grab_cz/md5sums,
-	  l/uri/md5sums, l/wxgtk/md5sums, l/wxpython/md5sums,
-	  l/xml-simple/md5sums, n/pavuk/md5sums, xap/gtk-server/md5sums,
-	  xap/mbox/md5sums, xap/quodlibet/md5sums, xap/tagtool/md5sums,
+	  l/libsamplerate/md5sums, l/locale-gettext/md5sums,
+	  l/mpeg2dec/md5sums, l/openh323/md5sums, l/poppler/md5sums,
+	  l/pwlib/md5sums, l/pyao/md5sums, l/pyflac/md5sums,
+	  l/pyid3lib/md5sums, l/pymad/md5sums, l/pymodplug/md5sums,
+	  l/pymusepack/md5sums, l/pyvorbis/md5sums, l/speex/md5sums,
+	  l/timedate/md5sums, l/tv_grab_cz/md5sums, l/uri/md5sums,
+	  l/wxgtk/md5sums, l/wxpython/md5sums, l/xml-simple/md5sums,
+	  n/pavuk/md5sums, xap/gtk-server/md5sums, xap/mbox/md5sums,
+	  xap/quodlibet/md5sums, xap/tagtool/md5sums,
 	  gnome/aegis-virus-scanner/md5sums, gnome/epiphany/md5sums,
 	  gnome/epiphany-extensions/md5sums, gnome/gdesklets/md5sums,
 	  gnome/gedit/md5sums, gnome/gnome-applets/md5sums,
@@ -350,11 +394,6 @@
 
 	* n/pavuk/: SlackBuild, doinst.sh, footprint, md5sums, requires,
 	  slack-desc, sources: Version update.
-
-2005-06-08 09:36  topf
-
-	* l/libwpd/: SlackBuild, footprint, md5sums, slack-desc, sources:
-	  Version update.
 
 2005-06-05 10:42  topf
 
@@ -1242,13 +1281,21 @@
 2005-04-24 14:49  topf
 
 	* l/gamin/SlackBuild, l/gamin/footprint, l/gamin/md5sums,
-	  l/gamin/requires, l/gamin/slack-desc, gnome/gdm/SlackBuild,
-	  gnome/gdm/Xsession, gnome/gdm/blackbox.desktop,
-	  gnome/gdm/doinst.sh, gnome/gdm/fluxbox.desktop,
-	  gnome/gdm/footprint, gnome/gdm/fvwm2.desktop,
-	  gnome/gdm/fvwm95.desktop, gnome/gdm/gnome.desktop,
-	  gnome/gdm/kde.desktop, gnome/gdm/md5sums, gnome/gdm/requires,
-	  gnome/gdm/slack-desc, gnome/gdm/sources, gnome/gdm/twm.desktop,
+	  l/gamin/requires, l/gamin/slack-desc, open/gdm/SlackBuild,
+	  open/gdm/Xsession, open/gdm/blackbox.desktop, open/gdm/doinst.sh,
+	  open/gdm/fluxbox.desktop, open/gdm/footprint,
+	  open/gdm/fvwm2.desktop, open/gdm/fvwm95.desktop,
+	  open/gdm/gnome.desktop, open/gdm/info, open/gdm/kde.desktop,
+	  open/gdm/md5sums, open/gdm/requires, open/gdm/slack-desc,
+	  open/gdm/sources, open/gdm/twm.desktop,
+	  open/gdm/windowmaker.desktop, open/gdm/xfce.desktop,
+	  gnome/gdm/SlackBuild, gnome/gdm/Xsession,
+	  gnome/gdm/blackbox.desktop, gnome/gdm/doinst.sh,
+	  gnome/gdm/fluxbox.desktop, gnome/gdm/footprint,
+	  gnome/gdm/fvwm2.desktop, gnome/gdm/fvwm95.desktop,
+	  gnome/gdm/gnome.desktop, gnome/gdm/kde.desktop,
+	  gnome/gdm/md5sums, gnome/gdm/requires, gnome/gdm/slack-desc,
+	  gnome/gdm/sources, gnome/gdm/twm.desktop,
 	  gnome/gdm/windowmaker.desktop, gnome/gdm/xfce.desktop: version
 	  bump (lem)
 
@@ -1274,6 +1321,14 @@
 
 	* d/portpkg/autoport: Switched back to install schemas via
 	  doinst.sh.
+
+2005-04-21 20:20  topf
+
+	* open/gdm/: SlackBuild, Xsession, blackbox.desktop, doinst.sh,
+	  fluxbox.desktop, footprint, fvwm2.desktop, fvwm95.desktop,
+	  gnome.desktop, info, kde.desktop, md5sums, requires, slack-desc,
+	  sources, twm.desktop, windowmaker.desktop, xfce.desktop: version
+	  bump (cronjob)
 
 2005-04-21 17:03  topf
 
@@ -3819,7 +3874,7 @@
 	  l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild,
 	  l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild,
 	  l/libsigc++/SlackBuild, l/libsndfile/SlackBuild,
-	  l/libwpd/SlackBuild, l/libxml++/SlackBuild, l/libxml2/SlackBuild,
+	  l/libxml++/SlackBuild, l/libxml2/SlackBuild,
 	  l/openldap/SlackBuild, l/out_lame/SlackBuild,
 	  l/plugger/SlackBuild, l/portaudio/SlackBuild, l/pygtk/SlackBuild,
 	  l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/smpeg/SlackBuild,
@@ -5698,21 +5753,20 @@
 	  l/libgphoto2/SlackBuild, l/libintl-perl/SlackBuild,
 	  l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild,
 	  l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild,
-	  l/libsigc++/SlackBuild, l/libwpd/SlackBuild,
-	  l/libxml++/SlackBuild, l/openldap/SlackBuild,
-	  l/out_lame/SlackBuild, l/plugger/SlackBuild, l/pygtk/SlackBuild,
-	  l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/sqlite/SlackBuild,
-	  l/storable/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild,
-	  n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild,
-	  n/httpup/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild,
-	  n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvdial/SlackBuild,
-	  n/wvstreams/SlackBuild, pasture/db41/SlackBuild,
-	  pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild,
-	  pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild,
-	  pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild,
-	  pasture/libxml++1/SlackBuild, pasture/linux-pam/SlackBuild,
-	  pasture/magicdev/SlackBuild, testing/dbus/SlackBuild,
-	  testing/eina-gnome/SlackBuild,
+	  l/libsigc++/SlackBuild, l/libxml++/SlackBuild,
+	  l/openldap/SlackBuild, l/out_lame/SlackBuild,
+	  l/plugger/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild,
+	  l/rmxmms/SlackBuild, l/sqlite/SlackBuild, l/storable/SlackBuild,
+	  l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/email/SlackBuild,
+	  n/fping/SlackBuild, n/gift/SlackBuild, n/httpup/SlackBuild,
+	  n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild,
+	  n/snarf/SlackBuild, n/wvdial/SlackBuild, n/wvstreams/SlackBuild,
+	  pasture/db41/SlackBuild, pasture/gal20/SlackBuild,
+	  pasture/gconfmm20/SlackBuild, pasture/gtkhtml30/SlackBuild,
+	  pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild,
+	  pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild,
+	  pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild,
+	  testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild,
 	  testing/gnome-volume-manager/SlackBuild,
 	  testing/gtk-webcore/SlackBuild, testing/hal/SlackBuild,
 	  testing/libeina/SlackBuild, testing/mplayer-gtk2/SlackBuild,
@@ -6452,7 +6506,7 @@
 	  l/exif-browser/slack-desc, l/file-scan/slack-desc,
 	  l/fribidi/slack-desc, l/gmime/slack-desc,
 	  l/gtk-qt-engine/slack-desc, l/libgda/slack-desc,
-	  l/libgphoto2/slack-desc, l/libwpd/slack-desc, l/pyogg/slack-desc,
+	  l/libgphoto2/slack-desc, l/pyogg/slack-desc,
 	  l/pyvorbis/slack-desc, l/rp9codecs/slack-desc,
 	  l/wxgtk/slack-desc, l/wxpython/slack-desc,
 	  l/xanimdlls/slack-desc, l/xvidcore/slack-desc,
@@ -7034,13 +7088,12 @@
 	  l/libgpg-error/slack-desc, l/libgpg-error/sources,
 	  l/libintl-perl/SlackBuild, l/libintl-perl/requires,
 	  l/libintl-perl/slack-desc, l/libintl-perl/sources,
-	  l/libwpd/SlackBuild, l/libwpd/requires, l/libwpd/slack-desc,
-	  l/libwpd/sources, l/pyogg/SlackBuild, l/pyogg/requires,
-	  l/pyogg/slack-desc, l/pyogg/sources, l/pyvorbis/SlackBuild,
-	  l/pyvorbis/requires, l/pyvorbis/slack-desc, l/pyvorbis/sources,
-	  l/storable/SlackBuild, l/storable/requires,
-	  l/storable/slack-desc, l/storable/sources, l/wxpython/SlackBuild,
-	  l/wxpython/requires, l/wxpython/slack-desc, l/wxpython/sources,
+	  l/pyogg/SlackBuild, l/pyogg/requires, l/pyogg/slack-desc,
+	  l/pyogg/sources, l/pyvorbis/SlackBuild, l/pyvorbis/requires,
+	  l/pyvorbis/slack-desc, l/pyvorbis/sources, l/storable/SlackBuild,
+	  l/storable/requires, l/storable/slack-desc, l/storable/sources,
+	  l/wxpython/SlackBuild, l/wxpython/requires,
+	  l/wxpython/slack-desc, l/wxpython/sources,
 	  l/archive-tar/SlackBuild, l/archive-tar/requires,
 	  l/archive-tar/slack-desc, l/archive-tar/sources,
 	  l/archive-zip/SlackBuild, l/archive-zip/requires,
@@ -7596,13 +7649,12 @@
 	  l/libgpg-error/slack-desc, l/libgpg-error/sources,
 	  l/libintl-perl/SlackBuild, l/libintl-perl/requires,
 	  l/libintl-perl/slack-desc, l/libintl-perl/sources,
-	  l/libwpd/SlackBuild, l/libwpd/requires, l/libwpd/slack-desc,
-	  l/libwpd/sources, l/pyogg/SlackBuild, l/pyogg/requires,
-	  l/pyogg/slack-desc, l/pyogg/sources, l/pyvorbis/SlackBuild,
-	  l/pyvorbis/requires, l/pyvorbis/slack-desc, l/pyvorbis/sources,
-	  l/storable/SlackBuild, l/storable/requires,
-	  l/storable/slack-desc, l/storable/sources, l/wxpython/SlackBuild,
-	  l/wxpython/requires, l/wxpython/slack-desc, l/wxpython/sources,
+	  l/pyogg/SlackBuild, l/pyogg/requires, l/pyogg/slack-desc,
+	  l/pyogg/sources, l/pyvorbis/SlackBuild, l/pyvorbis/requires,
+	  l/pyvorbis/slack-desc, l/pyvorbis/sources, l/storable/SlackBuild,
+	  l/storable/requires, l/storable/slack-desc, l/storable/sources,
+	  l/wxpython/SlackBuild, l/wxpython/requires,
+	  l/wxpython/slack-desc, l/wxpython/sources,
 	  l/archive-tar/SlackBuild, l/archive-tar/requires,
 	  l/archive-tar/slack-desc, l/archive-tar/sources,
 	  l/archive-zip/SlackBuild, l/archive-zip/requires,
