@@ -2,13 +2,27 @@ WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
 
 Major changes:
 
+* "Multiports": One script - two packages
+
+  For more compatibility with SlackBuild-scripts (e.g. gcc/glibc) that
+  produce more than one package.
+
+  Notes for multiports:
+  * Don't use $NAME!
+  * Every makepkg has to be explicit (no "for i; do makepkg; done"!)
+  * Names of produced package must have only $VERSION, $ARCH and/or $BUILD!
+  * Groups _should_ match
+  * Nevertheless, link any sub-port to the super-port (e.g. "gcc-g++ -> gcc")
+
 * "Turbo mode": like *BSD portsystems:
+
+  Example:
 
   # cd /usr/ports/xap/mozilla
   # portpkg
 
   This is also a bit faster, because portpkg doesn't need to search the ports
-  tree first in this mode.
+  tree first in this mode (also does --noreqs).
 
 * No more .local files in /etc/portpkg!
 

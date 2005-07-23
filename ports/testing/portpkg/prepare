@@ -14,7 +14,14 @@ for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers L
   rm $doc.html
 done
 
-mv README.TodoBugsAbout README
+sed -i "0,/^News$/d" README.FrontPage
+sed -i "1s,.*,News\n," README.FrontPage
+sed -i "/ file:\/\//d" README.*
+mv README.TodoBugsAbout ABOUT
+mv README.PortpkgGuide README
 mv README.FrontPage NEWS
-sed -i "0,/^News$/d" NEWS
-sed -i "1s,.*,News\n," NEWS
+mv README.QuestionsAndAnswers FAQ
+
+# this is a testing release
+mv README README.orig
+mv README.cp README

@@ -10,10 +10,10 @@ summary=`mktemp -d`
 check_ports()
 {
   local t=`mktemp -d`
-  ports_all=`do_list | grep -v $exclude -e ^local/`
+  ports_all=`do_list | grep -v $(ls_exclude) -e ^local/`
   ports=`echo "$ports_all" | grep -v "[0-9]$"`
   max=`echo "$ports" | wc -l | xargs`
-  percent=2
+  percent=5
   count=`expr $max \* $percent / 100`
   stanza "Checking now $count ($percent %) of $max random ports:"
   for n in `seq 1 $count`; do
@@ -49,8 +49,8 @@ check_overlaps()
   local t=`mktemp -d`
   list="current" #10.1 10.0"
   for i in $list; do
-    get ftp://ftp.slackware.com/pub/slackware/slackware-$i/FILELIST.TXT $t/file_list.$i >$output
-    grep -o "slackware/.*\.tgz$" $t/file_list.$i | rev | cut -d / -f 1 | cut -d . -f 2- | rev >$t/list.$i
+    wget -O $t/file_list.$i ftp://ftp.slackware.com/pub/slackware/slackware-$i/FILELIST.TXT
+    grep -o "/.*-[^-]*-[^-]*-[^-]*\.tgz$" $t/file_list.$i | rev | cut -d / -f 1 | cut -d . -f 2- | rev >$t/list.$i
     cat $t/list.$i | rev | cut -d - -f 4- | rev >$t/list.$i.short
   done
 
@@ -80,8 +80,11 @@ check_open()
   :
 }
 
-summary()
+doit()
 {
+  check_ports
+  check_overlaps
+  check_open
   stanza "CHECK THESE PORTS FOR VALID URLS:"
   cat $summary/srcs 2>/dev/null | column -t
   stanza "CHECK THESE PORTS FOR VALID DEPENDENCIES:"
@@ -90,7 +93,4 @@ summary()
   cat $summary/vers 2>/dev/null | column -t
 }
 
-check_ports
-check_overlaps
-check_open
-summary
+doit 2>/dev/null

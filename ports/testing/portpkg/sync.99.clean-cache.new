@@ -20,12 +20,12 @@ ls_pkg | virt2gpkg | fgrep -vxf $t/avail | while read gpkg; do
   case $gpkg in $group/*) continue; esac
   row "Moving $gpkg to $group/"
   mkdir -p $PKG_DIR/$group
-  $DRY_RUN || mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
+  mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
 done
 
 # check for empty dirs
 local dir
 find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
   row "Deleting empty directory $dir/"
-  $DRY_RUN || rmdir $dir
+  rmdir $dir
 done

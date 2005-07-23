@@ -363,21 +363,6 @@ port()
   # downlaod source files
   find $path/ -type l -exec rm -rf {} \;
   get_sources || die
-#  for src in $sources; do
-#    file=`basename $src`
-#    if [ -f $SRC_DIR/$file ]; then
-#      row "$file found in $SRC_DIR/"
-#    else
-#      case $src in
-#        cvs://*)
-#          row "Syncing CVS $file"
-#          get `decode $src` $CVS_DIR/$file || die;;
-#        *)
-#          row "Downloading $file"
-#          get `decode $src` $SRC_DIR/$file || die;;
-#      esac
-#    fi
-#  done
 
   # write skeletons
   failed=false
@@ -507,8 +492,9 @@ port()
 |^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
 |^LICENSE$|^LSM$|^MANIFEST$|^NEWS$|README|Readme|^SITES$|RELEASE|^RELNOTES$\
 |^THANKS$|^TIPS$|^TODO$|^VERSION$|^CONFIGURATION|^GPL$|^License$|^Doc$|^doc$\
-|^Docs|^docs|^Roadmap$|^ROADMAP$|BUGS|^index.ht|INDEX" $t/footprint \
+|^Docs|^Roadmap$|^ROADMAP$|BUGS|^index.ht|INDEX" $t/footprint \
 | grep -v /. | sort -u | xargs`
+#|^docs
     if [ "$docs" ]; then
       row "Checking docs... $docs."
       sed -i "s,%docs%,$docs," $script

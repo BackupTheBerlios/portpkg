@@ -21,7 +21,7 @@ if [ "$new_ports" ]; then
   for src in $new_ports; do
     pkg=`basename $src`
     row "Downloading $src to $PRT_DIR/open/$pkg"
-    get $src $PRT_DIR/open/$pkg >$output || continue
+    wget -O $PRT_DIR/open/$pkg $src >&2 || continue
 
     # move it (maybe not first post today?)
     row "Moving out of upload/"
@@ -78,14 +78,11 @@ find $PRT_DIR/ -name Entries -exec grep -H "^/" {} \; \
 done >$t/recent
 #row "Uploading data"
 scp $t/amount $MY_CVSTAG@shell.berlios.de:$pp_home/ports.amount
- #>$output
-#row "Uploading recent changes list"
 scp $t/recent $MY_CVSTAG@shell.berlios.de:$pp_home/ports.recent
- #>$output
 #scp ./index.php $MY_CVSTAG@shell.berlios.de:$pp_home/index.php
 
-# if we have an argument, we do the long walk
-[ "$1" ] || exit 0
+## if we have an argument, we do the long walk
+#[ "$1" ] || exit 0
 
 # make ChangeLogs
 #row "Update ChangeLogs"

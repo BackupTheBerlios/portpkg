@@ -1,5 +1,11 @@
 #BLURB="Slackware binary packages"
 
+# check that we're a plug-in
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "Don't run me directly!"
+  exit 1
+fi
+
 sync_kernels()
 {
   row "Preparing pseudo ports for kernels/"
@@ -96,12 +102,6 @@ EOF
   done
 }
 
-# check that we're a plug-in
-if [ "`basename $0`" != "portpkg" ]; then
-  echo "Don't run me directly!"
-  exit 1
-fi
-
 is_defined DIST_VER || die
 
 tree=$PRT_DIR/z/pseudo
@@ -109,13 +109,11 @@ dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
 
 row "Syncing $tree/ with `mirror $dist | cut -d / -f 3` for $DIST_VER"
 
-$DRY_RUN && exit 0
-
 t=`mktemp -d`
 mkdir -p $tree
 
 # check if there're updates
-get $dist/ChangeLog.txt $t/ChangeLog.txt >$output
+wget -O $t/ChangeLog.txt $dist/ChangeLog.txt >&2
 if [ -f $tree/ChangeLog.txt ] && cmp -s $tree/ChangeLog.txt $t/ChangeLog.txt; then
   exit 0
 fi
@@ -125,13 +123,13 @@ rm -rf $tree
 mkdir -p $tree/z/kernels
 
 row "Retrieving file list"
-get $dist/FILELIST.TXT $tree/FILELIST.TXT >$output
+wget -O $tree/FILELIST.TXT $dist/FILELIST.TXT >&2
 row "Retrieving package info"
-get $dist/PACKAGES.TXT $tree/PACKAGES.TXT >$output
+wget -O $tree/PACKAGES.TXT $dist/PACKAGES.TXT >&2
 row "Retrieving md5sums"
-get $dist/CHECKSUMS.md5 $tree/CHECKSUMS.md5 >$output
+wget -O $tree/CHECKSUMS.md5 $dist/CHECKSUMS.md5 >&2
 row "Retrieving kernel version"
-get $dist/kernels/VERSIONS.TXT $tree/z/kernels/VERSIONS.TXT >$output
+wget -O $tree/z/kernels/VERSIONS.TXT $dist/kernels/VERSIONS.TXT >&2
 
 # make a simple file list
 cat $tree/FILELIST.TXT | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t/files

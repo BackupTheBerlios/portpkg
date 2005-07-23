@@ -21,7 +21,7 @@ mkdir -p $tree
 has_prog rsync || die
 
 # check if there're updates
-get $dist/ChangeLog.txt $t/ChangeLog.txt >$output
+wget -O $t/ChangeLog.txt $dist/ChangeLog.txt >&2
 if [ -f $tree/ChangeLog.txt ] && cmp -s $tree/ChangeLog.txt $t/ChangeLog.txt; then
   exit 0
 fi
@@ -43,7 +43,7 @@ rsync -avz --delete \
   `mirror $rsync`/source/* $tree | xargs -rl echo "  -->"
 
 row "Retrieving file list"
-get $dist/FILELIST.TXT $tree/FILELIST.TXT >$output
+wget -O $tree/FILELIST.TXT $dist/FILELIST.TXT >&2
 
 # patches
 sed -i "s,^export \(ARCH=.*\)$,\1\nexport ARCH," $tree/*/*/*SlackBuild
