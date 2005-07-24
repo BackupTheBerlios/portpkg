@@ -1,3 +1,86 @@
+2005-07-24 12:29  topf
+
+	* ap/hibernate-script/: SlackBuild, footprint, md5sums: Version
+	  update.
+
+2005-07-24 12:23  topf
+
+	* gnome/serpentine/: SlackBuild, footprint, md5sums, slack-desc:
+	  Version update.
+
+2005-07-24 12:21  topf
+
+	* n/squid/: SlackBuild, doinst.sh, footprint, md5sums, requires,
+	  slack-desc, sources, squid.init, squid.logrotate,
+	  patches/squid-2.5.STABLE9-config.patch.gz,
+	  patches/squid-2.5.STABLE9-errors.patch.gz,
+	  patches/squid-2.5.STABLE9-icons.patch.gz,
+	  patches/squid-2.5.STABLE9-src.patch.gz: Moved
+	  open/squid-2.5.STABLE9-x86_64-1stb to n/. (stb)
+
+2005-07-24 12:14  topf
+
+	* xap/torsmo/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
+
+2005-07-24 12:11  topf
+
+	* testing/nvidia/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, slack-desc, sources, stop.autoport: this is really
+	  experimental, works for me, please test on your own risk (lem)
+
+2005-07-24 12:07  topf
+
+	* pasture/mozilla-firefox/info: Removed.
+
+2005-07-24 12:06  topf
+
+	* testing/nautilus-cd-burner/: SlackBuild, doinst.sh, footprint,
+	  md5sums, requires, slack-desc, sources: version update (lem)
+
+2005-07-24 12:04  topf
+
+	* pasture/mozilla-firefox/: SlackBuild, footprint, info, requires:
+	  Moved from open/.
+
+2005-07-24 11:58  topf
+
+	* xap/ardour/SlackBuild, xap/ardour/footprint, xap/ardour/md5sums,
+	  xap/ardour/requires, xap/ardour/slack-desc, xap/ardour/sources,
+	  l/iso-codes/SlackBuild, l/iso-codes/footprint,
+	  l/iso-codes/md5sums, l/iso-codes/slack-desc, l/iso-codes/sources:
+	  new entry (lem)
+
+2005-07-24 11:45  topf
+
+	* gnome/: epiphany/SlackBuild, epiphany/doinst.sh,
+	  epiphany/footprint, epiphany/md5sums, liferea/SlackBuild,
+	  liferea/doinst.sh, liferea/footprint, liferea/md5sums,
+	  liferea/requires: Version update.
+
+2005-07-24 11:01  topf
+
+	* gnome/gnomevfs-mount/sources: Adjusted URL.
+
+2005-07-24 10:57  topf
+
+	* pasture/k3b-i18n/: footprint, sources: Moved from kde/.
+
+2005-07-24 10:53  topf
+
+	* pasture/k3b/: SlackBuild, footprint, requires, sources: Moved
+	  from kde/.
+
+2005-07-24 10:50  topf
+
+	* pasture/xcdroast/: SlackBuild, doinst.sh, footprint, md5sums,
+	  requires, slack-desc, sources: Moved from xap/.
+
+2005-07-24 10:36  topf
+
+	* pasture/abiword/: SlackBuild, doinst.sh, footprint, md5sums,
+	  optional, requires, slack-desc, sources: Moved from xap/.
+
 2005-07-23 10:51  topf
 
 	* testing/portpkg/footprint: Release 0.38test13.
@@ -14,36 +97,14 @@
 
 2005-07-22 07:45  topf
 
-	* gnome/gdm/SlackBuild, gnome/gdm/footprint, gnome/gdm/sources,
-	  open/gdm/SlackBuild, open/gdm/Xsession,
-	  open/gdm/blackbox.desktop, open/gdm/doinst.sh,
-	  open/gdm/fluxbox.desktop, open/gdm/footprint,
-	  open/gdm/fvwm2.desktop, open/gdm/fvwm95.desktop,
-	  open/gdm/gnome.desktop, open/gdm/info, open/gdm/kde.desktop,
-	  open/gdm/md5sums: usr/sbin symlinks fixed (lem)
-
-2005-07-21 10:07  topf
-
-	* open/iso-codes/: SlackBuild, footprint, info, md5sums,
-	  slack-desc, sources: new entry (lem)
+	* gnome/gdm/: SlackBuild, footprint, sources: usr/sbin symlinks
+	  fixed (lem)
 
 2005-07-21 01:44  hnaz
 
 	* xap/mplayer/SlackBuild: Cleaned up a bit (removed standard
 	  routines for info and doc dirs which don't exist here).  Also
 	  fixed up the dead symlink 'mencoder.1'.
-
-2005-07-20 08:32  topf
-
-	* open/gdm/: SlackBuild, Xsession, blackbox.desktop, doinst.sh,
-	  fluxbox.desktop, footprint, fvwm2.desktop, fvwm95.desktop,
-	  gnome.desktop, info, kde.desktop, md5sums: usr/sbin symlinks
-	  fixed
-
-2005-07-20 08:28  topf
-
-	* open/nautilus-cd-burner/: SlackBuild, doinst.sh, footprint, info,
-	  md5sums, requires, slack-desc, sources: version update (lem)
 
 2005-07-20 08:20  topf
 
@@ -177,11 +238,6 @@
 	  evolution/md5sums, evolution/requires, evolution/slack-desc,
 	  evolution/sources: Version update.
 
-2005-07-15 08:23  topf
-
-	* open/ardour/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: new entry (lem)
-
 2005-07-14 09:54  topf
 
 	* testing/totem/: SlackBuild, doinst.sh, footprint, md5sums,
@@ -209,17 +265,6 @@
 2005-07-14 09:31  topf
 
 	* l/gamin/: SlackBuild, footprint, md5sums: Version update.
-
-2005-07-14 08:29  topf
-
-	* open/torsmo/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: new entry (lem)
-
-2005-07-14 08:28  topf
-
-	* open/mozilla-firefox/: SlackBuild, doinst.sh, firefox.desktop,
-	  footprint, info, md5sums, mozilla-firefox.desktop, requires,
-	  slack-desc, sources: version update (lem)
 
 2005-07-14 08:09  topf
 
@@ -258,11 +303,6 @@
 
 	* xap/gtklp/: SlackBuild, doinst.sh, footprint, md5sums,
 	  slack-desc, sources: Version update.
-
-2005-07-08 10:46  topf
-
-	* xap/abiword/: SlackBuild, footprint, md5sums, requires: Version
-	  update.
 
 2005-07-07 21:37  topf
 
@@ -313,12 +353,6 @@
 2005-06-30 23:13  topf
 
 	* testing/balsa/: SlackBuild, footprint, md5sums: Version update.
-
-2005-06-24 16:17  topf
-
-	* open/nvidia/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  requires, slack-desc, sources, stop.autoport: this is really
-	  experimental, works for me, please test on your own risk ()
 
 2005-06-20 10:31  topf
 
@@ -399,19 +433,6 @@
 	  kernel-modules/slack-desc, kernel-modules/slot-in,
 	  kernel-modules/sources: experimental stuff (please test it
 	  yourself) (lem)
-
-2005-06-11 19:36  topf
-
-	* open/squid/: SlackBuild, doinst.sh, footprint:  ()
-
-2005-06-11 13:37  topf
-
-	* open/squid/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  requires, slack-desc, sources, squid.init, squid.logrotate,
-	  patches/squid-2.5.STABLE9-config.patch.gz,
-	  patches/squid-2.5.STABLE9-errors.patch.gz,
-	  patches/squid-2.5.STABLE9-icons.patch.gz,
-	  patches/squid-2.5.STABLE9-src.patch.gz:  ()
 
 2005-06-11 13:35  topf
 
@@ -821,11 +842,6 @@
 	* l/date-calc/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: New entry.
 
-2005-05-22 03:55  topf
-
-	* open/codecs-essential/: SlackBuild, footprint, info, requires,
-	  slack-desc, sources: new entry (cronjob)
-
 2005-05-20 22:25  hnaz
 
 	* l/libevent/: SlackBuild, footprint, md5sums: 1.0e >> 1.1
@@ -883,18 +899,9 @@
 
 2005-05-16 14:05  topf
 
-	* pasture/mozilla-firefox/SlackBuild,
-	  pasture/mozilla-firefox/footprint,
-	  pasture/mozilla-firefox/md5sums,
-	  pasture/mozilla-firefox/requires,
-	  open/mozilla-firefox/SlackBuild, open/mozilla-firefox/doinst.sh,
-	  open/mozilla-firefox/firefox.desktop,
-	  open/mozilla-firefox/footprint, open/mozilla-firefox/info,
-	  open/mozilla-firefox/md5sums,
-	  open/mozilla-firefox/mozilla-firefox.desktop,
-	  open/mozilla-firefox/requires, open/mozilla-firefox/slack-desc,
-	  open/mozilla-firefox/sources: Updated version, added line
-	  62,63,64 in SlackBuild (patch moz_libdir,MRE_HOME path) (sjn)
+	* pasture/mozilla-firefox/: SlackBuild, footprint, md5sums,
+	  requires: Updated version, added line 62,63,64 in SlackBuild
+	  (patch moz_libdir,MRE_HOME path) (sjn)
 
 2005-05-16 14:04  topf
 
@@ -911,25 +918,10 @@
 	* l/pyfemax/: SlackBuild, footprint, md5sums, requires, slack-desc,
 	  sources: new entry (lem)
 
-2005-05-16 13:44  topf
-
-	* kde/k3b/info: [no log message]
-
 2005-05-16 13:42  topf
 
 	* kde/k3bmonkeyaudioplugin/: SlackBuild, footprint, sources: Newest
 	  sources path for download (sjn)
-
-2005-05-16 13:36  topf
-
-	* kde/k3b-i18n/: SlackBuild, footprint, md5sums, slack-desc,
-	  sources: Updated to newest version (sjn)
-
-2005-05-16 11:58  topf
-
-	* kde/k3b/: SlackBuild, footprint, info, k3b-u64.patch.gz, md5sums,
-	  optional, requires, slack-desc, sources: Updated to newest
-	  version (sjn)
 
 2005-05-16 10:27  topf
 
@@ -954,13 +946,6 @@
 
 	* testing/balsa/: SlackBuild, doinst.sh, footprint, md5sums,
 	  slack-desc: Updated to 2.3.2.
-
-2005-05-14 03:54  topf
-
-	* open/mozilla-firefox/: SlackBuild, doinst.sh, firefox.desktop,
-	  footprint, info, md5sums, mozilla-firefox.desktop, requires,
-	  slack-desc, sources: Updated version, added line 62,63,64 in
-	  SlackBuild (patch moz_libdir,MRE_HOME path) (cronjob)
 
 2005-05-10 11:15  topf
 
@@ -1075,11 +1060,6 @@
 
 	* gnome/gst-python/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: new entry (lem)
-
-2005-05-03 13:06  topf
-
-	* xap/abiword/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc: Version bump.
 
 2005-05-03 11:20  topf
 
@@ -1323,21 +1303,13 @@
 2005-04-24 14:49  topf
 
 	* l/gamin/SlackBuild, l/gamin/footprint, l/gamin/md5sums,
-	  l/gamin/requires, l/gamin/slack-desc, open/gdm/SlackBuild,
-	  open/gdm/Xsession, open/gdm/blackbox.desktop, open/gdm/doinst.sh,
-	  open/gdm/fluxbox.desktop, open/gdm/footprint,
-	  open/gdm/fvwm2.desktop, open/gdm/fvwm95.desktop,
-	  open/gdm/gnome.desktop, open/gdm/info, open/gdm/kde.desktop,
-	  open/gdm/md5sums, open/gdm/requires, open/gdm/slack-desc,
-	  open/gdm/sources, open/gdm/twm.desktop,
-	  open/gdm/windowmaker.desktop, open/gdm/xfce.desktop,
-	  gnome/gdm/SlackBuild, gnome/gdm/Xsession,
-	  gnome/gdm/blackbox.desktop, gnome/gdm/doinst.sh,
-	  gnome/gdm/fluxbox.desktop, gnome/gdm/footprint,
-	  gnome/gdm/fvwm2.desktop, gnome/gdm/fvwm95.desktop,
-	  gnome/gdm/gnome.desktop, gnome/gdm/kde.desktop,
-	  gnome/gdm/md5sums, gnome/gdm/requires, gnome/gdm/slack-desc,
-	  gnome/gdm/sources, gnome/gdm/twm.desktop,
+	  l/gamin/requires, l/gamin/slack-desc, gnome/gdm/SlackBuild,
+	  gnome/gdm/Xsession, gnome/gdm/blackbox.desktop,
+	  gnome/gdm/doinst.sh, gnome/gdm/fluxbox.desktop,
+	  gnome/gdm/footprint, gnome/gdm/fvwm2.desktop,
+	  gnome/gdm/fvwm95.desktop, gnome/gdm/gnome.desktop,
+	  gnome/gdm/kde.desktop, gnome/gdm/md5sums, gnome/gdm/requires,
+	  gnome/gdm/slack-desc, gnome/gdm/sources, gnome/gdm/twm.desktop,
 	  gnome/gdm/windowmaker.desktop, gnome/gdm/xfce.desktop: version
 	  bump (lem)
 
@@ -1363,14 +1335,6 @@
 
 	* d/portpkg/autoport: Switched back to install schemas via
 	  doinst.sh.
-
-2005-04-21 20:20  topf
-
-	* open/gdm/: SlackBuild, Xsession, blackbox.desktop, doinst.sh,
-	  fluxbox.desktop, footprint, fvwm2.desktop, fvwm95.desktop,
-	  gnome.desktop, info, kde.desktop, md5sums, requires, slack-desc,
-	  sources, twm.desktop, windowmaker.desktop, xfce.desktop: version
-	  bump (cronjob)
 
 2005-04-21 17:03  topf
 
@@ -1681,10 +1645,9 @@
 	  gnome/mail-notification/footprint, gnome/orbit2/footprint,
 	  l/libglade/footprint, l/libgpg-error/footprint,
 	  l/libtheora/footprint, l/storable/requires,
-	  testing/balsa/footprint, xap/abiword/footprint,
-	  xap/graveman/footprint, xap/gtk-gnutella/footprint,
-	  xap/gtk-gnutella/requires, xap/mplayer/footprint,
-	  xap/xosd/footprint: Synced dir.
+	  testing/balsa/footprint, xap/graveman/footprint,
+	  xap/gtk-gnutella/footprint, xap/gtk-gnutella/requires,
+	  xap/mplayer/footprint, xap/xosd/footprint: Synced dir.
 
 2005-04-12 20:04  topf
 
@@ -1898,20 +1861,10 @@
 	* pasture/k3b/: SlackBuild, footprint, k3b-u64.patch.gz, md5sums,
 	  optional, requires, slack-desc, sources: [no log message]
 
-2005-04-07 22:31  topf
+2005-04-07 22:32  topf
 
-	* kde/k3b-i18n/SlackBuild, kde/k3b-i18n/footprint,
-	  kde/k3b-i18n/info, kde/k3b-i18n/md5sums, kde/k3b-i18n/slack-desc,
-	  kde/k3b-i18n/sources, pasture/k3b-i18n/SlackBuild,
-	  pasture/k3b-i18n/footprint, pasture/k3b-i18n/md5sums,
-	  pasture/k3b-i18n/slack-desc, pasture/k3b-i18n/sources: Moved
-	  kde/k3b-i18n-0.11-noarch-1sjn to pasture/.
-
-2005-04-07 22:29  topf
-
-	* kde/k3b/: SlackBuild, footprint, info, k3b-u64.patch,
-	  k3b-u64.patch.gz, md5sums, optional, requires, slack-desc,
-	  sources: Moved kde/k3b-0.11.23-i486-1sjn to pasture/.
+	* pasture/k3b-i18n/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: Moved kde/k3b-i18n-0.11-noarch-1sjn to pasture/.
 
 2005-04-07 22:25  topf
 
@@ -1952,18 +1905,10 @@
 	  md5sums, slack-desc, sources: Updated gnome/nautilus-cd-burner to
 	  2.10.0-i486-1tom.
 
-2005-04-07 19:06  topf
-
-	* kde/k3b/: optional, requires: Moved oggutils to optional.
-
 2005-04-07 17:50  topf
 
-	* gnome/gphoto2/sources, kde/k3b/sources: Corrected source URL to
-	  main Sourceforge mirror.
-
-2005-04-07 17:15  topf
-
-	* kde/k3b-i18n/sources: Changed to main Sourceforge mirror.
+	* gnome/gphoto2/sources: Corrected source URL to main Sourceforge
+	  mirror.
 
 2005-04-07 17:00  topf
 
@@ -2204,12 +2149,6 @@
 	* d/portpkg/portpkg: Search /var/log/packages for dependencies to
 	  be ignored, not /usr/ports.
 
-2005-03-31 23:23  topf
-
-	* xap/xcdroast/: SlackBuild, doinst.sh, footprint, md5sums,
-	  requires, slack-desc, sources: Moved
-	  open/xcdroast-0.98alpha15-i686-1sjn to xap/.
-
 2005-03-31 23:21  topf
 
 	* xap/sylpheed-claws-themes/: SlackBuild, doinst.sh, footprint,
@@ -2394,17 +2333,6 @@
 
 	* gnome/gdesklets/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc, sources: Update.
-
-2005-03-28 00:36  hnaz
-
-	* kde/k3b-i18n/: SlackBuild, footprint, info, md5sums, slack-desc,
-	  sources: Moved to kde/
-
-2005-03-28 00:35  hnaz
-
-	* kde/k3b/: SlackBuild, footprint, info, k3b-u64.patch,
-	  k3b-u64.patch.gz, md5sums, requires, slack-desc, sources: Added
-	  to kde/
 
 2005-03-27 23:05  hnaz
 
@@ -2802,8 +2730,7 @@
 	  testing/criawips/requires, testing/eina-gnome/requires,
 	  testing/gnome-volume-manager/requires,
 	  testing/mplayer-gtk2/requires, testing/polypaudio/requires,
-	  testing/totem/requires, xap/abiword/optional,
-	  xap/abiword/requires, xap/armagetron/requires,
+	  testing/totem/requires, xap/armagetron/requires,
 	  xap/avidemux/requires, xap/bmp/requires, xap/deng/requires,
 	  xap/enlightenment/requires, xap/hydrogen/requires,
 	  xap/lbreakout2/requires, xap/mplayer/optional, xap/qemu/requires,
@@ -3326,16 +3253,6 @@
 
 	* testing/portpkg/: SlackBuild, autoport, doinst.sh, footprint:
 	  Merged local/portpkg-0.35cvs-noarch-10tom into testing/.
-
-2005-03-03 22:16  topf
-
-	* xap/abiword/: .#SlackBuild.1.7, .#requires.1.6: [no log message]
-
-2005-03-03 22:14  topf
-
-	* xap/abiword/: .#SlackBuild.1.7, .#requires.1.6, SlackBuild,
-	  doinst.sh, footprint, md5sums, optional, requires, slack-desc,
-	  sources: Merged local/abiword-2.2.5-i686-1tom into xap/.
 
 2005-03-03 21:32  topf
 
@@ -3937,22 +3854,21 @@
 	  testing/criawips/SlackBuild, testing/dbus/SlackBuild,
 	  testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild,
 	  testing/polypaudio/SlackBuild, testing/wxgtk/SlackBuild,
-	  testing/xfce-goodies/SlackBuild, xap/abiword/SlackBuild,
-	  xap/amule/SlackBuild, xap/armagetron/SlackBuild,
-	  xap/avidemux/SlackBuild, xap/bmp/SlackBuild,
-	  xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild,
-	  xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild,
-	  xap/dia/SlackBuild, xap/enlightenment/SlackBuild,
-	  xap/eterm/SlackBuild, xap/ettercap-ng/SlackBuild,
-	  xap/giftoxic/SlackBuild, xap/giftui/SlackBuild,
-	  xap/gimp-gap/SlackBuild, xap/gksu/SlackBuild,
-	  xap/gqview/SlackBuild, xap/graphviz/SlackBuild,
-	  xap/graveman/SlackBuild, xap/gtklp/SlackBuild,
-	  xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild,
-	  xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild,
-	  xap/mplayer/SlackBuild, xap/ogle/SlackBuild,
-	  xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild,
-	  xap/qemu/SlackBuild, xap/tagtool/SlackBuild,
+	  testing/xfce-goodies/SlackBuild, xap/amule/SlackBuild,
+	  xap/armagetron/SlackBuild, xap/avidemux/SlackBuild,
+	  xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild,
+	  xap/cire/SlackBuild, xap/deng/SlackBuild,
+	  xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild,
+	  xap/enlightenment/SlackBuild, xap/eterm/SlackBuild,
+	  xap/ettercap-ng/SlackBuild, xap/giftoxic/SlackBuild,
+	  xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild,
+	  xap/gksu/SlackBuild, xap/gqview/SlackBuild,
+	  xap/graphviz/SlackBuild, xap/graveman/SlackBuild,
+	  xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild,
+	  xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild,
+	  xap/linphone/SlackBuild, xap/mplayer/SlackBuild,
+	  xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild,
+	  xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild,
 	  xap/tvtime/SlackBuild, xap/wired/SlackBuild,
 	  xap/xmbmon/SlackBuild, xap/xqf/SlackBuild,
 	  xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild: Patched to use
@@ -4428,11 +4344,6 @@
 2005-01-31 18:30  topf
 
 	* gnome/gnome-panel/sources: [no log message]
-
-2005-01-31 15:34  topf
-
-	* xap/abiword/: SlackBuild, footprint, md5sums, requires, sources:
-	  Updated xap/abiword to 2.2.3-i486-1tom.
 
 2005-01-31 14:33  topf
 
@@ -5105,10 +5016,6 @@
 	* gnome/aegis-virus-scanner/SlackBuild: Updated
 	  gnome/aegis-virus-scanner to 0.1.1-noarch-1tom.
 
-2004-12-14 20:01  topf
-
-	* xap/abiword/SlackBuild: Updated xap/abiword to 2.2.2-i486-1tom.
-
 2004-12-14 19:51  topf
 
 	* gnome/gnome-cups-manager/: SlackBuild, slack-desc: Updated
@@ -5253,8 +5160,8 @@
 
 2004-12-12 13:41  topf
 
-	* gnome/screem/requires, xap/abiword/requires: Removed nonexistant
-	  dependency gtksourceview.
+	* gnome/screem/requires: Removed nonexistant dependency
+	  gtksourceview.
 
 2004-12-12 13:23  topf
 
@@ -5812,18 +5719,17 @@
 	  testing/gnome-volume-manager/SlackBuild,
 	  testing/gtk-webcore/SlackBuild, testing/hal/SlackBuild,
 	  testing/libeina/SlackBuild, testing/mplayer-gtk2/SlackBuild,
-	  testing/xfmedia/SlackBuild, xap/abiword/SlackBuild,
-	  xap/amule/SlackBuild, xap/armagetron/SlackBuild,
-	  xap/bookmarkbridge/SlackBuild, xap/deng/SlackBuild,
-	  xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild,
-	  xap/freedoom/SlackBuild, xap/giftoxic/SlackBuild,
-	  xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild,
-	  xap/gksu/SlackBuild, xap/gqview/SlackBuild,
-	  xap/graphviz/SlackBuild, xap/gtk-server/SlackBuild,
-	  xap/gtklp/SlackBuild, xap/icon-slicer/SlackBuild,
-	  xap/kino/SlackBuild, xap/lbreakout2/SlackBuild,
-	  xap/linphone/SlackBuild, xap/mbox/SlackBuild,
-	  xap/mplayer/SlackBuild, xap/ogle/SlackBuild,
+	  testing/xfmedia/SlackBuild, xap/amule/SlackBuild,
+	  xap/armagetron/SlackBuild, xap/bookmarkbridge/SlackBuild,
+	  xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild,
+	  xap/dia/SlackBuild, xap/freedoom/SlackBuild,
+	  xap/giftoxic/SlackBuild, xap/giftui/SlackBuild,
+	  xap/gimp-gap/SlackBuild, xap/gksu/SlackBuild,
+	  xap/gqview/SlackBuild, xap/graphviz/SlackBuild,
+	  xap/gtk-server/SlackBuild, xap/gtklp/SlackBuild,
+	  xap/icon-slicer/SlackBuild, xap/kino/SlackBuild,
+	  xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild,
+	  xap/mbox/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild,
 	  xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild,
 	  xap/redhat-artwork/SlackBuild, xap/straw/SlackBuild,
 	  xap/tagtool/SlackBuild, xap/video-dvdrip/SlackBuild,
@@ -5868,11 +5774,6 @@
 
 	* gnome/netspeed_applet/: SlackBuild, requires, slack-desc: Updated
 	  gnome/netspeed_applet to 0.11-i486-1tom.
-
-2004-12-02 18:07  topf
-
-	* xap/abiword/: SlackBuild, requires: Updated xap/abiword to
-	  2.2.1-i486-1tom.
 
 2004-12-02 18:04  topf
 
@@ -5976,11 +5877,10 @@
 	  testing/gnome-volume-manager/SlackBuild,
 	  testing/gtk-webcore/SlackBuild, testing/hal/SlackBuild,
 	  testing/libeina/SlackBuild, testing/xfmedia/SlackBuild,
-	  xap/abiword/SlackBuild, xap/cire/SlackBuild,
-	  xap/enlightenment/SlackBuild, xap/eterm/SlackBuild,
-	  xap/gtk-server/SlackBuild, xap/hydrogen/SlackBuild,
-	  xap/kino/SlackBuild: Fixed a SlackBuild typo ("SLKFLAGS") coming
-	  from the SlackBuild-skeleton.
+	  xap/cire/SlackBuild, xap/enlightenment/SlackBuild,
+	  xap/eterm/SlackBuild, xap/gtk-server/SlackBuild,
+	  xap/hydrogen/SlackBuild, xap/kino/SlackBuild: Fixed a SlackBuild
+	  typo ("SLKFLAGS") coming from the SlackBuild-skeleton.
 
 2004-12-01 20:33  topf
 
@@ -6147,8 +6047,8 @@
 	  gnome/firestarter/SlackBuild, gnome/firestarter/requires,
 	  gnome/firestarter/slack-desc, gnome/gnome-ppp/SlackBuild,
 	  gnome/gthumb/requires, gnome/liferea/SlackBuild,
-	  gnome/metacity/SlackBuild, gnome/metacity/sources,
-	  xap/abiword/requires: [no log message]
+	  gnome/metacity/SlackBuild, gnome/metacity/sources: [no log
+	  message]
 
 2004-11-24 17:33  topf
 
@@ -6165,15 +6065,6 @@
 
 	* testing/xfce-goodies.metalist: Added Xfce-goodies and
 	  xfce-goodies.metalist
-
-2004-11-23 21:58  topf
-
-	* xap/abiword/requires: [no log message]
-
-2004-11-23 21:28  topf
-
-	* xap/abiword/: SlackBuild, requires, slack-desc, sources: Moved
-	  from testing/, removed GNOME-support (as in Slackware-current)
 
 2004-11-22 11:48  topf
 
