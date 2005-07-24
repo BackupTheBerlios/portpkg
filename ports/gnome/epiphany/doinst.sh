@@ -4,8 +4,6 @@ gconf() {
     usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
   fi
 }
-gconf etc/gconf/schemas/epiphany-lockdown.schemas
-gconf etc/gconf/schemas/epiphany.schemas
 if [ -x usr/bin/scrollkeeper-update ]; then
   usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1
 fi
