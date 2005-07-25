@@ -1,38 +1,39 @@
-VERSION=2.13
-ARCH=${ARCH:-i486}
-BUILD=1tom
-
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
+PKG=$TMP/package-$NAME
+
+VERSION=2.15
+ARCH=noarch
+BUILD=1tom
+
 rm -rf $PKG
 mkdir -p $PKG/usr
-
-cd /tmp || exit 1
+cd $TMP
 tar xzvf $CWD/Storable-$VERSION.tar.gz
-cd Storable-$VERSION || exit 1
+cd Storable-$VERSION
 chown -R root.root .
 perl Makefile.PL
-make || exit 1
-make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin
-find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-mv $PKG/usr/share/{man,doc} $PKG/usr/
-rmdir $PKG/usr/share
-gzip -9 $PKG/usr/man/man?/*
+make
+make install DESTDIR=$PKG
+rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rfv $PKG/usr/info/dir
+chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
+gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
-  $PKG/usr/doc/$NAME-$VERSION
+  ChangeLog MANIFEST README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Storable-$VERSION
+  rm -rf $PKG
+fi
