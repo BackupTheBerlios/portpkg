@@ -5,14 +5,13 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.10
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
-cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 #=config
 # no config
