@@ -10,25 +10,30 @@
 #
 
 # Sanity checks.
-[ -x /usr/bin/dbus-daemon-1 ] || exit 0
+[ -x /usr/bin/dbus-daemon ] || exit 0
 
 RETVAL=0
 
+
 start() {
-  echo "Starting system message bus:  dbus-daemon-1 --system"
-  dbus-daemon-1 --system
+PID=`pidof dbus-daemon`
+  echo "Starting system message bus:  dbus-daemon --system"
+  if [ $PID ]; then 
+    echo "DBUS already running (pid $PID) " ;
+    exit;
+  
+  else 
+    rm -f /var/run/dbus/dbus.pid  
+    /usr/bin/dbus-daemon --system
+  fi;
   RETVAL=$?
+  
 }
 
 stop() {
   echo "Stopping system message bus..."
-
-  ## we don't want to kill all the per-user $processname, we want
-  ## to use the pid file *only*; because we use the fake nonexistent 
-  ## program name "$servicename" that should be safe-ish
-  kill -TERM `cat /var/run/dbus/pid`
-  RETVAL=$?
-  [ $RETVAL -eq 0 ] && rm -f /var/run/dbus/pid
+  killall -TERM dbus-daemon 2>/dev/null || echo "dbus-daemon was probably not running."
+   
 }
 
 # See how we were called.
@@ -39,6 +44,7 @@ case "$1" in
     stop;;
   restart)
     stop
+    sleep 1
     start;;
   *)
     echo $"Usage: $0 {start|stop|restart}";;
