@@ -1,40 +1,50 @@
-2005-07-30 08:20  topf
+2005-07-30 15:19  topf
 
-	* open/initng/: SlackBuild, footprint, info, install_service.patch,
+	* testing/bootchart/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: Moved open/bootchart-0.8-i686-1lem to testing/.
+
+2005-07-30 15:18  topf
+
+	* testing/initng/: SlackBuild, footprint, install_service.patch,
 	  md5sums, slack-desc, sources: new entry (lem)
 
-2005-07-29 09:50  topf
+2005-07-30 15:15  topf
 
-	* open/pango/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	* testing/pango/: SlackBuild, doinst.sh, footprint, md5sums,
 	  requires, slack-desc, sources: version update (lem)
 
-2005-07-29 09:49  topf
+2005-07-30 15:14  topf
 
-	* open/: cairo/SlackBuild, cairo/footprint, cairo/info,
-	  cairo/md5sums, cairo/requires, cairo/slack-desc, cairo/sources,
-	  libpixman/SlackBuild, libpixman/footprint, libpixman/info,
-	  libpixman/md5sums, libpixman/slack-desc, libpixman/sources: new
-	  entry (lem)
+	* testing/libpixman/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: new entry (lem)
 
-2005-07-29 09:47  topf
+2005-07-30 15:12  topf
 
-	* open/dbus/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  rc.messagebus, requires, slack-desc, sources: version update -
-	  please let me know about the modified initscript (lem)
+	* testing/dbus/: SlackBuild, doinst.sh, footprint, md5sums,
+	  rc.messagebus, requires, slack-desc, sources, user.patch: version
+	  update - please let me know about the modified initscript (lem)
 
-2005-07-29 09:46  topf
+2005-07-30 15:12  topf
 
-	* open/: clearlooks/SlackBuild, clearlooks/footprint,
-	  clearlooks/info, clearlooks/md5sums, clearlooks/requires,
-	  clearlooks/slack-desc, clearlooks/sources, hal/README,
-	  hal/SlackBuild, hal/doinst.sh, hal/footprint, hal/info,
-	  hal/md5sums, hal/rc.hald.new, hal/requires, hal/slack-desc,
-	  hal/sources: version update (lem)
+	* l/clearlooks/SlackBuild, l/clearlooks/footprint,
+	  l/clearlooks/md5sums, l/clearlooks/slack-desc,
+	  testing/hal/README, testing/hal/SlackBuild,
+	  testing/hal/doinst.sh, testing/hal/footprint,
+	  testing/hal/hal-BLKGETSIZE64.patch, testing/hal/md5sums,
+	  testing/hal/rc.hald, testing/hal/rc.hald.new,
+	  testing/hal/requires, testing/hal/slack-desc,
+	  testing/hal/sources: version update (lem)
 
-2005-07-29 09:45  topf
+2005-07-30 15:10  topf
 
-	* open/bootchart/: SlackBuild, footprint, md5sums, slack-desc,
-	  sources: new record (lem)
+	* testing/cairo/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
+
+2005-07-30 09:45  topf
+
+	* pasture/fribidi/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved l/fribidi-0.10.4-i686-1tom to
+	  pasture/.
 
 2005-07-29 09:43  topf
 
@@ -2456,11 +2466,6 @@
 	* testing/zsnes/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: [no log message]
 
-2005-03-26 18:16  hnaz
-
-	* open/pango/: README, SlackBuild, doinst.sh, footprint, info,
-	  md5sums, requires, slack-desc, sources: Removed - not needed.
-
 2005-03-25 19:52  hnaz
 
 	* xap/mplayer/md5sums: Fixing md5sum for Blue-1.4.tar.bz2
@@ -2608,11 +2613,6 @@
 2005-03-20 20:48  topf
 
 	* d/portpkg/portpkg: Adjusted messages in maintainer mode.
-
-2005-03-20 15:20  topf
-
-	* open/pango/: README, SlackBuild, doinst.sh, footprint, info,
-	  md5sums, requires, slack-desc, sources: [no log message]
 
 2005-03-20 11:40  topf
 
@@ -2902,11 +2902,6 @@
 
 	* l/libavc1394/: footprint, md5sums: Updated l/libavc1394 to
 	  0.4.1-i686-1tom.
-
-2005-03-16 20:40  topf
-
-	* l/fribidi/: footprint, md5sums: Updated l/fribidi to
-	  0.10.4-i686-1tom.
 
 2005-03-16 20:39  topf
 
@@ -3251,13 +3246,8 @@
 
 2005-03-11 00:54  topf
 
-	* open/clearlooks/SlackBuild, open/clearlooks/footprint,
-	  open/clearlooks/info, open/clearlooks/md5sums,
-	  open/clearlooks/requires, open/clearlooks/slack-desc,
-	  open/clearlooks/sources, l/clearlooks/SlackBuild,
-	  l/clearlooks/footprint, l/clearlooks/info, l/clearlooks/md5sums,
-	  l/clearlooks/slack-desc: Moved open/clearlooks-0.4-i686-1lem to
-	  l/.
+	* l/clearlooks/: SlackBuild, footprint, info, md5sums, slack-desc:
+	  Moved open/clearlooks-0.4-i686-1lem to l/.
 
 2005-03-11 00:52  topf
 
@@ -3269,11 +3259,6 @@
 
 	* xap/amyedit/: SlackBuild, footprint, info, md5sums, requires,
 	  slack-desc, sources: Moved open/amyedit-0.7-i686-2lem to xap/.
-
-2005-03-09 22:20  topf
-
-	* open/clearlooks/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Autocommited via upload.
 
 2005-03-08 21:37  topf
 
@@ -3371,13 +3356,8 @@
 
 2005-03-04 09:25  topf
 
-	* open/clearlooks/SlackBuild, open/clearlooks/footprint,
-	  open/clearlooks/info, open/clearlooks/md5sums,
-	  open/clearlooks/requires, open/clearlooks/slack-desc,
-	  open/clearlooks/sources, l/clearlooks/SlackBuild,
-	  l/clearlooks/footprint, l/clearlooks/md5sums,
-	  l/clearlooks/requires, l/clearlooks/slack-desc,
-	  l/clearlooks/sources: Moved open/clearlooks-0.3-i686-1lem to l/.
+	* l/clearlooks/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved open/clearlooks-0.3-i686-1lem to l/.
 
 2005-03-04 09:09  topf
 
@@ -3403,21 +3383,6 @@
 
 	* ap/lsdvd/footprint, ap/lsdvd/md5sums, l/gamin/footprint,
 	  l/gamin/md5sums, l/libgpg-error/doinst.sh: [no log message]
-
-2005-02-28 21:20  topf
-
-	* open/clearlooks/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Autocommited via upload.
-
-2005-02-28 09:34  topf
-
-	* open/hal/: SlackBuild, footprint, fs.h, hal.patch, info, md5sums,
-	  requires, slack-desc, sources: [no log message]
-
-2005-02-28 01:20  topf
-
-	* open/hal/: SlackBuild, footprint, fs.h, hal.patch, info, md5sums,
-	  requires, slack-desc, sources: Autocommited via upload.
 
 2005-02-27 00:49  topf
 
@@ -3962,11 +3927,10 @@
 	  l/a52dec/SlackBuild, l/bluecurve/SlackBuild,
 	  l/bmp-wma/SlackBuild, l/enchant/SlackBuild,
 	  l/exif-browser/SlackBuild, l/fnlib/SlackBuild,
-	  l/freetype/SlackBuild, l/fribidi/SlackBuild, l/gamin/SlackBuild,
-	  l/gc/SlackBuild, l/gift-ares/SlackBuild,
-	  l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild,
-	  l/gift-openft/SlackBuild, l/glibmm/SlackBuild,
-	  l/gmime/SlackBuild, l/gpgme/SlackBuild,
+	  l/freetype/SlackBuild, l/gamin/SlackBuild, l/gc/SlackBuild,
+	  l/gift-ares/SlackBuild, l/gift-fasttrack/SlackBuild,
+	  l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild,
+	  l/glibmm/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild,
 	  l/gtk-qt-engine/SlackBuild, l/gtk-sharp/SlackBuild,
 	  l/id3lib/SlackBuild, l/imlib2/SlackBuild, l/libast/SlackBuild,
 	  l/libavc1394/SlackBuild, l/libcddb/SlackBuild,
@@ -5835,26 +5799,25 @@
 	  l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild,
 	  l/compress-zlib/SlackBuild, l/event/SlackBuild,
 	  l/exif-browser/SlackBuild, l/freetype/SlackBuild,
-	  l/fribidi/SlackBuild, l/gift-fasttrack/SlackBuild,
-	  l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild,
-	  l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-perl/SlackBuild,
-	  l/gtk-qt-engine/SlackBuild, l/gtk-xfce-engine/SlackBuild,
-	  l/html-parser/SlackBuild, l/id3lib/SlackBuild,
-	  l/libavc1394/SlackBuild, l/libcap/SlackBuild, l/libdv/SlackBuild,
-	  l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild,
-	  l/libdvdread/SlackBuild, l/libesmtp/SlackBuild,
-	  l/libgda/SlackBuild, l/libgpg-error/SlackBuild,
-	  l/libgphoto2/SlackBuild, l/libintl-perl/SlackBuild,
-	  l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild,
-	  l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild,
-	  l/libsigc++/SlackBuild, l/libxml++/SlackBuild,
-	  l/openldap/SlackBuild, l/out_lame/SlackBuild,
-	  l/plugger/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild,
-	  l/rmxmms/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild,
-	  l/xvidcore/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild,
-	  n/gift/SlackBuild, n/httpup/SlackBuild, n/ibmonitor/SlackBuild,
-	  n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild,
-	  n/wvdial/SlackBuild, n/wvstreams/SlackBuild,
+	  l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild,
+	  l/gift-openft/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild,
+	  l/gtk-perl/SlackBuild, l/gtk-qt-engine/SlackBuild,
+	  l/gtk-xfce-engine/SlackBuild, l/html-parser/SlackBuild,
+	  l/id3lib/SlackBuild, l/libavc1394/SlackBuild,
+	  l/libcap/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild,
+	  l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild,
+	  l/libesmtp/SlackBuild, l/libgda/SlackBuild,
+	  l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild,
+	  l/libintl-perl/SlackBuild, l/libmusicbrainz/SlackBuild,
+	  l/libosip/SlackBuild, l/libraw1394/SlackBuild,
+	  l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild,
+	  l/libxml++/SlackBuild, l/openldap/SlackBuild,
+	  l/out_lame/SlackBuild, l/plugger/SlackBuild, l/pygtk/SlackBuild,
+	  l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/sqlite/SlackBuild,
+	  l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/email/SlackBuild,
+	  n/fping/SlackBuild, n/gift/SlackBuild, n/httpup/SlackBuild,
+	  n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild,
+	  n/snarf/SlackBuild, n/wvdial/SlackBuild, n/wvstreams/SlackBuild,
 	  pasture/db41/SlackBuild, pasture/gal20/SlackBuild,
 	  pasture/gconfmm20/SlackBuild, pasture/gtkhtml30/SlackBuild,
 	  pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild,
@@ -6582,9 +6545,8 @@
 	  l/archive-tar/slack-desc, l/archive-zip/slack-desc,
 	  l/compress-zlib/slack-desc, l/egenix-mx-base/slack-desc,
 	  l/exif-browser/slack-desc, l/file-scan/slack-desc,
-	  l/fribidi/slack-desc, l/gmime/slack-desc,
-	  l/gtk-qt-engine/slack-desc, l/libgda/slack-desc,
-	  l/libgphoto2/slack-desc, l/pyogg/slack-desc,
+	  l/gmime/slack-desc, l/gtk-qt-engine/slack-desc,
+	  l/libgda/slack-desc, l/libgphoto2/slack-desc, l/pyogg/slack-desc,
 	  l/pyvorbis/slack-desc, l/rp9codecs/slack-desc,
 	  l/wxgtk/slack-desc, l/wxpython/slack-desc,
 	  l/xanimdlls/slack-desc, l/xvidcore/slack-desc,
@@ -7180,10 +7142,9 @@
 	  l/compress-zlib/slack-desc, l/compress-zlib/sources,
 	  l/exif-browser/SlackBuild, l/exif-browser/requires,
 	  l/exif-browser/slack-desc, l/exif-browser/sources,
-	  l/fribidi/SlackBuild, l/fribidi/requires, l/fribidi/slack-desc,
-	  l/fribidi/sources, l/libgphoto2/SlackBuild,
-	  l/libgphoto2/requires, l/libgphoto2/slack-desc,
-	  l/libgphoto2/sources, l/openldap/SlackBuild, l/openldap/requires,
+	  l/libgphoto2/SlackBuild, l/libgphoto2/requires,
+	  l/libgphoto2/slack-desc, l/libgphoto2/sources,
+	  l/openldap/SlackBuild, l/openldap/requires,
 	  l/openldap/slack-desc, l/openldap/sources, l/qt63dlls/SlackBuild,
 	  l/qt63dlls/sources, l/rp9codecs/SlackBuild, l/rp9codecs/requires,
 	  l/rp9codecs/slack-desc, l/rp9codecs/sources,
@@ -7739,10 +7700,9 @@
 	  l/compress-zlib/slack-desc, l/compress-zlib/sources,
 	  l/exif-browser/SlackBuild, l/exif-browser/requires,
 	  l/exif-browser/slack-desc, l/exif-browser/sources,
-	  l/fribidi/SlackBuild, l/fribidi/requires, l/fribidi/slack-desc,
-	  l/fribidi/sources, l/libgphoto2/SlackBuild,
-	  l/libgphoto2/requires, l/libgphoto2/slack-desc,
-	  l/libgphoto2/sources, l/openldap/SlackBuild, l/openldap/requires,
+	  l/libgphoto2/SlackBuild, l/libgphoto2/requires,
+	  l/libgphoto2/slack-desc, l/libgphoto2/sources,
+	  l/openldap/SlackBuild, l/openldap/requires,
 	  l/openldap/slack-desc, l/openldap/sources, l/qt63dlls/SlackBuild,
 	  l/qt63dlls/sources, l/rp9codecs/SlackBuild, l/rp9codecs/requires,
 	  l/rp9codecs/slack-desc, l/rp9codecs/sources,
