@@ -8,8 +8,8 @@
 #               See http://www.freedesktop.org/software/hal/
 #
 # processname: hald
+# 
 #
-
 # Sanity checks.
 [ -x /usr/sbin/hald ] || exit 0
 
@@ -17,16 +17,19 @@ RETVAL=0
 
 start() {
   echo "Starting HAL daemon:  hald"
-  hald
-  RETVAL=$?
-  [ $RETVAL -eq 0 ] && echo `/sbin/pidof hald` >/var/run/hald/pid
+  cat /var/run/hald.pid 2>/dev/null  && echo "HAL daemon is already running." && exit
+  hald --retain-privileges
+ #RETVAL=$?
+ #[ $RETVAL -eq 0 ] && echo `/sbin/pidof hald` >/var/run/hald/pid
 }
 
 stop() {
   echo "Stopping HAL daemon..."
-  kill -TERM `cat /var/run/hald/pid`
-  RETVAL=$?
-  [ $RETVAL -eq 0 ] && rm -f /var/run/hald/pid
+  kill -TERM `cat /var/run/hald.pid 2>/dev/null` 2>/dev/null || echo "HAL daemon was not running."
+  rm -f /var/run/hald.pid
+  #RETVAL=$?
+  #[ $RETVAL -eq 0 ] && rm -f /var/run/hald/pid
+
 }
 
 # See how we were called.
@@ -37,6 +40,7 @@ case "$1" in
     stop;;
   restart)
     stop
+    sleep 1
     start;;
   *)
     echo $"Usage: $0 {start|stop|restart}";;

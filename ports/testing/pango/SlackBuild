@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.5.3
+VERSION=1.9.1
 ARCH=${ARCH:-i486}
 BUILD=1lem
 
@@ -20,10 +20,9 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2
 cd $NAME-$VERSION
 chown -R root.root .
-#+=configure
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -32,24 +31,9 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
-  --with-pid-file=/var/run/hald.pid \
-  --with-system-pid-file=/var/run/hald.pid \
-  --with-hal-user=daemon \
-  --with-hal-group=daemon \
-  --enable-fstab-sync \
-  --enable-hotplug-map \
-  --enable-pcmcia-support \
-  --enable-sysfs-carrier \
-  --enable-doxygen-docs \
-  --disable-docbook-docs \
   $ARCH-slackware-linux
-#+=configure
 make
 make install DESTDIR=$PKG
-#+install
-mkdir $PKG/etc/rc.d/
-cp $CWD/rc.hald.new $PKG/etc/rc.d/
-#+install
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
@@ -61,7 +45,7 @@ mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
 gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README README.win32 TODO docs/ \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
