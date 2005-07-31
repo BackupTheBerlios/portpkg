@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.1.5
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=2lem
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -29,9 +29,10 @@ CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix="" \
+  --exec-prefix="" \
   --sysconfdir=/etc \
+  --mandir=/usr/man \
   --localstatedir=/var/lib \
-  --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux
 #=configure
@@ -54,6 +55,10 @@ mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog FAQ INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
+#+docfiles
+mv $PKG/usr/doc/$NAME/* $PKG/usr/doc/$NAME-$VERSION
+rm -rf $PKG/usr/doc/$NAME
+#+docfiles
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
