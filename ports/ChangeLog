@@ -1,7 +1,96 @@
-2005-07-31 10:34  topf
+2005-07-31 11:26  topf
 
-	* open/initng/: SlackBuild, footprint, info, install_service.patch,
-	  md5sums, slack-desc, sources: repaired install paths (lem)
+	* gnome/gnome-audio/: SlackBuild, footprint, slack-desc, sources:
+	  New entry.
+
+2005-07-31 11:25  topf
+
+	* gnome/esound/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: Version update.
+
+2005-07-31 10:56  topf
+
+	* testing/: fontconfig/SlackBuild, fontconfig/footprint,
+	  fontconfig/requires, fontconfig/slack-desc, fontconfig/sources,
+	  gnome-desktop/SlackBuild, gnome-desktop/doinst.sh,
+	  gnome-desktop/footprint, gnome-desktop/requires,
+	  gnome-desktop/slack-desc, gnome-desktop/sources,
+	  gnome-netstatus/SlackBuild, gnome-netstatus/doinst.sh,
+	  gnome-netstatus/footprint, gnome-netstatus/requires,
+	  gnome-netstatus/slack-desc, gnome-netstatus/sources,
+	  libgnome/SlackBuild, libgnome/doinst.sh, libgnome/footprint,
+	  libgnome/requires, libgnome/slack-desc, libgnome/sources,
+	  libgnomecanvas/SlackBuild, libgnomecanvas/footprint,
+	  libgnomecanvas/requires, libgnomecanvas/slack-desc,
+	  libgnomecanvas/sources, libgnomeui/SlackBuild,
+	  libgnomeui/footprint, libgnomeui/requires, libgnomeui/slack-desc,
+	  libgnomeui/sources, libgtop/SlackBuild, libgtop/footprint,
+	  libgtop/requires, libgtop/slack-desc, libgtop/sources: New entry.
+
+2005-07-31 10:46  topf
+
+	* testing/initng/: SlackBuild, footprint: repaired install paths
+	  (lem)
+
+2005-07-31 10:39  topf
+
+	* testing/: gnome-system-tools/SlackBuild,
+	  gnome-system-tools/doinst.sh, gnome-system-tools/footprint,
+	  gnome-system-tools/requires, gnome-system-tools/slack-desc,
+	  gnome-system-tools/sources, gnome-themes/SlackBuild,
+	  gnome-themes/footprint, gnome-themes/requires,
+	  gnome-themes/slack-desc, gnome-themes/sources,
+	  gnome-utils/SlackBuild, gnome-utils/doinst.sh,
+	  gnome-utils/footprint, gnome-utils/requires,
+	  gnome-utils/slack-desc, gnome-utils/sources, gtk+2/footprint,
+	  gtk+2/gtk+2.SlackBuild, gtk+2/no-fakeroot, gtk+2/requires,
+	  gtk+2/slack-desc, gtk+2/sources, gtk+2/profile.d/gtk+.csh,
+	  gtk+2/profile.d/gtk+.sh, gtkhtml/SlackBuild, gtkhtml/footprint,
+	  gtkhtml/md5sums, gtkhtml/requires, gtkhtml/slack-desc,
+	  gtkhtml/sources, libgnomeprint/SlackBuild,
+	  libgnomeprint/footprint, libgnomeprint/requires,
+	  libgnomeprint/slack-desc, libgnomeprint/sources,
+	  libgnomeprintui/SlackBuild, libgnomeprintui/footprint,
+	  libgnomeprintui/requires, libgnomeprintui/slack-desc,
+	  libgnomeprintui/sources, metacity/SlackBuild, metacity/doinst.sh,
+	  metacity/footprint, metacity/md5sums, metacity/requires,
+	  metacity/slack-desc, metacity/sources, sound-juicer/SlackBuild,
+	  sound-juicer/doinst.sh, sound-juicer/footprint,
+	  sound-juicer/requires, sound-juicer/slack-desc,
+	  sound-juicer/sources, system-tools-backends/SlackBuild,
+	  system-tools-backends/footprint, system-tools-backends/requires,
+	  system-tools-backends/slack-desc, system-tools-backends/sources:
+	  New entry.
+
+2005-07-31 10:36  topf
+
+	* testing/: atk/SlackBuild, atk/footprint, atk/requires,
+	  atk/slack-desc, atk/sources, epiphany/SlackBuild,
+	  epiphany/doinst.sh, epiphany/footprint, epiphany/md5sums,
+	  epiphany/requires, epiphany/slack-desc, epiphany/sources,
+	  epiphany-extensions/SlackBuild, epiphany-extensions/footprint,
+	  epiphany-extensions/md5sums, epiphany-extensions/requires,
+	  epiphany-extensions/slack-desc, epiphany-extensions/sources,
+	  evolution/SlackBuild, evolution/doinst.sh, evolution/footprint,
+	  evolution/md5sums, evolution/requires, evolution/slack-desc,
+	  evolution/sources, evolution-data-server/SlackBuild,
+	  evolution-data-server/footprint, evolution-data-server/md5sums,
+	  evolution-data-server/requires, evolution-data-server/slack-desc,
+	  evolution-data-server/sources, file-roller/SlackBuild,
+	  file-roller/doinst.sh, file-roller/footprint,
+	  file-roller/requires, file-roller/slack-desc,
+	  file-roller/sources, glib2/footprint, glib2/glib2.SlackBuild,
+	  glib2/requires, glib2/slack-desc, glib2/sources,
+	  gnome-applets/SlackBuild, gnome-applets/doinst.sh,
+	  gnome-applets/footprint, gnome-applets/md5sums,
+	  gnome-applets/requires, gnome-applets/slack-desc,
+	  gnome-applets/sources, gnome-icon-theme/SlackBuild,
+	  gnome-icon-theme/doinst.sh, gnome-icon-theme/footprint,
+	  gnome-icon-theme/md5sums, gnome-icon-theme/requires,
+	  gnome-icon-theme/slack-desc, gnome-icon-theme/sources,
+	  gnome-panel/SlackBuild, gnome-panel/doinst.sh,
+	  gnome-panel/footprint, gnome-panel/requires,
+	  gnome-panel/slack-desc, gnome-panel/sources: New entry.
 
 2005-07-31 10:31  topf
 
@@ -19,12 +108,8 @@
 
 2005-07-30 15:18  topf
 
-	* testing/initng/SlackBuild, testing/initng/footprint,
-	  testing/initng/install_service.patch, testing/initng/md5sums,
-	  testing/initng/slack-desc, testing/initng/sources,
-	  open/initng/SlackBuild, open/initng/footprint, open/initng/info,
-	  open/initng/install_service.patch, open/initng/md5sums,
-	  open/initng/slack-desc, open/initng/sources: new entry (lem)
+	* testing/initng/: SlackBuild, footprint, install_service.patch,
+	  md5sums, slack-desc, sources: new entry (lem)
 
 2005-07-30 15:15  topf
 
@@ -63,11 +148,6 @@
 	* pasture/fribidi/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Moved l/fribidi-0.10.4-i686-1tom to
 	  pasture/.
-
-2005-07-30 08:20  topf
-
-	* open/initng/: SlackBuild, footprint, info, install_service.patch,
-	  md5sums, slack-desc, sources: new entry (lem)
 
 2005-07-29 09:43  topf
 
@@ -1941,6 +2021,11 @@
 	* gnome/gnome-menus/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Added gnome/gnome-menus-2.10.1-i486-1tom.
 
+2005-04-07 23:57  topf
+
+	* testing/epiphany/: SlackBuild, doinst.sh, footprint, requires,
+	  slack-desc, sources: Obsolete.
+
 2005-04-07 23:53  hnaz
 
 	* ap/unrar/: SlackBuild, footprint, md5sums, slack-desc: 3.3.4 >>
@@ -2866,7 +2951,7 @@
 	  pasture/gtkhtml30/requires, pasture/magicdev/requires,
 	  pasture/xine-lib/requires, testing/balsa/requires,
 	  testing/criawips/requires, testing/eina-gnome/requires,
-	  testing/gnome-volume-manager/requires,
+	  testing/epiphany/requires, testing/gnome-volume-manager/requires,
 	  testing/mplayer-gtk2/requires, testing/polypaudio/requires,
 	  testing/totem/requires, xap/armagetron/requires,
 	  xap/avidemux/requires, xap/bmp/requires, xap/deng/requires,
@@ -3984,23 +4069,24 @@
 	  pasture/magicdev/SlackBuild, pasture/pango/SlackBuild,
 	  pasture/xfce/SlackBuild, pasture/xine-lib/SlackBuild,
 	  testing/criawips/SlackBuild, testing/dbus/SlackBuild,
-	  testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild,
-	  testing/polypaudio/SlackBuild, testing/wxgtk/SlackBuild,
-	  testing/xfce-goodies/SlackBuild, xap/amule/SlackBuild,
-	  xap/armagetron/SlackBuild, xap/avidemux/SlackBuild,
-	  xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild,
-	  xap/cire/SlackBuild, xap/deng/SlackBuild,
-	  xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild,
-	  xap/enlightenment/SlackBuild, xap/eterm/SlackBuild,
-	  xap/ettercap-ng/SlackBuild, xap/giftoxic/SlackBuild,
-	  xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild,
-	  xap/gksu/SlackBuild, xap/gqview/SlackBuild,
-	  xap/graphviz/SlackBuild, xap/graveman/SlackBuild,
-	  xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild,
-	  xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild,
-	  xap/linphone/SlackBuild, xap/mplayer/SlackBuild,
-	  xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild,
-	  xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild,
+	  testing/eina-gnome/SlackBuild, testing/epiphany/SlackBuild,
+	  testing/libeina/SlackBuild, testing/polypaudio/SlackBuild,
+	  testing/wxgtk/SlackBuild, testing/xfce-goodies/SlackBuild,
+	  xap/amule/SlackBuild, xap/armagetron/SlackBuild,
+	  xap/avidemux/SlackBuild, xap/bmp/SlackBuild,
+	  xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild,
+	  xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild,
+	  xap/dia/SlackBuild, xap/enlightenment/SlackBuild,
+	  xap/eterm/SlackBuild, xap/ettercap-ng/SlackBuild,
+	  xap/giftoxic/SlackBuild, xap/giftui/SlackBuild,
+	  xap/gimp-gap/SlackBuild, xap/gksu/SlackBuild,
+	  xap/gqview/SlackBuild, xap/graphviz/SlackBuild,
+	  xap/graveman/SlackBuild, xap/gtklp/SlackBuild,
+	  xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild,
+	  xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild,
+	  xap/mplayer/SlackBuild, xap/ogle/SlackBuild,
+	  xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild,
+	  xap/qemu/SlackBuild, xap/tagtool/SlackBuild,
 	  xap/tvtime/SlackBuild, xap/wired/SlackBuild,
 	  xap/xmbmon/SlackBuild, xap/xqf/SlackBuild,
 	  xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild: Patched to use
@@ -4830,6 +4916,11 @@
 
 	* gnome/epiphany/: SlackBuild, doinst.sh, footprint, requires,
 	  slack-desc, sources: [no log message]
+
+2005-01-18 13:05  topf
+
+	* testing/epiphany/: SlackBuild, doinst.sh, footprint, requires,
+	  slack-desc, sources: Added testing/epiphany-1.5.3-i486-1tom.
 
 2005-01-18 13:05  topf
 
