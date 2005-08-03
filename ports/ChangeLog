@@ -1,3 +1,35 @@
+2005-08-03 09:10  topf
+
+	* open/: libnasl/SlackBuild, libnasl/footprint, libnasl/info,
+	  libnasl/requires, libnasl/slack-desc, libnasl/sources,
+	  nessus-core/SlackBuild, nessus-core/footprint, nessus-core/info,
+	  nessus-core/md5sums, nessus-core/requires,
+	  nessus-core/slack-desc, nessus-core/sources,
+	  nessus-libraries/SlackBuild, nessus-libraries/footprint,
+	  nessus-libraries/info, nessus-libraries/md5sums,
+	  nessus-libraries/slack-desc, nessus-libraries/sources,
+	  nessus-plugins/SlackBuild, nessus-plugins/footprint,
+	  nessus-plugins/info, nessus-plugins/md5sums,
+	  nessus-plugins/requires, nessus-plugins/slack-desc,
+	  nessus-plugins/sources: new entry (lem)
+
+2005-08-03 09:10  topf
+
+	* open/gtk+2/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources, profile.d/gtk+.csh,
+	  profile.d/gtk+.sh: this version works with fakeroot (lem)
+
+2005-08-03 09:08  topf
+
+	* open/: gnome-schedule/SlackBuild, gnome-schedule/doinst.sh,
+	  gnome-schedule/footprint, gnome-schedule/info,
+	  gnome-schedule/md5sums, gnome-schedule/requires,
+	  gnome-schedule/slack-desc, gnome-schedule/sources,
+	  gstreamer/SlackBuild, gstreamer/doinst.sh, gstreamer/footprint,
+	  gstreamer/info, gstreamer/md5sums, gstreamer/requires,
+	  gstreamer/setup.07.get-register.gz, gstreamer/slack-desc,
+	  gstreamer/sources: version update (lem)
+
 2005-08-01 10:18  topf
 
 	* open/glitz/: SlackBuild, footprint, info, md5sums, requires,
@@ -2015,10 +2047,15 @@
 
 	* pasture/gtk+2/profile.d/: gtk+.csh, gtk+.sh: Added.
 
-2005-04-08 12:53  topf
+2005-04-08 12:52  topf
 
-	* pasture/gtk+2/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: version update
+	* open/gtk+2/SlackBuild, open/gtk+2/doinst.sh,
+	  open/gtk+2/footprint, open/gtk+2/info, open/gtk+2/md5sums,
+	  open/gtk+2/requires, open/gtk+2/slack-desc, open/gtk+2/sources,
+	  open/gtk+2/profile.d/gtk+.csh, open/gtk+2/profile.d/gtk+.sh,
+	  pasture/gtk+2/SlackBuild, pasture/gtk+2/footprint,
+	  pasture/gtk+2/md5sums, pasture/gtk+2/requires,
+	  pasture/gtk+2/slack-desc, pasture/gtk+2/sources: version update
 
 2005-04-08 12:49  topf
 
@@ -2320,6 +2357,12 @@
 
 	* d/portpkg/autoport: Use path of existing port only if intended to
 	  re-use it.
+
+2005-04-04 02:20  topf
+
+	* open/gtk+2/: SlackBuild, doinst.sh, footprint, info, md5sums,
+	  requires, slack-desc, sources, profile.d/gtk+.csh,
+	  profile.d/gtk+.sh: version update (cronjob)
 
 2005-04-03 22:40  hnaz
 
@@ -4456,7 +4499,10 @@
 
 2005-02-03 13:16  topf
 
-	* open/ports-lem-info: [no log message]
+	* open/: gstreamer/SlackBuild, gstreamer/doinst.sh,
+	  gstreamer/footprint, gstreamer/md5sums, gstreamer/requires,
+	  gstreamer/slack-desc, gstreamer/sources, ports-lem-info: [no log
+	  message]
 
 2005-02-03 13:15  topf
 
@@ -4512,7 +4558,9 @@
 
 2005-02-02 02:13  topf
 
-	* open/ports-lem-info: Autocommited via upload.
+	* open/: ports-lem-info, gstreamer/SlackBuild, gstreamer/doinst.sh,
+	  gstreamer/footprint, gstreamer/md5sums, gstreamer/requires,
+	  gstreamer/slack-desc, gstreamer/sources: Autocommited via upload.
 
 2005-02-01 01:03  topf
 
