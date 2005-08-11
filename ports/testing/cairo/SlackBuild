@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=20050727
+VERSION=0.6.0
 ARCH=${ARCH:-i486}
 BUILD=1lem
 
@@ -20,8 +20,9 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-0.5.2-head-$VERSION.tar.gz
-cd $NAME-0.5.2-head
+echo "tar xzvf $CWD/$NAME-$VERSION.tar.gz"
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -56,6 +57,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-0.5.2-head
+  rm -rf $TMP/$NAME-$VERSION
   rm -rf $PKG
 fi
