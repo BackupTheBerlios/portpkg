@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.33
+VERSION=0.35.1
 ARCH=${ARCH:-i486}
 BUILD=1lem
 
@@ -30,13 +30,12 @@ CXXFLAGS="$SLKCFLAGS" \
 	    --sysconfdir=/etc \
 	    --localstatedir=/var \
             --program-prefix="" \
-            --enable-gtk \
+            --enable-x \
+	    --enable-gtk \
 	    --disable-mono \
-	    --disable-tests \
-	    --disable-checks \
-	    --disable-asserts \
+	    --enable-checks \
+	    --enable-asserts \
 	    --enable-glib \
-	    --enable-verbose-mode \
 	    --with-system-pid-file=/var/run/dbus/dbus.pid \
 	    --with-system-socket=/var/run/dbus/system_bus_socket \
 	    --with-session-socket-dir=/tmp \
@@ -45,16 +44,9 @@ CXXFLAGS="$SLKCFLAGS" \
 make
 make install DESTDIR=$PKG
 #+install
-cd $TMP/$NAME-$VERSION/tools
-make
-make install DESTDIR=$PKG
-cd $TMP/$NAME-$VERSION
-mkdir $PKG/usr/lib/pkgconfig
-cp dbus-1.pc dbus-glib-1.pc $PKG/usr/lib/pkgconfig
 mkdir -p $PKG/etc/rc.d
-
 cp $CWD/rc.messagebus $PKG/etc/rc.d/
-mv $CWD/rc.messagebus{,.new} 
+mv $PKG/etc/rc.d/rc.messagebus{,.new} 
 mv $PKG/etc/dbus-1/session.conf{,.new}
 mv $PKG/etc/dbus-1/system.conf{,.new}
 #+install
