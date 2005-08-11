@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.1
+VERSION=1.4.2
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -40,15 +40,13 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS BUGS COPYING ChangeLog NEWS README README.fake \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/info -name dir | xargs -r rm
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
