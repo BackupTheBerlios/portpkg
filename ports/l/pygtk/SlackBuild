@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.6.1
+VERSION=2.6.2
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -20,7 +20,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
@@ -45,9 +45,6 @@ cp -a \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/share/{man,doc} -maxdepth 0 | xargs -r -i mv {} $PKG/usr/
-find $PKG/usr/info -name dir | xargs -r rm
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
