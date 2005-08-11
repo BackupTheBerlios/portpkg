@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.16
+VERSION=3.2.2
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -40,12 +40,16 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
+# make this executable
+chmod 755 $PKG/usr/lib/tcl8.4/sqlite3/libtclsqlite3.so
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   README VERSION \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
+mkdir -p $PKG/usr/man/man1
+cat sqlite3.1 | gzip -9 > $PKG/usr/man/man1/sqlite3.1.gz
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
