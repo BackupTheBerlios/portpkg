@@ -411,7 +411,7 @@ build_pkg()
     rm -rf $TMP/$package.tgz
 
     # find CFLAGS substitution (CFLAGS="$SLKCFLAGS")
-    local flags_var=`grep -Eo "CFLAGS=\"\\$.*\"" $script | cut -d= -f2 | tail -n1 | sed "s,[\"\$],,g"`
+    local flags_var=`grep -o "CFLAGS=\\"*\\$[^ ]*" $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
     if [ "$flags_var" ]; then
       debug "build_pkg(): use $flags_var for CFLAGS"
     else
@@ -470,7 +470,7 @@ build_pkg()
     local srcname=`basename "$src" | cut -d % -f 2`
     # remove symlinks to sources
     rm -rf `dirname $script`/$srcname
-    # pseudo ports: do not cache sources
+    # pseudo ports: don't cache sources
     $pseudo && rm -rf $SRC_DIR/$srcname
   done
   $maintain || rm -rf $TMP/package-$name
@@ -502,15 +502,11 @@ add_pkg() # pkgex
   check_reqs || return 1
 
   # package file found in cache? (first in its group, then other places)
-  if $DRY_RUN; then
-    :
-  elif ! [ $pkg_file ] || $rebuild; then
+  if ! [ $pkg_file ] || $rebuild; then
     build_pkg || return 1
     pkg_file=$PKG_DIR/$group/$package.tgz
   elif $download_only; then
     stanza "Already built. No need to download source files. Skipping."
-  elif $DRY_RUN; then
-    return 0
   fi
 
   # track as finished
@@ -528,22 +524,14 @@ add_pkg() # pkgex
 
   # what to display?
   ls_inst >$t/inst
-
-  # special output for dryrun
-  if $DRY_RUN; then
-    ecmd="echo"
-  else
-    ecmd="stanza"
-  fi
-
   if ! $slot_in && fgrep -qx $package $t/inst; then
-    $ecmd "Reinstalling $package..."
+    stanza "Reinstalling $package..."
     local add="upgradepkg --reinstall"
   elif ! $slot_in && grep -qm 1 $(regex $name) $t/inst; then
-    $ecmd "Upgrading $name to `echo $package | pkg2rel`..."
+    stanza "Upgrading $name to `echo $package | pkg2rel`..."
     local add="upgradepkg"
   else
-    $ecmd "Installing $package..."
+    stanza "Installing $package..."
     local add="installpkg"
   fi
   echo $group/$package >>$FAKED_INST
