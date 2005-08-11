@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.11.2
+VERSION=0.9.1
 ARCH=${ARCH:-i486}
 BUILD=1lem
 
@@ -23,6 +23,7 @@ cd $TMP
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2
 cd $NAME-$VERSION
 chown -R root.root .
+#=configure
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -31,11 +32,18 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --disable-docs-build \
   $ARCH-slackware-linux
+#=configure
 make
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
-rm -rfv $PKG/var/lib/scrollkeeper
+#+install
+rm -f $PKG/var/lib/cache/gstreamer-0.8/registry.xml
+mkdir -p $PKG/var/lib/cache/gstreamer-0.8
+mkdir -p $PKG/var/log/setup
+zcat $CWD/setup.07.get-register.gz >$PKG/var/log/setup/setup.07.get-register
+chmod 755 $PKG/var/log/setup/setup.07.get-register
+#+install
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
@@ -47,14 +55,13 @@ mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
 gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
+  ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README RELEASE TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.schemas" | sed "s,^$PKG/,gconf ,g" >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
