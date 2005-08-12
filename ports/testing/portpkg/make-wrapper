@@ -17,8 +17,8 @@ case "$wrargs" in
 	*)		myflags="$MAKE_OPTS";;
 esac
 
-# show what we do
-row "make-wrapper ($myflags)"
+# this disturbs configure-scripts
+#row "make-wrapper ($myflags)"
 
 # finally run make
 cmd="/usr/bin/make $myflags"
