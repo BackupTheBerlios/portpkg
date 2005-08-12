@@ -1,0 +1,6 @@
+# MetaBuild
+VERSION=2.2.5
+ARCH=${ARCH:-i486}
+BUILD=1hnaz
+CFLAGS="$SLKCFLAGS"
+source ../postfix/SlackBuild
