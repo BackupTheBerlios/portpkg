@@ -4,13 +4,14 @@ TMP=${TMP:-/tmp}
 PKG=$TMP/package-$NAME
 rm -rf $PKG
 
-VERSION=0.38test13
+VERSION=0.38test14
 ARCH=noarch
-BUILD=2hnaz
+BUILD=3hnaz
 
 # directories
 mkdir -p $PKG/etc/portpkg/plugins
 mkdir -p $PKG/usr/bin
+mkdir -p $PKG/usr/lib/portpkg
 mkdir -p $PKG/usr/man/man1
 mkdir -p $PKG/var/log/portpkg
 mkdir -p $PKG/var/log/setup
@@ -32,6 +33,9 @@ sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 install -m 755 $CWD/pp-config $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
+
+# wrappers
+install -m 755 $CWD/make-wrapper $PKG/usr/lib/portpkg/make
 
 # integrate pp-config into pkgtool
 ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg

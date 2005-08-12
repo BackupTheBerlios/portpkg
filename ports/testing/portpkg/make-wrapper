@@ -1,0 +1,26 @@
+#!/bin/sh
+##
+## make wrapper for customized make calls in portpkg.
+## written by jweiner <hnaz@we-are-root.org> 2005
+
+# save this here
+wrargs="$@"
+
+# get portpkg for variable settings
+# and set $MAKEOPTS
+source `which portpkg` || exit 1
+eval `grep ^MAKE_OPTS= $CFG_DIR/local.conf`
+
+# do not make install targets parallel
+case "$wrargs" in
+	*install*)	myflags="`echo $MAKE_OPTS | sed -r 's,-j[ 0-9]+,-j1,'`";;
+	*)		myflags="$MAKE_OPTS";;
+esac
+
+# show what we do
+row "make-wrapper ($myflags)"
+
+# finally run make
+cmd="/usr/bin/make $myflags"
+[ "$wrargs" ] && cmd="$cmd $wrargs"
+$cmd

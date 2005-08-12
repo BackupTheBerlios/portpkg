@@ -242,6 +242,19 @@ If unsure choose 'default'." 0 0 0 \
   esac
 }
 
+makeopts()
+{
+  heading="MAKE CUSTOMIZATION"
+  dialog --title "$heading" --inputbox \
+"You can customize the make-calls in SlackBuild and add options to them \
+like parallel jobs or others (see make(1)). \
+If you have a single-CPU you are recommended to use -j2 here." 0 0 "$MAKE_OPTS" 2>$t/res || exit
+  MAKE_OPTS=`cat $t/res`
+  sed -i "/^MAKE_OPTS=/d" $CFG_DIR/local.conf
+  [ "$MAKE_OPTS" ] || return 0
+  echo "MAKE_OPTS=\"$MAKE_OPTS\"" >> $CFG_DIR/local.conf
+} 
+
 last="target"
 while true; do 
   dialog --title "PORTPKG-CONFIGURATION" \
@@ -253,6 +266,7 @@ Select what you want to configure:" 0 0 0 \
   maintain "Set your tag string" \
   output "Set output level" \
   optimise "Set processor optimising" \
+  makeopts "Set custom make options" \
   dependencies "Set dependency handling" 2>$t/res || break
 #  mirrors "Set mirrors for downloads" \
   last=`cat $t/res`

@@ -500,8 +500,11 @@ build_pkg()
       warn "If this fails, please report this as a bug to the maintainer!"
     fi
 
+    # expand PATH for our wrapper(s)
+    PATH=/usr/lib/portpkg:$PATH
+
     # execute SlackBuild
-     if ! [ -f $path/no-fakeroot ] && has_prog fakeroot; then
+    if ! [ -f $path/no-fakeroot ] && has_prog fakeroot; then
       # run fakerooted SlackBuild as nobody
       local build="su nobody -c \"ARCH=$ARCH $cflags_var=\\\"$CFLAGS\\\" \
                    HOME=$tmp TMPDIR=$tmp TMP=$tmp PATH=\$PATH:/sbin \
