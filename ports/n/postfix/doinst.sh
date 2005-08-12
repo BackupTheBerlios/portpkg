@@ -57,4 +57,3 @@ fi
 ( echo -n "Setting up config: myhostname and mydomain" )
 ( /usr/sbin/postconf -e myhostname=`/bin/hostname -f` ; /usr/sbin/postconf -e mydomain=`/bin/hostname -d`)
 ( cd etc/postfix ; ./post-install command_directory=/usr/sbin/ first-install-reminder )
-
