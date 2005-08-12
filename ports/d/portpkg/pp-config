@@ -216,7 +216,7 @@ If unsure choose 'default'." 0 0 0 \
       sed -i "/^CFLAGS=/d" $CFG_DIR/local.conf
       if [ `cat $t/menu` == optimise ]; then
         echo "ARCH=`arch`"
-        echo "CFLAGS=\"-O2 -march=`arch` -mcpu=`cpu`\""
+        echo "CFLAGS=\"-O2 -march=`arch` -mtune=`cpu`\""
       fi >>$CFG_DIR/local.conf;;
   esac
 }
