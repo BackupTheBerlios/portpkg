@@ -1,25 +1,26 @@
 VERSION=0.95
-ARCH=i486
-BUILD=3tom
+ARCH=${ARCH:-i486}
+BUILD=4hnaz
 
-# don't work properly, removed :(
-CFLAGS=""
+CFLAGS="$SLKCFLAGS"
 
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=/tmp/package-$NAME
+
 rm -rf $PKG
 mkdir -p $PKG/usr
 
-cd /tmp || exit 1
+cd $TMP || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
-./configure.gnu --prefix=/usr || exit 1
-#./Configure \
-#  -ders -O -D gtkversion=2 \
-#  -Dccflags="-march=i486 -mcpu=i686" \
-#  -Doptimize="-O2" || exit 1
+./Configure -d -e -s \
+	-Dprefix="/usr" \
+	-Dccflags="$SLKCFLAGS" \
+	-Doptimize=" " \
+	-Dofficial="true" \
+	-Dgtkversion="2" || exit 1
 make || exit 1
 make install INSTALL_PREFIX=$PKG || exit 1
 chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
