@@ -193,6 +193,17 @@ cpu()
 
 optimise()
 {
+  # get gcc-version for gcc-3.3.X from Slackware 10.1 uses -mcpu while
+  # later releases use -mtune
+  gccver="`gcc -v 2>&1 | awk '/gcc version/ { print $3 }'`"
+  case $gccver in
+    3.4*)       # the usage of -mcpu keeps gcc-3.4.X complaining about
+		# deprecation of this flag.
+                mycpuflag="-mtune";;
+    *)          # for all others, we better use this.
+                mycpuflag="-mcpu";;
+  esac       
+
   heading="OPTIMISATION SETTINGS"
   case `arch` in
     s390|x86_64)
@@ -216,7 +227,7 @@ If unsure choose 'default'." 0 0 0 \
       sed -i "/^CFLAGS=/d" $CFG_DIR/local.conf
       if [ `cat $t/menu` == optimise ]; then
         echo "ARCH=`arch`"
-        echo "CFLAGS=\"-O2 -march=`arch` -mtune=`cpu`\""
+        echo "CFLAGS=\"-O2 -march=`arch` ${mycpuflag}=`cpu`\""
       fi >>$CFG_DIR/local.conf;;
   esac
 }

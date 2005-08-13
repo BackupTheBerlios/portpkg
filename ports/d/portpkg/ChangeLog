@@ -1,3 +1,9 @@
+2005-08013 23:18  hnaz
+
+	* pp-config: Use -mtune only if we have gcc 3.4. This keeps us
+	  compatible with Slack 10.1. Rerun pp-config if having problems with
+	  complaints about unknown gcc options.
+
 2005-08-12 07:19  hnaz
 
 	* pp-config: Changed -mcpu to -mtune.
