@@ -1,0 +1,49 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=7.0
+ARCH=i686
+BUILD=1hnaz
+
+rm -rf $PKG
+
+# Framework
+mkdir -p $PKG/usr/bin
+mkdir -p $PKG/usr/lib/acroread
+
+cd $TMP
+tar xzvf $CWD/AdbeRdr70_linux_enu.tar.gz
+cd AdobeReader
+chown -R root.root .
+cd $PKG/usr/lib/acroread
+# unpack platform independent stuff
+tar fxv $TMP/AdobeReader/COMMON.TAR
+# unpack linux stuff
+tar fxv $TMP/AdobeReader/ILINXR.TAR
+cd $PKG/usr/bin
+ln -sf ../lib/acroread/bin/acroread
+cd $TMP/AdobeReader
+
+chown -R root.bin $PKG/usr/bin || true
+# no stripping!
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  LICREAD.TXT README $PKG/usr/lib/acroread/Browser/Browser_Plugin_HowTo.txt \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+# not just docs, fix all dirs
+#find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG -type d -exec chmod 755 {} \;
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/AdobeReader
+  rm -rf $PKG
+fi
