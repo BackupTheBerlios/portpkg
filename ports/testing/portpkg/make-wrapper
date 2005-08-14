@@ -27,6 +27,6 @@ esac
 $PARAMAKE || no_para 
 
 # finally run make
-cmd="/usr/bin/make $MAKEOPTS"
+cmd="/usr/bin/make $MAKE_OPTS"
 [ "$wrargs" ] && cmd="$cmd $wrargs"
 $cmd
