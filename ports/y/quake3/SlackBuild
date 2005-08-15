@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.32b
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=2hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -22,9 +22,11 @@ mkdir -p $PKG/usr/{bin,games/quake3,doc/quake3-$VERSION}
 mkdir -p $TMP/quake3-$VERSION
 cd $TMP/quake3-$VERSION || exit 1
 tail -n +356 $CWD/linuxq3apoint-1.32b-3.x86.run 2> /dev/null | tar --no-same-owner -xzf - || exit 1
-cp -a baseq3 missionpack pb $PKG/usr/games/quake3
+cp -a Docs baseq3 missionpack pb $PKG/usr/games/quake3
 cp -a bin/Linux/x86/{q3ded,quake3.x86} $PKG/usr/games/quake3
 cp -r CHANGES-1.32.txt Docs Q3A_EULA.txt README-linux.txt $PKG/usr/doc/quake3-$VERSION
+cp -a CHANGES-1.32.txt INSTALL Q3A_EULA.txt README-Id-7-26-01.html REAME-linux.txt \
+  $PKG/usr/games/quake3
 cat quake3.xpm > $PKG/usr/games/quake3/quake3.xpm
 
 # create wrappers
@@ -33,14 +35,14 @@ cat quake3.xpm > $PKG/usr/games/quake3/quake3.xpm
 # quake3 dedicated server wrapper
 # written by jweiner for portpkg
 cd /usr/games/quake3
-./q3ded
+./q3ded $*
 exit 0
 EOF
   cat << EOF > quake3
 # quake3 wrapper
 # written by jweiner for portpkg
 cd /usr/games/quake3
-./quake3.x86
+./quake3.x86 $*
 exit 0
 EOF
 )
