@@ -49,6 +49,8 @@ EOF
 
 chown -R root:bin $PKG/usr/bin
 chmod 755 $PKG/usr/bin/*
+# wtf are those perms?!
+chmod 755 $PKG/usr/games/quake3/Docs/PunkBuster
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 mkdir -p $PKG/install
