@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.3
+VERSION=1.4.4
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -38,7 +38,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 )
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README README.dos README.gsasl README.hpux README.win32 THANKS \
+  AUTHORS COPYING ChangeLog NEWS README README.dos README.win32 THANKS \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
