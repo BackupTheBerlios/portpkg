@@ -399,7 +399,7 @@ update_meta_info()
   fi
 
   # now generate new "requires" file
-  cat $path/requires $t/new_req >$t/requires
+  cat $path/requires $t/new_req >$t/requires 2> /dev/null
   sed -i "/^# opt/d" $t/requires
   cat $t/old_opt $t/new_opt | xargs -r -l echo "# optional:" >>$t/requires
   sort -uo $t/requires $t/requires
