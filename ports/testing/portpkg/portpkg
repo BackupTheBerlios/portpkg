@@ -66,7 +66,7 @@ export_opt=""
 
 # these variables will be set by get_info() (functions using "current port")
 package="" name="" group="" version=""
-script="" path="" description="" requires="" optional="" sources="" uses=""
+script="" path="" description="" requires="" optional="" sources="" uses="" blocks=""
 pkg_file="" maintain="" tmp="" products=""
 
 # rel   version-arch-build      "1.0-i486-3"
@@ -244,6 +244,7 @@ get_info() # pkgex
   optional=`{ grep -sve ^# -e ^$ $path/optional
               grep -s "^# opt" $path/requires | rev | cut -d " " -f 1 | rev; } | sort -u`
   sources=`grep -sve ^# -e ^$ $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+  blocks=`grep -sve ^# -e ^$ $path/blocks | sort -u`
 
   # check out "use"-list
   $NO_REQS && uses="" || uses=`ls_use $(regex $optional) | sort -u`
@@ -602,11 +603,24 @@ check_reqs()
   return 0
 }
 
+check_blocks() {
+  for block in $blocks; do
+    if [ "`ls_inst $(regex $block) | head -n 1`" ]; then
+      # we have a blocking package installed, exit!
+      error "$block is blocking $name. Please uninstall first!"
+      return 1
+    fi
+  done
+}
+
 # really (re)install/upgrade current port
 add_pkg()
 {
   local t=`mktemp -d`
   has_info || die
+
+  # check blocking packages
+  check_blocks || return 1
 
   # requirements check
   $NO_REQS || check_reqs || return 1

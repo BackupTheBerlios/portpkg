@@ -24,9 +24,15 @@ case "$wrargs" in
 	*install*)	no_para;;
 esac
 
+<<<<<<< make-wrapper
 $PARAMAKE || no_para 
+
+=======
+$PARAMAKE || no_para 
+>>>>>>> 1.4
 
 # finally run make
 cmd="/usr/bin/make $MAKE_OPTS"
 [ "$wrargs" ] && cmd="$cmd $wrargs"
+echo $cmd
 $cmd

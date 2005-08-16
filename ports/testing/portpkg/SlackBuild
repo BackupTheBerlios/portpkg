@@ -4,9 +4,9 @@ TMP=${TMP:-/tmp}
 PKG=$TMP/package-$NAME
 rm -rf $PKG
 
-VERSION=0.38test14
+VERSION=0.38test15
 ARCH=noarch
-BUILD=7hnaz
+BUILD=1hnaz
 
 # directories
 mkdir -p $PKG/etc/portpkg/plugins
