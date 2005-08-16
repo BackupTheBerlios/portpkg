@@ -59,7 +59,7 @@ output=/dev/null
 declare \
   ignore mirrors exclude \
   package name group \
-  script description requires optional size u_size sources pkg_file \
+  script description requires optional blocks size u_size sources pkg_file \
   maintain slot_in pseudo no_fakeroot
 
 # listers
@@ -204,6 +204,7 @@ get_info() # pkgex
   requires=`grep -sv ^# $path/requires`
   optional=`grep -sv ^# $path/optional`
   sources=`grep -sv ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+  blocks=`grep -sve ^# -e ^$ $path/blocks | sort -u`
 
   # info about cached .tgz-packages
   pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
@@ -275,6 +276,16 @@ check_reqs()
   done
   debug "check_reqs(): finished: $package"
   return 0
+}
+
+check_blocks() {
+  for block in $blocks; do
+    if [ "`ls_inst $(regex $block) | head -n 1`" ]; then
+      # we have a blocking package installed, exit!
+      error "$block is blocking $name. Please uninstall first!"
+      return 1
+    fi
+  done
 }
 
 maintainer_mode()
