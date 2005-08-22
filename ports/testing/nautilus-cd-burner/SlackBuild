@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.11.4
+VERSION=2.11.6
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -30,7 +30,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \   
+  --disable-static \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
