@@ -1,24 +1,11 @@
-#!/bin/sh
-#############################
-## Build script for: Squid
-## Original Creator: jmedina@tuxjm.net <http://www.tuxjm.net>
-##
-## Modified by: Stefano Stabellini
-## stafano@stabellini.net
-##
-
-# Set initial variables
+TMP=${TMP:-/tmp}
 CWD=`pwd`
-if [ "$TMP" = "" ]; then
-  TMP=/tmp
-fi
-PKG=$TMP/package-squid
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
 
-NAME=squid
-#VERSION=2.5.STABLE7
 VERSION=2.5.STABLE9
-ARCH=x86_64
-BUILD=1stb
+ARCH=${ARCH:-i486}
+BUILD=2hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -45,7 +32,7 @@ chown -R root.root .
 find . -perm 444 -exec chmod 644 {} \;
 find . -perm 777 -exec chmod 755 {} \;
 for patch in $CWD/patches/squid* ; do
-  zcat $patch | patch -p1 --verbose
+  zcat $patch | patch -p1 -E
 done
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -84,6 +71,11 @@ install -m 755 $CWD/squid.init $PKG/etc/rc.d/rc.squid
 mkdir -p $PKG/var/spool/squid
 chmod 750 $PKG/var/spool/squid
 chmod 750 $PKG/var/log/squid
+
+# Prevent config override
+for conf in $PKG/etc/squid/*.conf; do
+  mv $conf ${conf}.new
+done
 
 # Make symlink for the default errors directory
 (cd $PKG/etc/squid
