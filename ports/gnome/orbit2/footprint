@@ -1,110 +1,97 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         690 install/doinst.sh
--rw-r--r-- root/root         494 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         6404 usr/bin/ior-decode-2
--rwxr-xr-x root/bin         6300 usr/bin/linc-cleanup-sockets
--rwxr-xr-x root/bin       110612 usr/bin/orbit-idl-2
--rwxr-xr-x root/bin         2617 usr/bin/orbit2-config
--rwxr-xr-x root/bin         5928 usr/bin/typelib-dump
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/orbit2-2.12.1/
--rw-r--r-- root/root         650 usr/doc/orbit2-2.12.1/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/orbit2-2.12.1/COPYING
--rw-r--r-- root/root      242226 usr/doc/orbit2-2.12.1/ChangeLog
--rw-r--r-- root/root        1370 usr/doc/orbit2-2.12.1/HACKING
--rw-r--r-- root/root       11064 usr/doc/orbit2-2.12.1/NEWS
--rw-r--r-- root/root         624 usr/doc/orbit2-2.12.1/README
--rw-r--r-- root/root        3160 usr/doc/orbit2-2.12.1/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/ORBitservices/
--rw-r--r-- root/root       45762 usr/include/orbit-2.0/ORBitservices/CosNaming.h
--rw-r--r-- root/root         314 usr/include/orbit-2.0/ORBitservices/CosNaming_impl.h
--rw-r--r-- root/root        1413 usr/include/orbit-2.0/ORBitservices/orbit-imodule.h
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/orbit-idl/
--rw-r--r-- root/root        2023 usr/include/orbit-2.0/orbit-idl/orbit-idl-backend.h
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/orbit/
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/orbit/dynamic/
--rw-r--r-- root/root      100871 usr/include/orbit-2.0/orbit/dynamic/dynamic-defs.h
--rw-r--r-- root/root         192 usr/include/orbit-2.0/orbit/dynamic/dynamic.h
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/orbit/orb-core/
--rw-r--r-- root/root        2732 usr/include/orbit-2.0/orbit/orb-core/allocators.h
--rw-r--r-- root/root         234 usr/include/orbit-2.0/orbit/orb-core/corba-any-type.h
--rw-r--r-- root/root        1554 usr/include/orbit-2.0/orbit/orb-core/corba-any.h
--rw-r--r-- root/root         277 usr/include/orbit-2.0/orbit/orb-core/corba-context-type.h
--rw-r--r-- root/root         751 usr/include/orbit-2.0/orbit/orb-core/corba-context.h
--rw-r--r-- root/root      516950 usr/include/orbit-2.0/orbit/orb-core/corba-defs.h
--rw-r--r-- root/root         451 usr/include/orbit-2.0/orbit/orb-core/corba-environment-type.h
--rw-r--r-- root/root        2033 usr/include/orbit-2.0/orbit/orb-core/corba-environment.h
--rw-r--r-- root/root         674 usr/include/orbit-2.0/orbit/orb-core/corba-nvlist.h
--rw-r--r-- root/root         799 usr/include/orbit-2.0/orbit/orb-core/corba-object-type.h
--rw-r--r-- root/root        1746 usr/include/orbit-2.0/orbit/orb-core/corba-object.h
--rw-r--r-- root/root        2931 usr/include/orbit-2.0/orbit/orb-core/corba-orb-type.h
--rw-r--r-- root/root         725 usr/include/orbit-2.0/orbit/orb-core/corba-orb.h
--rw-r--r-- root/root         136 usr/include/orbit-2.0/orbit/orb-core/corba-pobj.h
--rw-r--r-- root/root         428 usr/include/orbit-2.0/orbit/orb-core/corba-policy-type.h
--rw-r--r-- root/root         626 usr/include/orbit-2.0/orbit/orb-core/corba-string.h
--rw-r--r-- root/root         326 usr/include/orbit-2.0/orbit/orb-core/corba-typecode-type.h
--rw-r--r-- root/root        4393 usr/include/orbit-2.0/orbit/orb-core/corba-typecode.h
--rw-r--r-- root/root      209088 usr/include/orbit-2.0/orbit/orb-core/iop-defs.h
--rw-r--r-- root/root         542 usr/include/orbit-2.0/orbit/orb-core/orb-core-types.h
--rw-r--r-- root/root         542 usr/include/orbit-2.0/orbit/orb-core/orb-core.h
--rw-r--r-- root/root        1745 usr/include/orbit-2.0/orbit/orb-core/orb-types.h
--rw-r--r-- root/root       33128 usr/include/orbit-2.0/orbit/orb-core/orbit-interface.h
--rw-r--r-- root/root        1602 usr/include/orbit-2.0/orbit/orb-core/orbit-object.h
--rw-r--r-- root/root        5088 usr/include/orbit-2.0/orbit/orb-core/orbit-small.h
--rw-r--r-- root/root         868 usr/include/orbit-2.0/orbit/orbit-config.h
--rw-r--r-- root/root         239 usr/include/orbit-2.0/orbit/orbit-types.h
--rw-r--r-- root/root         735 usr/include/orbit-2.0/orbit/orbit.h
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/orbit/poa/
--rw-r--r-- root/root        3950 usr/include/orbit-2.0/orbit/poa/orbit-adaptor.h
--rw-r--r-- root/root        2713 usr/include/orbit-2.0/orbit/poa/poa-basics.h
--rw-r--r-- root/root       62084 usr/include/orbit-2.0/orbit/poa/poa-defs.h
--rw-r--r-- root/root         472 usr/include/orbit-2.0/orbit/poa/poa-policy.h
--rw-r--r-- root/root        2642 usr/include/orbit-2.0/orbit/poa/poa-types.h
--rw-r--r-- root/root        6243 usr/include/orbit-2.0/orbit/poa/poa.h
--rw-r--r-- root/root         328 usr/include/orbit-2.0/orbit/poa/portableserver-current-type.h
--rw-r--r-- root/root        1624 usr/include/orbit-2.0/orbit/poa/portableserver-poa-type.h
-drwxr-xr-x root/root           0 usr/include/orbit-2.0/orbit/util/
--rw-r--r-- root/root        1215 usr/include/orbit-2.0/orbit/util/basic_types.h
--rw-r--r-- root/root         559 usr/include/orbit-2.0/orbit/util/orbit-genrand.h
--rw-r--r-- root/root         779 usr/include/orbit-2.0/orbit/util/orbit-util.h
-drwxr-xr-x root/root           0 usr/lib/
--rwxr-xr-x root/root         959 usr/lib/libORBit-2.la
--rwxr-xr-x root/root      346948 usr/lib/libORBit-2.so.0.0.0
--rwxr-xr-x root/root        1051 usr/lib/libORBit-imodule-2.la
--rwxr-xr-x root/root       41444 usr/lib/libORBit-imodule-2.so.0.0.0
--rwxr-xr-x root/root        1036 usr/lib/libORBitCosNaming-2.la
--rwxr-xr-x root/root       17412 usr/lib/libORBitCosNaming-2.so.0.0.0
--rw-r--r-- root/root       21876 usr/lib/libname-server-2.a
-drwxr-xr-x root/root           0 usr/lib/orbit-2.0/
--rwxr-xr-x root/root        1025 usr/lib/orbit-2.0/Everything_module.la
--rwxr-xr-x root/root       27256 usr/lib/orbit-2.0/Everything_module.so
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         343 usr/lib/pkgconfig/ORBit-2.0.pc
--rw-r--r-- root/root         300 usr/lib/pkgconfig/ORBit-CosNaming-2.0.pc
--rw-r--r-- root/root         306 usr/lib/pkgconfig/ORBit-idl-2.0.pc
--rw-r--r-- root/root         301 usr/lib/pkgconfig/ORBit-imodule-2.0.pc
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/aclocal/
--rw-r--r-- root/root        8881 usr/share/aclocal/ORBit2.m4
-drwxr-xr-x root/root           0 usr/share/gtk-doc/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/ORBit2/
--rw-r--r-- root/root       10400 usr/share/gtk-doc/html/ORBit2/ORBit2-orbit2-allocators.html
--rw-r--r-- root/root       38519 usr/share/gtk-doc/html/ORBit2/ORBit2-orbit2-small.html
--rw-r--r-- root/root        4691 usr/share/gtk-doc/html/ORBit2/ORBit2.devhelp
--rw-r--r-- root/root        1940 usr/share/gtk-doc/html/ORBit2/general.html
--rw-r--r-- root/root         654 usr/share/gtk-doc/html/ORBit2/home.png
--rw-r--r-- root/root        1378 usr/share/gtk-doc/html/ORBit2/index.html
--rw-r--r-- root/root        4255 usr/share/gtk-doc/html/ORBit2/index.sgml
--rw-r--r-- root/root         459 usr/share/gtk-doc/html/ORBit2/left.png
--rw-r--r-- root/root         472 usr/share/gtk-doc/html/ORBit2/right.png
--rw-r--r-- root/root         820 usr/share/gtk-doc/html/ORBit2/style.css
--rw-r--r-- root/root         406 usr/share/gtk-doc/html/ORBit2/up.png
-drwxr-xr-x root/root           0 usr/share/idl/
-drwxr-xr-x root/root           0 usr/share/idl/orbit-2.0/
--rw-r--r-- root/root        2418 usr/share/idl/orbit-2.0/CosNaming.idl
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/ior-decode-2
+-rwxr-xr-x  root/bin   usr/bin/linc-cleanup-sockets
+-rwxr-xr-x  root/bin   usr/bin/orbit-idl-2
+-rwxr-xr-x  root/bin   usr/bin/orbit2-config
+-rwxr-xr-x  root/bin   usr/bin/typelib-dump
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/orbit2-2.12.3/
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/COPYING
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/HACKING
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/INSTALL
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/NEWS
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/README
+-rw-r--r--  root/root  usr/doc/orbit2-2.12.3/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/orbit-2.0/
+drwxr-xr-x  root/root  usr/include/orbit-2.0/ORBitservices/
+-rw-r--r--  root/root  usr/include/orbit-2.0/ORBitservices/CosNaming.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/ORBitservices/CosNaming_impl.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/ORBitservices/orbit-imodule.h
+drwxr-xr-x  root/root  usr/include/orbit-2.0/orbit-idl/
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit-idl/orbit-idl-backend.h
+drwxr-xr-x  root/root  usr/include/orbit-2.0/orbit/
+drwxr-xr-x  root/root  usr/include/orbit-2.0/orbit/dynamic/
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/dynamic/dynamic-defs.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/dynamic/dynamic.h
+drwxr-xr-x  root/root  usr/include/orbit-2.0/orbit/orb-core/
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/allocators.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-any-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-any.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-context-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-context.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-defs.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-environment-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-environment.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-nvlist.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-object-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-object.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-orb-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-orb.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-pobj.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-policy-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-string.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-typecode-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/corba-typecode.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/iop-defs.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/orb-core-types.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/orb-core.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/orb-types.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/orbit-interface.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/orbit-object.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orb-core/orbit-small.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orbit-config.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orbit-types.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/orbit.h
+drwxr-xr-x  root/root  usr/include/orbit-2.0/orbit/poa/
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/orbit-adaptor.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/poa-basics.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/poa-defs.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/poa-policy.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/poa-types.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/poa.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/portableserver-current-type.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/poa/portableserver-poa-type.h
+drwxr-xr-x  root/root  usr/include/orbit-2.0/orbit/util/
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/util/basic_types.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/util/orbit-genrand.h
+-rw-r--r--  root/root  usr/include/orbit-2.0/orbit/util/orbit-util.h
+drwxr-xr-x  root/root  usr/lib/
+-rwxr-xr-x  root/root  usr/lib/libORBit-2.la
+-rwxr-xr-x  root/root  usr/lib/libORBit-2.so.0.0.0
+-rwxr-xr-x  root/root  usr/lib/libORBit-imodule-2.la
+-rwxr-xr-x  root/root  usr/lib/libORBit-imodule-2.so.0.0.0
+-rwxr-xr-x  root/root  usr/lib/libORBitCosNaming-2.la
+-rwxr-xr-x  root/root  usr/lib/libORBitCosNaming-2.so.0.0.0
+-rw-r--r--  root/root  usr/lib/libname-server-2.a
+drwxr-xr-x  root/root  usr/lib/orbit-2.0/
+-rwxr-xr-x  root/root  usr/lib/orbit-2.0/Everything_module.la
+-rwxr-xr-x  root/root  usr/lib/orbit-2.0/Everything_module.so
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/ORBit-2.0.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/ORBit-CosNaming-2.0.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/ORBit-idl-2.0.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/ORBit-imodule-2.0.pc
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/aclocal/
+-rw-r--r--  root/root  usr/share/aclocal/ORBit2.m4
+drwxr-xr-x  root/root  usr/share/idl/
+drwxr-xr-x  root/root  usr/share/idl/orbit-2.0/
+-rw-r--r--  root/root  usr/share/idl/orbit-2.0/CosNaming.idl
