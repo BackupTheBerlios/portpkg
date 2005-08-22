@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.6.2
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -23,6 +23,7 @@ cd $TMP
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2
 cd $NAME-$VERSION
 chown -R root.root .
+#=configure
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -31,7 +32,9 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --enable-animation \
   $ARCH-slackware-linux
+#=configure
 make
 make install DESTDIR=$PKG
 rm -rfv $PKG/usr/info/dir
