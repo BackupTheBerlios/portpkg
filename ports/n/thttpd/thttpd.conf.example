@@ -1,0 +1,33 @@
+# thttpd example configuration
+# copy this to /etc/thttpd/thttpd.conf
+# see thttpd(1) for more options
+
+# run in debugmode
+#debug
+
+# directory that contains the www documents
+dir=/var/www
+
+# hostname to bind to (comment out to bind all interfaces)
+#host=foobar.org
+
+# port to run on
+port=8080
+
+# user to switch after startup
+user=nobody
+
+# wildcard pattern for cgi programs
+cgipat=**.cgi
+
+# throttling config file
+#throttles=/etc/thttpd/throttle.conf
+
+# file to write the logs to
+logfile=/var/log/thttpd.log
+
+# use chroot()
+# Be careful with this when using this with CGI,
+# the interpreters have to be available in the
+# chroot environment!
+#chroot

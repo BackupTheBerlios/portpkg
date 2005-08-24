@@ -1,0 +1,27 @@
+#!/bin/sh
+# Thttpd init script
+# written by jweiner <hnaz@we-are-root.org>
+
+thttpd_start() {
+  if [ -x /usr/sbin/thttpd ]; then
+    echo "Starting THTTPD:  /usr/sbin/thttpd"
+    /usr/sbin/thttpd -C /etc/thttpd/thttpd.conf
+  fi
+}
+
+thttpd_stop() {
+  killall thttpd
+}
+
+thttpd_restart() {
+  thttpd_stop
+  sleep 1
+  thttpd_start
+}
+
+case $1 in
+  start)	thttpd_start;;
+  stop)		thttpd_stop;;
+  restart)	thttpd_restart;;
+  *)		echo "usage: $0 start|stop|restart"
+esac
