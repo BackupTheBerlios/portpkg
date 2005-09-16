@@ -1,9 +1,14 @@
+# fakeroot
+#
+# Fri Sep 16 2005: Johannes Weiner
+# Update and removed empty files (README NEWS ChangeLog).
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.2
+VERSION=1.5.1
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -42,7 +47,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 )
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS BUGS COPYING ChangeLog NEWS README README.fake \
+  AUTHORS BUGS COPYING README.fake \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
