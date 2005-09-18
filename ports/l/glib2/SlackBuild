@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.10.0
+VERSION=2.8.0
 ARCH=${ARCH:-i486}
-BUILD=2hnaz
+BUILD=1hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -20,8 +20,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/glib-$VERSION.tar.bz2
+cd glib-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -44,18 +44,17 @@ chown -R root.bin $PKG/usr/bin || true
 gzip -9 $PKG/usr/man/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS README README.win32 TODO docs/ \
+  AUTHORS COPYING ChangeLog INSTALL INSTALL.in NEWS README README.in README.win32 docs/ \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/glib-$VERSION
   rm -rf $PKG
 fi
