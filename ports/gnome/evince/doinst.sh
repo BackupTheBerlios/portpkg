@@ -4,13 +4,6 @@ gconf() {
     usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
   fi
 }
-gconf etc/gconf/schemas/evince-thumbnailer-djvu.schemas
-gconf etc/gconf/schemas/evince-thumbnailer-dvi.schemas
-gconf etc/gconf/schemas/evince-thumbnailer.schemas
-gconf etc/gconf/schemas/evince.schemas
-if [ -x usr/bin/scrollkeeper-update ]; then
-  usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1
-fi
 if [ -x usr/bin/update-desktop-database ]; then
   usr/bin/update-desktop-database >/dev/null 2>&1
 fi
