@@ -1,13 +1,11 @@
-*** initng-0.1.5/tools/install_service.c.orig	2005-07-24 19:06:34.000000000 +0200
---- initng-0.1.5/tools/install_service.c	2005-07-29 23:26:07.000000000 +0200
-*************** static const char *probe_distribution(vo
-*** 47,52 ****
---- 47,54 ----
-          return ("debian");
-      if (is_file("/etc/gentoo-release"))
-          return ("gentoo");
-+     if (is_file("/etc/slackware-version"))
-+         return ("slackware");
-      return (NULL);
-  }
-  
+--- initng-0.1.8/tools/install_service.c.orig	2005-08-17 19:24:25.000000000 +0200
++++ initng-0.1.8/tools/install_service.c	2005-08-17 19:29:46.000000000 +0200
+@@ -64,6 +64,8 @@
+         return ("gentoo");
+     if (is_file("/etc/fedora-release"))
+         return ("fedora");
++    if (is_file("/etc/slackware-version"))
++        return ("slackware");
+     D_("Probe failed\n");
+     return ("unknown");
+ }

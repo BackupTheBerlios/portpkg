@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.1.5
+VERSION=0.1.8
 ARCH=${ARCH:-i486}
-BUILD=2lem
+BUILD=1lem
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -36,12 +36,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   $ARCH-slackware-linux
 #=configure
-#=install
 make
-#repair silly 000 permissions
-chmod 644 initfiles/net/net.i
-make install DESTDIR=$PKG
-#=install
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
