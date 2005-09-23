@@ -1,108 +1,138 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
-drwxr-xr-x root/root           0 etc/gconf/
-drwxr-xr-x root/root           0 etc/gconf/schemas/
--rw-r--r-- root/root       10365 etc/gconf/schemas/goobox.schemas
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         324 install/doinst.sh
--rw-r--r-- root/root          15 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin       399384 usr/bin/goobox
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/goobox-0.7.2/
--rw-rw-r-- root/root          40 usr/doc/goobox-0.7.2/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/goobox-0.7.2/COPYING
--rw-rw-r-- root/root       15555 usr/doc/goobox-0.7.2/ChangeLog
--rw-r--r-- root/root        9240 usr/doc/goobox-0.7.2/INSTALL
--rw-rw-r-- root/root        2988 usr/doc/goobox-0.7.2/NEWS
--rw-rw-r-- root/root         711 usr/doc/goobox-0.7.2/README
--rw-rw-r-- root/root           0 usr/doc/goobox-0.7.2/TODO
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/bonobo/
-drwxr-xr-x root/root           0 usr/lib/bonobo/servers/
--rw-r--r-- root/root        4077 usr/lib/bonobo/servers/GNOME_Goobox.server
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/application-registry/
--rw-r--r-- root/root         110 usr/share/application-registry/goobox.applications
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root        1713 usr/share/applications/goobox.desktop
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/help/
-drwxr-xr-x root/root           0 usr/share/gnome/help/goobox/
-drwxr-xr-x root/root           0 usr/share/gnome/help/goobox/C/
--rw-r--r-- root/root        6927 usr/share/gnome/help/goobox/C/goobox.xml
--rw-r--r-- root/root        4034 usr/share/gnome/help/goobox/C/legal.xml
-drwxr-xr-x root/root           0 usr/share/goobox/
-drwxr-xr-x root/root           0 usr/share/goobox/glade/
--rw-r--r-- root/root        7297 usr/share/goobox/glade/goo_cover_chooser.glade
--rw-r--r-- root/root       62273 usr/share/goobox/glade/goobox.glade
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/ar/
-drwxr-xr-x root/root           0 usr/share/locale/ar/LC_MESSAGES/
--rw-r--r-- root/root        5710 usr/share/locale/ar/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/bg/
-drwxr-xr-x root/root           0 usr/share/locale/bg/LC_MESSAGES/
--rw-r--r-- root/root       14106 usr/share/locale/bg/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/cs/
-drwxr-xr-x root/root           0 usr/share/locale/cs/LC_MESSAGES/
--rw-r--r-- root/root       10882 usr/share/locale/cs/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/da/
-drwxr-xr-x root/root           0 usr/share/locale/da/LC_MESSAGES/
--rw-r--r-- root/root       10417 usr/share/locale/da/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/el/
-drwxr-xr-x root/root           0 usr/share/locale/el/LC_MESSAGES/
--rw-r--r-- root/root       12742 usr/share/locale/el/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r-- root/root       10337 usr/share/locale/en_CA/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/es/
-drwxr-xr-x root/root           0 usr/share/locale/es/LC_MESSAGES/
--rw-r--r-- root/root       11324 usr/share/locale/es/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/fi/
-drwxr-xr-x root/root           0 usr/share/locale/fi/LC_MESSAGES/
--rw-r--r-- root/root       10583 usr/share/locale/fi/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       10828 usr/share/locale/fr/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/hu/
-drwxr-xr-x root/root           0 usr/share/locale/hu/LC_MESSAGES/
--rw-r--r-- root/root       11090 usr/share/locale/hu/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/ja/
-drwxr-xr-x root/root           0 usr/share/locale/ja/LC_MESSAGES/
--rw-r--r-- root/root       12341 usr/share/locale/ja/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/ko/
-drwxr-xr-x root/root           0 usr/share/locale/ko/LC_MESSAGES/
--rw-r--r-- root/root       11147 usr/share/locale/ko/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/lt/
-drwxr-xr-x root/root           0 usr/share/locale/lt/LC_MESSAGES/
--rw-r--r-- root/root       10987 usr/share/locale/lt/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/nb/
-drwxr-xr-x root/root           0 usr/share/locale/nb/LC_MESSAGES/
--rw-r--r-- root/root        7885 usr/share/locale/nb/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/nl/
-drwxr-xr-x root/root           0 usr/share/locale/nl/LC_MESSAGES/
--rw-r--r-- root/root       10500 usr/share/locale/nl/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/no/
-drwxr-xr-x root/root           0 usr/share/locale/no/LC_MESSAGES/
--rw-r--r-- root/root        7885 usr/share/locale/no/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/pa/
-drwxr-xr-x root/root           0 usr/share/locale/pa/LC_MESSAGES/
--rw-r--r-- root/root        3415 usr/share/locale/pa/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt/
-drwxr-xr-x root/root           0 usr/share/locale/pt/LC_MESSAGES/
--rw-r--r-- root/root       10034 usr/share/locale/pt/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root       13405 usr/share/locale/ru/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/sv/
-drwxr-xr-x root/root           0 usr/share/locale/sv/LC_MESSAGES/
--rw-r--r-- root/root       10476 usr/share/locale/sv/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r-- root/root        4863 usr/share/locale/zh_CN/LC_MESSAGES/goobox.mo
-drwxr-xr-x root/root           0 usr/share/omf/
-drwxr-xr-x root/root           0 usr/share/omf/goobox/
--rw-r--r-- root/root         932 usr/share/omf/goobox/goobox-C.omf
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        3538 usr/share/pixmaps/goobox.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/goobox.schemas
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/goobox
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/goobox-0.9.92/
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/AUTHORS
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/COPYING
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/ChangeLog
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/INSTALL
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/NEWS
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/README
+-rw-r--r--  root/root  usr/doc/goobox-0.9.92/TODO
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/bonobo/
+drwxr-xr-x  root/root  usr/lib/bonobo/servers/
+-rw-r--r--  root/root  usr/lib/bonobo/servers/GNOME_Goobox.server
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/application-registry/
+-rw-r--r--  root/root  usr/share/application-registry/goobox.applications
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/goobox.desktop
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/goobox/
+drwxr-xr-x  root/root  usr/share/gnome/help/goobox/C/
+-rw-r--r--  root/root  usr/share/gnome/help/goobox/C/goobox.xml
+-rw-r--r--  root/root  usr/share/gnome/help/goobox/C/legal.xml
+drwxr-xr-x  root/root  usr/share/goobox/
+drwxr-xr-x  root/root  usr/share/goobox/glade/
+-rw-r--r--  root/root  usr/share/goobox/glade/goo_cover_chooser.glade
+-rw-r--r--  root/root  usr/share/goobox/glade/goobox.glade
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/goobox.mo
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/goobox/
+-rw-r--r--  root/root  usr/share/omf/goobox/goobox-C.omf
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/goobox.png

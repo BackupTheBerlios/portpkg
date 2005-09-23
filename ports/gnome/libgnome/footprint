@@ -1,299 +1,303 @@
-drwxr-xr-x  root/root  0       ./
-drwxr-xr-x  root/root  0       etc/
-drwxr-xr-x  root/root  0       etc/gconf/
-drwxr-xr-x  root/root  0       etc/gconf/schemas/
--rw-r--r--  root/root  90442   etc/gconf/schemas/desktop_gnome_accessibility_keyboard.schemas
--rw-r--r--  root/root  17026   etc/gconf/schemas/desktop_gnome_accessibility_startup.schemas
--rw-r--r--  root/root  37412   etc/gconf/schemas/desktop_gnome_applications_browser.schemas
--rw-r--r--  root/root  37761   etc/gconf/schemas/desktop_gnome_applications_help_viewer.schemas
--rw-r--r--  root/root  28558   etc/gconf/schemas/desktop_gnome_applications_terminal.schemas
--rw-r--r--  root/root  52048   etc/gconf/schemas/desktop_gnome_applications_window_manager.schemas
--rw-r--r--  root/root  102728  etc/gconf/schemas/desktop_gnome_background.schemas
--rw-r--r--  root/root  11875   etc/gconf/schemas/desktop_gnome_file_views.schemas
--rw-r--r--  root/root  261562  etc/gconf/schemas/desktop_gnome_interface.schemas
--rw-r--r--  root/root  74694   etc/gconf/schemas/desktop_gnome_lockdown.schemas
--rw-r--r--  root/root  25259   etc/gconf/schemas/desktop_gnome_peripherals_keyboard.schemas
--rw-r--r--  root/root  160149  etc/gconf/schemas/desktop_gnome_peripherals_mouse.schemas
--rw-r--r--  root/root  22114   etc/gconf/schemas/desktop_gnome_sound.schemas
--rw-r--r--  root/root  18175   etc/gconf/schemas/desktop_gnome_thumbnailers.schemas
--rw-r--r--  root/root  45832   etc/gconf/schemas/desktop_gnome_typing_break.schemas
-drwxr-xr-x  root/root  0       etc/sound/
-drwxr-xr-x  root/root  0       etc/sound/events/
--rw-r--r--  root/root  19165   etc/sound/events/gnome-2.soundlist
--rw-r--r--  root/root  12552   etc/sound/events/gtk-events-2.soundlist
-drwxr-xr-x  root/root  0       install/
--rw-r--r--  root/root  1329    install/doinst.sh
--rw-r--r--  root/root  147     install/slack-desc
-drwxr-xr-x  root/root  0       usr/
-drwxr-xr-x  root/bin   0       usr/bin/
--rwxr-xr-x  root/bin   4476    usr/bin/gnome-open
-drwxr-xr-x  root/root  0       usr/doc/
-drwxr-xr-x  root/root  0       usr/doc/libgnome-2.10.1/
--rw-r--r--  root/root  257     usr/doc/libgnome-2.10.1/AUTHORS
--rw-r--r--  root/root  150424  usr/doc/libgnome-2.10.1/ChangeLog
--rw-r--r--  root/root  9240    usr/doc/libgnome-2.10.1/INSTALL
--rw-r--r--  root/root  5081    usr/doc/libgnome-2.10.1/NEWS
--rw-r--r--  root/root  70      usr/doc/libgnome-2.10.1/README
-drwxr-xr-x  root/root  0       usr/include/
-drwxr-xr-x  root/root  0       usr/include/libgnome-2.0/
-drwxr-xr-x  root/root  0       usr/include/libgnome-2.0/libgnome/
--rw-r--r--  root/root  12281   usr/include/libgnome-2.0/libgnome/gnome-config.h
--rw-r--r--  root/root  2944    usr/include/libgnome-2.0/libgnome/gnome-exec.h
--rw-r--r--  root/root  1439    usr/include/libgnome-2.0/libgnome/gnome-gconf.h
--rw-r--r--  root/root  2446    usr/include/libgnome-2.0/libgnome/gnome-help.h
--rw-r--r--  root/root  2750    usr/include/libgnome-2.0/libgnome/gnome-i18n.h
--rw-r--r--  root/root  1894    usr/include/libgnome-2.0/libgnome/gnome-init.h
--rw-r--r--  root/root  2330    usr/include/libgnome-2.0/libgnome/gnome-macros.h
--rw-r--r--  root/root  7523    usr/include/libgnome-2.0/libgnome/gnome-program.h
--rw-r--r--  root/root  2038    usr/include/libgnome-2.0/libgnome/gnome-score.h
--rw-r--r--  root/root  1519    usr/include/libgnome-2.0/libgnome/gnome-sound.h
--rw-r--r--  root/root  2190    usr/include/libgnome-2.0/libgnome/gnome-triggers.h
--rw-r--r--  root/root  1701    usr/include/libgnome-2.0/libgnome/gnome-url.h
--rw-r--r--  root/root  3936    usr/include/libgnome-2.0/libgnome/gnome-util.h
--rw-r--r--  root/root  1464    usr/include/libgnome-2.0/libgnome/libgnome.h
--rw-r--r--  root/root  763     usr/include/libgnome-2.0/libgnome/libgnometypebuiltins.h
-drwxr-xr-x  root/root  0       usr/lib/
-drwxr-xr-x  root/root  0       usr/lib/bonobo/
-drwxr-xr-x  root/root  0       usr/lib/bonobo/monikers/
--rwxr-xr-x  root/root  1558    usr/lib/bonobo/monikers/libmoniker_extra_2.la
--rwxr-xr-x  root/root  17640   usr/lib/bonobo/monikers/libmoniker_extra_2.so
-drwxr-xr-x  root/root  0       usr/lib/bonobo/servers/
--rw-r--r--  root/root  18475   usr/lib/bonobo/servers/GNOME_Moniker_std.server
--rwxr-xr-x  root/root  1512    usr/lib/libgnome-2.la
--rwxr-xr-x  root/root  82716   usr/lib/libgnome-2.so.0.1000.1
-drwxr-xr-x  root/root  0       usr/lib/pkgconfig/
--rw-r--r--  root/root  324     usr/lib/pkgconfig/libgnome-2.0.pc
-drwxr-xr-x  root/root  0       usr/share/
-drwxr-xr-x  root/root  0       usr/share/gtk-doc/
-drwxr-xr-x  root/root  0       usr/share/gtk-doc/html/
-drwxr-xr-x  root/root  0       usr/share/gtk-doc/html/libgnome/
--rw-r--r--  root/root  2847    usr/share/gtk-doc/html/libgnome/ch01s02.html
--rw-r--r--  root/root  2774    usr/share/gtk-doc/html/libgnome/ch01s03.html
--rw-r--r--  root/root  2693    usr/share/gtk-doc/html/libgnome/ch01s04.html
--rw-r--r--  root/root  2822    usr/share/gtk-doc/html/libgnome/ch01s05.html
--rw-r--r--  root/root  654     usr/share/gtk-doc/html/libgnome/home.png
--rw-r--r--  root/root  2657    usr/share/gtk-doc/html/libgnome/index.html
--rw-r--r--  root/root  20689   usr/share/gtk-doc/html/libgnome/index.sgml
--rw-r--r--  root/root  459     usr/share/gtk-doc/html/libgnome/left.png
--rw-r--r--  root/root  87301   usr/share/gtk-doc/html/libgnome/libgnome-gnome-config.html
--rw-r--r--  root/root  19739   usr/share/gtk-doc/html/libgnome/libgnome-gnome-exec.html
--rw-r--r--  root/root  5964    usr/share/gtk-doc/html/libgnome/libgnome-gnome-gconf.html
--rw-r--r--  root/root  23136   usr/share/gtk-doc/html/libgnome/libgnome-gnome-help.html
--rw-r--r--  root/root  7570    usr/share/gtk-doc/html/libgnome/libgnome-gnome-i18n.html
--rw-r--r--  root/root  8812    usr/share/gtk-doc/html/libgnome/libgnome-gnome-init.html
--rw-r--r--  root/root  53651   usr/share/gtk-doc/html/libgnome/libgnome-gnome-program.html
--rw-r--r--  root/root  9393    usr/share/gtk-doc/html/libgnome/libgnome-gnome-score.html
--rw-r--r--  root/root  7785    usr/share/gtk-doc/html/libgnome/libgnome-gnome-sound.html
--rw-r--r--  root/root  13130   usr/share/gtk-doc/html/libgnome/libgnome-gnome-triggers.html
--rw-r--r--  root/root  8460    usr/share/gtk-doc/html/libgnome/libgnome-gnome-url.html
--rw-r--r--  root/root  29641   usr/share/gtk-doc/html/libgnome/libgnome-gnome-util.html
--rw-r--r--  root/root  4956    usr/share/gtk-doc/html/libgnome/libgnome-libgnometypebuiltins.html
--rw-r--r--  root/root  21551   usr/share/gtk-doc/html/libgnome/libgnome.devhelp
--rw-r--r--  root/root  3404    usr/share/gtk-doc/html/libgnome/libgnome.html
--rw-r--r--  root/root  472     usr/share/gtk-doc/html/libgnome/right.png
--rw-r--r--  root/root  406     usr/share/gtk-doc/html/libgnome/up.png
-drwxr-xr-x  root/root  0       usr/share/locale/
-drwxr-xr-x  root/root  0       usr/share/locale/am/
-drwxr-xr-x  root/root  0       usr/share/locale/am/LC_MESSAGES/
--rw-r--r--  root/root  1456    usr/share/locale/am/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ar/
-drwxr-xr-x  root/root  0       usr/share/locale/ar/LC_MESSAGES/
--rw-r--r--  root/root  27962   usr/share/locale/ar/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/az/
-drwxr-xr-x  root/root  0       usr/share/locale/az/LC_MESSAGES/
--rw-r--r--  root/root  24588   usr/share/locale/az/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/be/
-drwxr-xr-x  root/root  0       usr/share/locale/be/LC_MESSAGES/
--rw-r--r--  root/root  30898   usr/share/locale/be/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bg/
-drwxr-xr-x  root/root  0       usr/share/locale/bg/LC_MESSAGES/
--rw-r--r--  root/root  32191   usr/share/locale/bg/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bn/
-drwxr-xr-x  root/root  0       usr/share/locale/bn/LC_MESSAGES/
--rw-r--r--  root/root  27210   usr/share/locale/bn/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bs/
-drwxr-xr-x  root/root  0       usr/share/locale/bs/LC_MESSAGES/
--rw-r--r--  root/root  23419   usr/share/locale/bs/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ca/
-drwxr-xr-x  root/root  0       usr/share/locale/ca/LC_MESSAGES/
--rw-r--r--  root/root  24846   usr/share/locale/ca/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/cs/
-drwxr-xr-x  root/root  0       usr/share/locale/cs/LC_MESSAGES/
--rw-r--r--  root/root  23794   usr/share/locale/cs/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/cy/
-drwxr-xr-x  root/root  0       usr/share/locale/cy/LC_MESSAGES/
--rw-r--r--  root/root  23825   usr/share/locale/cy/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/da/
-drwxr-xr-x  root/root  0       usr/share/locale/da/LC_MESSAGES/
--rw-r--r--  root/root  23771   usr/share/locale/da/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/de/
-drwxr-xr-x  root/root  0       usr/share/locale/de/LC_MESSAGES/
--rw-r--r--  root/root  25421   usr/share/locale/de/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/el/
-drwxr-xr-x  root/root  0       usr/share/locale/el/LC_MESSAGES/
--rw-r--r--  root/root  34175   usr/share/locale/el/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/en_CA/
-drwxr-xr-x  root/root  0       usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r--  root/root  22799   usr/share/locale/en_CA/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/en_GB/
-drwxr-xr-x  root/root  0       usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r--  root/root  22759   usr/share/locale/en_GB/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/es/
-drwxr-xr-x  root/root  0       usr/share/locale/es/LC_MESSAGES/
--rw-r--r--  root/root  25489   usr/share/locale/es/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/et/
-drwxr-xr-x  root/root  0       usr/share/locale/et/LC_MESSAGES/
--rw-r--r--  root/root  10721   usr/share/locale/et/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/eu/
-drwxr-xr-x  root/root  0       usr/share/locale/eu/LC_MESSAGES/
--rw-r--r--  root/root  24941   usr/share/locale/eu/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fa/
-drwxr-xr-x  root/root  0       usr/share/locale/fa/LC_MESSAGES/
--rw-r--r--  root/root  29629   usr/share/locale/fa/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fi/
-drwxr-xr-x  root/root  0       usr/share/locale/fi/LC_MESSAGES/
--rw-r--r--  root/root  23636   usr/share/locale/fi/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fr/
-drwxr-xr-x  root/root  0       usr/share/locale/fr/LC_MESSAGES/
--rw-r--r--  root/root  25626   usr/share/locale/fr/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ga/
-drwxr-xr-x  root/root  0       usr/share/locale/ga/LC_MESSAGES/
--rw-r--r--  root/root  4404    usr/share/locale/ga/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/gl/
-drwxr-xr-x  root/root  0       usr/share/locale/gl/LC_MESSAGES/
--rw-r--r--  root/root  24813   usr/share/locale/gl/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/gu/
-drwxr-xr-x  root/root  0       usr/share/locale/gu/LC_MESSAGES/
--rw-r--r--  root/root  37182   usr/share/locale/gu/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/he/
-drwxr-xr-x  root/root  0       usr/share/locale/he/LC_MESSAGES/
--rw-r--r--  root/root  25079   usr/share/locale/he/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hi/
-drwxr-xr-x  root/root  0       usr/share/locale/hi/LC_MESSAGES/
--rw-r--r--  root/root  32764   usr/share/locale/hi/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hr/
-drwxr-xr-x  root/root  0       usr/share/locale/hr/LC_MESSAGES/
--rw-r--r--  root/root  23110   usr/share/locale/hr/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hu/
-drwxr-xr-x  root/root  0       usr/share/locale/hu/LC_MESSAGES/
--rw-r--r--  root/root  25250   usr/share/locale/hu/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/id/
-drwxr-xr-x  root/root  0       usr/share/locale/id/LC_MESSAGES/
--rw-r--r--  root/root  22807   usr/share/locale/id/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/is/
-drwxr-xr-x  root/root  0       usr/share/locale/is/LC_MESSAGES/
--rw-r--r--  root/root  21909   usr/share/locale/is/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/it/
-drwxr-xr-x  root/root  0       usr/share/locale/it/LC_MESSAGES/
--rw-r--r--  root/root  24792   usr/share/locale/it/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ja/
-drwxr-xr-x  root/root  0       usr/share/locale/ja/LC_MESSAGES/
--rw-r--r--  root/root  27361   usr/share/locale/ja/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ko/
-drwxr-xr-x  root/root  0       usr/share/locale/ko/LC_MESSAGES/
--rw-r--r--  root/root  24692   usr/share/locale/ko/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/lt/
-drwxr-xr-x  root/root  0       usr/share/locale/lt/LC_MESSAGES/
--rw-r--r--  root/root  24125   usr/share/locale/lt/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/lv/
-drwxr-xr-x  root/root  0       usr/share/locale/lv/LC_MESSAGES/
--rw-r--r--  root/root  17120   usr/share/locale/lv/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mk/
-drwxr-xr-x  root/root  0       usr/share/locale/mk/LC_MESSAGES/
--rw-r--r--  root/root  32176   usr/share/locale/mk/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ml/
-drwxr-xr-x  root/root  0       usr/share/locale/ml/LC_MESSAGES/
--rw-r--r--  root/root  1707    usr/share/locale/ml/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mn/
-drwxr-xr-x  root/root  0       usr/share/locale/mn/LC_MESSAGES/
--rw-r--r--  root/root  31254   usr/share/locale/mn/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ms/
-drwxr-xr-x  root/root  0       usr/share/locale/ms/LC_MESSAGES/
--rw-r--r--  root/root  18915   usr/share/locale/ms/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nb/
-drwxr-xr-x  root/root  0       usr/share/locale/nb/LC_MESSAGES/
--rw-r--r--  root/root  23366   usr/share/locale/nb/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ne/
-drwxr-xr-x  root/root  0       usr/share/locale/ne/LC_MESSAGES/
--rw-r--r--  root/root  37987   usr/share/locale/ne/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nl/
-drwxr-xr-x  root/root  0       usr/share/locale/nl/LC_MESSAGES/
--rw-r--r--  root/root  24362   usr/share/locale/nl/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nn/
-drwxr-xr-x  root/root  0       usr/share/locale/nn/LC_MESSAGES/
--rw-r--r--  root/root  23344   usr/share/locale/nn/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/no/
-drwxr-xr-x  root/root  0       usr/share/locale/no/LC_MESSAGES/
--rw-r--r--  root/root  23366   usr/share/locale/no/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pa/
-drwxr-xr-x  root/root  0       usr/share/locale/pa/LC_MESSAGES/
--rw-r--r--  root/root  34269   usr/share/locale/pa/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pl/
-drwxr-xr-x  root/root  0       usr/share/locale/pl/LC_MESSAGES/
--rw-r--r--  root/root  24888   usr/share/locale/pl/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt/
-drwxr-xr-x  root/root  0       usr/share/locale/pt/LC_MESSAGES/
--rw-r--r--  root/root  24584   usr/share/locale/pt/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt_BR/
-drwxr-xr-x  root/root  0       usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r--  root/root  24645   usr/share/locale/pt_BR/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ro/
-drwxr-xr-x  root/root  0       usr/share/locale/ro/LC_MESSAGES/
--rw-r--r--  root/root  24700   usr/share/locale/ro/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ru/
-drwxr-xr-x  root/root  0       usr/share/locale/ru/LC_MESSAGES/
--rw-r--r--  root/root  32272   usr/share/locale/ru/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/rw/
-drwxr-xr-x  root/root  0       usr/share/locale/rw/LC_MESSAGES/
--rw-r--r--  root/root  514     usr/share/locale/rw/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sk/
-drwxr-xr-x  root/root  0       usr/share/locale/sk/LC_MESSAGES/
--rw-r--r--  root/root  24395   usr/share/locale/sk/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sl/
-drwxr-xr-x  root/root  0       usr/share/locale/sl/LC_MESSAGES/
--rw-r--r--  root/root  23360   usr/share/locale/sl/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sq/
-drwxr-xr-x  root/root  0       usr/share/locale/sq/LC_MESSAGES/
--rw-r--r--  root/root  25411   usr/share/locale/sq/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr/
-drwxr-xr-x  root/root  0       usr/share/locale/sr/LC_MESSAGES/
--rw-r--r--  root/root  30473   usr/share/locale/sr/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr@Latn/
-drwxr-xr-x  root/root  0       usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r--  root/root  23541   usr/share/locale/sr@Latn/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr@ije/
-drwxr-xr-x  root/root  0       usr/share/locale/sr@ije/LC_MESSAGES/
--rw-r--r--  root/root  30611   usr/share/locale/sr@ije/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sv/
-drwxr-xr-x  root/root  0       usr/share/locale/sv/LC_MESSAGES/
--rw-r--r--  root/root  23937   usr/share/locale/sv/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ta/
-drwxr-xr-x  root/root  0       usr/share/locale/ta/LC_MESSAGES/
--rw-r--r--  root/root  39799   usr/share/locale/ta/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/th/
-drwxr-xr-x  root/root  0       usr/share/locale/th/LC_MESSAGES/
--rw-r--r--  root/root  30280   usr/share/locale/th/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/tr/
-drwxr-xr-x  root/root  0       usr/share/locale/tr/LC_MESSAGES/
--rw-r--r--  root/root  24151   usr/share/locale/tr/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/uk/
-drwxr-xr-x  root/root  0       usr/share/locale/uk/LC_MESSAGES/
--rw-r--r--  root/root  31670   usr/share/locale/uk/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/vi/
-drwxr-xr-x  root/root  0       usr/share/locale/vi/LC_MESSAGES/
--rw-r--r--  root/root  30183   usr/share/locale/vi/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/wa/
-drwxr-xr-x  root/root  0       usr/share/locale/wa/LC_MESSAGES/
--rw-r--r--  root/root  10953   usr/share/locale/wa/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/xh/
-drwxr-xr-x  root/root  0       usr/share/locale/xh/LC_MESSAGES/
--rw-r--r--  root/root  24180   usr/share/locale/xh/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/yi/
-drwxr-xr-x  root/root  0       usr/share/locale/yi/LC_MESSAGES/
--rw-r--r--  root/root  9945    usr/share/locale/yi/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_CN/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r--  root/root  21874   usr/share/locale/zh_CN/LC_MESSAGES/libgnome-2.0.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r--  root/root  22818   usr/share/locale/zh_TW/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_accessibility_keyboard.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_accessibility_startup.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_applications_browser.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_applications_help_viewer.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_applications_terminal.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_applications_window_manager.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_background.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_file_views.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_interface.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_lockdown.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_peripherals_keyboard.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_peripherals_mouse.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_sound.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_thumbnailers.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_typing_break.schemas
+drwxr-xr-x  root/root  etc/sound/
+drwxr-xr-x  root/root  etc/sound/events/
+-rw-r--r--  root/root  etc/sound/events/gnome-2.soundlist
+-rw-r--r--  root/root  etc/sound/events/gtk-events-2.soundlist
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/gnome-open
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/libgnome-2.12.0/
+-rw-r--r--  root/root  usr/doc/libgnome-2.12.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/libgnome-2.12.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/libgnome-2.12.0/INSTALL
+-rw-r--r--  root/root  usr/doc/libgnome-2.12.0/NEWS
+-rw-r--r--  root/root  usr/doc/libgnome-2.12.0/README
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/libgnome-2.0/
+drwxr-xr-x  root/root  usr/include/libgnome-2.0/libgnome/
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-config.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-exec.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-gconf.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-help.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-i18n.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-init.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-macros.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-program.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-score.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-sound.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-triggers.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-url.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/gnome-util.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/libgnome.h
+-rw-r--r--  root/root  usr/include/libgnome-2.0/libgnome/libgnometypebuiltins.h
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/bonobo/
+drwxr-xr-x  root/root  usr/lib/bonobo/monikers/
+-rwxr-xr-x  root/root  usr/lib/bonobo/monikers/libmoniker_extra_2.la
+-rwxr-xr-x  root/root  usr/lib/bonobo/monikers/libmoniker_extra_2.so
+drwxr-xr-x  root/root  usr/lib/bonobo/servers/
+-rw-r--r--  root/root  usr/lib/bonobo/servers/GNOME_Moniker_std.server
+-rwxr-xr-x  root/root  usr/lib/libgnome-2.la
+-rwxr-xr-x  root/root  usr/lib/libgnome-2.so.0.1200.0
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/libgnome-2.0.pc
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man7/
+-rw-r--r--  root/root  usr/man/man7/gnome-options.7.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/gtk-doc/
+drwxr-xr-x  root/root  usr/share/gtk-doc/html/
+drwxr-xr-x  root/root  usr/share/gtk-doc/html/libgnome/
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/ch01s02.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/ch01s03.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/ch01s04.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/ch01s05.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/home.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/index.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/index.sgml
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/left.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-config.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-exec.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-gconf.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-help.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-i18n.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-init.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-program.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-score.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-sound.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-triggers.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-url.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-gnome-util.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome-libgnometypebuiltins.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome.devhelp
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/libgnome.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/right.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/style.css
+-rw-r--r--  root/root  usr/share/gtk-doc/html/libgnome/up.png
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/am/
+drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/be/
+drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bn/
+drwxr-xr-x  root/root  usr/share/locale/bn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bs/
+drwxr-xr-x  root/root  usr/share/locale/bs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bs/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/cy/
+drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cy/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fa/
+drwxr-xr-x  root/root  usr/share/locale/fa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fa/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ga/
+drwxr-xr-x  root/root  usr/share/locale/ga/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ga/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hi/
+drwxr-xr-x  root/root  usr/share/locale/hi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hi/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/id/
+drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/is/
+drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/lv/
+drwxr-xr-x  root/root  usr/share/locale/lv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lv/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/mk/
+drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ml/
+drwxr-xr-x  root/root  usr/share/locale/ml/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ml/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/mn/
+drwxr-xr-x  root/root  usr/share/locale/mn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mn/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nn/
+drwxr-xr-x  root/root  usr/share/locale/nn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nn/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ro/
+drwxr-xr-x  root/root  usr/share/locale/ro/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ro/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sl/
+drwxr-xr-x  root/root  usr/share/locale/sl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sl/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@ije/
+drwxr-xr-x  root/root  usr/share/locale/sr@ije/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@ije/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ta/
+drwxr-xr-x  root/root  usr/share/locale/ta/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ta/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/wa/
+drwxr-xr-x  root/root  usr/share/locale/wa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/wa/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/xh/
+drwxr-xr-x  root/root  usr/share/locale/xh/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/xh/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/yi/
+drwxr-xr-x  root/root  usr/share/locale/yi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/yi/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/libgnome-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/libgnome-2.0.mo

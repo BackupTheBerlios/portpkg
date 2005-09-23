@@ -1,708 +1,751 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
-drwxr-xr-x root/root           0 etc/gconf/
-drwxr-xr-x root/root           0 etc/gconf/schemas/
--rw-r--r-- root/root       79575 etc/gconf/schemas/CDDB-Slave2.schemas
--rw-r--r-- root/root      305759 etc/gconf/schemas/gnome-audio-profiles.schemas
--rw-r--r-- root/root       48622 etc/gconf/schemas/gnome-cd.schemas
--rw-r--r-- root/root        5900 etc/gconf/schemas/gnome-sound-recorder.schemas
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root        1087 install/doinst.sh
--rw-r--r-- root/root         182 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin        44440 usr/bin/cddb-slave2-properties
--rwxr-xr-x root/bin         7240 usr/bin/gnome-audio-profiles-properties
--rwxr-xr-x root/bin       106428 usr/bin/gnome-cd
--rwxr-xr-x root/bin        45952 usr/bin/gnome-sound-recorder
--rwxr-xr-x root/bin        48764 usr/bin/gnome-volume-control
--rwxr-xr-x root/bin        17104 usr/bin/gstreamer-properties
--rwxr-xr-x root/bin        18720 usr/bin/vumeter
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/gnome-media-2.10.2/
--rw-r--r-- root/root         656 usr/doc/gnome-media-2.10.2/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/gnome-media-2.10.2/COPYING
--rw-r--r-- root/root       80443 usr/doc/gnome-media-2.10.2/ChangeLog
--rw-r--r-- root/root        9306 usr/doc/gnome-media-2.10.2/NEWS
--rw-r--r-- root/root         495 usr/doc/gnome-media-2.10.2/README
--rw-r--r-- root/root        1269 usr/doc/gnome-media-2.10.2/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/cddb-slave2/
--rw-r--r-- root/root        4021 usr/include/cddb-slave2/cddb-slave-client.h
-drwxr-xr-x root/root           0 usr/include/gnome-media/
-drwxr-xr-x root/root           0 usr/include/gnome-media/profiles/
--rw-r--r-- root/root        1357 usr/include/gnome-media/profiles/audio-profile-choose.h
--rw-r--r-- root/root        2422 usr/include/gnome-media/profiles/audio-profile-edit.h
--rw-r--r-- root/root        3361 usr/include/gnome-media/profiles/audio-profile.h
--rw-r--r-- root/root        2585 usr/include/gnome-media/profiles/audio-profiles-edit.h
--rw-r--r-- root/root        1062 usr/include/gnome-media/profiles/gnome-media-profiles.h
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/bonobo/
-drwxr-xr-x root/root           0 usr/lib/bonobo/servers/
--rw-r--r-- root/root        1288 usr/lib/bonobo/servers/GNOME_Media_CDDBSlave2.server
--rwxr-xr-x root/root        1096 usr/lib/libcddb-slave2.la
--rwxr-xr-x root/root       32992 usr/lib/libcddb-slave2.so.0.0.0
-drwxr-xr-x root/root           0 usr/lib/libglade/
-drwxr-xr-x root/root           0 usr/lib/libglade/2.0/
--rwxr-xr-x root/root        1802 usr/lib/libglade/2.0/libgnome-media-profiles.la
--rwxr-xr-x root/root        4188 usr/lib/libglade/2.0/libgnome-media-profiles.so
--rwxr-xr-x root/root        1762 usr/lib/libgnome-media-profiles.la
--rwxr-xr-x root/root       43676 usr/lib/libgnome-media-profiles.so.0.0.0
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         448 usr/lib/pkgconfig/gnome-media-profiles.pc
-drwxr-xr-x root/root           0 usr/libexec/
--rwxr-xr-x root/root       66184 usr/libexec/CDDBSlave2
--rwxr-xr-x root/root       29772 usr/libexec/cddb-track-editor
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root        6366 usr/share/applications/cddb-slave.desktop
--rw-r--r-- root/root        4545 usr/share/applications/gnome-cd.desktop
--rw-r--r-- root/root        4845 usr/share/applications/gnome-sound-recorder.desktop
--rw-r--r-- root/root        5343 usr/share/applications/gnome-volume-control.desktop
--rw-r--r-- root/root        7734 usr/share/applications/gstreamer-properties.desktop
--rw-r--r-- root/root        6590 usr/share/applications/reclevel.desktop
--rw-r--r-- root/root        5894 usr/share/applications/vumeter.desktop
-drwxr-xr-x root/root           0 usr/share/gnome-media/
-drwxr-xr-x root/root           0 usr/share/gnome-media/glade/
--rw-r--r-- root/root       19450 usr/share/gnome-media/glade/gnome-audio-profiles.glade2
-drwxr-xr-x root/root           0 usr/share/gnome-media/pixmaps/
--rw-r--r-- root/root         613 usr/share/gnome-media/pixmaps/3dsound.png
--rw-r--r-- root/root         325 usr/share/gnome-media/pixmaps/chain-broken.png
--rw-r--r-- root/root         302 usr/share/gnome-media/pixmaps/chain.png
--rw-r--r-- root/root         488 usr/share/gnome-media/pixmaps/headphones.png
--rw-r--r-- root/root        2237 usr/share/gnome-media/pixmaps/mixer.png
--rw-r--r-- root/root        1166 usr/share/gnome-media/pixmaps/noplay.png
--rw-r--r-- root/root        1166 usr/share/gnome-media/pixmaps/norecord.png
--rw-r--r-- root/root         570 usr/share/gnome-media/pixmaps/phone.png
--rw-r--r-- root/root         707 usr/share/gnome-media/pixmaps/play.png
--rw-r--r-- root/root         664 usr/share/gnome-media/pixmaps/record.png
--rw-r--r-- root/root         201 usr/share/gnome-media/pixmaps/tone.png
--rw-r--r-- root/root         608 usr/share/gnome-media/pixmaps/video.png
-drwxr-xr-x root/root           0 usr/share/gnome-sound-recorder/
-drwxr-xr-x root/root           0 usr/share/gnome-sound-recorder/ui/
--rw-r--r-- root/root        3318 usr/share/gnome-sound-recorder/ui/gsr.xml
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/help/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/C/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/C/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/C/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root        7056 usr/share/gnome/help/gnome-cd/C/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root       10134 usr/share/gnome/help/gnome-cd/C/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/C/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/C/figures/forward_button.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/C/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/C/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/C/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/C/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/C/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/C/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/C/figures/stop_button.png
--rw-r--r-- root/root       15861 usr/share/gnome/help/gnome-cd/C/gnome-cd.xml
--rw-r--r-- root/root        3672 usr/share/gnome/help/gnome-cd/C/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/de/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/de/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/de/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       17871 usr/share/gnome/help/gnome-cd/de/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root        4068 usr/share/gnome/help/gnome-cd/de/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/de/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/de/figures/forward_button.png
--rw-r--r-- root/root       14048 usr/share/gnome/help/gnome-cd/de/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       18101 usr/share/gnome/help/gnome-cd/de/figures/gnome-cd-track.png
--rw-r--r-- root/root       18205 usr/share/gnome/help/gnome-cd/de/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/de/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/de/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/de/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/de/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/de/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/de/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/de/figures/stop_button.png
--rw-r--r-- root/root       17133 usr/share/gnome/help/gnome-cd/de/gnome-cd.xml
--rw-r--r-- root/root        3425 usr/share/gnome/help/gnome-cd/de/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/es/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/es/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/es/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       17537 usr/share/gnome/help/gnome-cd/es/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root        9529 usr/share/gnome/help/gnome-cd/es/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/es/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/es/figures/forward_button.png
--rw-r--r-- root/root       13707 usr/share/gnome/help/gnome-cd/es/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       18360 usr/share/gnome/help/gnome-cd/es/figures/gnome-cd-track.png
--rw-r--r-- root/root        9574 usr/share/gnome/help/gnome-cd/es/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/es/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/es/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/es/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/es/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/es/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/es/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/es/figures/stop_button.png
--rw-r--r-- root/root       16995 usr/share/gnome/help/gnome-cd/es/gnome-cd.xml
--rw-r--r-- root/root        4028 usr/share/gnome/help/gnome-cd/es/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/fr/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/fr/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/fr/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       18230 usr/share/gnome/help/gnome-cd/fr/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root       16274 usr/share/gnome/help/gnome-cd/fr/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/fr/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/fr/figures/forward_button.png
--rw-r--r-- root/root      184351 usr/share/gnome/help/gnome-cd/fr/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       18153 usr/share/gnome/help/gnome-cd/fr/figures/gnome-cd-track.png
--rw-r--r-- root/root       17900 usr/share/gnome/help/gnome-cd/fr/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/fr/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/fr/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/fr/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/fr/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/fr/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/fr/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/fr/figures/stop_button.png
--rw-r--r-- root/root       16967 usr/share/gnome/help/gnome-cd/fr/gnome-cd.xml
--rw-r--r-- root/root        4415 usr/share/gnome/help/gnome-cd/fr/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/it/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/it/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/it/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       11832 usr/share/gnome/help/gnome-cd/it/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root        8900 usr/share/gnome/help/gnome-cd/it/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/it/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/it/figures/forward_button.png
--rw-r--r-- root/root       10051 usr/share/gnome/help/gnome-cd/it/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       12548 usr/share/gnome/help/gnome-cd/it/figures/gnome-cd-track.png
--rw-r--r-- root/root       10269 usr/share/gnome/help/gnome-cd/it/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/it/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/it/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/it/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/it/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/it/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/it/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/it/figures/stop_button.png
--rw-r--r-- root/root       16244 usr/share/gnome/help/gnome-cd/it/gnome-cd.xml
--rw-r--r-- root/root        3514 usr/share/gnome/help/gnome-cd/it/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/ja/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/ja/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/ja/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       16495 usr/share/gnome/help/gnome-cd/ja/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root       17835 usr/share/gnome/help/gnome-cd/ja/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/ja/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/ja/figures/forward_button.png
--rw-r--r-- root/root       16641 usr/share/gnome/help/gnome-cd/ja/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       18147 usr/share/gnome/help/gnome-cd/ja/figures/gnome-cd-track.png
--rw-r--r-- root/root        3772 usr/share/gnome/help/gnome-cd/ja/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/ja/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/ja/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/ja/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/ja/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/ja/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/ja/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/ja/figures/stop_button.png
--rw-r--r-- root/root       18131 usr/share/gnome/help/gnome-cd/ja/gnome-cd.xml
--rw-r--r-- root/root        2371 usr/share/gnome/help/gnome-cd/ja/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/ko/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/ko/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/ko/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       15863 usr/share/gnome/help/gnome-cd/ko/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root       17393 usr/share/gnome/help/gnome-cd/ko/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/ko/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/ko/figures/forward_button.png
--rw-r--r-- root/root       13071 usr/share/gnome/help/gnome-cd/ko/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       15845 usr/share/gnome/help/gnome-cd/ko/figures/gnome-cd-track.png
--rw-r--r-- root/root       17727 usr/share/gnome/help/gnome-cd/ko/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/ko/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/ko/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/ko/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/ko/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/ko/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/ko/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/ko/figures/stop_button.png
--rw-r--r-- root/root       16428 usr/share/gnome/help/gnome-cd/ko/gnome-cd.xml
--rw-r--r-- root/root        3282 usr/share/gnome/help/gnome-cd/ko/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/sv/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/sv/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/sv/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       12358 usr/share/gnome/help/gnome-cd/sv/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root        8639 usr/share/gnome/help/gnome-cd/sv/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/sv/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/sv/figures/forward_button.png
--rw-r--r-- root/root        9888 usr/share/gnome/help/gnome-cd/sv/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       12895 usr/share/gnome/help/gnome-cd/sv/figures/gnome-cd-track.png
--rw-r--r-- root/root        7813 usr/share/gnome/help/gnome-cd/sv/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/sv/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/sv/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/sv/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/sv/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/sv/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/sv/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/sv/figures/stop_button.png
--rw-r--r-- root/root       16723 usr/share/gnome/help/gnome-cd/sv/gnome-cd.xml
--rw-r--r-- root/root        3253 usr/share/gnome/help/gnome-cd/sv/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/zh_CN/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/zh_CN/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/zh_CN/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       16247 usr/share/gnome/help/gnome-cd/zh_CN/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root       15623 usr/share/gnome/help/gnome-cd/zh_CN/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/zh_CN/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/zh_CN/figures/forward_button.png
--rw-r--r-- root/root       13250 usr/share/gnome/help/gnome-cd/zh_CN/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       16929 usr/share/gnome/help/gnome-cd/zh_CN/figures/gnome-cd-track.png
--rw-r--r-- root/root       17261 usr/share/gnome/help/gnome-cd/zh_CN/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/zh_CN/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/zh_CN/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/zh_CN/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/zh_CN/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/zh_CN/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/zh_CN/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/zh_CN/figures/stop_button.png
--rw-r--r-- root/root       14902 usr/share/gnome/help/gnome-cd/zh_CN/gnome-cd.xml
--rw-r--r-- root/root        2692 usr/share/gnome/help/gnome-cd/zh_CN/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/zh_TW/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-cd/zh_TW/figures/
--rw-r--r-- root/root        1157 usr/share/gnome/help/gnome-cd/zh_TW/figures/cdplayer_trackeditor_button.png
--rw-r--r-- root/root       16603 usr/share/gnome/help/gnome-cd/zh_TW/figures/cdplayer_trackeditor_window.png
--rw-r--r-- root/root       17150 usr/share/gnome/help/gnome-cd/zh_TW/figures/cdplayer_window.png
--rw-r--r-- root/root        1101 usr/share/gnome/help/gnome-cd/zh_TW/figures/eject_button.png
--rw-r--r-- root/root        1103 usr/share/gnome/help/gnome-cd/zh_TW/figures/forward_button.png
--rw-r--r-- root/root       13548 usr/share/gnome/help/gnome-cd/zh_TW/figures/gnome-cd-prefs.png
--rw-r--r-- root/root       17305 usr/share/gnome/help/gnome-cd/zh_TW/figures/gnome-cd-track.png
--rw-r--r-- root/root       17668 usr/share/gnome/help/gnome-cd/zh_TW/figures/gnome-cd.png
--rw-r--r-- root/root        1098 usr/share/gnome/help/gnome-cd/zh_TW/figures/next_button.png
--rw-r--r-- root/root        1094 usr/share/gnome/help/gnome-cd/zh_TW/figures/pause_button.png
--rw-r--r-- root/root        1110 usr/share/gnome/help/gnome-cd/zh_TW/figures/play_button.png
--rw-r--r-- root/root        1198 usr/share/gnome/help/gnome-cd/zh_TW/figures/preferences_button.png
--rw-r--r-- root/root        1105 usr/share/gnome/help/gnome-cd/zh_TW/figures/previous_button.png
--rw-r--r-- root/root        1100 usr/share/gnome/help/gnome-cd/zh_TW/figures/rewind_button.png
--rw-r--r-- root/root        1083 usr/share/gnome/help/gnome-cd/zh_TW/figures/stop_button.png
--rw-r--r-- root/root       15259 usr/share/gnome/help/gnome-cd/zh_TW/gnome-cd.xml
--rw-r--r-- root/root        2948 usr/share/gnome/help/gnome-cd/zh_TW/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-sound-recorder/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-sound-recorder/C/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-sound-recorder/C/figures/
--rw-r--r-- root/root       16794 usr/share/gnome/help/gnome-sound-recorder/C/figures/grecord_window.png
--rw-r--r-- root/root        9963 usr/share/gnome/help/gnome-sound-recorder/C/gnome-sound-recorder.xml
--rw-r--r-- root/root        3672 usr/share/gnome/help/gnome-sound-recorder/C/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-volume-control/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-volume-control/C/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-volume-control/C/figures/
--rw-r--r-- root/root        8055 usr/share/gnome/help/gnome-volume-control/C/figures/gmix-prefs.png
--rw-r--r-- root/root       31671 usr/share/gnome/help/gnome-volume-control/C/figures/gmix.png
--rw-r--r-- root/root       13809 usr/share/gnome/help/gnome-volume-control/C/figures/gnome-volume-control_window.png
--rw-r--r-- root/root       14231 usr/share/gnome/help/gnome-volume-control/C/gnome-volume-control.xml
--rw-r--r-- root/root        3672 usr/share/gnome/help/gnome-volume-control/C/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/de/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/de/figures/
--rw-r--r-- root/root       12398 usr/share/gnome/help/grecord/de/figures/grecord-prefs-path.png
--rw-r--r-- root/root       12431 usr/share/gnome/help/grecord/de/figures/grecord-prefs-play.png
--rw-r--r-- root/root       15225 usr/share/gnome/help/grecord/de/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       14073 usr/share/gnome/help/grecord/de/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        6116 usr/share/gnome/help/grecord/de/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        9609 usr/share/gnome/help/grecord/de/figures/grecord.png
--rw-r--r-- root/root        9634 usr/share/gnome/help/grecord/de/figures/grecord_window.png
--rw-r--r-- root/root       15344 usr/share/gnome/help/grecord/de/grecord.xml
--rw-r--r-- root/root        3425 usr/share/gnome/help/grecord/de/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/es/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/es/figures/
--rw-r--r-- root/root       12033 usr/share/gnome/help/grecord/es/figures/grecord-prefs-path.png
--rw-r--r-- root/root       11988 usr/share/gnome/help/grecord/es/figures/grecord-prefs-play.png
--rw-r--r-- root/root       14552 usr/share/gnome/help/grecord/es/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       13841 usr/share/gnome/help/grecord/es/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        8915 usr/share/gnome/help/grecord/es/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        7617 usr/share/gnome/help/grecord/es/figures/grecord.png
--rw-r--r-- root/root        9199 usr/share/gnome/help/grecord/es/figures/grecord_window.png
--rw-r--r-- root/root       16126 usr/share/gnome/help/grecord/es/grecord.xml
--rw-r--r-- root/root        4028 usr/share/gnome/help/grecord/es/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/fr/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/fr/figures/
--rw-r--r-- root/root       12573 usr/share/gnome/help/grecord/fr/figures/grecord-prefs-path.png
--rw-r--r-- root/root       12259 usr/share/gnome/help/grecord/fr/figures/grecord-prefs-play.png
--rw-r--r-- root/root       15205 usr/share/gnome/help/grecord/fr/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       14065 usr/share/gnome/help/grecord/fr/figures/grecord-prefs-sound.png
--rw-r--r-- root/root       11319 usr/share/gnome/help/grecord/fr/figures/grecord-prefs-ui.png
--rw-r--r-- root/root       10101 usr/share/gnome/help/grecord/fr/figures/grecord.png
--rw-r--r-- root/root       10076 usr/share/gnome/help/grecord/fr/figures/grecord_window.png
--rw-r--r-- root/root       16764 usr/share/gnome/help/grecord/fr/grecord.xml
--rw-r--r-- root/root        4415 usr/share/gnome/help/grecord/fr/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/it/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/it/figures/
--rw-r--r-- root/root        8814 usr/share/gnome/help/grecord/it/figures/grecord-prefs-path.png
--rw-r--r-- root/root        8893 usr/share/gnome/help/grecord/it/figures/grecord-prefs-play.png
--rw-r--r-- root/root       11802 usr/share/gnome/help/grecord/it/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       10611 usr/share/gnome/help/grecord/it/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        5618 usr/share/gnome/help/grecord/it/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        7762 usr/share/gnome/help/grecord/it/figures/grecord.png
--rw-r--r-- root/root        7762 usr/share/gnome/help/grecord/it/figures/grecord_window.png
--rw-r--r-- root/root       15204 usr/share/gnome/help/grecord/it/grecord.xml
--rw-r--r-- root/root        3514 usr/share/gnome/help/grecord/it/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/ja/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/ja/figures/
--rw-r--r-- root/root       14779 usr/share/gnome/help/grecord/ja/figures/grecord-prefs-path.png
--rw-r--r-- root/root       14940 usr/share/gnome/help/grecord/ja/figures/grecord-prefs-play.png
--rw-r--r-- root/root       18405 usr/share/gnome/help/grecord/ja/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       17397 usr/share/gnome/help/grecord/ja/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        5618 usr/share/gnome/help/grecord/ja/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        5739 usr/share/gnome/help/grecord/ja/figures/grecord.png
--rw-r--r-- root/root       12178 usr/share/gnome/help/grecord/ja/figures/grecord_window.png
--rw-r--r-- root/root       17231 usr/share/gnome/help/grecord/ja/grecord.xml
--rw-r--r-- root/root        2371 usr/share/gnome/help/grecord/ja/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/ko/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/ko/figures/
--rw-r--r-- root/root       11624 usr/share/gnome/help/grecord/ko/figures/grecord-prefs-path.png
--rw-r--r-- root/root       11367 usr/share/gnome/help/grecord/ko/figures/grecord-prefs-play.png
--rw-r--r-- root/root       13796 usr/share/gnome/help/grecord/ko/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       13156 usr/share/gnome/help/grecord/ko/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        5618 usr/share/gnome/help/grecord/ko/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        8636 usr/share/gnome/help/grecord/ko/figures/grecord.png
--rw-r--r-- root/root        9253 usr/share/gnome/help/grecord/ko/figures/grecord_window.png
--rw-r--r-- root/root       15415 usr/share/gnome/help/grecord/ko/grecord.xml
--rw-r--r-- root/root        3282 usr/share/gnome/help/grecord/ko/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/sv/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/sv/figures/
--rw-r--r-- root/root        8054 usr/share/gnome/help/grecord/sv/figures/grecord-prefs-path.png
--rw-r--r-- root/root        7799 usr/share/gnome/help/grecord/sv/figures/grecord-prefs-play.png
--rw-r--r-- root/root       10274 usr/share/gnome/help/grecord/sv/figures/grecord-prefs-rec.png
--rw-r--r-- root/root        9558 usr/share/gnome/help/grecord/sv/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        5618 usr/share/gnome/help/grecord/sv/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        7427 usr/share/gnome/help/grecord/sv/figures/grecord.png
--rw-r--r-- root/root        7427 usr/share/gnome/help/grecord/sv/figures/grecord_window.png
--rw-r--r-- root/root       15547 usr/share/gnome/help/grecord/sv/grecord.xml
--rw-r--r-- root/root        3253 usr/share/gnome/help/grecord/sv/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/zh_CN/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/zh_CN/figures/
--rw-r--r-- root/root       11725 usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-path.png
--rw-r--r-- root/root       11281 usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-play.png
--rw-r--r-- root/root       13613 usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       13279 usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        5618 usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        8401 usr/share/gnome/help/grecord/zh_CN/figures/grecord.png
--rw-r--r-- root/root        9088 usr/share/gnome/help/grecord/zh_CN/figures/grecord_window.png
--rw-r--r-- root/root       13858 usr/share/gnome/help/grecord/zh_CN/grecord.xml
--rw-r--r-- root/root        2692 usr/share/gnome/help/grecord/zh_CN/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/zh_TW/
-drwxr-xr-x root/root           0 usr/share/gnome/help/grecord/zh_TW/figures/
--rw-r--r-- root/root       11831 usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-path.png
--rw-r--r-- root/root       11654 usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-play.png
--rw-r--r-- root/root       14567 usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-rec.png
--rw-r--r-- root/root       13969 usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-sound.png
--rw-r--r-- root/root        5618 usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-ui.png
--rw-r--r-- root/root        8851 usr/share/gnome/help/grecord/zh_TW/figures/grecord.png
--rw-r--r-- root/root        9559 usr/share/gnome/help/grecord/zh_TW/figures/grecord_window.png
--rw-r--r-- root/root       14108 usr/share/gnome/help/grecord/zh_TW/grecord.xml
--rw-r--r-- root/root        2948 usr/share/gnome/help/grecord/zh_TW/legal.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gstreamer-properties/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gstreamer-properties/C/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gstreamer-properties/C/figures/
--rw-r--r-- root/root       11477 usr/share/gnome/help/gstreamer-properties/C/figures/gstreamer_properties_window.png
--rw-r--r-- root/root        6809 usr/share/gnome/help/gstreamer-properties/C/gstreamer-properties.xml
--rw-r--r-- root/root        3672 usr/share/gnome/help/gstreamer-properties/C/legal.xml
-drwxr-xr-x root/root           0 usr/share/gstreamer-properties/
-drwxr-xr-x root/root           0 usr/share/gstreamer-properties/glade/
--rw-r--r-- root/root       48944 usr/share/gstreamer-properties/glade/gstreamer-properties.glade
-drwxr-xr-x root/root           0 usr/share/gstreamer-properties/icons/
--rw-r--r-- root/root        3466 usr/share/gstreamer-properties/icons/gstreamer-properties.png
-drwxr-xr-x root/root           0 usr/share/idl/
--rw-r--r-- root/root        2948 usr/share/idl/GNOME_Media_CDDBSlave2.idl
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/am/
-drwxr-xr-x root/root           0 usr/share/locale/am/LC_MESSAGES/
--rw-r--r-- root/root       13200 usr/share/locale/am/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ar/
-drwxr-xr-x root/root           0 usr/share/locale/ar/LC_MESSAGES/
--rw-r--r-- root/root       34850 usr/share/locale/ar/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/az/
-drwxr-xr-x root/root           0 usr/share/locale/az/LC_MESSAGES/
--rw-r--r-- root/root       29649 usr/share/locale/az/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/be/
-drwxr-xr-x root/root           0 usr/share/locale/be/LC_MESSAGES/
--rw-r--r-- root/root       34208 usr/share/locale/be/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/bg/
-drwxr-xr-x root/root           0 usr/share/locale/bg/LC_MESSAGES/
--rw-r--r-- root/root       42187 usr/share/locale/bg/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/bn/
-drwxr-xr-x root/root           0 usr/share/locale/bn/LC_MESSAGES/
--rw-r--r-- root/root       34804 usr/share/locale/bn/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/bs/
-drwxr-xr-x root/root           0 usr/share/locale/bs/LC_MESSAGES/
--rw-r--r-- root/root       28875 usr/share/locale/bs/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ca/
-drwxr-xr-x root/root           0 usr/share/locale/ca/LC_MESSAGES/
--rw-r--r-- root/root       34027 usr/share/locale/ca/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/cs/
-drwxr-xr-x root/root           0 usr/share/locale/cs/LC_MESSAGES/
--rw-r--r-- root/root       33582 usr/share/locale/cs/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/cy/
-drwxr-xr-x root/root           0 usr/share/locale/cy/LC_MESSAGES/
--rw-r--r-- root/root       28837 usr/share/locale/cy/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/da/
-drwxr-xr-x root/root           0 usr/share/locale/da/LC_MESSAGES/
--rw-r--r-- root/root       32139 usr/share/locale/da/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root       34106 usr/share/locale/de/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/el/
-drwxr-xr-x root/root           0 usr/share/locale/el/LC_MESSAGES/
--rw-r--r-- root/root       42320 usr/share/locale/el/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r-- root/root       31779 usr/share/locale/en_CA/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r-- root/root       31757 usr/share/locale/en_GB/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/es/
-drwxr-xr-x root/root           0 usr/share/locale/es/LC_MESSAGES/
--rw-r--r-- root/root       33973 usr/share/locale/es/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/et/
-drwxr-xr-x root/root           0 usr/share/locale/et/LC_MESSAGES/
--rw-r--r-- root/root       30887 usr/share/locale/et/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/eu/
-drwxr-xr-x root/root           0 usr/share/locale/eu/LC_MESSAGES/
--rw-r--r-- root/root       25500 usr/share/locale/eu/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/fa/
-drwxr-xr-x root/root           0 usr/share/locale/fa/LC_MESSAGES/
--rw-r--r-- root/root       27684 usr/share/locale/fa/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/fi/
-drwxr-xr-x root/root           0 usr/share/locale/fi/LC_MESSAGES/
--rw-r--r-- root/root       32831 usr/share/locale/fi/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       34555 usr/share/locale/fr/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ga/
-drwxr-xr-x root/root           0 usr/share/locale/ga/LC_MESSAGES/
--rw-r--r-- root/root        5546 usr/share/locale/ga/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/gl/
-drwxr-xr-x root/root           0 usr/share/locale/gl/LC_MESSAGES/
--rw-r--r-- root/root        2258 usr/share/locale/gl/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/gu/
-drwxr-xr-x root/root           0 usr/share/locale/gu/LC_MESSAGES/
--rw-r--r-- root/root       47151 usr/share/locale/gu/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/he/
-drwxr-xr-x root/root           0 usr/share/locale/he/LC_MESSAGES/
--rw-r--r-- root/root       25392 usr/share/locale/he/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/hi/
-drwxr-xr-x root/root           0 usr/share/locale/hi/LC_MESSAGES/
--rw-r--r-- root/root       41778 usr/share/locale/hi/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/hr/
-drwxr-xr-x root/root           0 usr/share/locale/hr/LC_MESSAGES/
--rw-r--r-- root/root       26578 usr/share/locale/hr/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/hu/
-drwxr-xr-x root/root           0 usr/share/locale/hu/LC_MESSAGES/
--rw-r--r-- root/root       33963 usr/share/locale/hu/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/id/
-drwxr-xr-x root/root           0 usr/share/locale/id/LC_MESSAGES/
--rw-r--r-- root/root       20467 usr/share/locale/id/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/it/
-drwxr-xr-x root/root           0 usr/share/locale/it/LC_MESSAGES/
--rw-r--r-- root/root       32796 usr/share/locale/it/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ja/
-drwxr-xr-x root/root           0 usr/share/locale/ja/LC_MESSAGES/
--rw-r--r-- root/root       38123 usr/share/locale/ja/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ko/
-drwxr-xr-x root/root           0 usr/share/locale/ko/LC_MESSAGES/
--rw-r--r-- root/root       35796 usr/share/locale/ko/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/lt/
-drwxr-xr-x root/root           0 usr/share/locale/lt/LC_MESSAGES/
--rw-r--r-- root/root       33335 usr/share/locale/lt/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/lv/
-drwxr-xr-x root/root           0 usr/share/locale/lv/LC_MESSAGES/
--rw-r--r-- root/root       20425 usr/share/locale/lv/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/mk/
-drwxr-xr-x root/root           0 usr/share/locale/mk/LC_MESSAGES/
--rw-r--r-- root/root       34271 usr/share/locale/mk/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ml/
-drwxr-xr-x root/root           0 usr/share/locale/ml/LC_MESSAGES/
--rw-r--r-- root/root        5092 usr/share/locale/ml/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/mn/
-drwxr-xr-x root/root           0 usr/share/locale/mn/LC_MESSAGES/
--rw-r--r-- root/root       32534 usr/share/locale/mn/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ms/
-drwxr-xr-x root/root           0 usr/share/locale/ms/LC_MESSAGES/
--rw-r--r-- root/root       29431 usr/share/locale/ms/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nb/
-drwxr-xr-x root/root           0 usr/share/locale/nb/LC_MESSAGES/
--rw-r--r-- root/root       31992 usr/share/locale/nb/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ne/
-drwxr-xr-x root/root           0 usr/share/locale/ne/LC_MESSAGES/
--rw-r--r-- root/root       47909 usr/share/locale/ne/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nl/
-drwxr-xr-x root/root           0 usr/share/locale/nl/LC_MESSAGES/
--rw-r--r-- root/root       33272 usr/share/locale/nl/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nn/
-drwxr-xr-x root/root           0 usr/share/locale/nn/LC_MESSAGES/
--rw-r--r-- root/root       29552 usr/share/locale/nn/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/no/
-drwxr-xr-x root/root           0 usr/share/locale/no/LC_MESSAGES/
--rw-r--r-- root/root       31992 usr/share/locale/no/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pa/
-drwxr-xr-x root/root           0 usr/share/locale/pa/LC_MESSAGES/
--rw-r--r-- root/root       44453 usr/share/locale/pa/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pl/
-drwxr-xr-x root/root           0 usr/share/locale/pl/LC_MESSAGES/
--rw-r--r-- root/root       33949 usr/share/locale/pl/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt/
-drwxr-xr-x root/root           0 usr/share/locale/pt/LC_MESSAGES/
--rw-r--r-- root/root       33495 usr/share/locale/pt/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r-- root/root       33956 usr/share/locale/pt_BR/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ro/
-drwxr-xr-x root/root           0 usr/share/locale/ro/LC_MESSAGES/
--rw-r--r-- root/root       33476 usr/share/locale/ro/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root       43378 usr/share/locale/ru/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/rw/
-drwxr-xr-x root/root           0 usr/share/locale/rw/LC_MESSAGES/
--rw-r--r-- root/root        2554 usr/share/locale/rw/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sk/
-drwxr-xr-x root/root           0 usr/share/locale/sk/LC_MESSAGES/
--rw-r--r-- root/root       33124 usr/share/locale/sk/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sl/
-drwxr-xr-x root/root           0 usr/share/locale/sl/LC_MESSAGES/
--rw-r--r-- root/root       22879 usr/share/locale/sl/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sq/
-drwxr-xr-x root/root           0 usr/share/locale/sq/LC_MESSAGES/
--rw-r--r-- root/root       33794 usr/share/locale/sq/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr/
-drwxr-xr-x root/root           0 usr/share/locale/sr/LC_MESSAGES/
--rw-r--r-- root/root       41554 usr/share/locale/sr/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r-- root/root       33170 usr/share/locale/sr@Latn/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sv/
-drwxr-xr-x root/root           0 usr/share/locale/sv/LC_MESSAGES/
--rw-r--r-- root/root       32583 usr/share/locale/sv/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ta/
-drwxr-xr-x root/root           0 usr/share/locale/ta/LC_MESSAGES/
--rw-r--r-- root/root       42296 usr/share/locale/ta/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/th/
-drwxr-xr-x root/root           0 usr/share/locale/th/LC_MESSAGES/
--rw-r--r-- root/root       47405 usr/share/locale/th/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/tk/
-drwxr-xr-x root/root           0 usr/share/locale/tk/LC_MESSAGES/
--rw-r--r-- root/root       11441 usr/share/locale/tk/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/tr/
-drwxr-xr-x root/root           0 usr/share/locale/tr/LC_MESSAGES/
--rw-r--r-- root/root       32944 usr/share/locale/tr/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/uk/
-drwxr-xr-x root/root           0 usr/share/locale/uk/LC_MESSAGES/
--rw-r--r-- root/root       42189 usr/share/locale/uk/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/vi/
-drwxr-xr-x root/root           0 usr/share/locale/vi/LC_MESSAGES/
--rw-r--r-- root/root       26289 usr/share/locale/vi/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/wa/
-drwxr-xr-x root/root           0 usr/share/locale/wa/LC_MESSAGES/
--rw-r--r-- root/root       23491 usr/share/locale/wa/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/xh/
-drwxr-xr-x root/root           0 usr/share/locale/xh/LC_MESSAGES/
--rw-r--r-- root/root       33750 usr/share/locale/xh/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r-- root/root       33337 usr/share/locale/zh_CN/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW/
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r-- root/root       33108 usr/share/locale/zh_TW/LC_MESSAGES/gnome-media-2.0.mo
-drwxr-xr-x root/root           0 usr/share/omf/
-drwxr-xr-x root/root           0 usr/share/omf/gnome-media/
--rw-r--r-- root/root         895 usr/share/omf/gnome-media/gnome-cd-C.omf
--rw-r--r-- root/root        1004 usr/share/omf/gnome-media/gnome-cd-de.omf
--rw-r--r-- root/root        1012 usr/share/omf/gnome-media/gnome-cd-es.omf
--rw-r--r-- root/root        1011 usr/share/omf/gnome-media/gnome-cd-fr.omf
--rw-r--r-- root/root         991 usr/share/omf/gnome-media/gnome-cd-it.omf
--rw-r--r-- root/root        1061 usr/share/omf/gnome-media/gnome-cd-ja.omf
--rw-r--r-- root/root        1024 usr/share/omf/gnome-media/gnome-cd-ko.omf
--rw-r--r-- root/root         997 usr/share/omf/gnome-media/gnome-cd-sv.omf
--rw-r--r-- root/root         968 usr/share/omf/gnome-media/gnome-cd-zh_CN.omf
--rw-r--r-- root/root         993 usr/share/omf/gnome-media/gnome-cd-zh_TW.omf
--rw-r--r-- root/root         931 usr/share/omf/gnome-media/gnome-volume-control-C.omf
--rw-r--r-- root/root         929 usr/share/omf/gnome-media/grecord-C.omf
--rw-r--r-- root/root        1011 usr/share/omf/gnome-media/grecord-de.omf
--rw-r--r-- root/root        1029 usr/share/omf/gnome-media/grecord-es.omf
--rw-r--r-- root/root        1030 usr/share/omf/gnome-media/grecord-fr.omf
--rw-r--r-- root/root        1004 usr/share/omf/gnome-media/grecord-it.omf
--rw-r--r-- root/root        1077 usr/share/omf/gnome-media/grecord-ja.omf
--rw-r--r-- root/root        1015 usr/share/omf/gnome-media/grecord-ko.omf
--rw-r--r-- root/root        1006 usr/share/omf/gnome-media/grecord-sv.omf
--rw-r--r-- root/root         981 usr/share/omf/gnome-media/grecord-zh_CN.omf
--rw-r--r-- root/root        1000 usr/share/omf/gnome-media/grecord-zh_TW.omf
--rw-r--r-- root/root        1075 usr/share/omf/gnome-media/gstreamer-properties-C.omf
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        4061 usr/share/pixmaps/gnome-cd.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-cd/
--rw-r--r-- root/root        2811 usr/share/pixmaps/gnome-cd/cd.png
--rw-r--r-- root/root         330 usr/share/pixmaps/gnome-cd/disc.png
--rw-r--r-- root/root         579 usr/share/pixmaps/gnome-cd/media-eject.png
--rw-r--r-- root/root         480 usr/share/pixmaps/gnome-cd/media-ffwd.png
--rw-r--r-- root/root         510 usr/share/pixmaps/gnome-cd/media-next.png
--rw-r--r-- root/root         367 usr/share/pixmaps/gnome-cd/media-pause.png
--rw-r--r-- root/root         382 usr/share/pixmaps/gnome-cd/media-play.png
--rw-r--r-- root/root         572 usr/share/pixmaps/gnome-cd/media-prev.png
--rw-r--r-- root/root         925 usr/share/pixmaps/gnome-cd/media-record.png
--rw-r--r-- root/root         460 usr/share/pixmaps/gnome-cd/media-rewind.png
--rw-r--r-- root/root         340 usr/share/pixmaps/gnome-cd/media-stop.png
--rw-r--r-- root/root         232 usr/share/pixmaps/gnome-cd/once.png
--rw-r--r-- root/root         303 usr/share/pixmaps/gnome-cd/repeat.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-cd/themes/
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-cd/themes/None/
--rw-r--r-- root/root        1130 usr/share/pixmaps/gnome-cd/themes/None/None.theme
--rw-r--r-- root/root       30720 usr/share/pixmaps/gnome-cd/themes/None/a-eject-menu.png
--rw-r--r-- root/root         338 usr/share/pixmaps/gnome-cd/themes/None/a-first-menu.png
--rw-r--r-- root/root         344 usr/share/pixmaps/gnome-cd/themes/None/a-last-menu.png
--rw-r--r-- root/root         323 usr/share/pixmaps/gnome-cd/themes/None/a-play-menu.png
--rw-r--r-- root/root         279 usr/share/pixmaps/gnome-cd/themes/None/a-stop-menu.png
--rw-r--r-- root/root         393 usr/share/pixmaps/gnome-cd/themes/None/bottom-left.png
--rw-r--r-- root/root         418 usr/share/pixmaps/gnome-cd/themes/None/bottom-right.png
--rw-r--r-- root/root         255 usr/share/pixmaps/gnome-cd/themes/None/bottom.png
--rw-r--r-- root/root         351 usr/share/pixmaps/gnome-cd/themes/None/media-eject.png
--rw-r--r-- root/root         381 usr/share/pixmaps/gnome-cd/themes/None/media-fwd.png
--rw-r--r-- root/root         344 usr/share/pixmaps/gnome-cd/themes/None/media-next.png
--rw-r--r-- root/root         282 usr/share/pixmaps/gnome-cd/themes/None/media-pause.png
--rw-r--r-- root/root         323 usr/share/pixmaps/gnome-cd/themes/None/media-play.png
--rw-r--r-- root/root         338 usr/share/pixmaps/gnome-cd/themes/None/media-prev.png
--rw-r--r-- root/root         341 usr/share/pixmaps/gnome-cd/themes/None/media-rew.png
--rw-r--r-- root/root         279 usr/share/pixmaps/gnome-cd/themes/None/media-stop.png
--rw-r--r-- root/root         267 usr/share/pixmaps/gnome-cd/themes/None/middle-left.png
--rw-r--r-- root/root         186 usr/share/pixmaps/gnome-cd/themes/None/middle-right.png
--rw-r--r-- root/root         177 usr/share/pixmaps/gnome-cd/themes/None/middle.png
--rw-r--r-- root/root         456 usr/share/pixmaps/gnome-cd/themes/None/top-left.png
--rw-r--r-- root/root         429 usr/share/pixmaps/gnome-cd/themes/None/top-right.png
--rw-r--r-- root/root         318 usr/share/pixmaps/gnome-cd/themes/None/top.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-cd/themes/lcd/
--rw-r--r-- root/root         187 usr/share/pixmaps/gnome-cd/themes/lcd/bottom-left.png
--rw-r--r-- root/root         179 usr/share/pixmaps/gnome-cd/themes/lcd/bottom-right.png
--rw-r--r-- root/root         112 usr/share/pixmaps/gnome-cd/themes/lcd/bottom.png
--rw-r--r-- root/root         496 usr/share/pixmaps/gnome-cd/themes/lcd/lcd.theme
--rw-r--r-- root/root         100 usr/share/pixmaps/gnome-cd/themes/lcd/middle-left.png
--rw-r--r-- root/root         105 usr/share/pixmaps/gnome-cd/themes/lcd/middle-right.png
--rw-r--r-- root/root         106 usr/share/pixmaps/gnome-cd/themes/lcd/middle.png
--rw-r--r-- root/root         172 usr/share/pixmaps/gnome-cd/themes/lcd/top-left.png
--rw-r--r-- root/root         203 usr/share/pixmaps/gnome-cd/themes/lcd/top-right.png
--rw-r--r-- root/root         109 usr/share/pixmaps/gnome-cd/themes/lcd/top.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-cd/themes/media/
--rw-r--r-- root/root         245 usr/share/pixmaps/gnome-cd/themes/media/bottom-left.png
--rw-r--r-- root/root         243 usr/share/pixmaps/gnome-cd/themes/media/bottom-right.png
--rw-r--r-- root/root         169 usr/share/pixmaps/gnome-cd/themes/media/bottom.png
--rw-r--r-- root/root         496 usr/share/pixmaps/gnome-cd/themes/media/media.theme
--rw-r--r-- root/root         158 usr/share/pixmaps/gnome-cd/themes/media/middle-left.png
--rw-r--r-- root/root         163 usr/share/pixmaps/gnome-cd/themes/media/middle-right.png
--rw-r--r-- root/root         164 usr/share/pixmaps/gnome-cd/themes/media/middle.png
--rw-r--r-- root/root         226 usr/share/pixmaps/gnome-cd/themes/media/top-left.png
--rw-r--r-- root/root         261 usr/share/pixmaps/gnome-cd/themes/media/top-right.png
--rw-r--r-- root/root         168 usr/share/pixmaps/gnome-cd/themes/media/top.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-cd/themes/red-lcd/
--rw-r--r-- root/root         245 usr/share/pixmaps/gnome-cd/themes/red-lcd/bottom-left.png
--rw-r--r-- root/root         243 usr/share/pixmaps/gnome-cd/themes/red-lcd/bottom-right.png
--rw-r--r-- root/root         169 usr/share/pixmaps/gnome-cd/themes/red-lcd/bottom.png
--rw-r--r-- root/root         158 usr/share/pixmaps/gnome-cd/themes/red-lcd/middle-left.png
--rw-r--r-- root/root         163 usr/share/pixmaps/gnome-cd/themes/red-lcd/middle-right.png
--rw-r--r-- root/root         164 usr/share/pixmaps/gnome-cd/themes/red-lcd/middle.png
--rw-r--r-- root/root         496 usr/share/pixmaps/gnome-cd/themes/red-lcd/red-lcd.theme
--rw-r--r-- root/root         226 usr/share/pixmaps/gnome-cd/themes/red-lcd/top-left.png
--rw-r--r-- root/root         261 usr/share/pixmaps/gnome-cd/themes/red-lcd/top-right.png
--rw-r--r-- root/root         168 usr/share/pixmaps/gnome-cd/themes/red-lcd/top.png
--rw-r--r-- root/root         408 usr/share/pixmaps/gnome-cd/track.png
--rw-r--r-- root/root        4655 usr/share/pixmaps/gnome-grecord.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-media/
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-media/gnome-sound-recorder/
--rw-r--r-- root/root         382 usr/share/pixmaps/gnome-media/gnome-sound-recorder/media-play.png
--rw-r--r-- root/root         925 usr/share/pixmaps/gnome-media/gnome-sound-recorder/media-record.png
--rw-r--r-- root/root         340 usr/share/pixmaps/gnome-media/gnome-sound-recorder/media-stop.png
--rw-r--r-- root/root        2237 usr/share/pixmaps/gnome-mixer.png
--rw-r--r-- root/root         341 usr/share/pixmaps/gnome-reclevel.png
--rw-r--r-- root/root         341 usr/share/pixmaps/gnome-vumeter.png
--rw-r--r-- root/root        3466 usr/share/pixmaps/gstreamer-properties.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/CDDB-Slave2.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/gnome-audio-profiles.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/gnome-cd.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/gnome-sound-recorder.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/gnome-volume-control.schemas
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/cddb-slave2-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-audio-profiles-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-cd
+-rwxr-xr-x  root/bin   usr/bin/gnome-sound-recorder
+-rwxr-xr-x  root/bin   usr/bin/gnome-volume-control
+-rwxr-xr-x  root/bin   usr/bin/gstreamer-properties
+-rwxr-xr-x  root/bin   usr/bin/vumeter
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/gnome-media-2.12.0/
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/COPYING
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/INSTALL
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/NEWS
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/README
+-rw-r--r--  root/root  usr/doc/gnome-media-2.12.0/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/cddb-slave2/
+-rw-r--r--  root/root  usr/include/cddb-slave2/cddb-slave-client.h
+drwxr-xr-x  root/root  usr/include/gnome-media/
+drwxr-xr-x  root/root  usr/include/gnome-media/profiles/
+-rw-r--r--  root/root  usr/include/gnome-media/profiles/audio-profile-choose.h
+-rw-r--r--  root/root  usr/include/gnome-media/profiles/audio-profile-edit.h
+-rw-r--r--  root/root  usr/include/gnome-media/profiles/audio-profile.h
+-rw-r--r--  root/root  usr/include/gnome-media/profiles/audio-profiles-edit.h
+-rw-r--r--  root/root  usr/include/gnome-media/profiles/gnome-media-profiles.h
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/bonobo/
+drwxr-xr-x  root/root  usr/lib/bonobo/servers/
+-rw-r--r--  root/root  usr/lib/bonobo/servers/GNOME_Media_CDDBSlave2.server
+-rwxr-xr-x  root/root  usr/lib/libcddb-slave2.la
+-rwxr-xr-x  root/root  usr/lib/libcddb-slave2.so.0.0.0
+drwxr-xr-x  root/root  usr/lib/libglade/
+drwxr-xr-x  root/root  usr/lib/libglade/2.0/
+-rwxr-xr-x  root/root  usr/lib/libglade/2.0/libgnome-media-profiles.la
+-rwxr-xr-x  root/root  usr/lib/libglade/2.0/libgnome-media-profiles.so
+-rwxr-xr-x  root/root  usr/lib/libgnome-media-profiles.la
+-rwxr-xr-x  root/root  usr/lib/libgnome-media-profiles.so.0.0.0
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/gnome-media-profiles.pc
+drwxr-xr-x  root/root  usr/libexec/
+-rwxr-xr-x  root/root  usr/libexec/CDDBSlave2
+-rwxr-xr-x  root/root  usr/libexec/cddb-track-editor
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/cddb-slave.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-cd.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-sound-recorder.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-volume-control.desktop
+-rw-r--r--  root/root  usr/share/applications/gstreamer-properties.desktop
+-rw-r--r--  root/root  usr/share/applications/reclevel.desktop
+-rw-r--r--  root/root  usr/share/applications/vumeter.desktop
+drwxr-xr-x  root/root  usr/share/gnome-media/
+drwxr-xr-x  root/root  usr/share/gnome-media/glade/
+-rw-r--r--  root/root  usr/share/gnome-media/glade/gnome-audio-profiles.glade2
+drwxr-xr-x  root/root  usr/share/gnome-media/pixmaps/
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/3dsound.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/chain-broken.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/chain.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/headphones.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/mixer.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/noplay.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/norecord.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/phone.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/play.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/record.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/tone.png
+-rw-r--r--  root/root  usr/share/gnome-media/pixmaps/video.png
+drwxr-xr-x  root/root  usr/share/gnome-sound-recorder/
+drwxr-xr-x  root/root  usr/share/gnome-sound-recorder/ui/
+-rw-r--r--  root/root  usr/share/gnome-sound-recorder/ui/ui.xml
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/C/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/C/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/C/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/de/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/de/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/de/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/es/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/es/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/es/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/fr/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/fr/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/fr/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/it/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/it/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/it/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/ja/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/ja/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ja/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/ko/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/ko/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/ko/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/nl/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/nl/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/nl/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/sv/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/sv/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/sv/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/uk/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/uk/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/uk/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/zh_CN/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_CN/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/zh_TW/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/cdplayer_trackeditor_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/cdplayer_trackeditor_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/cdplayer_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/eject_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/forward_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/gnome-cd-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/gnome-cd-track.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/gnome-cd.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/preferences_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/rewind_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/figures/stop_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/gnome-cd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-cd/zh_TW/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-sound-recorder/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-sound-recorder/C/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-sound-recorder/C/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-sound-recorder/C/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-sound-recorder/C/gnome-sound-recorder.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-sound-recorder/C/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-sound-recorder/uk/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-sound-recorder/uk/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-sound-recorder/uk/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-sound-recorder/uk/gnome-sound-recorder.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-sound-recorder/uk/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-volume-control/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-volume-control/C/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-volume-control/C/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/C/figures/gmix-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/C/figures/gmix.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/C/figures/gnome-volume-control_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/C/gnome-volume-control.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/C/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-volume-control/uk/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-volume-control/uk/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/uk/figures/gmix-prefs.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/uk/figures/gmix.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/uk/figures/gnome-volume-control_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/uk/gnome-volume-control.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-volume-control/uk/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/de/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/de/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/de/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/es/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/es/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/es/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/fr/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/fr/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/fr/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/it/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/it/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/it/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/ja/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/ja/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ja/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/ko/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/ko/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/ko/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/sv/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/sv/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/sv/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/zh_CN/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/zh_CN/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_CN/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/zh_TW/
+drwxr-xr-x  root/root  usr/share/gnome/help/grecord/zh_TW/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-path.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-play.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-rec.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-sound.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord-prefs-ui.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/figures/grecord_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/grecord.xml
+-rw-r--r--  root/root  usr/share/gnome/help/grecord/zh_TW/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gstreamer-properties/
+drwxr-xr-x  root/root  usr/share/gnome/help/gstreamer-properties/C/
+drwxr-xr-x  root/root  usr/share/gnome/help/gstreamer-properties/C/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gstreamer-properties/C/figures/gstreamer_properties_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gstreamer-properties/C/gstreamer-properties.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gstreamer-properties/C/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gstreamer-properties/uk/
+drwxr-xr-x  root/root  usr/share/gnome/help/gstreamer-properties/uk/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gstreamer-properties/uk/figures/gstreamer_properties_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gstreamer-properties/uk/gstreamer-properties.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gstreamer-properties/uk/legal.xml
+drwxr-xr-x  root/root  usr/share/gstreamer-properties/
+drwxr-xr-x  root/root  usr/share/gstreamer-properties/glade/
+-rw-r--r--  root/root  usr/share/gstreamer-properties/glade/gstreamer-properties.glade
+drwxr-xr-x  root/root  usr/share/gstreamer-properties/icons/
+-rw-r--r--  root/root  usr/share/gstreamer-properties/icons/gstreamer-properties.png
+drwxr-xr-x  root/root  usr/share/idl/
+-rw-r--r--  root/root  usr/share/idl/GNOME_Media_CDDBSlave2.idl
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/am/
+drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/be/
+drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bn/
+drwxr-xr-x  root/root  usr/share/locale/bn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bs/
+drwxr-xr-x  root/root  usr/share/locale/bs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bs/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/cy/
+drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cy/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fa/
+drwxr-xr-x  root/root  usr/share/locale/fa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fa/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ga/
+drwxr-xr-x  root/root  usr/share/locale/ga/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ga/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hi/
+drwxr-xr-x  root/root  usr/share/locale/hi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hi/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/id/
+drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/lv/
+drwxr-xr-x  root/root  usr/share/locale/lv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lv/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/mk/
+drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ml/
+drwxr-xr-x  root/root  usr/share/locale/ml/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ml/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/mn/
+drwxr-xr-x  root/root  usr/share/locale/mn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mn/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nn/
+drwxr-xr-x  root/root  usr/share/locale/nn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nn/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ro/
+drwxr-xr-x  root/root  usr/share/locale/ro/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ro/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sl/
+drwxr-xr-x  root/root  usr/share/locale/sl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sl/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ta/
+drwxr-xr-x  root/root  usr/share/locale/ta/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ta/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/tk/
+drwxr-xr-x  root/root  usr/share/locale/tk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tk/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/wa/
+drwxr-xr-x  root/root  usr/share/locale/wa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/wa/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/xh/
+drwxr-xr-x  root/root  usr/share/locale/xh/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/xh/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/gnome-media-2.0.mo
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/gnome-media/
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-C.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-de.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-es.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-fr.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-it.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-ja.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-ko.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-nl.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-sv.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-uk.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-zh_CN.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-cd-zh_TW.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-volume-control-C.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gnome-volume-control-uk.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-C.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-de.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-es.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-fr.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-it.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-ja.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-ko.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-sv.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-uk.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-zh_CN.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/grecord-zh_TW.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gstreamer-properties-C.omf
+-rw-r--r--  root/root  usr/share/omf/gnome-media/gstreamer-properties-uk.omf
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd.png
+drwxr-xr-x  root/root  usr/share/pixmaps/gnome-cd/
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/cd.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/disc.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/media-eject.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/once.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/repeat.png
+drwxr-xr-x  root/root  usr/share/pixmaps/gnome-cd/themes/
+drwxr-xr-x  root/root  usr/share/pixmaps/gnome-cd/themes/None/
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/None.theme
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/a-eject-menu.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/a-first-menu.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/a-last-menu.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/a-play-menu.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/a-stop-menu.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/bottom-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/bottom-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/bottom.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-eject.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-fwd.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-next.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-pause.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-play.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-prev.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-rew.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/media-stop.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/middle-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/middle-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/middle.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/top-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/top-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/None/top.png
+drwxr-xr-x  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/bottom-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/bottom-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/bottom.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/lcd.theme
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/middle-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/middle-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/middle.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/top-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/top-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/lcd/top.png
+drwxr-xr-x  root/root  usr/share/pixmaps/gnome-cd/themes/media/
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/bottom-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/bottom-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/bottom.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/media.theme
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/middle-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/middle-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/middle.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/top-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/top-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/media/top.png
+drwxr-xr-x  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/bottom-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/bottom-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/bottom.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/middle-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/middle-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/middle.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/red-lcd.theme
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/top-left.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/top-right.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/themes/red-lcd/top.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-cd/track.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-grecord.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-mixer.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-reclevel.png
+-rw-r--r--  root/root  usr/share/pixmaps/gnome-vumeter.png
+-rw-r--r--  root/root  usr/share/pixmaps/gstreamer-properties.png

@@ -1,124 +1,121 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         101 install/doinst.sh
--rw-r--r-- root/root         591 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         8261 usr/bin/gnome-doc-prepare
--rwxr-xr-x root/bin        23946 usr/bin/xml2po
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/gnome-doc-utils-0.1.3/
--rw-r--r-- root/root          33 usr/doc/gnome-doc-utils-0.1.3/AUTHORS
--rw-r--r-- root/root       26430 usr/doc/gnome-doc-utils-0.1.3/COPYING
--rw-r--r-- root/root       55543 usr/doc/gnome-doc-utils-0.1.3/ChangeLog
--rw-r--r-- root/root        2699 usr/doc/gnome-doc-utils-0.1.3/NEWS
--rw-r--r-- root/root        4121 usr/doc/gnome-doc-utils-0.1.3/README
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         363 usr/lib/pkgconfig/gnome-doc-utils.pc
--rw-r--r-- root/root         164 usr/lib/pkgconfig/xml2po.pc
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root          29 usr/man/man1/xml2po.1.gz
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/aclocal/
--rw-r--r-- root/root         941 usr/share/aclocal/gnome-doc-utils.m4
-drwxr-xr-x root/root           0 usr/share/gnome-doc-utils/
--rw-r--r-- root/root       19732 usr/share/gnome-doc-utils/gnome-doc-utils.make
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/help/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-doc-make/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-doc-make/C/
--rw-r--r-- root/root        1160 usr/share/gnome/help/gnome-doc-make/C/gnome-doc-make.xml
--rw-r--r-- root/root        3043 usr/share/gnome/help/gnome-doc-make/C/legal.xml
--rw-r--r-- root/root        8947 usr/share/gnome/help/gnome-doc-make/C/make-ref.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-doc-xslt/
-drwxr-xr-x root/root           0 usr/share/gnome/help/gnome-doc-xslt/C/
--rw-r--r-- root/root       13999 usr/share/gnome/help/gnome-doc-xslt/C/db-chunk.xml
--rw-r--r-- root/root        3415 usr/share/gnome/help/gnome-doc-xslt/C/db-common.xml
--rw-r--r-- root/root       37822 usr/share/gnome/help/gnome-doc-xslt/C/db-format.xml
--rw-r--r-- root/root        3438 usr/share/gnome/help/gnome-doc-xslt/C/db-label.xml
--rw-r--r-- root/root        2854 usr/share/gnome/help/gnome-doc-xslt/C/db-title.xml
--rw-r--r-- root/root        3404 usr/share/gnome/help/gnome-doc-xslt/C/db-xref.xml
--rw-r--r-- root/root        4762 usr/share/gnome/help/gnome-doc-xslt/C/db2html-admon.xml
--rw-r--r-- root/root        3798 usr/share/gnome/help/gnome-doc-xslt/C/db2html-autotoc.xml
--rw-r--r-- root/root        6960 usr/share/gnome/help/gnome-doc-xslt/C/db2html-block.xml
--rw-r--r-- root/root        7276 usr/share/gnome/help/gnome-doc-xslt/C/db2html-callout.xml
--rw-r--r-- root/root         936 usr/share/gnome/help/gnome-doc-xslt/C/db2html-classsynopsis.xml
--rw-r--r-- root/root        4801 usr/share/gnome/help/gnome-doc-xslt/C/db2html-cmdsynopsis.xml
--rw-r--r-- root/root         702 usr/share/gnome/help/gnome-doc-xslt/C/db2html-css.xml
--rw-r--r-- root/root        4712 usr/share/gnome/help/gnome-doc-xslt/C/db2html-division.xml
--rw-r--r-- root/root         119 usr/share/gnome/help/gnome-doc-xslt/C/db2html-ebnf.xml
--rw-r--r-- root/root         990 usr/share/gnome/help/gnome-doc-xslt/C/db2html-funcsynopsis.xml
--rw-r--r-- root/root       12137 usr/share/gnome/help/gnome-doc-xslt/C/db2html-info.xml
--rw-r--r-- root/root        2002 usr/share/gnome/help/gnome-doc-xslt/C/db2html-inline.xml
--rw-r--r-- root/root        2601 usr/share/gnome/help/gnome-doc-xslt/C/db2html-list.xml
--rw-r--r-- root/root         129 usr/share/gnome/help/gnome-doc-xslt/C/db2html-media.xml
--rw-r--r-- root/root         837 usr/share/gnome/help/gnome-doc-xslt/C/db2html-qanda.xml
--rw-r--r-- root/root         852 usr/share/gnome/help/gnome-doc-xslt/C/db2html-refentry.xml
--rw-r--r-- root/root         112 usr/share/gnome/help/gnome-doc-xslt/C/db2html-suppressed.xml
--rw-r--r-- root/root        9487 usr/share/gnome/help/gnome-doc-xslt/C/db2html-table.xml
--rw-r--r-- root/root        9000 usr/share/gnome/help/gnome-doc-xslt/C/db2html-title.xml
--rw-r--r-- root/root         835 usr/share/gnome/help/gnome-doc-xslt/C/db2html-xref.xml
--rw-r--r-- root/root       36556 usr/share/gnome/help/gnome-doc-xslt/C/db2html.xml
--rw-r--r-- root/root       19578 usr/share/gnome/help/gnome-doc-xslt/C/db2omf.xml
--rw-r--r-- root/root         104 usr/share/gnome/help/gnome-doc-xslt/C/format2xsl.xml
--rw-r--r-- root/root       12340 usr/share/gnome/help/gnome-doc-xslt/C/gettext.xml
--rw-r--r-- root/root        1831 usr/share/gnome/help/gnome-doc-xslt/C/gnome-doc-xslt.xml
--rw-r--r-- root/root        3043 usr/share/gnome/help/gnome-doc-xslt/C/legal.xml
--rw-r--r-- root/root       17331 usr/share/gnome/help/gnome-doc-xslt/C/translating.xml
--rw-r--r-- root/root        6791 usr/share/gnome/help/gnome-doc-xslt/C/xsldoc.xml
-drwxr-xr-x root/root           0 usr/share/omf/
-drwxr-xr-x root/root           0 usr/share/omf/gnome-doc-make/
--rw-r--r-- root/root         678 usr/share/omf/gnome-doc-make/gnome-doc-make-C.omf
-drwxr-xr-x root/root           0 usr/share/omf/gnome-doc-xslt/
--rw-r--r-- root/root         736 usr/share/omf/gnome-doc-xslt/gnome-doc-xslt-C.omf
-drwxr-xr-x root/root           0 usr/share/xml/
-drwxr-xr-x root/root           0 usr/share/xml/gnome/
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/docbook/
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/docbook/common/
--rw-r--r-- root/root       18690 usr/share/xml/gnome/xslt/docbook/common/db-chunk.xsl
--rw-r--r-- root/root        5262 usr/share/xml/gnome/xslt/docbook/common/db-common.xsl
--rw-r--r-- root/root      252866 usr/share/xml/gnome/xslt/docbook/common/db-format.xsl
--rw-r--r-- root/root       13101 usr/share/xml/gnome/xslt/docbook/common/db-label.xsl
--rw-r--r-- root/root       34752 usr/share/xml/gnome/xslt/docbook/common/db-title.xsl
--rw-r--r-- root/root        5360 usr/share/xml/gnome/xslt/docbook/common/db-xref.xsl
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/docbook/html/
--rw-r--r-- root/root        5592 usr/share/xml/gnome/xslt/docbook/html/db2html-admon.xsl
--rw-r--r-- root/root        5761 usr/share/xml/gnome/xslt/docbook/html/db2html-autotoc.xsl
--rw-r--r-- root/root       11522 usr/share/xml/gnome/xslt/docbook/html/db2html-block.xsl
--rw-r--r-- root/root        4618 usr/share/xml/gnome/xslt/docbook/html/db2html-callout.xsl
--rw-r--r-- root/root       17983 usr/share/xml/gnome/xslt/docbook/html/db2html-classsynopsis.xsl
--rw-r--r-- root/root        8145 usr/share/xml/gnome/xslt/docbook/html/db2html-cmdsynopsis.xsl
--rw-r--r-- root/root        1638 usr/share/xml/gnome/xslt/docbook/html/db2html-css.xsl
--rw-r--r-- root/root       31847 usr/share/xml/gnome/xslt/docbook/html/db2html-division.xsl
--rw-r--r-- root/root        1000 usr/share/xml/gnome/xslt/docbook/html/db2html-ebnf.xsl
--rw-r--r-- root/root        4545 usr/share/xml/gnome/xslt/docbook/html/db2html-funcsynopsis.xsl
--rw-r--r-- root/root       29763 usr/share/xml/gnome/xslt/docbook/html/db2html-info.xsl
--rw-r--r-- root/root       21898 usr/share/xml/gnome/xslt/docbook/html/db2html-inline.xsl
--rw-r--r-- root/root       13884 usr/share/xml/gnome/xslt/docbook/html/db2html-list.xsl
--rw-r--r-- root/root        5706 usr/share/xml/gnome/xslt/docbook/html/db2html-media.xsl
--rw-r--r-- root/root        3276 usr/share/xml/gnome/xslt/docbook/html/db2html-qanda.xsl
--rw-r--r-- root/root        9866 usr/share/xml/gnome/xslt/docbook/html/db2html-refentry.xsl
--rw-r--r-- root/root        2963 usr/share/xml/gnome/xslt/docbook/html/db2html-suppressed.xsl
--rw-r--r-- root/root       32456 usr/share/xml/gnome/xslt/docbook/html/db2html-table.xsl
--rw-r--r-- root/root       15942 usr/share/xml/gnome/xslt/docbook/html/db2html-title.xsl
--rw-r--r-- root/root        4106 usr/share/xml/gnome/xslt/docbook/html/db2html-xref.xsl
--rw-r--r-- root/root        3659 usr/share/xml/gnome/xslt/docbook/html/db2html.xsl
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/docbook/omf/
--rw-r--r-- root/root       21646 usr/share/xml/gnome/xslt/docbook/omf/db2omf.xsl
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/docbook/utils/
--rw-r--r-- root/root        1297 usr/share/xml/gnome/xslt/docbook/utils/chunks.xsl
--rw-r--r-- root/root         882 usr/share/xml/gnome/xslt/docbook/utils/credits.xsl
--rw-r--r-- root/root         405 usr/share/xml/gnome/xslt/docbook/utils/ids.xsl
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/gettext/
--rw-r--r-- root/root       18004 usr/share/xml/gnome/xslt/gettext/format2xsl.xsl
--rw-r--r-- root/root       19269 usr/share/xml/gnome/xslt/gettext/gettext.xsl
--rw-r--r-- root/root       79115 usr/share/xml/gnome/xslt/gettext/l10n.xml
-drwxr-xr-x root/root           0 usr/share/xml/gnome/xslt/xsldoc/
--rw-r--r-- root/root       20528 usr/share/xml/gnome/xslt/xsldoc/xsldoc.xsl
-drwxr-xr-x root/root           0 usr/share/xml2po/
--rw-r--r-- root/root        7555 usr/share/xml2po/docbook.py
--rw-r--r-- root/root        2091 usr/share/xml2po/empty.py
--rw-r--r-- root/root        2904 usr/share/xml2po/gs.py
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/gnome-doc-prepare
+-rwxr-xr-x  root/bin   usr/bin/xml2po
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/gnome-doc-utils-0.4.1/
+-rw-r--r--  root/root  usr/doc/gnome-doc-utils-0.4.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/gnome-doc-utils-0.4.1/COPYING
+-rw-r--r--  root/root  usr/doc/gnome-doc-utils-0.4.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/gnome-doc-utils-0.4.1/INSTALL
+-rw-r--r--  root/root  usr/doc/gnome-doc-utils-0.4.1/NEWS
+-rw-r--r--  root/root  usr/doc/gnome-doc-utils-0.4.1/README
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/gnome-doc-utils.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/xml2po.pc
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/xml2po.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/aclocal/
+-rw-r--r--  root/root  usr/share/aclocal/gnome-doc-utils.m4
+drwxr-xr-x  root/root  usr/share/gnome-doc-utils/
+-rw-r--r--  root/root  usr/share/gnome-doc-utils/gnome-doc-utils.make
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-doc-make/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-doc-make/C/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-make/C/gnome-doc-make.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-make/C/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-make/C/make-ref.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-doc-xslt/
+drwxr-xr-x  root/root  usr/share/gnome/help/gnome-doc-xslt/C/
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db-chunk.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db-common.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db-label.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db-title.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db-xref.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-admon.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-autotoc.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-block.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-callout.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-classsynopsis.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-cmdsynopsis.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-css.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-division.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-ebnf.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-funcsynopsis.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-info.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-inline.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-list.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-media.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-qanda.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-refentry.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-suppressed.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-table.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-title.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html-xref.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2html.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/db2omf.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/gettext.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/gnome-doc-xslt.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/translating.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gnome-doc-xslt/C/xsldoc.xml
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/gnome-doc-make/
+-rw-r--r--  root/root  usr/share/omf/gnome-doc-make/gnome-doc-make-C.omf
+drwxr-xr-x  root/root  usr/share/omf/gnome-doc-xslt/
+-rw-r--r--  root/root  usr/share/omf/gnome-doc-xslt/gnome-doc-xslt-C.omf
+drwxr-xr-x  root/root  usr/share/xml/
+drwxr-xr-x  root/root  usr/share/xml/gnome/
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/docbook/
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/docbook/common/
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/common/db-chunk.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/common/db-common.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/common/db-label.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/common/db-title.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/common/db-xref.xsl
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/docbook/html/
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-admon.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-autotoc.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-block.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-callout.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-classsynopsis.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-cmdsynopsis.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-css.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-division.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-ebnf.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-funcsynopsis.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-info.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-inline.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-list.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-media.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-qanda.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-refentry.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-suppressed.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-table.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-title.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html-xref.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/html/db2html.xsl
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/docbook/omf/
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/omf/db2omf.xsl
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/docbook/utils/
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/utils/chunks.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/utils/credits.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/docbook/utils/ids.xsl
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/gettext/
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/gettext/gettext.xsl
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/gettext/l10n.xml
+drwxr-xr-x  root/root  usr/share/xml/gnome/xslt/xsldoc/
+-rw-r--r--  root/root  usr/share/xml/gnome/xslt/xsldoc/xsldoc.xsl
+drwxr-xr-x  root/root  usr/share/xml2po/
+-rw-r--r--  root/root  usr/share/xml2po/docbook.py
+-rw-r--r--  root/root  usr/share/xml2po/empty.py
+-rw-r--r--  root/root  usr/share/xml2po/gs.py

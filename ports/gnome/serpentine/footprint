@@ -1,95 +1,105 @@
-drwxr-xr-x  root/root  0      ./
-drwxr-xr-x  root/root  0      install/
--rw-r--r--  root/root  101    install/doinst.sh
--rw-r--r--  root/root  334    install/slack-desc
-drwxr-xr-x  root/root  0      usr/
-drwxr-xr-x  root/bin   0      usr/bin/
--rwxr-xr-x  root/bin   2648   usr/bin/serpentine
-drwxr-xr-x  root/root  0      usr/doc/
-drwxr-xr-x  root/root  0      usr/doc/serpentine-0.6.1/
--rw-r--r--  root/root  45     usr/doc/serpentine-0.6.1/AUTHORS
--rw-r--r--  root/root  17992  usr/doc/serpentine-0.6.1/COPYING
--rw-r--r--  root/root  15371  usr/doc/serpentine-0.6.1/ChangeLog
--rw-r--r--  root/root  9273   usr/doc/serpentine-0.6.1/INSTALL
--rw-r--r--  root/root  1028   usr/doc/serpentine-0.6.1/NEWS
--rw-r--r--  root/root  518    usr/doc/serpentine-0.6.1/README
--rw-r--r--  root/root  1054   usr/doc/serpentine-0.6.1/TODO
-drwxr-xr-x  root/root  0      usr/lib/
-drwxr-xr-x  root/root  0      usr/lib/python2.4/
-drwxr-xr-x  root/root  0      usr/lib/python2.4/site-packages/
-drwxr-xr-x  root/root  0      usr/lib/python2.4/site-packages/serpentine/
--rw-r--r--  root/root  9100   usr/lib/python2.4/site-packages/serpentine/__init__.py
--rw-r--r--  root/root  11605  usr/lib/python2.4/site-packages/serpentine/__init__.pyc
--rw-r--r--  root/root  11514  usr/lib/python2.4/site-packages/serpentine/__init__.pyo
--rw-r--r--  root/root  9068   usr/lib/python2.4/site-packages/serpentine/audio.py
--rw-r--r--  root/root  10385  usr/lib/python2.4/site-packages/serpentine/audio.pyc
--rw-r--r--  root/root  10174  usr/lib/python2.4/site-packages/serpentine/audio.pyo
--rw-r--r--  root/root  4920   usr/lib/python2.4/site-packages/serpentine/common.py
--rw-r--r--  root/root  4778   usr/lib/python2.4/site-packages/serpentine/common.pyc
--rw-r--r--  root/root  4737   usr/lib/python2.4/site-packages/serpentine/common.pyo
--rw-r--r--  root/root  1300   usr/lib/python2.4/site-packages/serpentine/components.py
--rw-r--r--  root/root  1048   usr/lib/python2.4/site-packages/serpentine/components.pyc
--rw-r--r--  root/root  1048   usr/lib/python2.4/site-packages/serpentine/components.pyo
--rw-r--r--  root/root  1280   usr/lib/python2.4/site-packages/serpentine/constants.py
--rw-r--r--  root/root  420    usr/lib/python2.4/site-packages/serpentine/constants.pyc
--rw-r--r--  root/root  420    usr/lib/python2.4/site-packages/serpentine/constants.pyo
--rw-r--r--  root/root  11064  usr/lib/python2.4/site-packages/serpentine/converting.py
--rw-r--r--  root/root  15000  usr/lib/python2.4/site-packages/serpentine/converting.pyc
--rw-r--r--  root/root  14657  usr/lib/python2.4/site-packages/serpentine/converting.pyo
--rw-r--r--  root/root  1255   usr/lib/python2.4/site-packages/serpentine/export.py
--rw-r--r--  root/root  656    usr/lib/python2.4/site-packages/serpentine/export.pyc
--rw-r--r--  root/root  656    usr/lib/python2.4/site-packages/serpentine/export.pyo
--rw-r--r--  root/root  10327  usr/lib/python2.4/site-packages/serpentine/gaw.py
--rw-r--r--  root/root  11543  usr/lib/python2.4/site-packages/serpentine/gaw.pyc
--rw-r--r--  root/root  11253  usr/lib/python2.4/site-packages/serpentine/gaw.pyo
--rw-r--r--  root/root  6998   usr/lib/python2.4/site-packages/serpentine/gdkpiechart.py
--rw-r--r--  root/root  6341   usr/lib/python2.4/site-packages/serpentine/gdkpiechart.pyc
--rw-r--r--  root/root  6341   usr/lib/python2.4/site-packages/serpentine/gdkpiechart.pyo
--rw-r--r--  root/root  9843   usr/lib/python2.4/site-packages/serpentine/gtkutil.py
--rw-r--r--  root/root  12965  usr/lib/python2.4/site-packages/serpentine/gtkutil.pyc
--rw-r--r--  root/root  12921  usr/lib/python2.4/site-packages/serpentine/gtkutil.pyo
--rw-r--r--  root/root  17064  usr/lib/python2.4/site-packages/serpentine/mainwindow.py
--rw-r--r--  root/root  16203  usr/lib/python2.4/site-packages/serpentine/mainwindow.pyc
--rw-r--r--  root/root  16203  usr/lib/python2.4/site-packages/serpentine/mainwindow.pyo
--rw-r--r--  root/root  20643  usr/lib/python2.4/site-packages/serpentine/mastering.py
--rw-r--r--  root/root  26336  usr/lib/python2.4/site-packages/serpentine/mastering.pyc
--rw-r--r--  root/root  25973  usr/lib/python2.4/site-packages/serpentine/mastering.pyo
--rw-r--r--  root/root  8699   usr/lib/python2.4/site-packages/serpentine/operations.py
--rw-r--r--  root/root  12783  usr/lib/python2.4/site-packages/serpentine/operations.pyc
--rw-r--r--  root/root  12568  usr/lib/python2.4/site-packages/serpentine/operations.pyo
-drwxr-xr-x  root/root  0      usr/lib/python2.4/site-packages/serpentine/plugins/
--rw-r--r--  root/root  787    usr/lib/python2.4/site-packages/serpentine/plugins/__init__.py
--rw-r--r--  root/root  887    usr/lib/python2.4/site-packages/serpentine/plugins/__init__.pyc
--rw-r--r--  root/root  887    usr/lib/python2.4/site-packages/serpentine/plugins/__init__.pyo
--rw-r--r--  root/root  815    usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_dir.py
--rw-r--r--  root/root  1407   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_dir.pyc
--rw-r--r--  root/root  1407   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_dir.pyo
--rw-r--r--  root/root  2051   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plparser.py
--rw-r--r--  root/root  1854   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plparser.pyc
--rw-r--r--  root/root  1854   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plparser.pyo
--rw-r--r--  root/root  3336   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plsave.py
--rw-r--r--  root/root  3351   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plsave.pyc
--rw-r--r--  root/root  3351   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plsave.pyo
--rw-r--r--  root/root  2023   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_xspf.py
--rw-r--r--  root/root  1764   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_xspf.pyc
--rw-r--r--  root/root  1764   usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_xspf.pyo
--rw-r--r--  root/root  8266   usr/lib/python2.4/site-packages/serpentine/preferences.py
--rw-r--r--  root/root  9952   usr/lib/python2.4/site-packages/serpentine/preferences.pyc
--rw-r--r--  root/root  9752   usr/lib/python2.4/site-packages/serpentine/preferences.pyo
--rw-r--r--  root/root  9937   usr/lib/python2.4/site-packages/serpentine/recording.py
--rw-r--r--  root/root  11297  usr/lib/python2.4/site-packages/serpentine/recording.pyc
--rw-r--r--  root/root  11297  usr/lib/python2.4/site-packages/serpentine/recording.pyo
--rw-r--r--  root/root  55     usr/lib/python2.4/site-packages/serpentine/release.py
--rw-r--r--  root/root  167    usr/lib/python2.4/site-packages/serpentine/release.pyc
--rw-r--r--  root/root  167    usr/lib/python2.4/site-packages/serpentine/release.pyo
--rw-r--r--  root/root  3497   usr/lib/python2.4/site-packages/serpentine/services.py
--rw-r--r--  root/root  4312   usr/lib/python2.4/site-packages/serpentine/services.pyc
--rw-r--r--  root/root  4312   usr/lib/python2.4/site-packages/serpentine/services.pyo
--rw-r--r--  root/root  4296   usr/lib/python2.4/site-packages/serpentine/xspf.py
--rw-r--r--  root/root  4698   usr/lib/python2.4/site-packages/serpentine/xspf.pyc
--rw-r--r--  root/root  4656   usr/lib/python2.4/site-packages/serpentine/xspf.pyo
-drwxr-xr-x  root/root  0      usr/share/
-drwxr-xr-x  root/root  0      usr/share/applications/
--rw-r--r--  root/root  269    usr/share/applications/serpentine.desktop
-drwxr-xr-x  root/root  0      usr/share/serpentine/
--rw-r--r--  root/root  34216  usr/share/serpentine/serpentine.glade
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/serpentine
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/serpentine-0.6.3/
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/COPYING
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/INSTALL
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/NEWS
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/README
+-rw-r--r--  root/root  usr/doc/serpentine-0.6.3/TODO
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/python2.4/
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/serpentine/
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/__init__.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/__init__.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/audio.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/audio.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/audio.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/common.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/common.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/common.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/components.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/components.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/components.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/constants.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/constants.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/constants.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/converting.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/converting.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/converting.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/export.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/export.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/export.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gaw.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gaw.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gaw.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gdkpiechart.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gdkpiechart.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gdkpiechart.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gtkutil.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gtkutil.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/gtkutil.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/mainwindow.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/mainwindow.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/mainwindow.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/mastering.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/mastering.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/mastering.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/operations.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/operations.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/operations.pyo
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/__init__.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/__init__.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_dir.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_dir.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_dir.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_k3b.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_k3b.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_k3b.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plparser.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plparser.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plparser.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plsave.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plsave.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_plsave.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_xspf.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_xspf.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/plugins/plugfilter_xspf.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/preferences.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/preferences.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/preferences.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/recording.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/recording.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/recording.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/release.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/release.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/release.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/services.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/services.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/services.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/urlutil.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/urlutil.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/urlutil.pyo
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/xspf.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/xspf.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/serpentine/xspf.pyo
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/serpentine.desktop
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/serpentine.mo
+drwxr-xr-x  root/root  usr/share/serpentine/
+-rw-r--r--  root/root  usr/share/serpentine/serpentine.glade

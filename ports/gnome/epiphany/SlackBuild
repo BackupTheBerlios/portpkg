@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.6.4
+VERSION=1.8.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -31,11 +31,11 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --disable-scrollkeeper \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
-rm -rfv $PKG/var/lib/scrollkeeper
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG

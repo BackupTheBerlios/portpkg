@@ -1,389 +1,414 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
-drwxr-xr-x root/root           0 etc/gconf/
-drwxr-xr-x root/root           0 etc/gconf/schemas/
--rw-r--r-- root/root       15259 etc/gconf/schemas/apps_gnome_settings_daemon_default_editor.schemas
--rw-r--r-- root/root      207025 etc/gconf/schemas/apps_gnome_settings_daemon_keybindings.schemas
--rw-r--r-- root/root       26048 etc/gconf/schemas/apps_gnome_settings_daemon_screensaver.schemas
--rw-r--r-- root/root       40826 etc/gconf/schemas/desktop_gnome_font_rendering.schemas
--rw-r--r-- root/root       94714 etc/gconf/schemas/desktop_gnome_peripherals_keyboard_xkb.schemas
--rw-r--r-- root/root      121646 etc/gconf/schemas/fontilus.schemas
--rw-r--r-- root/root       61191 etc/gconf/schemas/themus.schemas
-drwxr-xr-x root/root           0 etc/gnome-vfs-2.0/
-drwxr-xr-x root/root           0 etc/gnome-vfs-2.0/modules/
--rw-r--r-- root/root          20 etc/gnome-vfs-2.0/modules/font-method.conf
--rw-r--r-- root/root          25 etc/gnome-vfs-2.0/modules/theme-method.conf
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         993 install/doinst.sh
--rw-r--r-- root/root         303 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin        52212 usr/bin/gnome-accessibility-keyboard-properties
--rwxr-xr-x root/bin        45900 usr/bin/gnome-at-properties
--rwxr-xr-x root/bin        48072 usr/bin/gnome-background-properties
--rwxr-xr-x root/bin        33452 usr/bin/gnome-control-center
--rwxr-xr-x root/bin        53988 usr/bin/gnome-default-applications-properties
--rwxr-xr-x root/bin        24008 usr/bin/gnome-display-properties
--rwxr-xr-x root/bin        54472 usr/bin/gnome-font-properties
--rwxr-xr-x root/bin        18720 usr/bin/gnome-font-viewer
--rwxr-xr-x root/bin        57928 usr/bin/gnome-keybinding-properties
--rwxr-xr-x root/bin       106936 usr/bin/gnome-keyboard-properties
--rwxr-xr-x root/bin        56928 usr/bin/gnome-mouse-properties
--rwxr-xr-x root/bin        46204 usr/bin/gnome-network-preferences
--rwxr-xr-x root/bin        66564 usr/bin/gnome-sound-properties
--rwxr-xr-x root/bin        78780 usr/bin/gnome-theme-manager
--rwxr-xr-x root/bin        31228 usr/bin/gnome-theme-thumbnailer
--rwxr-xr-x root/bin        11728 usr/bin/gnome-thumbnail-font
--rwxr-xr-x root/bin        39924 usr/bin/gnome-typing-monitor
--rwxr-xr-x root/bin        43856 usr/bin/gnome-ui-properties
--rwxr-xr-x root/bin        18764 usr/bin/gnome-window-properties
--rwxr-xr-x root/bin        21668 usr/bin/themus-theme-applier
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/control-center-2.10.1/
--rw-r--r-- root/root          36 usr/doc/control-center-2.10.1/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/control-center-2.10.1/COPYING
--rw-r--r-- root/root      133318 usr/doc/control-center-2.10.1/ChangeLog
--rw-r--r-- root/root       11538 usr/doc/control-center-2.10.1/NEWS
--rw-r--r-- root/root        1748 usr/doc/control-center-2.10.1/README
--rw-r--r-- root/root        1890 usr/doc/control-center-2.10.1/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/gnome-window-settings-2.0/
--rw-r--r-- root/root        7104 usr/include/gnome-window-settings-2.0/gnome-window-manager.h
--rw-r--r-- root/root         446 usr/include/gnome-window-settings-2.0/gnome-wm-manager.h
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/bonobo/
-drwxr-xr-x root/root           0 usr/lib/bonobo/servers/
--rw-r--r-- root/root         320 usr/lib/bonobo/servers/GNOME_SettingsDaemon.server
-drwxr-xr-x root/root           0 usr/lib/gnome-vfs-2.0/
-drwxr-xr-x root/root           0 usr/lib/gnome-vfs-2.0/modules/
--rwxr-xr-x root/root        1450 usr/lib/gnome-vfs-2.0/modules/libfont-method.la
--rwxr-xr-x root/root       14236 usr/lib/gnome-vfs-2.0/modules/libfont-method.so
--rwxr-xr-x root/root        2614 usr/lib/gnome-vfs-2.0/modules/libtheme-method.la
--rwxr-xr-x root/root      113292 usr/lib/gnome-vfs-2.0/modules/libtheme-method.so
--rwxr-xr-x root/root        2549 usr/lib/libgnome-window-settings.la
--rwxr-xr-x root/root       11748 usr/lib/libgnome-window-settings.so.1.0.0
-drwxr-xr-x root/root           0 usr/lib/nautilus/
-drwxr-xr-x root/root           0 usr/lib/nautilus/extensions-1.0/
--rwxr-xr-x root/root         882 usr/lib/nautilus/extensions-1.0/libnautilus-fontilus.la
--rwxr-xr-x root/root        5836 usr/lib/nautilus/extensions-1.0/libnautilus-fontilus.so
--rwxr-xr-x root/root        2668 usr/lib/nautilus/extensions-1.0/libnautilus-themus.la
--rwxr-xr-x root/root      113184 usr/lib/nautilus/extensions-1.0/libnautilus-themus.so
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         329 usr/lib/pkgconfig/gnome-window-settings-2.0.pc
-drwxr-xr-x root/root           0 usr/lib/window-manager-settings/
--rwxr-xr-x root/root         827 usr/lib/window-manager-settings/libmetacity.la
--rwxr-xr-x root/root        9936 usr/lib/window-manager-settings/libmetacity.so
-drwxr-xr-x root/root           0 usr/libexec/
--rwxr-xr-x root/root      157388 usr/libexec/gnome-settings-daemon
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root        6696 usr/share/applications/accessibility-keyboard.desktop
--rw-r--r-- root/root        9045 usr/share/applications/at-properties.desktop
--rw-r--r-- root/root        6601 usr/share/applications/background.desktop
--rw-r--r-- root/root        6747 usr/share/applications/default-applications.desktop
--rw-r--r-- root/root        5599 usr/share/applications/display-properties.desktop
--rw-r--r-- root/root        5496 usr/share/applications/font-properties.desktop
--rw-r--r-- root/root        5521 usr/share/applications/gnome-font-viewer.desktop
--rw-r--r-- root/root        4911 usr/share/applications/gnome-network-preferences.desktop
--rw-r--r-- root/root        4973 usr/share/applications/gnome-settings-mouse.desktop
--rw-r--r-- root/root        6366 usr/share/applications/gnome-settings-sound.desktop
--rw-r--r-- root/root        9133 usr/share/applications/gnome-ui-properties.desktop
--rw-r--r-- root/root        6606 usr/share/applications/gnomecc.desktop
--rw-r--r-- root/root        6466 usr/share/applications/gtk-theme-selector.desktop
--rw-r--r-- root/root        6865 usr/share/applications/keybinding.desktop
--rw-r--r-- root/root        5854 usr/share/applications/keyboard.desktop
--rw-r--r-- root/root         276 usr/share/applications/mimeinfo.cache
--rw-r--r-- root/root        3497 usr/share/applications/themus-theme-applier.desktop
--rw-r--r-- root/root        3908 usr/share/applications/window-properties.desktop
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/icons/
--rw-r--r-- root/root        2824 usr/share/control-center-2.0/icons/display-capplet.png
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/interfaces/
--rw-r--r-- root/root        2256 usr/share/control-center-2.0/interfaces/acme.glade
--rw-r--r-- root/root        8225 usr/share/control-center-2.0/interfaces/apply-font.glade
--rw-r--r-- root/root       16872 usr/share/control-center-2.0/interfaces/at-enable-dialog.glade
--rw-r--r-- root/root       59108 usr/share/control-center-2.0/interfaces/font-properties.glade
--rw-r--r-- root/root       80723 usr/share/control-center-2.0/interfaces/gnome-accessibility-keyboard-properties.glade
--rw-r--r-- root/root       17097 usr/share/control-center-2.0/interfaces/gnome-background-properties.glade
--rw-r--r-- root/root       61809 usr/share/control-center-2.0/interfaces/gnome-default-applications-properties.glade
--rw-r--r-- root/root        6036 usr/share/control-center-2.0/interfaces/gnome-keybinding-properties.glade
--rw-r--r-- root/root       72672 usr/share/control-center-2.0/interfaces/gnome-keyboard-properties.glade
--rw-r--r-- root/root       47310 usr/share/control-center-2.0/interfaces/gnome-mouse-properties.glade
--rw-r--r-- root/root       43424 usr/share/control-center-2.0/interfaces/gnome-network-preferences.glade
--rw-r--r-- root/root       24557 usr/share/control-center-2.0/interfaces/gnome-ui-properties.glade
--rw-r--r-- root/root       17756 usr/share/control-center-2.0/interfaces/gnome-window-properties.glade
--rw-r--r-- root/root       14082 usr/share/control-center-2.0/interfaces/modmap-dialog.glade
--rw-r--r-- root/root       12560 usr/share/control-center-2.0/interfaces/sound-properties.glade
--rw-r--r-- root/root        9300 usr/share/control-center-2.0/interfaces/theme-install.glade
--rw-r--r-- root/root       62097 usr/share/control-center-2.0/interfaces/theme-properties.glade
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/pixmaps/
--rw-r--r-- root/root        2245 usr/share/control-center-2.0/pixmaps/accessibility-keyboard-bouncekey.png
--rw-r--r-- root/root        3160 usr/share/control-center-2.0/pixmaps/accessibility-keyboard-mousekey.png
--rw-r--r-- root/root        3200 usr/share/control-center-2.0/pixmaps/accessibility-keyboard-slowkey.png
--rw-r--r-- root/root        2364 usr/share/control-center-2.0/pixmaps/accessibility-keyboard-stickykey.png
--rw-r--r-- root/root        3239 usr/share/control-center-2.0/pixmaps/accessibility-keyboard-togglekey.png
--rw-r--r-- root/root        4377 usr/share/control-center-2.0/pixmaps/acme-brightness.png
--rw-r--r-- root/root        1624 usr/share/control-center-2.0/pixmaps/acme-eject.png
--rw-r--r-- root/root        2879 usr/share/control-center-2.0/pixmaps/at-startup.png
--rw-r--r-- root/root        2991 usr/share/control-center-2.0/pixmaps/at-support.png
--rw-r--r-- root/root         473 usr/share/control-center-2.0/pixmaps/bar-disabled.png
--rw-r--r-- root/root         253 usr/share/control-center-2.0/pixmaps/bar-green.png
--rw-r--r-- root/root         258 usr/share/control-center-2.0/pixmaps/bar-red.png
--rw-r--r-- root/root         331 usr/share/control-center-2.0/pixmaps/bar.png
--rw-r--r-- root/root        4643 usr/share/control-center-2.0/pixmaps/double-click-maybe.png
--rw-r--r-- root/root        4751 usr/share/control-center-2.0/pixmaps/double-click-off.png
--rw-r--r-- root/root        6360 usr/share/control-center-2.0/pixmaps/double-click-on.png
--rw-r--r-- root/root        4445 usr/share/control-center-2.0/pixmaps/gnome-speakernotes-muted.png
--rw-r--r-- root/root        4655 usr/share/control-center-2.0/pixmaps/gnome-speakernotes.png
--rw-r--r-- root/root        4199 usr/share/control-center-2.0/pixmaps/keyboard-bell.png
--rw-r--r-- root/root         261 usr/share/control-center-2.0/pixmaps/keyboard-cursor.png
--rw-r--r-- root/root        3852 usr/share/control-center-2.0/pixmaps/keyboard-repeat.png
--rw-r--r-- root/root        4655 usr/share/control-center-2.0/pixmaps/keyboard-volume.png
--rw-r--r-- root/root         251 usr/share/control-center-2.0/pixmaps/mouse-cursor-normal-large.png
--rw-r--r-- root/root         241 usr/share/control-center-2.0/pixmaps/mouse-cursor-normal.png
--rw-r--r-- root/root         268 usr/share/control-center-2.0/pixmaps/mouse-cursor-white-large.png
--rw-r--r-- root/root         221 usr/share/control-center-2.0/pixmaps/mouse-cursor-white.png
--rw-r--r-- root/root        9676 usr/share/control-center-2.0/pixmaps/mouse-left.png
--rw-r--r-- root/root        9572 usr/share/control-center-2.0/pixmaps/mouse-right.png
--rw-r--r-- root/root         274 usr/share/control-center-2.0/pixmaps/ocean-stripes.png
--rw-r--r-- root/root        2248 usr/share/control-center-2.0/pixmaps/stop.png
--rw-r--r-- root/root         125 usr/share/control-center-2.0/pixmaps/subpixel-bgr.png
--rw-r--r-- root/root         125 usr/share/control-center-2.0/pixmaps/subpixel-rgb.png
--rw-r--r-- root/root         138 usr/share/control-center-2.0/pixmaps/subpixel-vbgr.png
--rw-r--r-- root/root         138 usr/share/control-center-2.0/pixmaps/subpixel-vrgb.png
--rw-r--r-- root/root        2038 usr/share/control-center-2.0/pixmaps/theme-thumbnailing.png
--rw-r--r-- root/root        2357 usr/share/control-center-2.0/pixmaps/visual-bell.png
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/xrdb/
--rw-r--r-- root/root         230 usr/share/control-center-2.0/xrdb/Editres.ad
--rw-r--r-- root/root         788 usr/share/control-center-2.0/xrdb/Emacs.ad
--rw-r--r-- root/root          95 usr/share/control-center-2.0/xrdb/General.ad
--rw-r--r-- root/root        2351 usr/share/control-center-2.0/xrdb/Motif.ad
--rw-r--r-- root/root        3627 usr/share/control-center-2.0/xrdb/Tk.ad
--rw-r--r-- root/root        1101 usr/share/control-center-2.0/xrdb/Xaw.ad
-drwxr-xr-x root/root           0 usr/share/gnome-background-properties/
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/cursor-fonts/
--rw-r--r-- root/root       18636 usr/share/gnome/cursor-fonts/cursor-large-white.pcf
--rw-r--r-- root/root       17432 usr/share/gnome/cursor-fonts/cursor-large.pcf
--rw-r--r-- root/root       13848 usr/share/gnome/cursor-fonts/cursor-white.pcf
-drwxr-xr-x root/root           0 usr/share/gnome/vfolders/
--rw-r--r-- root/root          92 usr/share/gnome/vfolders/font-method.directory
--rw-r--r-- root/root          95 usr/share/gnome/vfolders/theme-method.directory
-drwxr-xr-x root/root           0 usr/share/icons/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/48x48/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/48x48/apps/
--rw-r--r-- root/root        3464 usr/share/icons/hicolor/48x48/apps/gnome-control-center.png
-drwxr-xr-x root/root           0 usr/share/idl/
--rw-r--r-- root/root        3995 usr/share/idl/ConfigArchiver.idl
--rw-r--r-- root/root         210 usr/share/idl/GNOME_SettingsDaemon.idl
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/af/
-drwxr-xr-x root/root           0 usr/share/locale/af/LC_MESSAGES/
--rw-r--r-- root/root       54873 usr/share/locale/af/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/am/
-drwxr-xr-x root/root           0 usr/share/locale/am/LC_MESSAGES/
--rw-r--r-- root/root        7977 usr/share/locale/am/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ar/
-drwxr-xr-x root/root           0 usr/share/locale/ar/LC_MESSAGES/
--rw-r--r-- root/root       68751 usr/share/locale/ar/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/az/
-drwxr-xr-x root/root           0 usr/share/locale/az/LC_MESSAGES/
--rw-r--r-- root/root       62071 usr/share/locale/az/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/be/
-drwxr-xr-x root/root           0 usr/share/locale/be/LC_MESSAGES/
--rw-r--r-- root/root       72908 usr/share/locale/be/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/bg/
-drwxr-xr-x root/root           0 usr/share/locale/bg/LC_MESSAGES/
--rw-r--r-- root/root       78346 usr/share/locale/bg/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/bn/
-drwxr-xr-x root/root           0 usr/share/locale/bn/LC_MESSAGES/
--rw-r--r-- root/root       96865 usr/share/locale/bn/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/bs/
-drwxr-xr-x root/root           0 usr/share/locale/bs/LC_MESSAGES/
--rw-r--r-- root/root       57614 usr/share/locale/bs/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ca/
-drwxr-xr-x root/root           0 usr/share/locale/ca/LC_MESSAGES/
--rw-r--r-- root/root       61850 usr/share/locale/ca/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/cs/
-drwxr-xr-x root/root           0 usr/share/locale/cs/LC_MESSAGES/
--rw-r--r-- root/root       60208 usr/share/locale/cs/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/cy/
-drwxr-xr-x root/root           0 usr/share/locale/cy/LC_MESSAGES/
--rw-r--r-- root/root       58461 usr/share/locale/cy/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/da/
-drwxr-xr-x root/root           0 usr/share/locale/da/LC_MESSAGES/
--rw-r--r-- root/root       58475 usr/share/locale/da/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root       61680 usr/share/locale/de/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/el/
-drwxr-xr-x root/root           0 usr/share/locale/el/LC_MESSAGES/
--rw-r--r-- root/root       81132 usr/share/locale/el/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r-- root/root       56556 usr/share/locale/en_CA/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r-- root/root       56514 usr/share/locale/en_GB/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/es/
-drwxr-xr-x root/root           0 usr/share/locale/es/LC_MESSAGES/
--rw-r--r-- root/root       62448 usr/share/locale/es/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/et/
-drwxr-xr-x root/root           0 usr/share/locale/et/LC_MESSAGES/
--rw-r--r-- root/root       27932 usr/share/locale/et/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/eu/
-drwxr-xr-x root/root           0 usr/share/locale/eu/LC_MESSAGES/
--rw-r--r-- root/root       53411 usr/share/locale/eu/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/fa/
-drwxr-xr-x root/root           0 usr/share/locale/fa/LC_MESSAGES/
--rw-r--r-- root/root        9319 usr/share/locale/fa/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/fi/
-drwxr-xr-x root/root           0 usr/share/locale/fi/LC_MESSAGES/
--rw-r--r-- root/root       59167 usr/share/locale/fi/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       63371 usr/share/locale/fr/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ga/
-drwxr-xr-x root/root           0 usr/share/locale/ga/LC_MESSAGES/
--rw-r--r-- root/root       12883 usr/share/locale/ga/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/gl/
-drwxr-xr-x root/root           0 usr/share/locale/gl/LC_MESSAGES/
--rw-r--r-- root/root       16861 usr/share/locale/gl/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/gu/
-drwxr-xr-x root/root           0 usr/share/locale/gu/LC_MESSAGES/
--rw-r--r-- root/root       90076 usr/share/locale/gu/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/he/
-drwxr-xr-x root/root           0 usr/share/locale/he/LC_MESSAGES/
--rw-r--r-- root/root       51004 usr/share/locale/he/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/hi/
-drwxr-xr-x root/root           0 usr/share/locale/hi/LC_MESSAGES/
--rw-r--r-- root/root       79045 usr/share/locale/hi/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/hr/
-drwxr-xr-x root/root           0 usr/share/locale/hr/LC_MESSAGES/
--rw-r--r-- root/root       55400 usr/share/locale/hr/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/hu/
-drwxr-xr-x root/root           0 usr/share/locale/hu/LC_MESSAGES/
--rw-r--r-- root/root       61853 usr/share/locale/hu/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/id/
-drwxr-xr-x root/root           0 usr/share/locale/id/LC_MESSAGES/
--rw-r--r-- root/root       58595 usr/share/locale/id/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/is/
-drwxr-xr-x root/root           0 usr/share/locale/is/LC_MESSAGES/
--rw-r--r-- root/root       45131 usr/share/locale/is/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/it/
-drwxr-xr-x root/root           0 usr/share/locale/it/LC_MESSAGES/
--rw-r--r-- root/root       61761 usr/share/locale/it/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ja/
-drwxr-xr-x root/root           0 usr/share/locale/ja/LC_MESSAGES/
--rw-r--r-- root/root       67887 usr/share/locale/ja/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ko/
-drwxr-xr-x root/root           0 usr/share/locale/ko/LC_MESSAGES/
--rw-r--r-- root/root       60962 usr/share/locale/ko/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/lt/
-drwxr-xr-x root/root           0 usr/share/locale/lt/LC_MESSAGES/
--rw-r--r-- root/root       60338 usr/share/locale/lt/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/lv/
-drwxr-xr-x root/root           0 usr/share/locale/lv/LC_MESSAGES/
--rw-r--r-- root/root       33346 usr/share/locale/lv/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/mk/
-drwxr-xr-x root/root           0 usr/share/locale/mk/LC_MESSAGES/
--rw-r--r-- root/root       85595 usr/share/locale/mk/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ml/
-drwxr-xr-x root/root           0 usr/share/locale/ml/LC_MESSAGES/
--rw-r--r-- root/root       15005 usr/share/locale/ml/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/mn/
-drwxr-xr-x root/root           0 usr/share/locale/mn/LC_MESSAGES/
--rw-r--r-- root/root       68398 usr/share/locale/mn/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ms/
-drwxr-xr-x root/root           0 usr/share/locale/ms/LC_MESSAGES/
--rw-r--r-- root/root       44690 usr/share/locale/ms/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nb/
-drwxr-xr-x root/root           0 usr/share/locale/nb/LC_MESSAGES/
--rw-r--r-- root/root       57902 usr/share/locale/nb/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ne/
-drwxr-xr-x root/root           0 usr/share/locale/ne/LC_MESSAGES/
--rw-r--r-- root/root       65722 usr/share/locale/ne/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nl/
-drwxr-xr-x root/root           0 usr/share/locale/nl/LC_MESSAGES/
--rw-r--r-- root/root       60581 usr/share/locale/nl/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nn/
-drwxr-xr-x root/root           0 usr/share/locale/nn/LC_MESSAGES/
--rw-r--r-- root/root       63794 usr/share/locale/nn/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/no/
-drwxr-xr-x root/root           0 usr/share/locale/no/LC_MESSAGES/
--rw-r--r-- root/root       57902 usr/share/locale/no/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/nso/
-drwxr-xr-x root/root           0 usr/share/locale/nso/LC_MESSAGES/
--rw-r--r-- root/root       64990 usr/share/locale/nso/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pa/
-drwxr-xr-x root/root           0 usr/share/locale/pa/LC_MESSAGES/
--rw-r--r-- root/root       82537 usr/share/locale/pa/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pl/
-drwxr-xr-x root/root           0 usr/share/locale/pl/LC_MESSAGES/
--rw-r--r-- root/root       60936 usr/share/locale/pl/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt/
-drwxr-xr-x root/root           0 usr/share/locale/pt/LC_MESSAGES/
--rw-r--r-- root/root       60262 usr/share/locale/pt/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r-- root/root       60345 usr/share/locale/pt_BR/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ro/
-drwxr-xr-x root/root           0 usr/share/locale/ro/LC_MESSAGES/
--rw-r--r-- root/root       60131 usr/share/locale/ro/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root       78966 usr/share/locale/ru/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/rw/
-drwxr-xr-x root/root           0 usr/share/locale/rw/LC_MESSAGES/
--rw-r--r-- root/root        2879 usr/share/locale/rw/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sk/
-drwxr-xr-x root/root           0 usr/share/locale/sk/LC_MESSAGES/
--rw-r--r-- root/root       59392 usr/share/locale/sk/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sl/
-drwxr-xr-x root/root           0 usr/share/locale/sl/LC_MESSAGES/
--rw-r--r-- root/root       45269 usr/share/locale/sl/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sq/
-drwxr-xr-x root/root           0 usr/share/locale/sq/LC_MESSAGES/
--rw-r--r-- root/root       60664 usr/share/locale/sq/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr/
-drwxr-xr-x root/root           0 usr/share/locale/sr/LC_MESSAGES/
--rw-r--r-- root/root       75292 usr/share/locale/sr/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r-- root/root       58906 usr/share/locale/sr@Latn/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/sv/
-drwxr-xr-x root/root           0 usr/share/locale/sv/LC_MESSAGES/
--rw-r--r-- root/root       59433 usr/share/locale/sv/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/ta/
-drwxr-xr-x root/root           0 usr/share/locale/ta/LC_MESSAGES/
--rw-r--r-- root/root       96806 usr/share/locale/ta/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/th/
-drwxr-xr-x root/root           0 usr/share/locale/th/LC_MESSAGES/
--rw-r--r-- root/root       85887 usr/share/locale/th/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/tr/
-drwxr-xr-x root/root           0 usr/share/locale/tr/LC_MESSAGES/
--rw-r--r-- root/root       59434 usr/share/locale/tr/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/uk/
-drwxr-xr-x root/root           0 usr/share/locale/uk/LC_MESSAGES/
--rw-r--r-- root/root       77089 usr/share/locale/uk/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/vi/
-drwxr-xr-x root/root           0 usr/share/locale/vi/LC_MESSAGES/
--rw-r--r-- root/root       64182 usr/share/locale/vi/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/wa/
-drwxr-xr-x root/root           0 usr/share/locale/wa/LC_MESSAGES/
--rw-r--r-- root/root       11326 usr/share/locale/wa/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/xh/
-drwxr-xr-x root/root           0 usr/share/locale/xh/LC_MESSAGES/
--rw-r--r-- root/root       57924 usr/share/locale/xh/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r-- root/root       54717 usr/share/locale/zh_CN/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW/
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r-- root/root       56834 usr/share/locale/zh_TW/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/locale/zu/
-drwxr-xr-x root/root           0 usr/share/locale/zu/LC_MESSAGES/
--rw-r--r-- root/root       60532 usr/share/locale/zu/LC_MESSAGES/control-center-2.0.mo
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        2824 usr/share/pixmaps/display-capplet.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/apps_gnome_settings_daemon_default_editor.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/apps_gnome_settings_daemon_keybindings.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/apps_gnome_settings_daemon_screensaver.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_font_rendering.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/desktop_gnome_peripherals_keyboard_xkb.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/fontilus.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/themus.schemas
+drwxr-xr-x  root/root  etc/gnome-vfs-2.0/
+drwxr-xr-x  root/root  etc/gnome-vfs-2.0/modules/
+-rw-r--r--  root/root  etc/gnome-vfs-2.0/modules/font-method.conf
+-rw-r--r--  root/root  etc/gnome-vfs-2.0/modules/theme-method.conf
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/gnome-accessibility-keyboard-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-at-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-background-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-control-center
+-rwxr-xr-x  root/bin   usr/bin/gnome-default-applications-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-display-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-font-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-font-viewer
+-rwxr-xr-x  root/bin   usr/bin/gnome-keybinding-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-keyboard-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-mouse-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-network-preferences
+-rwxr-xr-x  root/bin   usr/bin/gnome-sound-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-theme-manager
+-rwxr-xr-x  root/bin   usr/bin/gnome-theme-thumbnailer
+-rwxr-xr-x  root/bin   usr/bin/gnome-thumbnail-font
+-rwxr-xr-x  root/bin   usr/bin/gnome-typing-monitor
+-rwxr-xr-x  root/bin   usr/bin/gnome-ui-properties
+-rwxr-xr-x  root/bin   usr/bin/gnome-window-properties
+-rwxr-xr-x  root/bin   usr/bin/themus-theme-applier
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/control-center-2.12.0/
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/COPYING
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/INSTALL
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/NEWS
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/README
+-rw-r--r--  root/root  usr/doc/control-center-2.12.0/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/gnome-window-settings-2.0/
+-rw-r--r--  root/root  usr/include/gnome-window-settings-2.0/gnome-window-manager.h
+-rw-r--r--  root/root  usr/include/gnome-window-settings-2.0/gnome-wm-manager.h
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/bonobo/
+drwxr-xr-x  root/root  usr/lib/bonobo/servers/
+-rw-r--r--  root/root  usr/lib/bonobo/servers/GNOME_SettingsDaemon.server
+drwxr-xr-x  root/root  usr/lib/gnome-vfs-2.0/
+drwxr-xr-x  root/root  usr/lib/gnome-vfs-2.0/modules/
+-rwxr-xr-x  root/root  usr/lib/gnome-vfs-2.0/modules/libfont-method.la
+-rwxr-xr-x  root/root  usr/lib/gnome-vfs-2.0/modules/libfont-method.so
+-rwxr-xr-x  root/root  usr/lib/gnome-vfs-2.0/modules/libtheme-method.la
+-rwxr-xr-x  root/root  usr/lib/gnome-vfs-2.0/modules/libtheme-method.so
+-rwxr-xr-x  root/root  usr/lib/libgnome-window-settings.la
+-rwxr-xr-x  root/root  usr/lib/libgnome-window-settings.so.1.0.0
+drwxr-xr-x  root/root  usr/lib/nautilus/
+drwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-fontilus.la
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-fontilus.so
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-themus.la
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-themus.so
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/gnome-window-settings-2.0.pc
+drwxr-xr-x  root/root  usr/lib/window-manager-settings/
+-rwxr-xr-x  root/root  usr/lib/window-manager-settings/libmetacity.la
+-rwxr-xr-x  root/root  usr/lib/window-manager-settings/libmetacity.so
+drwxr-xr-x  root/root  usr/libexec/
+-rwxr-xr-x  root/root  usr/libexec/gnome-settings-daemon
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/accessibility-keyboard.desktop
+-rw-r--r--  root/root  usr/share/applications/at-properties.desktop
+-rw-r--r--  root/root  usr/share/applications/background.desktop
+-rw-r--r--  root/root  usr/share/applications/default-applications.desktop
+-rw-r--r--  root/root  usr/share/applications/display-properties.desktop
+-rw-r--r--  root/root  usr/share/applications/font-properties.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-font-viewer.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-network-preferences.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-settings-mouse.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-settings-sound.desktop
+-rw-r--r--  root/root  usr/share/applications/gnome-ui-properties.desktop
+-rw-r--r--  root/root  usr/share/applications/gnomecc.desktop
+-rw-r--r--  root/root  usr/share/applications/gtk-theme-selector.desktop
+-rw-r--r--  root/root  usr/share/applications/keybinding.desktop
+-rw-r--r--  root/root  usr/share/applications/keyboard.desktop
+-rw-r--r--  root/root  usr/share/applications/mimeinfo.cache
+-rw-r--r--  root/root  usr/share/applications/themus-theme-applier.desktop
+-rw-r--r--  root/root  usr/share/applications/window-properties.desktop
+drwxr-xr-x  root/root  usr/share/control-center-2.0/
+drwxr-xr-x  root/root  usr/share/control-center-2.0/icons/
+-rw-r--r--  root/root  usr/share/control-center-2.0/icons/display-capplet.png
+drwxr-xr-x  root/root  usr/share/control-center-2.0/interfaces/
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/acme.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/apply-font.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/at-enable-dialog.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/font-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-accessibility-keyboard-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-background-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-default-applications-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-keybinding-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-keyboard-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-mouse-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-network-preferences.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-ui-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/gnome-window-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/modmap-dialog.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/sound-properties.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/theme-install.glade
+-rw-r--r--  root/root  usr/share/control-center-2.0/interfaces/theme-properties.glade
+drwxr-xr-x  root/root  usr/share/control-center-2.0/pixmaps/
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/accessibility-keyboard-bouncekey.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/accessibility-keyboard-mousekey.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/accessibility-keyboard-slowkey.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/accessibility-keyboard-stickykey.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/accessibility-keyboard-togglekey.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/acme-brightness.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/acme-eject.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/at-startup.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/at-support.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/bar-disabled.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/bar-green.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/bar-red.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/bar.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/double-click-maybe.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/double-click-off.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/double-click-on.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/gnome-speakernotes-muted.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/gnome-speakernotes.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/keyboard-bell.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/keyboard-cursor.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/keyboard-repeat.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/keyboard-volume.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/mouse-cursor-normal-large.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/mouse-cursor-normal.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/mouse-cursor-white-large.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/mouse-cursor-white.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/mouse-left.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/mouse-right.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/ocean-stripes.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/stop.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/subpixel-bgr.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/subpixel-rgb.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/subpixel-vbgr.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/subpixel-vrgb.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/theme-thumbnailing.png
+-rw-r--r--  root/root  usr/share/control-center-2.0/pixmaps/visual-bell.png
+drwxr-xr-x  root/root  usr/share/control-center-2.0/xrdb/
+-rw-r--r--  root/root  usr/share/control-center-2.0/xrdb/Editres.ad
+-rw-r--r--  root/root  usr/share/control-center-2.0/xrdb/Emacs.ad
+-rw-r--r--  root/root  usr/share/control-center-2.0/xrdb/General.ad
+-rw-r--r--  root/root  usr/share/control-center-2.0/xrdb/Motif.ad
+-rw-r--r--  root/root  usr/share/control-center-2.0/xrdb/Tk.ad
+-rw-r--r--  root/root  usr/share/control-center-2.0/xrdb/Xaw.ad
+drwxr-xr-x  root/root  usr/share/gnome-background-properties/
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/cursor-fonts/
+-rw-r--r--  root/root  usr/share/gnome/cursor-fonts/cursor-large-white.pcf
+-rw-r--r--  root/root  usr/share/gnome/cursor-fonts/cursor-large.pcf
+-rw-r--r--  root/root  usr/share/gnome/cursor-fonts/cursor-white.pcf
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/control-center/
+drwxr-xr-x  root/root  usr/share/gnome/help/control-center/C/
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-accessibility-keyboard.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-background.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-behavior.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-cds.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-default-apps.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-file-type.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-hints.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-html.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-kbd.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-keybindings.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-mouse.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-screensaver.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-sound.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/config-themes.xml
+-rw-r--r--  root/root  usr/share/gnome/help/control-center/C/control-center.xml
+drwxr-xr-x  root/root  usr/share/gnome/vfolders/
+-rw-r--r--  root/root  usr/share/gnome/vfolders/font-method.directory
+-rw-r--r--  root/root  usr/share/gnome/vfolders/theme-method.directory
+drwxr-xr-x  root/root  usr/share/icons/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/48x48/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/48x48/apps/
+-rw-r--r--  root/root  usr/share/icons/hicolor/48x48/apps/gnome-control-center.png
+drwxr-xr-x  root/root  usr/share/idl/
+-rw-r--r--  root/root  usr/share/idl/ConfigArchiver.idl
+-rw-r--r--  root/root  usr/share/idl/GNOME_SettingsDaemon.idl
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/af/
+drwxr-xr-x  root/root  usr/share/locale/af/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/af/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/am/
+drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/be/
+drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bn/
+drwxr-xr-x  root/root  usr/share/locale/bn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/bs/
+drwxr-xr-x  root/root  usr/share/locale/bs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bs/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/cy/
+drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cy/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fa/
+drwxr-xr-x  root/root  usr/share/locale/fa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fa/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ga/
+drwxr-xr-x  root/root  usr/share/locale/ga/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ga/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hi/
+drwxr-xr-x  root/root  usr/share/locale/hi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hi/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/id/
+drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/is/
+drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/lv/
+drwxr-xr-x  root/root  usr/share/locale/lv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lv/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/mk/
+drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ml/
+drwxr-xr-x  root/root  usr/share/locale/ml/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ml/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/mn/
+drwxr-xr-x  root/root  usr/share/locale/mn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mn/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nn/
+drwxr-xr-x  root/root  usr/share/locale/nn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nn/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/nso/
+drwxr-xr-x  root/root  usr/share/locale/nso/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nso/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ro/
+drwxr-xr-x  root/root  usr/share/locale/ro/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ro/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sl/
+drwxr-xr-x  root/root  usr/share/locale/sl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sl/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/ta/
+drwxr-xr-x  root/root  usr/share/locale/ta/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ta/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/te/
+drwxr-xr-x  root/root  usr/share/locale/te/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/te/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/wa/
+drwxr-xr-x  root/root  usr/share/locale/wa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/wa/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/xh/
+drwxr-xr-x  root/root  usr/share/locale/xh/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/xh/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/locale/zu/
+drwxr-xr-x  root/root  usr/share/locale/zu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zu/LC_MESSAGES/control-center-2.0.mo
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/control-center/
+-rw-r--r--  root/root  usr/share/omf/control-center/control-center-C.omf
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/display-capplet.png

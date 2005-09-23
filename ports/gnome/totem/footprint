@@ -1,307 +1,334 @@
-drwxr-xr-x  root/root  0       ./
-drwxr-xr-x  root/root  0       etc/
-drwxr-xr-x  root/root  0       etc/gconf/
-drwxr-xr-x  root/root  0       etc/gconf/schemas/
--rw-r--r--  root/root  8469    etc/gconf/schemas/totem-handlers.schemas
--rw-r--r--  root/root  22848   etc/gconf/schemas/totem-video-thumbnail.schemas
--rw-r--r--  root/root  145719  etc/gconf/schemas/totem.schemas
-drwxr-xr-x  root/root  0       install/
--rw-r--r--  root/root  889     install/doinst.sh
--rw-r--r--  root/root  287     install/slack-desc
-drwxr-xr-x  root/root  0       usr/
-drwxr-xr-x  root/bin   0       usr/bin/
--rwxr-xr-x  root/bin   250464  usr/bin/totem
--rwxr-xr-x  root/bin   85296   usr/bin/totem-video-thumbnailer
-drwxr-xr-x  root/root  0       usr/doc/
-drwxr-xr-x  root/root  0       usr/doc/totem-1.0.4/
--rw-r--r--  root/root  91      usr/doc/totem-1.0.4/AUTHORS
--rw-r--r--  root/root  18335   usr/doc/totem-1.0.4/COPYING
--rw-r--r--  root/root  374794  usr/doc/totem-1.0.4/ChangeLog
--rw-r--r--  root/root  9240    usr/doc/totem-1.0.4/INSTALL
--rw-r--r--  root/root  23685   usr/doc/totem-1.0.4/NEWS
--rw-r--r--  root/root  3140    usr/doc/totem-1.0.4/README
--rw-r--r--  root/root  11      usr/doc/totem-1.0.4/TODO
-drwxr-xr-x  root/root  0       usr/include/
-drwxr-xr-x  root/root  0       usr/include/totem/
-drwxr-xr-x  root/root  0       usr/include/totem/1/
-drwxr-xr-x  root/root  0       usr/include/totem/1/plparser/
--rw-r--r--  root/root  1392    usr/include/totem/1/plparser/totem-disc.h
--rw-r--r--  root/root  678     usr/include/totem/1/plparser/totem-pl-parser-builtins.h
--rw-r--r--  root/root  3286    usr/include/totem/1/plparser/totem-pl-parser.h
-drwxr-xr-x  root/root  0       usr/lib/
--rwxr-xr-x  root/root  1416    usr/lib/libtotem-plparser.la
--rwxr-xr-x  root/root  31872   usr/lib/libtotem-plparser.so.0.0.0
-drwxr-xr-x  root/root  0       usr/lib/mozilla/
-drwxr-xr-x  root/root  0       usr/lib/mozilla/plugins/
-drwxr-xr-x  root/root  0       usr/lib/nautilus/
-drwxr-xr-x  root/root  0       usr/lib/nautilus/extensions-1.0/
--rwxr-xr-x  root/root  2018    usr/lib/nautilus/extensions-1.0/libtotem-properties-page.la
--rwxr-xr-x  root/root  90216   usr/lib/nautilus/extensions-1.0/libtotem-properties-page.so
-drwxr-xr-x  root/root  0       usr/lib/pkgconfig/
--rw-r--r--  root/root  350     usr/lib/pkgconfig/totem-plparser.pc
-drwxr-xr-x  root/root  0       usr/libexec/
-drwxr-xr-x  root/root  0       usr/man/
-drwxr-xr-x  root/root  0       usr/man/man1/
--rw-r--r--  root/root  2311    usr/man/man1/totem-video-thumbnailer.1.gz
--rw-r--r--  root/root  2448    usr/man/man1/totem.1.gz
-drwxr-xr-x  root/root  0       usr/share/
-drwxr-xr-x  root/root  0       usr/share/applications/
--rw-r--r--  root/root  5753    usr/share/applications/totem.desktop
-drwxr-xr-x  root/root  0       usr/share/gnome/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/C/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/C/figures/
--rw-r--r--  root/root  671     usr/share/gnome/help/totem/C/figures/totem_next_button.png
--rw-r--r--  root/root  1058    usr/share/gnome/help/totem/C/figures/totem_pause_button.png
--rw-r--r--  root/root  928     usr/share/gnome/help/totem/C/figures/totem_play_button.png
--rw-r--r--  root/root  653     usr/share/gnome/help/totem/C/figures/totem_previous_button.png
--rw-r--r--  root/root  906     usr/share/gnome/help/totem/C/figures/totem_show_playlist_button.png
--rw-r--r--  root/root  33371   usr/share/gnome/help/totem/C/figures/totem_start_window.png
--rw-r--r--  root/root  512     usr/share/gnome/help/totem/C/figures/totem_volume_maximum_button.png
--rw-r--r--  root/root  341     usr/share/gnome/help/totem/C/figures/totem_volume_mute_button.png
--rw-r--r--  root/root  3672    usr/share/gnome/help/totem/C/legal.xml
--rw-r--r--  root/root  37578   usr/share/gnome/help/totem/C/totem.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/de/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/de/figures/
--rw-r--r--  root/root  671     usr/share/gnome/help/totem/de/figures/totem_next_button.png
--rw-r--r--  root/root  1058    usr/share/gnome/help/totem/de/figures/totem_pause_button.png
--rw-r--r--  root/root  928     usr/share/gnome/help/totem/de/figures/totem_play_button.png
--rw-r--r--  root/root  653     usr/share/gnome/help/totem/de/figures/totem_previous_button.png
--rw-r--r--  root/root  906     usr/share/gnome/help/totem/de/figures/totem_show_playlist_button.png
--rw-r--r--  root/root  17452   usr/share/gnome/help/totem/de/figures/totem_start_window.png
--rw-r--r--  root/root  512     usr/share/gnome/help/totem/de/figures/totem_volume_maximum_button.png
--rw-r--r--  root/root  341     usr/share/gnome/help/totem/de/figures/totem_volume_mute_button.png
--rw-r--r--  root/root  3425    usr/share/gnome/help/totem/de/legal.xml
--rw-r--r--  root/root  35421   usr/share/gnome/help/totem/de/totem.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/es/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/es/figures/
--rw-r--r--  root/root  671     usr/share/gnome/help/totem/es/figures/totem_next_button.png
--rw-r--r--  root/root  1058    usr/share/gnome/help/totem/es/figures/totem_pause_button.png
--rw-r--r--  root/root  928     usr/share/gnome/help/totem/es/figures/totem_play_button.png
--rw-r--r--  root/root  653     usr/share/gnome/help/totem/es/figures/totem_previous_button.png
--rw-r--r--  root/root  906     usr/share/gnome/help/totem/es/figures/totem_show_playlist_button.png
--rw-r--r--  root/root  33829   usr/share/gnome/help/totem/es/figures/totem_start_window.png
--rw-r--r--  root/root  512     usr/share/gnome/help/totem/es/figures/totem_volume_maximum_button.png
--rw-r--r--  root/root  341     usr/share/gnome/help/totem/es/figures/totem_volume_mute_button.png
--rw-r--r--  root/root  4153    usr/share/gnome/help/totem/es/legal.xml
--rw-r--r--  root/root  40099   usr/share/gnome/help/totem/es/totem.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/ru/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/totem/ru/figures/
--rw-r--r--  root/root  87779   usr/share/gnome/help/totem/ru/figures/totem_screenshot.png
--rw-r--r--  root/root  65158   usr/share/gnome/help/totem/ru/figures/totem_start_window.png
--rw-r--r--  root/root  4034    usr/share/gnome/help/totem/ru/legal.xml
--rw-r--r--  root/root  45165   usr/share/gnome/help/totem/ru/totem.xml
-drwxr-xr-x  root/root  0       usr/share/locale/
-drwxr-xr-x  root/root  0       usr/share/locale/am/
-drwxr-xr-x  root/root  0       usr/share/locale/am/LC_MESSAGES/
--rw-r--r--  root/root  2291    usr/share/locale/am/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ar/
-drwxr-xr-x  root/root  0       usr/share/locale/ar/LC_MESSAGES/
--rw-r--r--  root/root  31486   usr/share/locale/ar/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/az/
-drwxr-xr-x  root/root  0       usr/share/locale/az/LC_MESSAGES/
--rw-r--r--  root/root  22773   usr/share/locale/az/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/be/
-drwxr-xr-x  root/root  0       usr/share/locale/be/LC_MESSAGES/
--rw-r--r--  root/root  15038   usr/share/locale/be/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bg/
-drwxr-xr-x  root/root  0       usr/share/locale/bg/LC_MESSAGES/
--rw-r--r--  root/root  36981   usr/share/locale/bg/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bn/
-drwxr-xr-x  root/root  0       usr/share/locale/bn/LC_MESSAGES/
--rw-r--r--  root/root  14597   usr/share/locale/bn/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ca/
-drwxr-xr-x  root/root  0       usr/share/locale/ca/LC_MESSAGES/
--rw-r--r--  root/root  29210   usr/share/locale/ca/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/cs/
-drwxr-xr-x  root/root  0       usr/share/locale/cs/LC_MESSAGES/
--rw-r--r--  root/root  28449   usr/share/locale/cs/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/cy/
-drwxr-xr-x  root/root  0       usr/share/locale/cy/LC_MESSAGES/
--rw-r--r--  root/root  27709   usr/share/locale/cy/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/da/
-drwxr-xr-x  root/root  0       usr/share/locale/da/LC_MESSAGES/
--rw-r--r--  root/root  27852   usr/share/locale/da/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/de/
-drwxr-xr-x  root/root  0       usr/share/locale/de/LC_MESSAGES/
--rw-r--r--  root/root  29449   usr/share/locale/de/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/el/
-drwxr-xr-x  root/root  0       usr/share/locale/el/LC_MESSAGES/
--rw-r--r--  root/root  37699   usr/share/locale/el/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/en_CA/
-drwxr-xr-x  root/root  0       usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r--  root/root  26902   usr/share/locale/en_CA/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/en_GB/
-drwxr-xr-x  root/root  0       usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r--  root/root  26900   usr/share/locale/en_GB/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/es/
-drwxr-xr-x  root/root  0       usr/share/locale/es/LC_MESSAGES/
--rw-r--r--  root/root  29242   usr/share/locale/es/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/et/
-drwxr-xr-x  root/root  0       usr/share/locale/et/LC_MESSAGES/
--rw-r--r--  root/root  27986   usr/share/locale/et/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/eu/
-drwxr-xr-x  root/root  0       usr/share/locale/eu/LC_MESSAGES/
--rw-r--r--  root/root  21797   usr/share/locale/eu/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fi/
-drwxr-xr-x  root/root  0       usr/share/locale/fi/LC_MESSAGES/
--rw-r--r--  root/root  27809   usr/share/locale/fi/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fr/
-drwxr-xr-x  root/root  0       usr/share/locale/fr/LC_MESSAGES/
--rw-r--r--  root/root  29595   usr/share/locale/fr/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ga/
-drwxr-xr-x  root/root  0       usr/share/locale/ga/LC_MESSAGES/
--rw-r--r--  root/root  6854    usr/share/locale/ga/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/gl/
-drwxr-xr-x  root/root  0       usr/share/locale/gl/LC_MESSAGES/
--rw-r--r--  root/root  28697   usr/share/locale/gl/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/gu/
-drwxr-xr-x  root/root  0       usr/share/locale/gu/LC_MESSAGES/
--rw-r--r--  root/root  42062   usr/share/locale/gu/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/he/
-drwxr-xr-x  root/root  0       usr/share/locale/he/LC_MESSAGES/
--rw-r--r--  root/root  24117   usr/share/locale/he/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hi/
-drwxr-xr-x  root/root  0       usr/share/locale/hi/LC_MESSAGES/
--rw-r--r--  root/root  15766   usr/share/locale/hi/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hr/
-drwxr-xr-x  root/root  0       usr/share/locale/hr/LC_MESSAGES/
--rw-r--r--  root/root  4744    usr/share/locale/hr/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hu/
-drwxr-xr-x  root/root  0       usr/share/locale/hu/LC_MESSAGES/
--rw-r--r--  root/root  29046   usr/share/locale/hu/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/id/
-drwxr-xr-x  root/root  0       usr/share/locale/id/LC_MESSAGES/
--rw-r--r--  root/root  27364   usr/share/locale/id/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/is/
-drwxr-xr-x  root/root  0       usr/share/locale/is/LC_MESSAGES/
--rw-r--r--  root/root  18987   usr/share/locale/is/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/it/
-drwxr-xr-x  root/root  0       usr/share/locale/it/LC_MESSAGES/
--rw-r--r--  root/root  28713   usr/share/locale/it/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ja/
-drwxr-xr-x  root/root  0       usr/share/locale/ja/LC_MESSAGES/
--rw-r--r--  root/root  32500   usr/share/locale/ja/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ko/
-drwxr-xr-x  root/root  0       usr/share/locale/ko/LC_MESSAGES/
--rw-r--r--  root/root  29309   usr/share/locale/ko/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/lt/
-drwxr-xr-x  root/root  0       usr/share/locale/lt/LC_MESSAGES/
--rw-r--r--  root/root  28578   usr/share/locale/lt/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/lv/
-drwxr-xr-x  root/root  0       usr/share/locale/lv/LC_MESSAGES/
--rw-r--r--  root/root  4426    usr/share/locale/lv/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mk/
-drwxr-xr-x  root/root  0       usr/share/locale/mk/LC_MESSAGES/
--rw-r--r--  root/root  13748   usr/share/locale/mk/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ml/
-drwxr-xr-x  root/root  0       usr/share/locale/ml/LC_MESSAGES/
--rw-r--r--  root/root  3474    usr/share/locale/ml/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ms/
-drwxr-xr-x  root/root  0       usr/share/locale/ms/LC_MESSAGES/
--rw-r--r--  root/root  23688   usr/share/locale/ms/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nb/
-drwxr-xr-x  root/root  0       usr/share/locale/nb/LC_MESSAGES/
--rw-r--r--  root/root  27311   usr/share/locale/nb/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nl/
-drwxr-xr-x  root/root  0       usr/share/locale/nl/LC_MESSAGES/
--rw-r--r--  root/root  28507   usr/share/locale/nl/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/no/
-drwxr-xr-x  root/root  0       usr/share/locale/no/LC_MESSAGES/
--rw-r--r--  root/root  27311   usr/share/locale/no/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pa/
-drwxr-xr-x  root/root  0       usr/share/locale/pa/LC_MESSAGES/
--rw-r--r--  root/root  39114   usr/share/locale/pa/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pl/
-drwxr-xr-x  root/root  0       usr/share/locale/pl/LC_MESSAGES/
--rw-r--r--  root/root  28957   usr/share/locale/pl/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt/
-drwxr-xr-x  root/root  0       usr/share/locale/pt/LC_MESSAGES/
--rw-r--r--  root/root  28756   usr/share/locale/pt/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt_BR/
-drwxr-xr-x  root/root  0       usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r--  root/root  29082   usr/share/locale/pt_BR/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ro/
-drwxr-xr-x  root/root  0       usr/share/locale/ro/LC_MESSAGES/
--rw-r--r--  root/root  28554   usr/share/locale/ro/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ru/
-drwxr-xr-x  root/root  0       usr/share/locale/ru/LC_MESSAGES/
--rw-r--r--  root/root  36109   usr/share/locale/ru/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/rw/
-drwxr-xr-x  root/root  0       usr/share/locale/rw/LC_MESSAGES/
--rw-r--r--  root/root  1489    usr/share/locale/rw/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sk/
-drwxr-xr-x  root/root  0       usr/share/locale/sk/LC_MESSAGES/
--rw-r--r--  root/root  27946   usr/share/locale/sk/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sq/
-drwxr-xr-x  root/root  0       usr/share/locale/sq/LC_MESSAGES/
--rw-r--r--  root/root  28390   usr/share/locale/sq/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr/
-drwxr-xr-x  root/root  0       usr/share/locale/sr/LC_MESSAGES/
--rw-r--r--  root/root  35011   usr/share/locale/sr/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr@Latn/
-drwxr-xr-x  root/root  0       usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r--  root/root  27925   usr/share/locale/sr@Latn/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sv/
-drwxr-xr-x  root/root  0       usr/share/locale/sv/LC_MESSAGES/
--rw-r--r--  root/root  27915   usr/share/locale/sv/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/th/
-drwxr-xr-x  root/root  0       usr/share/locale/th/LC_MESSAGES/
--rw-r--r--  root/root  29734   usr/share/locale/th/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/tr/
-drwxr-xr-x  root/root  0       usr/share/locale/tr/LC_MESSAGES/
--rw-r--r--  root/root  6571    usr/share/locale/tr/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/uk/
-drwxr-xr-x  root/root  0       usr/share/locale/uk/LC_MESSAGES/
--rw-r--r--  root/root  36216   usr/share/locale/uk/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/vi/
-drwxr-xr-x  root/root  0       usr/share/locale/vi/LC_MESSAGES/
--rw-r--r--  root/root  24729   usr/share/locale/vi/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/wa/
-drwxr-xr-x  root/root  0       usr/share/locale/wa/LC_MESSAGES/
--rw-r--r--  root/root  8698    usr/share/locale/wa/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/xh/
-drwxr-xr-x  root/root  0       usr/share/locale/xh/LC_MESSAGES/
--rw-r--r--  root/root  30041   usr/share/locale/xh/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_CN/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r--  root/root  26430   usr/share/locale/zh_CN/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r--  root/root  27171   usr/share/locale/zh_TW/LC_MESSAGES/totem.mo
-drwxr-xr-x  root/root  0       usr/share/omf/
-drwxr-xr-x  root/root  0       usr/share/omf/totem/
--rw-r--r--  root/root  1131    usr/share/omf/totem/totem-C.omf
--rw-r--r--  root/root  1106    usr/share/omf/totem/totem-de.omf
--rw-r--r--  root/root  1092    usr/share/omf/totem/totem-es.omf
--rw-r--r--  root/root  1134    usr/share/omf/totem/totem-ru.omf
-drwxr-xr-x  root/root  0       usr/share/pixmaps/
--rw-r--r--  root/root  3823    usr/share/pixmaps/media-player-48.png
--rw-r--r--  root/root  3113    usr/share/pixmaps/vanity.png
-drwxr-xr-x  root/root  0       usr/share/totem/
--rw-r--r--  root/root  719     usr/share/totem/filmholes-big-left.png
--rw-r--r--  root/root  453     usr/share/totem/filmholes-big-right.png
--rw-r--r--  root/root  173     usr/share/totem/filmholes.png
--rw-r--r--  root/root  3823    usr/share/totem/media-player-48.png
--rw-r--r--  root/root  6193    usr/share/totem/mozilla-viewer.glade
--rw-r--r--  root/root  783     usr/share/totem/playlist-16.png
--rw-r--r--  root/root  1402    usr/share/totem/playlist-24.png
--rw-r--r--  root/root  294     usr/share/totem/playlist-playing.png
--rw-r--r--  root/root  13854   usr/share/totem/playlist.glade
--rw-r--r--  root/root  6811    usr/share/totem/popup.glade
--rw-r--r--  root/root  30436   usr/share/totem/properties.glade
--rw-r--r--  root/root  316     usr/share/totem/rhythmbox-volume-max.png
--rw-r--r--  root/root  300     usr/share/totem/rhythmbox-volume-zero.png
--rw-r--r--  root/root  9784    usr/share/totem/screenshot.glade
--rw-r--r--  root/root  7227    usr/share/totem/skip_to.glade
--rw-r--r--  root/root  791     usr/share/totem/stock-tool-brightness-contrast-22.png
--rw-r--r--  root/root  510     usr/share/totem/stock_media_next.png
--rw-r--r--  root/root  367     usr/share/totem/stock_media_pause.png
--rw-r--r--  root/root  382     usr/share/totem/stock_media_play.png
--rw-r--r--  root/root  572     usr/share/totem/stock_media_previous.png
--rw-r--r--  root/root  128435  usr/share/totem/totem.glade
--rw-r--r--  root/root  41221   usr/share/totem/totem_logo.png
--rw-r--r--  root/root  4912    usr/share/totem/uri.glade
--rw-r--r--  root/root  10394   usr/share/totem/vanity.glade
--rw-r--r--  root/root  3113    usr/share/totem/vanity.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/totem-handlers.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/totem-video-thumbnail.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/totem.schemas
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/totem
+-rwxr-xr-x  root/bin   usr/bin/totem-video-thumbnailer
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/totem-1.2.0/
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/COPYING
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/INSTALL
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/NEWS
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/README
+-rw-r--r--  root/root  usr/doc/totem-1.2.0/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/totem/
+drwxr-xr-x  root/root  usr/include/totem/1/
+drwxr-xr-x  root/root  usr/include/totem/1/plparser/
+-rw-r--r--  root/root  usr/include/totem/1/plparser/totem-disc.h
+-rw-r--r--  root/root  usr/include/totem/1/plparser/totem-pl-parser-builtins.h
+-rw-r--r--  root/root  usr/include/totem/1/plparser/totem-pl-parser.h
+drwxr-xr-x  root/root  usr/lib/
+-rwxr-xr-x  root/root  usr/lib/libtotem-plparser.la
+-rwxr-xr-x  root/root  usr/lib/libtotem-plparser.so.0.1.0
+drwxr-xr-x  root/root  usr/lib/mozilla-1.7.11/
+drwxr-xr-x  root/root  usr/lib/mozilla-1.7.11/plugins/
+-rwxr-xr-x  root/root  usr/lib/mozilla-1.7.11/plugins/libtotem_mozilla.la
+-rwxr-xr-x  root/root  usr/lib/mozilla-1.7.11/plugins/libtotem_mozilla.so
+-rw-r--r--  root/root  usr/lib/mozilla-1.7.11/plugins/libtotem_mozilla.xpt
+drwxr-xr-x  root/root  usr/lib/nautilus/
+drwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libtotem-properties-page.la
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libtotem-properties-page.so
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/totem-plparser.pc
+drwxr-xr-x  root/root  usr/libexec/
+-rwxr-xr-x  root/root  usr/libexec/totem-mozilla-viewer
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/totem-video-thumbnailer.1.gz
+-rw-r--r--  root/root  usr/man/man1/totem.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/totem.desktop
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/C/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/C/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_show_playlist_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_start_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_volume_maximum_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/figures/totem_volume_mute_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/totem/C/totem.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/de/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/de/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_show_playlist_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_start_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_volume_maximum_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/figures/totem_volume_mute_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/totem/de/totem.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/es/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/es/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_show_playlist_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_start_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_volume_maximum_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/figures/totem_volume_mute_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/totem/es/totem.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/fr/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/fr/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_next_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_pause_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_play_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_previous_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_show_playlist_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_start_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_volume_maximum_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/figures/totem_volume_mute_button.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/totem/fr/totem.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/ru/
+drwxr-xr-x  root/root  usr/share/gnome/help/totem/ru/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/totem/ru/figures/totem_screenshot.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/ru/figures/totem_start_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/totem/ru/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/totem/ru/totem.xml
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/am/
+drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/be/
+drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/bn/
+drwxr-xr-x  root/root  usr/share/locale/bn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/cy/
+drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cy/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/fa/
+drwxr-xr-x  root/root  usr/share/locale/fa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fa/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ga/
+drwxr-xr-x  root/root  usr/share/locale/ga/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ga/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/hi/
+drwxr-xr-x  root/root  usr/share/locale/hi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hi/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/id/
+drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/is/
+drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/lv/
+drwxr-xr-x  root/root  usr/share/locale/lv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lv/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/mk/
+drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ml/
+drwxr-xr-x  root/root  usr/share/locale/ml/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ml/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ro/
+drwxr-xr-x  root/root  usr/share/locale/ro/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ro/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/te/
+drwxr-xr-x  root/root  usr/share/locale/te/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/te/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/ug/
+drwxr-xr-x  root/root  usr/share/locale/ug/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ug/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/wa/
+drwxr-xr-x  root/root  usr/share/locale/wa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/wa/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/xh/
+drwxr-xr-x  root/root  usr/share/locale/xh/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/xh/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/totem.mo
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/totem/
+-rw-r--r--  root/root  usr/share/omf/totem/totem-C.omf
+-rw-r--r--  root/root  usr/share/omf/totem/totem-de.omf
+-rw-r--r--  root/root  usr/share/omf/totem/totem-es.omf
+-rw-r--r--  root/root  usr/share/omf/totem/totem-fr.omf
+-rw-r--r--  root/root  usr/share/omf/totem/totem-ru.omf
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/media-player-48.png
+-rw-r--r--  root/root  usr/share/pixmaps/vanity.png
+drwxr-xr-x  root/root  usr/share/totem/
+-rw-r--r--  root/root  usr/share/totem/filmholes-big-left.png
+-rw-r--r--  root/root  usr/share/totem/filmholes-big-right.png
+-rw-r--r--  root/root  usr/share/totem/filmholes.png
+-rw-r--r--  root/root  usr/share/totem/media-player-48.png
+-rw-r--r--  root/root  usr/share/totem/mozilla-viewer.glade
+-rw-r--r--  root/root  usr/share/totem/playlist-playing.png
+-rw-r--r--  root/root  usr/share/totem/playlist.glade
+-rw-r--r--  root/root  usr/share/totem/popup.glade
+-rw-r--r--  root/root  usr/share/totem/properties.glade
+-rw-r--r--  root/root  usr/share/totem/rhythmbox-volume-max.png
+-rw-r--r--  root/root  usr/share/totem/rhythmbox-volume-zero.png
+-rw-r--r--  root/root  usr/share/totem/screenshot.glade
+-rw-r--r--  root/root  usr/share/totem/skip_to.glade
+-rw-r--r--  root/root  usr/share/totem/stock-tool-brightness-contrast-22.png
+-rw-r--r--  root/root  usr/share/totem/stock_media_next.png
+-rw-r--r--  root/root  usr/share/totem/stock_media_pause.png
+-rw-r--r--  root/root  usr/share/totem/stock_media_play.png
+-rw-r--r--  root/root  usr/share/totem/stock_media_previous.png
+-rw-r--r--  root/root  usr/share/totem/totem.glade
+-rw-r--r--  root/root  usr/share/totem/totem_logo.png
+-rw-r--r--  root/root  usr/share/totem/uri.glade
+-rw-r--r--  root/root  usr/share/totem/vanity.glade
+-rw-r--r--  root/root  usr/share/totem/vanity.png

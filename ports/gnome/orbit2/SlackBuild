@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.12.3
+VERSION=2.12.4
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -43,10 +43,10 @@ chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
 gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
-mkdir -p $PKG/usr/doc/$NAME-$VERSION
+mkdir -p $PKG/usr/doc/ORBit2-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
-  $PKG/usr/doc/$NAME-$VERSION/
+  $PKG/usr/doc/ORBit2-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install

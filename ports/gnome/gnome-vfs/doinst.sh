@@ -4,8 +4,6 @@ gconf() {
     usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
   fi
 }
-gconf etc/gconf/schemas/desktop_default_applications.schemas
-gconf etc/gconf/schemas/desktop_gnome_url_handlers.schemas
-gconf etc/gconf/schemas/system_dns_sd.schemas
-gconf etc/gconf/schemas/system_http_proxy.schemas
-gconf etc/gconf/schemas/system_smb.schemas
+if [ -x usr/bin/update-mime-database ]; then
+  usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1
+fi
