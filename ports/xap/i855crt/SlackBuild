@@ -10,7 +10,7 @@ BUILD=1tom
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
 chown -R root.root .
 #=install
