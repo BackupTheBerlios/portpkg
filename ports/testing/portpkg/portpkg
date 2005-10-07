@@ -320,6 +320,12 @@ get_sources()
           else
             error "Download failed!"
           fi
+        fi
+        # check md5sums when non-maintainer-mode
+        if ! $maintain && grep -sq " $filename$" $path/md5sums \
+        && ! grep " $filename$" $path/md5sums | sed "s,$filename,$dest," | md5sum -c --status 2>/dev/null; then
+          error "Integrity checking failed: $filename"
+          return 1
         fi;;
     esac
     $dry_run || ln -s $dest $path/
@@ -452,19 +458,19 @@ build_pkg()
 
   get_sources || return 1
 
-  # check signature and md5sums when non-maintainer-mode
-  if ! $maintain && ! $dry_run && [ -f $path/md5sums ]; then
-#    if grep -sq PGP $path/md5sums && has_prog gpg && ! gpg --verify $path/md5sums; then
-#      error "Integrity checking failed (bad signature)!"
+#  # check signature and md5sums when non-maintainer-mode
+#  if ! $maintain && ! $dry_run && [ -f $path/md5sums ]; then
+##    if grep -sq PGP $path/md5sums && has_prog gpg && ! gpg --verify $path/md5sums; then
+##      error "Integrity checking failed (bad signature)!"
+##      return 1
+##    fi
+#    cd $path
+#    if ! md5sum -c $path/md5sums >/dev/null; then
+#      md5sum -c $path/md5sums
+#      error "Integrity checking failed!"
 #      return 1
 #    fi
-    cd $path
-    if ! md5sum -c $path/md5sums >/dev/null; then
-      md5sum -c $path/md5sums
-      error "Integrity checking failed!"
-      return 1
-    fi
-  fi
+#  fi
 
   # exit when download-only or dry-run
   $download_only && return 0
