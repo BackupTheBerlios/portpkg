@@ -401,16 +401,24 @@ build_pkg()
       row "Downloading $srcname"
       $DRY_RUN || get $src $SRC_DIR/$srcname || return 1
     fi
-    $DRY_RUN || ln -s $SRC_DIR/$srcname .
+    if ! $DRY_RUN; then
+      ln -s $SRC_DIR/$srcname .
+      # check md5sums when non-maintainer-mode
+      if ! $maintain && [ -f md5sums ] \
+      && ! grep " $srcname$" md5sums | md5sum -c --status 2>/dev/null; then
+        error "Integrity checking failed: $srcname"
+        return 1
+      fi
+    fi
   done
 
-  # check md5sums when non-maintainer-mode
-  if ! $maintain && ! $DRY_RUN && [ -f md5sums ] \
-  && ! md5sum -c md5sums >$t/md5sum 2>&1; then
-    sed -n "/FAILED/s,\(.*\):.*,\1,p" $t/md5sum | xargs -r echo "  --> MD5SUM mismatch:"
-    error "Integrity checking failed!"
-    return 1
-  fi
+#  # check md5sums when non-maintainer-mode
+#  if ! $maintain && ! $DRY_RUN && [ -f md5sums ] \
+#  && ! md5sum -c md5sums >$t/md5sum 2>&1; then
+#    sed -n "/FAILED/s,\(.*\):.*,\1,p" $t/md5sum | xargs -r echo "  --> MD5SUM mismatch:"
+#    error "Integrity checking failed!"
+#    return 1
+#  fi
 
   # exit when download-only or dry-run
   $download_only && return 0
