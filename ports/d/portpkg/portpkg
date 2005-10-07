@@ -404,7 +404,7 @@ build_pkg()
     if ! $DRY_RUN; then
       ln -s $SRC_DIR/$srcname .
       # check md5sums when non-maintainer-mode
-      if ! $maintain && [ -f md5sums ] \
+      if ! $maintain && grep -sq " $srcname$" md5sums \
       && ! grep " $srcname$" md5sums | md5sum -c --status 2>/dev/null; then
         error "Integrity checking failed: $srcname"
         return 1
