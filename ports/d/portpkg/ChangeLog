@@ -1,20 +1,33 @@
-2005-08013 23:18  hnaz
+2005-10-07 19:16  topf
 
-	* pp-config: Use -mtune only if we have gcc 3.4. This keeps us
-	  compatible with Slack 10.1. Rerun pp-config if having problems with
-	  complaints about unknown gcc options.
+	* SlackBuild, footprint, portpkg: Fixed md5sums checking again.
 
-2005-08-12 07:19  hnaz
+2005-10-07 18:57  topf
 
-	* pp-config: Changed -mcpu to -mtune.
+	* SlackBuild, footprint, portpkg: Fixed bug in md5sums checking.
 
-2005-08-11 16:17  hnaz
+2005-08-16 08:04  hnaz
 
-	* portpkg: Sorry for breaking, fixed it.
+	* SlackBuild, portpkg: Added support for blocking packages. Please
+	  update, this is important!
 
-2005-08-11 14:45  hnaz
+2005-08-13 23:25  hnaz
 
-	* portpkg: Changed dryrun output.  Fixed $flag_var grepping/sedding.
+	* SlackBuild, pp-config: Fixed the usage of -mtune and -mcpu.
+	  Choose by gcc-version.
+
+2005-08-12 07:21  hnaz
+
+	* SlackBuild, pp-config: Changed the usage of -mcpu to -mtune.
+
+2005-08-11 16:19  hnaz
+
+	* SlackBuild, footprint, portpkg: Sorry for breaking, fixed it.
+
+2005-08-11 15:01  hnaz
+
+	* SlackBuild, footprint, portpkg: Modified information output on
+	  DRY_RUN.  Fixed $flag_var grepping/sedding.
 
 2005-04-23 20:57  topf
 
