@@ -1,0 +1,99 @@
+diff -ur aterm-0.4.2~/autoconf/configure.in aterm-0.4.2/autoconf/configure.in
+--- aterm-0.4.2~/autoconf/configure.in	Thu Sep  6 20:38:07 2001
++++ aterm-0.4.2/autoconf/configure.in	Sun Jan  6 04:20:31 2002
+@@ -670,6 +670,24 @@
+   AC_DEFINE(NO_SETLOCALE)
+ fi
+ 
++AC_CACHE_CHECK(if we can link with utempter library,cf_cv_have_utempter,[
++cf_save_LIBS="$LIBS"
++LIBS="-lutempter $LIBS"
++AC_TRY_LINK([
++#include <utempter.h>
++],[
++	utempter_add_record(1, 0);
++	utempter_remove_added_record();
++],[
++	cf_cv_have_utempter=yes],[
++	cf_cv_have_utempter=no])
++LIBS="$cf_save_LIBS"
++])
++if test "$cf_cv_have_utempter" = yes ; then
++	AC_DEFINE(HAVE_UTEMPTER,1,[Define if you have libutempter.])
++	LIBS="-lutempter $LIBS"
++fi
++
+ dnl> AC_CHECK_FUNCS(gettimeofday putenv select socket)
+ 
+ CFLAGS=${CFLAGS--O}
+diff -ur aterm-0.4.2~/src/command.c aterm-0.4.2/src/command.c
+--- aterm-0.4.2~/src/command.c	Thu Sep  6 20:38:07 2001
++++ aterm-0.4.2/src/command.c	Sun Jan  6 04:21:21 2002
+@@ -48,6 +48,10 @@
+ /*{{{ includes: */
+ #include "rxvt.h"		/* NECESSARY */
+ 
++#ifdef	HAVE_UTEMPTER
++#include <utempter.h>
++#endif
++
+ #define TT_PRINTF_LIMIT		1024
+ 
+ #if defined(OFFIX_DND) || defined(TRANSPARENT)
+@@ -424,11 +428,13 @@
+ #endif
+     signal(sig, SIG_DFL);
+ 
+-#ifdef UTMP_SUPPORT
+     privileges(RESTORE);
++#ifdef UTMP_SUPPORT
+     cleanutent();
+-    privileges(IGNORE);
++#elif defined(HAVE_UTEMPTER)
++    utempter_remove_added_record();
+ #endif
++    privileges(IGNORE);
+ 
+     kill(getpid(), sig);
+ }
+@@ -453,6 +459,8 @@
+ #endif
+ #ifdef UTMP_SUPPORT
+     cleanutent();
++#elif defined(HAVE_UTEMPTER)
++    utempter_remove_added_record();
+ #endif
+     privileges(IGNORE);
+ }
+@@ -1059,12 +1067,15 @@
+ 	}
+ 	exit(EXIT_FAILURE);
+     }
+-#ifdef UTMP_SUPPORT
+     privileges(RESTORE);
+-    if (!(Options & Opt_utmpInhibit))
++    if (!(Options & Opt_utmpInhibit)) {
++#ifdef UTMP_SUPPORT
+ 	makeutent(ttydev, display_name);	/* stamp /etc/utmp */
+-    privileges(IGNORE);
++#elif defined(HAVE_UTEMPTER)
++	utempter_add_record(ptyfd,display_name);
+ #endif
++    }
++    privileges(IGNORE);
+ 
+     return ptyfd;
+ }
+diff -ur aterm-0.4.2~/src/xdefaults.c aterm-0.4.2/src/xdefaults.c
+--- aterm-0.4.2~/src/xdefaults.c	Thu Sep  6 20:38:07 2001
++++ aterm-0.4.2/src/xdefaults.c	Sun Jan  6 04:20:31 2002
+@@ -384,6 +384,9 @@
+ #ifdef UTMP_SUPPORT
+     fprintf(stderr, "utmp,");
+ #endif
++#ifdef HAVE_UTEMPTER
++    fprintf(stderr, "utempter,");
++#endif
+ #ifdef MENUBAR
+     fprintf(stderr, "menubar,");
+ #endif

@@ -1,0 +1,39 @@
+--- aterm-0.4.2/src/command.c.orig	2002-06-12 17:56:30 +0400
++++ aterm-0.4.2/src/command.c	2002-06-12 18:12:06 +0400
+@@ -47,6 +47,8 @@
+ 
+ /*{{{ includes: */
+ #include "rxvt.h"		/* NECESSARY */
++#include <paths.h>
++#include <pwd.h>
+ #ifdef HAVE_AFTERSTEP
+ #include "libAfterStep/event.h"
+ #endif
+@@ -1051,8 +1053,16 @@
+ 	} else {
+ 	    const char     *argv0, *shell;
+ 
+-	    if ((shell = getenv("SHELL")) == NULL || *shell == '\0')
+-		shell = DEFAULT_SHELL;
++	    shell = getenv("SHELL");
++	    if (!shell || !*shell) {
++	    	struct passwd *pw = getpwuid (getuid());
++
++		if (pw)
++		    shell = pw->pw_shell;
++
++		if (!shell || !*shell)
++		    shell = _PATH_BSHELL;
++	    }
+ 
+ 	    argv0 = my_basename(shell);
+ 	    if (Options & Opt_loginShell) {
+@@ -1062,7 +1072,7 @@
+ 		STRCPY(&p[1], argv0);
+ 		argv0 = p;
+ 	    }
+-	    execlp(shell, argv0, NULL);
++	    execl(shell, argv0, NULL);
+ 	    print_error("can't execute \"%s\"", shell);
+ 	}
+ 	exit(EXIT_FAILURE);

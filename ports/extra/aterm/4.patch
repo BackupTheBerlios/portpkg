@@ -1,0 +1,136 @@
+diff -uprk.orig aterm-0.4.2.orig/src/command.c aterm-0.4.2/src/command.c
+--- aterm-0.4.2.orig/src/command.c	2003-03-25 15:45:38 +0300
++++ aterm-0.4.2/src/command.c	2003-03-25 15:52:54 +0300
+@@ -3180,7 +3180,7 @@ void
+ process_terminal_mode(int mode, int priv, unsigned int nargs, int arg[])
+ {
+     unsigned int    i;
+-    int             state;
++    int             state = 0;
+ 
+     if (nargs == 0)
+ 	return;
+@@ -3209,7 +3209,7 @@ process_terminal_mode(int mode, int priv
+ 	break;
+ 
+ #define PrivCases(bit)							\
+-    if (mode == 't')							\
++    {if (mode == 't')							\
+ 	state = !(PrivateModes & bit);					\
+     else								\
+         state = mode;							\
+@@ -3223,7 +3223,7 @@ process_terminal_mode(int mode, int priv
+ 	/* FALLTHROUGH */						\
+     default:								\
+ 	PrivMode (state, bit);						\
+-    }
++    }}
+ 
+     case '?':
+ 	for (i = 0; i < nargs; i++)
+diff -uprk.orig aterm-0.4.2.orig/src/feature.h aterm-0.4.2/src/feature.h
+--- aterm-0.4.2.orig/src/feature.h	2003-03-25 15:45:38 +0300
++++ aterm-0.4.2/src/feature.h	2003-03-25 17:13:21 +0300
+@@ -299,7 +299,7 @@
+ #define BORDERWIDTH	1
+ 
+ /* Add a run-time option to disable pixmap tiling. */
+-#define DONT_TILE_PIXMAP_OPTION 
++/* #define DONT_TILE_PIXMAP_OPTION */
+ 
+ /*
+  * Default number of lines in the scrollback buffer
+diff -uprk.orig aterm-0.4.2.orig/src/main.c aterm-0.4.2/src/main.c
+--- aterm-0.4.2.orig/src/main.c	2001-09-06 20:38:07 +0400
++++ aterm-0.4.2/src/main.c	2003-03-25 17:00:13 +0300
+@@ -36,7 +36,7 @@ static const char rcsid[] = "$Id: main.c
+ #endif
+ 
+ #define INTERN			/* assign all global vars to me */
+-#include "rxvt.h"		/* NECESSARY */
++#include "pixmap.h"		/* NECESSARY */
+ #include "X11/Xatom.h"
+ #include "X11/Xproto.h"
+ #include <locale.h>
+diff -uprk.orig aterm-0.4.2.orig/src/pixmap.c aterm-0.4.2/src/pixmap.c
+--- aterm-0.4.2.orig/src/pixmap.c	2001-09-06 20:38:07 +0400
++++ aterm-0.4.2/src/pixmap.c	2003-03-25 17:20:32 +0300
+@@ -27,7 +27,7 @@
+ static const char rcsid[] = "$Id: 4.patch,v 1.1 2005/10/09 08:46:08 topf Exp $";
+ #endif
+ 
+-#include "rxvt.h"		/* NECESSARY */
++#include "pixmap.h"		/* NECESSARY */
+ 
+ int
+ pixmap_error_handler (Display * dpy, XErrorEvent * error)
+diff -uprk.orig aterm-0.4.2.orig/src/pixmap.h aterm-0.4.2/src/pixmap.h
+--- aterm-0.4.2.orig/src/pixmap.h	1970-01-01 03:00:00 +0300
++++ aterm-0.4.2/src/pixmap.h	2003-03-25 17:19:01 +0300
+@@ -0,0 +1,42 @@
++#ifndef _ATERM_PIXMAP_H
++#define _ATERM_PIXMAP_H
++
++#include "rxvt.h"
++
++int
++FillPixmapWithTile (Pixmap pixmap, Pixmap tile, int x, int y, int width,
++		    int height, int tile_x, int tile_y);
++
++int
++GetWinPosition (Window win, int *x, int *y);
++
++Pixmap
++CutWinPixmap (Window win, Drawable src, int src_w, int src_h, int width,
++	      int height, GC gc, ShadingInfo * shading);
++
++Pixmap
++GetRootPixmap(Atom id);
++
++Pixmap
++ValidatePixmap(Pixmap p, int bSetHandler, int bTransparent,
++               unsigned int *pWidth, unsigned int *pHeight);
++
++int
++GetMyPosition(int* x, int* y);
++
++void
++SetSrcPixmap(Pixmap p);
++
++void
++ValidateSrcPixmap(int bSetHandler);
++
++void
++RenderPixmap(int DontCheckSource);
++
++int
++parse_pixmap_geom(const char *geom);
++
++void
++LoadBGPixmap(const char *file);
++
++#endif	/* _ATERM_PIXMAP_H */
+diff -uprk.orig aterm-0.4.2.orig/src/scrollbar.c aterm-0.4.2/src/scrollbar.c
+--- aterm-0.4.2.orig/src/scrollbar.c	2001-09-06 20:38:07 +0400
++++ aterm-0.4.2/src/scrollbar.c	2003-03-25 17:09:45 +0300
+@@ -29,7 +29,7 @@
+  */
+ 
+ 
+-#include "rxvt.h"		/* NECESSARY */
++#include "pixmap.h"		/* NECESSARY */
+ 
+ /*----------------------------------------------------------------------*
+  */
+diff -uprk.orig aterm-0.4.2.orig/src/xdefaults.c aterm-0.4.2/src/xdefaults.c
+--- aterm-0.4.2.orig/src/xdefaults.c	2003-03-25 15:45:38 +0300
++++ aterm-0.4.2/src/xdefaults.c	2003-03-25 17:11:07 +0300
+@@ -539,7 +539,7 @@ usage(int type)
+ 
+ #ifdef KEYSYM_RESOURCE
+ 	fprintf(stderr, "    " "keysym.sym" ": %*s\n",
+-		(INDENT - strlen("keysym.sym")), "keysym");
++		(INDENT - (int)strlen("keysym.sym")), "keysym");
+ #endif
+ 	fprintf(stderr, "\n    -help to list options\n    -version for the version information with options list\n\n");
+ 	break;

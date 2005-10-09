@@ -1,0 +1,27 @@
+diff -urN aterm-1.0.0-orig/src/main.c aterm-1.0.0/src/main.c
+--- aterm-1.0.0-orig/src/main.c	2005-07-11 18:20:42 +0400
++++ aterm-1.0.0/src/main.c	2005-07-11 18:26:00 +0400
+@@ -1037,12 +1037,12 @@
+ 	XConfigureEvent *xconf = &(ev->xconfigure);
+ 	
+ 	while( XCheckTypedWindowEvent( Xdisplay, TermWin.parent, ConfigureNotify, ev ) );
+-	fprintf( stderr, "config_geom = %dx%d\n", xconf->width, xconf->height );
++	/*fprintf( stderr, "config_geom = %dx%d\n", xconf->width, xconf->height );*/
+     resize_window1(xconf->width, xconf->height);
+ #if 1
+ 	XTranslateCoordinates (Xdisplay, TermWin.parent, Xroot, 0, 0, &root_x, &root_y, &wdumm);
+ 
+-	fprintf( stderr, "root_geom = %dx%d%+d%+d, root_size = %dx%d\n", xconf->width, xconf->height, root_x, root_y, XdisplayWidth, XdisplayHeight ); 
++	/*fprintf( stderr, "root_geom = %dx%d%+d%+d, root_size = %dx%d\n", xconf->width, xconf->height, root_x, root_y, XdisplayWidth, XdisplayHeight ); */
+ 	TermWin.root_x = root_x ; 
+ 	TermWin.root_y = root_y ; 
+ 	TermWin.root_width = xconf->width ; 
+@@ -1647,7 +1647,7 @@
+ 	font_name=XGetAtomName(Xdisplay, name_value);
+ 	if( font_name )
+ 	{
+-          fprintf( stderr, " font found : [%s]\n", font_name );
++          /*fprintf( stderr, " font found : [%s]\n", font_name );*/
+ 	    old_string = realloc( old_string, strlen( font_name)+1 );
+ 	    strcpy( old_string, font_name );
+ 	}

@@ -1,0 +1,11 @@
+--- aterm-0.4.2/src/command.c.shiftins	2003-05-09 20:54:06 +0400
++++ aterm-0.4.2/src/command.c	2003-05-09 20:58:34 +0400
+@@ -1494,7 +1494,7 @@
+ 		break;
+ 
+ 	    case XK_Insert:	/* Shift+Insert = paste mouse selection */
+-		selection_request(ev->xkey.time, ev->xkey.x, ev->xkey.y);
++		selection_request(ev->xkey.time, 0, 0);
+ 		return;
+ 		break;
+ 
