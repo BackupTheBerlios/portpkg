@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=0.35
+VERSION=0.36
 ARCH=${ARCH:-i486}
 BUILD=1mk
 
@@ -50,3 +50,9 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+# clean up
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi
