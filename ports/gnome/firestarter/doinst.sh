@@ -1,17 +1,23 @@
-config()
-{
-  case $1 in
-    *.new)
-      new=`echo $1 | sed "s,\.new$,,"`
-      if [ ! -f $new ]; then
-        mv $1 $new
-      elif cmp -s $1 $new; then
-        rm $1
-      fi;;
-    *.omf)
-      scrollkeeper-update -p var/lib/scrollkeeper -o $1 >/dev/null 2>&1;;
-    *.schemas)
-      GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
-      gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1;;
-  esac
+config() {
+    NEW="$1"
+    OLD="`dirname $NEW`/`basename $NEW .new`"
+# If there's no config file by that name, mv it over:
+    if [ ! -r $OLD ]; then
+	mv $NEW $OLD
+    elif [ "`cat $OLD | md5sum`" = "`cat $NEW | md5sum`" ]; then # toss the redundant copy
+        rm $NEW
+    fi
+# Otherwise, we leave the .new copy for the admin to consider...
 }
+		      
+gconf() {
+  if [ -x usr/bin/gconftool-2 ]; then
+    GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
+    usr/bin/gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
+  fi
+}
+if [ -x usr/bin/update-desktop-database ]; then
+  usr/bin/update-desktop-database >/dev/null 2>&1
+fi
+
+config etc/rc.d/rc.firewall.new
