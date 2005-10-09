@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=5.42a
+VERSION=5.44
 ARCH=noarch
-BUILD=4tom
+BUILD=1lem
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -18,10 +18,9 @@ make
 make install DESTDIR=$PKG
 rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rfv $PKG/usr/info/dir
-find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
+gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   HISTORY INSTALL MANIFEST README TODO \
