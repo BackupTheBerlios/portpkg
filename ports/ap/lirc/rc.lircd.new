@@ -1,0 +1,25 @@
+#! /bin/sh
+#
+#/etc/rc.d/rc.lirc
+#
+#
+
+PIDFILE=/var/run/lircd.pid
+DEV=/dev/lirc0
+
+case "$1" in
+    start)
+	/usr/sbin/lircd -P $PIDFILE -d $DEV
+	echo "Starting lircd: /usr/sbin/lircd -P $PIDFILE -d $DEV"
+	;;
+    stop)
+        echo "Shutting down lircd..."
+        killall -TERM lircd 
+	;;
+    *)
+	echo "Usage: $0 {start|stop}"
+	exit 1
+	;;
+esac
+
+exit 0
