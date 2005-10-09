@@ -1,7 +1,0 @@
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.2.2 (OpenBSD)
-
-iD8DBQBCLoJezo7LA4b/nEgRAuaPAJkBuZqCiIExoXBxX4iRmWAU0h2uOgCgjS1i
-lEQpLz4CWq0lZFrvVxfgCEM=
-=k9xM
------END PGP SIGNATURE-----
