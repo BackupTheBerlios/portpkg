@@ -474,17 +474,19 @@ port()
     fi
     srcdir_prefix_out=`encode "$srcdir_prefix"`
     sed -i "s,%srcdirprefix%,$srcdir_prefix_out," $script
-    sed -i "s,%docdir%,$srcdir_prefix_out," $script
+#    sed -i "s,%docdir%,$srcdir_prefix_out," $script
   else
     echo "no prefix"
     snip cd_sdp $script
     srcdir_prefix="."
     sed -i "s,%srcdirprefix%,\$NAME-\$VERSION," $script
-    sed -i "s,%docdir%,\$NAME-\$VERSION," $script
+#    sed -i "s,%docdir%,\$NAME-\$VERSION," $script
     mkdir $t/src/$name-$version
     mv $t/src/* $t/src/$name-$version
     rm -rf $TMP/$name-$version
   fi
+
+  sed -i "s,%docdir%,\$NAME-\$VERSION," $script
 
   # now, move it to $TMP as portpkg does it
   chown nobody.nogroup -R $t/src/*
