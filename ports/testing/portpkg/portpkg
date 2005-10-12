@@ -638,7 +638,7 @@ check_reqs()
       :
     # is maybe a package in the cache?
     elif [ "`ls_pkg $(regex $req)`" ]; then
-      $dry_run || sh "installpkg `ls_pkg $(regex $req) | head -n 1`.tgz"
+      $dry_run || sh -c "installpkg `ls_pkg $(regex $req) | head -n 1`.tgz"
     else
       error "Cannot resolve dependency $req! Stopping."
       return 1
@@ -710,7 +710,7 @@ add_pkg()
 
   # call the install-command
 #  if ! su -c "$add $pkg_file | tee $t/output | grep -e ^PACKAGE -e ^$name: -e ^Executing"; then
-  if ! sh "$add $pkg_file | tee $t/output | grep -e ^PACKAGE -e ^$name: -e ^Executing"; then
+  if ! sh -c "$add $pkg_file | tee $t/output | grep -e ^PACKAGE -e ^$name: -e ^Executing"; then
     cat $t/output 2>/dev/null
     error "Installation failed!"
     return 1
