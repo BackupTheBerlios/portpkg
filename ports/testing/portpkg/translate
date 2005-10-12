@@ -1,0 +1,39 @@
+#
+# TRANSLATE these ports when required but unavailable
+#
+
+# old Slackware packages
+
+elflibs			aaa_elflibs
+# TODO: something around ogg/vorbis should be listed here
+
+# Perl and other packages are often named in "CamelCase"
+
+ExtUtils-Depends	extutils-depends
+ExtUtils-PkgConfig	extutils-pkgconfig
+Imaging			imaging
+IndLinux-Hindi		indlinux-hindi
+NetworkManager		networkmanager
+PyXML			pyxml
+Pyrex			pyrex
+gDesklets		gdesklets
+
+# special naming conventions for Gtk2-Perl modules
+
+Glib			glib-perl
+Gtk2			gtk2-perl
+Gtk2-GLExt		gtk2-glext-perl
+Gtk2-GladeXML		gtk2-gladexml-perl
+Gtk2-Html2		gtk2-html2-perl
+Gtk2-MozEmbed		gtk2-mozembed-perl
+Gtk2-Spell		gtk2-spell-perl
+Gtk2-TrayIcon		gtk2-trayicon-perl
+Gnome2			gnome2-perl
+Gnome2-Canvas		gnome2-canvas-perl
+Gnome2-Dia		gnome2-dia-perl
+Gnome2-GConf		gnome2-gconf-perl
+Gnome2-Print		gnome2-print-perl
+Gnome2-Rsvg		gnome2-rsvg-perl
+Gnome2-VFS		gnome2-vfs-perl
+Gnome2-Vte		gnome2-vte-perl
+Gnome2-Wnck		gnome2-wnck-perl

@@ -1,0 +1,18 @@
+#!/bin/sh
+# admin.update-changelogs -- update /ChangeLog and /d/portpkg/ChangeLog in CVS
+#                            FOR PORTPKG ADMINISTRATION ONLY
+
+. `which portpkg` || exit 1
+
+t=`mktemp`
+stanza "Updating ChangeLogs:"
+for i in . d/portpkg; do
+  cd $PRT_DIR/$i
+  has_prog cvs2cl.pl || continue
+  cvs2cl.pl -g -qz9 -f $t -I ChangeLog
+  if ! cmp -s $t ChangeLog; then
+    row "Updating $i/ChangeLog"
+    cat $t >ChangeLog
+    cvs -qz9 ci -m "Updated." ChangeLog
+  fi
+done
