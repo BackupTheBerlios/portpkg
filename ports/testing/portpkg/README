@@ -2,13 +2,24 @@ WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
 
 Major changes:
 
+* Virtual groups in /usr/ports/virtual:
+
+  # portpkg mplayer/
+
+  Will install all packages from the virtual group in 
+  /usr/ports/virtual/mplayer. A virtual group needs only a directory for
+  each port and therein a file SlackBuild with the lines "VERSION=",
+  "ARCH=" and "BUILD=". There will be examples in the ports tree. This
+  can be very interesting in conjunction with the use list in the
+  future, when there're more virtual groups defined. 
+
 * "Multiports": One script - two packages
 
-  For more compatibility with SlackBuild-scripts (e.g. gcc/glibc) that
-  produce more than one package.
+  For more compatibility with original Slackware SlackBuild-scripts
+  (e.g. gcc/glibc) that produce more than one package.
 
   Notes for multiports:
-  * Don't use $NAME!
+  * Don't use $NAME for each makepkg!
   * Every makepkg has to be explicit (no "for i; do makepkg; done"!)
   * Names of produced package must have only $VERSION, $ARCH and/or $BUILD!
   * Groups _should_ match
@@ -30,16 +41,18 @@ Major changes:
   files). Please edit your files in /etc/portpkg/ to your needs, they
   won't be overwritten on upgrades.
 
-* CVS support (sources, mirrors and importer scripts)
+* CVS/SVN support for sources
 
   It should be now possible to use CVS as a resource in your ports. E.g.
-  the "sources" file will look like this (as in "repos" now):
+  the "sources" file will look like this:
 
   cvs://:pserver:anonymouse@cvs.bla.net:/cvsroot/bla/$NAME
+  svn://svn.videolan.org/x264/trunk/x264
 
-  The default CVS storage dir is /usr/src/cvs and can be changed by
-  CVS_DIR=... in /etc/portpkg/local.conf. Portpkg makes a symlink to the
-  port dir before starting the SlackBuild. Use it in your SlackBuild as
+  The default CVS (and SVN) storage dir is /usr/src/cvs and can be
+  changed with CVS_DIR=... in /etc/portpkg/local.conf. Portpkg makes a
+  symlink to the port dir before starting the SlackBuild. Use it in your
+  SlackBuild as
 
   ...
   # here would be normal tar xjvf $CWD/$NAME-$VERSION.tar.bz2
@@ -55,7 +68,7 @@ Major changes:
   or via CVS if you have a developer account. Nevertheless, the CVS
   server url can be modified in a mirrors file.
 
-* Use.local
+* Use
 
   Dependencies that are optional AND shall be installed by portpkg when
   needed can be written to this list. Best known example is if you WANT
@@ -75,14 +88,14 @@ Portpkg:
 * No more ".wgetlogs"
 * Don't log a dry-run
 * Execute SlackBuilds with "sh -e" on default
-* --ignorearch: neglect architecture diffs
+* neglect architecture diffs for i?86
 * Improvements to the Slackware source importer
 * Use pathname expansion rather than regular expressions in mirror files
   (http://*.dl.sf.net/ instead of http://.*\.dl\.net/)
-* Ignore case in package expressions, dependencies and --diff
 * Removed Bash-specific syntax (should work now with ash)
 * Some speed enhancements
 * Use unlisted packages in cache for dependencies
+* Replaced $ADM_DIR/portpkg with $LOG_DIR in order to make it costumisable
 *
 
 Autoport:
@@ -104,3 +117,10 @@ Delayed:
 * Support for different repositories (CVS and HTTPUP) (/etc/portpkg/repos)
 * Removed "importers" subsystem
 * PGP/GPG-Support
+* Ignore case in package expressions, dependencies and --diff
+
+TODO:
+* Turbo mode should be comfortable with LAZY_CHECKS, not NO_REQS
+* Make LAZY_CHECKS in turbo mode faster
+* Enable running portpkg as non-root
+* Integrate non-root configuration set in pp-config

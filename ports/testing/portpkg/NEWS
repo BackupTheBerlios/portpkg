@@ -1,5 +1,36 @@
 News
 
+  10/12/2005
+
+   Portpkg
+           * Release 0.38test17 in testing/.
+
+  10/07/2005
+
+   Portpkg
+           * Release 0.37.3a.
+           * Fixed a bug in md5sums checking method that doesn't work with
+             md5sums created by newer versions of portpkg. Please update.
+
+  08/16/2005
+
+   Ports & Portpkg
+           * Non-developers, please update your Portpkg versions, since
+             Portpkg now supports package-blocking, which is very important.
+           * Package-blocking; that means that one package can prevent
+             another package from getting installed. This is important since
+             we have packages with more than one version but different names
+             (pango and pango-devel for example). If you write such ports,
+             please keep in mind to add conflicting ports or packages to the
+             'blocks' file in the ports directory.
+
+  08/14/2005
+
+   Ports
+           * New CVS Mirror: cvs
+             -d:pserver:anonymous@buetow.org:/usr/home/cvs/portpkg co -P
+             ports (Thanks to Paul)
+
   04/27/2005
 
    Portpkg
@@ -265,3 +296,4 @@ References
    . http://developer.berlios.de/projects/portpkg
    . http://www.slackforum.de/forum/index.php?t=msg&th=1344
    . http://portpkg.berlios.de/people
+   . http://www.buetow.org/

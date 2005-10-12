@@ -23,16 +23,18 @@ esac
 [ "$MY_EMAIL" ] || die "No mail address configured. Please run: pp-config"
 [ "$MY_REALNAME" ] || die "No real name configured. Please run: pp-config"
 
-# make tarball with the port scripts and include info file
+# make an info file
 cat >$path/info <<EOF
 Maintainer:  $MY_TAG: $MY_REALNAME <$MY_EMAIL>
 Intended group:  $group/
 ChangeLog entry:  $export_opt
 EOF
-#  rm -rf $ADM_DIR/portpkg/$package.tar.bz2
-tar cjf $ADM_DIR/portpkg/$package.tar.bz2 --exclude "*CVS*" -C `dirname $path` $name
+
+# make tarball with the port scripts
+rm -rf $TMP/$package.tar.bz2
+tar cjf $TMP/$package.tar.bz2 --exclude "*CVS*" -C `dirname $path` $name
 rm $path/info
 
 # upload where ever it should be
-curl -F filetoupload=@$ADM_DIR/portpkg/$package.tar.bz2 $export_root >/dev/null 2>&1 \
+curl -F filetoupload=@$TMP/$package.tar.bz2 $export_root >/dev/null 2>&1 \
 || error "An error occured!"

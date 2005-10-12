@@ -18,6 +18,11 @@ for i in etc/portpkg/plugins/sync.*.new; do
   mv $i etc/portpkg/plugins/`basename $i .new`
 done
 
+# rename all export scripts
+for i in etc/portpkg/plugins/export.*.new; do
+  mv $i etc/portpkg/plugins/`basename $i .new`
+done
+
 # export.http is default
 if ! [ -L etc/portpkg/export ]; then
   ln -s plugins/export.http etc/portpkg/export

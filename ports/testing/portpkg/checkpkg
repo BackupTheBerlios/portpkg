@@ -43,8 +43,8 @@ check_group()
   local t=`mktemp -d`
   group=$1
   ls_inst >$t/inst
-  ls_scr | scr2virt | grep "^.*/$group/[^/]*$" >$t/locs
-  virt2gpkg <$t/locs >$t/gpkgs
+  ls_scr | scr2virt | sorted | grep "^.*/$group/[^/]*$" >$t/virts
+  any2gpkg <$t/virts >$t/gpkgs
   cut -d / -f 2 <$t/gpkgs >$t/pkgs
   pkg2name <$t/pkgs >$t/names
   sort -u <$t/names >$t/unames
@@ -56,9 +56,9 @@ check_group()
 are already selected. You can deselect them to remove or select others to \
 install them.\" 21 75 12 " >$t/menu
   while read name; do
-    loc=`grep -m 1 $(regex $name) $t/locs`
-    pkg=`echo $loc | sed "s,^.*/,,"`
-    desc=`grep -s ^$name: $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | sed "s,[\"],',g"`
+    virt=`grep -m 1 $(regex $name) $t/virts`
+    pkg=`echo $virt | sed "s,^.*/,,"`
+    desc=`grep -s ^$name: $(dirname $virt)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | sed "s,[\"],',g"`
     desc=${desc:-}
     [ $(fgrep -xm 1 $pkg $t/inst) ] \
     && echo \"$name\" \"$desc\" on \"$pkg\" \\>>$t/list \
@@ -86,7 +86,8 @@ install them.\" 21 75 12 " >$t/menu
   fi
   for p in `cat $t/pos_names`; do
     pkg=`grep -m 1 $(regex $p) $t/pkgs`
-    fgrep -xsq $pkg $t/inst || echo $pkg
+#    fgrep -xsq $pkg $t/inst || echo $pkg
+    fgrep -xsq $pkg $t/inst || echo $group/$p
   done >$t/list_install
   if [ -s $t/list_install ]; then
     clear

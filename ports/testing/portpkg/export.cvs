@@ -9,7 +9,9 @@ fi
 row "Submitting $group/$package via CVS"
 
 t=`mktemp -d`
+export CVS_RSH=ssh
 has_prog cvs || return 1
+has_prog ssh || return 1
 cd $path || die
 # check if this path is already in the repository
 [ "`find -path "*CVS*"`" ] || ( cd .. && cvs -qz9 add `basename $path`; )

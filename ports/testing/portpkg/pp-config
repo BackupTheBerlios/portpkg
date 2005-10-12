@@ -7,7 +7,7 @@ t=`mktemp -d`
 is_root || die
 #newest_slack=10.1
 
-target()
+TARGET()
 {
   heading="DISTRIBUTION VERSION"
   dialog --title "$heading" --inputbox \
@@ -32,7 +32,7 @@ If unsure answer 'yes'." 0 0; then
   fi
 }
 
-maintain()
+MAINTAIN()
 {
   heading="MAINTAINER SETTINGS"
   dialog --title "$heading" --inputbox \
@@ -70,7 +70,7 @@ If unsure leave this field empty." 0 0 "$MY_CVSTAG" 2>$t/res || exit
 #  echo "SUBMIT_METHOD=cvs" >>$CFG_DIR/local.conf
 }
 
-output()
+OUTPUT()
 {
   heading="OUTPUT SETTINGS"
   sed -i "/^VERBOSE=/d" $CFG_DIR/local.conf
@@ -81,7 +81,7 @@ If unsure answer 'no'." 0 0; then
   fi
 }
 
-dependencies()
+DEPENDENCIES()
 {
   heading="DEPENDENCIES SETTINGS"
   sed -i "/^NO_REQS=/d" $CFG_DIR/local.conf
@@ -101,10 +101,10 @@ If unsure answer 'no'." 0 0 0; then
   fi
 }
 
-resources()
+PLUGINS()
 {
-  heading="RESOURCES SETTINGS"
-  echo -n "dialog --title \"$heading\" --checklist \
+  heading="PLUGINS SETTINGS"
+  echo -n "dialog --title \"$heading\" --single-quoted --checklist \
 \"Select which plugins you want to enable when you sync your data base.
 If unsure select only \\\`portpkg-tree'.\" 0 0 0 " >$t/menu
   local importer
@@ -211,7 +211,7 @@ cpu()
   echo $proc
 }
 
-optimise()
+OPTIMISING()
 {
   # get gcc-version for gcc-3.3.X from Slackware 10.1 uses -mcpu while
   # later releases use -mtune
@@ -253,32 +253,32 @@ If unsure choose 'default'." 0 0 0 \
   esac
 }
 
-makeopts()
+MAKEOPTS()
 {
   heading="MAKE CUSTOMIZATION"
   dialog --title "$heading" --inputbox \
 "You can customize the make-calls in SlackBuild and add options to them \
 like parallel jobs or others (see make(1)). \
-If you have a single-CPU you are recommended to use -j2 here." 0 0 "$MAKE_OPTS" 2>$t/res || exit
+If you have a single-CPU you are recommended to use -j2 here." 0 0 "$MAKE_OPTS" 2>$t/res || return
   MAKE_OPTS=`cat $t/res`
   sed -i "/^MAKE_OPTS=/d" $CFG_DIR/local.conf
   [ "$MAKE_OPTS" ] || return 0
   echo "MAKE_OPTS=\"$MAKE_OPTS\"" >> $CFG_DIR/local.conf
-} 
+}
 
-last="target"
+last="TARGET"
 while true; do 
   dialog --title "PORTPKG-CONFIGURATION" \
   --cancel-label "Quit" --default-item $last --menu \
 "This is a configuration tool for Portpkg.
 Select what you want to configure:" 0 0 0 \
-  target "Set distribution target" \
-  resources "Set which resources to use" \
-  maintain "Set your tag string" \
-  output "Set output level" \
-  optimise "Set processor optimising" \
-  makeopts "Set custom make options" \
-  dependencies "Set dependency handling" 2>$t/res || break
+  TARGET "Set distribution target" \
+  PLUGINS "Select resources to use" \
+  MAINTAIN "Set your tag string" \
+  OUTPUT "Set output level" \
+  OPTIMISING "Set compiler flags" \
+  MAKEOPTS "Set custom make options" \
+  DEPENDENCIES "Set dependency handling" 2>$t/res || break
 #  mirrors "Set mirrors for downloads" \
   last=`cat $t/res`
   $last
