@@ -1,7 +1,183 @@
-2005-10-08 11:03  topf
+2005-10-15 08:17  topf
 
-	* open/nrg2iso/: SlackBuild, footprint, info, md5sums, slack-desc,
-	  sources: nrg2iso 0.4 (va)
+	* open/links/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: This build included drivers for X, FB, SDL
+	  and SVGAlibs (mbr)
+
+2005-10-15 08:17  topf
+
+	* open/ardour/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: version update (lem)
+
+2005-10-12 22:59  topf
+
+	* testing/portpkg/: footprint, CREDITS: Synced.
+
+2005-10-12 22:58  topf
+
+	* testing/portpkg/autoport: Back to /usr/doc/$NAME-$VERSION
+	  directories for documentation.
+
+2005-10-12 22:58  topf
+
+	* testing/portpkg/: admin.changelogs, translate: New entry.
+
+2005-10-12 22:42  topf
+
+	* testing/portpkg/portpkg: Fixed a typo.
+
+2005-10-12 21:32  topf
+
+	* testing/portpkg/: checktree, exclude.new, ignore.new, merge,
+	  mirrors.new, prepare, sync.00.portpkg-tree.new,
+	  sync.55.pseudo-ports.new, sync.66.slackware-source.new,
+	  sync.77.update-open.new, sync.99.clean-cache.new, use.new:
+	  Removed (obsolete).
+
+2005-10-12 21:30  topf
+
+	* testing/portpkg/: ABOUT, FAQ, NEWS, README, README.Links,
+	  README.orig, SlackBuild, admin.checktree, admin.docs,
+	  admin.merge, autoport, checkpkg, checktree, doinst.sh, exclude,
+	  exclude.new, export.cvs, export.http, footprint, ignore,
+	  ignore.new, merge, mirrors, mirrors.new, portpkg, pp-config,
+	  prepare, requires, sync.00.portpkg-tree,
+	  sync.00.portpkg-tree.new, sync.55.pseudo-ports,
+	  sync.55.pseudo-ports.new, sync.66.slackware-source,
+	  sync.66.slackware-source.new, sync.77.update-open,
+	  sync.77.update-open.new, sync.99.clean-cache,
+	  sync.99.clean-cache.new, use, use.new: Release 0.38test17.
+
+2005-10-11 10:03  topf
+
+	* xap/kino/SlackBuild, xap/kino/doinst.sh, xap/kino/footprint,
+	  xap/kino/md5sums, xap/kino/requires, xap/kino/slack-desc,
+	  xap/kino/sources, l/gamin/SlackBuild, l/gamin/footprint,
+	  l/gamin/md5sums: Version update.
+
+2005-10-11 10:03  topf
+
+	* l/dvtitler/: SlackBuild, footprint, md5sums, slack-desc, sources:
+	  New entry.
+
+2005-10-11 10:01  topf
+
+	* xap/avidemux/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Version update. Adjustments to Makefile
+	  changes.
+
+2005-10-09 19:22  topf
+
+	* AUTHORS: Added va.
+
+2005-10-09 19:13  topf
+
+	* ap/nrg2iso/: SlackBuild, footprint, md5sums, slack-desc, sources:
+	  nrg2iso 0.4 (va)
+
+2005-10-09 19:11  topf
+
+	* ap/yafray/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: version update (lem)
+
+2005-10-09 11:17  topf
+
+	* xap/xchm/: SlackBuild, footprint, md5sums, requires: Upgraded to
+	  version 1.2 (mk)
+
+2005-10-09 11:12  topf
+
+	* l/pil/: SlackBuild, footprint, md5sums, requires, slack-desc:
+	  version update (lem)
+
+2005-10-09 11:09  topf
+
+	* extra/openssh-x509/: README, SlackBuild, doinst.sh.gz, footprint,
+	  md5sums, rc.sshd, requires, slack-desc, sources: Upgraded to
+	  openssh 4.2p1 and x509 support patch 5.2 (and renamed from
+	  testing/openssh) (mk)
+
+2005-10-09 11:07  topf
+
+	* ap/lirc/: SlackBuild, doinst.sh, footprint, md5sums,
+	  rc.lircd.new, requires, slack-desc, sources: new entry (lem)
+
+2005-10-09 11:05  topf
+
+	* ap/htop/: SlackBuild, footprint, md5sums: Upgraded to version
+	  0.5.3 (mk)
+
+2005-10-09 11:02  topf
+
+	* gnome/firestarter/SlackBuild, gnome/firestarter/doinst.sh,
+	  gnome/firestarter/footprint, gnome/firestarter/md5sums,
+	  gnome/firestarter/slack-desc, gnome/firestarter/sources,
+	  xap/freevo/SlackBuild, xap/freevo/footprint, xap/freevo/md5sums,
+	  xap/freevo/slack-desc, xap/freevo/sources,
+	  gnome/gnome-screensaver/SlackBuild,
+	  gnome/gnome-screensaver/doinst.sh,
+	  gnome/gnome-screensaver/footprint,
+	  gnome/gnome-screensaver/md5sums,
+	  gnome/gnome-screensaver/requires,
+	  gnome/gnome-screensaver/slack-desc,
+	  gnome/gnome-screensaver/sources: version update (lem)
+
+2005-10-09 11:00  topf
+
+	* l/datemanip/: SlackBuild, footprint, md5sums: version bump, the
+	  source link didn't work anymore (lem)
+
+2005-10-09 10:57  topf
+
+	* l/chmlib/: SlackBuild, footprint, md5sums: Upgraded to version
+	  0.36 (mk)
+
+2005-10-09 10:56  topf
+
+	* l/cairo/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: version update (lem)
+
+2005-10-09 10:46  topf
+
+	* extra/aterm/: 1.patch, 2.patch, 3.patch, 4.patch, 5.patch,
+	  6.patch, 7.patch, SlackBuild, aterm-16.xpm, aterm-32.xpm,
+	  aterm-48.xpm, footprint, md5sums, requires, slack-desc, sources:
+	  Just new version with some additional patch (mbr)
+
+2005-10-08 11:54  topf
+
+	* pasture/bittorrent/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved n/bittorrent-4.1.3-noarch-1hnaz to
+	  pasture/.
+
+2005-10-08 11:53  topf
+
+	* extra/libgsf/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved testing/libgsf-1.12.0-i686-1tom to
+	  extra/.
+
+2005-10-08 11:51  topf
+
+	* pasture/gftp/: SlackBuild, doinst.sh, footprint, gftp.desktop.gz,
+	  md5sums, requires, slack-desc, sources: Moved
+	  xap/gftp-2.0.18-i686-2hnaz to pasture/.
+
+2005-10-08 11:50  topf
+
+	* pasture/blackbox/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources, xinitrc.blackbox: Moved
+	  xap/blackbox-0.70.0-i686-1sjn to pasture/.
+
+2005-10-08 11:48  topf
+
+	* pasture/esound/: SlackBuild, footprint, md5sums, slack-desc,
+	  sources: Moved gnome/esound-0.2.36-i686-1tom to pasture/.
+
+2005-10-08 11:48  topf
+
+	* pasture/bittornado/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved n/bittornado-0.3.12-noarch-1hnaz to
+	  pasture/.
 
 2005-10-08 11:03  topf
 
@@ -33,36 +209,12 @@
 	* open/slackins/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: New entry.
 
-2005-10-06 22:36  topf
-
-	* open/aterm/: 1.patch, 2.patch, 3.patch, 4.patch, 5.patch,
-	  6.patch, 7.patch, SlackBuild, aterm-16.xpm, aterm-32.xpm,
-	  aterm-48.xpm, footprint, info, md5sums: Just new version with
-	  some additional patch (mbr)
-
-2005-10-06 22:34  topf
-
-	* open/xchm/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Upgraded to version 1.2 (mk)
-
 2005-10-06 22:34  topf
 
 	* open/pinfo/: SlackBuild, doinst.sh, footprint, info, md5sums,
 	  pinfo-0.6.8-mkstemp.patch.gz, pinfo-0.6.8.memcorruption.patch.gz,
 	  pinfo-0.6.8.memleak.patch.gz, requires, slack-desc, sources:
 	  Minor Slackbuild changes (mk)
-
-2005-10-06 22:33  topf
-
-	* open/openssh-x509/: README, SlackBuild, doinst.sh.gz, footprint,
-	  info, md5sums, rc.sshd, requires, slack-desc, sources: Upgraded
-	  to openssh 4.2p1 and x509 support patch 5.2 (and renamed from
-	  testing/openssh) (mk)
-
-2005-10-06 22:33  topf
-
-	* open/htop/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Upgraded to version 0.5.3 (mk)
 
 2005-10-06 22:32  topf
 
@@ -71,51 +223,9 @@
 	  footprint, info, md5sums, requires, slack-desc, sources:
 	  local/aterm (mbr)
 
-2005-10-06 22:32  topf
-
-	* open/chmlib/: SlackBuild, footprint, info, md5sums, slack-desc,
-	  sources: Upgraded to version 0.36 (mk)
-
-2005-10-04 10:49  topf
-
-	* open/datemanip/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources:	(lem)
-
-2005-10-04 10:49  topf
-
-	* open/aterm/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Ugraded version (mbr)
-
 2005-09-30 22:29  topf
 
 	* xap/mplayer/requires: Restored optional dependencies.
-
-2005-09-30 09:50  topf
-
-	* open/: pil/SlackBuild, pil/footprint, pil/info, pil/md5sums,
-	  pil/requires, pil/slack-desc, pil/sources, yafray/SlackBuild,
-	  yafray/footprint, yafray/info, yafray/md5sums, yafray/requires,
-	  yafray/slack-desc, yafray/sources: version update (lem)
-
-2005-09-30 09:50  topf
-
-	* open/lirc/: SlackBuild, doinst.sh, footprint, info, md5sums,
-	  rc.lircd.new, requires, slack-desc, sources: new entry (lem)
-
-2005-09-30 09:46  topf
-
-	* open/: cairo/SlackBuild, cairo/footprint, cairo/info,
-	  cairo/md5sums, cairo/requires, cairo/slack-desc, cairo/sources,
-	  firestarter/SlackBuild, firestarter/doinst.sh,
-	  firestarter/footprint, firestarter/info, firestarter/md5sums,
-	  firestarter/requires, firestarter/slack-desc,
-	  firestarter/sources, freevo/SlackBuild, freevo/footprint,
-	  freevo/info, freevo/md5sums, freevo/requires, freevo/slack-desc,
-	  freevo/sources, gnome-screensaver/SlackBuild,
-	  gnome-screensaver/doinst.sh, gnome-screensaver/footprint,
-	  gnome-screensaver/info, gnome-screensaver/md5sums,
-	  gnome-screensaver/requires, gnome-screensaver/slack-desc,
-	  gnome-screensaver/sources: version update (lem)
 
 2005-09-25 19:09  topf
 
@@ -421,11 +531,6 @@
 	  textfiles also to the game's dir. It seems to mess around
 	  without.
 
-2005-08-15 07:14  hnaz
-
-	* n/bittorrent/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: New port. (beta release but works well)
-
 2005-08-14 17:28  hnaz
 
 	* xap/acroread/: SlackBuild, footprint, md5sums, requires,
@@ -590,13 +695,9 @@
 
 2005-08-11 17:25  topf
 
-	* testing/cairo/SlackBuild, testing/cairo/footprint,
-	  testing/cairo/md5sums, testing/cairo/sources,
-	  open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info,
-	  open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc,
-	  open/cairo/sources, testing/gnome-panel/SlackBuild,
-	  testing/gnome-panel/footprint, testing/gnome-panel/md5sums,
-	  testing/gnome-panel/requires, testing/gnome-panel/sources:
+	* testing/: cairo/SlackBuild, cairo/footprint, cairo/md5sums,
+	  cairo/sources, gnome-panel/SlackBuild, gnome-panel/footprint,
+	  gnome-panel/md5sums, gnome-panel/requires, gnome-panel/sources:
 	  version update (lem)
 
 2005-08-11 16:53  hnaz
@@ -628,20 +729,10 @@
 	* d/portpkg/: SlackBuild, footprint, portpkg: Modified information
 	  output on DRY_RUN.  Fixed $flag_var grepping/sedding.
 
-2005-08-01 10:17  topf
-
-	* open/cairo/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: version update (lem)
-
 2005-07-31 11:26  topf
 
 	* gnome/gnome-audio/: SlackBuild, footprint, slack-desc, sources:
 	  New entry.
-
-2005-07-31 11:25  topf
-
-	* gnome/esound/: SlackBuild, footprint, md5sums, slack-desc,
-	  sources: Version update.
 
 2005-07-31 10:56  topf
 
@@ -734,23 +825,14 @@
 
 2005-07-30 15:10  topf
 
-	* testing/cairo/SlackBuild, testing/cairo/footprint,
-	  testing/cairo/md5sums, testing/cairo/requires,
-	  testing/cairo/slack-desc, testing/cairo/sources,
-	  open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info,
-	  open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc,
-	  open/cairo/sources: new entry (lem)
+	* testing/cairo/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
 
 2005-07-30 09:45  topf
 
 	* pasture/fribidi/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Moved l/fribidi-0.10.4-i686-1tom to
 	  pasture/.
-
-2005-07-29 09:49  topf
-
-	* open/cairo/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: new entry (lem)
 
 2005-07-29 09:43  topf
 
@@ -858,6 +940,9 @@
 
 	* xap/ardour/SlackBuild, xap/ardour/footprint, xap/ardour/md5sums,
 	  xap/ardour/requires, xap/ardour/slack-desc, xap/ardour/sources,
+	  open/ardour/SlackBuild, open/ardour/footprint, open/ardour/info,
+	  open/ardour/md5sums, open/ardour/requires,
+	  open/ardour/slack-desc, open/ardour/sources,
 	  l/iso-codes/SlackBuild, l/iso-codes/footprint,
 	  l/iso-codes/md5sums, l/iso-codes/slack-desc, l/iso-codes/sources:
 	  new entry (lem)
@@ -996,9 +1081,9 @@
 	  gnome/nautilus/md5sums, gnome/rhythmbox/md5sums,
 	  gnome/sclog/md5sums, gnome/seahorse/md5sums,
 	  gnome/yarssr/md5sums, pasture/esound/md5sums,
-	  pasture/expat/md5sums, testing/libgsf/md5sums,
-	  testing/mono/md5sums, testing/seahorse/md5sums,
-	  xap/acidrip/md5sums, xap/gnumeric/md5sums, xap/mplayer/md5sums,
+	  pasture/expat/md5sums, testing/mono/md5sums,
+	  testing/seahorse/md5sums, xap/acidrip/md5sums,
+	  xap/gnumeric/md5sums, xap/mplayer/md5sums,
 	  xap/mplayer-codecs/md5sums, xap/mplayer-skins/md5sums,
 	  xap/perlpanel/md5sums, xap/savage/md5sums,
 	  xap/sylpheed-claws-themes/md5sums, xap/xf86-corefonts/md5sums,
@@ -1048,6 +1133,11 @@
 	  evolution/SlackBuild, evolution/doinst.sh, evolution/footprint,
 	  evolution/md5sums, evolution/requires, evolution/slack-desc,
 	  evolution/sources: Version update.
+
+2005-07-15 08:23  topf
+
+	* open/ardour/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: new entry (lem)
 
 2005-07-14 09:49  topf
 
@@ -1361,17 +1451,6 @@
 
 	* gnome/gnome-keyring/: footprint, md5sums: Added.
 
-2005-06-04 10:57  topf
-
-	* gnome/: gnome-desktop.metalist, gnome.metalist: GNOME is no more
-	  "complete" here, and these .metalists are outdated.
-
-2005-06-04 10:55  topf
-
-	* gnome/: gnome-bindings.metalist, gnome-platform.metalist:
-	  gnome-desktop.metalist   gnome.metalistCVS:
-	  ----------------------------------------------------------------------
-
 2005-06-04 10:52  topf
 
 	* d/stow/: SlackBuild, footprint, md5sums, slack-desc, sources:
@@ -1497,11 +1576,6 @@
 	  requires, slack-desc, sources: Moved to xap/. Made GNOME
 	  dependencies optional.
 
-2005-05-26 17:47  topf
-
-	* testing/libgsf/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: New entry.
-
 2005-05-26 17:06  topf
 
 	* l/: faac/SlackBuild, faac/footprint, faac/md5sums,
@@ -1550,10 +1624,8 @@
 
 2005-05-26 11:32  topf
 
-	* ap/htop/SlackBuild, ap/htop/footprint, ap/htop/md5sums,
-	  open/htop/SlackBuild, open/htop/footprint, open/htop/info,
-	  open/htop/md5sums, open/htop/requires, open/htop/slack-desc,
-	  open/htop/sources: Upgraded to version 0.5.2 (mk)
+	* ap/htop/: SlackBuild, footprint, md5sums: Upgraded to version
+	  0.5.2 (mk)
 
 2005-05-26 11:31  topf
 
@@ -1590,11 +1662,6 @@
 2005-05-24 12:54  topf
 
 	* testing/portpkg/autoport: Massive updates.
-
-2005-05-24 03:56  topf
-
-	* open/htop/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Upgraded to version 0.5.2 (cronjob)
 
 2005-05-23 22:13  topf
 
@@ -1917,8 +1984,8 @@
 2005-05-01 12:48  topf
 
 	* n/micq/info, gnome/gdesklets/info, gnome/gnome-doc-utils/info,
-	  pasture/gaim/info, testing/manedit/info, xap/gftp/info,
-	  xap/graveman/info, xap/gtk-gnutella/info, xap/gtksourceview/info,
+	  pasture/gaim/info, testing/manedit/info, xap/graveman/info,
+	  xap/gtk-gnutella/info, xap/gtksourceview/info,
 	  xap/sylpheed-claws/info: Removed (obsolete).
 
 2005-05-01 12:42  topf
@@ -2053,11 +2120,6 @@
 	* gnome/bluefish/: SlackBuild, doinst.sh, footprint, info, md5sums,
 	  slack-desc, sources: disabled update-mime-database (lem)
 
-2005-04-25 14:59  hnaz
-
-	* n/bittornado/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources: New port.
-
 2005-04-25 07:30  hnaz
 
 	* d/fakeroot/: SlackBuild, footprint, md5sums: 1.2.8 >> 1.2.9
@@ -2189,11 +2251,8 @@
 
 2005-04-17 09:50  topf
 
-	* open/htop/SlackBuild, open/htop/footprint, open/htop/info,
-	  open/htop/md5sums, open/htop/requires, open/htop/slack-desc,
-	  open/htop/sources, ap/htop/SlackBuild, ap/htop/footprint,
-	  ap/htop/md5sums, ap/htop/requires, ap/htop/slack-desc,
-	  ap/htop/sources: First release. (mk)
+	* ap/htop/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: First release. (mk)
 
 2005-04-17 09:48  topf
 
@@ -2390,11 +2449,6 @@
 	  CVS sync routine. Changed $SYNC_ADDON system to
 	  /etc/portkpg/importers/\*. Sync also /usr/obj/pkg/local/\*.
 
-2005-04-15 00:20  topf
-
-	* open/htop/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: First release. (cronjob)
-
 2005-04-14 17:28  topf
 
 	* open/pinfo/SlackBuild, open/pinfo/doinst.sh,
@@ -2421,39 +2475,20 @@
 	  pinfo-0.6.8.memleak.patch.gz, requires, slack-desc, sources:
 	  First release. (cronjob)
 
-2005-04-13 09:09  topf
+2005-04-13 09:10  topf
 
-	* open/chmlib/SlackBuild, open/chmlib/footprint, open/chmlib/info,
-	  open/chmlib/md5sums, open/chmlib/slack-desc, open/chmlib/sources,
-	  l/chmlib/SlackBuild, l/chmlib/footprint, l/chmlib/md5sums,
-	  l/chmlib/slack-desc, l/chmlib/sources: First release. (mk)
+	* l/chmlib/: SlackBuild, footprint, md5sums, slack-desc, sources:
+	  First release. (mk)
 
 2005-04-13 09:06  topf
 
-	* open/xchm/SlackBuild, open/xchm/footprint, open/xchm/info,
-	  open/xchm/md5sums, open/xchm/requires, open/xchm/slack-desc,
-	  open/xchm/sources, xap/xchm/SlackBuild, xap/xchm/footprint,
-	  xap/xchm/md5sums, xap/xchm/requires, xap/xchm/slack-desc,
-	  xap/xchm/sources: Corrected /usr/bin ownership in SlackBuild.
-	  (mk)
-
-2005-04-13 09:05  topf
-
-	* open/xchm/requires: Changed wxGTK to wxgtk.
-
-2005-04-13 00:20  topf
-
-	* open/xchm/: SlackBuild, footprint, info: Corrected /usr/bin
-	  ownership in SlackBuild. (cronjob)
+	* xap/xchm/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: Corrected /usr/bin ownership in SlackBuild. (mk)
 
 2005-04-13 00:19  hnaz
 
 	* l/boost/: SlackBuild, footprint, md5sums, slack-desc, sources:
 	  New port. Very fnord build-procedure, please mail me on failures.
-
-2005-04-12 21:25  hnaz
-
-	* xap/gftp/SlackBuild: Fixed permissions of /usr/bin.
 
 2005-04-12 20:50  topf
 
@@ -2476,14 +2511,6 @@
 	* n/ddclient/: SlackBuild, doinst.sh, footprint, md5sums,
 	  rc.ddclient.new, requires, slack-desc, sources: new entry -
 	  repaired rc.ddclient
-
-2005-04-12 20:20  topf
-
-	* open/: chmlib/SlackBuild, chmlib/footprint, chmlib/info,
-	  chmlib/md5sums, chmlib/slack-desc, chmlib/sources,
-	  xchm/SlackBuild, xchm/footprint, xchm/info, xchm/md5sums,
-	  xchm/requires, xchm/slack-desc, xchm/sources: First release.
-	  (cronjob)
 
 2005-04-12 20:07  topf
 
@@ -3018,12 +3045,6 @@
 	  requires, slack-desc, sources: Moved
 	  open/k3bmonkeyaudioplugin-0.11.23-i686-1sjn to kde/.
 
-2005-03-31 23:07  topf
-
-	* xap/blackbox/: SlackBuild, footprint, md5sums, requires,
-	  slack-desc, sources, xinitrc.blackbox: Moved
-	  open/blackbox-0.70.0-i686-1sjn to xap/.
-
 2005-03-31 23:05  topf
 
 	* xap/bbkeys/: SlackBuild, footprint, md5sums, requires,
@@ -3301,12 +3322,6 @@
 	* d/portpkg/portpkg: Check whether ports have maintainer's tag when
 	  exporting.
 
-2005-03-20 21:17  topf
-
-	* testing/openssh/: doinst.sh.gz, openssh-4.0p1.tar.gz.sig,
-	  openssh.SlackBuild, rc.sshd, requires, slack-desc, sources: Moved
-	  open/openssh-4.0p1-i686-1mk_x509 to testing/.
-
 2005-03-20 21:16  topf
 
 	* ap/vcdimager/requires, l/libcdio/requires: Removed ignored
@@ -3444,10 +3459,6 @@
 
 2005-03-17 13:56  topf
 
-	* open/ports-sjn-info: [no log message]
-
-2005-03-17 13:56  topf
-
 	* n/neon/: SlackBuild, footprint, md5sums, optional, requires,
 	  slack-desc, sources: Moved open/neon-0.24.7-i686-1frrk to n/.
 
@@ -3455,12 +3466,6 @@
 
 	* d/ddd/: SlackBuild, footprint, md5sums, optional, requires,
 	  slack-desc, sources: Moved open/ddd-3.3.10-i686-2frrk to d/.
-
-2005-03-17 12:24  topf
-
-	* xap/gftp/: SlackBuild, doinst.sh, footprint, gftp.desktop.gz,
-	  info, md5sums, requires, slack-desc, sources: Moved
-	  open/gftp-2.0.18-i686-1hnaz to xap/.
 
 2005-03-17 12:22  topf
 
@@ -3794,12 +3799,8 @@
 
 2005-03-16 09:02  topf
 
-	* open/aterm/SlackBuild, open/aterm/footprint, open/aterm/info,
-	  open/aterm/md5sums, open/aterm/requires, open/aterm/slack-desc,
-	  open/aterm/sources, xap/aterm/SlackBuild, xap/aterm/footprint,
-	  xap/aterm/info, xap/aterm/md5sums, xap/aterm/requires,
-	  xap/aterm/slack-desc, xap/aterm/sources: Moved
-	  open/aterm-0.4.2-i686-1hnaz to xap/.
+	* xap/aterm/: SlackBuild, footprint, info, md5sums, requires,
+	  slack-desc, sources: Moved open/aterm-0.4.2-i686-1hnaz to xap/.
 
 2005-03-16 09:00  topf
 
@@ -3822,11 +3823,6 @@
 	* l/libtheora/: SlackBuild, docdir.patch, footprint, md5sums,
 	  slack-desc, sources: Merged local/libtheora-1.0alpha4-i686-4tom
 	  into l/.
-
-2005-03-15 23:21  topf
-
-	* open/aterm/: SlackBuild, footprint, info, md5sums, requires,
-	  slack-desc, sources: Autocommited via upload.
 
 2005-03-14 12:30  topf
 
@@ -3877,10 +3873,6 @@
 	* xap/jpilot/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Moved open/jpilot-0.99.7-i686-1frrk to xap/.
 
-2005-03-12 14:37  topf
-
-	* CREDITS, exclude, ignore, mirrors.de: Moved to d/portpkg/.
-
 2005-03-12 14:31  topf
 
 	* d/portpkg/: .#footprint.1.14, CREDITS, NEWS, README,
@@ -3889,13 +3881,9 @@
 	  mirrors.de, portpkg, portpkg.1, pp-config, pp-sync-bin,
 	  pp-sync-src: Moved local/portpkg-0.36-noarch-1tom to d/.
 
-2005-03-12 14:21  topf
-
-	* open/ports-sjn-info: Autocommited via upload.
-
 2005-03-12 14:09  topf
 
-	* AUTHORS, open/ports-andreas-info: [no log message]
+	* AUTHORS: [no log message]
 
 2005-03-12 14:08  topf
 
@@ -3940,10 +3928,6 @@
 2005-03-12 11:55  topf
 
 	* d/valgrind/SlackBuild, xap/gxmessage/SlackBuild: [no log message]
-
-2005-03-12 09:20  topf
-
-	* open/ports-andreas-info: Autocommited via upload.
 
 2005-03-11 01:13  topf
 
@@ -4123,10 +4107,6 @@
 	* testing/portpkg/: SlackBuild, autoport, footprint, ignore,
 	  portpkg: Updated testing/portpkg to 0.35cvs-noarch-5tom.
 
-2005-02-26 02:16  topf
-
-	* open/ports-lem-info: [no log message]
-
 2005-02-26 02:15  topf
 
 	* gnome/gwget/: SlackBuild, doinst.sh, footprint, md5sums,
@@ -4211,18 +4191,6 @@
 	  pp-sync-bin, pp-sync-src, prepare, slack-desc: Added
 	  testing/portpkg-0.35cvs-noarch-1tom.
 
-2005-02-23 21:20  topf
-
-	* open/ports-lem-info: Autocommited via upload.
-
-2005-02-23 15:09  topf
-
-	* ignore: [no log message]
-
-2005-02-23 14:49  topf
-
-	* open/ports-lem-info: [no log message]
-
 2005-02-23 14:44  topf
 
 	* gnome/revelation/: SlackBuild, doinst.sh, footprint, md5sums,
@@ -4261,10 +4229,6 @@
 	  testing/polypaudio/footprint, testing/polypaudio/md5sums,
 	  xap/desktop-file-utils/footprint, xap/desktop-file-utils/md5sums:
 	  [no log message]
-
-2005-02-22 00:21  topf
-
-	* open/ports-lem-info: Autocommited via upload.
 
 2005-02-21 23:01  topf
 
@@ -4366,10 +4330,6 @@
 
 	* gnome/timer-applet/footprint.new: [no log message]
 
-2005-02-17 17:15  topf
-
-	* open/ports-lem-info: [no log message]
-
 2005-02-17 17:14  topf
 
 	* ap/john/: SlackBuild, footprint, md5sums, requires, slack-desc,
@@ -4403,10 +4363,6 @@
 	  gnome/nautilus-cd-burner/requires, gnome/sclog/requires,
 	  gnome/seahorse/requires, testing/balsa/requires: Removed
 	  dependency howl
-
-2005-02-15 09:44  topf
-
-	* ignore: Readded howl, added gamin
 
 2005-02-15 09:10  topf
 
@@ -4456,7 +4412,7 @@
 
 2005-02-10 21:53  topf
 
-	* xap/mplayer/readme.autoport, mirrors.de: [no log message]
+	* xap/mplayer/readme.autoport: [no log message]
 
 2005-02-10 21:45  topf
 
@@ -4698,10 +4654,6 @@
 	  xap/xmbmon/SlackBuild, xap/xqf/SlackBuild,
 	  xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild: Patched to use
 	  $SLKCFLAGS.
-
-2005-02-07 21:20  topf
-
-	* open/ports-lem-info: Autocommited via upload.
 
 2005-02-07 15:01  topf
 
@@ -5042,10 +4994,6 @@
 	  pasture/xfce/no-fakeroot, testing/xfce-goodies/no-fakeroot,
 	  xap/gksu/no-fakeroot: [no log message]
 
-2005-02-03 13:16  topf
-
-	* open/ports-lem-info: [no log message]
-
 2005-02-03 13:15  topf
 
 	* xap/graveman/: SlackBuild, footprint, md5sums, requires,
@@ -5097,10 +5045,6 @@
 	  SlackBuild, autoport, checkpkg, footprint, md5sums, portpkg,
 	  pp-config, pp-sync-bin, pp-sync-src: Updated d/portpkg to
 	  0.34-noarch-1tom.
-
-2005-02-02 02:13  topf
-
-	* open/ports-lem-info: Autocommited via upload.
 
 2005-02-01 01:03  topf
 
@@ -5220,16 +5164,6 @@
 	* l/howl/: SlackBuild, footprint, md5sums, requires, slack-desc,
 	  sources: Added l/howl-0.9.10-i486-1tom.
 
-2005-01-29 02:11  topf
-
-	* ignore:
-
-	  Removed howl.
-
-2005-01-28 23:39  topf
-
-	* open/ports-lem-info: [no log message]
-
 2005-01-28 23:39  topf
 
 	* l/portaudio/: SlackBuild, footprint, md5sums, requires,
@@ -5301,10 +5235,6 @@
 	* pasture/libxslt/: SlackBuild, footprint, requires, slack-desc,
 	  sources: Moved l/libxslt-1.1.12-i486-1tom to pasture/.
 
-2005-01-28 00:21  topf
-
-	* open/ports-lem-info: Autocommited via upload.
-
 2005-01-27 13:54  topf
 
 	* gnome/gthumb/SlackBuild, gnome/gthumb/doinst.sh,
@@ -5320,10 +5250,6 @@
 
 	* ap/dd_rescue/: SlackBuild, footprint, md5sums, requires,
 	  slack-desc, sources: Moved open/dd_rescue-1.10-i486-1lem to ap/.
-
-2005-01-27 13:15  topf
-
-	* open/ports-lem-info: [no log message]
 
 2005-01-27 13:15  topf
 
@@ -5347,11 +5273,6 @@
 	  slack-desc, sources: Moved open/wxgtk-2.5.3-i486-3lem to
 	  testing/.
 
-2005-01-25 16:19  topf
-
-	* exclude:
-	  Added aaa_base and aaa_elflibs.
-
 2005-01-25 10:23  topf
 
 	* d/portpkg/: SlackBuild, autoport, footprint, pp-sync-bin,
@@ -5361,10 +5282,6 @@
 
 	* d/portpkg/: SlackBuild, autoport, footprint, portpkg: Updated
 	  d/portpkg to 0.33a-noarch-1tom.
-
-2005-01-24 08:21  topf
-
-	* open/ports-lem-info: Autocommited via upload.
 
 2005-01-23 23:36  topf
 
@@ -5403,18 +5320,10 @@
 	  requires, slack-desc, sources: Updated gnome/gthumb to
 	  2.6.3-i486-1tom.
 
-2005-01-21 10:12  topf
-
-	* open/ports-lem-info: [no log message]
-
 2005-01-21 10:07  topf
 
 	* xap/tvtime/: SlackBuild, doinst.sh, footprint, md5sums, requires,
 	  slack-desc, sources: Moved open/tvtime-0.9.15-i486-1lem to xap/.
-
-2005-01-21 10:05  topf
-
-	* open/ports-lem-info: Autocommited via upload.
 
 2005-01-21 09:43  topf
 
@@ -5424,10 +5333,6 @@
 
 	* d/portpkg/: SlackBuild, autoport, footprint, portpkg,
 	  pp-sync-slack, slack-desc: Updated d/portpkg to 0.32-noarch-4tom.
-
-2005-01-20 10:23  topf
-
-	* open/ports-lem-info: [no log message]
 
 2005-01-20 10:22  topf
 
@@ -5456,11 +5361,8 @@
 
 2005-01-20 10:20  topf
 
-	* open/pil/SlackBuild, open/pil/footprint, open/pil/md5sums,
-	  open/pil/requires, open/pil/slack-desc, open/pil/sources,
-	  l/pil/SlackBuild, l/pil/footprint, l/pil/md5sums, l/pil/requires,
-	  l/pil/slack-desc, l/pil/sources: Moved open/pil-1.1.4-i486-1lem
-	  to l/.
+	* l/pil/: SlackBuild, footprint, md5sums, requires, slack-desc,
+	  sources: Moved open/pil-1.1.4-i486-1lem to l/.
 
 2005-01-20 10:19  topf
 
@@ -5475,20 +5377,8 @@
 
 2005-01-20 10:17  topf
 
-	* open/freevo/SlackBuild, open/freevo/arbitrary,
-	  open/freevo/footprint, open/freevo/md5sums, open/freevo/requires,
-	  open/freevo/slack-desc, open/freevo/sources,
-	  xap/freevo/SlackBuild, xap/freevo/footprint, xap/freevo/md5sums,
-	  xap/freevo/requires, xap/freevo/slack-desc, xap/freevo/sources:
-	  Moved open/freevo-1.5.2-i486-1lem to xap/.
-
-2005-01-20 07:21  topf
-
-	* open/: ports-lem-info, freevo/SlackBuild, freevo/arbitrary,
-	  freevo/footprint, freevo/md5sums, freevo/requires,
-	  freevo/slack-desc, freevo/sources, pil/SlackBuild, pil/footprint,
-	  pil/md5sums, pil/requires, pil/slack-desc, pil/sources:
-	  Autocommited via upload.
+	* xap/freevo/: SlackBuild, footprint, md5sums, requires,
+	  slack-desc, sources: Moved open/freevo-1.5.2-i486-1lem to xap/.
 
 2005-01-18 18:41  topf
 
@@ -5501,7 +5391,7 @@
 
 2005-01-18 13:18  topf
 
-	* open/WARNING, open/ports-lem-info, AUTHORS: [no log message]
+	* open/WARNING, AUTHORS: [no log message]
 
 2005-01-18 13:17  topf
 
@@ -5555,10 +5445,6 @@
 	* d/portpkg/: SlackBuild, autoport, footprint, portpkg: Updated
 	  d/portpkg to 0.32-noarch-3tom.
 
-2005-01-17 21:20  topf
-
-	* open/ports-lem-info: Autocommited via upload.
-
 2005-01-16 23:05  topf
 
 	* ap/athcool/md5sums, xap/redhat-artwork/md5sums: [no log message]
@@ -5597,10 +5483,6 @@
 	* gnome/bluefish/: SlackBuild, footprint, requires, slack-desc:
 	  Updated gnome/bluefish to 1.0-i486-1tom.
 
-2005-01-13 12:05  topf
-
-	* gnome/gnome-bindings.metalist: [no log message]
-
 2005-01-12 11:16  topf
 
 	* xap/savage/: SlackBuild, requires, slack-desc, sources: Added
@@ -5616,14 +5498,6 @@
 	* xap/arphicfonts/: SlackBuild, license, readme, requires,
 	  slack-desc, sources: Added xap/arphicfonts-0-noarch-5tom.
 
-2005-01-10 15:00  topf
-
-	* exclude: Removed pasture/.
-
-2005-01-10 14:58  topf
-
-	* mirrors.de: Renamed mirrors to mirrors.de.
-
 2005-01-10 14:50  topf
 
 	* d/portpkg/: NEWS, README, README.AutoportGuide,
@@ -5631,10 +5505,6 @@
 	  README.UserGuide, SlackBuild, autoport, footprint, portpkg,
 	  portpkg.1, pp-sync-dist, pp-sync-slack, slack-desc: Updated
 	  d/portpkg to 0.32-noarch-1tom.
-
-2005-01-10 14:41  topf
-
-	* mirrors: Renamed to mirrors.de.
 
 2005-01-09 23:26  topf
 
@@ -5686,38 +5556,21 @@
 	* n/gift/: SlackBuild, footprint, requires, slack-desc: Updated
 	  n/gift to 0.11.8.1-i486-1tom.
 
-2005-01-04 18:58  topf
-
-	* mirrors: [no log message]
-
 2005-01-04 18:49  topf
 
 	* testing/xfce-goodies/: SlackBuild, footprint, requires,
 	  slack-desc, sources: Added
 	  testing/xfce-goodies-20050104-i486-1tom.
 
-2005-01-04 18:49  topf
-
-	* testing/xfce-goodies.metalist: [no log message]
-
-2005-01-04 16:51  topf
-
-	* testing/xfce.metalist: [no log message]
-
-2005-01-03 15:57  topf
-
-	* export: [no log message]
-
 2005-01-03 11:35  topf
 
 	* d/portpkg/: SlackBuild, checkpkg, footprint, portpkg,
 	  pp-clean-cache, pp-export: Updated d/portpkg to 0.31-noarch-5tom.
 
-2005-01-02 14:32  topf
+2005-01-02 14:34  topf
 
-	* gnome/gnome-platform.metalist, d/portpkg/portpkg,
-	  d/portpkg/pp-export, d/portpkg/pp-sync-dist,
-	  d/portpkg/SlackBuild: [no log message]
+	* d/portpkg/: portpkg, pp-export, pp-sync-dist, SlackBuild: [no log
+	  message]
 
 2005-01-02 14:23  topf
 
@@ -5828,10 +5681,6 @@
 	  SlackBuild, autoport, portpkg, pp-export, prepare, slack-desc:
 	  Updated d/portpkg to 0.31-noarch-2tom.
 
-2004-12-18 21:32  topf
-
-	* SlackBuild, addport, doinst.sh: Obsolete because of autoport.
-
 2004-12-18 21:09  topf
 
 	* l/file-scan/SlackBuild.old: [no log message]
@@ -5909,10 +5758,6 @@
 	* l/xml-simple/: SlackBuild, requires, slack-desc, sources: Added
 	  l/xml-simple-2.13-noarch-1tom.
 
-2004-12-13 21:25  topf
-
-	* mirrors: Added mirror for Xfce.
-
 2004-12-13 20:46  topf
 
 	* xap/idesk/: SlackBuild, slack-desc: Updated xap/idesk to
@@ -5946,11 +5791,9 @@
 	* ap/lame/: SlackBuild, SlackBuild.old, slack-desc: Updated ap/lame
 	  to 3.96.1-i486-1tom.
 
-2004-12-13 05:50  topf
+2004-12-13 05:52  topf
 
-	* gnome/gnome-bindings.metalist, gnome/gnome-desktop.metalist,
-	  gnome/gnome-platform.metalist, CREDITS, SlackBuild, exclude,
-	  mirrors, gnome/at-spi/SlackBuild, gnome/bug-buddy/SlackBuild,
+	* gnome/at-spi/SlackBuild, gnome/bug-buddy/SlackBuild,
 	  gnome/firestarter/doinst.sh, gnome/libghttp/sources,
 	  gnome/liferea/doinst.sh, testing/hal/SlackBuild,
 	  testing/hal/requires, testing/hal/sources, xap/kino/sources,
@@ -6044,10 +5887,6 @@
 
 	* gnome/nautilus-cd-burner/SlackBuild: Updated
 	  gnome/nautilus-cd-burner to 2.8.3-i486-1tom.
-
-2004-12-11 20:54  topf
-
-	* open/ports-fu-info: [no log message]
 
 2004-12-11 20:49  topf
 
@@ -6633,10 +6472,6 @@
 	* gnome/gparted/: SlackBuild, requires, slack-desc: Updated
 	  gnome/gparted to 0.0.7-i486-1tom.
 
-2004-12-04 18:20  topf
-
-	* open/ports-fu-info: Autocommited via upload.
-
 2004-12-04 15:20  topf
 
 	* testing/polypaudio/: SlackBuild, requires, slack-desc, sources:
@@ -6693,13 +6528,12 @@
 
 2004-12-01 20:37  topf
 
-	* SlackBuild, exclude, export, ap/athcool/requires,
-	  gnome/epiphany/requires, gnome/firestarter/requires,
-	  gnome/inkscape/slack-desc, gnome/inkscape/sources,
-	  gnome/liferea/requires, gnome/metacity/requires,
-	  l/fnlib/requires, l/imlib2/requires, l/libast/requires,
-	  l/libsndfile/requires, xap/enlightenment/requires,
-	  xap/eterm/requires: Misc updates.
+	* ap/athcool/requires, gnome/epiphany/requires,
+	  gnome/firestarter/requires, gnome/inkscape/slack-desc,
+	  gnome/inkscape/sources, gnome/liferea/requires,
+	  gnome/metacity/requires, l/fnlib/requires, l/imlib2/requires,
+	  l/libast/requires, l/libsndfile/requires,
+	  xap/enlightenment/requires, xap/eterm/requires: Misc updates.
 
 2004-12-01 20:35  topf
 
@@ -6759,43 +6593,13 @@
 	* d/portpkg/: SlackBuild, autoport, portpkg: Updated d/portpkg to
 	  0.30-noarch-2tom.
 
-2004-12-01 20:10  topf
-
-	* open/: ports-mich-info, ports-test-info, ports-testo-info: [no
-	  log message]
-
 2004-12-01 18:11  topf
 
 	* open/WARNING: [no log message]
 
-2004-12-01 16:53  topf
-
-	* open/.#WARNING.1.1: [no log message]
-
-2004-12-01 16:12  topf
-
-	* open/.#ports-testo-info.1.1: [no log message]
-
-2004-11-30 23:21  topf
-
-	* open/: .#WARNING.1.1, .#ports-testo-info.1.1: Autocommited via
-	  upload.
-
-2004-11-30 22:46  topf
-
-	* open/ports-testo-info: Autocommited via upload.
-
 2004-11-30 22:40  topf
 
 	* open/WARNING: Autocommited via upload.
-
-2004-11-30 22:36  topf
-
-	* open/: ports-mich-info, ports-test-info: Autocommited via upload.
-
-2004-11-30 11:09  topf
-
-	* CREDITS: [no log message]
 
 2004-11-30 10:58  topf
 
@@ -6912,10 +6716,9 @@
 
 2004-11-26 22:10  topf
 
-	* SlackBuild, addport, ap/athcool/SlackBuild,
-	  ap/athcool/slack-desc, ap/x86cpucaps/requires,
-	  ap/x86cpucaps/slack-desc, d/portpkg/SlackBuild,
-	  d/portpkg/portpkg, gnome/balsa/requires,
+	* ap/athcool/SlackBuild, ap/athcool/slack-desc,
+	  ap/x86cpucaps/requires, ap/x86cpucaps/slack-desc,
+	  d/portpkg/SlackBuild, d/portpkg/portpkg, gnome/balsa/requires,
 	  gnome/firestarter/SlackBuild, gnome/firestarter/requires,
 	  gnome/firestarter/slack-desc, gnome/gnome-ppp/SlackBuild,
 	  gnome/gthumb/requires, gnome/liferea/SlackBuild,
@@ -6933,18 +6736,9 @@
 	  gdm.quiet.diff.gz, slack-desc: Changed to Slackwares' scripts to
 	  include all xinitrcs
 
-2004-11-24 17:19  topf
-
-	* testing/xfce-goodies.metalist: Added Xfce-goodies and
-	  xfce-goodies.metalist
-
 2004-11-22 11:48  topf
 
 	* d/portpkg/: SlackBuild, portpkg: minor fixes
-
-2004-11-21 22:40  topf
-
-	* SlackBuild, exclude, mirrors: [no log message]
 
 2004-11-21 22:39  topf
 
@@ -6953,11 +6747,6 @@
 2004-11-21 22:37  topf
 
 	* d/portpkg/: SlackBuild, portpkg, portpkg.1, sync-dist: 0.29e
-
-2004-11-21 09:43  topf
-
-	* gnome/gnome.metalist, testing/xfce.metalist: Added "metalists",
-	  to easy installation of GNOME and XFCE
 
 2004-11-21 09:04  topf
 
@@ -6970,8 +6759,7 @@
 
 2004-11-19 00:10  topf
 
-	* CREDITS, exclude, ignore, d/portpkg/SlackBuild,
-	  d/portpkg/portpkg: [no log message]
+	* d/portpkg/: SlackBuild, portpkg: [no log message]
 
 2004-11-18 23:02  topf
 
@@ -6980,8 +6768,7 @@
 
 2004-11-18 20:09  topf
 
-	* addport, export, d/portpkg/portpkg, d/portpkg/portpkg.1,
-	  d/portpkg/SlackBuild: [no log message]
+	* d/portpkg/: portpkg, portpkg.1, SlackBuild: [no log message]
 
 2004-11-18 14:13  topf
 
@@ -6997,10 +6784,6 @@
 	* d/portpkg/checkpkg, gnome/gnome-python/SlackBuild: Updated to
 	  gnome-python-2.6.1
 
-2004-11-15 20:57  topf
-
-	* export: Added parameter for exporting only certain ports
-
 2004-11-15 09:40  topf
 
 	* d/portpkg/: SlackBuild, portpkg, sync-dist, sync-slack: Some
@@ -7010,10 +6793,6 @@
 
 	* gnome/epiphany/SlackBuild, gnome/liferea/SlackBuild,
 	  xap/xdaf/requires: Updates
-
-2004-11-15 09:38  topf
-
-	* mirrors: [no log message]
 
 2004-11-13 15:57  topf
 
@@ -7038,8 +6817,7 @@
 
 2004-11-13 02:16  tomtoastbrot
 
-	* exclude, ignore, mirrors, d/portpkg/SlackBuild,
-	  d/portpkg/portpkg: [no log message]
+	* d/portpkg/: SlackBuild, portpkg: [no log message]
 
 2004-11-12 23:33  tomtoastbrot
 
@@ -7076,7 +6854,7 @@
 
 2004-11-11 13:10  tomtoastbrot
 
-	* ignore, d/portpkg/checkpkg, l/glib2/glib2.SlackBuild,
+	* d/portpkg/checkpkg, l/glib2/glib2.SlackBuild,
 	  l/pango/pango.SlackBuild: [no log message]
 
 2004-11-11 13:09  tomtoastbrot
@@ -7108,10 +6886,6 @@
 2004-11-10 23:34  tomtoastbrot
 
 	* d/portpkg/checkpkg: Bug fix.
-
-2004-11-10 23:16  tomtoastbrot
-
-	* mirrors: Added Slackware mirror
 
 2004-11-10 23:14  tomtoastbrot
 
@@ -7252,8 +7026,8 @@
 
 2004-11-09 14:56  tomtoastbrot
 
-	* ignore, ap/abook/requires, ap/giftcurs/requires,
-	  ap/lame/requires, d/ruby/requires, gnome/drwright/requires,
+	* ap/abook/requires, ap/giftcurs/requires, ap/lame/requires,
+	  d/ruby/requires, gnome/drwright/requires,
 	  gnome/gnome-pkgtool/requires, gnome/gnome-terminal/requires,
 	  gnome/gphoto2/requires, gnome/grip/requires,
 	  gnome/nautilus-cd-burner/requires, gnome/screem/requires,
@@ -7356,15 +7130,14 @@
 
 2004-11-08 19:40  tomtoastbrot
 
-	* exclude, ignore, d/portpkg/SlackBuild, d/portpkg/requires,
-	  d/portpkg/sync-dist, d/portpkg/sync-slack, d/portpkg/clean-cache,
-	  d/portpkg/portpkg.1, d/portpkg/slack-desc, d/portpkg/portpkg,
-	  ap/abook/SlackBuild, ap/abook/doinst.sh, ap/abook/requires,
-	  ap/abook/slack-desc, ap/abook/sources,
-	  xap/mplayer/MPlayer_mini.xpm, xap/mplayer/SlackBuild,
-	  xap/mplayer/gmplayer.desktop, xap/mplayer/requires,
-	  xap/mplayer/slack-desc, xap/mplayer/sources,
-	  gnome/gpass/doinst.sh, gnome/gpass/requires,
+	* d/portpkg/SlackBuild, d/portpkg/requires, d/portpkg/sync-dist,
+	  d/portpkg/sync-slack, d/portpkg/clean-cache, d/portpkg/portpkg.1,
+	  d/portpkg/slack-desc, d/portpkg/portpkg, ap/abook/SlackBuild,
+	  ap/abook/doinst.sh, ap/abook/requires, ap/abook/slack-desc,
+	  ap/abook/sources, xap/mplayer/MPlayer_mini.xpm,
+	  xap/mplayer/SlackBuild, xap/mplayer/gmplayer.desktop,
+	  xap/mplayer/requires, xap/mplayer/slack-desc,
+	  xap/mplayer/sources, gnome/gpass/doinst.sh, gnome/gpass/requires,
 	  gnome/gpass/SlackBuild, gnome/gpass/slack-desc,
 	  gnome/gpass/sources, gnome/leafpad/SlackBuild,
 	  gnome/leafpad/doinst.sh, gnome/leafpad/requires,
@@ -7390,10 +7163,9 @@
 
 2004-11-08 19:40  tomtoastbrot
 
-	* AUTHORS, SlackBuild, addport, exclude, export, ignore, mirrors,
-	  d/portpkg/SlackBuild, d/portpkg/requires, d/portpkg/sync-dist,
-	  d/portpkg/sync-slack, d/portpkg/clean-cache, d/portpkg/portpkg.1,
-	  d/portpkg/slack-desc, d/portpkg/portpkg,
+	* AUTHORS, d/portpkg/SlackBuild, d/portpkg/requires,
+	  d/portpkg/sync-dist, d/portpkg/sync-slack, d/portpkg/clean-cache,
+	  d/portpkg/portpkg.1, d/portpkg/slack-desc, d/portpkg/portpkg,
 	  l/gtk-qt-engine/requires, l/libcap/SlackBuild,
 	  l/bluecurve/SlackBuild, l/bluecurve/slack-desc,
 	  ap/abook/SlackBuild, ap/abook/doinst.sh, ap/abook/requires,
@@ -7432,8 +7204,7 @@
 
 2004-10-30 14:00  tomtoastbrot
 
-	* SlackBuild, addport, doinst.sh, AUTHORS, COPYING, export,
-	  mirrors, gnome/balsa/SlackBuild, gnome/balsa/doinst.sh,
+	* AUTHORS, COPYING, gnome/balsa/SlackBuild, gnome/balsa/doinst.sh,
 	  gnome/balsa/slack-desc, gnome/balsa/sources,
 	  gnome/sodipodi/SlackBuild, gnome/sodipodi/requires,
 	  gnome/sodipodi/slack-desc, gnome/sodipodi/sources,
@@ -7990,8 +7761,7 @@
 
 2004-10-30 14:00  tomtoastbrot
 
-	* SlackBuild, addport, doinst.sh, AUTHORS, COPYING, export,
-	  mirrors, gnome/balsa/SlackBuild, gnome/balsa/doinst.sh,
+	* AUTHORS, COPYING, gnome/balsa/SlackBuild, gnome/balsa/doinst.sh,
 	  gnome/balsa/slack-desc, gnome/balsa/sources,
 	  gnome/sodipodi/SlackBuild, gnome/sodipodi/requires,
 	  gnome/sodipodi/slack-desc, gnome/sodipodi/sources,
