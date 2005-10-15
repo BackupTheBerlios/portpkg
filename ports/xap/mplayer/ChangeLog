@@ -1,0 +1,135 @@
+2005-09-30 22:29  topf
+
+	* requires: Restored optional dependencies.
+
+2005-09-16 15:28  hnaz
+
+	* footprint, requires, sources: Changed download mirror, the main
+	  mirror is b0rken.  No BUILD change here, no rebuild needed.
+
+2005-07-21 01:44  hnaz
+
+	* SlackBuild: Cleaned up a bit (removed standard routines for info
+	  and doc dirs which don't exist here).  Also fixed up the dead
+	  symlink 'mencoder.1'.
+
+2005-07-16 14:23  topf
+
+	* md5sums: Cleaned up.	Removed filenames without version numbers.
+	  Removed PGP signatures.
+
+2005-05-29 15:22  topf
+
+	* SlackBuild, footprint, md5sums, optional, requires, sources:
+	  Removed default skin, since we have now mplayer-skins.
+
+2005-05-16 10:27  topf
+
+	* md5sums: Disabled wrong entry (MPlayer-1.0pre6.tar.bz2).
+
+2005-05-05 14:33  hnaz
+
+	* README, SlackBuild, optional, requires: 1.0pre6 >> 1.0pre7 And
+	  'fixed' requires/optional. requires includes now what _is_
+	  required to built the package, not what could be supported by
+	  mplayer.
+
+2005-04-12 20:08  topf
+
+	* footprint: Synced dir.
+
+2005-03-25 19:52  hnaz
+
+	* md5sums: Fixing md5sum for Blue-1.4.tar.bz2
+
+2005-03-16 21:12  topf
+
+	* optional: Removed obsolete dependencies according to updated
+	  "ignore" file.
+
+2005-03-16 11:11  topf
+
+	* README, readme: [no log message]
+
+2005-03-16 11:06  topf
+
+	* SlackBuild, footprint, readme, requires: Updated xap/mplayer to
+	  1.0pre6-i686-6tom.
+
+2005-03-16 10:46  topf
+
+	* MPlayer_mini.xpm, gmplayer.desktop, SlackBuild, optional,
+	  requires: [no log message]
+
+2005-03-16 10:20  topf
+
+	* optional, requires: [no log message]
+
+2005-03-16 08:53  topf
+
+	* SlackBuild, doinst.sh, optional, requires, slack-desc: Updated
+	  xap/mplayer to 1.0pre6-i686-5tom.
+
+2005-03-16 08:52  topf
+
+	* .#SlackBuild.1.5, .#footprint.1.2, .#requires.1.7, .#sources.1.4,
+	  .part, SlackBuild.old, config-fix.autoport, install-fix.autoport:
+	  [no log message]
+
+2005-02-21 19:53  topf
+
+	* .#footprint.1.2, .#requires.1.7, .#sources.1.4, .part,
+	  SlackBuild, SlackBuild.old, config-fix.autoport, footprint,
+	  requires, sources: Updated xap/mplayer to 1.0pre6-i486-4tom.
+
+2005-02-10 21:53  topf
+
+	* readme.autoport: [no log message]
+
+2005-02-10 21:40  topf
+
+	* .#SlackBuild.1.5, SlackBuild, config-fix.autoport, footprint,
+	  install-fix.autoport, md5sums, requires, sources: Updated
+	  xap/mplayer to 1.0pre6-i486-2tom.
+
+2005-02-08 09:52  topf
+
+	* SlackBuild: Patched to use $SLKCFLAGS.
+
+2005-01-09 22:23  topf
+
+	* SlackBuild, requires, slack-desc, footprint, readme.autoport:
+	  Updated xap/mplayer to 1.0pre6-i486-1tom.
+
+2004-12-08 23:12  topf
+
+	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+
+2004-11-09 20:43  tomtoastbrot
+
+	* requires: Added x11-devel to requires and a few other for gnome
+
+2004-11-09 14:56  tomtoastbrot
+
+	* requires: Fixed requirements according to updated ignore-list
+
+2004-11-08 20:32  tomtoastbrot
+
+	* MPlayer_mini.xpm, SlackBuild, gmplayer.desktop, requires,
+	  slack-desc, sources: [no log message]
+
+2004-11-08 19:50  tomtoastbrot
+
+	* MPlayer_mini.xpm, SlackBuild, gmplayer.desktop, requires,
+	  slack-desc, sources: [no log message]
+
+2004-11-08 19:40  tomtoastbrot
+
+	* MPlayer_mini.xpm, SlackBuild, gmplayer.desktop, requires,
+	  slack-desc, sources: Initial revision
+
+2004-11-08 19:40  tomtoastbrot
+
+	* MPlayer_mini.xpm, SlackBuild, gmplayer.desktop, requires,
+	  slack-desc, sources: [no log message]
+

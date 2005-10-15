@@ -1,0 +1,271 @@
+2005-10-12 22:59  topf
+
+	* footprint, CREDITS: Synced.
+
+2005-10-12 22:58  topf
+
+	* autoport: Back to /usr/doc/$NAME-$VERSION directories for
+	  documentation.
+
+2005-10-12 22:58  topf
+
+	* admin.changelogs, translate: New entry.
+
+2005-10-12 22:42  topf
+
+	* portpkg: Fixed a typo.
+
+2005-10-12 21:32  topf
+
+	* checktree, exclude.new, ignore.new, merge, mirrors.new, prepare,
+	  sync.00.portpkg-tree.new, sync.55.pseudo-ports.new,
+	  sync.66.slackware-source.new, sync.77.update-open.new,
+	  sync.99.clean-cache.new, use.new: Removed (obsolete).
+
+2005-10-12 21:30  topf
+
+	* ABOUT, FAQ, NEWS, README, README.Links, README.orig, SlackBuild,
+	  admin.checktree, admin.docs, admin.merge, autoport, checkpkg,
+	  checktree, doinst.sh, exclude, exclude.new, export.cvs,
+	  export.http, footprint, ignore, ignore.new, merge, mirrors,
+	  mirrors.new, portpkg, pp-config, prepare, requires,
+	  sync.00.portpkg-tree, sync.00.portpkg-tree.new,
+	  sync.55.pseudo-ports, sync.55.pseudo-ports.new,
+	  sync.66.slackware-source, sync.66.slackware-source.new,
+	  sync.77.update-open, sync.77.update-open.new,
+	  sync.99.clean-cache, sync.99.clean-cache.new, use, use.new:
+	  Release 0.38test17.
+
+2005-10-07 19:16  topf
+
+	* SlackBuild, footprint, portpkg: Fixed md5sums checking bug.
+
+2005-08-16 08:49  hnaz
+
+	* make-wrapper: Removed confusing diff markers.
+
+2005-08-16 07:59  hnaz
+
+	* SlackBuild, footprint, make-wrapper, portpkg: Added support for
+	  blocking packages. Please update, this is important!
+
+2005-08-16 07:32  hnaz
+
+	* portpkg: Moved to pango-devel.
+
+2005-08-14 02:19  hnaz
+
+	* SlackBuild, make-wrapper: Fixed typo. Now it should work ;)
+
+2005-08-13 23:27  hnaz
+
+	* SlackBuild, pp-config: Fix usage of -mtune/-mcpu. Choose flags
+	  via the gcc version.
+
+2005-08-12 18:53  hnaz
+
+	* SlackBuild, footprint: make-wrapper fixes.
+
+2005-08-12 17:58  hnaz
+
+	* make-wrapper: Added option to disable parallel make jobs
+	  individually. Use 'PARAMAKE=false make foo' in the SlackBuild if
+	  it fails with parallel builds.
+
+2005-08-12 17:43  hnaz
+
+	* SlackBuild, make-wrapper: Removed the row() call in make-wrapper,
+	  which disturbs some configure-scripts.
+
+2005-08-12 16:43  hnaz
+
+	* SlackBuild, footprint, make-wrapper, portpkg, pp-config: Added
+	  make-wrapper.  PATH changed in portpkg to prefer the wrapper.
+	  Added configuration submenu in pp-config.
+
+2005-08-12 07:58  hnaz
+
+	* SlackBuild, footprint, pp-config: Changed deprecated -mcpu to
+	  -mtune.
+
+2005-07-23 10:51  topf
+
+	* footprint: Release 0.38test13.
+
+2005-07-23 10:47  topf
+
+	* ABOUT, CREDITS, FAQ, NEWS, README, README.Links,
+	  README.PortpkgGuide, README.QuestionsAndAnswers,
+	  README.QuickStart, README.orig, SlackBuild, autoport, checktree,
+	  footprint, portpkg, portpkg.1, prepare, sync.00.portpkg-tree.new,
+	  sync.55.pseudo-ports.new, sync.66.slackware-source.new,
+	  sync.77.update-open.new, sync.99.clean-cache.new: Release
+	  0.38test13
+
+2005-07-14 08:09  topf
+
+	* README, SlackBuild, autoport, checkpkg, doinst.sh, exclude,
+	  exclude.new, footprint, ignore, ignore.new, import.portpkg-tree,
+	  import.pseudo-ports, import.slackware-source, mirrors.au,
+	  mirrors.de, mirrors.jp, mirrors.new, mirrors.us, portpkg,
+	  pp-config, sync.00.portpkg-tree.new, sync.55.pseudo-ports.new,
+	  sync.66.slackware-source.new, sync.77.update-open.new,
+	  sync.99.clean-cache.new, update-ports, use.new: Release
+	  0.38test12.
+
+2005-06-19 13:23  topf
+
+	* README, SlackBuild, autoport, checkpkg, checktree, doinst.sh,
+	  footprint, import.portpkg-tree, import.pseudo-ports,
+	  import.slackware-source, md5sums, merge, portpkg, portpkg.1,
+	  pp-config, prepare, update-ports: Release 0.38test11.
+
+2005-06-09 09:38  topf
+
+	* README, README.cp, SlackBuild, autoport, checktree, doinst.sh,
+	  export.cvs, export.http, footprint, import.portpkg-tree,
+	  import.pseudo-ports, import.slackware-source, md5sums, merge,
+	  mirrors.au, mirrors.de, mirrors.jp, mirrors.us, portpkg,
+	  pp-config, pseudo-ports, slackware-source, update-ports: Release
+	  0.38test10.
+
+2005-06-01 00:44  topf
+
+	* CREDITS, NEWS, README, README.Links, README.PortpkgGuide,
+	  README.QuestionsAndAnswers, README.QuickStart, README.cp,
+	  README.orig, SlackBuild, autoport, checkpkg, checktree,
+	  doinst.sh, footprint, md5sums, merge, mirrors.au, mirrors.de,
+	  mirrors.jp, mirrors.us, portpkg, portpkg.1, pp-config, prepare,
+	  pseudo-ports, repos, requires, slack-desc, slackware-source,
+	  update-ports: Release 0.38test9.
+
+2005-05-28 08:53  topf
+
+	* portpkg: Rewrote parts of update_meta_info().
+
+2005-05-28 08:37  topf
+
+	* autoport: Back to create-gconf-list at package time.
+
+2005-05-28 08:36  topf
+
+	* ignore: Added libxft.
+
+2005-05-27 15:59  topf
+
+	* SlackBuild, footprint, md5sums, portpkg, portpkg.1, requires:
+	  Release 0.38test8.
+
+2005-05-25 21:38  topf
+
+	* portpkg, autoport: Small fixes.
+
+2005-05-24 22:03  topf
+
+	* portpkg: Fixed typo in SUBMIT_SUB
+
+2005-05-24 12:54  topf
+
+	* autoport: Massive updates.
+
+2005-05-23 22:13  topf
+
+	* autoport: Small fixes.
+
+2005-05-23 22:07  topf
+
+	* README, SlackBuild, autoport, footprint, md5sums, portpkg,
+	  portpkg.1, pp-config, repos: New release.
+
+2005-05-16 14:19  topf
+
+	* config.log: Removed.
+
+2005-05-16 14:18  topf
+
+	* SlackBuild, autoport, checkpkg, config.log, footprint, md5sums,
+	  portpkg, repos, requires: Another update.
+
+2005-05-16 14:11  topf
+
+	* COPYING, CREDITS, NEWS, README, README.Links,
+	  README.PortpkgGuide, README.QuestionsAndAnswers,
+	  README.QuickStart, README.cp, SlackBuild, autoport, checkpkg,
+	  doinst.sh, exclude, footprint, ignore, md5sums, mirrors.au,
+	  mirrors.de, mirrors.jp, mirrors.us, portpkg, portpkg.1,
+	  pp-config, prepare, repos, slack-desc: Next try. (tom)
+
+2005-04-01 12:41  topf
+
+	* COPYING, CREDITS, NEWS, README, README.Links,
+	  README.PortpkgGuide, README.QuestionsAndAnswers,
+	  README.QuickStart, SlackBuild, autoport, checkpkg, doinst.sh,
+	  exclude, footprint, ignore, mirrors.de, portpkg, portpkg.1,
+	  pp-config, pp-sync-bin, pp-sync-src, prepare, slack-desc:
+	  Outdated.
+
+2005-03-08 21:37  topf
+
+	* SlackBuild, autoport, footprint, portpkg: Merged
+	  local/portpkg-0.35cvs-noarch-12tom into testing/.
+
+2005-03-08 12:04  topf
+
+	* SlackBuild, autoport, footprint, portpkg: Merged
+	  local/portpkg-0.35cvs-noarch-11tom into testing/.
+
+2005-03-04 09:09  topf
+
+	* SlackBuild, autoport, doinst.sh, footprint: Merged
+	  local/portpkg-0.35cvs-noarch-10tom into testing/.
+
+2005-03-03 21:32  topf
+
+	* SlackBuild, autoport, doinst.sh, footprint: Merged
+	  local/portpkg-0.35cvs-noarch-9tom into testing/.
+
+2005-03-03 21:17  topf
+
+	* SlackBuild, footprint, portpkg: Merged
+	  local/portpkg-0.35cvs-noarch-8tom into testing/.
+
+2005-03-03 10:33  topf
+
+	* SlackBuild, autoport, footprint, portpkg, portpkg.1: Updated
+	  testing/portpkg to 0.35cvs-noarch-7tom.
+
+2005-02-27 00:49  topf
+
+	* SlackBuild, autoport, checkpkg, footprint, portpkg: Merged
+	  local/portpkg-0.35cvs-noarch-6tom into testing/.
+
+2005-02-26 10:48  topf
+
+	* SlackBuild, autoport, footprint, ignore, portpkg: Updated
+	  testing/portpkg to 0.35cvs-noarch-5tom.
+
+2005-02-25 15:46  topf
+
+	* SlackBuild, footprint, portpkg, pp-sync-bin: Updated
+	  testing/portpkg to 0.35cvs-noarch-4tom.
+
+2005-02-25 13:24  topf
+
+	* SlackBuild, footprint, mirrors.de, portpkg: Updated
+	  testing/portpkg to 0.35cvs-noarch-3tom.
+
+2005-02-25 12:38  topf
+
+	* NEWS, README.PortpkgGuide, README.QuestionsAndAnswers,
+	  SlackBuild, autoport, footprint, mirrors, portpkg, pp-config: [no
+	  log message]
+
+2005-02-24 20:03  topf
+
+	* COPYING, CREDITS, NEWS, README, README.Links,
+	  README.PortpkgGuide, README.QuestionsAndAnswers,
+	  README.QuickStart, SlackBuild, autoport, checkpkg, exclude,
+	  footprint, ignore, mirrors, portpkg, portpkg.1, pp-config,
+	  pp-sync-bin, pp-sync-src, prepare, slack-desc: Added
+	  testing/portpkg-0.35cvs-noarch-1tom.
+
