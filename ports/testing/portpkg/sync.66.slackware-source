@@ -11,14 +11,15 @@ is_defined DIST_VER || die
 # this will be mangled through our mirrors-list anyway
 rsync=rsync://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
 dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
-tree=$PRT_DIR/z/slackware
+tree=$ZPRT_DIR/slackware
+t=`mktemp -d`
 
 row "Syncing $tree/ with `mirror $dist | cut -d / -f 3` for $DIST_VER"
 warn "This plug-in is experimental!"
 
-t=`mktemp -d`
-mkdir -p $tree
 has_prog rsync || die
+
+mkdir -p $tree
 
 # check if there're updates
 wget -O $t/ChangeLog.txt $dist/ChangeLog.txt >&2

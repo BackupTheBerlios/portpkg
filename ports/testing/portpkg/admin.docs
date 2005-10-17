@@ -1,30 +1,27 @@
-#!/bin/sh
+#!/bin/sh -u
 # admin.prepare -- sync documentation with portpkg.berlios.de wiki
 #                  do this before releasing a new portpkg
 #                  FOR PORTPKG ADMINISTRATION ONLY
 
-if ! [ -x /usr/bin/elinks ]; then
-  echo
-  echo "No package 'elinks' installed!"
-  exit 1
-fi
+. `which portpkg` || exit 1
 
-for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers Links; do
-  wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
+has_prog elinks || die
+
+stanza "Syncing docs:"
+for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers \
+Links UpcomingRelease; do
+  row "$doc"
+  wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc 2>/dev/null
   elinks -no-numbering -dump $doc.html | grep -v "^[ ]*EditThisPage" >README.$doc
   rm $doc.html
 done
 
-mv README README.cp
-
+row "Finishing"
+sed -i "/ file:\/\//d" README.*
 sed -i "0,/^News$/d" README.FrontPage
 sed -i "1s,.*,News\n," README.FrontPage
-sed -i "/ file:\/\//d" README.*
 mv README.TodoBugsAbout ABOUT
 mv README.PortpkgGuide README
 mv README.FrontPage NEWS
 mv README.QuestionsAndAnswers FAQ
-
-# this is a testing release
-mv README README.orig
-mv README.cp README
+mv README.UpcomingRelease ROADMAP

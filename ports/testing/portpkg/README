@@ -1,126 +1,1245 @@
-WARNING! THIS IS AN EXPERIMENTAL TESTING RELEASE!
+The Portpkg Project Guide
 
-Major changes:
+  Copyright
 
-* Virtual groups in /usr/ports/virtual:
+   Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
 
-  # portpkg mplayer/
+   This is free software; you can redistribute it and/or modify it under the
+   terms of the GNU General Public License as published by the Free Software
+   Foundation; either version 2 of the License, or (at your option) any later
+   version.
 
-  Will install all packages from the virtual group in 
-  /usr/ports/virtual/mplayer. A virtual group needs only a directory for
-  each port and therein a file SlackBuild with the lines "VERSION=",
-  "ARCH=" and "BUILD=". There will be examples in the ports tree. This
-  can be very interesting in conjunction with the use list in the
-  future, when there're more virtual groups defined. 
+   --------------------------------------------------------------------------
 
-* "Multiports": One script - two packages
+Introduction
 
-  For more compatibility with original Slackware SlackBuild-scripts
-  (e.g. gcc/glibc) that produce more than one package.
+  What Is The Portpkg Project And How Does It Work?
 
-  Notes for multiports:
-  * Don't use $NAME for each makepkg!
-  * Every makepkg has to be explicit (no "for i; do makepkg; done"!)
-  * Names of produced package must have only $VERSION, $ARCH and/or $BUILD!
-  * Groups _should_ match
-  * Nevertheless, link any sub-port to the super-port (e.g. "gcc-g++ -> gcc")
+   Portpkg is a ports system for Slackware Linux. Its purpose is to build and
+   manage a larger set of software for Slackware.
 
-* "Turbo mode": like *BSD portsystems:
+   This is done not by provding binary packages, but by collecting scripts
+   that download, compile and install software on your machine. The
+   implementation is very simple and automated while still gaining a maximum
+   of system integration: It is based on SlackBuilds aslike Slackware's
+   Pkgtools. The information of how to compile what software, what version
+   and where to find is stored in additional files, these are catalogised in
+   a so called ports tree. Portpkg's administration scripts make it possible
+   to browse, search and handle these scripts. Contribution of ports is a one
+   of the main features of this project. Submitted ports will be put into an
+   open directory for public testing, later they will be checked and merged
+   into the ports tree.
 
-  Example:
+  Why Should I Use Portpkg?
 
-  # cd /usr/ports/xap/mozilla
-  # portpkg
+   The traditional way of adding software to a Slackware system is either to
+   install a ready-made package or to compile it by hand. While the first one
+   is dead easy, the other one gives you full control over any details of the
+   resulting software. Portpkg is in the middle of both: It has a comfortable
+   administration interface similiar to installpkg, but also a source script
+   system, as Slackware uses it to compile and gives you as much control as
+   possible. Also, the Portpkg project doesn't change Slackware's behaviour
+   in any way. Portpkg is a ports system that tries to match Slackware's way
+   as close as possible and fit into the system.
 
-  This is also a bit faster, because portpkg doesn't need to search the ports
-  tree first in this mode (also does --noreqs).
+  Overview Of This Guide
 
-* No more .local files in /etc/portpkg!
+     o Installing Portpkg
+     o Using The Ports
 
-  Portpkg now uses the normal Slackware style for etc-files (.new
-  files). Please edit your files in /etc/portpkg/ to your needs, they
-  won't be overwritten on upgrades.
+          o Building And Installing Ports
+          o Usage Of Portpkg
+          o Additional Tools
 
-* CVS/SVN support for sources
+     o Writing Ports
 
-  It should be now possible to use CVS as a resource in your ports. E.g.
-  the "sources" file will look like this:
+          o Preparing
+          o Ports And Their Parts
+          o Configuration Of Portpkg
+          o Additional Tools
 
-  cvs://:pserver:anonymouse@cvs.bla.net:/cvsroot/bla/$NAME
-  svn://svn.videolan.org/x264/trunk/x264
+     o Contribute To The Portpkg Project
+     o Backgrounds
 
-  The default CVS (and SVN) storage dir is /usr/src/cvs and can be
-  changed with CVS_DIR=... in /etc/portpkg/local.conf. Portpkg makes a
-  symlink to the port dir before starting the SlackBuild. Use it in your
-  SlackBuild as
+          o A Small Introduction To The Ports Tree
+          o Terminology
+          o Theory
+          o Ports Tree
+          o The SlackBuild Blackbox
 
-  ...
-  # here would be normal tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-  cp -av $CWD/$NAME/ . # <-- watch out the trailing /
-  cd $NAME || exit 1
-  ...
+   --------------------------------------------------------------------------
 
-* Import/export system
+Installing Portpkg
 
-  The ports collection of Portpkg is a seperate importer script now, 
-  that can be turned on and off with pp-config. Also, an export method
-  can be defined to submit ports anonymously via HTTP (goes into open/)
-  or via CVS if you have a developer account. Nevertheless, the CVS
-  server url can be modified in a mirrors file.
+   First, make sure you have permissions to switch to root! If you are not
+   allowed, Portpkg makes no sense to you. You will also need access to the
+   internet, although Portpkg should work fine on a dial-up system, too!
+   Download a recent version of Portpkg from
+   http://developer.berlios.de/project/showfiles.php?group_id=2486 to your
+   home directory and install it as root:
 
-* Use
+ $ su
+ Password:
+ # installpkg portpkg-xxx-noarch-1tom.tgz
 
-  Dependencies that are optional AND shall be installed by portpkg when
-  needed can be written to this list. Best known example is if you WANT
-  GNOME dependencies for packages you are building, you SHOULD add
-  gnome/ here!
+   This will install just the administration tools in /usr/bin. Now, make
+   sure you have all dependend programmes installed to use it. You will need
+   cvs and wget (d/ and n/ groups) to retrieve the ports collection and
+   distributed files, To build packages you will definitively need the
+   development packages in Slackware's d/ group. Checkout the ports tree
+   with:
 
-Furthermore:
+ # portpkg --sync
 
-Portpkg:
-* Handle optional dependencies in "requires" now as "# optional: dependency".
-* Add newly found dependencies as optional.
-* Connect arguments in --find with AND not OR.
-* Fixed using of custom $TMP
-* Removed "pseudo" files
-* Remove arbitrary source files (%-style in "sources") after package building
-* No more "arbitrary" files, only warning message
-* No more ".wgetlogs"
-* Don't log a dry-run
-* Execute SlackBuilds with "sh -e" on default
-* neglect architecture diffs for i?86
-* Improvements to the Slackware source importer
-* Use pathname expansion rather than regular expressions in mirror files
-  (http://*.dl.sf.net/ instead of http://.*\.dl\.net/)
-* Removed Bash-specific syntax (should work now with ash)
-* Some speed enhancements
-* Use unlisted packages in cache for dependencies
-* Replaced $ADM_DIR/portpkg with $LOG_DIR in order to make it costumisable
-*
+ Syncing your ports tree with cvs.berlios.de:
+   --> Updating ports/ap/abook
+   --> Updating ports/ap/athcool
+   --> Updating ports/ap/bonnie++
+ (...)
 
-Autoport:
-* Support also .patch.gz and doinst.gz
-* Check for KDEDIRS and use prefix /opt/kde
-* Add schemas files explicit to doinst.sh
-* Removed "|| exit 1"
-* Remove empty files in /usr/share/mime/
-* Support CVS sources
-* Removed Bash-specific syntax (should work now with ash)
-*
+   Portpkg will now write a copy of the current ports tree to /usr/ports. Use
+   this command to update your ports tree later as the it changes quite
+   often. Portpkg is now ready to compile.
 
-* Some more changes
+   --------------------------------------------------------------------------
 
-Enjoy.
---tom
+Using The Ports
 
-Delayed:
-* Support for different repositories (CVS and HTTPUP) (/etc/portpkg/repos)
-* Removed "importers" subsystem
-* PGP/GPG-Support
-* Ignore case in package expressions, dependencies and --diff
+   The most important administration tool for the ports is portpkg: It has
+   several types of action (such as to list available ports, to find ports by
+   keywords, to view detailes about certain ports, to list outdated ports and
+   to make a system-upgrade) and a default behaviour, which simply is to
+   build and install a specified port.
 
-TODO:
-* Turbo mode should be comfortable with LAZY_CHECKS, not NO_REQS
-* Make LAZY_CHECKS in turbo mode faster
-* Enable running portpkg as non-root
-* Integrate non-root configuration set in pp-config
+  Building And Installing Ports
+
+   The default action of portpkg is to build and install a package (that
+   includes checking for neccessary dependend packages and download of source
+   code files). When this is called default, it means there's no other
+   parameters needed. Its usage is quite simple, just write down the port
+   names you would like to add to your system or bring to its latest release:
+
+ # portpkg xdaf
+
+ Building package xdaf-A.01.11.01-i486-1tom:
+   --> Downloading xdaf-A.01.11.01.tar.gz
+   --> Executing /usr/ports/xap/xdaf/SlackBuild
+   --> Moving package to /usr/obj/pkg/xap/
+
+ Installing package xdaf-A.01.11.01-i486-1tom...
+ PACKAGE DESCRIPTION:
+ xdaf: xdaf (X11 Disk Activity Feedback)
+ xdaf:
+ xdaf: xdaf is a small tool to provide a visual feedback
+ xdaf: of the local disks activity by changing the default
+ xdaf: X11 mouse pointer to an animated wheel (the wheel
+ xdaf: is white when the disks are been used for reading
+ xdaf: and it turns red when writing occurs).
+ xdaf:
+
+   This would install (or upgrade if needed) the port xdaf. You can specify
+   more than one port in one line. Portpkg will not reinstall a port if
+   exactly that release is already installed. If it is your intention to do
+   so, you must add the parameter --reinstall. E.g:
+
+ # portpkg --reinstall alreadyhere
+
+   Here's a complete list of all options to adjust portpkg:
+
+   +------------------------------------------------------------------+
+   |--reinstall|Reinstall package if already installed                |
+   |-----------+------------------------------------------------------|
+   |--rebuild  |Rebuild package if already build (implies --reinstall)|
+   |-----------+------------------------------------------------------|
+   |--prepare  |Build package, but don't install (implies --noreqs)   |
+   |-----------+------------------------------------------------------|
+   |--download |Download source files only                            |
+   |-----------+------------------------------------------------------|
+   |--verbose  |Show compile output                                   |
+   |-----------+------------------------------------------------------|
+   |--dryrun   |Simulate install/download/build                       |
+   |-----------+------------------------------------------------------|
+   |--noreqs   |Don't check for requirements                          |
+   |-----------+------------------------------------------------------|
+   |--lazy     |Don't upgrade dependencies to newest version          |
+   +------------------------------------------------------------------+
+
+  Usage Of Portpkg
+
+    Listing All Available Ports
+
+   Portpkg has a few alternative actions, that means it will act differently
+   with them enabled. To get a full list of available ports (groups and
+   release information) use the action --list:
+
+ # portpkg --list
+ (...)
+ xap/mplayer-1.0pre5-i486-4tom
+ xap/ogle-0.9.2-i486-2tom
+ xap/ogle_gui-0.9.2-i486-1tom
+ xap/pyne-1.0.2-i486-1tom
+ xap/redhat-artwork-0.98-i486-3tom
+ xap/straw-0.22.1-i486-4tom
+ xap/tagtool-0.10-i486-3tom
+ xap/video-dvdrip-0.51.1-i486-1tom
+ xap/xdaf-A.01.11.01-i486-1tom
+ xap/xmbmon-203-i486-1tom
+ xap/xvid4conf-1.12-i486-1tom
+ xap/zinf-2.2.5-i486-2tom
+
+    Viewing Information Of Ports
+
+   To view detailed information about certain ports use --info:
+
+ # portpkg --info dunnodiz
+
+ PORT NAME:  dunnodiz-2.2.5-i486-2tom
+ PORT SIZE (compressed):  1520 K
+ PORT LOCATION:  /usr/ports/xap/dunnodiz/SlackBuild
+ PORT REQUIREMENTS:  alsa-lib atk audiofile cxxlibs esound expat gdbm
+    glib2 glibc gtk+2 id3lib libmusicbrainz libogg libvorbis ncurses
+    pango x11 x11-devel zlib
+ PORT SOURCES:  http://dl.sourceforge.net/dunnodiz/dunnodiz-2.2.5.tar.gz
+ PORT DESCRIPTION:
+ dunnodiz: dunnodiz (a package)
+ dunnodiz:
+ dunnodiz: dunnodiz doesn't know anything about itself. This can be realy
+ dunnodiz: annoying since you don't know either anything about it. Strange.
+ dunnodiz:
+
+
+    Finding Ports
+
+   To find ports by keywords use --find:
+
+ # portpkg --find id3 tag
+ l/id3lib-3.8.3-i686-2tom
+ l/pyid3lib-0.5.1-noarch-1tom
+ l/libid3tag-0.15.1b-i486-1
+ l/taglib-1.3.1-i486-1
+
+    Listing Outdated Packages
+
+   To list all installed packages, that have a newer version in the ports
+   collection use --diff:
+
+ # porpkg --diff
+
+ PORT NAME:                 AVAILABLE:              INSTALLED:
+ gnome/gparted              0.0.6-i486-2tom         0.0.6-i486-1tom
+ l/bluecurve                1.0-i486-11tom          1.0-i486-10tom
+ gnome/epiphany             1.4.5-i486-1tom         1.4.4-i486-1tom
+
+    Upgrading All Outdated Packages
+
+   Upgrading is not always recommended, although it just balances out what
+   --diff lists. You should do this first with the option --dryrun:
+
+ # portpkg --upgrade --dryrun
+
+  Additional Tools
+
+    Checkpkg
+
+   Checkpkg is a menu controlled programme (similiar to pkgtool) to keep
+   track of installed and available ports.
+
+   (See Screenshots.)
+
+    Slackware Source^2
+
+   Slackware source is a plug-in for portpkg that import Slackware's source
+   directory (or better: the most important files of that directory) and
+   prepares them for using in portpkg.
+
+    Pseudo Ports^2
+
+   Pseudo ports is a plug-in for portpkg that imports Slackware binary
+   package into your ports tree. The name pseudo ports comes, because such a
+   port will simply download its corresponding package from Slackware instead
+   of building it by source.
+
+   --------------------------------------------------------------------------
+
+Writing Ports
+
+   First of all: Writing new ports can be quite easy, but can also become
+   hard work and implies at least the possibility to break your system! You
+   should be familiar with compiling source code before you start to write
+   packages. The terms ./configure, make and make install, their meanings and
+   how to use them should be known. So instead of just using portpkg, writing
+   ports is more difficult and you should now what you are doing, this is at
+   your own risk!
+
+  Preparing
+
+   For your own ports, you should use the subdirectory /usr/ports/local/ for
+   several reasons: It is an overlay directory that is not written to while
+   updating the public ports tree via sync. Ports underneath
+   /usr/ports/local/ will also be listed prior to the normal tree.
+
+    Maintainer Mode
+
+   Portpkg automatically runs a so-called maintainer mode for your ports
+   after the compilation process, which means it will make a few extra checks
+   to assure the package have been built correct and collects some
+   information about it. Your ports are identified by a tag string that is
+   added to the build number of your ports. Furthermore, if you want to
+   contribute a port and make it puplic, we need your real name and mail
+   address to contact you (please have also a look at /usr/ports/AUTHORS to
+   see, what tags are already in use).
+
+   These values have to be written to the file /etc/portpkg/local.conf:
+
+ MY_TAG="me"
+ MY_EMAIL="myself@here.org"
+ MY_REALNAME="I. M. Weasel"
+
+   Your tag has to be added to the build number of every port you're writing
+   and therefore it has to be written in every SlackBuild (e.g. BUILD=1me).
+
+    Classifying Ports
+
+   Every package/port identifier is a composition of at least 4 segments
+   divided by -. Count from the tail: the build number (or revision), the
+   architecture (or noarch for architecture independend ports), the version
+   and anything remaining is the name:
+
+ this-is-a-package-1.0-noarch-1
+ |                 |   |      |
+ name              ver.arch.  revision
+
+   Example
+           * On naming a new port it is best to come from the source package:
+             A package made by the source package
+             http://download.sourceforge.net/mjpeg/mjpegtools-1.6.2.tar.gz
+             should be named mjpegtools-1.6.2-i486-1me (the name is
+             mjpegtools, the version is 1.6.2, the architecture would be i486
+             an a x86 machine and because it is our first try, the build
+             number is 1 + your tag me). Now, we make a directory mjpegtools
+             in a group directory (e.g. ap/) where all files for this port
+             can be written to.
+           * If you make changes to the build script (SlackBuild) while the
+             VERSION variable remains the same, you must increment the build
+             number, even though you're not the previous maintainer! (If you
+             want to suggest a change for mjpegtools-1.6.2-i486-1me and you
+             tag is meow instead, then change the build variable to
+             BUILD=2meow, but if you want to suggest version 1.1, regardless
+             if you make a change somewhere else in the script, then count
+             starting from 1 again!)
+
+   Why is that so important? -- Ports can be tracked as requirements later by
+   other ports. To avoid cluttering we should follow a naming scheme.
+
+   Notes
+           * Versions (and architectures, revisions) cannot have a - inside.
+           * Names should not have capitals.
+
+  Ports And Their Parts
+
+   A ports is made up of different files (most important the SlackBuild) and
+   its path, where the critical part is only the last two parent directories,
+   which describe the port's group and name:
+
+ /usr/ports/local/kde-stuff/audio/l/artsd/SlackBuild
+ \________/                      /  \___/ \________/
+     |                          /     |       |
+ ports tree                group    name  contains version,
+                                          arch and release
+
+    SlackBuild
+
+   -- "Why does my package have such a fantastic compression ratio?"
+
+   The file SlackBuild (and also any file according to name.SlackBuild) on
+   its own determines the layout of the resulting package! It is a
+   Bash-script and is executed when portpkg builds a binary package for
+   installation. Generally, SlackBuilds need to be specially adjusted to a
+   source package. It is recommended to use Autoport to write new ports.
+
+   Please follow the basic filesystem layout in Slackware:
+
+   +---------------------------------------+
+   |             |normal  |KDE-Applications|
+   |-------------+--------+----------------|
+   |Prefix       |/usr    |/opt/kde        |
+   |-------------+--------+----------------|
+   |Configuration|/etc    |                |
+   |-------------+--------+----------------|
+   |Variable data|/var/lib|                |
+   |-------------+--------+----------------|
+   |Documentation|/usr/doc|/usr/doc        |
+   |-------------+--------+----------------|
+   |Manpages     |/usr/man|/usr/man        |
+   +---------------------------------------+
+
+   The Filesystem Hierarchy Standard, which should be followed in general,
+   makes exceptions only for very few programmes, that are essential for
+   booting the system (prefix /) or for big and closed software packages
+   (prefix /opt/name). Note, that the prefix /usr/local, which is normally
+   the default prefix for any source code, should never be used for packages,
+   but only for installations by hands! The same is in the other way around.
+
+   Make Ports Portable
+
+   Ports should be portable for architectures other than x86 (particularly
+   s390 and x86_64), so if the code will be architecture-dependend, ARCH must
+   be set to {ARCH:-i486}, which means, that i486 is the default
+   architecture, otherwise it has to be noarch. Granted, SlackBuilds aren't
+   predestinated for porting to other platforms, but they can also be made
+   suitable for processor optimisations via CFLAGS. To satisfy
+   CFLAGS-customisation, a SlackBuild must have these lines or appropriate
+   instructions (supposed it makes use of ./configure):
+
+ if [ "$ARCH" = "i386" ]; then
+   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+ elif [ "$ARCH" = "i486" ]; then
+   SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+ elif [ "$ARCH" = "s390" ]; then
+   SLKCFLAGS="-O2"
+ elif [ "$ARCH" = "x86_64" ]; then
+   SLKCFLAGS="-O2"
+ fi
+
+   It is important that default values will be set only for i386, i486, s390
+   and x86_64. For any other ARCH (especially effected by a general else
+   instruction), there should be no default value! Later, SLKCFLAGS must be
+   handed over to ./configure via
+
+ CFLAGS="$SLKCFLAGS" \
+ ./configure \
+ (...)
+
+   Notes
+           * Executable files in bin/ and sbin/ and their directories have to
+             be owned by root.bin.
+           * Always have a look at footprint to find misfits earlier!
+           * If something doesn't need to be patched, please don't patch it!
+
+    Doinst.sh
+
+   The file doinst.sh is also a Bash-script that is executed on every
+   installation of a binary package, right after unpacking the files. It is
+   located in install/ in the root of the binary package and in
+   /var/log/scripts/ but with the package's file name after its installation.
+
+   Slackware's package system for example stores symbolic links in doinst.sh
+   (don't bother this, they will be removed from the package and written to
+   doinst.sh automatically by makepkg). SlackBuilds should be configured to
+   write initialisation scripts for GConf schemas and Scrollkeeper documents
+   (which is detected by Autoport), but you can also write down commands that
+   are not usual but important for the installation of a package. E.g.:
+   gstreamer needs to run gst-register on installation:
+
+ if [ -x usr/bin/gst-register ]; then
+   sbin/ldconfig >/dev/null 2>&1
+   usr/bin/gst-register >/dev/null 2>&1
+ fi
+
+   It is also common use in Slackware that configuration scripts that are
+   meant to be edited should be renamed to file.new and installed with
+   config(), which in turn renames it to its final name only if it doesn't
+   overwrite an already existing one. So, the administrator can (and should)
+   later check whether he wants to have the new file or keep his old:
+
+ config() {
+   NEW="$1"
+   OLD="`dirname $NEW`/`basename $NEW .new`"
+   # If there's no config file by that name, mv it over:
+   if [ ! -r $OLD ]; then
+     mv $NEW $OLD
+   elif [ "`cat $OLD | md5sum`" = "`cat $NEW | md5sum`" ]; then # toss the redundant copy
+     rm $NEW
+   fi
+   # Otherwise, we leave the .new copy for the admin to consider...
+ }
+ config etc/dont_overwrite_me.new
+
+   Daemons and services (named rc.xxx and located in /etc/rc.d/) have to be
+   started by rc.local only if they have an executable bit set. In a package
+   install rc-scripts with the config() method above and with executable bit
+   (mode 755) and add these lines to doinst.sh:
+
+ if ! grep -sqw /etc/rc.d/rc.xxx etc/rc.d/rc.local; then
+   cat >>etc/rc.d/rc.local <<EOF
+
+ # Start the xxx daemon:
+ if [ -x /etc/rc.d/rc.xxx ]; then
+   /etc/rc.d/rc.xxx start
+ fi
+ EOF
+ fi
+
+   A rc-script should looks like this:
+
+ #!/bin/sh
+
+ xxx_start() {
+   if [ -x /usr/bin/xxx ]; then
+     echo "Starting service xxx:  /usr/bin/xxx"
+     /usr/bin/xxx
+   fi
+ }
+
+ xxx_stop() {
+   killall xxx
+ }
+
+ xxx_restart() {
+   xxx_stop
+   sleep 1
+   xxx_start
+ }
+
+ case "$1" in
+   start)
+     xxx_start;;
+   stop)
+     xxx_stop;;
+   restart)
+     xxx_restart;;
+   *)
+     echo "usage $0 {start|stop|restart}";;
+ esac
+
+   Note
+           * Use relative paths rather than absolute paths here, since
+             packages can be installed on different roots (not with Portpkg,
+             but with installpkg)!
+
+    Slack-desc
+
+   The file slack-desc (or also slack-desc.name or files in slack-desc/)
+   contain a description of the package. Only lines starting with the short
+   name of the package and : are determining factors. Have one line for a
+   short one-liner description, an empty line and 9 lines for some more
+   details:
+
+   Example
+
+ shortname: Projectname (short desciption)
+ shortname:
+ shortname: Here can be a longer and deeper going description of the package.
+ shortname: Note that you do not go behind 75 characters and 11 lines.
+ shortname:
+ shortname:
+ shortname:
+ shortname:
+ shortname:
+ shortname:
+ shortname:
+
+    Sources^1
+
+   In order to reduce bandwidth for the Portpkg Project and for you, any URL
+   of used source packages should be written in sources. This file is special
+   to Portpkg. To make version updates later easier, use the string $VERSION
+   where the version number of the package is placed. You can also use $NAME.
+   Portpkg will download these files into the port directory before running
+   the SlackBuild, after that they will be stored in /usr/src/dist.
+
+   Certain files cannot be saved with the basename of its URL (e.g. PHP
+   script outputs), so you should use a % to declare a different name
+   (http://url.com/php%filename). Beware that those files will not be saved
+   in /usr/src/dist like normal downloads, since those files normally cannot
+   be distinguished by name. They will be downloaded on every package
+   building process!
+
+   Example
+
+ http://www.host.org/downloads/package-$VERSION.tar.gz
+ http://www.host.org/downloads/package-addon-$VERSION.tar.gz
+ http://www.host.org/downloads/download.php?file=data%package-data
+
+   Note
+           * Please list only primary download sites here and use .tar.bz2
+             archives rather than .tar.gz archives if possible in terms of
+             reducing bandwidth.
+
+    Slot-in^1, 3
+
+   The normal policy is to "install" packages with upgradepkg. That means, if
+   another version of the port is already installed, the new one replaces the
+   old one. E.g.: mplayer-1.0pre4-i486-1tom is already installed,
+   mplayer-1.0pre5-i486-1tom is available in the ports, so the command
+   portpkg mplayer removes the first one to install the last one.
+
+   If this behaviour is not intended, and you want Portpkg not to remove the
+   older package (this is mostly for packages like kernels or
+   kernel-modules), there's the possibility to mark a port as a "slot-in":
+
+ # touch slot-in
+
+    Pseudo^1, 3
+
+   The empty file pseudo marks a "pseudo port", as you can see in the ports
+   tree Pp-sync-bin builds. These pseudo ports list binary Slackware packages
+   as their souce packages, therefore the presents of slot-in instructs
+   Portpkg not to store them in /usr/src/dist when the installation is done.
+
+   Nore: This is more for the sake of completeness, it is subject to be
+   removed if Portpkg implements a way of interacting with Slackware
+   repository tools.
+
+    Requires^1
+
+   The file requires contains dependend packages and ports that are tracked
+   by Portpkg in the maintainer mode after compiling. These required packages
+   and ports are obligatory for compiling this port! While this file is
+   written when running in maintainer mode, in normal mode Portpkg checks, if
+   these requirements are met. You shouldn't write this file by hand
+   normally, but there may be dependencies that cannot be found
+   automatically, then add them. Portpkg won't remove any item you write to
+   requires.
+
+    Optional^3
+
+   The file optional contains dependencies, that can occur, but needn't to.
+   Since requires is obligatory at build time and written automatically, this
+   file is a exclude-list for requires. Entries of this file won't be written
+   to it. How to use it: You may have found out, that a certain port has
+   dependencies listed in requires, that are indeed optional. Add this
+   package name to optional and remove it from requires. After all, this file
+   is an advisory information for non-maintainers.
+
+   Note
+           * Maintainers should move as much as possible from requires to
+             optional!
+           * The contents of this file will soon be moved to requires in the
+             form # optional: package
+
+    No-fakeroot^1, ^3
+
+   To make the whole build process more secure Portpkg changes to user nobody
+   while running the SlackBuild and simulates being root without actually
+   having root permissions, but being able to make a package with root-owned
+   files. This is done by fakeroot.
+
+   However, there are few ports that cannot be build with fakeroot, the
+   maintainer must mark them with an empty file no-fakeroot.
+
+    Flags ^2
+
+   Contains several arbitrary flags, e.g:
+
+   +-------------------------------------------------------------------+
+   |no-fakeroot|Don't run a sanbox system for that port                |
+   |-----------+-------------------------------------------------------|
+   |rebuild    |Force rebuilding of that port (--rebuild)              |
+   |-----------+-------------------------------------------------------|
+   |verbose    |Run that port in verbose mode (for interactive scripts)|
+   |-----------+-------------------------------------------------------|
+   |slot-in    |Don't upgrade the package, install instead             |
+   +-------------------------------------------------------------------+
+
+    Miscellaneous Files
+
+   Several files are available in maintainer mode to indicate the result of
+   the package making process:
+
+   +------------------------------------------------------------------------+
+   |PORT_IS_BROKEN^1|Marks a failure of the last compilation                |
+   |----------------+-------------------------------------------------------|
+   |arbitrary^1, 3  |List of dependencies that couldn't be tracked          |
+   |                |automatically and should be checked                    |
+   |----------------+-------------------------------------------------------|
+   |name.buildlog^1 |Detailed log of the SlackBuild-output (in              |
+   |                |/var/log/portpkg)                                      |
+   |----------------+-------------------------------------------------------|
+   |footprint^1     |File list of the package content                       |
+   |----------------+-------------------------------------------------------|
+   |md5sums^1       |Contains checksums for files in sources with version   |
+   |                |numbers                                                |
+   +------------------------------------------------------------------------+
+
+  Configuration Of Portpkg
+
+   The configuration files are located in /etc/portpkg.
+
+    Local.conf
+
+   local.conf is an optional confiiguration file. You can customise portpkg's
+   default values with several variables here:
+
+   +------------------------------------------------------------------------+
+   |MY_TAG=tag             |Your personal tag                               |
+   |-----------------------+------------------------------------------------|
+   |MY_EMAIL=email         |Your mail address for contacting you if you plan|
+   |                       |to contribute                                   |
+   |-----------------------+------------------------------------------------|
+   |MY_REALNAME="real name"|Your real name for contacting you if you plan to|
+   |                       |contribute                                      |
+   |-----------------------+------------------------------------------------|
+   |MAINTAIN_ALL=true      |Run portpkg always in maintainer mode           |
+   |                       |(--maintain, default no)                        |
+   |-----------------------+------------------------------------------------|
+   |VERBOSE=true           |Run portpkg always in verbose mode (--verbose,  |
+   |                       |default no)                                     |
+   |-----------------------+------------------------------------------------|
+   |NO_REQS=true           |Run portpkg always without checking for         |
+   |                       |dependencies (--noreqs, default no)             |
+   |-----------------------+------------------------------------------------|
+   |LAZY_CHECKS=true       |Don't upgrade dependencies (--lazy, default no) |
+   |-----------------------+------------------------------------------------|
+   |ARCH=arch              |Architecture of the target platform (default    |
+   |                       |i486)                                           |
+   |-----------------------+------------------------------------------------|
+   |CFLAGS=cflags          |Compiler optimisation flags (default -O2        |
+   |                       |-march=i486 -mcpu=i686)                         |
+   +------------------------------------------------------------------------+
+
+    Use^2
+
+   Any package expression declared in use that matches optional dependencies
+   of a port will be handled as a required dependency. In this example of a
+   use-file, libfancy or any package found in l/ will be installed only if it
+   is an optional dependency of the port that is currently installed.
+
+   Example
+
+ l/
+ libfancy
+
+    Mirrors
+
+   While primary download URLs should be listed in sources, in mirrors
+   there're global mirror sites for common source package locations.
+
+    Ignore
+
+   Normally, dependencies are tracked automatically by Portpkg in the
+   maintainer mode after compiling and written to the file requires. If you
+   find any dependencies in requires that shouldn't be tracked, write them
+   into ignore:
+
+     o Packages or ports, that are optional: mostly newer versions of
+       libraries included in other Slackware packages (e.g. freetype,
+       fontconfig etc. are already included in Slackware's x11 package)
+     o Packages or ports being useless to track, because they're already and
+       for sure installed (e.g. aaa_elflibs)
+
+   A global list of common ignored dependencies is in ignore.
+
+    Exclude
+
+   Ports you don't want to be built (also as a dependency or as an upgrade),
+   should be written to exclude. A common set of ports that should be
+   excluded is already in exclude. These ports can be listed as normal via
+   portpkg --list, but won't be available, unless it is your intention:
+   specify them via portpkg group/name!
+
+    Summary Of Configurations^2
+
+   +-------------------------------------------------------------------+
+   |Global (local.conf)|Per session (command line)|Per port (flags)    |
+   |-------------------+--------------------------+--------------------|
+   |REBUILD=true       |--rebuild                 |rebuild             |
+   |-------------------+--------------------------+--------------------|
+   |REINSTALL=true     |--reinstall               |                    |
+   |-------------------+--------------------------+--------------------|
+   |DOWNLOAD_ONLY=true |--download                |                    |
+   |-------------------+--------------------------+--------------------|
+   |PREPARE_ONLY=true  |--prepare                 |                    |
+   |-------------------+--------------------------+--------------------|
+   |REMAINTAIN=true    |--remaintain              |                    |
+   |-------------------+--------------------------+--------------------|
+   |DRYRUN=true        |--dryrun                  |                    |
+   |-------------------+--------------------------+--------------------|
+   |VERBOSE=true       |--verbose                 |verbose             |
+   |-------------------+--------------------------+--------------------|
+   |NO_REQS=true       |--noreq                   |                    |
+   |-------------------+--------------------------+--------------------|
+   |LAZY_CHECKS=true   |--lazy                    |                    |
+   |-------------------+--------------------------+--------------------|
+   |NO_FAKEROOT=true   |                          |no-fakeroot         |
+   |-------------------+--------------------------+--------------------|
+   |SLOT_IN=true       |                          |slot-in             |
+   |-------------------+--------------------------+--------------------|
+   |MAINTAIN_ALL=true  |--maintain                |(via BUILD variable)|
+   +-------------------------------------------------------------------+
+
+  Additional Tools
+
+    Autoport
+
+   -- "Packages as mom does"
+
+   The package Portpkg contains a script called Autoport, an interactive
+   step-by-step script that will assist you to prepare ports for very common
+   installation methods. A source file URL given, Autoport tries to guess
+   default answers (encluded in [ and ]) that should be the right choice, so
+   just press RETURN to accept them or enter a different value.
+
+ # autoport http://dl.sourceforge.net/lame/lame-3.96.tar.gz
+
+ Autoport -- An Automatic SlackBuild Generator
+ Copyright (C) 2004 Thomas Pfaff <topf at users dot berlios dot de>
+ Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+ are welcome to redistribute it under certain conditions.
+
+ Autoport is quite experimental, but seems to work better than 'addport'. The
+ difference is, autoport will download the source code package you have to
+ enter and searches for different keywords to adjust a suitable SlackBuild
+ script.
+
+ If autoport doesn't work as expected, please mail at:
+ <topf at users dot berlios dot de>
+
+ * First step: Give meta information. Continue? (ctrl-c to quit)
+
+ Source file [http://dl.sourceforge.net/lame/lame-3.96.tar.gz]:
+
+ Group [local]:
+
+ Name [lame]:
+
+ Version [3.96]:
+
+ Arch [i486]:
+
+ Build [1mich]:
+
+ Description (1-liner) [lame]:
+
+   Enter lame (create mp3 audio files)!
+
+ Description (details) (Write or paste and finish with a single '.')
+ []
+
+   Enter:
+
+   LAME is an LGPL MP3 encoder. The Open source development model allowed to
+   improve its quality and speed since 1999. It is now an highly evolved MP3
+   encoder, with quality and speed able to rival state of the art commercial
+   encoders.
+
+   .
+
+   Don't forget the dot at the end to finish!
+
+ Creating now a port with this information:
+
+ PORT NAME:  lame-3.96-i486-2mich
+ PORT LOCATION:  /usr/ports/local/lame/SlackBuild
+ PORT SOURCE:  http://dl.sourceforge.net/lame/lame-$VERSION.tar.gz
+ PORT DESCRIPTION:
+ lame: lame (create mp3 audio files)
+ lame:
+ lame: LAME is an LGPL MP3 encoder. The Open source development model
+ lame: allowed to improve its quality and speed since 1999. It is now an
+ lame: highly evolved MP3 encoder, with quality and speed able to rival
+ lame: state of the art commercial encoders.
+ lame:
+
+ * Last chance to quit. Port scripts will now be written.
+ Next step: Downloading and checking source code. Continue? (ctrl-c to quit)
+
+   Press RETURN!
+
+ Downloading source file:
+ (...)
+
+ Alright, since we have the code, I'll have a look into it:
+   --> Checking format... .tar.gz
+   --> Checking source-prefix... lame-3.96/
+   --> Checking docs... COPYING ChangeLog HACKING INSTALL INSTALL.configure LICENSE README README.WINGTK TODO.
+   --> Checking for setup.py... no
+   --> Checking for Makefile.PL... no
+   --> Checking for configure... yes
+   --> Checking for DESTDIR... yes
+   --> Checking for CFLAGS... yes
+   --> Checking for CXXFLAGS... yes
+   --> Checking for gconf schemas... no
+   --> Checking for scrollkeeper... no
+
+ We're done. Port written in /usr/ports/local/lame.
+
+   You can now build it via Portpkg:
+
+ # portpkg local/lame
+
+ Building lame-3.96-i486-1mich:
+ WARNING: Maintainer mode: Port scripts will be modified!
+   --> lame-3.96.tar.gz found in /usr/src/dist/
+   --> Executing /usr/ports/local/lame/SlackBuild
+   --> Going maintainer mode
+   --> Finding requirements
+   --> Moving lame-3.96-i486-1mich to /usr/obj/pkg/local/
+
+ Installing lame to 3.96-i486-1mich...
+ PACKAGE DESCRIPTION:
+ lame: lame (create mp3 audio files)
+ lame:
+ lame: LAME is an LGPL MP3 encoder. The Open source development model
+ lame: allowed to improve its quality and speed since 1999. It is now an
+ lame: highly evolved MP3 encoder, with quality and speed able to rival
+ lame: state of the art commercial encoders.
+ lame:
+ Executing install script for lame...
+
+   Advanced Script Control^2
+
+   A very comfortable function of autoport is to update an existing port
+   automatically e.g. to a different version. To influence parts of the
+   resulting script, autoport divides a SlackBuild into several seamless
+   sections, that can be modified with inline tags.
+
+   +------------------------------------------------------------------------+
+   |head             |Set header variables                                  |
+   |-----------------+------------------------------------------------------|
+   |slkcflags        |Set SLKCFLAGS                                         |
+   |-----------------+------------------------------------------------------|
+   |prepare          |Unpack source code, chown root.root it and apply      |
+   |                 |patches                                               |
+   |-----------------+------------------------------------------------------|
+   |config           |Configure or simply make prefix=/usr                  |
+   |-----------------+------------------------------------------------------|
+   |therein configure|Command line ./autogen.sh and/or ./configure          |
+   |-----------------+------------------------------------------------------|
+   |install          |Compile and install the code into $PKG                |
+   |-----------------+------------------------------------------------------|
+   |refine           |Remove unwanted files, chown root.bin binaries        |
+   |-----------------+------------------------------------------------------|
+   |strip            |Strip binaries                                        |
+   |-----------------+------------------------------------------------------|
+   |doc              |Prepare documentation                                 |
+   |-----------------+------------------------------------------------------|
+   |therein docfiles |Command to copy files into /usr/doc/$NAME-$VERSION    |
+   |-----------------+------------------------------------------------------|
+   |tail             |Prepare /install, package and cleanup                 |
+   +------------------------------------------------------------------------+
+
+   Each section can be removed, appended or replaced:
+
+ # force autoport not to strip binaries
+ #-strip
+
+ # append these lines to a generic install method
+
+ #+install
+ echo "Install done!"
+ #+install
+
+ # Replace section "prepare" with those lines
+ #=prepare
+ code
+ #=prepare
+
+   Example for a SlackBuild for bittorrent that can be updated later with
+   autoport:
+
+ TMP=${TMP:-/tmp}
+ CWD=`pwd`
+ NAME=`basename $CWD`
+ PKG=$TMP/package-$NAME
+
+ VERSION=4.0.1
+ ARCH=noarch
+ BUILD=2tom
+
+ rm -rf $PKG
+ mkdir -p $PKG/usr
+ cd $TMP
+ tar xzvf $CWD/BitTorrent-$VERSION.tar.gz
+ cd BitTorrent-$VERSION
+ chown -R root.root .
+ python setup.py build install --root=$PKG
+ #+install
+ # Add btdownloadxterm.sh (this just opens an xterm for btdownloadcurses.py so
+ # that it can work as a MIME handler from mailcap):
+ mkdir -p $PKG/usr/bin
+ zcat $CWD/btdownloadxterm.sh > $PKG/usr/bin/btdownloadxterm.sh
+ chmod 755 $PKG/usr/bin/btdownloadxterm.sh
+ #+install
+ rm -rfv $PKG/usr/info/dir
+ find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
+ chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+ mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+ gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+ mkdir -p $PKG/usr/doc/$NAME-$VERSION
+ #=docfiles
+ cp -a \
+   BUILD.windows.txt LICENSE.txt README.txt credits.txt \
+   $PKG/usr/doc/BitTorrent-$VERSION
+ #=docfiles
+ find $PKG/usr/doc -type f -exec chmod 644 {} \;
+ find $PKG/usr/doc -type d -exec chmod 755 {} \;
+ mkdir -p $PKG/install
+ cat $CWD/slack-desc >$PKG/install/slack-desc
+ cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+ cd $PKG
+ makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+ if [ "$1" = "--cleanup" ]; then
+   rm -rf $TMP/BitTorrent-$VERSION
+   rm -rf $PKG
+ fi
+
+
+   This port can later easily be updated via autoport -u bittorrent -v 5.0.0
+   -a. Anything else will be regenerated by autoport. Note, that only #-
+   switches and those line between #+ and #= will be picked up and inserted
+   into the new SlackBuild!
+
+   We hope you plan to contribute your ports to this project, it is a simple
+   task!
+
+   --------------------------------------------------------------------------
+
+Contribute To The Portpkg Project
+
+   Contributing your ports to the Portpkg Project is very easy: Please
+   consider a reasonable summary of your export (did you patch a certain bug,
+   did you upgraded the version):
+
+ # portpkg --export "Upgraded to version 1.2." ap/package
+
+ Exporting to cvs.portpkg.berlios.de:
+   --> Uploading ap/package-1.2-i486-1tom
+
+   Ports that are submitted via --export will be picked up by a cron job on
+   portpkg.berlios.de that merges them into open/.
+
+   --------------------------------------------------------------------------
+
+Backgrounds
+
+   This section will address some theoretical hows and whys of the
+   administration tool Portpkg and its inner work and development. It is
+   concrete incarnation of the term work in progress.
+
+  A Small Introduction To The Ports Tree
+
+   Portpkg uses CVS to collect and distribute the ports scripts. To sync with
+   the official ports tree do:
+
+ # cvs -qz9 -d:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co -P ports
+
+   You have now a local copy in ports/. This ports tree is divided in groups
+   and groups are subdivided in ports. For each one there is a directory. To
+   compile e.g. enlightenment which is in group xap/, go to the directory
+   xap/enlightenment/, download the source files you need, they are listet in
+   a file called sources, but check the version, that is declared in the file
+   SlackBuild:
+
+ # cd ports/xap/enlightenment
+ # grep VERSION= SlackBuild
+ VERSION=0.16.7.1
+ # cat sources
+ http://dl.sourceforge.net/enlightenment/enlightenment-$VERSION.tar.gz
+ # wget http://dl.sourceforge.net/enlightenment/enlightenment-0.16.7.1.tar.gz
+ (...)
+
+   ... and start the script:
+
+ # sh -e ./SlackBuild
+
+   This will compile the sources and prepare a package in /tmp. Some ports
+   will need other ports to be build before they can build, you should check,
+   if all packages in requires are installed, before you start:
+
+ # cat requires
+ alsa-lib
+ audiofile
+ esound
+
+ glibc
+ imlib
+ libtool
+ x11
+ x11-devel
+ zlib
+
+   Each of them are either ports in this tree or official Slackware packages.
+   Remind also, that each of them can have their own requires file!
+
+  Terminology
+
+   Port
+           A set of scripts or files that describe how to make a certain
+           binary package.
+
+   Group, or series
+           Directories that seperate ports and packages in topical pools.
+
+   Package, or binary package
+           A file that contains all files that belong together, prepared for
+           a certain OS and architecture, mostly machine code and ready to
+           run. In Slackware, ending always in .tgz.
+
+   Source package
+           A file that contains all files that belong together, mostly plain
+           text, valid for several OSes and architectures, and have to be
+           prepared for installation first. Ending in .tar.gz, .tar.bz2, .tgz
+           or .src.rpm etc.
+
+   SlackBuild
+           A Bash-script that is executed to build a package.
+
+   Ports tree
+           Hierarchy of port scripts.
+
+   Package name, or short name
+           In Slackware, the first of the 4 segments in a package descriptor,
+           delimited by -. E.g.: mplayer is the package name of the package
+           mplayer-1.0pre5-i486-1tom.
+
+   Build, or release
+           In Slackware, the last of the 4 segments in a package descriptor,
+           delimited by -. E.g.: 1tom is the build of the package
+           mplayer-1.0pre5-i486-1tom.
+
+  Theory
+
+   -- "What is exactly the difference between the ports in Portpkg and the
+   "ports" in Slackware?"
+
+   Slackware doesn't call that ports! It's just the source code of Slackware.
+
+   The most obvious difference seems to be the file source: While Slackware
+   stores every source package in the same directory, Portpkg just gives a
+   list of URLs, where to get them. The effect is the same, because they have
+   to be downloaded anyway. Besides that, every port collects certain meta
+   information in different files, e.g. md5sums, footprint, flags^2,
+   requires.
+
+   Moreover the SlackBuilds in Portpkg are a little more consequential in
+   declarations (each SlackBuild has to have the lines VERSION=, ARCH= and
+   BUILD= and its values in plain text) and more consequential in
+   implementation (each port has one SlackBuild, each SlackBuild makes one
+   binary package). Have a look at the .build-scripts, the X11-SlackBuild and
+   the KDE-scipts to see what I mean. This behaviour may change in future to
+   make Portpkg more compatible with the Slackware sources.
+
+   The concept of Portpkg's ports tree is to provide a functionality without
+   Portpkg at all, although it's not that easy to use (see above).
+
+   Portpkg generates a list of available ports on-the-fly. That means a
+   VERSION-change in one SlackBuild of a port is immediatly available.
+
+   Usage and output of Portpkg is mostly analogue to the usage and output of
+   Slackware's installpkg and removepkg. Again, the layout of the ports tree
+   is analogue to the layout of Slackware's source/ directory.
+
+  Ports Tree
+
+   This part is sort of phenomenology of the packages tree in Slackware.
+   Let's start with the most common groups, a certain port should be present
+   only once in all these groups:
+
+   +---------------------------------------------------+
+   |ap/   |Applications, console based                 |
+   |------+--------------------------------------------|
+   |d/    |Development tools                           |
+   |------+--------------------------------------------|
+   |gnome/|Applications, that require the GNOME-desktop|
+   |------+--------------------------------------------|
+   |kde/  |Applications, that require the KDE          |
+   |------+--------------------------------------------|
+   |l/    |Libraries                                   |
+   |------+--------------------------------------------|
+   |n/    |Network servers and clients                 |
+   |------+--------------------------------------------|
+   |xap/  |X-applications                              |
+   |------+--------------------------------------------|
+   |y/    |Games                                       |
+   +---------------------------------------------------+
+
+   These groups have special meanings in Portpkg and should be listed in
+   /etc/portpkg/exclude, they are listed, but excluded from being used,
+   except they are specified explicitly, that means via group/name. Ports
+   with alternative build scripts can be listed at maximum once per each
+   group:
+
+   +------------------------------------------------------------------------+
+   |extra/  |Packages with alternative build instructions or versions       |
+   |--------+---------------------------------------------------------------|
+   |pasture/|Packages for compatibility reasons; packages not found on      |
+   |        |non-current-releases                                           |
+   |--------+---------------------------------------------------------------|
+   |testing/|Packages to be tested; beta versions                           |
+   |--------+---------------------------------------------------------------|
+   |open/   |Temporary place for ports that are contributed by users        |
+   +------------------------------------------------------------------------+
+
+   These directories are used to organise the ports tree:
+
+   +----------------------------------------------------------------+
+   |local/    |Subtree that is always preferred before all others   |
+   |----------+-----------------------------------------------------|
+   |z/        |Subtree that contains ports to be used as last resort|
+   |----------+-----------------------------------------------------|
+   |virtual/^2|Subtree for virtual groups                           |
+   +----------------------------------------------------------------+
+
+   Notes
+           * Smart slackers will yell when reading pasture/ and testing/
+             being a group or series. In fact these directories are located
+             one level above the package tree in Slackware. Still to be
+             discussed :)
+           * It is possible to have a port in
+             /usr/ports/local/newstuff/l/wxgtk/SlackBuild, which will be
+             interpreted as l/wxgtk and not as a port of group local/!
+
+  The SlackBuild Blackbox
+
+   To work with Portpkg in a lower level, a SlackBuild must meet following
+   conditions:
+
+   It must...
+
+     o ...be named SlackBuild or *.SlackBuild
+     o ...be a shell script (not necessary to have an executable bit set)
+     o ...run without parameters
+     o ...have all its relating files in the same directory
+     o ...not write to anything but /tmp or $TMP
+     o ...contain these lines without spaces or tabs or variables:
+
+          o VERSION=version
+          o ARCH=arch
+          o BUILD=build
+            except this form:
+          o ${ARCH:-i486}
+
+     o ...name its package name-$VERSION-$ARCH-$BUILD.tgz, while name is the
+       directory it's located in
+     o ...leave its package in /tmp or $TMP
+
+   It may...
+
+     o ...use a custom $ARCH (see above)
+     o ...remove the build tree invoked by parameter --cleanup
+     o ...use TMP=${TMP:-/tmp}
+
+   It will fail if it...
+
+     o ...doesn't build packages itself, but just calls other SlackBuilds
+       ("meta" SlackBuilds)
+     o ...runs package management commands such as installpkg, removepkg,
+       checkinstall
+     o ...is interactive (a workaround is to use --verbose)
+     o ...needs root privileges (a workaround is the flag no-fakeroot)
+
+   If it builds more than one package, each package...
+
+     o ...must not use $NAME
+     o ...can use $VERSION, $ARCH or $BUILD
+     o ...must be named explicitly (no other variables as a result of a
+       for...done loop etc.) e.g. makepkg
+       /tmp/bla-section5-$VERSION-$ARCH-$BUILD.tgz.
+
+   --------------------------------------------------------------------------
+
+   Notes
+           ^1 This feature is specific to Portpkg, ^2 Planned feature, ^3
+           Obsolete feature, to be removed soon
+
+   --------------------------------------------------------------------------
+
+
+References
+
+   Visible links
+   . http://developer.berlios.de/project/showfiles.php?group_id=2486
+   . http://www.pathname.com/fhs/pub/fhs-2.3.html

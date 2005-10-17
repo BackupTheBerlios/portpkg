@@ -4,51 +4,64 @@ TMP=${TMP:-/tmp}
 PKG=$TMP/package-$NAME
 rm -rf $PKG
 
-VERSION=0.38test17
+VERSION=0.38test18
 ARCH=noarch
 BUILD=1tom
 
-# directories
-mkdir -p $PKG/etc/portpkg/plugins
-mkdir -p $PKG/usr/bin
-mkdir -p $PKG/usr/man/man1
-mkdir -p $PKG/var/log/setup
+SYSCONFDIR=etc/portpkg
+BINDIR=usr/bin
+MANDIR=usr/man
+LOCALSTATEDIR=var/log
 
 # configuration
-install -m 644 $CWD/mirrors $PKG/etc/portpkg/
-install -m 644 $CWD/ignore $PKG/etc/portpkg/
-install -m 644 $CWD/exclude $PKG/etc/portpkg/
-install -m 644 $CWD/use $PKG/etc/portpkg/
-#install -m 644 $CWD/translate $PKG/etc/portpkg/
-install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
-install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
-for i in `find $PKG/etc/portpkg/ -type f`; do
+mkdir -p $PKG/$SYSCONFDIR/plugins
+mkdir -p $PKG/$SYSCONFDIR/virtual
+install -m 644 $CWD/mirrors $PKG/$SYSCONFDIR/
+install -m 644 $CWD/ignore $PKG/$SYSCONFDIR/
+install -m 644 $CWD/exclude $PKG/$SYSCONFDIR/
+install -m 644 $CWD/use $PKG/$SYSCONFDIR/
+#install -m 644 $CWD/translate $PKG/$SYSCONFDIR/
+install -m 644 $CWD/export.* $PKG/$SYSCONFDIR/plugins/
+install -m 644 $CWD/sync.* $PKG/$SYSCONFDIR/plugins/
+
+# virtual groups
+for i in $CWD/group.*; do
+  install -m 644 $i $PKG/$SYSCONFDIR/virtual/${i#*group.}
+done
+
+# generate default local.conf
+{ echo -e "This is the complete list of default values:\n"
+  sed -n "/^[A-Z0-9_]*=\${[A-Z0-9_]*:-.*}$/p" $CWD/portpkg
+} | sed "s,=\${.*:-,=,;s,}$,,;s,..*,#&," \
+>$PKG/$SYSCONFDIR/local.conf
+
+# rename anything to .new
+for i in `find $PKG/$SYSCONFDIR/ -type f`; do
   mv $i $i.new
 done
 
 # man page
-install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
-
-# generate local.conf.new
-sed -n "/^# default conf/,/^# /p" $CWD/portpkg \
-| sed "/^#/d;s,=\${.*:-,=,;s,}$,,;s,.*,#&," \
->$PKG/etc/portpkg/local.conf.new
+mkdir -p $PKG/$MANDIR/man1
+install -m 644 $CWD/portpkg.1 $PKG/$MANDIR/man1/
+gzip -9 $PKG/$MANDIR/man?/*
 
 # executables
-install -m 755 $CWD/portpkg $PKG/usr/bin/
-sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
-install -m 755 $CWD/pp-config $PKG/usr/bin/
-install -m 755 $CWD/checkpkg $PKG/usr/bin/
-install -m 755 $CWD/autoport $PKG/usr/bin/
+mkdir -p $PKG/$BINDIR
+install -m 755 $CWD/portpkg $PKG/$BINDIR/
+sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/$BINDIR/portpkg
+install -m 755 $CWD/pp-config $PKG/$BINDIR/
+install -m 755 $CWD/checkpkg $PKG/$BINDIR/
+install -m 755 $CWD/autoport $PKG/$BINDIR/
+chown -R root.bin $PKG/$BINDIR
 
 # integrate pp-config into pkgtool
-ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
+mkdir -p $PKG/$LOCALSTATEDIR/setup
+ln -s /$BINDIR/pp-config $PKG/$LOCALSTATEDIR/setup/setup.portpkg
 
-chown -R root.bin $PKG/usr/bin
-gzip -9 $PKG/usr/man/man?/*
+# documentation
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT COPYING CREDITS FAQ NEWS README* \
+  ABOUT COPYING CREDITS FAQ NEWS README* ROADMAP \
   $PKG/usr/doc/$NAME-$VERSION/
 mkdir -p $PKG/install
 cat $CWD/slack-desc | sed "s,XXX,$VERSION,g" >$PKG/install/slack-desc

@@ -6,11 +6,12 @@ if [ "`basename $0`" != "portpkg" ]; then
   exit 1
 fi
 
+t=`mktemp -d`
+
 row "Syncing $PKG_DIR/ with $PRT_DIR/"
 
-local t=`mktemp -d`
 mkdir -p $PKG_DIR
-ls_virt | any2gpkg >$t/avail
+ls_virt | sorted | any2gpkg >$t/avail
 local gpkg group
 
 # check groups

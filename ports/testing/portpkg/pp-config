@@ -1,40 +1,43 @@
-#!/bin/sh
+#!/bin/sh -u
 #BLURB="Configure Portpkg"
 # don't use "# B L U R B" as above in this script since it'll break pkgtool!
 
 . `which portpkg` || exit 1
 t=`mktemp -d`
 is_root || die
-#newest_slack=10.1
 
 TARGET()
 {
   heading="DISTRIBUTION VERSION"
+  DIST_VER=${DIST_VER:-}
   dialog --title "$heading" --inputbox \
-"What distribution do you focus? Possible answers are '10.0', '10.1' or \
+"What distribution do you focus? Possible answers are such as '10.2' or \
 'current'.
-If unsure enter '$newest_slack'." 0 0 \
+If unsure leave empty." 0 0 \
     "$DIST_VER" 2>$t/res || exit
   DIST_VER=`cat $t/res`
   sed -i "/^DIST_VER=/d" $CFG_DIR/local.conf
+  if ! [ "$DIST_VER" ] && [ -f /etc/slackware-version ]; then
+    DIST_VER=`cat /etc/slackware-version | cut -d " " -f 2 | cut -d . -f 1-2`
+  fi
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$CFG_DIR/local.conf
-    if [ $DIST_VER = current ]; then
-      if dialog --title "$heading" --yesno \
-"It is recommended to add pasture/ to $CFG_DIR/exclude for Slackware-current. \
-Shall I do that for you?
-If unsure answer 'yes'." 0 0; then
-        # add pasture/ to the list of excluded ports
-        sed -i "/^pasture\/$/d" $CFG_DIR/exclude
-        echo "pasture/" >>$CFG_DIR/exclude
-      fi
-    fi
+#    if [ $DIST_VER = current ]; then
+#      if dialog --title "$heading" --yesno \
+#"It is recommended to add pasture/ to $CFG_DIR/exclude for Slackware-current. \
+#Shall I do that for you?
+#If unsure answer 'yes'." 0 0; then
+#        # add pasture/ to the list of excluded ports
+#        sed -i "/^pasture\/$/d" $CFG_DIR/exclude
+#        echo "pasture/" >>$CFG_DIR/exclude
+#      fi
+#    fi
   fi
 }
 
 MAINTAIN()
 {
-  heading="MAINTAINER SETTINGS"
+  heading="MAINTAIN SETTINGS"
   dialog --title "$heading" --inputbox \
 "If you plan to write ports, what tag would you like to use? Only lower case \
 letters allowed (e.g. 'mich').
@@ -120,18 +123,18 @@ If unsure select only \\\`portpkg-tree'.\" 0 0 0 " >$t/menu
   done
 #  # exit if no email set
 #  [ "$MY_EMAIL" ] || return 0
-#  echo -n "dialog --title \"$heading\" --menu \
-#\"Select which exporter you want to use to submit ports.
-#If unsure choose \\\`http'.\" 0 0 0 " >$t/menu
-#  local exporter
-#  for exporter in `grep -l "^#""BLURB=" $CFG_DIR/export.*`; do
-#    echo -n `basename $exporter` \
-#      `grep ^#""BLURB= $exporter | cut -d = -f 2`" "
-#  done >>$t/menu
-#  . $t/menu 2>$t/res
-#  exporter=`cat $t/res`
-#  rm -rf $CFG_DIR/export
-#  ln -sf $exporter $CFG_DIR/export
+  echo -n "dialog --title \"$heading\" --menu \
+\"Select which plugin you want to use to export ports.
+If unsure choose \\\`tarball'.\" 0 0 0 " >$t/menu
+  local exporter
+  for exporter in `grep -l "^#""BLURB=" $CFG_DIR/plugins/export.*`; do
+    echo -n `basename $exporter` \
+      `grep ^#""BLURB= $exporter | cut -d = -f 2`" "
+  done >>$t/menu
+  . $t/menu 2>$t/res
+  exporter=`cat $t/res`
+  rm -rf $CFG_DIR/export
+  ln -sf plugins/$exporter $CFG_DIR/export
 }
 
 #mirrors()
@@ -241,8 +244,10 @@ architecture if at all. If you want to hack on different flags, edit \
 $CFG_DIR/local.conf. Note, that not all SlackBuilds support custom compiler \
 flags.
 If unsure choose 'default'." 0 0 0 \
-    "default"  "Build for i486, optimise for i686" \
-    "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/res
+    "default"     "-O2 -march=i486 $mycpuflag=i686" \
+    "recommended" "-O2 -march=`arch` $mycpuflag=`cpu`" 2>$t/res
+#    "default"  "Build for i486, optimise for i686" \
+#    "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/res
       [ $? = 0 ] || return
       sed -i "/^ARCH=/d" $CFG_DIR/local.conf
       sed -i "/^CFLAGS=/d" $CFG_DIR/local.conf

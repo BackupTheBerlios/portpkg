@@ -1,5 +1,4 @@
-#!/bin/sh
-# -u
+#!/bin/sh -u
 #
 # Autoport -- An Automatic SlackBuild Generator
 # Copyright (C) 2004, 2005 Thomas Pfaff <topf@users.berlios.de>
@@ -71,13 +70,15 @@ snip()
 encode()
 {
   local ver=`echo $version | sed "s/\./\./g"`
-  local enc=`echo "$@" | sed -e "s/$name/\\$NAME/g" -e "s/$ver/\\$VERSION/g"`
+#  local enc=`echo "$@" | sed -e "s/$name/\\$NAME/g" -e "s/$ver/\\$VERSION/g"`
+  local enc=`echo "$@" | sed "s/$ver/\\$VERSION/g"`
   local test
-  local NAME=$name
-  local VERSION=$version
-  eval "test=\"$enc\""
+#  local NAME=$name
+#  local VERSION=$version
+#  eval "test=\"$enc\""
   # try ${NAME} and ${VERSION}
-  [ "$test" != "$@" ] && enc=`echo "$@" | sed -e "s/$name/\\${NAME}/g" -e "s/$ver/\\${VERSION}/g"`
+#  [ "$test" != "$@" ] && enc=`echo "$@" | sed -e "s/$name/\\${NAME}/g" -e "s/$ver/\\${VERSION}/g"`
+  [ "`decode "$enc"`" != "$@" ] && enc=`echo "$@" | sed "s/$ver/\\${VERSION}/g"`
   echo "$enc"
 }
 
@@ -141,7 +142,7 @@ init_autoport()
       -a) i_act=false;;
       -v) version=$2
           shift;;
-      -V) VERBOSE=true;;
+      -V) verbose=true;;
 #          output=/dev/stdout;;
       -g) group=`echo $2 | cut -d / -f 1`
           shift
@@ -235,9 +236,11 @@ SlackBuild script. If autoport doesn't work as expected, please mail at:
   version=`echo $version | sed "s,-,,g"`
   # auto-correct path in GNOME urls: http://.../name/2.12/name-2.12.0.tar.gz
   sver=`echo $version | cut -s -d . -f 1-2`
-  [ "$script" ] && old_sver=`grep ^VERSION= $script | cut -d = -f 2 | cut -s -d . -f 1-2 | sed "s,\.,\.,"`
-  [ "$sver" ] && [ "$old_sver" ] \
-  && sources=`echo "$sources" | sed -e "s,/$old_sver/,/$sver/,g"`
+  if [ "$script" ]; then
+    old_sver=`grep ^VERSION= $script | cut -d = -f 2 | cut -s -d . -f 1-2 | sed "s,\.,\.,"`
+    [ "$sver" ] && [ "$old_sver" ] \
+    && sources=`echo "$sources" | sed -e "s,/$old_sver/,/$sver/,g"`
+  fi
 
   # arch
   ask s "Arch [$arch]:"
@@ -425,6 +428,7 @@ port()
       tarball=`encode "$file"`
       sed -i "s,%tarball%,$tarball," $script
       snip rpm $script
+      snip zip $script
       snip cvs $script;;
     *tar.gz|*.tgz) # yes, there was one file called "xxxtar.gz"!
       format=targz
@@ -434,6 +438,7 @@ port()
       tarball=`encode "$file"`
       sed -i "s,%tarball%,$tarball," $script
       snip rpm $script
+      snip zip $script
       snip cvs $script;;
     *.src.rpm)
       format=srpm
@@ -443,11 +448,23 @@ port()
         rpm2targz $file
         tar xzf `basename $file .rpm`.tar.gz
         tar xzf `basename $file .src.rpm`/$name-$version.tar.gz -C $t/src/
-        tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t/footprint ) \
-      || die "Error while unpacking, maybe wrong URL?"
+        tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t/footprint
+      ) || die "Error while unpacking, maybe wrong URL?"
       tarball=`encode "$file"`
       sed -i "s,%tarball%,$tarball," $script
       snip tar $script
+      snip zip $script
+      snip cvs $script;;
+    *.zip)
+      format=zip
+      ( cd $t/src/
+        unzip $SRC_DIR/$file || die "Error while unpacking, maybe wrong URL?"
+      )
+      unzip -t $SRC_DIR/$file | awk '{ print $4 }' >$t/footprint
+      tarball=`encode "$file"`
+      sed -i "s,%tarball%,$tarball," $script
+      snip tar $script
+      snip rpm $script
       snip cvs $script;;
     cvs://*)
       format=dir
@@ -455,6 +472,7 @@ port()
       cp -a $CVS_DIR/$file $t/src/
       sed -i "s,%cvsdir%,`basename $(echo "$sources" | head -n 1)`," $script
       snip rpm $script
+      snip zip $script
       snip tar $script;;
     *)
       echo "unknown!"
@@ -786,24 +804,22 @@ port()
 #  # write checksum
 #  md5sum $script | cut -d " " -f 1 | xargs echo "# autoport-checksum:" >>$script
 
-  # portpkg?
+  # run portpkg?
   if $build_pkg; then
     ask s "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
     # ok, if this port is new, it has no dependencies, if it's rewritten,
     # let's assume, the user wants to rebuild only this port
+    # we have changed the ports tree, so we clean the cache
+    rm -rf $CACHE/*
     cd $path
-    VERBOSE=$VERBOSE portpkg -b #-q $group/$name
-#    # we have changed the ports tree
-#    rm -rf $SCR_CACHE $LOC_CACHE $PKG_CACHE
-#    NO_REQS=true
-#    do_add $group/$name
+    do_add .
   fi
 }
 
-init_autoport "$@" #2>$output
-collect_info #2>$output
-prepare_port #2>$output
-port #2>$output
+init_autoport "$@"
+collect_info
+prepare_port
+port
 exit 0
 
 #----------------------------------------
@@ -844,6 +860,7 @@ cd $NAME-$VERSION ##extra_sdp
 rpm2targz $CWD/%tarball% ##rpm
 tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
 tar xzvf $NAME-$VERSION.tar.gz ##rpm
+unzip $CWD/%tarball% ##zip
 tar x%tarmode%vf $CWD/%tarball% ##tar
 cp -av $CWD/%cvsdir%/ . ##cvs
 cd %srcdirprefix% ##cd_sdp

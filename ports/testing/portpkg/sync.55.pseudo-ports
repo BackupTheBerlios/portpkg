@@ -98,25 +98,28 @@ cp \$CWD/$name-\$VERSION-\$ARCH-\$BUILD.tgz \$TMP/
 EOF
     echo "$dist/$section/$s.tgz%`basename $s`.tgz" >$path/sources
     grep "/$section/$s.tgz$" $tree/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
-    grep "^$name:" $tree/PACKAGES.TXT >$path/slack-desc
+    grep "^$name:" $tree/PACKAGES.TXT >$path/slack-desc || true
   done
 }
 
 is_defined DIST_VER || die
 
-tree=$PRT_DIR/z/pseudo
+tree=$ZPRT_DIR/pseudo
 dist=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
-mirror=`mirror $dist`
+#mirror=`mirror $dist`
 
-row "Syncing $tree/ with `echo $mirror | cut -d / -f 3` for $DIST_VER"
+row "Syncing $tree/ with `mirror $dist/ | cut -d / -f 3` for $DIST_VER"
 
 t=`mktemp -d`
 mkdir -p $tree
 
 $VERBOSE && local output=/dev/stdout || local output=/dev/null
 
+# we use curl here, so we can use file:///mnt/cdrom as a mirror for example
+has_prog curl
+
 # check if there're updates
-wget -O $t/ChangeLog.txt $mirror/ChangeLog.txt 2>$output
+curl -C - -o $t/ChangeLog.txt `mirror $dist/`ChangeLog.txt 2>$output || die
 if [ -f $tree/ChangeLog.txt ] && cmp -s $tree/ChangeLog.txt $t/ChangeLog.txt; then
   exit 0
 fi
@@ -126,13 +129,13 @@ rm -rf $tree
 mkdir -p $tree/z/kernels
 
 row "Retrieving FILELIST.TXT"
-wget -O $tree/FILELIST.TXT $mirror/FILELIST.TXT 2>$output
+curl -C - -o $tree/FILELIST.TXT `mirror $dist/`FILELIST.TXT 2>$output
 row "Retrieving PACKAGES.TXT"
-wget -O $tree/PACKAGES.TXT $mirror/PACKAGES.TXT 2>$output
+curl -C - -o $tree/PACKAGES.TXT `mirror $dist/`PACKAGES.TXT 2>$output
 row "Retrieving CHECKSUMS.md5"
-wget -O $tree/CHECKSUMS.md5 $mirror/CHECKSUMS.md5 2>$output
+curl -C - -o $tree/CHECKSUMS.md5 `mirror $dist/`CHECKSUMS.md5 2>$output
 row "Retrieving kernels/VERSIONS.TXT"
-wget -O $tree/z/kernels/VERSIONS.TXT $mirror/kernels/VERSIONS.TXT 2>$output
+curl -C - -o $tree/z/kernels/VERSIONS.TXT `mirror $dist/`kernels/VERSIONS.TXT 2>$output
 
 # make a simple file list
 cat $tree/FILELIST.TXT | tr -s " " | cut -d " " -f 8 | cut -c 3- >$t/files

@@ -15,17 +15,33 @@ About The Portpkg Project
 To-Do-List
 
      o Double check all ports. Make them 100 % work on Slackware 10.0.
-     o Support for CVS or maybe RSYNC, SVN in sources.
+     o Support for RSYNC in sources?
      o Cooperation with slackpkg (or slapt-get/swaret) for dependency
        resolution of Slackware packages?
-     o Remove "|| exit 1" and execute SlackBuilds with "sh -e" (fail on any
-       error)
      o Signing of contributed ports (GPG)
-     o Remove pp-sync-* completely out of portpkg
+     o More modular plugin system
      o Feature freeze, then beta-status, documentation, maybe translation.
 
-   Already done:
+  Discussion
 
+     o We have normal groups (ap/, d/, gnome/,... y/) and restricted groups
+       (testing/, pasture/, extra/, open/). How to sort ports into these
+       groups
+
+          o regarding their version: normal or testing/ (older packages to
+            pasture/?)
+          o regarding patches/features: testing/ or extra/?
+          o regarding compatibility: pasture/ and/or different naming scheme
+            (e.g. l/db4 and pasture/db31)?
+
+     o How to name ports?
+
+  Already-Done-Sublist
+
+     o Remove pp-sync-* completely out of portpkg
+     o Remove "|| exit 1" and execute SlackBuilds with "sh -e" (fail on any
+       error)
+     o Support for CVS, SVN in sources.
      o Optional dependencies
      o Integrated pp-sync-bin into portpkg --sync
      o Costumiseable paths for source code and packages

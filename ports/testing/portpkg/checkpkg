@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -u
 # checkpkg - a small dialog interface for portpkg portsystem
 
 . `which portpkg` || exit 1
@@ -6,8 +6,9 @@
 main_menu()
 {
   local t=`mktemp -d`
+  [ "$1" ] && opt="--default-item $1" || opt=""
   echo -n "dialog --title \"LIST OF AVAILABLE GROUPS\" --cancel-label \"Quit\" \
---menu \"These are the available groups. Select the one you want to look \
+$opt --menu \"These are the available groups. Select the one you want to look \
 into.\" 0 0 0 " >$t/menu
   do_list | cut -d / -f 1 | sort -u | sed \
   -e "s,^a$,& \"System packages\" ," \
@@ -34,7 +35,7 @@ into.\" 0 0 0 " >$t/menu
   -e "s,^x$,& \"X-Window-system\" ," \
   -e "s,^xap$,& \"X-Applications\" ," \
   -e "s,^y$,& \"Games\" ," \
-  -e "s,^[^ ]*$,& & ," | tr "\n" " "  >>$t/menu
+  -e "s,^[^ ]*$,& & ," | tr "\n" " " >>$t/menu
   . $t/menu
 }
 
@@ -60,9 +61,9 @@ install them.\" 21 75 12 " >$t/menu
     pkg=`echo $virt | sed "s,^.*/,,"`
     desc=`grep -s ^$name: $(dirname $virt)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | sed "s,[\"],',g"`
     desc=${desc:-}
-    [ $(fgrep -xm 1 $pkg $t/inst) ] \
-    && echo \"$name\" \"$desc\" on \"$pkg\" \\>>$t/list \
-    || echo \"$name\" \"$desc\" off \"$pkg\" \\>>$t/list
+    [ "`fgrep -xm 1 $pkg $t/inst`" ] \
+    && echo \"$name\" \"$desc\" on \"$pkg\" \\ >>$t/list \
+    || echo \"$name\" \"$desc\" off \"$pkg\" \\ >>$t/list
     i=`expr $i + 1`
     echo `expr 100 \* $i / $count`
   done <$t/unames | dialog --gauge "Searching group $1/..." 0 40
@@ -97,8 +98,10 @@ install them.\" 21 75 12 " >$t/menu
 }
 
 t=`mktemp -d`
+last=""
 while true; do
-  main_menu 2>$t/group || break
+  main_menu $last 2>$t/group || break
+  last=`cat $t/group`
   check_group `cat $t/group` || break
 done
 clear

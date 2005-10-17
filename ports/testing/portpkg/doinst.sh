@@ -23,11 +23,11 @@ for i in etc/portpkg/plugins/export.*.new; do
   mv $i etc/portpkg/plugins/`basename $i .new`
 done
 
-# export.http is default
+# export.tarball is default
 if ! [ -L etc/portpkg/export ]; then
-  ln -s plugins/export.http etc/portpkg/export
+  ln -s plugins/export.tarball etc/portpkg/export
 fi
 
-for i in etc/portpkg/*.new; do
+for i in etc/portpkg/*.new etc/portpkg/virtual/*.new; do
   config $i
 done

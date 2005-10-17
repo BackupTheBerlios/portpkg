@@ -1,5 +1,16 @@
 News
 
+  10/15/2005
+
+   Portpkg
+           * We are gladly expecting the 1st anniversary of the Portpkg
+             Project, so I decided to remove the information about this
+             site's virginity and give it a face lift (something that is
+             mandatory after youth has ended).
+           * We are also currently celebrating Bad English Days, but everyone
+             is invited to make them an early finish (hint:
+             QuestionsAndAnswers still is a Wiki)!
+
   10/12/2005
 
    Portpkg
@@ -40,20 +51,19 @@ News
   04/26/2005
 
    Ports
-           Currently we have the following download methods (note, that
-           portpkg --sync only supports the main CVS server)
+           * Currently we have the following download methods (note, that
+             portpkg --sync only supports the main CVS server)
 
-                CVS
-                        cvs -d
-                        :pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co
-                        -P ports (this is our main CVS server)
-                        cvs -d
-                        :pserver:anonymous@dwarfforge.sytes.net:/portpkg co
-                        -P ports (many thanks to Steffen for mirroring)
+   CVS
+   o CVS
+                  cvs -d :pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg
+                  co -P ports (this is our main CVS server)
+                  cvs -d :pserver:anonymous@dwarfforge.sytes.net:/portpkg co
+                  -P ports (many thanks to Steffen for mirroring)
 
-                HTTPUP
-                        httpup sync http://portpkg.berlios.de/ports (this is
-                        an experimental repository based on httpup)
+          HTTPUP
+                  httpup sync http://portpkg.berlios.de/ports (this is an
+                  experimental repository based on httpup)
 
   04/04/2005
 
@@ -76,8 +86,8 @@ News
   03/29/2005
 
    Ports
-           We have now over 500 ports. Thanks to all contributors! Keep on
-           submitting :)
+           * We have now over 500 ports. Thanks to all contributors! Keep on
+             submitting :)
 
   03/12/2005
 
@@ -92,10 +102,11 @@ News
   03/03/2005
 
    Portpkg
-           I've just found a bug in the testing version
-           (portpkg-0.35cvs-noarch-7tom and -8tom), which removes /dev/stdout
-           (a symlink to /dev/fd/1) when downlading in verbose mode. If
-           you're running the testing version, please upgrade to fix that!
+           * I've just found a bug in the testing version
+             (portpkg-0.35cvs-noarch-7tom and -8tom), which removes
+             /dev/stdout (a symlink to /dev/fd/1) when downlading in verbose
+             mode. If you're running the testing version, please upgrade to
+             fix that!
 
   02/24/2005
 
@@ -140,12 +151,13 @@ News
   02/08/2005
 
    Ports
-           I'm currently preparing the ports collection for custom processor
-           optimations (via $SLKCFLAGS variables) and appreciate any help on
-           this. If you're brave enough, you can test different values with
-           ARCH=arch SLKCFLAGS="cflags" sh SlackBuild and tell me about
-           stability/compatibility and so forth under my mail address in
-           TodoBugsAbout, or post it in our Forums (see above). Thanks.
+           * I'm currently preparing the ports collection for custom
+             processor optimations (via $SLKCFLAGS variables) and appreciate
+             any help on this. If you're brave enough, you can test different
+             values with ARCH=arch SLKCFLAGS="cflags" sh SlackBuild and tell
+             me about stability/compatibility and so forth under my mail
+             address in TodoBugsAbout, or post it in our Forums (see above).
+             Thanks.
 
   02/02/2005
 
@@ -174,7 +186,7 @@ News
   01/10/2005
 
    Portpkg
-           * Release 0.32, code name "Hafenordnung für Schlackstoffe".
+           * Release 0.32, code name "Hafenordnung f*r Schlackstoffe".
 
    Ports
            * Ports that are needed by Slackware-10.0 systems only are moved
@@ -202,7 +214,7 @@ News
   12/16/2004
 
    Portpkg
-           Release 0.31.
+           * Release 0.31.
 
   12/12/2004
 
@@ -285,6 +297,11 @@ News
            * Added Xfce-4.1.99 to testing/. A cd /usr/ports/testing; portpkg
              *xf* should do it.
 
+  10/20/2004
+
+   Start of the project
+           * Diskussion auf Slackforum.de (German)
+
    --------------------------------------------------------------------------
 
 
@@ -294,6 +311,6 @@ References
    . http://developer.berlios.de/project/showfiles.php?group_id=2486
    . http://developer.berlios.de/forum/?group_id=2486
    . http://developer.berlios.de/projects/portpkg
-   . http://www.slackforum.de/forum/index.php?t=msg&th=1344
    . http://portpkg.berlios.de/people
    . http://www.buetow.org/
+   . http://www.slackforum.de/forum/index.php?t=msg&th=1344

@@ -1,4 +1,4 @@
-#BLURB="Export to Portpkg via HTTP"
+#BLURB="Export to tarball in $TMP"
 
 # check that we're a plug-in
 if [ "`basename $0`" != "portpkg" ]; then
@@ -6,23 +6,13 @@ if [ "`basename $0`" != "portpkg" ]; then
   exit 1
 fi
 
-row "Submitting $group/$package via HTTP"
-
-has_prog curl || die
-
-export_root="http://portpkg.berlios.de/upload.php"
-t=`mktemp -d`
-
-#FIXME: use at least 7.12.2 (Slackware 10.1)
-case `curl -V | head -n 1 | cut -d " " -f 2` in
-  7.12.0|7.12.1) die "You need curl >= 7.12.2";;
-  7.12.*)        ;;
-  *)             die "You need curl >= 7.12.2";;
-esac
+row "Creating tarball for $group/$package in $TMP"
 
 [ "$MY_TAG" ] || die "No tag configured. Please run: pp-config"
 [ "$MY_EMAIL" ] || die "No mail address configured. Please run: pp-config"
 [ "$MY_REALNAME" ] || die "No real name configured. Please run: pp-config"
+
+t=`mktemp -d`
 
 # make an info file
 cat >$path/info <<EOF
@@ -35,7 +25,3 @@ EOF
 rm -rf $TMP/$package.tar.bz2
 tar cjf $TMP/$package.tar.bz2 --exclude "*CVS*" -C `dirname $path` $name
 rm $path/info
-
-# upload where ever it should be
-curl -F filetoupload=@$TMP/$package.tar.bz2 $export_root >/dev/null 2>&1 \
-|| error "An error occured!"

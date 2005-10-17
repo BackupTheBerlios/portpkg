@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -u
 # admin.checktree -- make some random checks to the ports tree
 #                    run this from time to time
 #                    FOR PORTPKG ADMINISTRATION ONLY
@@ -6,6 +6,7 @@
 # with some great ideas supposed by hnaz
 
 . `which portpkg` || exit 1
+
 summary=`mktemp -d`
 
 check_ports()
@@ -19,7 +20,7 @@ check_ports()
   stanza "Checking now $count ($percent %) of $max random ports:"
   for n in `seq 1 $count`; do
     rnd=`expr $RANDOM \* $max / 32768`
-    port=`echo "$ports" | sed -n "$(random $max)p"`
+    port=`echo "$ports" | sed -n "${rnd}p"`
     get_info `echo $port | pkg2name`
     row "Checking $group/$name (# $rnd)"
     for src in $sources; do
@@ -95,4 +96,4 @@ doit()
   cat $summary/vers 2>/dev/null | column -t
 }
 
-doit 2>/dev/null
+doit #2>/dev/null
