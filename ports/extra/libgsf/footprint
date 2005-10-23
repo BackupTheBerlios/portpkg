@@ -1,111 +1,128 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         408 install/doinst.sh
--rw-r--r-- root/root         259 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/libgsf-1.12.0/
--rw-r--r-- root/root          95 usr/doc/libgsf-1.12.0/AUTHORS
--rw-r--r-- root/root         581 usr/doc/libgsf-1.12.0/BUGS
--rw-r--r-- root/root       17992 usr/doc/libgsf-1.12.0/COPYING
--rw-r--r-- root/root      111227 usr/doc/libgsf-1.12.0/ChangeLog
--rw-r--r-- root/root        3968 usr/doc/libgsf-1.12.0/HACKING
--rw-r--r-- root/root        9240 usr/doc/libgsf-1.12.0/INSTALL
--rw-r--r-- root/root        9615 usr/doc/libgsf-1.12.0/NEWS
--rw-r--r-- root/root        1671 usr/doc/libgsf-1.12.0/README
--rw-r--r-- root/root        1513 usr/doc/libgsf-1.12.0/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/libgsf-1/
-drwxr-xr-x root/root           0 usr/include/libgsf-1/gsf-gnome/
--rw-r--r-- root/root        1491 usr/include/libgsf-1/gsf-gnome/gsf-input-bonobo.h
--rw-r--r-- root/root        1655 usr/include/libgsf-1/gsf-gnome/gsf-input-gnomevfs.h
--rw-r--r-- root/root        1515 usr/include/libgsf-1/gsf-gnome/gsf-output-bonobo.h
--rw-r--r-- root/root        1622 usr/include/libgsf-1/gsf-gnome/gsf-output-gnomevfs.h
--rw-r--r-- root/root        1704 usr/include/libgsf-1/gsf-gnome/gsf-shared-bonobo-stream.h
-drwxr-xr-x root/root           0 usr/include/libgsf-1/gsf-win32/
--rw-r--r-- root/root        1466 usr/include/libgsf-1/gsf-win32/gsf-input-win32.h
--rw-r--r-- root/root        1469 usr/include/libgsf-1/gsf-win32/gsf-output-win32.h
-drwxr-xr-x root/root           0 usr/include/libgsf-1/gsf/
--rw-r--r-- root/root        2571 usr/include/libgsf-1/gsf/gsf-doc-meta-data.h
--rw-r--r-- root/root        1882 usr/include/libgsf-1/gsf/gsf-docprop-vector.h
--rw-r--r-- root/root        3734 usr/include/libgsf-1/gsf/gsf-impl-utils.h
--rw-r--r-- root/root        1617 usr/include/libgsf-1/gsf/gsf-infile-impl.h
--rw-r--r-- root/root        1518 usr/include/libgsf-1/gsf/gsf-infile-msole.h
--rw-r--r-- root/root        1449 usr/include/libgsf-1/gsf/gsf-infile-msvba.h
--rw-r--r-- root/root        1407 usr/include/libgsf-1/gsf/gsf-infile-stdio.h
--rw-r--r-- root/root        1400 usr/include/libgsf-1/gsf/gsf-infile-zip.h
--rw-r--r-- root/root        1609 usr/include/libgsf-1/gsf/gsf-infile.h
--rw-r--r-- root/root        1115 usr/include/libgsf-1/gsf/gsf-input-bzip.h
--rw-r--r-- root/root        1432 usr/include/libgsf-1/gsf/gsf-input-gzip.h
--rw-r--r-- root/root        2303 usr/include/libgsf-1/gsf/gsf-input-impl.h
--rw-r--r-- root/root        1199 usr/include/libgsf-1/gsf/gsf-input-iochannel.h
--rw-r--r-- root/root        1646 usr/include/libgsf-1/gsf/gsf-input-memory.h
--rw-r--r-- root/root        1557 usr/include/libgsf-1/gsf/gsf-input-proxy.h
--rw-r--r-- root/root        1484 usr/include/libgsf-1/gsf/gsf-input-stdio.h
--rw-r--r-- root/root        1636 usr/include/libgsf-1/gsf/gsf-input-textline.h
--rw-r--r-- root/root        2325 usr/include/libgsf-1/gsf/gsf-input.h
--rw-r--r-- root/root        5869 usr/include/libgsf-1/gsf/gsf-libxml.h
--rw-r--r-- root/root        7396 usr/include/libgsf-1/gsf/gsf-meta-names.h
--rw-r--r-- root/root        2037 usr/include/libgsf-1/gsf/gsf-msole-utils.h
--rw-r--r-- root/root        1500 usr/include/libgsf-1/gsf/gsf-outfile-impl.h
--rw-r--r-- root/root        1721 usr/include/libgsf-1/gsf/gsf-outfile-msole.h
--rw-r--r-- root/root        1413 usr/include/libgsf-1/gsf/gsf-outfile-stdio.h
--rw-r--r-- root/root        2023 usr/include/libgsf-1/gsf/gsf-outfile-zip.h
--rw-r--r-- root/root        1560 usr/include/libgsf-1/gsf/gsf-outfile.h
--rw-r--r-- root/root        1458 usr/include/libgsf-1/gsf/gsf-output-bzip.h
--rw-r--r-- root/root        2028 usr/include/libgsf-1/gsf/gsf-output-csv.h
--rw-r--r-- root/root        1452 usr/include/libgsf-1/gsf/gsf-output-gzip.h
--rw-r--r-- root/root        1464 usr/include/libgsf-1/gsf/gsf-output-iconv.h
--rw-r--r-- root/root        1318 usr/include/libgsf-1/gsf/gsf-output-impl.h
--rw-r--r-- root/root        1463 usr/include/libgsf-1/gsf/gsf-output-iochannel.h
--rw-r--r-- root/root        1472 usr/include/libgsf-1/gsf/gsf-output-memory.h
--rw-r--r-- root/root        1579 usr/include/libgsf-1/gsf/gsf-output-stdio.h
--rw-r--r-- root/root        3298 usr/include/libgsf-1/gsf/gsf-output.h
--rw-r--r-- root/root        1663 usr/include/libgsf-1/gsf/gsf-structured-blob.h
--rw-r--r-- root/root        2087 usr/include/libgsf-1/gsf/gsf-timestamp.h
--rw-r--r-- root/root        4887 usr/include/libgsf-1/gsf/gsf-utils.h
--rw-r--r-- root/root        1402 usr/include/libgsf-1/gsf/gsf.h
-drwxr-xr-x root/root           0 usr/lib/
--rwxr-xr-x root/root         922 usr/lib/libgsf-1.la
--rwxr-xr-x root/root      180264 usr/lib/libgsf-1.so.1.12.0
--rwxr-xr-x root/root        1467 usr/lib/libgsf-gnome-1.la
--rwxr-xr-x root/root       17124 usr/lib/libgsf-gnome-1.so.1.12.0
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         306 usr/lib/pkgconfig/libgsf-1.pc
--rw-r--r-- root/root         235 usr/lib/pkgconfig/libgsf-gnome-1.pc
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/gsf/
--rw-r--r-- root/root        2151 usr/share/gtk-doc/html/gsf/api.html
--rw-r--r-- root/root        6924 usr/share/gtk-doc/html/gsf/gsf-Bononbo.html
--rw-r--r-- root/root       11430 usr/share/gtk-doc/html/gsf/gsf-Compression.html
--rw-r--r-- root/root        4244 usr/share/gtk-doc/html/gsf/gsf-GIOChannel.html
--rw-r--r-- root/root        8778 usr/share/gtk-doc/html/gsf/gsf-GnomeVFS.html
--rw-r--r-- root/root       10360 usr/share/gtk-doc/html/gsf/gsf-Infile-reading-structed-files.html
--rw-r--r-- root/root       32938 usr/share/gtk-doc/html/gsf/gsf-Input-from-unstructured-files.html
--rw-r--r-- root/root       42757 usr/share/gtk-doc/html/gsf/gsf-MS-OLE2.html
--rw-r--r-- root/root        7902 usr/share/gtk-doc/html/gsf/gsf-Outfile-writing-structed-files.html
--rw-r--r-- root/root       29228 usr/share/gtk-doc/html/gsf/gsf-Output-to-unstructured-files.html
--rw-r--r-- root/root       12448 usr/share/gtk-doc/html/gsf/gsf-Reading-and-Writing-from-local-files-and-directories.html
--rw-r--r-- root/root        5988 usr/share/gtk-doc/html/gsf/gsf-Structured-Blobs.html
--rw-r--r-- root/root       19079 usr/share/gtk-doc/html/gsf/gsf-Text.html
--rw-r--r-- root/root       48395 usr/share/gtk-doc/html/gsf/gsf-XML-and-libxml.html
--rw-r--r-- root/root       36578 usr/share/gtk-doc/html/gsf/gsf-Zip.html
--rw-r--r-- root/root       15212 usr/share/gtk-doc/html/gsf/gsf-memory.html
--rw-r--r-- root/root       45302 usr/share/gtk-doc/html/gsf/gsf-metadata.html
--rw-r--r-- root/root       64783 usr/share/gtk-doc/html/gsf/gsf-utils.html
--rw-r--r-- root/root       45211 usr/share/gtk-doc/html/gsf/gsf.devhelp
--rw-r--r-- root/root         654 usr/share/gtk-doc/html/gsf/home.png
--rw-r--r-- root/root        4552 usr/share/gtk-doc/html/gsf/index.html
--rw-r--r-- root/root       44312 usr/share/gtk-doc/html/gsf/index.sgml
--rw-r--r-- root/root        2909 usr/share/gtk-doc/html/gsf/into.html
--rw-r--r-- root/root        2740 usr/share/gtk-doc/html/gsf/io.html
--rw-r--r-- root/root       46379 usr/share/gtk-doc/html/gsf/ix01.html
--rw-r--r-- root/root         459 usr/share/gtk-doc/html/gsf/left.png
--rw-r--r-- root/root        2419 usr/share/gtk-doc/html/gsf/misc.html
--rw-r--r-- root/root        3128 usr/share/gtk-doc/html/gsf/parsers.html
--rw-r--r-- root/root         472 usr/share/gtk-doc/html/gsf/right.png
--rw-r--r-- root/root        3516 usr/share/gtk-doc/html/gsf/sources.html
--rw-r--r-- root/root         820 usr/share/gtk-doc/html/gsf/style.css
--rw-r--r-- root/root         406 usr/share/gtk-doc/html/gsf/up.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/gsf-office-thumbnailer.schemas
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/gsf-office-thumbnailer
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/libgsf-1.12.3/
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/BUGS
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/COPYING
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/HACKING
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/INSTALL
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/NEWS
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/README
+-rw-r--r--  root/root  usr/doc/libgsf-1.12.3/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/libgsf-1/
+drwxr-xr-x  root/root  usr/include/libgsf-1/gsf-gnome/
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-gnome/gsf-input-bonobo.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-gnome/gsf-input-gnomevfs.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-gnome/gsf-output-bonobo.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-gnome/gsf-output-gnomevfs.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-gnome/gsf-shared-bonobo-stream.h
+drwxr-xr-x  root/root  usr/include/libgsf-1/gsf-win32/
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-win32/gsf-input-win32.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf-win32/gsf-output-win32.h
+drwxr-xr-x  root/root  usr/include/libgsf-1/gsf/
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-blob.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-clip-data.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-doc-meta-data.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-docprop-vector.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-impl-utils.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-infile-impl.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-infile-msole.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-infile-msvba.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-infile-stdio.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-infile-zip.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-infile.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-bzip.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-gzip.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-impl.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-iochannel.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-memory.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-proxy.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-stdio.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input-textline.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-input.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-libxml.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-meta-names.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-msole-utils.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-outfile-impl.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-outfile-msole.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-outfile-stdio.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-outfile-zip.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-outfile.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-bzip.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-csv.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-gzip.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-iconv.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-impl.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-iochannel.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-memory.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output-stdio.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-output.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-structured-blob.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-timestamp.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf-utils.h
+-rw-r--r--  root/root  usr/include/libgsf-1/gsf/gsf.h
+drwxr-xr-x  root/root  usr/lib/
+-rwxr-xr-x  root/root  usr/lib/libgsf-1.la
+-rwxr-xr-x  root/root  usr/lib/libgsf-1.so.1.12.3
+-rwxr-xr-x  root/root  usr/lib/libgsf-gnome-1.la
+-rwxr-xr-x  root/root  usr/lib/libgsf-gnome-1.so.1.12.3
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/libgsf-1.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/libgsf-gnome-1.pc
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/gsf-office-thumbnailer.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/gtk-doc/
+drwxr-xr-x  root/root  usr/share/gtk-doc/html/
+drwxr-xr-x  root/root  usr/share/gtk-doc/html/gsf/
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/api.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Bononbo.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Compression.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-GIOChannel.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-GnomeVFS.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-GsfBlob.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-GsfClipData.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Infile-reading-structed-files.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Input-from-unstructured-files.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-MS-OLE2.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Outfile-writing-structed-files.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Output-to-unstructured-files.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Reading-and-Writing-from-local-files-and-directories.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Structured-Blobs.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Text.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-XML-and-libxml.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-Zip.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-memory.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-metadata.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf-utils.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/gsf.devhelp
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/home.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/index.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/index.sgml
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/into.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/io.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/ix01.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/left.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/misc.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/parsers.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/right.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/sources.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/style.css
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gsf/up.png
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/libgsf.mo
