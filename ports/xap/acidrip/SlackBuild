@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.14
 ARCH=noarch
-BUILD=2tom
+BUILD=4tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -14,22 +14,19 @@ tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
 chown -R root.root .
 perl Makefile.PL
-make PREFIX=/usr
-make prefix=/usr
 make
 make install DESTDIR=$PKG
+#+install
+mkdir -p $PKG/usr/share/applications
+install -m 644 $CWD/acidrip.desktop $PKG/usr/share/applications/
+logo=`find $PKG/usr/lib/perl5/site_perl/ -name logo.png | sed "s,^$PKG,,"`
+echo "Icon=$logo" >>$PKG/usr/share/applications/acidrip.desktop
+#+install
 rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rfv $PKG/usr/info/dir
-find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-#+post-install-fix
-if ! test -f $PKG/usr/share/applications/acidrip.desktop; then
-  mkdir -p $PKG/usr/share/applications
-  install -m 644 $CWD/acidrip.desktop $PKG/usr/share/applications/
-fi
-#+post-install-fix
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
+gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   CHANGELOG COPYING MANIFEST TODO \
