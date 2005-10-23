@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.6.2
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -37,6 +37,13 @@ CXXFLAGS="$SLKCFLAGS" \
 #=configure
 make
 make install DESTDIR=$PKG
+#+install
+( mkdir -p $PKG/usr/share/themes
+  cd $PKG/usr/share/themes
+  tar xzvf $CWD/$NAME-metacity-0.6.tar.gz
+  chown -R root.root .
+)
+#+install
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
