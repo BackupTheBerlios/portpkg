@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.6.4
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -20,8 +20,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/tpb-$VERSION.tar.bz2
+cd tpb-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -34,8 +34,6 @@ make
 make install DESTDIR=$PKG
 #+install
 mv $PKG/etc/tpbrc $PKG/etc/tpbrc.new
-mkdir -p $PKG/dev
-mknod $PKG/dev/nvram c 10 144
 #+install
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
@@ -60,6 +58,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/tpb-$VERSION
   rm -rf $PKG
 fi
