@@ -1,49 +1,70 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         292 install/doinst.sh
--rw-r--r-- root/root         559 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/quodlibet-0.11/
--rw-r--r-- root/root       17992 usr/doc/quodlibet-0.11/COPYING
--rw-r--r-- root/root        7402 usr/doc/quodlibet-0.11/NEWS
--rw-r--r-- root/root        1950 usr/doc/quodlibet-0.11/README
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/quodlibet/
--rw-r--r-- root/root         882 usr/lib/quodlibet/exfalso.png
--rwxr-xr-x root/root        1846 usr/lib/quodlibet/exfalso.py
--rw-r--r-- root/root         852 usr/lib/quodlibet/quodlibet.png
--rwxr-xr-x root/root       12451 usr/lib/quodlibet/quodlibet.py
--rw-r--r-- root/root       84061 usr/lib/quodlibet/quodlibet.zip
--rw-r--r-- root/root         774 usr/lib/quodlibet/volume.png
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root          46 usr/man/man1/exfalso.1.gz
--rw-r--r-- root/root        4314 usr/man/man1/quodlibet.1.gz
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root         212 usr/share/applications/exfalso.desktop
--rw-r--r-- root/root         245 usr/share/applications/quodlibet.desktop
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root       19595 usr/share/locale/de/LC_MESSAGES/quodlibet.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r-- root/root       24715 usr/share/locale/en_CA/LC_MESSAGES/quodlibet.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r-- root/root       24714 usr/share/locale/en_GB/LC_MESSAGES/quodlibet.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       15863 usr/share/locale/fr/LC_MESSAGES/quodlibet.mo
-drwxr-xr-x root/root           0 usr/share/locale/pl/
-drwxr-xr-x root/root           0 usr/share/locale/pl/LC_MESSAGES/
--rw-r--r-- root/root       18058 usr/share/locale/pl/LC_MESSAGES/quodlibet.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root       27277 usr/share/locale/ru/LC_MESSAGES/quodlibet.mo
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root         882 usr/share/pixmaps/exfalso.png
--rw-r--r-- root/root         852 usr/share/pixmaps/quodlibet.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/quodlibet-0.14/
+-rw-r--r--  root/root  usr/doc/quodlibet-0.14/COPYING
+-rw-r--r--  root/root  usr/doc/quodlibet-0.14/NEWS
+-rw-r--r--  root/root  usr/doc/quodlibet-0.14/README
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/quodlibet/
+-rw-r--r--  root/root  usr/lib/quodlibet/exfalso.png
+-rwxr-xr-x  root/root  usr/lib/quodlibet/exfalso.py
+-rw-r--r--  root/root  usr/lib/quodlibet/ql-volume-max.png
+-rw-r--r--  root/root  usr/lib/quodlibet/ql-volume-medium.png
+-rw-r--r--  root/root  usr/lib/quodlibet/ql-volume-min.png
+-rw-r--r--  root/root  usr/lib/quodlibet/ql-volume-zero.png
+-rw-r--r--  root/root  usr/lib/quodlibet/quodlibet.png
+-rwxr-xr-x  root/root  usr/lib/quodlibet/quodlibet.py
+-rw-r--r--  root/root  usr/lib/quodlibet/quodlibet.zip
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/exfalso.1.gz
+-rw-r--r--  root/root  usr/man/man1/quodlibet.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/exfalso.desktop
+-rw-r--r--  root/root  usr/share/applications/quodlibet.desktop
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/quodlibet.mo
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/exfalso.png
+-rw-r--r--  root/root  usr/share/pixmaps/quodlibet.png
