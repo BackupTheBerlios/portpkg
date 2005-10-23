@@ -5,17 +5,19 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.4
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xjvf $CWD/i855crt-$VERSION.tar.bz2
+cd i855crt-$VERSION
 chown -R root.root .
+make PREFIX=/usr
 #=install
-make
+mkdir -p $PKG/etc
 mkdir -p $PKG/usr/bin
+install -m 644 i855crt.conf $PKG/etc/i855crt.conf.new
 install -m 755 i855crt $PKG/usr/bin/
 # don't overwrite dumpreg from svgalib
 install -m 755 dumpreg $PKG/usr/bin/i855crt-dumpreg
@@ -37,11 +39,12 @@ find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/i855crt-$VERSION
   rm -rf $PKG
 fi
