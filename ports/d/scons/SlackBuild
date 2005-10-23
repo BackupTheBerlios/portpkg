@@ -1,6 +1,6 @@
 VERSION=0.96.1
 ARCH=${ARCH:-i486}
-BUILD=2lem
+BUILD=3tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -19,10 +19,10 @@ python src/script/scons.py build/scons
 cd build/scons
 python setup.py install --standard-lib --prefix=$PKG/usr
 
-mkdir -p $PKG/usr/man
+mkdir -p $PKG/usr/man/man1
 cp -a \
     scons.1 sconsign.1 \
-    $PKG/usr/man
+    $PKG/usr/man/man1
 
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
