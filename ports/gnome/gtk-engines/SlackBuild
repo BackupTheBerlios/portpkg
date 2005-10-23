@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.6.4
+VERSION=2.6.5
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -34,6 +34,11 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
+#+install
+# remove clearlooks engine which we have in more recent version seperately
+rm -r $PKG/usr/share/themes/Clearlooks
+rm $PKG/usr/lib/gtk-2.0/*/engines/libclearlooks.*
+#+install
 rm -rfv $PKG/usr/info/dir
 chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
