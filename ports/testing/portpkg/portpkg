@@ -78,11 +78,16 @@ ls_scr() # regex >scr_list
 { cache $CACHE/scr "find $PRT_DIR/ -name \"*SlackBuild\"" "$@"; }
 ls_virt() # regex >virt_list
 { cache $CACHE/virt "ls_scr | scr2virt" "$@"; }
+ls_varch() # regex >virt_list
+{ cache $CACHE/varch "ls_virt | fix_arch" "$@"; }
 
 # sort port scripts
 sorted() # <path_list >path_list
 { sed "s,^$LPRT_DIR/,/0/,;s,^$ZPRT_DIR/,/z/," \
 | sort | sed "s,^/0/,$LPRT_DIR/,;s,^/z/,$ZPRT_DIR/,"; }
+fix_arch() # <pkg_list >pkg_list
+{ case $ARCH in i?86) local filter="i.86";; *) local filter="$ARCH";; esac
+sed -n "/-\($filter\|noarch\)-[^-]*$/p"; }
 
 # common expressions
 use_ex() # >regex
@@ -263,7 +268,7 @@ find $path/ -name "*SlackBuild" -maxdepth 1; } | head -n 1`
   fi
 
   # virt is not a global variable
-  local virt=`echo $script | scr2virt`
+  local virt=`echo $script | scr2virt | fix_arch`
 
   group=`echo $virt | any2gpkg | cut -d / -f 1`
   package=`echo $virt | any2base`
@@ -673,9 +678,9 @@ check_reqs()
     elif [ "$inst_pkg" ]; then
       :
     # is maybe a package in the cache?
-    elif [ "`ls_pkg $(regex $req)`" ]; then
+    elif [ "`ls_pkg $(regex $req)` | fix_arch" ]; then
       $DRYRUN && return
-      if ! sh -c "installpkg `ls_pkg $(regex $req) | head -n 1`.tgz \
+      if ! sh -c "installpkg `ls_pkg $(regex $req) | fix_arch | head -n 1`.tgz \
 | tee $t/output | grep -e ^PACKAGE -e ^$name: -e ^Executing"; then
         cat $t/output
         error "Install failed!"
@@ -879,7 +884,7 @@ do_list() # [pkgex-list] >pkgex_list
   case "$*" in
     "") ls_virt;;
     *)  # grep arguments
-        ls_virt `regex "$@"`
+        ls_virt `regex "$@"` | fix_arch
         # in order to see virtual groups we add them here intentionally
         grep -s `regex "$@"` $CFG_DIR/virtual;;
   esac | sorted | any2gpkg

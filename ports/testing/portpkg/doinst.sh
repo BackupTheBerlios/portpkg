@@ -28,6 +28,6 @@ if ! [ -L etc/portpkg/export ]; then
   ln -s plugins/export.tarball etc/portpkg/export
 fi
 
-for i in etc/portpkg/*.new etc/portpkg/virtual/*.new; do
+for i in etc/portpkg/*.new; do
   config $i
 done

@@ -15,19 +15,15 @@ LOCALSTATEDIR=var/log
 
 # configuration
 mkdir -p $PKG/$SYSCONFDIR/plugins
-mkdir -p $PKG/$SYSCONFDIR/virtual
+#mkdir -p $PKG/$SYSCONFDIR/virtual
 install -m 644 $CWD/mirrors $PKG/$SYSCONFDIR/
 install -m 644 $CWD/ignore $PKG/$SYSCONFDIR/
 install -m 644 $CWD/exclude $PKG/$SYSCONFDIR/
 install -m 644 $CWD/use $PKG/$SYSCONFDIR/
 #install -m 644 $CWD/translate $PKG/$SYSCONFDIR/
+install -m 644 $CWD/virtual $PKG/$SYSCONFDIR/
 install -m 644 $CWD/export.* $PKG/$SYSCONFDIR/plugins/
 install -m 644 $CWD/sync.* $PKG/$SYSCONFDIR/plugins/
-
-# virtual groups
-for i in $CWD/group.*; do
-  install -m 644 $i $PKG/$SYSCONFDIR/virtual/${i#*group.}
-done
 
 # generate default local.conf
 { echo -e "This is the complete list of default values:\n"
