@@ -1,4 +1,4 @@
-#!/bin/sh -ue
+#!/bin/sh -u
 #
 # Portpkg -- A ports system for Slackware Linux, written in Bash++
 # Copyright (C) 2003-2005 Thomas Pfaff <topf at users dot berlios dot de>
@@ -156,7 +156,7 @@ explicit() # pkg_list >pkgex-list
   for arg; do
     case $arg in
       */) ls_scr | scr2gname | grep `regex $arg` | any2base
-          cat $CFG_DIR/virtual/${arg%/*} 2>/dev/null;;
+          grep -s ^$arg $CFG_DIR/virtual | any2base;;
       *)  echo $arg;;
     esac
   done
@@ -881,7 +881,7 @@ do_list() # [pkgex-list] >pkgex_list
     *)  # grep arguments
         ls_virt `regex "$@"`
         # in order to see virtual groups we add them here intentionally
-        grep -sH . $CFG_DIR/virtual/* | sed "s,:,/," | grep `regex "$@"`;;
+        grep -s `regex "$@"` $CFG_DIR/virtual;;
   esac | sorted | any2gpkg
 }
 
