@@ -1,19 +1,25 @@
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-  <match target="font">
+<?xml version="1.0"?><!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<!--
+  Disable aliasing system wide
+ -->
+<!--  <match target="font">
    <edit name="antialias" mode="assign">
     <bool>false</bool>
    </edit>
-  </match>
-  <match target="font">
+  </match> -->
+<!--
+  Set hinting to "full"
+  -->
+<!--  <match target="font">
    <edit name="hinting" mode="assign">
     <const>full</const>
    </edit>
-  </match>
+  </match> -->
 <!--
   Serif faces
  -->
-        <alias>
+<!--        <alias>
                 <family>Times New Roman</family>
                 <family>Bitstream Vera Serif</family>
                 <family>Times</family>
@@ -24,11 +30,11 @@
                 <family>AR PL Mingti2L Big5</family>
                 <family>Baekmuk Batang</family>
                 <default><family>serif</family></default>
-        </alias>
+        </alias> -->
 <!--
   Sans-serif faces
  -->
-        <alias>
+<!--        <alias>
                 <family>Arial</family>
                 <family>Bitstream Vera Sans</family>
                 <family>Helvetica</family>
@@ -41,11 +47,11 @@
                 <family>Baekmuk Dotum</family>
                 <family>SimSun</family>
                 <default><family>sans-serif</family></default>
-        </alias>
+        </alias> -->
 <!--
   Monospace faces
  -->
-        <alias>
+<!--        <alias>
                 <family>Andale Mono</family>
                 <family>Bitstream Vera Sans Mono</family>
                 <family>Courier</family>
@@ -54,5 +60,5 @@
                 <family>Nimbus Mono L</family>
                 <family>NSimSun</family>
                 <default><family>monospace</family></default>
-        </alias>
+        </alias> -->
 </fontconfig>
