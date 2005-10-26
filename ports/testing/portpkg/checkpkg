@@ -6,7 +6,7 @@
 main_menu()
 {
   local t=`mktemp -d`
-  [ "$1" ] && opt="--default-item $1" || opt=""
+  [ "$*" ] && opt="--default-item $1" || opt=""
   echo -n "dialog --title \"LIST OF AVAILABLE GROUPS\" --cancel-label \"Quit\" \
 $opt --menu \"These are the available groups. Select the one you want to look \
 into.\" 0 0 0 " >$t/menu
