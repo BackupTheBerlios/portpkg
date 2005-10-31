@@ -440,19 +440,26 @@ build_pkg()
       flags_var=CFLAGS
     fi
 
+    # check if the script wants to handle errors on its on ("|| exit 1")
+    if grep -sq "|| exit 1$" $script; then
+      local sh_opt="-x"
+    else
+      local sh_opt="-e -x"
+    fi
+
     # execute SlackBuild
     if ! $no_fakeroot && has_prog fakeroot; then
       # run fakerooted SlackBuild as nobody
       row "Executing (fakerooted) $script $script_opt"
       su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$TMP TMPDIR=$TMP \
-        PATH=\$PATH:/sbin fakeroot sh $script $script_opt" 2>&1 \
+        PATH=\$PATH:/sbin fakeroot sh $sh_opt $script $script_opt" 2>&1 \
       | tee $ADM_DIR/portpkg/$name.buildlog >$output
     else
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
       $prepare_only && warn "Preparing without fakeroot is not a good idea!"
       row "Executing $script $script_opt"
-      eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $script $script_opt" 2>&1 \
+      eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
       | tee $ADM_DIR/portpkg/$name.buildlog >$output
       # this is a hack-around for some faulty install scripts
       chmod 1777 /tmp
