@@ -83,7 +83,9 @@ slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 2>/dev/null \
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 
 # message system
-stanza() { [ "$*" ] && echo -e "\n$@"; }
+msg_level=0
+stanza() { [ "$msg_level" = "0" ] && echo -e "\n$@"; }
+#stanza() { [ "$*" ] && echo -e "\n$@"; }
 row()    { echo -e "  --> $@"; }
 warn()   { echo -e "WARNING: $@"; }
 error()  { [ "$*" ] && stanza "$@" >&2; return 1; }
@@ -256,7 +258,7 @@ check_reqs()
   ls_inst >$t/inst
   debug "check_reqs(): starting: $package"
   # remember group and name for a refresh later
-  local gpkg=$group/$package
+  local gpkg=""
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   debug "check_reqs(): $name requires: "$requires
   local req
@@ -278,10 +280,16 @@ check_reqs()
       # is it up-to-date?
       fgrep -qx $avail_pkg $t/inst && continue
       debug "check_reqs(): call: add_pkg $avail_pkg"
+      $DRY_RUN && ! [ "$gpkg" ] && stanza "Preparing for $package:"
+      local gpkg=$group/$package
+      $DRY_RUN && msg_level=`expr $msg_level + 1`
       if ! add_pkg $avail_pkg; then
+        $DRY_RUN && msg_level=`expr $msg_level - 1`
         error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | cut -d / -f 2`."
         return 1
       fi
+      $DRY_RUN && msg_level=`expr $msg_level - 1`
+      $DRY_RUN && row "Requiring $avail_pkg"
 
       # after that add_pkg we have to refresh
       get_info $gpkg
@@ -439,6 +447,7 @@ build_pkg()
 
   # exit when download-only or dry-run
   $download_only && return 0
+  $DRY_RUN && row "Executing $script $script_opt"
   $DRY_RUN && return 0
 
   # build package
@@ -578,6 +587,7 @@ add_pkg() # pkgex
     local add="installpkg"
   fi
   echo $group/$package >>$CACHE/inst
+  $DRY_RUN && [ "$msg_level" = "0" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   $DRY_RUN && return 0
 
   # call the install-command
@@ -605,16 +615,6 @@ do_add() # pkgex-list
     ret=$?
   done
 
-  # summary
-  local stats=$ADM_DIR/portpkg/log
-  echo "+--------------------+" >>$stats
-  date >>$stats
-  if [ "`cat $ADD_SUM_CALL $ADD_SUM_START $ADD_SUM_FINISH`" ]; then
-    stanza "Summary of actions:"
-    cat $ADD_SUM_FINISH | xargs -r -l echo "  --> Finished"
-    cat $ADD_SUM_START | xargs -r -l echo "  --> Failed at"
-    cat $ADD_SUM_CALL | xargs -r -l echo "  --> Couldn't find"
-  fi | tee -a $stats >$output
   debug "do_add(): finished: $@"
   return $ret
 }
