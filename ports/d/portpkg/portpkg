@@ -310,11 +310,12 @@ maintainer_mode()
 
   # regenerate md5sums and footprint (assume we are in the script dir)
   row "Writing: footprint md5sums requires"
-  rm -rf md5sums
-  rm -rf footprint
+#  rm -rf md5sums
+#  rm -rf footprint
 
   # md5sum only source files, which are symlinks here
-  find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >md5sums
+  find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >>md5sums
+  sort +1 -uo md5sums md5sums
 
 #  # sign md5sums
 #  if [ -d ~/.gnupg ] && [ `which gpg` ]; then
@@ -400,8 +401,8 @@ build_pkg()
 
   cd `dirname $script` || return 1
 
-  # assume, all symlinks here are links to source files
-  find -type l | xargs -r rm
+#  # assume, all symlinks here are links to source files
+#  find -type l | xargs -r rm
 
   # download the source files
   local src
