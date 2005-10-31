@@ -77,7 +77,7 @@ pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
 loc2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1," 2>/dev/null; }
-slk2gname() { sed "s,.*/\(.*/.*\)/.*SlackBuild$,\1,"; }
+slk2gname() { sed "s,.*/\(.*/.*\)/.*$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 2>/dev/null \
   | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}" 2>/dev/null; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
@@ -707,11 +707,13 @@ do_find() # text [..] >list
   local t=`mktemp -d`
   has_args "$@" || die
   has_ports || die
+  find $PRT_DIR/ -follow -name "*slack-desc" >$t/list
   local arg
   for arg; do
-    find $PRT_DIR/ -follow -name slack-desc | xargs grep -shi $arg
-  done | grep "^[^ ]*: " | cut -d : -f 1 | sort -u >$t/list
-  [ -s $t/list ] && do_list `cat $t/list`
+    cat $t/list | xargs grep -lsi $arg >$t/list.new
+    mv $t/list.new $t/list
+  done
+  [ -s $t/list ] && do_list `cat $t/list | slk2gname`
 }
 
 # print information about a port
