@@ -33,7 +33,10 @@ PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
 CFG_DIR=/etc/portpkg
 TMP=/tmp
-[ -f $CFG_DIR/local.conf ] && source $CFG_DIR/local.conf
+
+# include configuration overlay
+[ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
+[ -f ~/.portpkg.conf ] && . ~/.portpkg.conf
 
 # constant values
 ENGINE_VER=cvs
