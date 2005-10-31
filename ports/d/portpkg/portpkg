@@ -70,6 +70,7 @@ ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\
 ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\" 2>/dev/null" "$@"; }
 ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" -follow \
   | sed \"s,/local/,/0local/,\" | sort | sed \"s,/0local/,/local/,\" 2>/dev/null" "$@"; }
+ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
 
 # converters
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -175,7 +176,7 @@ ls_diff() # >list
 {
   debug "ls_diff(): starting"
   local t=`mktemp -d`
-  ls_slk | slk2loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$t/avail
+  ls_loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$t/avail
   ls_inst >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -197,10 +198,10 @@ get_info() # pkgex
   debug "get_info(): starting: $@"
 
   # find port, take the first if more than one available
-  local loc=`ls_slk | slk2loc | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
+  local loc=`ls_loc | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
   # maybe an exluded one explicitly named?
   [ "$loc" ] || case $1 in */*)
-    loc=`ls_slk | slk2loc | grep -m 1 $(regex $1)`
+    loc=`ls_loc | grep -m 1 $(regex $1)`
     [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
   esac
 
@@ -251,7 +252,7 @@ check_reqs()
 {
   $NO_REQS && return 0
   local t=`mktemp -d`
-  ls_slk | slk2loc | grep -v $exclude | loc2gpkg >$t/avail
+  ls_loc | grep -v $exclude | loc2gpkg >$t/avail
   ls_inst >$t/inst
   debug "check_reqs(): starting: $package"
   # remember group and name for a refresh later
@@ -372,7 +373,7 @@ maintainer_mode()
     -e "/$ARCH-slackware-linux-" footprint >$t/check_path
   grep -e "^........w" -e " root/root .*\( \|/\)bin/" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
-  ls_slk | slk2loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
+  ls_loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
   | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
   cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
@@ -749,7 +750,7 @@ do_list() # [pkgex-list] >glist
   # grep arguments
   local regex
   [ "$*" ] && regex=`regex $*` || regex="-v ^$"
-  ls_slk | slk2loc | grep $regex 2>/dev/null | loc2gpkg
+  ls_loc | grep $regex 2>/dev/null | loc2gpkg
 }
 
 do_sync()
@@ -791,7 +792,7 @@ do_sync()
   # sync package dir
   row "Syncing $PKG_DIR with $PRT_DIR"
   mkdir -p $PKG_DIR
-  ls_slk | slk2loc | loc2gpkg >$t/avail
+  ls_loc | loc2gpkg >$t/avail
   local gpkg
   local group
 
