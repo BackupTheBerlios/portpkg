@@ -47,7 +47,7 @@ export TMPDIR
 ADD_SUM_CALL=`mktemp`
 ADD_SUM_START=`mktemp`
 ADD_SUM_FINISH=`mktemp`
-FAKED_INST=`mktemp`
+CACHE=`mktemp -d`
 
 # default arguments
 action=do_add
@@ -66,11 +66,10 @@ declare \
   maintain slot_in pseudo no_fakeroot
 
 # listers
-ls_inst() { find $ADM_DIR/packages/ -type f | sed "s,^.*/,," 2>/dev/null
-  cat $FAKED_INST 2>/dev/null; }
-ls_pkg()  { find $PKG_DIR/ -name "*.tgz" -follow | sed -r "s,^.*/(.*/.*)\.tgz$,\1," 2>/dev/null; }
-ls_slk()  { find $PRT_DIR/ -name "*SlackBuild" -follow \
-  | sed "s,/local/,/0local/," | sort | sed "s,/0local/,/local/," 2>/dev/null; }
+ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\" 2>/dev/null" "$@"; }
+ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\" 2>/dev/null" "$@"; }
+ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" -follow \
+  | sed \"s,/local/,/0local/,\" | sort | sed \"s,/0local/,/local/,\" 2>/dev/null" "$@"; }
 
 # converters
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
@@ -95,6 +94,19 @@ has_args()  { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
 is_root()   { [ "$UID" == "0" ] || error "You must be root to run this action!"; }
 has_prog()  { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
 has_ports() { [ -d $PRT_DIR ] || error "No ports found! Try: portpkg --sync"; }
+
+# cache the output of "action" and grep a regex
+cache() # file action regex
+{
+  local file=$1 action=$2
+  shift 2
+  [ "$*" ] && local filter="grep $@" || local filter="cat"
+  if ! [ -f $file ]; then
+    eval "$action" | tee $file | $filter -
+  else
+    $filter $file
+  fi
+}
 
 # download a file and make use of mirrors
 get()
@@ -563,7 +575,7 @@ add_pkg() # pkgex
     stanza "Installing $package..."
     local add="installpkg"
   fi
-  echo $group/$package >>$FAKED_INST
+  echo $group/$package >>$CACHE/inst
   $DRY_RUN && return 0
 
   # call the install-command
