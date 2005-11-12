@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.12.0
+VERSION=2.12.1
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1lem
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -43,10 +43,10 @@ chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
 gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
-mkdir -p $PKG/usr/doc/GConf-$VERSION
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
-  $PKG/usr/doc/GConf-$VERSION/
+  $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
