@@ -1,437 +1,445 @@
-drwxr-xr-x  root/root  0       ./
-drwxr-xr-x  root/root  0       etc/
-drwxr-xr-x  root/root  0       etc/X11/
-drwxr-xr-x  root/root  0       etc/X11/dm/
-drwxr-xr-x  root/root  0       etc/X11/dm/Sessions/
--rwxr-xr-x  root/root  193     etc/X11/dm/Sessions/blackbox.desktop
--rwxr-xr-x  root/root  190     etc/X11/dm/Sessions/fluxbox.desktop
--rwxr-xr-x  root/root  184     etc/X11/dm/Sessions/fvwm2.desktop
--rwxr-xr-x  root/root  187     etc/X11/dm/Sessions/fvwm95.desktop
--rwxr-xr-x  root/root  2155    etc/X11/dm/Sessions/gnome.desktop
--rwxr-xr-x  root/root  181     etc/X11/dm/Sessions/kde.desktop
--rwxr-xr-x  root/root  178     etc/X11/dm/Sessions/twm.desktop
--rwxr-xr-x  root/root  202     etc/X11/dm/Sessions/windowmaker.desktop
--rwxr-xr-x  root/root  198     etc/X11/dm/Sessions/xfce.desktop
-drwxr-xr-x  root/root  0       etc/X11/gdm/
-drwxr-xr-x  root/root  0       etc/X11/gdm/Init/
--rwxr-xr-x  root/root  2505    etc/X11/gdm/Init/Default
-drwxr-xr-x  root/root  0       etc/X11/gdm/PostLogin/
--rwxr-xr-x  root/root  445     etc/X11/gdm/PostLogin/Default.sample
-drwxr-xr-x  root/root  0       etc/X11/gdm/PostSession/
--rwxr-xr-x  root/root  479     etc/X11/gdm/PostSession/Default
-drwxr-xr-x  root/root  0       etc/X11/gdm/PreSession/
--rwxr-xr-x  root/root  1388    etc/X11/gdm/PreSession/Default
--rwxr-xr-x  root/root  5614    etc/X11/gdm/XKeepsCrashing
--rwxr-xr-x  root/root  6307    etc/X11/gdm/Xsession
--rw-r--r--  root/root  23108   etc/X11/gdm/factory-gdm.conf
--rw-r--r--  root/root  23108   etc/X11/gdm/gdm.conf.new
--rw-r--r--  root/root  3993    etc/X11/gdm/locale.alias
-drwxr-xr-x  root/root  0       etc/X11/gdm/modules/
--rw-r--r--  root/root  1440    etc/X11/gdm/modules/AccessDwellMouseEvents
--rw-r--r--  root/root  3484    etc/X11/gdm/modules/AccessKeyMouseEvents
--rw-r--r--  root/root  1440    etc/X11/gdm/modules/factory-AccessDwellMouseEvents
--rw-r--r--  root/root  3484    etc/X11/gdm/modules/factory-AccessKeyMouseEvents
-drwxr-xr-x  root/root  0       install/
--rw-r--r--  root/root  827     install/doinst.sh
--rw-r--r--  root/root  228     install/slack-desc
-drwxr-xr-x  root/root  0       usr/
-drwxr-xr-x  root/bin   0       usr/bin/
--rwxr-xr-x  root/bin   14324   usr/bin/gdm-dmx-reconnect-proxy
--rwxr-xr-x  root/bin   64316   usr/bin/gdmXnestchooser
--rwxr-xr-x  root/bin   40100   usr/bin/gdmdynamic
--rwxr-xr-x  root/bin   52264   usr/bin/gdmflexiserver
--rwxr-xr-x  root/bin   37616   usr/bin/gdmphotosetup
--rwxr-xr-x  root/bin   1939    usr/bin/gdmthemetester
-drwxr-xr-x  root/root  0       usr/doc/
-drwxr-xr-x  root/root  0       usr/doc/gdm-2.8.0.1/
--rw-r--r--  root/root  8542    usr/doc/gdm-2.8.0.1/AUTHORS
--rw-r--r--  root/root  17992   usr/doc/gdm-2.8.0.1/COPYING
--rw-r--r--  root/root  409962  usr/doc/gdm-2.8.0.1/ChangeLog
--rw-r--r--  root/root  98585   usr/doc/gdm-2.8.0.1/NEWS
--rw-r--r--  root/root  3244    usr/doc/gdm-2.8.0.1/README
--rw-r--r--  root/root  6641    usr/doc/gdm-2.8.0.1/README.install
--rw-r--r--  root/root  2102    usr/doc/gdm-2.8.0.1/TODO
-drwxr-xr-x  root/root  0       usr/lib/
-drwxr-xr-x  root/root  0       usr/lib/gtk-2.0/
-drwxr-xr-x  root/root  0       usr/lib/gtk-2.0/modules/
--rwxr-xr-x  root/root  2410    usr/lib/gtk-2.0/modules/libdwellmouselistener.la
--rwxr-xr-x  root/root  14384   usr/lib/gtk-2.0/modules/libdwellmouselistener.so
--rwxr-xr-x  root/root  2398    usr/lib/gtk-2.0/modules/libkeymouselistener.la
--rwxr-xr-x  root/root  16536   usr/lib/gtk-2.0/modules/libkeymouselistener.so
-drwxr-xr-x  root/root  0       usr/libexec/
--rwxr-xr-x  root/root  85616   usr/libexec/gdmchooser
--rwxr-xr-x  root/root  151944  usr/libexec/gdmgreeter
--rwxr-xr-x  root/root  131864  usr/libexec/gdmlogin
--rwxr-xr-x  root/root  6972    usr/libexec/gdmopen
--rwxr-xr-x  root/root  3876    usr/libexec/gdmtranslate
-drwxr-xr-x  root/root  0       usr/man/
-drwxr-xr-x  root/root  0       usr/man/man1/
--rw-r--r--  root/root  1042    usr/man/man1/gdm.1.gz
-drwxr-xr-x  root/bin   0       usr/sbin/
--rwxr-xr-x  root/bin   651     usr/sbin/gdm
--rwxr-xr-x  root/bin   260704  usr/sbin/gdm-binary
--rwxr-xr-x  root/bin   417     usr/sbin/gdm-restart
--rwxr-xr-x  root/bin   418     usr/sbin/gdm-safe-restart
--rwxr-xr-x  root/bin   418     usr/sbin/gdm-stop
--rwxr-xr-x  root/bin   122228  usr/sbin/gdmsetup
-drwxr-xr-x  root/root  0       usr/share/
-drwxr-xr-x  root/root  0       usr/share/applications/
--rw-r--r--  root/root  13129   usr/share/applications/gdmflexiserver-xnest.desktop
--rw-r--r--  root/root  9659    usr/share/applications/gdmflexiserver.desktop
--rw-r--r--  root/root  8199    usr/share/applications/gdmsetup.desktop
-drwxr-xr-x  root/root  0       usr/share/faces/
-drwxr-xr-x  root/root  0       usr/share/gdm/
-drwxr-xr-x  root/root  0       usr/share/gdm/BuiltInSessions/
--rwxr-xr-x  root/root  7050    usr/share/gdm/BuiltInSessions/default.desktop
--rw-r--r--  root/root  11143   usr/share/gdm/gdmchooser.glade
--rw-r--r--  root/root  189482  usr/share/gdm/gdmsetup.glade
-drwxr-xr-x  root/root  0       usr/share/gdm/themes/
-drwxr-xr-x  root/root  0       usr/share/gdm/themes/circles/
--rw-r--r--  root/root  10556   usr/share/gdm/themes/circles/GdmGreeterTheme.desktop
--rw-r--r--  root/root  2482    usr/share/gdm/themes/circles/background.svg
--rw-r--r--  root/root  7732    usr/share/gdm/themes/circles/circles.xml
--rw-r--r--  root/root  120376  usr/share/gdm/themes/circles/flower.png
--rw-r--r--  root/root  2138    usr/share/gdm/themes/circles/help.png
--rw-r--r--  root/root  2297    usr/share/gdm/themes/circles/options.png
--rw-r--r--  root/root  16847   usr/share/gdm/themes/circles/screenshot.png
-drwxr-xr-x  root/root  0       usr/share/gdm/themes/happygnome-list/
--rw-r--r--  root/root  13061   usr/share/gdm/themes/happygnome-list/GdmGreeterTheme.desktop
--rw-r--r--  root/root  2482    usr/share/gdm/themes/happygnome-list/background.svg
--rw-r--r--  root/root  2818    usr/share/gdm/themes/happygnome-list/disconnect.png
--rw-r--r--  root/root  17435   usr/share/gdm/themes/happygnome-list/gnome-logo.png
--rw-r--r--  root/root  8359    usr/share/gdm/themes/happygnome-list/happygnome.xml
--rw-r--r--  root/root  3464    usr/share/gdm/themes/happygnome-list/options.png
--rw-r--r--  root/root  12711   usr/share/gdm/themes/happygnome-list/screenshot.png
--rw-r--r--  root/root  1619    usr/share/gdm/themes/happygnome-list/session.png
--rw-r--r--  root/root  3195    usr/share/gdm/themes/happygnome-list/system.png
-drwxr-xr-x  root/root  0       usr/share/gdm/themes/happygnome/
--rw-r--r--  root/root  10205   usr/share/gdm/themes/happygnome/GdmGreeterTheme.desktop
--rw-r--r--  root/root  2482    usr/share/gdm/themes/happygnome/background.svg
--rw-r--r--  root/root  2818    usr/share/gdm/themes/happygnome/disconnect.png
--rw-r--r--  root/root  17435   usr/share/gdm/themes/happygnome/gnome-logo.png
--rw-r--r--  root/root  7750    usr/share/gdm/themes/happygnome/happygnome.xml
--rw-r--r--  root/root  3464    usr/share/gdm/themes/happygnome/options.png
--rw-r--r--  root/root  7217    usr/share/gdm/themes/happygnome/screenshot.png
--rw-r--r--  root/root  1619    usr/share/gdm/themes/happygnome/session.png
--rw-r--r--  root/root  3195    usr/share/gdm/themes/happygnome/system.png
-drwxr-xr-x  root/root  0       usr/share/gnome/
-drwxr-xr-x  root/root  0       usr/share/gnome/capplets/
--rw-r--r--  root/root  12749   usr/share/gnome/capplets/gdmphotosetup.desktop
-drwxr-xr-x  root/root  0       usr/share/gnome/help/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/C/
--rw-r--r--  root/root  210829  usr/share/gnome/help/gdm/C/gdm.xml
--rw-r--r--  root/root  3672    usr/share/gnome/help/gdm/C/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/de/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/de/figures/
--rw-r--r--  root/root  50200   usr/share/gnome/help/gdm/de/figures/gdm_window.png
--rw-r--r--  root/root  23073   usr/share/gnome/help/gdm/de/gdm.xml
--rw-r--r--  root/root  3817    usr/share/gnome/help/gdm/de/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/es/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/es/figures/
--rw-r--r--  root/root  46110   usr/share/gnome/help/gdm/es/figures/gdm_window.png
--rw-r--r--  root/root  21511   usr/share/gnome/help/gdm/es/gdm.xml
--rw-r--r--  root/root  3136    usr/share/gnome/help/gdm/es/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/fr/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/fr/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/fr/figures/gdm_window.png
--rw-r--r--  root/root  24315   usr/share/gnome/help/gdm/fr/gdm.xml
--rw-r--r--  root/root  3865    usr/share/gnome/help/gdm/fr/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/it/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/it/figures/
--rw-r--r--  root/root  46368   usr/share/gnome/help/gdm/it/figures/gdm_window.png
--rw-r--r--  root/root  22198   usr/share/gnome/help/gdm/it/gdm.xml
--rw-r--r--  root/root  3289    usr/share/gnome/help/gdm/it/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/ja/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/ja/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/ja/figures/gdm_window.png
--rw-r--r--  root/root  23575   usr/share/gnome/help/gdm/ja/gdm.xml
--rw-r--r--  root/root  2370    usr/share/gnome/help/gdm/ja/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/ko/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/ko/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/ko/figures/gdm_window.png
--rw-r--r--  root/root  22630   usr/share/gnome/help/gdm/ko/gdm.xml
--rw-r--r--  root/root  2707    usr/share/gnome/help/gdm/ko/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/sv/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/sv/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/sv/figures/gdm_window.png
--rw-r--r--  root/root  24006   usr/share/gnome/help/gdm/sv/gdm.xml
--rw-r--r--  root/root  3814    usr/share/gnome/help/gdm/sv/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/zh_CN/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/zh_CN/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/zh_CN/figures/gdm_window.png
--rw-r--r--  root/root  19472   usr/share/gnome/help/gdm/zh_CN/gdm.xml
--rw-r--r--  root/root  2690    usr/share/gnome/help/gdm/zh_CN/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/zh_HK/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/zh_HK/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/zh_HK/figures/gdm_window.png
--rw-r--r--  root/root  20030   usr/share/gnome/help/gdm/zh_HK/gdm.xml
--rw-r--r--  root/root  2736    usr/share/gnome/help/gdm/zh_HK/legal.xml
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/zh_TW/
-drwxr-xr-x  root/root  0       usr/share/gnome/help/gdm/zh_TW/figures/
--rw-r--r--  root/root  33859   usr/share/gnome/help/gdm/zh_TW/figures/gdm_window.png
--rw-r--r--  root/root  20030   usr/share/gnome/help/gdm/zh_TW/gdm.xml
--rw-r--r--  root/root  2736    usr/share/gnome/help/gdm/zh_TW/legal.xml
-drwxr-xr-x  root/root  0       usr/share/icons/
-drwxr-xr-x  root/root  0       usr/share/icons/hicolor/
-drwxr-xr-x  root/root  0       usr/share/icons/hicolor/16x16/
-drwxr-xr-x  root/root  0       usr/share/icons/hicolor/16x16/apps/
--rw-r--r--  root/root  429     usr/share/icons/hicolor/16x16/apps/gdm-xnest.png
-drwxr-xr-x  root/root  0       usr/share/icons/hicolor/32x32/
-drwxr-xr-x  root/root  0       usr/share/icons/hicolor/32x32/apps/
--rw-r--r--  root/root  1393    usr/share/icons/hicolor/32x32/apps/gdm-setup.png
--rw-r--r--  root/root  1012    usr/share/icons/hicolor/32x32/apps/gdm-xnest.png
-drwxr-xr-x  root/root  0       usr/share/locale/
-drwxr-xr-x  root/root  0       usr/share/locale/af/
-drwxr-xr-x  root/root  0       usr/share/locale/af/LC_MESSAGES/
--rw-r--r--  root/root  58842   usr/share/locale/af/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/am/
-drwxr-xr-x  root/root  0       usr/share/locale/am/LC_MESSAGES/
--rw-r--r--  root/root  5509    usr/share/locale/am/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ar/
-drwxr-xr-x  root/root  0       usr/share/locale/ar/LC_MESSAGES/
--rw-r--r--  root/root  67481   usr/share/locale/ar/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/az/
-drwxr-xr-x  root/root  0       usr/share/locale/az/LC_MESSAGES/
--rw-r--r--  root/root  61748   usr/share/locale/az/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/be/
-drwxr-xr-x  root/root  0       usr/share/locale/be/LC_MESSAGES/
--rw-r--r--  root/root  77800   usr/share/locale/be/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bg/
-drwxr-xr-x  root/root  0       usr/share/locale/bg/LC_MESSAGES/
--rw-r--r--  root/root  114263  usr/share/locale/bg/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bn/
-drwxr-xr-x  root/root  0       usr/share/locale/bn/LC_MESSAGES/
--rw-r--r--  root/root  97201   usr/share/locale/bn/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/bs/
-drwxr-xr-x  root/root  0       usr/share/locale/bs/LC_MESSAGES/
--rw-r--r--  root/root  61396   usr/share/locale/bs/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ca/
-drwxr-xr-x  root/root  0       usr/share/locale/ca/LC_MESSAGES/
--rw-r--r--  root/root  68223   usr/share/locale/ca/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/cs/
-drwxr-xr-x  root/root  0       usr/share/locale/cs/LC_MESSAGES/
--rw-r--r--  root/root  87270   usr/share/locale/cs/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/cy/
-drwxr-xr-x  root/root  0       usr/share/locale/cy/LC_MESSAGES/
--rw-r--r--  root/root  60425   usr/share/locale/cy/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/da/
-drwxr-xr-x  root/root  0       usr/share/locale/da/LC_MESSAGES/
--rw-r--r--  root/root  85265   usr/share/locale/da/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/de/
-drwxr-xr-x  root/root  0       usr/share/locale/de/LC_MESSAGES/
--rw-r--r--  root/root  64727   usr/share/locale/de/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/el/
-drwxr-xr-x  root/root  0       usr/share/locale/el/LC_MESSAGES/
--rw-r--r--  root/root  100895  usr/share/locale/el/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/en_CA/
-drwxr-xr-x  root/root  0       usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r--  root/root  82516   usr/share/locale/en_CA/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/en_GB/
-drwxr-xr-x  root/root  0       usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r--  root/root  76646   usr/share/locale/en_GB/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/es/
-drwxr-xr-x  root/root  0       usr/share/locale/es/LC_MESSAGES/
--rw-r--r--  root/root  86910   usr/share/locale/es/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/et/
-drwxr-xr-x  root/root  0       usr/share/locale/et/LC_MESSAGES/
--rw-r--r--  root/root  50100   usr/share/locale/et/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/eu/
-drwxr-xr-x  root/root  0       usr/share/locale/eu/LC_MESSAGES/
--rw-r--r--  root/root  57301   usr/share/locale/eu/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fa/
-drwxr-xr-x  root/root  0       usr/share/locale/fa/LC_MESSAGES/
--rw-r--r--  root/root  10540   usr/share/locale/fa/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fi/
-drwxr-xr-x  root/root  0       usr/share/locale/fi/LC_MESSAGES/
--rw-r--r--  root/root  82702   usr/share/locale/fi/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fr/
-drwxr-xr-x  root/root  0       usr/share/locale/fr/LC_MESSAGES/
--rw-r--r--  root/root  65373   usr/share/locale/fr/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ga/
-drwxr-xr-x  root/root  0       usr/share/locale/ga/LC_MESSAGES/
--rw-r--r--  root/root  6220    usr/share/locale/ga/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/gl/
-drwxr-xr-x  root/root  0       usr/share/locale/gl/LC_MESSAGES/
--rw-r--r--  root/root  68452   usr/share/locale/gl/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/gu/
-drwxr-xr-x  root/root  0       usr/share/locale/gu/LC_MESSAGES/
--rw-r--r--  root/root  96184   usr/share/locale/gu/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/he/
-drwxr-xr-x  root/root  0       usr/share/locale/he/LC_MESSAGES/
--rw-r--r--  root/root  35076   usr/share/locale/he/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hi/
-drwxr-xr-x  root/root  0       usr/share/locale/hi/LC_MESSAGES/
--rw-r--r--  root/root  106940  usr/share/locale/hi/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hr/
-drwxr-xr-x  root/root  0       usr/share/locale/hr/LC_MESSAGES/
--rw-r--r--  root/root  59938   usr/share/locale/hr/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hu/
-drwxr-xr-x  root/root  0       usr/share/locale/hu/LC_MESSAGES/
--rw-r--r--  root/root  64038   usr/share/locale/hu/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/id/
-drwxr-xr-x  root/root  0       usr/share/locale/id/LC_MESSAGES/
--rw-r--r--  root/root  73279   usr/share/locale/id/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/is/
-drwxr-xr-x  root/root  0       usr/share/locale/is/LC_MESSAGES/
--rw-r--r--  root/root  2777    usr/share/locale/is/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/it/
-drwxr-xr-x  root/root  0       usr/share/locale/it/LC_MESSAGES/
--rw-r--r--  root/root  61093   usr/share/locale/it/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ja/
-drwxr-xr-x  root/root  0       usr/share/locale/ja/LC_MESSAGES/
--rw-r--r--  root/root  71379   usr/share/locale/ja/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ko/
-drwxr-xr-x  root/root  0       usr/share/locale/ko/LC_MESSAGES/
--rw-r--r--  root/root  66668   usr/share/locale/ko/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/lt/
-drwxr-xr-x  root/root  0       usr/share/locale/lt/LC_MESSAGES/
--rw-r--r--  root/root  61391   usr/share/locale/lt/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/lv/
-drwxr-xr-x  root/root  0       usr/share/locale/lv/LC_MESSAGES/
--rw-r--r--  root/root  31581   usr/share/locale/lv/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mi/
-drwxr-xr-x  root/root  0       usr/share/locale/mi/LC_MESSAGES/
--rw-r--r--  root/root  768     usr/share/locale/mi/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mk/
-drwxr-xr-x  root/root  0       usr/share/locale/mk/LC_MESSAGES/
--rw-r--r--  root/root  79201   usr/share/locale/mk/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ml/
-drwxr-xr-x  root/root  0       usr/share/locale/ml/LC_MESSAGES/
--rw-r--r--  root/root  17203   usr/share/locale/ml/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mn/
-drwxr-xr-x  root/root  0       usr/share/locale/mn/LC_MESSAGES/
--rw-r--r--  root/root  74920   usr/share/locale/mn/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/mr/
-drwxr-xr-x  root/root  0       usr/share/locale/mr/LC_MESSAGES/
--rw-r--r--  root/root  84565   usr/share/locale/mr/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ms/
-drwxr-xr-x  root/root  0       usr/share/locale/ms/LC_MESSAGES/
--rw-r--r--  root/root  58554   usr/share/locale/ms/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nb/
-drwxr-xr-x  root/root  0       usr/share/locale/nb/LC_MESSAGES/
--rw-r--r--  root/root  84532   usr/share/locale/nb/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ne/
-drwxr-xr-x  root/root  0       usr/share/locale/ne/LC_MESSAGES/
--rw-r--r--  root/root  103570  usr/share/locale/ne/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nl/
-drwxr-xr-x  root/root  0       usr/share/locale/nl/LC_MESSAGES/
--rw-r--r--  root/root  72610   usr/share/locale/nl/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nn/
-drwxr-xr-x  root/root  0       usr/share/locale/nn/LC_MESSAGES/
--rw-r--r--  root/root  59092   usr/share/locale/nn/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/no/
-drwxr-xr-x  root/root  0       usr/share/locale/no/LC_MESSAGES/
--rw-r--r--  root/root  84532   usr/share/locale/no/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nso/
-drwxr-xr-x  root/root  0       usr/share/locale/nso/LC_MESSAGES/
--rw-r--r--  root/root  64626   usr/share/locale/nso/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pa/
-drwxr-xr-x  root/root  0       usr/share/locale/pa/LC_MESSAGES/
--rw-r--r--  root/root  103194  usr/share/locale/pa/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pl/
-drwxr-xr-x  root/root  0       usr/share/locale/pl/LC_MESSAGES/
--rw-r--r--  root/root  63677   usr/share/locale/pl/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt/
-drwxr-xr-x  root/root  0       usr/share/locale/pt/LC_MESSAGES/
--rw-r--r--  root/root  62137   usr/share/locale/pt/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt_BR/
-drwxr-xr-x  root/root  0       usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r--  root/root  63176   usr/share/locale/pt_BR/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ro/
-drwxr-xr-x  root/root  0       usr/share/locale/ro/LC_MESSAGES/
--rw-r--r--  root/root  62529   usr/share/locale/ro/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ru/
-drwxr-xr-x  root/root  0       usr/share/locale/ru/LC_MESSAGES/
--rw-r--r--  root/root  83434   usr/share/locale/ru/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/rw/
-drwxr-xr-x  root/root  0       usr/share/locale/rw/LC_MESSAGES/
--rw-r--r--  root/root  1488    usr/share/locale/rw/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sk/
-drwxr-xr-x  root/root  0       usr/share/locale/sk/LC_MESSAGES/
--rw-r--r--  root/root  61536   usr/share/locale/sk/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sl/
-drwxr-xr-x  root/root  0       usr/share/locale/sl/LC_MESSAGES/
--rw-r--r--  root/root  55515   usr/share/locale/sl/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sq/
-drwxr-xr-x  root/root  0       usr/share/locale/sq/LC_MESSAGES/
--rw-r--r--  root/root  62836   usr/share/locale/sq/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr/
-drwxr-xr-x  root/root  0       usr/share/locale/sr/LC_MESSAGES/
--rw-r--r--  root/root  80413   usr/share/locale/sr/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sr@Latn/
-drwxr-xr-x  root/root  0       usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r--  root/root  62184   usr/share/locale/sr@Latn/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/sv/
-drwxr-xr-x  root/root  0       usr/share/locale/sv/LC_MESSAGES/
--rw-r--r--  root/root  61681   usr/share/locale/sv/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ta/
-drwxr-xr-x  root/root  0       usr/share/locale/ta/LC_MESSAGES/
--rw-r--r--  root/root  96337   usr/share/locale/ta/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/th/
-drwxr-xr-x  root/root  0       usr/share/locale/th/LC_MESSAGES/
--rw-r--r--  root/root  132829  usr/share/locale/th/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/tr/
-drwxr-xr-x  root/root  0       usr/share/locale/tr/LC_MESSAGES/
--rw-r--r--  root/root  61588   usr/share/locale/tr/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/uk/
-drwxr-xr-x  root/root  0       usr/share/locale/uk/LC_MESSAGES/
--rw-r--r--  root/root  82033   usr/share/locale/uk/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/vi/
-drwxr-xr-x  root/root  0       usr/share/locale/vi/LC_MESSAGES/
--rw-r--r--  root/root  95542   usr/share/locale/vi/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/wa/
-drwxr-xr-x  root/root  0       usr/share/locale/wa/LC_MESSAGES/
--rw-r--r--  root/root  14918   usr/share/locale/wa/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/xh/
-drwxr-xr-x  root/root  0       usr/share/locale/xh/LC_MESSAGES/
--rw-r--r--  root/root  63162   usr/share/locale/xh/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_CN/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r--  root/root  80769   usr/share/locale/zh_CN/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r--  root/root  59360   usr/share/locale/zh_TW/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zu/
-drwxr-xr-x  root/root  0       usr/share/locale/zu/LC_MESSAGES/
--rw-r--r--  root/root  59626   usr/share/locale/zu/LC_MESSAGES/gdm.mo
-drwxr-xr-x  root/root  0       usr/share/omf/
-drwxr-xr-x  root/root  0       usr/share/omf/gdm/
--rw-r--r--  root/root  1059    usr/share/omf/gdm/gdm-C.omf
--rw-r--r--  root/root  919     usr/share/omf/gdm/gdm-de.omf
--rw-r--r--  root/root  954     usr/share/omf/gdm/gdm-es.omf
--rw-r--r--  root/root  932     usr/share/omf/gdm/gdm-fr.omf
--rw-r--r--  root/root  926     usr/share/omf/gdm/gdm-it.omf
--rw-r--r--  root/root  950     usr/share/omf/gdm/gdm-ja.omf
--rw-r--r--  root/root  907     usr/share/omf/gdm/gdm-ko.omf
--rw-r--r--  root/root  924     usr/share/omf/gdm/gdm-sv.omf
--rw-r--r--  root/root  876     usr/share/omf/gdm/gdm-zh_CN.omf
--rw-r--r--  root/root  899     usr/share/omf/gdm/gdm-zh_HK.omf
--rw-r--r--  root/root  899     usr/share/omf/gdm/gdm-zh_TW.omf
-drwxr-xr-x  root/root  0       usr/share/pixmaps/
-drwxr-xr-x  root/root  0       usr/share/pixmaps/faces/
--rw-r--r--  root/root  6071    usr/share/pixmaps/faces/bonfire.jpg
--rw-r--r--  root/root  5359    usr/share/pixmaps/faces/cdrom.jpg
--rw-r--r--  root/root  6301    usr/share/pixmaps/faces/clock.jpg
--rw-r--r--  root/root  6722    usr/share/pixmaps/faces/daisy.jpg
--rw-r--r--  root/root  4886    usr/share/pixmaps/faces/dice.jpg
--rw-r--r--  root/root  5152    usr/share/pixmaps/faces/hollyleaf.jpg
--rw-r--r--  root/root  6814    usr/share/pixmaps/faces/lamas.jpg
--rw-r--r--  root/root  5778    usr/share/pixmaps/faces/seal.jpg
--rw-r--r--  root/root  4920    usr/share/pixmaps/faces/sky.jpg
--rw-r--r--  root/root  1804    usr/share/pixmaps/faces/skyline.jpg
--rw-r--r--  root/root  3684    usr/share/pixmaps/gdm-foot-logo.png
--rw-r--r--  root/root  2504    usr/share/pixmaps/gdm-setup.png
--rw-r--r--  root/root  1370    usr/share/pixmaps/gdm-xnest.png
--rw-r--r--  root/root  1608    usr/share/pixmaps/gdm.png
--rw-r--r--  root/root  2232    usr/share/pixmaps/login-photo.png
--rw-r--r--  root/root  6407    usr/share/pixmaps/nobody.png
--rw-r--r--  root/root  1051    usr/share/pixmaps/nohost.png
-drwxr-xr-x  root/root  0       usr/share/xsessions/
--rwxr-xr-x  root/root  4912    usr/share/xsessions/gnome.desktop
-drwxr-xr-x  root/root  0       var/
-drwxr-xr-x  root/root  0       var/lib/
-drwxr-x---  gdm/gdm    0       var/lib/gdm/
-drwxr-xr-x  root/root  0       var/lib/log/
-drwxr-xr-x  root/root  0       var/log/
-drwxr-xr-x  root/root  0       var/log/gdm/
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/X11/
+drwxr-xr-x  root/root  etc/X11/dm/
+drwxr-xr-x  root/root  etc/X11/dm/Sessions/
+-rwxr-xr-x  root/root  etc/X11/dm/Sessions/gnome.desktop
+drwxr-xr-x  root/root  etc/X11/gdm/
+drwxr-xr-x  root/root  etc/X11/gdm/Init/
+-rwxr-xr-x  root/root  etc/X11/gdm/Init/Default
+drwxr-xr-x  root/root  etc/X11/gdm/PostLogin/
+-rwxr-xr-x  root/root  etc/X11/gdm/PostLogin/Default.sample
+drwxr-xr-x  root/root  etc/X11/gdm/PostSession/
+-rwxr-xr-x  root/root  etc/X11/gdm/PostSession/Default
+drwxr-xr-x  root/root  etc/X11/gdm/PreSession/
+-rwxr-xr-x  root/root  etc/X11/gdm/PreSession/Default
+-rwxr-xr-x  root/root  etc/X11/gdm/XKeepsCrashing
+-rwxr-xr-x  root/root  etc/X11/gdm/Xsession
+-rw-r--r--  root/root  etc/X11/gdm/factory-gdm.conf
+-rw-r--r--  root/root  etc/X11/gdm/gdm.conf.new
+-rw-r--r--  root/root  etc/X11/gdm/locale.alias
+drwxr-xr-x  root/root  etc/X11/gdm/modules/
+-rw-r--r--  root/root  etc/X11/gdm/modules/AccessDwellMouseEvents
+-rw-r--r--  root/root  etc/X11/gdm/modules/AccessKeyMouseEvents
+-rw-r--r--  root/root  etc/X11/gdm/modules/factory-AccessDwellMouseEvents
+-rw-r--r--  root/root  etc/X11/gdm/modules/factory-AccessKeyMouseEvents
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/gdm-dmx-reconnect-proxy
+-rwxr-xr-x  root/bin   usr/bin/gdmXnestchooser
+-rwxr-xr-x  root/bin   usr/bin/gdmdynamic
+-rwxr-xr-x  root/bin   usr/bin/gdmflexiserver
+-rwxr-xr-x  root/bin   usr/bin/gdmphotosetup
+-rwxr-xr-x  root/bin   usr/bin/gdmthemetester
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/gdm-2.13.0.0/
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/COPYING
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/NEWS
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/README
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/README.install
+-rw-r--r--  root/root  usr/doc/gdm-2.13.0.0/TODO
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/gtk-2.0/
+drwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/
+-rw-r--r--  root/root  usr/lib/gtk-2.0/modules/libdwellmouselistener.a
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/libdwellmouselistener.la
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/libdwellmouselistener.so
+-rw-r--r--  root/root  usr/lib/gtk-2.0/modules/libkeymouselistener.a
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/libkeymouselistener.la
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/libkeymouselistener.so
+drwxr-xr-x  root/root  usr/libexec/
+-rwxr-xr-x  root/root  usr/libexec/gdmchooser
+-rwxr-xr-x  root/root  usr/libexec/gdmgreeter
+-rwxr-xr-x  root/root  usr/libexec/gdmlogin
+-rwxr-xr-x  root/root  usr/libexec/gdmopen
+-rwxr-xr-x  root/root  usr/libexec/gdmtranslate
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/gdm.1.gz
+drwxr-xr-x  root/bin   usr/sbin/
+-rwxr-xr-x  root/bin   usr/sbin/gdm
+-rwxr-xr-x  root/bin   usr/sbin/gdm-binary
+-rwxr-xr-x  root/bin   usr/sbin/gdm-restart
+-rwxr-xr-x  root/bin   usr/sbin/gdm-safe-restart
+-rwxr-xr-x  root/bin   usr/sbin/gdm-stop
+-rwxr-xr-x  root/bin   usr/sbin/gdmsetup
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/gdmflexiserver-xnest.desktop
+-rw-r--r--  root/root  usr/share/applications/gdmflexiserver.desktop
+-rw-r--r--  root/root  usr/share/applications/gdmphotosetup.desktop
+-rw-r--r--  root/root  usr/share/applications/gdmsetup.desktop
+drwxr-xr-x  root/root  usr/share/faces/
+drwxr-xr-x  root/root  usr/share/gdm/
+drwxr-xr-x  root/root  usr/share/gdm/BuiltInSessions/
+-rwxr-xr-x  root/root  usr/share/gdm/BuiltInSessions/default.desktop
+-rw-r--r--  root/root  usr/share/gdm/gdmchooser.glade
+-rw-r--r--  root/root  usr/share/gdm/gdmphotosetup.glade
+-rw-r--r--  root/root  usr/share/gdm/gdmsetup.glade
+drwxr-xr-x  root/root  usr/share/gdm/themes/
+drwxr-xr-x  root/root  usr/share/gdm/themes/circles/
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/GdmGreeterTheme.desktop
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/background.svg
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/circles.xml
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/flower.png
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/help.png
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/options.png
+-rw-r--r--  root/root  usr/share/gdm/themes/circles/screenshot.png
+drwxr-xr-x  root/root  usr/share/gdm/themes/happygnome-list/
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/GdmGreeterTheme.desktop
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/background.svg
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/disconnect.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/gnome-logo.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/happygnome.xml
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/options.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/screenshot.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/session.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome-list/system.png
+drwxr-xr-x  root/root  usr/share/gdm/themes/happygnome/
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/GdmGreeterTheme.desktop
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/background.svg
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/disconnect.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/gnome-logo.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/happygnome.xml
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/options.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/screenshot.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/session.png
+-rw-r--r--  root/root  usr/share/gdm/themes/happygnome/system.png
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/C/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/C/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/C/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/de/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/de/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/de/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/de/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/de/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/es/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/es/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/es/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/es/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/es/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/fr/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/fr/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/fr/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/fr/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/fr/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/it/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/it/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/it/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/it/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/it/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/ja/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/ja/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/ja/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/ja/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/ja/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/ko/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/ko/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/ko/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/ko/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/ko/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/sv/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/sv/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/sv/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/sv/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/sv/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/zh_CN/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/zh_CN/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_CN/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_CN/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_CN/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/zh_HK/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/zh_HK/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_HK/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_HK/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_HK/legal.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/zh_TW/
+drwxr-xr-x  root/root  usr/share/gnome/help/gdm/zh_TW/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_TW/figures/gdm_window.png
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_TW/gdm.xml
+-rw-r--r--  root/root  usr/share/gnome/help/gdm/zh_TW/legal.xml
+drwxr-xr-x  root/root  usr/share/icons/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/16x16/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/16x16/apps/
+-rw-r--r--  root/root  usr/share/icons/hicolor/16x16/apps/gdm-xnest.png
+drwxr-xr-x  root/root  usr/share/icons/hicolor/32x32/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/32x32/apps/
+-rw-r--r--  root/root  usr/share/icons/hicolor/32x32/apps/gdm-setup.png
+-rw-r--r--  root/root  usr/share/icons/hicolor/32x32/apps/gdm-xnest.png
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/af/
+drwxr-xr-x  root/root  usr/share/locale/af/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/af/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/am/
+drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/be/
+drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/bn/
+drwxr-xr-x  root/root  usr/share/locale/bn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/bs/
+drwxr-xr-x  root/root  usr/share/locale/bs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bs/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/cy/
+drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cy/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/fa/
+drwxr-xr-x  root/root  usr/share/locale/fa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fa/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ga/
+drwxr-xr-x  root/root  usr/share/locale/ga/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ga/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/hi/
+drwxr-xr-x  root/root  usr/share/locale/hi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hi/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/id/
+drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/is/
+drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/lv/
+drwxr-xr-x  root/root  usr/share/locale/lv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lv/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/mi/
+drwxr-xr-x  root/root  usr/share/locale/mi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mi/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/mk/
+drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ml/
+drwxr-xr-x  root/root  usr/share/locale/ml/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ml/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/mn/
+drwxr-xr-x  root/root  usr/share/locale/mn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mn/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/mr/
+drwxr-xr-x  root/root  usr/share/locale/mr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mr/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/nn/
+drwxr-xr-x  root/root  usr/share/locale/nn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nn/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/nso/
+drwxr-xr-x  root/root  usr/share/locale/nso/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nso/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ro/
+drwxr-xr-x  root/root  usr/share/locale/ro/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ro/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/sl/
+drwxr-xr-x  root/root  usr/share/locale/sl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sl/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/ta/
+drwxr-xr-x  root/root  usr/share/locale/ta/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ta/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/wa/
+drwxr-xr-x  root/root  usr/share/locale/wa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/wa/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/xh/
+drwxr-xr-x  root/root  usr/share/locale/xh/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/xh/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/locale/zu/
+drwxr-xr-x  root/root  usr/share/locale/zu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zu/LC_MESSAGES/gdm.mo
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/gdm/
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-C.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-de.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-es.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-fr.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-it.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-ja.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-ko.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-sv.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-zh_CN.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-zh_HK.omf
+-rw-r--r--  root/root  usr/share/omf/gdm/gdm-zh_TW.omf
+drwxr-xr-x  root/root  usr/share/pixmaps/
+drwxr-xr-x  root/root  usr/share/pixmaps/faces/
+-rw-r--r--  root/root  usr/share/pixmaps/faces/astronaut.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/baseball.png
+-rw-r--r--  root/root  usr/share/pixmaps/faces/butterfly.png
+-rw-r--r--  root/root  usr/share/pixmaps/faces/cat-eye.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/chess.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/coffee.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/dice.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/energy-arc.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/fish.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/flake.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/flower.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/grapes.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/guitar.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/launch.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/leaf.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/lightning.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/penguin.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/puppy.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/sky.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/soccerball.png
+-rw-r--r--  root/root  usr/share/pixmaps/faces/sunflower.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/sunset.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/faces/tennis-ball.png
+-rw-r--r--  root/root  usr/share/pixmaps/faces/yellow-rose.jpg
+-rw-r--r--  root/root  usr/share/pixmaps/gdm-foot-logo.png
+-rw-r--r--  root/root  usr/share/pixmaps/gdm-setup.png
+-rw-r--r--  root/root  usr/share/pixmaps/gdm-xnest.png
+-rw-r--r--  root/root  usr/share/pixmaps/gdm.png
+-rw-r--r--  root/root  usr/share/pixmaps/login-photo.png
+-rw-r--r--  root/root  usr/share/pixmaps/nobody.png
+-rw-r--r--  root/root  usr/share/pixmaps/nohost.png
+drwxr-xr-x  root/root  usr/share/xsessions/
+-rwxr-xr-x  root/root  usr/share/xsessions/gnome.desktop
+drwxr-xr-x  root/root  var/
+drwxr-xr-x  root/root  var/lib/
+drwxr-x---  gdm/gdm    var/lib/gdm/
+drwxr-xr-x  root/root  var/lib/log/
+drwxr-xr-x  root/root  var/log/
+drwxr-xr-x  root/root  var/log/gdm/

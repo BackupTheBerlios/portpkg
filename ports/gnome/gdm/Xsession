@@ -1,179 +1,253 @@
 #!/bin/sh
+#
+# This is SORT OF LIKE an X session, but not quite.  You get a command as the
+# first argument (it could be multiple words, so run it with "eval").  As a
+# special case, the command can be:
+#  failsafe - Run an xterm only
+#  default - Run the appropriate Xclients startup (see the code below)
+#  custom - Run ~/.xsession and if that's not available run 'default'
+#
+# (Note that other arguments could also follow, but only the command one is
+# right now relevant and supported)
+#
+# The output is ALREADY redirected to .xsession-errors in GDM.  This way
+# .xsession-errors actually gets more output such as if the PreSession script
+# is failing.  This also prevents DoS attacks if some app in the users session
+# can be prodded to dump lots of stuff on the stdout/stderr.  We wish to be
+# robust don't we?  In case you wish to use an existing script for other DM's,
+# you can just not redirect when GDMSESSION is set.  GDMSESSION will always
+# be set from gdm.
+#
+# Also note that this is not run as a login shell, this is just executed.
+# This is why we source the profile files below.
+#
+# based on:
 # $XConsortium: Xsession /main/10 1995/12/18 18:21:28 gildea $
-#
-#
-# $XFree86: xc/programs/xdm/config/Xsession,v 1.2 1998/01/11 03:48:32 dawes Exp $
-# Modified for Slackware-3.5, 28-Mar-98 volkerdi
-# Extensively rewritten for Slackware 7.0, 03-Oct-1999 volkerdi
-# Patched to give priority to $HOME/.xsession, 10-Oct-1999 volkerdi
-# Merged changes into upstream (XFree86-4.0.2) version, 17-Feb-2001 volkerdi
-# Fixes for $PATH (from Jim Diamond), GDM/KDM/XDM, 2003-02-07 volkerdi
-# Patched for bizzare GDM $1, 2003-09-23 volkerdi
 
-# redirect errors to a file in user's home directory if we can
-for errfile in "$HOME/.xsession-errors" "${TMPDIR-/tmp}/xses-$USER" "/tmp/xses-$USER"
-do
-	if ( cp /dev/null "$errfile" 2> /dev/null )
-	then
-		chmod 600 "$errfile"
-		exec > "$errfile" 2>&1
-		break
-	fi
-done
+command="$1"
 
-SESSION=`echo $1 | cut -f 2 -d ' '`
-
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/usr/X11R6/lib/X11/xinit/.Xresources
-sysmodmap=/usr/X11R6/lib/X11/xinit/.Xmodmap
-
-# merge in defaults and keymaps
-
-if [ -r $sysresources ]; then
-	xrdb -merge $sysresources
+if [ -z "$command" ] ; then
+  command=failsafe
 fi
 
-if [ -r $sysmodmap ]; then
-	xmodmap $sysmodmap
-fi
+# this will go into the .xsession-errors along with all other echo's
+# good for debugging where things went wrong
+echo "$0: Beginning session setup..."
 
-if [ -r $userresources ]; then
-	xrdb -merge $userresources
-fi
+# First read /etc/profile and .profile
+test -f /etc/profile && . /etc/profile
+test -f "$HOME/.profile" && . "$HOME/.profile"
+# Second read /etc/xprofile and .xprofile for X specific setup
+test -f /etc/xprofile && . /etc/xprofile
+test -f "$HOME/.xprofile" && . "$HOME/.xprofile"
 
-if [ -r $usermodmap ]; then
-	xmodmap $usermodmap
-fi
-
-# Since xdm doesn't run a bash -login shell (or any other login shell)
-# we should source these files to set up the user's environment.
-profile=/etc/profile
-userprofile=~/.profile
-
-if [ -r $profile ]; then
-        source $profile 1> /dev/null 2> /dev/null
-fi
-if [ -r $userprofile ]; then
-        source $userprofile 1> /dev/null 2> /dev/null
-fi
-
-# Set the $PATH through the user's preferred shell.
-case `basename "$SHELL"` in
-bash|sh|ash)
-	PATH="`( echo 'echo $PATH' | bash --login ) | tail -1`"
-	;;
-csh|tcsh)
-	PATH="`( echo 'echo $PATH' | tcsh -l ) | tail -1`"
-	;;
-ksh)
-	PATH="`( cat /etc/profile ; echo 'echo $PATH' ) | ksh | tail -1`"
-	;;
-zsh)
-	PATH="`( echo 'echo $PATH' | zsh -l ) | tail -1`"
-    	;;
-*)
-	# We don't know your shell, so we'll set up reasonable defaults.
-     	if [ "`whoami`" = "root" ]; then
-		PATH=$PATH:/usr/local/sbin:/sbin:/usr/sbin:/usr/local/bin:/bin:/usr/bin
-     	else
-		PATH=$PATH:/usr/local/bin:/bin:/usr/bin
-       	fi
-     	;;
-esac
-
-# These files (if they exist) are used to set up the X related environment.  We used to
-# exec .xsession at this location, but that can interfere with choosing a session type
-# through XDM/KDM/GDM so it was moved to after a requested session is started.  Since
-# that means that .xsession might never be run at all when using XDM/KDM/GDM, support
-# for the xprofile was added to allow a way for the user to customize the X environment.
-if [ -r /etc/xprofile ]; then
-	source /etc/xprofile
-fi
-if [ -r ~/.xprofile ]; then
-	source ~/.xprofile
-fi
-
-# Some people say that an .xsession file should always be given priority, even if a
-# different window manager was requested in $SESSION.  If you want that behavior, uncomment
-# the lines below.  This is not recommended (nor, in general, is the use of an
-# .xsession file as a default... it should be left for the advanced users).
-#if [ -x $HOME/.xsession ]; then
-#        exec $HOME/.xsession $@
-#fi
-
-# If a particular session type was requested in $SESSION, start that session:
-case "$SESSION" in
-failsafe)
-	xsetroot -solid SteelBlue
-	exec xterm -geometry 80x24-0-0
-	;;
-kde)
-	exec startkde
-	;;
-gnome)
-	exec gnome-session
-	;;
-openwin)
-	exec olvwm
-	;;
-fluxbox)
-	exec fluxbox
-	;;
-fvwm2)
-	xsetroot -solid SteelBlue
-	exec fvwm2
-	;;
-fvwm95)
-	xsetroot -solid SteelBlue
-	exec fvwm95
-	;;
-blackbox)
-	exec blackbox
-	;;
-xfce)
-	exec /etc/X11/xinit/xinitrc.xfce
-	;;
-windowmaker)
-	exec /etc/X11/xinit/xinitrc.wmaker
-	;;
-afterstep)
-	exec afterstep
-	;;
-enlightenment)
-	exec enlightenment
-	;;
-twm)
-	#xclock -geometry 50x50-1+1 &
-	#xterm -geometry 80x50+494+51 &
-	#xterm -geometry 80x20+494-0 &
-	#xterm -geometry 80x66+0+0 -name login &
-	xsetroot -solid SteelBlue
-	exec twm
-	;;
-esac
-
-# If we aren't running from XDM/KDM/GDM and no window manager was
-# specified, then we'll run the user's $HOME/.xsession if it's
-# executable.  This must be set up to run the user's window manager.
-if [ -x $HOME/.xsession ]; then
-        exec $HOME/.xsession $@
-fi
-
-# If the user doesn't have their own xsession and none was specified in
-# $SESSION, then run the system default session type:
-if [ -r /etc/X11/xinit/xinitrc ]; then
-	exec /etc/X11/xinit/xinitrc
-fi
-
-# If a $startup variable is set to define the window or session manager,
-# then run that:
-if [ -s "$startup" -a -x "$startup" ]; then
-	exec "$startup"
+# Translation stuff
+if [ -x "/usr/libexec/gdmtranslate" ] ; then
+  gdmtranslate="/usr/libexec/gdmtranslate"
 else
-	if [ -r "$resources" ]; then
-		xrdb -load "$resources"
-	fi
-	# Run xsm as a failsafe.
-	exec xsm
+  gdmtranslate=
 fi
+
+# Note that this should only go to zenity dialogs which always expect utf8
+gettextfunc () {
+  if [ "x$gdmtranslate" != "x" ] ; then
+    "$gdmtranslate" --utf8 "$1"
+  else
+    echo "$1"
+  fi
+}
+
+OLD_IFS=$IFS
+
+gdmwhich () {
+  COMMAND="$1"
+  OUTPUT=
+  IFS=:
+  for dir in $PATH
+  do
+    if test -x "$dir/$COMMAND" ; then
+      if test "x$OUTPUT" = "x" ; then
+        OUTPUT="$dir/$COMMAND"
+      fi
+    fi
+  done
+  IFS=$OLD_IFS 
+  echo "$OUTPUT"
+}
+
+zenity=`gdmwhich zenity`
+
+if [ x"$command" = xfailsafe ] ; then
+  if [ -n "$zenity" ] ; then
+    "$zenity" --info --text `gettextfunc "This is the failsafe xterm session.  Windows now have focus only if you have your cursor above them.  To get out of this mode type 'exit' in the window in the upper left corner"`
+  else
+    echo "$0: Starting the failsafe xterm session."
+  fi
+  exec xterm -geometry 80x24+0+0
+fi
+
+# Note: ~/.xsession-errors is now done in the daemon so that it
+# works for ALL sessions (except ones named 'Failsafe')
+
+# clean up after xbanner
+freetemp=`gdmwhich freetemp`
+if [ -n "$freetemp" ] ; then
+	"$freetemp"
+fi
+
+userresources="$HOME/.Xresources"
+usermodmap="$HOME/.Xmodmap"
+userxkbmap="$HOME/.Xkbmap"
+
+sysresources=/etc/X11/Xresources 
+sysmodmap=/etc/X11/Xmodmap 
+sysxkbmap=/etc/X11/Xkbmap
+
+rh6sysresources=/etc/X11/xinit/Xresources 
+rh6sysmodmap=/etc/X11/xinit/Xmodmap 
+
+
+# merge in defaults
+if [ -f "$rh6sysresources" ]; then
+    xrdb -merge "$rh6sysresources"
+fi
+
+if [ -f "$sysresources" ]; then
+    xrdb -merge "$sysresources"
+fi
+
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
+
+# merge in keymaps
+if [ -f "$sysxkbmap" ]; then
+    setxkbmap `cat "$sysxkbmap"`
+    XKB_IN_USE=yes
+fi
+
+if [ -f "$userxkbmap" ]; then
+    setxkbmap `cat "$userxkbmap"`
+    XKB_IN_USE=yes
+fi
+
+#
+# Eeek, this seems like too much magic here
+#
+if [ -z "$XKB_IN_USE" -a ! -L /etc/X11/X ]; then
+    if grep '^exec.*/Xsun' /etc/X11/X > /dev/null 2>&1 && [ -f /etc/X11/XF86Config ]; then
+       xkbsymbols=`sed -n -e 's/^[     ]*XkbSymbols[   ]*"\(.*\)".*$/\1/p' /etc/X11/XF86Config`
+       if [ -n "$xkbsymbols" ]; then
+           setxkbmap -symbols "$xkbsymbols"
+           XKB_IN_USE=yes
+       fi
+    fi
+fi
+
+# xkb and xmodmap don't play nice together
+if [ -z "$XKB_IN_USE" ]; then
+    if [ -f "$rh6sysmodmap" ]; then
+       xmodmap "$rh6sysmodmap"
+    fi
+
+    if [ -f "$sysmodmap" ]; then
+       xmodmap "$sysmodmap"
+    fi
+
+    if [ -f "$usermodmap" ]; then
+       xmodmap "$usermodmap"
+    fi
+fi
+
+unset XKB_IN_USE
+
+# Normalize languages, some places/distros screw us up in /etc/profile,
+# so in case the user did select a language
+if [ -n "$GDM_LANG" ]; then
+  LANG="$GDM_LANG"
+  export LANG
+
+  if [ -n "$LC_ALL" ]; then
+    if [ "$LC_ALL" != "$LANG" ]; then
+      LC_ALL="$LANG"
+    fi
+  else
+    unset LC_ALL
+  fi
+
+  if [ -n "$LANGUAGE" ]; then
+    if [ "$LANGUAGE" != "$LANG" ]; then
+      LANGUAGE="$LANG"
+    fi
+  else
+    unset LANGUAGE
+  fi
+
+  if [ -n "$LINGUAS" ]; then
+    if [ "$LINGUAS" != "$LANG" ]; then
+      LINGUAS="$LANG"
+    fi
+  else
+    unset LINGUAS
+  fi
+fi
+
+# run all system xinitrc shell scripts.
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for i in /etc/X11/xinit/xinitrc.d/* ; do
+        if [ -x "$i" ]; then
+	    . "$i"
+        fi
+    done
+fi
+
+if [ "x$command" = "xcustom" ] ; then
+  if [ -x "$HOME/.xsession" ]; then
+    command="$HOME/.xsession"
+  else
+    echo "$0: Cannot find ~/.xsession will try the default session"
+    command="default"
+  fi
+fi
+
+if [ "x$command" = "xdefault" ] ; then
+  if [ -x "$HOME/.Xclients" ]; then
+    command="$HOME/.Xclients"
+  elif [ -x /etc/X11/xinit/Xclients ]; then
+    command="/etc/X11/xinit/Xclients"
+  elif [ -x /etc/X11/Xclients ]; then
+    command="/etc/X11/Xclients"
+  else
+    echo "$0: Cannot find Xclients"
+    # FIXME: kind of an evil failsafe
+    command="xsm"
+  fi
+fi
+
+# add ssh-agent if found
+sshagent="`gdmwhich ssh-agent`"
+if [ -n "$sshagent" ] && [ -x "$sshagent" ] && [ -z "$SSH_AUTH_SOCK" ]; then
+    command="$sshagent -- $command"
+elif [ -z "$sshagent" ] ; then
+    echo "$0: ssh-agent not found!"
+fi
+
+#add dbus-launch if found
+dbuslaunch="`which dbus-launch 2>/dev/null`"
+if [ -n "$dbuslaunch" ] && [ -x "$dbuslaunch" ]; then
+    command="$dbuslaunch --sh-syntax --exit-with-session $command"
+elif [ -z "$dbuslaunch" ] ; then
+    echo "$0: dbus-launch not found!"
+fi
+        
+echo "$0: Setup done, will execute: $command"
+
+eval exec $command
+
+echo "$0: Executing $command failed, will run xterm"
+
+if [ -n "$zenity" ] ; then
+	"$zenity" --info --text `gettextfunc "I could not start your session and so I have started the failsafe xterm session.  Windows now have focus only if you have your cursor above them.  To get out of this mode type 'exit' in the window in the upper left corner"`
+fi
+
+exec xterm -geometry 80x24+0+0

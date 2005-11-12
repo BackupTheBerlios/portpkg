@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.0.1
+VERSION=2.13.0.0
 ARCH=${ARCH:-i486}
 BUILD=1lem
 
@@ -31,7 +31,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc/X11 \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
+  --disable-scrollkeeper \
   $ARCH-slackware-linux || exit 1
 #=configure
 make || exit 1
@@ -50,10 +50,9 @@ cp -a \
     $PKG/etc/X11/dm/Sessions
 chmod 755 $PKG/etc/X11/dm/Sessions/*
 
-cp -a \
-    $CWD/Xsession
-    $PKG/etc/X11/gdm
-chmod 755 $PKG/etc/X11/Xsession
+mkdir -p $PKG/etc/X11/gdm
+cp $CWD/Xsession $PKG/etc/X11/gdm
+chmod 755 $PKG/etc/X11/gdm/Xsession
 
 chown -R gdm.gdm $PKG/var/lib/gdm
 chmod 750 $PKG/var/lib/gdm
