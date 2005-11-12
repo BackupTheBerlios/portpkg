@@ -1,59 +1,69 @@
-drwxr-xr-x  root/root  0      ./
-drwxr-xr-x  root/root  0      install/
--rw-r--r--  root/root  101    install/doinst.sh
--rw-r--r--  root/root  323    install/slack-desc
-drwxr-xr-x  root/root  0      usr/
-drwxr-xr-x  root/bin   0      usr/bin/
--rwxr-xr-x  root/bin   86828  usr/bin/baobab
-drwxr-xr-x  root/root  0      usr/doc/
-drwxr-xr-x  root/root  0      usr/doc/baobab-1.1.0/
--rw-r--r--  root/root  39     usr/doc/baobab-1.1.0/AUTHORS
--rw-r--r--  root/root  17992  usr/doc/baobab-1.1.0/COPYING
--rw-r--r--  root/root  716    usr/doc/baobab-1.1.0/ChangeLog
--rw-r--r--  root/root  7831   usr/doc/baobab-1.1.0/INSTALL
--rw-r--r--  root/root  0      usr/doc/baobab-1.1.0/NEWS
--rw-r--r--  root/root  1902   usr/doc/baobab-1.1.0/README
-drwxr-xr-x  root/root  0      usr/man/
-drwxr-xr-x  root/root  0      usr/man/man1/
--rw-r--r--  root/root  2006   usr/man/man1/baobab.1.gz
-drwxr-xr-x  root/root  0      usr/share/
-drwxr-xr-x  root/root  0      usr/share/applications/
--rw-r--r--  root/root  214    usr/share/applications/baobab.desktop
-drwxr-xr-x  root/root  0      usr/share/baobab/
-drwxr-xr-x  root/root  0      usr/share/baobab/pixmaps/
--rw-r--r--  root/root  316    usr/share/baobab/pixmaps/alfa_sort.png
--rw-r--r--  root/root  1944   usr/share/baobab/pixmaps/baobab.png
--rw-r--r--  root/root  1943   usr/share/baobab/pixmaps/baobab.xpm
--rw-r--r--  root/root  2806   usr/share/baobab/pixmaps/busy.gif
--rw-r--r--  root/root  753    usr/share/baobab/pixmaps/done.png
--rw-r--r--  root/root  461    usr/share/baobab/pixmaps/format_numeric.png
--rw-r--r--  root/root  243    usr/share/baobab/pixmaps/format_percent.png
--rw-r--r--  root/root  167    usr/share/baobab/pixmaps/green.png
--rw-r--r--  root/root  685    usr/share/baobab/pixmaps/nautilus.png
--rw-r--r--  root/root  672    usr/share/baobab/pixmaps/num_sort.png
--rw-r--r--  root/root  167    usr/share/baobab/pixmaps/red.png
--rw-r--r--  root/root  1076   usr/share/baobab/pixmaps/scan_directory.png
--rw-r--r--  root/root  1121   usr/share/baobab/pixmaps/scan_harddisk.png
--rw-r--r--  root/root  1128   usr/share/baobab/pixmaps/search.png
--rw-r--r--  root/root  389    usr/share/baobab/pixmaps/searchall.png
--rw-r--r--  root/root  1379   usr/share/baobab/pixmaps/stop.png
--rw-r--r--  root/root  204    usr/share/baobab/pixmaps/white.png
--rw-r--r--  root/root  166    usr/share/baobab/pixmaps/yellow.png
-drwxr-xr-x  root/root  0      usr/share/baobab/scripts/
--rwxr-xr-x  root/root  259    usr/share/baobab/scripts/naut-script.sh
-drwxr-xr-x  root/root  0      usr/share/locale/
-drwxr-xr-x  root/root  0      usr/share/locale/de/
-drwxr-xr-x  root/root  0      usr/share/locale/de/LC_MESSAGES/
--rw-r--r--  root/root  6909   usr/share/locale/de/LC_MESSAGES/baobab.mo
-drwxr-xr-x  root/root  0      usr/share/locale/es/
-drwxr-xr-x  root/root  0      usr/share/locale/es/LC_MESSAGES/
--rw-r--r--  root/root  2356   usr/share/locale/es/LC_MESSAGES/baobab.mo
-drwxr-xr-x  root/root  0      usr/share/locale/fr/
-drwxr-xr-x  root/root  0      usr/share/locale/fr/LC_MESSAGES/
--rw-r--r--  root/root  6948   usr/share/locale/fr/LC_MESSAGES/baobab.mo
-drwxr-xr-x  root/root  0      usr/share/locale/it/
-drwxr-xr-x  root/root  0      usr/share/locale/it/LC_MESSAGES/
--rw-r--r--  root/root  6970   usr/share/locale/it/LC_MESSAGES/baobab.mo
-drwxr-xr-x  root/root  0      usr/share/locale/pl/
-drwxr-xr-x  root/root  0      usr/share/locale/pl/LC_MESSAGES/
--rw-r--r--  root/root  2557   usr/share/locale/pl/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/bin   usr/bin/
+-rwxr-xr-x  root/bin   usr/bin/baobab
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/baobab-1.3.1/
+-rw-r--r--  root/root  usr/doc/baobab-1.3.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/baobab-1.3.1/COPYING
+-rw-r--r--  root/root  usr/doc/baobab-1.3.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/baobab-1.3.1/INSTALL
+-rw-r--r--  root/root  usr/doc/baobab-1.3.1/NEWS
+-rw-r--r--  root/root  usr/doc/baobab-1.3.1/README
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/baobab.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/baobab.desktop
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/baobab.mo
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/baobab.png
+drwxr-xr-x  root/root  usr/share/pixmaps/baobab/
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/alfa_sort.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/baobab.xpm
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/busy.gif
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/done.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/format_numeric.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/format_percent.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/green.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/nautilus.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/num_sort.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/red.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/scan_directory.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/scan_harddisk.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/search.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/searchall.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/stop.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/white.png
+-rw-r--r--  root/root  usr/share/pixmaps/baobab/yellow.png
