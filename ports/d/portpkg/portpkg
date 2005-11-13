@@ -485,11 +485,11 @@ build_pkg()
         row "Dropping privileges, becoming nobody"
         su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$TMP TMPDIR=$TMP \
           PATH=\$PATH:/sbin fakeroot sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+        | tee $LOG_DIR/$name.buildlog >$output
       else
         eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin \
           fakeroot sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+        | tee $LOG_DIR/$name.buildlog >$output
       fi
     else
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
@@ -499,10 +499,10 @@ build_pkg()
       if [ "`whoami`" != "root" ]; then
         row "Gaining root privileges"
         su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+        | tee $LOG_DIR/$name.buildlog >$output
       else
         eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+        | tee $LOG_DIR/$name.buildlog >$output
       fi
 #      # this is a hack-around for some faulty install scripts
 #      chmod 1777 /tmp
