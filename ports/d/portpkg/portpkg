@@ -130,7 +130,7 @@ get()
   debug "get(): \$url=$url"
 
   local log=$ADM_DIR/portpkg/`basename $dest`.wgetlog
-  rm -rf $log || die
+  rm -f $log || die
   $VERBOSE && log=/dev/stdout
 
   # try primary url if mirror fails
@@ -338,7 +338,8 @@ maintainer_mode()
 
   # explodepkg package tree?
   if ! [ -d $TMP/package-$name ]; then
-    rm -rf $TMP/package-$name
+    # if *this* is file we cannot remove, fail
+    rm -f $TMP/package-$name || die
     mkdir $TMP/package-$name
     tar xzf $TMP/$package.tgz -C $TMP/package-$name/
   fi
@@ -452,8 +453,8 @@ build_pkg()
 
   # build package
   if ! $remaintain; then
-    rm -rf $TMP/package-$name
-    rm -rf $TMP/$package.tgz
+    [ -d $TMP/package-$name ] && rm -rf $TMP/package-$name
+    rm -f $TMP/$package.tgz
 
     # find CFLAGS substitution (CFLAGS="$SLKCFLAGS")
     local flags_var=`grep -o "CFLAGS=\\"*\\$[^ ]*" $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
@@ -499,7 +500,7 @@ build_pkg()
       return 1
     else
       # remove this tag in any case
-      rm -rf PORT_IS_BROKEN
+      rm -f PORT_IS_BROKEN
     fi
   else
     if ! [ "$pkg_file" ]; then
@@ -521,11 +522,11 @@ build_pkg()
   for src in $sources; do
     local srcname=`basename "$src" | cut -d % -f 2`
     # remove symlinks to sources
-    rm -rf `dirname $script`/$srcname
+    rm -f `dirname $script`/$srcname
     # pseudo ports: don't cache sources
-    $pseudo && rm -rf $SRC_DIR/$srcname
+    $pseudo && rm -f $SRC_DIR/$srcname
   done
-  $maintain || rm -rf $TMP/package-$name
+  $maintain || ( [ -d $TMP/package-$name ] && rm -rf $TMP/package-$name )
 }
 
 # really (re)install/upgrade current port
@@ -682,12 +683,12 @@ do_export()
     esac
 
     row "Uploading $group/$package"
-    rm -rf $ADM_DIR/portpkg/$package.tar.bz2
+    rm -f $ADM_DIR/portpkg/$package.tar.bz2
     mkdir -p $t/$package/$name
     ( cd `dirname $script`
       cp -a . $t/$package/$name
       cd $t/$package/$name
-      rm -rf .CVS CVS arbitrary
+      rm -f .CVS CVS arbitrary
       echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >info
       echo "Intended group:  $group/" >>info
       echo "ChangeLog entry:  $export_opt" >>info
