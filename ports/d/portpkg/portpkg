@@ -28,6 +28,7 @@ ARCH=i486
 CFLAGS=""
 MY_TAG=""
 ADM_DIR=/var/log
+LOG_DIR=/var/log/portpkg
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
@@ -129,7 +130,8 @@ get()
   fi
   debug "get(): \$url=$url"
 
-  local log=$ADM_DIR/portpkg/`basename $dest`.wgetlog
+  local log=$LOG_DIR/`basename $dest`.wgetlog
+  mkdir -p $LOG_DIR
   rm -f $log || die
   $VERBOSE && log=/dev/stdout
 
@@ -475,28 +477,42 @@ build_pkg()
     fi
 
     # execute SlackBuild
+    mkdir -p $LOG_DIR
     if ! $no_fakeroot && has_prog fakeroot; then
-      # run fakerooted SlackBuild as nobody
+      # run fakerooted SlackBuild
       row "Executing (fakerooted) $script $script_opt"
-      su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$TMP TMPDIR=$TMP \
-        PATH=\$PATH:/sbin fakeroot sh $sh_opt $script $script_opt" 2>&1 \
-      | tee $ADM_DIR/portpkg/$name.buildlog >$output
+      if [ "`whoami`" = "root" ]; then
+        row "Dropping privileges, becoming nobody"
+        su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$TMP TMPDIR=$TMP \
+          PATH=\$PATH:/sbin fakeroot sh $sh_opt $script $script_opt" 2>&1 \
+        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+      else
+        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin \
+          fakeroot sh $sh_opt $script $script_opt" 2>&1 \
+        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+      fi
     else
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
       $prepare_only && warn "Preparing without fakeroot is not a good idea!"
       row "Executing $script $script_opt"
-      eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
-      | tee $ADM_DIR/portpkg/$name.buildlog >$output
-      # this is a hack-around for some faulty install scripts
-      chmod 1777 /tmp
+      if [ "`whoami`" != "root" ]; then
+        row "Gaining root privileges"
+        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
+        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+      else
+        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
+        | tee $ADM_DIR/portpkg/$name.buildlog >$output
+      fi
+#      # this is a hack-around for some faulty install scripts
+#      chmod 1777 /tmp
     fi
 
     # success? (this is the most promising test to ensure it worked)
     if ! [ -f $TMP/$package.tgz ]; then
-      $VERBOSE || tail $ADM_DIR/portpkg/$name.buildlog
-      error "Compilation failed (see $ADM_DIR/portpkg/$name.buildlog)!"
-      $maintain && ln -sf $ADM_DIR/portpkg/$name.buildlog PORT_IS_BROKEN
+      $VERBOSE || tail $LOG_DIR/$name.buildlog
+      error "Compilation failed (see $LOG_DIR/$name.buildlog)!"
+      $maintain && ln -sf $LOG_DIR/$name.buildlog PORT_IS_BROKEN
       return 1
     else
       # remove this tag in any case
@@ -607,7 +623,7 @@ do_add() # pkgex-list
   debug "do_add(): starting: $@"
   has_args "$@" || die
   has_ports || die
-  is_root || die
+#  is_root || die
   local ret
   local arg
   for arg in `explicit "$@"`; do
@@ -683,7 +699,8 @@ do_export()
     esac
 
     row "Uploading $group/$package"
-    rm -f $ADM_DIR/portpkg/$package.tar.bz2
+    mkdir -p $LOG_DIR
+    rm -f $LOG_DIR/$package.tar.bz2
     mkdir -p $t/$package/$name
     ( cd `dirname $script`
       cp -a . $t/$package/$name
@@ -693,11 +710,11 @@ do_export()
       echo "Intended group:  $group/" >>info
       echo "ChangeLog entry:  $export_opt" >>info
       cd $t/$package
-      tar cjf $ADM_DIR/portpkg/$package.tar.bz2 .
+      tar cjf $LOG_DIR/$package.tar.bz2 .
     )
 
     $DRY_RUN \
-    || curl -F filetoupload=@$ADM_DIR/portpkg/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
+    || curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
     || error "An error occured!"
   done
 }
@@ -759,7 +776,7 @@ do_list() # [pkgex-list] >glist
 do_sync()
 {
   local t=`mktemp -d`
-  is_root || die
+#  is_root || die
   has_prog cvs || die
   stanza "Syncing your data base:"
 
