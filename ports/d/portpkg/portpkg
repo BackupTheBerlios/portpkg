@@ -169,7 +169,7 @@ explicit() # >pkgex-list
   local arg
   for arg; do
     case $arg in
-      */) ls_slk | slk2gname | grep `regex $arg` | cut -d / -f 2;;
+      */) ls_slk `regex $arg` | slk2gname | cut -d / -f 2;;
       *)  echo $arg;;
     esac
   done
@@ -180,7 +180,7 @@ ls_diff() # >list
 {
   debug "ls_diff(): starting"
   local t=`mktemp -d`
-  ls_loc | grep -v $exclude | loc2gpkg | cut -d / -f 2 >$t/avail
+  ls_loc -v $exclude | loc2gpkg | cut -d / -f 2 >$t/avail
   ls_inst >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -202,10 +202,10 @@ get_info() # pkgex
   debug "get_info(): starting: $@"
 
   # find port, take the first if more than one available
-  local loc=`ls_loc | grep -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
+  local loc=`ls_loc -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
   # maybe an exluded one explicitly named?
   [ "$loc" ] || case $1 in */*)
-    loc=`ls_loc | grep -m 1 $(regex $1)`
+    loc=`ls_loc -m 1 $(regex $1)`
     [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
   esac
 
@@ -256,7 +256,7 @@ check_reqs()
 {
   $NO_REQS && return 0
   local t=`mktemp -d`
-  ls_loc | grep -v $exclude | loc2gpkg >$t/avail
+  ls_loc -v $exclude | loc2gpkg >$t/avail
   ls_inst >$t/inst
   debug "check_reqs(): starting: $package"
   # remember group and name for a refresh later
@@ -365,7 +365,7 @@ maintainer_mode()
   sort -uo $t/auto_req_raw $t/auto_req_raw
 
   # find and strip ignore list
-  ls_inst | grep $ignore | pkg2name | cut -d / -f 2 >$t/ignore
+  ls_inst $ignore | pkg2name | cut -d / -f 2 >$t/ignore
   fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
 
   # now generate new "requires" file
@@ -384,7 +384,7 @@ maintainer_mode()
     -e "/$ARCH-slackware-linux-" footprint >$t/check_path
   grep -e "^........w" -e " root/root .*\( \|/\)bin/" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
-  ls_loc | grep -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
+  ls_loc -v $exclude | loc2gpkg | pkg2name | cut -d / -f 2 \
   | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
   cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
@@ -585,7 +585,7 @@ add_pkg() # pkgex
   $prepare_only && return 0
 
   # install the package
-  if ls_inst | fgrep -qx $package && ! $reinstall; then
+  if ls_inst -Fqx $package && ! $reinstall; then
     stanza "$package is already installed. Skipping."
     return 0
   fi
@@ -770,7 +770,7 @@ do_list() # [pkgex-list] >glist
   # grep arguments
   local regex
   [ "$*" ] && regex=`regex $*` || regex="-v ^$"
-  ls_loc | grep $regex 2>/dev/null | loc2gpkg
+  ls_loc $regex 2>/dev/null | loc2gpkg
 }
 
 do_sync()
@@ -817,7 +817,7 @@ do_sync()
   local group
 
   # check groups
-  ls_pkg | fgrep -vxf $t/avail | while read gpkg; do
+  ls_pkg -Fvxf $t/avail | while read gpkg; do
     group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
     group=${group:-outdated}
     case $gpkg in $group/*) continue;; esac
