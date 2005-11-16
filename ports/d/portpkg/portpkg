@@ -65,8 +65,8 @@ declare \
   maintain slot_in pseudo no_fakeroot
 
 # listers
-ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\" 2>/dev/null" "$@"; }
-ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\" 2>/dev/null" "$@"; }
+ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\"" "$@"; }
+ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\"" "$@"; }
 ls_slk()  { cache $CACHE/slk "find \$repos -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
 ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
 
@@ -74,10 +74,10 @@ ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
-loc2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1," 2>/dev/null; }
+loc2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1,"; }
 slk2gname() { sed "s,.*/\(.*/.*\)/.*$,\1,"; }
-slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 2>/dev/null \
-  | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}" 2>/dev/null; }
+slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
+  | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 
 # message system
@@ -199,10 +199,10 @@ get_info() # pkgex
   debug "get_info(): starting: $@"
 
   # find port, take the first if more than one available
-  local loc=`ls_loc -v $exclude 2>/dev/null | grep -m 1 $(regex $1)`
+  local loc=`ls_loc -v $exclude | grep $(regex $1) | head -n 1`
   # maybe an exluded one explicitly named?
   [ "$loc" ] || case $1 in */*)
-    loc=`ls_loc -m 1 $(regex $1)`
+    loc=`ls_loc $(regex $1) | head -n 1`
     [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
   esac
 
@@ -592,7 +592,7 @@ add_pkg() # pkgex
   if ! $slot_in && fgrep -qx $package $t/inst; then
     stanza "Reinstalling $package..."
     local add="upgradepkg --reinstall"
-  elif ! $slot_in && grep -qm 1 $(regex $name) $t/inst; then
+  elif ! $slot_in && grep -q $(regex $name) $t/inst; then
     stanza "Upgrading $name to `echo $package | pkg2rel`..."
     local add="upgradepkg"
   else
@@ -645,7 +645,7 @@ do_diff()
     debug "do_diff(): \$pkg=$pkg"
     local avail_rel=`echo $pkg | pkg2rel`
     local name=`echo $pkg | pkg2name`
-    local inst_rel=`grep -m 1 $(regex $name) $t/inst | pkg2rel`
+    local inst_rel=`grep $(regex $name) $t/inst | pkg2rel | head -n 1`
     avail=${avail:-$name}
     avail_rel=${avail_rel:-(n/a)}
     echo -e "$name\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
@@ -694,9 +694,9 @@ do_info() # pkgex-list
     [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
     [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file"
     echo "SCRIPT LOCATION:  $script"
-    [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t 2>/dev/null
-    [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t 2>/dev/null
-    [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t 2>/dev/null
+    [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
+    [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
+    [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
     ret=0
   done
@@ -711,7 +711,7 @@ do_list() # [pkgex-list] >glist
   # grep arguments
   local regex
   [ "$*" ] && regex=`regex $*` || regex="-v ^$"
-  ls_loc $regex 2>/dev/null | loc2gpkg
+  ls_loc $regex | loc2gpkg
 }
 
 do_sync()
