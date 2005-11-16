@@ -539,6 +539,7 @@ build_pkg()
     $pseudo && rm -f $SRC_DIR/$srcname
   done
   $maintain || ( [ -d $TMP/package-$name ] && rm -rf $TMP/package-$name )
+  true
 }
 
 # really (re)install/upgrade current port
