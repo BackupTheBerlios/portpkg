@@ -252,9 +252,9 @@ get_info() # pkgex
 check_reqs()
 {
   $NO_REQS && return 0
-  local t=`mktemp -d`
-  ls_loc -v $exclude | loc2gpkg >$t/avail
-  ls_inst >$t/inst
+#  local t=`mktemp -d`
+#  ls_loc -v $exclude | loc2gpkg >$t/avail
+#  ls_inst >$t/inst
   debug "check_reqs(): starting: $package"
   # remember group and name for a refresh later
   local gpkg=""
@@ -263,12 +263,12 @@ check_reqs()
   local req
   for req in $requires; do
     debug "check_reqs(): checking $req"
-    local inst_pkg=`grep -m 1 $(regex $req) $t/inst`
-    local avail_pkg=`grep -m 1 $(regex $req) $t/avail | cut -d / -f 2`
+    local inst_pkg=`ls_inst $(regex $req) | head -n 1`
+    local avail_pkg=`ls_loc $(regex $req) | grep -v $exclude | sed "s,.*/,," | head -n 1`
 
     # is any version installed?
     if [ "$inst_pkg" ]; then
-      debug "check_reqs(): $req is installed"
+      debug "check_reqs(): $req is installed ($inst_pkg)"
       # if not in strict mode then it's sufficient
       $LAZY_CHECKS && continue
     fi
@@ -277,21 +277,21 @@ check_reqs()
     if [ "$avail_pkg" ]; then
       debug "check_reqs(): $req available as $avail_pkg"
       # is it up-to-date?
-      fgrep -qx $avail_pkg $t/inst && continue
+      ls_inst -qx $avail_pkg && continue
       debug "check_reqs(): call: add_pkg $avail_pkg"
       $DRY_RUN && ! [ "$gpkg" ] && stanza "Preparing for $package:"
-      local gpkg=$group/$package
-      $DRY_RUN && msg_level=`expr $msg_level + 1`
+      gpkg=$group/$package
+      ( $DRY_RUN && msg_level=`expr $msg_level + 1`
       if ! add_pkg $avail_pkg; then
-        $DRY_RUN && msg_level=`expr $msg_level - 1`
+#        $DRY_RUN && msg_level=`expr $msg_level - 1`
         error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | cut -d / -f 2`."
         return 1
-      fi
-      $DRY_RUN && msg_level=`expr $msg_level - 1`
+      fi )
+#      $DRY_RUN && msg_level=`expr $msg_level - 1`
       $DRY_RUN && row "Requiring $avail_pkg"
 
-      # after that add_pkg we have to refresh
-      get_info $gpkg
+#      # after that add_pkg we have to refresh
+#      get_info $gpkg
     elif ! [ "$inst_pkg" ]; then
       error "Cannot find required package $req! Stopping."
       return 1
