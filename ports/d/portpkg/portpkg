@@ -67,8 +67,7 @@ declare \
 # listers
 ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\" 2>/dev/null" "$@"; }
 ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\" 2>/dev/null" "$@"; }
-ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" -follow \
-  | sed \"s,/local/,/0local/,\" | sort | sed \"s,/0local/,/local/,\" 2>/dev/null" "$@"; }
+ls_slk()  { cache $CACHE/slk "find \$repos -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
 ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
 
 # converters
@@ -858,6 +857,7 @@ init()
   case $ARCH in *-*) die "ARCH value not allowed: $ARCH";; esac
 
   # read mirrors, ignore and exclude
+  repos=`grep -vshe ^# -e ^$ $CFG_DIR/repos{.local,} | sed "s,^,$PRT_DIR/,"`
   mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $CFG_DIR/exclude{.local,}`
