@@ -1,0 +1,62 @@
+CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+SUBMIT_URL=http://portpkg.berlios.de/upload.php
+
+local t=`mktemp -d`
+has_args "$@" || die
+[ "$export_opt" ] || die "You must specify a summary of your export!"
+has_ports || die
+has_prog curl || die
+# hm, use at least 7.12.2 (Slackware 10.1)
+case `curl -V | head -n 1 | cut -d " " -f 2` in
+  7.12.0|7.12.1) die "You need curl >= 7.12.2";;
+  7.12.*)        ;;
+  *)             die "You need curl >= 7.12.2";;
+esac
+[ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
+[ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
+[ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
+
+stanza "Exporting to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
+local arg
+for arg in `explicit "$@"`; do
+  debug "do_export(): \$arg=$arg"
+  get_info $arg || continue
+  local path=`dirname $script`
+
+  # check if it's broken
+  if [ -f $path/PORT_IS_BROKEN ]; then
+    error "Cannot export broken ports. Please fix first: $group/$name"
+    continue
+  fi
+
+  # check if it's already run
+  if ! [ -f $path/footprint ] || ! [ $path/footprint -nt $script ]; then
+    error "Please do a test run before exporting: $group/$name"
+    continue
+  fi
+
+  # check "ownership"
+  case $package in *[0-9]$MY_TAG) ;; *)
+    row "$group/$name is not your port. Skipping."
+    continue;;
+  esac
+
+  row "Uploading $group/$package"
+  mkdir -p $LOG_DIR
+  rm -f $LOG_DIR/$package.tar.bz2
+  mkdir -p $t/$package/$name
+  ( cd `dirname $script`
+    cp -a . $t/$package/$name
+    cd $t/$package/$name
+    rm -f .CVS CVS arbitrary
+    echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >info
+    echo "Intended group:  $group/" >>info
+    echo "ChangeLog entry:  $export_opt" >>info
+    cd $t/$package
+    tar cjf $LOG_DIR/$package.tar.bz2 .
+  )
+
+  $DRY_RUN \
+  || curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
+  || error "An error occured!"
+done

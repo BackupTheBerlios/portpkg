@@ -1,0 +1,27 @@
+CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+
+local t=`mktemp -d`
+has_prog cvs || die
+
+# sync port dir
+row "Syncing $PRT_DIR with `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`"
+
+# unhide .CVS
+find $PRT_DIR/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
+
+if [ -d "$PRT_DIR" ]; then
+  cd $PRT_DIR || die
+  cvs -qz9 up -dP -I local -I 0 -I z 2>/dev/null
+else
+  cd `dirname $PRT_DIR` || die
+  cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
+fi | sed -r \
+-e "s,^.*$,  --> &," \
+-e "s, U , Updating ," \
+-e "s, C , Conflict with ," \
+-e "s, P , Patching ," \
+-e "s, M , Locally modified ," \
+-e "s, \\? , Unknown entry ,"
+
+# hide CVS
+find $PRT_DIR/ -name CVS -depth -exec dirname {} \; | xargs -i mv {}/CVS {}/.CVS

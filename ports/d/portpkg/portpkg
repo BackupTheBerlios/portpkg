@@ -41,8 +41,6 @@ TMP=/tmp
 
 # constant values
 ENGINE_VER=cvs
-CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
-SUBMIT_URL=http://portpkg.berlios.de/upload.php
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 ADD_SUM_CALL=`mktemp`
@@ -658,65 +656,10 @@ do_diff()
 
 do_export()
 {
-  local t=`mktemp -d`
   has_args "$@" || die
-  [ "$export_opt" ] || die "You must specify a summary of your export!"
-  has_ports || die
-  has_prog curl || die
-  # hm, use at least 7.12.2 (Slackware 10.1)
-  case `curl -V | head -n 1 | cut -d " " -f 2` in
-    7.12.0|7.12.1) die "You need curl >= 7.12.2";;
-    7.12.*)        ;;
-    *)             die "You need curl >= 7.12.2";;
-  esac
-  [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
-  [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
-  [ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
+  stanza "Exporting:"
 
-  stanza "Exporting to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
-  local arg
-  for arg in `explicit "$@"`; do
-    debug "do_export(): \$arg=$arg"
-    get_info $arg || continue
-    local path=`dirname $script`
-
-    # check if it's broken
-    if [ -f $path/PORT_IS_BROKEN ]; then
-      error "Cannot export broken ports. Please fix first: $group/$name"
-      continue
-    fi
-
-    # check if it's already run
-    if ! [ -f $path/footprint ] || ! [ $path/footprint -nt $script ]; then
-      error "Please do a test run before exporting: $group/$name"
-      continue
-    fi
-
-    # check "ownership"
-    case $package in *[0-9]$MY_TAG) ;; *)
-      row "$group/$name is not your port. Skipping."
-      continue;;
-    esac
-
-    row "Uploading $group/$package"
-    mkdir -p $LOG_DIR
-    rm -f $LOG_DIR/$package.tar.bz2
-    mkdir -p $t/$package/$name
-    ( cd `dirname $script`
-      cp -a . $t/$package/$name
-      cd $t/$package/$name
-      rm -f .CVS CVS arbitrary
-      echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >info
-      echo "Intended group:  $group/" >>info
-      echo "ChangeLog entry:  $export_opt" >>info
-      cd $t/$package
-      tar cjf $LOG_DIR/$package.tar.bz2 .
-    )
-
-    $DRY_RUN \
-    || curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
-    || error "An error occured!"
-  done
+  ( . $CFG_DIR/plugins/export.portpkg )
 }
 
 # find ports by pattern
@@ -775,33 +718,9 @@ do_list() # [pkgex-list] >glist
 
 do_sync()
 {
-  local t=`mktemp -d`
-#  is_root || die
-  has_prog cvs || die
   stanza "Syncing your data base:"
 
-  # sync port dir
-  row "Syncing $PRT_DIR with `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`"
-
-  # unhide .CVS
-  find $PRT_DIR/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
-
-  if [ -d "$PRT_DIR" ]; then
-    cd $PRT_DIR || die
-    cvs -qz9 up -dP -I local -I 0 -I z 2>/dev/null
-  else
-    cd `dirname $PRT_DIR` || die
-    cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
-  fi | sed -r \
-  -e "s,^.*$,  --> &," \
-  -e "s, U , Updating ," \
-  -e "s, C , Conflict with ," \
-  -e "s, P , Patching ," \
-  -e "s, M , Locally modified ," \
-  -e "s, \\? , Unknown entry ,"
-
-  # hide CVS
-  find $PRT_DIR/ -name CVS -depth -exec dirname {} \; | xargs -i mv {}/CVS {}/.CVS
+  ( . $CFG_DIR/plugins/sync.portpkg )
 
   # start 3rd-party-importers
   local importer
@@ -809,29 +728,7 @@ do_sync()
     [ -x $importer ] && $importer
   done
 
-  # sync package dir
-  row "Syncing $PKG_DIR with $PRT_DIR"
-  mkdir -p $PKG_DIR
-  ls_loc | loc2gpkg >$t/avail
-  local gpkg
-  local group
-
-  # check groups
-  ls_pkg -Fvxf $t/avail | while read gpkg; do
-    group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
-    group=${group:-outdated}
-    case $gpkg in $group/*) continue;; esac
-    row "Moving $gpkg to $group/"
-    mkdir -p $PKG_DIR/$group
-    mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
-  done
-
-  # check for empty dirs
-  local dir
-  find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
-    row "Deleting empty directory $dir/"
-    rmdir $dir
-  done
+  ( . $CFG_DIR/plugins/sync.zz.cleanup )
 }
 
 # upgrade all installed ports that are not available

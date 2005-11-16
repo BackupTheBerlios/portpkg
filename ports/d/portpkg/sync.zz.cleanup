@@ -1,0 +1,25 @@
+local t=`mktemp -d`
+
+# sync package dir
+row "Syncing $PKG_DIR with $PRT_DIR"
+mkdir -p $PKG_DIR
+ls_loc | loc2gpkg >$t/avail
+local gpkg
+local group
+
+# check groups
+ls_pkg | fgrep -vxf $t/avail | while read gpkg; do
+  group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
+  group=${group:-outdated}
+  case $gpkg in $group/*) continue;; esac
+  row "Moving $gpkg to $group/"
+  mkdir -p $PKG_DIR/$group
+  mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
+done
+
+# check for empty dirs
+local dir
+find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
+  row "Deleting empty directory $dir/"
+  rmdir $dir
+done
