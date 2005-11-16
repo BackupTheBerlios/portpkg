@@ -352,8 +352,7 @@ maintainer_mode()
     # perl modules (identify them by man pages when searching /var/log/packages/*)
     grep -ie ":.*perl" -e "\.pm:" $t/ftypes | cut -d : -f 1 \
     | xargs sed -n "s,^\ *use *\([A-Z][a-z][^';<> ]*\).*,\1,p" | xargs -i echo "/man./{}\."
-  } | sed "s,/\./,/,g" | grep -lf - $ADM_DIR/packages/* | rev | cut -d / -f 1 \
-  | cut -d - -f 4- | rev| pkg2name | rev | cut -d / -f 1 | rev \
+  } | sed "s,/\./,/,g" | grep -lf - $ADM_DIR/packages/* | pkg2name | rev | cut -d / -f 1 | rev \
   | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/auto_req_raw
   # perl or python in general?
   grep -qie ":.*perl" -e "\.pm:" $t/ftypes && echo perl >>$t/auto_req_raw
