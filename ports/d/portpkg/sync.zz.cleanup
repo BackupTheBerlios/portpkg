@@ -1,7 +1,7 @@
 local t=`mktemp -d`
 
 # sync package dir
-row "Syncing $PKG_DIR with $PRT_DIR"
+row "Syncing $PKG_DIR/ with $PRT_DIR/"
 mkdir -p $PKG_DIR
 ls_loc | loc2gpkg >$t/avail
 local gpkg
@@ -19,7 +19,7 @@ done
 
 # check for empty dirs
 local dir
-find $PKG_DIR/ -mindepth 1 -type d -empty | while read dir; do
+find $PKG_DIR/ -depth -mindepth 1 -type d -empty | while read dir; do
   row "Deleting empty directory $dir/"
-  rmdir $dir
+  rmdir -p $dir 2>/dev/null
 done
