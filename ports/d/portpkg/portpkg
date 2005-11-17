@@ -309,7 +309,7 @@ check_reqs()
 
 check_blocks() {
   for block in $blocks; do
-    if [ "`ls_inst $(regex $block) | head -n 1`" ]; then
+    if ls_inst -q $(regex $block); then
       # we have a blocking package installed, exit!
       error "$block is blocking $name. Please uninstall first!"
       return 1
@@ -367,7 +367,7 @@ maintainer_mode()
   sort -uo $t/auto_req_raw $t/auto_req_raw
 
   # find and strip ignore list
-  ls_inst $ignore | pkg2name | cut -d / -f 2 >$t/ignore
+  ls_inst $ignore | pkg2name >$t/ignore
   fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
 
   # now generate new "requires" file
@@ -595,11 +595,11 @@ add_pkg() # pkgex
   $slot_in && warn "Slot-in: Other releases will stay installed!"
 
   # what to display?
-  ls_inst >$t/inst
-  if ! $slot_in && fgrep -qx $package $t/inst; then
+#  ls_inst >$t/inst
+  if ! $slot_in && ls_inst -Fqx $package; then
     stanza "Reinstalling $package..."
     local add="upgradepkg --reinstall"
-  elif ! $slot_in && grep -q $(regex $name) $t/inst; then
+  elif ! $slot_in && ls_inst -q $(regex $name); then
     stanza "Upgrading $name to `echo $package | pkg2rel`..."
     local add="upgradepkg"
   else
@@ -646,13 +646,13 @@ do_diff()
   local diff_list=`ls_diff`
   [ "$diff_list" ] || die "No differences found."
   stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
-  ls_inst >$t/inst
+#  ls_inst >$t/inst
   local pkg
   for pkg in $diff_list; do
     debug "do_diff(): \$pkg=$pkg"
     local avail_rel=`echo $pkg | pkg2rel`
     local name=`echo $pkg | pkg2name`
-    local inst_rel=`grep $(regex $name) $t/inst | pkg2rel | head -n 1`
+    local inst_rel=`ls_inst $(regex $name) | pkg2rel | head -n 1`
     avail=${avail:-$name}
     avail_rel=${avail_rel:-(n/a)}
     echo -e "$name\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
