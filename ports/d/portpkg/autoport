@@ -133,10 +133,10 @@ if [ "$*" ]; then
         version=$2
         shift;;
       -g)
-        group=`echo $2 | cut -d / -f 1`
+        group=`echo $2 | any2dir`
         shift;;
       -n)
-        name=`echo $2 | cut -d / -f 1`
+        name=$2
         shift;;
       -u)
         get_info $2
@@ -369,7 +369,7 @@ sed -i "s,%tarball%,$tarball," $script
 
 # source-prefix
 echo -n "  --> Checking source-prefix... "
-srcdir_prefix=`cat $t/footprint | sed "s,^\./,," | cut -d / -f 1 | sort -u`
+srcdir_prefix=`cat $t/footprint | sed "s,^\./,,;s,/.*,," | sort -u`
 if [ `echo "$srcdir_prefix" | wc -l` == 1 ] && [ "$srcdir_prefix" != "." ]; then
   echo "$srcdir_prefix/"
   if [ "$format" == "srpm" ]; then

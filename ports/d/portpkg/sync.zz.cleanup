@@ -8,8 +8,8 @@ local gpkg
 local group
 
 # check groups
-ls_pkg | fgrep -vxf $t/avail | while read gpkg; do
-  group=`grep -m 1 /$(echo $gpkg | cut -d / -f 2)$ $t/avail | cut -sd / -f 1`
+ls_pkg -Fvxf $t/avail | while read gpkg; do
+  group=`grep -m 1 /$(echo $gpkg | any2base)$ $t/avail | grep / | any2dir`
   group=${group:-outdated}
   case $gpkg in $group/*) continue;; esac
   row "Moving $gpkg to $group/"

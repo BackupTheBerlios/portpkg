@@ -10,6 +10,7 @@ main_menu()
   echo -n "dialog --title \"LIST OF AVAILABLE GROUPS\" --cancel-label \"Quit\" \
 $opt --menu \"These are the available groups. Select the one you want to look \
 into.\" 0 0 0 " >$t/menu
+  # don't use any2dir here, because we want the "main" groups
   do_list | cut -d / -f 1 | sort -u | sed \
   -e "s,^a$,& \"System packages\" ," \
   -e "s,^ap$,& \"Applications\" ," \
@@ -46,7 +47,7 @@ check_group()
   ls_inst >$t/inst
   ls_loc "^.*/$group/[^/]*$" >$t/locs
   loc2gpkg <$t/locs >$t/gpkgs
-  cut -d / -f 2 <$t/gpkgs >$t/pkgs
+  any2base <$t/gpkgs >$t/pkgs
   pkg2name <$t/pkgs >$t/names
   sort -u <$t/names >$t/unames
   count=`wc -l <$t/unames`
@@ -58,7 +59,7 @@ are already selected. You can deselect them to remove or select others to \
 install them.\" 21 75 12 " >$t/menu
   while read name; do
     loc=`grep -m 1 $(regex $name) $t/locs`
-    pkg=`echo $loc | sed "s,^.*/,,"`
+    pkg=`echo $loc | any2base`
     desc=`grep -s ^$name: $(dirname $loc)/$name/slack-desc | head -n 1 | cut -d " " -f 2- | sed "s,[\"],',g"`
     desc=${desc:-}
     [ "`fgrep -xm 1 $pkg $t/inst`" ] \
