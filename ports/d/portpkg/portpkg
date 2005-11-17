@@ -179,7 +179,9 @@ explicit() # >pkgex-list
   local arg
   for arg; do
     case $arg in
-      */) ls_slk `regex $arg` | slk2gname | any2base;;
+      */) ls_slk `regex $arg` | slk2gname | any2base
+          # also look through virtual groups list
+          grep -s `regex $arg` $CFG_DIR/virtual | any2base;;
       *)  echo $arg;;
     esac
   done
@@ -728,10 +730,13 @@ do_info() # pkgex-list
 do_list() # [pkgex-list] >glist
 {
   has_ports || die
-  # grep arguments
-  local regex
-  [ "$*" ] && regex=`regex $*` || regex="-v ^$"
-  ls_loc $regex | loc2gpkg
+  case $* in
+    "") ls_loc;;
+    *)  # grep arguments
+        ls_loc `regex "$@"`
+        # in order to see virtual groups we list them here also
+        grep -s `regex "$@"` $CFG_DIR/virtual;;
+  esac | loc2gpkg
 }
 
 do_sync()
@@ -851,6 +856,7 @@ maintain,export"
   $remaintain && rebuild=true
   $VERBOSE && output=/dev/stdout
 
+  debug "init(): repos=\"$repos\""
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
   debug "init(): ARCH=$ARCH"

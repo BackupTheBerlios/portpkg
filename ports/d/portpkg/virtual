@@ -1,0 +1,29 @@
+#
+# VIRTUAL groups: accumulate ports to reasonable "virtual" groups.
+#
+
+gtk+2/gtk+2
+gtk+2/cairo
+gtk+2/glitz
+gtk+2/glib2
+gtk+2/pango
+gtk+2/atk
+
+mplayer/mplayer
+mplayer/mplayer-codecs
+mplayer/mplayer-fonts
+mplayer/mplayer-skins
+
+gnome-desktop/nautilus
+gnome-desktop/metacity
+gnome-desktop/gnome-panel
+# TODO: list a few more packages to get a working GNOME desktop
+
+gnome-bindings/gtkmm
+gnome-bindings/gtk2-perl
+gnome-bindings/pygtk
+gnome-bindings/gtk-sharp
+# TODO: there're more bindings
+
+mono/mono
+mono/gtk-sharp

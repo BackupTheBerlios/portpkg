@@ -1,6 +1,6 @@
 VERSION=0.37.5
 ARCH=noarch
-BUILD=2tom
+BUILD=3tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -25,6 +25,7 @@ install -m 644 $CWD/pp-sync-bin $PKG/etc/portpkg/importers/pp-sync-bin.new
 #install -m 644 $CWD/pp-sync-src $PKG/etc/portpkg/importers/
 install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
+install -m 644 $CWD/virtual $PKG/etc/portpkg/
 
 # man page
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
