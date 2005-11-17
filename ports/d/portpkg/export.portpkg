@@ -48,7 +48,7 @@ for arg in `explicit "$@"`; do
   ( cd `dirname $script`
     cp -a . $t/$package/$name
     cd $t/$package/$name
-    rm -f .CVS CVS arbitrary
+    rm -rf .CVS CVS arbitrary
     echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >info
     echo "Intended group:  $group/" >>info
     echo "ChangeLog entry:  $export_opt" >>info
