@@ -1,4 +1,32 @@
+2005-11-17  topf  <topf@localhost>
+
+	* autoport, checkpkg, portpkg, sync.zz.cleanup:
+	Added any2base() and any2dir() to replace 'cut -d / -f 1/2'. Added (but commented out) some needed major changes in group parsing.
+
+	* portpkg: Make more use of cache features for ls_inst().
+
+	* portpkg:
+	Added $SYNC. Allow use of new-style sync-plugins in do_sync().
+
+	* portpkg: Declare $t in get().
+
+	* export.portpkg, portpkg:
+	Handle $export_opt in do_export(), not in parse_options().
+
+	* export.portpkg:
+	Remove CVS dirs recursiv in export tarball (Thanks to Piotr Simon).
+
+	* portpkg: Search 'requires' for optional and conflicting expressions.
+
+	* portpkg: Fixed reporting of a return code in check_reqs().
+
 2005-11-16  topf  <topf@localhost>
+
+	* portpkg: Fixed return code in build_pkg().
+
+	* portpkg: Avoid 'grep -m' options, so we won't get any broken pipes.
+
+	* ChangeLog: Updated.
 
 	* portpkg: Fixed a typo (?) in maintainer_mode() dependencies pipe.
 
