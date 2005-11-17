@@ -2,8 +2,10 @@ CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
 SUBMIT_URL=http://portpkg.berlios.de/upload.php
 
 local t=`mktemp -d`
+local export_opt="$1"
+shift
 has_args "$@" || die
-[ "$export_opt" ] || die "You must specify a summary of your export!"
+case $export_opt in *\ *) ;; *) die "You must specify a summary of your export! At least two words required.";; esac
 has_ports || die
 has_prog curl || die
 # hm, use at least 7.12.2 (Slackware 10.1)
@@ -36,10 +38,11 @@ for arg in `explicit "$@"`; do
   fi
 
   # check "ownership"
-  case $package in *[0-9]$MY_TAG) ;; *)
+#  case $package in *[0-9]$MY_TAG) ;; *)
+  if ! $maintain; then
     row "$group/$name is not your port. Skipping."
-    continue;;
-  esac
+    continue
+  fi
 
   row "Uploading $group/$package"
   mkdir -p $LOG_DIR

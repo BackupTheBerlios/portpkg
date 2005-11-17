@@ -787,10 +787,10 @@ EOF
 
 parse_options()
 {
-  local shorts="diflsuvhebogyqx:zarpm"
+  local shorts="diflsuvhebogyqxzarpm"
   local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
 rebuild,download,verbose,dryrun,noreqs,debug,lazy,remaintain,prepare,\
-maintain,export:"
+maintain,export"
   local args
   args=`getopt -qo $shorts -l $longs -- "$@"`
   [ "$?" == "0" ] || die "Bad Arguments! Try: portpkg --help"
@@ -807,9 +807,9 @@ maintain,export:"
       -s|--sync)        action=do_sync;;
       -u|--upgrade)     action=do_upgrade;;
       -v|--version)     action=version;;
-      -x|--export)      action=do_export
-                        export_opt="$2"
-                        shift;;
+      -x|--export)      action=do_export;;
+#                        export_opt="$2"
+#                        shift;;
       -h|--help)      	action=help;;
       -e|--reinstall)   reinstall=true;;
       -b|--rebuild)     rebuild=true;;
