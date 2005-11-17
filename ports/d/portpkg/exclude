@@ -1,18 +1,27 @@
 #
 # EXCLUDE these ports for implicit declarations (upgrades, diffs, dependency
-# resolution etc.)
+# resolution etc.).
 # These ports can only be used by explicit naming ("group/name")
 #
-# Note: This file will be overwritten on upgrades, you should add your own
-# exclude-list to exclude.local!
-#
 
-# exclude all testing/ and open/ packages
-
+# exclude packages from special groups
+pasture/
 testing/
+extra/
 open/
 
 # these packages aren't meant for upgrades
+aaa_base
+aaa_elflibs
 
-a/aaa_base
-a/aaa_elflibs
+# exclude kernel/glibc related packages
+kernel-ide
+kernel-generic
+kernel-modules
+kernel-source
+alsa-driver
+glibc
+glibc-solibs
+glibc-zoneinfo
+glibc-i18n
+glibc-profile
