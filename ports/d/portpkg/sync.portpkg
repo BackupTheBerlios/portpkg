@@ -1,20 +1,22 @@
-CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+SOURCE=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+TREE=$PRT_DIR
 
 local t=`mktemp -d`
 has_prog cvs || die
 
 # sync port dir
-row "Syncing $PRT_DIR with `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`"
+row "Syncing $TREE/ with `echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`"
 
+# (obsolete now, only, if .CVS is present)
 # unhide .CVS
-find $PRT_DIR/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
+[ -d $TREE/.CVS ] && find $TREE/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
 
-if [ -d "$PRT_DIR" ]; then
-  cd $PRT_DIR || die
-  cvs -qz9 up -dP -I local -I 0 -I z 2>/dev/null
+if [ -d "$TREE" ]; then
+  cd $TREE || die
+  cvs -qz3 up -dP -I local -I 0 -I z 2>/dev/null
 else
-  cd `dirname $PRT_DIR` || die
-  cvs -qz9 -d $CVS_ROOT co -Pd `basename $PRT_DIR` ports 2>/dev/null
+  cd `dirname $TREE` || die
+  cvs -qz3 -d $SOURCE co -Pd `basename $TREE` ports 2>/dev/null
 fi | sed -r \
 -e "s,^.*$,  --> &," \
 -e "s, U , Updating ," \
@@ -23,5 +25,6 @@ fi | sed -r \
 -e "s, M , Locally modified ," \
 -e "s, \\? , Unknown entry ,"
 
-# hide CVS
-find $PRT_DIR/ -name CVS -depth -exec dirname {} \; | xargs -i mv {}/CVS {}/.CVS
+# (obsolete now)
+## hide CVS
+#find $TREE/ -name CVS -depth -exec dirname {} \; | xargs -i mv {}/CVS {}/.CVS
