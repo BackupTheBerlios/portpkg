@@ -86,7 +86,7 @@ stanza() { [ "$msg_level" = "0" ] && echo -e "\n$@"; }
 #stanza() { [ "$*" ] && echo -e "\n$@"; }
 row()    { echo -e "  --> $@"; }
 warn()   { echo -e "WARNING: $@"; }
-error()  { [ "$*" ] && stanza "$@" >&2; return 1; }
+error()  { [ "$*" ] && echo -e "\n$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && echo "$@" >&2; }
 
@@ -285,8 +285,8 @@ check_reqs()
       if ! add_pkg $avail_pkg; then
 #        $DRY_RUN && msg_level=`expr $msg_level - 1`
         error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | cut -d / -f 2`."
-        return 1
-      fi )
+#        return 1
+      fi ) || return 1
 #      $DRY_RUN && msg_level=`expr $msg_level - 1`
       $DRY_RUN && row "Requiring $avail_pkg"
 
@@ -568,7 +568,7 @@ add_pkg() # pkgex
   check_reqs || return 1
 
   # package file found in cache? (first in its group, then other places)
-  if ! [ $pkg_file ] || $rebuild; then
+  if ! [ "$pkg_file" ] || $rebuild; then
     build_pkg || return 1
     pkg_file=$PKG_DIR/$group/$package.tgz
   elif $download_only; then
@@ -600,7 +600,7 @@ add_pkg() # pkgex
     stanza "Installing $package..."
     local add="installpkg"
   fi
-  echo $group/$package >>$CACHE/inst
+  echo $package >>$CACHE/inst
   $DRY_RUN && [ "$msg_level" = "0" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   $DRY_RUN && return 0
 
