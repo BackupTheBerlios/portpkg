@@ -883,6 +883,7 @@ init()
   mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $CFG_DIR/exclude{.local,}`
+  repos=${repos:-$PRT_DIR}
   ignore=`regex $ignore`
   exclude=`regex $exclude`
 
