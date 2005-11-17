@@ -113,6 +113,7 @@ cache() # file action regex
 get()
 {
   local url=$1 dest=$2
+  local t=`mktemp -d`
   has_prog wget || die
   mkdir -p `dirname $dest`
   local o_url=$url
