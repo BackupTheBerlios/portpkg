@@ -27,6 +27,7 @@ DEBUG=false
 ARCH=i486
 CFLAGS=""
 MY_TAG=""
+SYNC=""
 ADM_DIR=/var/log
 LOG_DIR=/var/log/portpkg
 SRC_DIR=/usr/src/dist
@@ -730,6 +731,9 @@ do_sync()
   local importer
   for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
     [ -x $importer ] && $importer
+  done
+  for importer in $SYNC; do
+    ( . $CFG_DIR/plugins/$importer )
   done
 
   ( . $CFG_DIR/plugins/sync.zz.cleanup )
