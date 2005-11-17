@@ -218,10 +218,14 @@ get_info() # pkgex
   local path=`dirname $loc`/$name
   script=`find $path/ -name "*SlackBuild" | head -n 1`
   description=`grep -s ^$name: $path/slack-desc`
-  requires=`grep -sv ^# $path/requires`
-  optional=`grep -sv ^# $path/optional`
-  sources=`grep -sv ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
-  blocks=`grep -sve ^# -e ^$ $path/blocks | sort -u`
+  requires=`grep -sve ^$ -e ^# $path/requires`
+  optional=`{ \
+grep -sve ^$ -e ^# $path/optional
+grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
+  sources=`grep -sve ^$ -e ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+  blocks=`{ \
+grep -sve ^$ -e ^# $path/blocks
+grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
 
   # info about cached .tgz-packages
   pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
