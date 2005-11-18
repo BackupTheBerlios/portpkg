@@ -28,6 +28,7 @@ ARCH=i486
 CFLAGS=""
 MY_TAG=""
 SYNC=""
+MIRRORS=""
 ADM_DIR=/var/log
 LOG_DIR=/var/log/portpkg
 SRC_DIR=/usr/src/dist
@@ -909,7 +910,7 @@ init()
 
   # read mirrors, ignore and exclude
   repos=`grep -vshe ^# -e ^$ $CFG_DIR/repos{.local,} | sed "s,^,$PRT_DIR/,"`
-  mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,}`
+  mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,$MIRRORS}`
   ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $CFG_DIR/exclude{.local,}`
   use=`grep -vshe ^# -e ^$ $CFG_DIR/use{.local,}`

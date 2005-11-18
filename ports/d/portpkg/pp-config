@@ -115,6 +115,23 @@ resources()
   done
 }
 
+plugins()
+{
+  heading="PLUGINS SETTINGS"
+  echo -n "dialog --title \"$heading\" --single-quoted --checklist \
+\"Select which plugins you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
+  local plugin
+  for plugin in `find $CFG_DIR/plugins/sync.* 2>/dev/null`; do
+    echo -n `basename $plugin` \
+      `grep ^#BLURB= $plugin | cut -d = -f 2` \
+      `echo "$SYNC" | tr " " "\n" | grep -qx $(basename $plugin) && echo on || echo off`" "
+  done >>$t/menu
+  . $t/menu 2>$t/plugins
+  sed -i "/^SYNC=/d" $RC
+  echo "SYNC=\"`cat $t/plugins`\"" >>$RC
+  . $RC
+}
+
 mirrors()
 {
   heading="MIRROR SETTINGS"
@@ -122,15 +139,18 @@ mirrors()
 \"Which of the currently available mirror files do you want to use?\" 0 0 0 " >$t/menu
   local mirror
   for mirror in `find $CFG_DIR/mirrors.* | grep -v mirrors.local`; do
-    echo `basename $mirror` `grep ^#BLURB= $mirror | cut -d = -f 2` \\
+    echo `basename $mirror | sed "s,.*\.,,"` `grep ^#BLURB= $mirror | cut -d = -f 2` \\
   done >>$t/menu
   echo "none \"Use primary download URLs\"" >>$t/menu
   . $t/menu 2>$t/out
   out=`cat $t/out`
-  rm -rf $PRT_DIR/mirrors
+#  rm -rf $PRT_DIR/mirrors
+  sed -i "/^MIRRORS=/d" $RC
   if [ "$out" != "none" ]; then
-    rm -rf $CFG_DIR/mirrors
-    ln -s $out $CFG_DIR/mirrors
+#    rm -rf $CFG_DIR/mirrors
+#    ln -s $out $CFG_DIR/mirrors
+    echo "MIRRORS=$out" >>$RC
+    . $RC
   fi
 }
 
@@ -260,6 +280,7 @@ Select what you want to configure:" 0 0 0 \
   mirrors "Set mirrors for downloads" \
   optimise "Set processor optimising" \
   dependencies "Set dependency handling" 2>$t/sub
+#  plugins "Set which plugins to use" \
 #  paths "Set paths for sources and binaries" \
   rc=$?
   sub=`cat $t/sub`
