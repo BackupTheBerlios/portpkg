@@ -60,7 +60,7 @@ output=/dev/null
 
 # global variables
 declare \
-  repos ignore mirrors exclude \
+  repos ignore mirrors exclude arch_filter \
   package name group \
   script description requires optional blocks size u_size sources pkg_file \
   maintain slot_in pseudo no_fakeroot
@@ -83,9 +83,9 @@ loc2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1,"; }
 slk2gname() { sed "s,.*/\(.*/.*\)/.*$,\1,"; }
 #slk2gname() { sed -r "s,^$PRT_DIR/(.*)[\./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-  | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}"; }
+  | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 #slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-#  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g;p}"; }
+#  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 # TODO: slk2loc should strip ^$PRT_DIR/
 
@@ -202,9 +202,11 @@ ls_diff() # >list
     grep -xm 1 "$check" $t/avail >>$t/avail.check
     grep -xm 1 "$check" $t/inst >>$t/inst.check
   done
+  # neglect architecture differences for ix86
+  sed -i "s,-i.86-,-i.86-," $t/avail.check $t/inst.check
 #  $LAZY_CHECKS && sed -i "s,\(.*-.*\)-.*-.*,\1," $t/avail.check
 #  $LAZY_CHECKS && sed -i "s,\(.*-.*\)-.*-.*,\1," $t/inst.check
-  fgrep -vxf $t/inst.check $t/avail.check | sort -u
+  fgrep -vxf $t/inst.check $t/avail.check | grep -xf - $t/avail | sort -u
   debug "ls_diff(): finished"
 }
 
@@ -859,6 +861,7 @@ maintain,export"
   $remaintain && rebuild=true
   $VERBOSE && output=/dev/stdout
 
+  debug "init(): arch_filter=\"$arch_filter\""
   debug "init(): repos=\"$repos\""
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
@@ -885,7 +888,11 @@ init()
 
   # check
   has_prog sed || die
-  case $ARCH in *-*) die "ARCH value not allowed: $ARCH";; esac
+  case $ARCH in
+    i?86) arch_filter="-\(i.86\|noarch\)-[^-]*$";;
+    *-*)  die "ARCH value not allowed: $ARCH";;
+    *)    arch_filter="-\($ARCH\|noarch\)-[^-]*$";;
+  esac
 
   # read mirrors, ignore and exclude
   repos=`grep -vshe ^# -e ^$ $CFG_DIR/repos{.local,} | sed "s,^,$PRT_DIR/,"`
