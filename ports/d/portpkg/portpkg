@@ -653,6 +653,10 @@ do_add() # pkgex-list
 #  has_args "$@" || die
   has_ports || die
 #  is_root || die
+
+  # if we have implicit expressions here (groups), tell what they contain
+  case "$@" in */|*/\ *) stanza "Resolving targets: "`explicit "$@"` | fmt -t;; esac
+
   local ret
   local arg
   for arg in `explicit "$@"`; do
