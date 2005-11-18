@@ -1,38 +1,5 @@
-2005-03-16 21:12  topf
+2005-11-18  topf  <topf@cvs.berlios.de>
 
-	* requires: Removed obsolete dependencies according to updated
-	  "ignore" file.
-
-2004-12-11 14:12  topf
-
-	* slack-desc: Updated gnome/gucharmap to 1.4.2-i486-1tom.
-
-2004-12-08 23:12  topf
-
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
-
-2004-12-01 20:35  topf
-
-	* SlackBuild: Fixed a SlackBuild typo ("SLKFLAGS") coming from the
-	  SlackBuild-skeleton.
-
-2004-11-09 20:43  tomtoastbrot
-
-	* requires: Added x11-devel to requires and a few other for gnome
-
-2004-11-08 19:41  tomtoastbrot
-
-	* doinst.sh: Initial revision
-
-2004-11-08 19:41  tomtoastbrot
-
-	* doinst.sh: [no log message]
-
-2004-10-30 14:00  tomtoastbrot
-
-	* SlackBuild, requires, sources: Initial revision
-
-2004-10-30 14:00  tomtoastbrot
-
-	* SlackBuild, requires, sources: [no log message]
+  * ChangeLog, SlackBuild, doinst.sh, footprint, md5sums, requires, slack-desc, sources:
+  Moved to patches/.
 
