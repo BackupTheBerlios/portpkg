@@ -185,6 +185,8 @@ explicit() # >pkgex-list
       *)  echo $arg;;
     esac
   done
+  # direct mode: use current dir
+  [ $# == 0 ] && echo "." || true
 }
 
 # print non-available, but installed ports
@@ -215,12 +217,16 @@ get_info() # pkgex
 {
   debug "get_info(): starting: $@"
 
-  # find port, take the first if more than one available
-  local loc=`ls_loc -v $exclude | grep $(regex $1) | head -n 1`
-  # maybe an exluded one explicitly named?
-  [ "$loc" ] || case $1 in */*)
-    loc=`ls_loc $(regex $1) | head -n 1`
-    [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
+  case $1 in
+    .)   # direct mode: find SlackBuild in current dir
+         loc=`find $(pwd) -maxdepth 1 -name "*SlackBuild" | head -n 1 | slk2loc`
+         NO_REQS=true
+         warn "Direct mode: Dependencies resolution disabled!";;
+    */*) # explicitly named port: no exclude list
+         loc=`ls_loc $(regex $1) | head -n 1`
+         [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
+    *)   # find port, take the first if more than one available
+         local loc=`ls_loc $(regex $1) | grep -v $exclude | head -n 1`;;
   esac
 
   if ! [ "$loc" ]; then
@@ -644,7 +650,7 @@ add_pkg()
 do_add() # pkgex-list
 {
   debug "do_add(): starting: $@"
-  has_args "$@" || die
+#  has_args "$@" || die
   has_ports || die
 #  is_root || die
   local ret
@@ -682,7 +688,7 @@ do_diff()
 
 do_export()
 {
-  has_args "$@" || die
+#  has_args "$@" || die
   stanza "Exporting:"
 
   ( . $CFG_DIR/plugins/export.portpkg )
@@ -707,7 +713,7 @@ do_find() # text [..] >list
 do_info() # pkgex-list
 {
   has_ports || die
-  has_args "$@" || die
+#  has_args "$@" || die
   local ret=0
   local arg
   debug "do_info(): starting: $@"
@@ -864,7 +870,7 @@ maintain,export"
   $VERBOSE && output=/dev/stdout
 
   debug "init(): arch_filter=\"$arch_filter\""
-  debug "init(): repos=\"$repos\""
+  debug "init(): repos=\""$repos"\""
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
   debug "init(): use=\"$use\""

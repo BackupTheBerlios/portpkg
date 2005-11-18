@@ -2,10 +2,10 @@ CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
 SUBMIT_URL=http://portpkg.berlios.de/upload.php
 
 local t=`mktemp -d`
-local export_opt="$1"
-shift
 has_args "$@" || die
+local export_opt="$1"
 case $export_opt in *\ *) ;; *) die "You must specify a summary of your export! At least two words required.";; esac
+shift
 has_ports || die
 has_prog curl || die
 # hm, use at least 7.12.2 (Slackware 10.1)
