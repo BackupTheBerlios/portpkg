@@ -1,6 +1,6 @@
 VERSION=0.37.5
 ARCH=noarch
-BUILD=3tom
+BUILD=4tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -21,6 +21,7 @@ install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/
 install -m 644 $CWD/ignore $PKG/etc/portpkg/
 #install -m 644 $CWD/exclude.* $PKG/etc/portpkg/
 install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude #.new
+install -m 644 $CWD/use $PKG/etc/portpkg/
 install -m 644 $CWD/pp-sync-bin $PKG/etc/portpkg/importers/pp-sync-bin.new
 #install -m 644 $CWD/pp-sync-src $PKG/etc/portpkg/importers/
 install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/

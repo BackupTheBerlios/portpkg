@@ -60,9 +60,9 @@ output=/dev/null
 
 # global variables
 declare \
-  repos ignore mirrors exclude arch_filter \
+  repos ignore mirrors exclude use arch_filter \
   package name group \
-  script description requires optional blocks size u_size sources pkg_file \
+  script description requires optional blocks uses size u_size sources pkg_file \
   maintain slot_in pseudo no_fakeroot
 
 # listers
@@ -245,6 +245,7 @@ grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
   blocks=`{ \
 grep -sve ^$ -e ^# $path/blocks
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
+  uses=`$NO_REQS || ls_loc $(regex $optional) | grep $use | pkg2name | any2base | sort -u`
 
   # info about cached .tgz-packages
   pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
@@ -284,7 +285,7 @@ check_reqs()
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   debug "check_reqs(): $name requires: "$requires
   local req
-  for req in $requires; do
+  for req in $requires $uses; do
     debug "check_reqs(): checking $req"
     local inst_pkg=`ls_inst $(regex $req) | head -n 1`
     local avail_pkg=`ls_loc $(regex $req) | grep -v $exclude | any2base | head -n 1`
@@ -723,6 +724,7 @@ do_info() # pkgex-list
     echo "SCRIPT LOCATION:  $script"
     [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
+    [ "$uses" ] && echo "PACKAGE USES:  "$uses | fmt -t
     [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
     ret=0
@@ -865,6 +867,7 @@ maintain,export"
   debug "init(): repos=\"$repos\""
   debug "init(): exclude=\"$exclude\""
   debug "init(): ignore=\"$ignore\""
+  debug "init(): use=\"$use\""
   debug "init(): ARCH=$ARCH"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
@@ -899,9 +902,11 @@ init()
   mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,}`
   ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ $CFG_DIR/exclude{.local,}`
+  use=`grep -vshe ^# -e ^$ $CFG_DIR/use{.local,}`
   repos=${repos:-$PRT_DIR}
   ignore=`regex $ignore`
   exclude=`regex $exclude`
+  use=`regex $use`
 
   # if not used as include file then start me
   [ `basename $0` == "portpkg" ] && parse_options "$@"
