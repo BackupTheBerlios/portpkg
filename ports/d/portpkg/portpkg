@@ -44,9 +44,9 @@ TMP=/tmp
 ENGINE_VER=cvs
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
-ADD_SUM_CALL=`mktemp`
-ADD_SUM_START=`mktemp`
-ADD_SUM_FINISH=`mktemp`
+#ADD_SUM_CALL=`mktemp`
+#ADD_SUM_START=`mktemp`
+#ADD_SUM_FINISH=`mktemp`
 CACHE=`mktemp -d`
 
 # default arguments
@@ -303,10 +303,11 @@ check_reqs()
       $DRY_RUN && ! [ "$gpkg" ] && stanza "Preparing for $package:"
       gpkg=$group/$package
       ( $DRY_RUN && msg_level=`expr $msg_level + 1`
-      if ! add_pkg $avail_pkg; then
+      get_info $avail_pkg || exit 1
+      if ! add_pkg; then
 #        $DRY_RUN && msg_level=`expr $msg_level - 1`
         error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | any2base`."
-#        return 1
+        exit 1
       fi ) || return 1
 #      $DRY_RUN && msg_level=`expr $msg_level - 1`
       $DRY_RUN && row "Requiring $avail_pkg"
@@ -564,29 +565,30 @@ build_pkg()
 }
 
 # really (re)install/upgrade current port
-add_pkg() # pkgex
+add_pkg()
 {
   local t=`mktemp -d`
 
-  # track argument and remove if found
-  echo $1 >>$ADD_SUM_CALL
-  get_info $1 || return 1
-  sed -i "\,^$1$,d" $ADD_SUM_CALL
+#  # track argument and remove if found
+#  echo $1 >>$ADD_SUM_CALL
+#  get_info $1 || return 1
+#  sed -i "\,^$1$,d" $ADD_SUM_CALL
 
   # if it is already tracked as started and not finished, it is either broken
   # or a circular dependency and should fail now
-  if fgrep -sqx "$group/$package" $ADD_SUM_START; then
+  if fgrep -sqx "$group/$package" $t/started; then
     debug "add_pkg(): broke up $package intentionally"
     error "Circular dependency! Stopping $name."
     return 1
   fi
 
   # track as started and skip if we already did that (maybe because of a dependency)
-  fgrep -sqx "$group/$package" $ADD_SUM_FINISH && return 0
-  echo $group/$package >>$ADD_SUM_START
+  fgrep -sqx "$group/$package" $t/finished && return 0
+  echo $group/$package >>$t/started
 
   # requirements check
   check_reqs || return 1
+#  check_blocks || return 1
 
   # package file found in cache? (first in its group, then other places)
   if ! [ "$pkg_file" ] || $rebuild; then
@@ -597,8 +599,8 @@ add_pkg() # pkgex
   fi
 
   # track as finished
-  echo $group/$package >>$ADD_SUM_FINISH
-  sed -i "\,^$group/$package$,d" $ADD_SUM_START
+  echo $group/$package >>$t/finished
+  sed -i "\,^$group/$package$,d" $t/started
   $download_only && return 0
   $prepare_only && return 0
 
@@ -646,7 +648,8 @@ do_add() # pkgex-list
   local arg
   for arg in `explicit "$@"`; do
     debug "do_add(): \$arg=$arg"
-    add_pkg $arg
+    get_info $arg || continue
+    add_pkg
     ret=$?
   done
 
