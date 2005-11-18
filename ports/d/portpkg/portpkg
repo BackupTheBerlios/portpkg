@@ -60,7 +60,7 @@ output=/dev/null
 
 # global variables
 declare \
-  ignore mirrors exclude \
+  repos ignore mirrors exclude \
   package name group \
   script description requires optional blocks size u_size sources pkg_file \
   maintain slot_in pseudo no_fakeroot
