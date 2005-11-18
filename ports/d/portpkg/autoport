@@ -390,7 +390,7 @@ else
 fi
 
 # now, move it to $TMP as user expects it to be
-chown nobody.nogroup -R $t/src/*
+[ "`whoami`" = "root" ] && chown nobody.nogroup -R $t/src/*
 rm -rf $TMP/$srcdir_prefix
 mv $t/src/* $TMP/
 
