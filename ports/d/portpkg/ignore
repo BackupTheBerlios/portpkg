@@ -1,13 +1,15 @@
 #
 # IGNORE these ports for dependencies (when making the "requires" file)
-# Maintainers should add these dependencies manually if really needed
-#
-# Note: This file will be overwritten on upgrades, you should add your own
-# ignore-list to ignore.local!
+# Maintainers should add these dependencies manually if really needed.
+# The purpose of this file is to trim the automatically found requirements
+# for earch "requires" files in order to get some meaningful dependencies.
+# Intentionally (manually) added dependencies that are listed here won't
+# be removed, but give a warning at build time for the maintainer to
+# re-check the relevance.
 #
 
 # Slackware packages that are either installed anyway or just optional
-
+# (use complete packages instead of -solibs)
 aaa_base
 aaa_elflibs
 gcc
@@ -16,7 +18,8 @@ gcc-g77
 gcc-gnat
 gcc-java
 gcc-objc
-#glibc
+cxxlibs
+glibc
 glibc-solibs
 glibc-zoneinfo
 glibc-i18n
@@ -24,18 +27,17 @@ glibc-profile
 gpm
 openssl-solibs
 
-# optional packages or ports (also Dropline packages, X-drivers)
-
+# obsolete and optional packages or ports (also Dropline packages, X-drivers)
 elflibs
 freetype
 freetype2
 fontconfig
+libxft
 savage
 linux-pam
 pam
 
-# requirements maintainers should better add manually
-
+# requirements maintainers should better add manually (alternative backends etc.)
 hal
 dbus
 howl
@@ -46,3 +48,11 @@ arts
 polypaudio
 audiofile
 alsa-lib
+jack
+
+# gtk+2 dependencies (we don't need to repeat them all the time)
+atk
+cairo
+glib2
+glitz
+pango
