@@ -275,6 +275,9 @@ grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
   [ -f $path/slot-in ] && slot_in=true || slot_in=false
   [ -f $path/pseudo ] && pseudo=true || pseudo=false
   [ -f $path/no-fakeroot ] && no_fakeroot=true || no_fakeroot=false
+  grep -sqx slot-in $path/flags && slot_in=true
+  grep -sqx pseudo $path/flags && pseudo=true
+  grep -sqx no-fakeroot $path/flags && no_fakeroot=true
   debug "get_info(): finished: $@"
   return 0
 }
@@ -349,7 +352,7 @@ maintainer_mode()
   row "Going maintainer mode"
 
   # regenerate md5sums and footprint (assume we are in the script dir)
-  row "Writing: footprint md5sums requires"
+  row "Writing: footprint md5sums requires flags"
 #  rm -rf md5sums
 #  rm -rf footprint
 
@@ -363,9 +366,8 @@ maintainer_mode()
 #    cat md5sums | gpg --clearsign >$path/md5sums
 #  fi
 
-  # write a file list of the package (remove creation time)
-  tar tzvf $TMP/$package.tgz | awk '{ printf "%s %-12s %8s %s\n",$1,$2,$3,$6 }' \
-  | sort +3 >footprint
+  # write a file list of the package (remove creation time and size)
+  tar tzvf $TMP/$package.tgz | awk '{ print $1,$2,$6 }' | sort +2 >footprint
 
   # explodepkg package tree?
   if ! [ -d $TMP/package-$name ]; then
@@ -377,6 +379,7 @@ maintainer_mode()
 
   # generate requires list
   echo "$requires" >$t/old_req
+  echo "$optional" >$t/old_opt
   find $TMP/package-$name/ -type f | xargs file >$t/ftypes
   { # shared libraries
     grep ":.*ELF" $t/ftypes | cut -d : -f 1 | xargs -r ldd \
@@ -396,33 +399,68 @@ maintainer_mode()
   ls_inst $ignore | pkg2name >$t/ignore
   fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
 
+  # strip old lists to see what's new
+  fgrep -vxf $t/old_req -f $t/old_opt $t/auto_req >$t/new_req
+
+  # if there's alread a "requires" file, add new dependencies as optional
+  if [ "$requires" ]; then
+    optional="$optional
+`cat $t/new_req`"
+  else
+    requires="$requires
+`cat $t/new_req`"
+  fi
+
   # now generate new "requires" file
-  touch optional
-  fgrep -hxvf optional $t/auto_req $t/old_req | grep -v ^$ | sort -u >requires
+  echo "$requires" >>requires
+  echo "$optional" | xargs -r -l echo "# optional:" >>requires
+  echo "$blocks" | xargs -r -l echo "# block:" >>requires
+  sort -uo requires requires
+  sed -i "/^$/d" requires
+#  touch optional
+#  fgrep -hxvf optional $t/auto_req $t/old_req | grep -v ^$ | sort -u >requires
+
+  # write flags file
+  $slot_in && echo "slot-in" >>flags
+  $pseudo && echo "pseudo" >>flags
+  $no_fakeroot && echo "no-fakeroot" >>flags
+  [ -f flags ] && sort -uo flags flags
 
   # show a few statistics
   fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "  --> Ignoring dependencies:"
-  fgrep -xvf $t/old_req requires | xargs -r echo "  --> New dependencies:"
-  fgrep -xf optional $t/auto_req | xargs -r echo "  --> Dependant options:"
-  fgrep -xvf $t/auto_req requires | fgrep -vxf optional | tee arbitrary \
-  | xargs -r echo "  --> Arbitrary dependencies:"
+  cat $t/new_req | xargs -r echo "  --> New dependencies:"
+#  fgrep -xf optional $t/auto_req | xargs -r echo "  --> Dependant options:"
+  fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
-  grep -woe "usr/\(local/\|etc/\|share/doc/\|share/man/\|info/dir\).*" \
+  egrep -woe "usr/(local/|etc/|share/doc/|share/man/|info/dir).*" \
     -e "/$ARCH-slackware-linux-" footprint >$t/check_path
-  grep -e "^........w" -e " root/root .*\( \|/\)bin/" footprint >$t/check_perm
+  egrep -e "^........w" -e " root/root .*( |/)bin/" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
-  ls_loc -v $exclude | loc2gpkg | pkg2name | any2base \
-  | fgrep -vxf - $t/auto_req >>$t/check_req
+  ls_loc -v $exclude | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
   cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
   cat $t/check_req | xargs -r echo "WARNING: Check these dependencies:"
 
+  # check for files that interfere with other packages
+  cat footprint | sed "s,.* ,," | grep -ve /$ -e ^install/ \
+| ( cd $ADM_DIR/packages; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
+| sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
+
   # remove empty files
-  [ -s arbitrary ] || rm -f arbitrary
+#  [ -s arbitrary ] || rm -f arbitrary
   [ -s requires ] || rm -f requires
-  [ -s optional ] || rm -f optional
+#  [ -s optional ] || rm -f optional
   [ -s md5sums ] || rm -f md5sums
+  [ -s flags ] || rm -f flags
+
+  # remove obsolete files
+  rm -f arbitrary
+  rm -f blocks
+  rm -f optional
+#  rm -f slot-in
+#  rm -f pseudo
+#  rm -f no-fakeroot
 }
 
 # build package
@@ -433,7 +471,7 @@ build_pkg()
 
   if $maintain; then
     local script_opt=""
-    warn "Maintainer mode: Modifying files: requires md5sums footprint"
+    warn "Maintainer mode: Modifying files: requires md5sums footprint flags"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
   else
     local script_opt="--cleanup"
