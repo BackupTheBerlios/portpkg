@@ -1,0 +1,75 @@
+# vim: ft=sh
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=2.3
+ARCH=${ARCH:-i486}
+BUILD=1dan
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP || exit 1
+rm -rf rox-$VERSION || exit 1
+tar xzvf $CWD/rox-$VERSION.tgz || exit 1
+cd rox-$VERSION || exit 1
+patch -p1 < $CWD/rox-choices_options.patch || exit 1
+chown -R root.root .
+
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./ROX-Filer/AppRun --compile || exit 1
+# normally rox uses interactive install script to install the software
+
+mkdir -p $PKG/usr/{bin,share/ROX-Filer,man/man1}
+
+rm -rf ROX-Filer/{build,src,ROX-Filer.dbg}
+cp -R ROX-Filer/* $PKG/usr/share/ROX-Filer
+cp -R ROX-Filer/.DirIcon $PKG/usr/share/ROX-Filer
+
+chmod 755 Choices/MIME-types/*
+cp -R Choices $PKG/usr/share/ROX-Filer/
+
+mkdir -p $PKG/usr/share/mime/packages
+cp rox.xml $PKG/usr/share/mime/packages
+
+cat > $PKG/usr/bin/rox << EOF                                            
+#!/bin/sh
+CHOICESPATH=~/Choices:/usr/share/ROX-Filer/Choices; export CHOICESPATH
+exec /usr/share/ROX-Filer/AppRun "\$@"
+EOF
+chmod 755 $PKG/usr/bin/rox
+chown -R root.bin $PKG/usr/bin/
+
+gzip -c rox.1 >$PKG/usr/man/man1/rox.1.gz
+ln -s /usr/man/man1/rox.1.gz $PKG/usr/man/man1/ROX-Filer.1.gz
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  README README-es ROX-Filer/Help/Changes \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG || exit 1
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/rox-$VERSION
+  rm -rf $PKG
+fi

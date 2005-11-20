@@ -1,0 +1,200 @@
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_msword rox-2.3/Choices/MIME-types/application_msword
+--- rox-2.3.orig/Choices/MIME-types/application_msword	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_msword	2005-11-14 22:04:06.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec swriter "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_pdf rox-2.3/Choices/MIME-types/application_pdf
+--- rox-2.3.orig/Choices/MIME-types/application_pdf	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_pdf	2005-11-14 21:39:35.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec xpdf "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.ms-excel rox-2.3/Choices/MIME-types/application_vnd.ms-excel
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.ms-excel	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.ms-excel	2005-11-14 22:04:15.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec scalc "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.ms-powerpoint rox-2.3/Choices/MIME-types/application_vnd.ms-powerpoint
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.ms-powerpoint	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.ms-powerpoint	2005-11-14 22:04:19.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec simpress "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.graphics rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.graphics
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.graphics	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.graphics	2005-11-14 22:04:22.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec sdraw "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.presentation rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.presentation
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.presentation	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.presentation	2005-11-14 22:04:26.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec simpress "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.spreadsheet rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.spreadsheet
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.spreadsheet	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.spreadsheet	2005-11-14 22:04:31.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec scalc "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.text rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.text
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.oasis.opendocument.text	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.oasis.opendocument.text	2005-11-14 22:04:35.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec swriter "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.calc rox-2.3/Choices/MIME-types/application_vnd.sun.xml.calc
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.calc	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.sun.xml.calc	2005-11-14 22:04:39.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec scalc "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.draw rox-2.3/Choices/MIME-types/application_vnd.sun.xml.draw
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.draw	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.sun.xml.draw	2005-11-14 22:04:43.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec sdraw "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.impress rox-2.3/Choices/MIME-types/application_vnd.sun.xml.impress
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.impress	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.sun.xml.impress	2005-11-14 22:04:48.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec simpress "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.writer rox-2.3/Choices/MIME-types/application_vnd.sun.xml.writer
+--- rox-2.3.orig/Choices/MIME-types/application_vnd.sun.xml.writer	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/application_vnd.sun.xml.writer	2005-11-14 22:04:52.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec swriter "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/image_svg+xml rox-2.3/Choices/MIME-types/image_svg+xml
+--- rox-2.3.orig/Choices/MIME-types/image_svg+xml	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/image_svg+xml	2005-11-14 22:38:25.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec inkscape "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/image_x-xcf rox-2.3/Choices/MIME-types/image_x-xcf
+--- rox-2.3.orig/Choices/MIME-types/image_x-xcf	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/image_x-xcf	2005-11-14 21:52:15.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec gimp-remote "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/image_xfig rox-2.3/Choices/MIME-types/image_xfig
+--- rox-2.3.orig/Choices/MIME-types/image_xfig	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/image_xfig	2005-11-14 21:42:23.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec xfig "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/text rox-2.3/Choices/MIME-types/text
+--- rox-2.3.orig/Choices/MIME-types/text	2005-11-14 21:37:47.000000000 +0100
++++ rox-2.3/Choices/MIME-types/text	2005-11-14 21:38:53.000000000 +0100
+@@ -1,2 +1,2 @@
+ #!/bin/sh
+-exec xterm -e vi "$@"
++exec xterm -e vim "$@"
+diff -uNr rox-2.3.orig/Choices/MIME-types/video rox-2.3/Choices/MIME-types/video
+--- rox-2.3.orig/Choices/MIME-types/video	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/MIME-types/video	2005-11-14 21:49:24.000000000 +0100
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec gxine "$@"
+diff -uNr rox-2.3.orig/Choices/ROX-Filer/Options rox-2.3/ROX-Filer/Options
+--- rox-2.3.orig/Choices/ROX-Filer/Options	1970-01-01 01:00:00.000000000 +0100
++++ rox-2.3/Choices/ROX-Filer/Options	2005-11-14 22:15:38.000000000 +0100
+@@ -0,0 +1,93 @@
++<?xml version="1.0"?>
++<Options>
++  <Option name="toolbar_type">1</Option>
++  <Option name="session_panel_or_pin">2</Option>
++  <Option name="display_bdev_colour">#000000</Option>
++  <Option name="action_move">1</Option>
++  <Option name="pinboard_bg_colour">#888</Option>
++  <Option name="dnd_middle_menu">1</Option>
++  <Option name="bind_single_pinboard">1</Option>
++  <Option name="menu_xterm">xterm</Option>
++  <Option name="display_show_hidden">1</Option>
++  <Option name="display_colour_types">1</Option>
++  <Option name="label_font"></Option>
++  <Option name="toolbar_disable">gtk-close</Option>
++  <Option name="override_redirect">0</Option>
++  <Option name="dnd_spring_delay">400</Option>
++  <Option name="filer_size_limit">75</Option>
++  <Option name="display_inherit_options">0</Option>
++  <Option name="dnd_spring_open">0</Option>
++  <Option name="iconify_start">1</Option>
++  <Option name="filer_beep_multi">1</Option>
++  <Option name="display_sock_colour">#ff00ff</Option>
++  <Option name="action_brief">0</Option>
++  <Option name="pinboard_top_margin">0</Option>
++  <Option name="filer_short_flag_names">0</Option>
++  <Option name="display_show_thumbs">0</Option>
++  <Option name="display_cdev_colour">#000000</Option>
++  <Option name="display_dirs_first">1</Option>
++  <Option name="filer_unique_windows">0</Option>
++  <Option name="menu_quick">0</Option>
++  <Option name="icon_theme">ROX</Option>
++  <Option name="panel_avoid">1</Option>
++  <Option name="panel_is_dock">0</Option>
++  <Option name="display_exec_colour">#006000</Option>
++  <Option name="session_pinboard_name">Default</Option>
++  <Option name="dnd_left_menu">1</Option>
++  <Option name="display_dir_colour">#000080</Option>
++  <Option name="xattr_ignore">0</Option>
++  <Option name="i18n_translation">From LANG</Option>
++  <Option name="display_icon_size">3</Option>
++  <Option name="display_door_colour">#ff00ff</Option>
++  <Option name="action_newer">0</Option>
++  <Option name="filer_auto_resize">1</Option>
++  <Option name="panel_width">52</Option>
++  <Option name="display_caps_first">0</Option>
++  <Option name="display_sort_by">0</Option>
++  <Option name="pinboard_tasklist_per_workspace">0</Option>
++  <Option name="panel_xinerama">0</Option>
++  <Option name="bind_new_button_1">0</Option>
++  <Option name="action_link">1</Option>
++  <Option name="pinboard_bottom_margin">0</Option>
++  <Option name="dnd_uri_handler">xterm -e wget $1</Option>
++  <Option name="display_err_colour">#ff0000</Option>
++  <Option name="action_delete">0</Option>
++  <Option name="action_recurse">0</Option>
++  <Option name="pinboard_forward_buttons_13">0</Option>
++  <Option name="iconify_dir">1</Option>
++  <Option name="bind_dclick_resizes">1</Option>
++  <Option name="display_show_headers">1</Option>
++  <Option name="display_small_width">250</Option>
++  <Option name="menu_iconsize">1</Option>
++  <Option name="display_file_colour">#000000</Option>
++  <Option name="action_mount">1</Option>
++  <Option name="pinboard_tasklist">1</Option>
++  <Option name="bind_single_click">1</Option>
++  <Option name="display_show_full_type">0</Option>
++  <Option name="pinboard_shadow_colour">#000</Option>
++  <Option name="toolbar_min_width">1</Option>
++  <Option name="dnd_drag_to_icons">1</Option>
++  <Option name="filer_beep_fail">1</Option>
++  <Option name="pinboard_fg_colour">#fff</Option>
++  <Option name="display_large_width">155</Option>
++  <Option name="pinboard_image_scaling">0</Option>
++  <Option name="panel_style">1</Option>
++  <Option name="dnd_no_hostnames">1</Option>
++  <Option name="blackbox_hack">0</Option>
++  <Option name="session_panel_name">Default</Option>
++  <Option name="display_unkn_colour">#000000</Option>
++  <Option name="display_pipe_colour">#444444</Option>
++  <Option name="filer_view_type">0</Option>
++  <Option name="vertical_order_small">0</Option>
++  <Option name="action_copy">1</Option>
++  <Option name="action_force">0</Option>
++  <Option name="toolbar_show_info">1</Option>
++  <Option name="filer_change_size_num">30</Option>
++  <Option name="vertical_order_large">0</Option>
++  <Option name="display_adir_colour">#006000</Option>
++  <Option name="pinboard_grid_step">32</Option>
++  <Option name="display_details">0</Option>
++  <Option name="pinboard_shadow_labels">1</Option>
++  <Option name="pinboard_clamp_icons">1</Option>
++  <Option name="panel_monitor">0</Option>
++</Options>
