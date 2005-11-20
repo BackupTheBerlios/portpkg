@@ -19,7 +19,7 @@ if [ ! -d $TMP ]; then
 fi
 PKG=/tmp/package-xmame
 
-VERSION=0.96
+VERSION=0.100
 ARCH=${ARCH:-i486}
 BUILD=1stb
 
@@ -63,6 +63,8 @@ cp doc/* $PKG/usr/doc/xmame-$VERSION
 cp README $PKG/usr/doc/xmame-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+#cat $CWD/slack-required > $PKG/install/slack-required
+#requiredbuilder $PKG
 cd $PKG
 makepkg -l y -c n ../xmame-$VERSION-$ARCH-$BUILD.tgz
 
