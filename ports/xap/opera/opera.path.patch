@@ -1,0 +1,36 @@
+--- package-opera/usr/bin/opera.orig	2005-11-18 16:04:30.000000000 +0100
++++ package-opera/usr/bin/opera	2005-11-18 16:11:30.000000000 +0100
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ 
+ # Location of the Opera binaries
+-OPERA_BINARYDIR=/tmp/package-opera/usr/lib/opera/8.50-20050916.5
++OPERA_BINARYDIR=/usr/lib/opera/8.50-20050916.5
+ export OPERA_BINARYDIR
+ 
+ # Parse commandline parameters
+@@ -41,10 +41,10 @@
+ 
+ # Opera enviroment
+ if test "${OPERA_DIR}" = '' ; then 
+-  if test -d /tmp/package-opera/usr/share/opera ; then 
+-    OPERA_DIR=/tmp/package-opera/usr/share/opera
++  if test -d /usr/share/opera ; then 
++    OPERA_DIR=/usr/share/opera
+   else
+-    echo "OPERA_DIR unset and not found at expected location (/tmp/package-opera/usr/share/opera)"
++    echo "OPERA_DIR unset and not found at expected location (/usr/share/opera)"
+     exit 1
+   fi
+ fi
+--- /tmp/package-opera/usr/share/opera/java/opera.policy.orig	2005-11-18 16:04:30.000000000 +0100
++++ /tmp/package-opera/usr/share/opera/java/opera.policy	2005-11-18 16:09:57.000000000 +0100
+@@ -6,7 +6,7 @@
+ };
+ 
+ // Opera package classes get all permissions
+-grant codebase "file:///tmp/package-opera/usr/share/opera/java//opera.jar" {
++grant codebase "file:///usr/share/opera/java//opera.jar" {
+ 	permission java.security.AllPermission;
+ };
+ 
