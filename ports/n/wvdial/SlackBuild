@@ -13,7 +13,7 @@ tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 make PREFIX=/usr || exit 1
-make install PREFIX=$PKG/usr || exit 1
+make install PREFIX=$PKG/usr PPPDIR=$PKG/etc/ppp/peers || exit 1
 
 touch $PKG/etc/ppp/wvdial
 
