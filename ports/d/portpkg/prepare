@@ -1,47 +1,28 @@
-#!/bin/sh
+#!/bin/sh -u
+#
+# Sync documentation with portpkg.berlios.de wiki.
+# Do this before releasing a new portpkg
+# FOR PORTPKG ADMINISTRATION ONLY
 
-# docs
-if ! [ -x /usr/bin/elinks ]; then
-  echo
-  echo "No package 'elinks' installed!"
-  exit 1
-fi
+. `which portpkg` || exit 1
 
-for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers Links; do
-  wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
+has_prog elinks || die
+
+stanza "Syncing docs:"
+for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers \
+Links UpcomingRelease; do
+  row "$doc"
+  wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc 2>/dev/null
   elinks -no-numbering -dump $doc.html | grep -v "^[ ]*EditThisPage" >README.$doc
   rm $doc.html
 done
 
-mv README{.TodoBugsAbout,}
+row "Finishing"
+sed -i "/ file:\/\//d" README.*
+sed -i "0,/^News$/d" README.FrontPage
+sed -i "1s,.*,News\n," README.FrontPage
+mv README.TodoBugsAbout ABOUT
+mv README.PortpkgGuide README
 mv README.FrontPage NEWS
-sed -i "0,/^News$/d" NEWS
-sed -i "1s,.*,News\n," NEWS
-
-exit
-
-## exclude lists
-#
-#dist_set="10.0 10.1 current"
-#for i in $dist_set; do
-#  wget -O /tmp/file_list.$i ftp://ftp.slackware.at/slackware-$i/FILELIST.TXT
-#  grep -o "slackware/.*\.tgz$" /tmp/file_list.$i | rev | cut -d / -f 1 | cut -d - -f 3- | rev >/tmp/pkg_list.$i
-#done
-#
-#portpkg -l | grep -ve ^pasture/ -e ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
-#| rev | cut -d / -f 1 | cut -d - -f 3- | rev >/tmp/pkg_list.ports
-#
-#for i in $dist_set; do
-#  cat exclude >exclude.$i
-#  cat >>exclude.$i <<EOF
-#
-## these are already part of Slackware $i. (automatic generated list)
-#
-#EOF
-#  fgrep -xf /tmp/pkg_list.ports /tmp/pkg_list.$i | rev | cut -d - -f 2- | rev \
-#  | xargs -r portpkg -l | grep -ve ^local/ -e ^testing/ -e ^open/ -e [0-9]$ \
-#  | rev | cut -d - -f 4- | rev >>exclude.$i
-#done
-#
-#sed -i "\,^pasture/,d" exclude.current
-#echo "pasture/" >>exclude.current
+mv README.QuestionsAndAnswers FAQ
+mv README.UpcomingRelease ROADMAP
