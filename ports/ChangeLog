@@ -1,3 +1,37 @@
+2005-12-09  topf  <topf@users.berlios.de>
+
+	* d/portpkg/SlackBuild: Release 0.37.6.
+
+	* d/portpkg/prepare: Minor changes.
+
+	* d/portpkg/export.portpkg:
+	Added new functionalities for administration of ports via CVS.
+
+	* d/portpkg/sync.update-open:
+	Added for administration of uploaded contribs.
+
+	* d/portpkg/sync.slackware-bin: Minor cleanups.
+
+	* d/portpkg/sync.portpkg: Declare variable t. Minor cleanups.
+
+	* d/portpkg/sync.zz.cleanup:
+	Activated new naming conventions and new plugin system.
+
+	* d/portpkg/repos: Enabled GSB/FRG and Slacky.it repos.
+
+	* d/portpkg/pp-config, d/portpkg/portpkg:
+	Activated new naming conventions and new plugin system.
+
+	* d/portpkg/portpkg: Fixed a typo in mirror list naming.
+
+	* d/portpkg/checkpkg:
+	Clean the cache of installed packages after call of portpkg.
+
+	* d/portpkg/sync.gsb-frg, d/portpkg/sync.slackyit-bin:
+	Added plugin for binary pseudo ports.
+
+	* ChangeLog: Updated.
+
 2005-12-08  topf  <topf@users.berlios.de>
 
 	* open/python-inotify/ChangeLog: Updated.
