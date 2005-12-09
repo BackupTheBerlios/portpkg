@@ -1,0 +1,78 @@
+#!/bin/sh
+#BLURB="Merge HTTP submitted ports to CVS (developers only)"
+#
+# This plugin's intention is to merge ports that are uploaded via export.http
+# to the CVS.
+
+SOURCE=http://portpkg.berlios.de/upload
+TREE=$PRT_DIR/open
+
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+row "Syncing $TREE/ with $SOURCE"
+
+cd $PRT_DIR || die
+
+pp_domain=berlios.de
+pp_cvs=cvs.$pp_domain
+pp_shell=shell.$pp_domain
+pp_www=portpkg.$pp_domain
+pp_htdocs=/home/groups/portpkg/htdocs
+pp_upload=$pp_htdocs/upload
+pp_merged=$pp_upload/merged
+pp_login=`cat CVS/Root | cut -d @ -f 1`
+
+#[ "$EXPORT" != "export.cvs" ] && [ "$EXPORT" != "export.portpkg" ] && die "You must use export.cvs here!"
+grep -sq "^$pp_login@$pp_cvs:" CVS/Root || die "No valid CVS root found!"
+
+# check out new ports
+has_prog lynx || die
+new_ports=`lynx -dump $SOURCE | sed "0,/^Refer/d"| grep -o "http://.*-.*-.*-.*\.tar\.bz2$"`
+
+# quit if there are none
+if [ "$new_ports" ]; then
+  for src in $new_ports; do
+    pkg=`basename $src`
+    row "Downloading `basename $src`"
+    get $src $TREE/$pkg || continue
+  
+    row "Mergeing $pkg"
+    name=`basename $pkg .tar.bz2 | pkg2name`
+    if [ "`tar tjf $TREE/$pkg | sed "1d;s,\./,,;s,/.*,," | sort -u`" != "$name" ]; then
+      row "Skipping: $pkg has illegal prefix!"
+      continue
+    fi
+  
+    # clean port dir in $TREE/ and extract tarball
+    find $TREE/$name/ -type f ! -path "*CVS*" -exec rm -v {} \; 2>/dev/null
+    tar xjvf $TREE/$pkg --exclude "*CVS*" -C $TREE/
+    rm $TREE/$pkg
+  
+    # remove SlackBuilds that are not in ./*/*SlackBuild
+    find $TREE/$name/ -name "*SlackBuild" -mindepth 2 -exec mv {} {}.renamed \;
+    find $TREE/$name/ -type f -exec chmod 644 {} \;
+    find $TREE/$name/ -type d -exec chmod 755 {} \;
+    find $TREE/$name/ -name ".*" -exec rm -v {} \;
+    find $TREE/$name/ -type l -exec rm -v {} \;
+  
+    # commit
+    msg=`grep -si "^ChangeLog" $TREE/$name/info | cut -d : -f 2 | xargs`
+    tag=`basename ${pkg##*[0-9-][0-9]} .tar.bz2`
+    rm -f $CACHE/*
+#    get_info $TREE/$name || continue
+#    portpkg -mx "$msg ($tag)" $TREE/$name
+    ( MAINTAIN_ALL=true
+    msg_level=1
+    # this must be done with the CVS exporter plugins
+    do_export "$msg ($tag)" open/$name ) || continue
+
+    # move it (maybe not first post today?)
+    row "Moving into merged/"
+    ssh $pp_login@$pp_shell "mv -f $pp_upload/$pkg $pp_merged/"
+  done
+fi
