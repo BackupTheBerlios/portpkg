@@ -1,29 +1,51 @@
-CVS_ROOT=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
-SUBMIT_URL=http://portpkg.berlios.de/upload.php
+#!/bin/sh
+#BLURB="Export to portpkg.berlios.de"
+#
+# This plugin exports to portpkg.berlios.de. It detects automagically which
+# backend to use:
+#  * uploading via HTTP or
+#  * submitting via CVS (only if you have a CVS write access).
+#
+# usage: portpkg --export "This is a summary" <expression>
+#        portpkg --export q <expression>	# quote summary from 'info' file
+#        portpkg --export <dest>: <expression>  # move to dest (relative to
+#						# $PRT_DIR) in CVS (write access!)
 
-local t=`mktemp -d`
+SOURCE=:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg
+DEST=http://portpkg.berlios.de/upload.php
+
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+t=`mktemp -d`
 has_args "$@" || die
-local export_opt="$1"
-case $export_opt in *\ *) ;; *) die "You must specify a summary of your export! At least two words required.";; esac
+export_opt=""
+dest=""
+quote=false
+case $1 in
+  *:)   export_opt="Moved to ${1%:}/."
+        dest=$PRT_DIR/${1%:};;
+  q)    quote=true;;
+  *\ *) export_opt="$1";;
+  *)    die "You must specify a summary of your export! At least two words required.";; esac
 shift
 has_ports || die
-has_prog curl || die
-# hm, use at least 7.12.2 (Slackware 10.1)
-case `curl -V | head -n 1 | cut -d " " -f 2` in
-  7.12.0|7.12.1) die "You need curl >= 7.12.2";;
-  7.12.*)        ;;
-  *)             die "You need curl >= 7.12.2";;
-esac
-[ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
-[ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
-[ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
 
-stanza "Exporting to `echo $CVS_ROOT | cut -d @ -f 2 | cut -d : -f 1`:"
-local arg
+#stanza "Exporting to `echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`:"
 for arg in `explicit "$@"`; do
   debug "do_export(): \$arg=$arg"
   get_info $arg || continue
-  local path=`dirname $script`
+  path=`dirname $script`
+
+  # quote summary
+  if ( $quote || [ "$dest" ] ) && [ -f $path/info ]; then
+    tag=`echo $package | egrep -o "[a-zA-Z]+$"`
+    export_opt=`grep -si "changelog entry:" $path/info | tr -s " " | cut -d " " -f 3-`" ($tag)"
+  fi
 
   # check if it's broken
   if [ -f $path/PORT_IS_BROKEN ]; then
@@ -44,22 +66,103 @@ for arg in `explicit "$@"`; do
     continue
   fi
 
-  row "Uploading $group/$package"
-  mkdir -p $LOG_DIR
-  rm -f $LOG_DIR/$package.tar.bz2
-  mkdir -p $t/$package/$name
-  ( cd `dirname $script`
-    cp -a . $t/$package/$name
-    cd $t/$package/$name
-    rm -rf .CVS CVS arbitrary
-    echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >info
-    echo "Intended group:  $group/" >>info
-    echo "ChangeLog entry:  $export_opt" >>info
-    cd $t/$package
-    tar cjf $LOG_DIR/$package.tar.bz2 .
-  )
+  # if there's $PRT_DIR/CVS/Root which doesn't contain "anonymous" it must be a CVS
+  # write account (?)
+  if [ -f $PRT_DIR/CVS/Root ] && ! grep -sq "anonymous" $PRT_DIR/CVS/Root; then
+    warn "Trying to write directly to CVS!"
 
-  $DRY_RUN \
-  || curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $SUBMIT_URL >/dev/null 2>&1 \
-  || error "An error occured!"
+    # check again
+    has_prog cvs || die
+    has_prog rcs2log || die
+    has_prog ssh || die
+
+    row "Submitting $package to CVS"
+
+    # CVS in berlios.de requires ssh
+    export CVS_RSH=ssh
+    $DRY_RUN && pre=echo || pre=""
+
+    if [ "$dest" ]; then
+      # first clean $dest/
+      if [ -d $dest/$name ]; then
+        row "Cleaning destination $dest/$name"
+        find $dest/$name -type f ! -path "*CVS*" -exec $pre rm -rf {} \;
+      fi
+
+      # copy files
+      row "Copying files to $dest/"
+      cd `dirname $path`
+      find $name/ ! -path "*CVS*" ! -name info -exec $pre cp -vP --parents {} $dest/ \;
+
+      # remove old entry
+      row "Removing CVS of old $name"
+      cd `dirname $path`
+      if [ -d $name/CVS ]; then
+        $pre cvs -qz3 rm -f $name && $pre cvs -qz3 ci -m "$export_opt" $name || continue
+      fi
+      [ "$path" ] && $pre rm -rf $path
+
+      # set new $path
+      path=$dest/$name
+    fi
+
+    # check if this path is already in the repository
+    cd $path || die
+    [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
+
+    # compare local tree with CVS
+    find ! -path "*CVS*" ! -path "." | sort >$t/local
+    find -path "*/CVS/Entries" -exec grep -H / {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
+
+    # add/remove entries that are new/not here anymore
+    fgrep -vxf $t/local $t/cvs | xargs -r $pre cvs -qz3 rm || die
+    fgrep -vxf $t/cvs $t/local | xargs -r $pre cvs -qz3 add || die
+
+    # commit
+    $pre cvs -qz3 ci -m "$export_opt" || die
+
+    # now update ChangeLog
+    touch ChangeLog
+    grep -sq "^/ChangeLog/" CVS/Entries || $pre cvs -qz3 add ChangeLog
+    $pre rm -f ChangeLog
+#    cvs_host=`echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`
+    mail_host=users.berlios.de
+    $DRY_RUN || rcs2log -i 2 -h $mail_host >ChangeLog
+    $pre cvs -qz3 ci -m "Updated." ChangeLog
+  else
+    has_prog curl || die
+
+    # hm, use at least 7.12.2 (Slackware 10.1)
+    case `curl -V | head -n 1 | cut -d " " -f 2` in
+      7.12.0|7.12.1) die "You need curl >= 7.12.2";;
+      7.12.*)        ;;
+      *)             die "You need curl >= 7.12.2";;
+    esac
+
+    [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
+    [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
+    [ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
+
+    row "Uploading $group/$package"
+
+    mkdir -p $LOG_DIR
+    rm -f $LOG_DIR/$package.tar.bz2
+    mkdir -p $t/$package/$name
+    ( cd `dirname $script`
+      cp -a . $t/$package/$name
+      cd $t/$package/$name
+      rm -rf .CVS CVS arbitrary
+      echo "Package:  $package" >info
+      echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >>info
+#      echo "Intended group:  $group/" >>info
+      echo "ChangeLog entry:  $export_opt" >>info
+      echo "Timestamp:  `date`" >>info
+      cd $t/$package
+      tar cjf $LOG_DIR/$package.tar.bz2 .
+    )
+
+    $DRY_RUN \
+    || curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $DEST >/dev/null 2>&1 \
+    || error "An error occured!"
+  fi
 done
