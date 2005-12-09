@@ -96,6 +96,8 @@ install them.\" 21 75 12 " >$t/menu
     portpkg `cat $t/list_install` 2>&1
 #    dialog --title "ADDING PACKAGES" --textbox /tmp/portpkg-summary 0 0
   fi
+  # /var/log/packages has changed
+  rm $CACHE/inst
 }
 
 t=`mktemp -d`
