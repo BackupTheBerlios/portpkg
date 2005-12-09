@@ -1,6 +1,6 @@
-VERSION=0.37.5
+VERSION=0.37.6
 ARCH=noarch
-BUILD=4tom
+BUILD=1tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -8,7 +8,7 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 
 # directories
-mkdir -p $PKG/etc/portpkg/importers
+#mkdir -p $PKG/etc/portpkg/importers
 mkdir -p $PKG/etc/portpkg/plugins
 mkdir -p $PKG/usr/bin
 mkdir -p $PKG/usr/man/man1
@@ -22,7 +22,7 @@ install -m 644 $CWD/ignore $PKG/etc/portpkg/
 #install -m 644 $CWD/exclude.* $PKG/etc/portpkg/
 install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude #.new
 install -m 644 $CWD/use $PKG/etc/portpkg/
-install -m 644 $CWD/pp-sync-bin $PKG/etc/portpkg/importers/pp-sync-bin.new
+#install -m 644 $CWD/pp-sync-bin $PKG/etc/portpkg/importers/pp-sync-bin.new
 #install -m 644 $CWD/pp-sync-src $PKG/etc/portpkg/importers/
 install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
