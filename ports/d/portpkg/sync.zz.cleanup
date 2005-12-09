@@ -1,11 +1,22 @@
-local t=`mktemp -d`
+#!/bin/sh
+#BLURB="Sync package cache with ports tree"
+
+SOURCE=$PRT_DIR
+TREE=$PKG_DIR
+
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+t=`mktemp -d`
 
 # sync package dir
-row "Syncing $PKG_DIR/ with $PRT_DIR/"
-mkdir -p $PKG_DIR
+row "Syncing $TREE/ with $SOURCE/"
+mkdir -p $TREE
 ls_loc | loc2gpkg >$t/avail
-local gpkg
-local group
 
 # check groups
 ls_pkg -Fvxf $t/avail | while read gpkg; do
@@ -13,13 +24,12 @@ ls_pkg -Fvxf $t/avail | while read gpkg; do
   group=${group:-outdated}
   case $gpkg in $group/*) continue;; esac
   row "Moving $gpkg to $group/"
-  mkdir -p $PKG_DIR/$group
-  mv $PKG_DIR/$gpkg.tgz $PKG_DIR/$group/
+  mkdir -p $TREE/$group
+  mv $TREE/$gpkg.tgz $TREE/$group/
 done
 
 # check for empty dirs
-local dir
-find $PKG_DIR/ -depth -mindepth 1 -type d -empty | while read dir; do
+find $TREE/ -depth -mindepth 1 -type d -empty | while read dir; do
   row "Deleting empty directory $dir/"
   rmdir -p $dir 2>/dev/null
 done

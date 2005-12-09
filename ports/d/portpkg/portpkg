@@ -68,8 +68,8 @@ declare \
 
 # listers
 ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\"" "$@"; }
-ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\"" "$@"; }
-#ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^$PKG_DIR/(.*)\.tgz$,\1,\"" "$@"; }
+#ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^.*/(.*/.*)\.tgz$,\1,\"" "$@"; }
+ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^$PKG_DIR/(.*)\.tgz$,\1,\"" "$@"; }
 ls_slk()  { cache $CACHE/slk "find \$repos -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
 ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
 
@@ -79,14 +79,14 @@ any2base()  { sed -r "s,^.*/,,"; }
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
-loc2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1,"; }
-#loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
-slk2gname() { sed "s,.*/\(.*/.*\)/.*$,\1,"; }
-#slk2gname() { sed -r "s,^$PRT_DIR/(.*)[\./]SlackBuild$,\1,"; }
-slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-  | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
+#loc2gpkg()  { sed -r "s,^.*/(.*/.*)$,\1,"; }
+loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
+#slk2gname() { sed "s,.*/\(.*/.*\)/.*$,\1,"; }
+slk2gname() { sed -r "s,^$PRT_DIR/(.*)[\./]SlackBuild$,\1,"; }
 #slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-#  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
+#  | sed -n "\,:VERSION=,{s,/[^/]*:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
+slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
+  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 # TODO: slk2loc should strip ^$PRT_DIR/
 
@@ -162,9 +162,9 @@ regex() # >regex_list
       */)
         # groups
         echo -n " -e \(^\|\/\)$arg";;
-#      */*)
-#        # explicit expression (group/name and group/package)
-#        echo -n " -e \(^\|\/\)${arg%/*}\(/.*/\|\/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
+      */*)
+        # explicit expression (group/name and group/package)
+        echo -n " -e \(^\|\/\)${arg%/*}\(/.*/\|\/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
       *)
         # (g_)names and (g_)packages
         echo -n " -e \(^\|\/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
@@ -239,10 +239,10 @@ get_info() # pkgex
   package=`echo $loc | any2base`
   name=`echo $package | pkg2name`
   version=`echo $package | pkg2ver`
-  local path=`dirname $loc`/$name
-  script=`find $path/ -name "*SlackBuild" | head -n 1`
-#  script=`find $(echo $loc | pkg2name){.,/}SlackBuild 2>/dev/null | head -n 1`
-#  local path=`dirname $script`
+#  local path=`dirname $loc`/$name
+#  script=`find $path/ -name "*SlackBuild" | head -n 1`
+  script=`find $(echo $loc | pkg2name){.,/}SlackBuild 2>/dev/null | head -n 1`
+  local path=`dirname $script`
   description=`grep -s ^$name: $path/slack-desc`
   requires=`grep -sve ^$ -e ^# $path/requires`
   optional=`{ \
@@ -805,18 +805,18 @@ do_sync()
 {
   stanza "Syncing your data base:"
 
-  ( . $CFG_DIR/plugins/sync.portpkg )
+#  ( . $CFG_DIR/plugins/sync.portpkg )
 
   # start 3rd-party-importers
   local importer
-  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
-    [ -x $importer ] && $importer
-  done
+#  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
+#    [ -x $importer ] && $importer
+#  done
   for importer in $SYNC; do
     ( . $CFG_DIR/plugins/$importer )
   done
 
-  ( . $CFG_DIR/plugins/sync.zz.cleanup )
+#  ( . $CFG_DIR/plugins/sync.zz.cleanup )
 }
 
 # upgrade all installed ports that are not available

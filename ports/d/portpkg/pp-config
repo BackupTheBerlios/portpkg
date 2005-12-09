@@ -274,13 +274,13 @@ while [ $rc == 0 ]; do
 "This is a configuration tool for Portpkg.
 Select what you want to configure:" 0 0 0 \
   target "Set distribution target" \
-  resources "Set wich resources to use" \
+  plugins "Set which plugins to use" \
   maintain "Set ports tag string" \
   output "Set output level" \
   mirrors "Set mirrors for downloads" \
   optimise "Set processor optimising" \
   dependencies "Set dependency handling" 2>$t/sub
-#  plugins "Set which plugins to use" \
+#  resources "Set wich resources to use" \
 #  paths "Set paths for sources and binaries" \
   rc=$?
   sub=`cat $t/sub`
