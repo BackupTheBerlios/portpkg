@@ -1,7 +1,19 @@
+#!/bin/sh
+#BLURB="Sync with ports tree from portpkg.berlios.de"
+#
+# This plugins is basically a "cvs up -dP" in $PRT_DIR.
+
 SOURCE=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
 TREE=$PRT_DIR
 
-local t=`mktemp -d`
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+t=`mktemp -d`
 has_prog cvs || die
 
 # sync port dir
