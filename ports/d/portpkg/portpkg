@@ -531,7 +531,7 @@ build_pkg()
     rm -f $TMP/$package.tgz
 
     # find CFLAGS substitution (CFLAGS="$SLKCFLAGS")
-    local flags_var=`grep -o "CFLAGS=\"\$[^ ]*" $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
+    local flags_var=`grep -o 'CFLAGS=\"\$[^ ]*' $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
     if [ "$flags_var" ]; then
       debug "build_pkg(): use $flags_var for CFLAGS"
     else
