@@ -36,6 +36,8 @@ PKG_DIR=/usr/obj/pkg
 PRT_DIR=/usr/ports
 CFG_DIR=/etc/portpkg
 TMP=/tmp
+INSTALLPKG=installpkg
+UPGRADEPKG=upgradepkg
 
 # include configuration overlay
 [ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
@@ -669,13 +671,13 @@ add_pkg()
 #  ls_inst >$t/inst
   if ! $slot_in && ls_inst -Fqx $package; then
     stanza "Reinstalling $package..."
-    local add="upgradepkg --reinstall"
+    local add="$UPGRADEPKG --reinstall"
   elif ! $slot_in && ls_inst -q $(regex $name); then
     stanza "Upgrading $name to `echo $package | pkg2rel`..."
-    local add="upgradepkg"
+    local add="$UPGRADEPKG"
   else
     stanza "Installing $package..."
-    local add="installpkg"
+    local add="$INSTALLPKG"
   fi
   echo $package >>$CACHE/inst
   $DRY_RUN && [ "$msg_level" = "0" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
