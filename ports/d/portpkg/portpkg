@@ -358,7 +358,7 @@ maintainer_mode()
 
 #  # md5sum only source files, which are symlinks here
 #  find . -type l | sed "s,^\./,," | sort | xargs -r md5sum >>md5sums
-#  sort +1 -uo md5sums md5sums
+#  sort -k 2 -uo md5sums md5sums
 
 #  # sign md5sums
 #  if [ -d ~/.gnupg ] && [ `which gpg` ]; then
@@ -367,7 +367,7 @@ maintainer_mode()
 #  fi
 
   # write a file list of the package (remove creation time and size)
-  tar tzvf $TMP/$package.tgz | awk '{ print $1,$2,$6 }' | sort +2 >footprint
+  tar tzvf $TMP/$package.tgz | awk '{ print $1,$2,$6 }' | sort -k 3 >footprint
 
   # explodepkg package tree?
   if ! [ -d $TMP/package-$name ]; then
@@ -500,7 +500,7 @@ build_pkg()
       # check md5sums when non-maintainer-mode
       if $maintain; then
         md5sum $srcname >>md5sums
-        sort +1 -uo md5sums md5sums
+        sort -k 2 -uo md5sums md5sums
       elif grep -sq " $srcname$" md5sums; then
         if ! grep " $srcname$" md5sums | md5sum -c --status 2>/dev/null; then
           error "Integrity checking failed: $srcname"
