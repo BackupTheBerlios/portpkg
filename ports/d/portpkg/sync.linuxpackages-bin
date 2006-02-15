@@ -1,0 +1,85 @@
+#!/bin/sh
+#BLURB="Linuxpackages.net binaries repo"
+#
+# This plugin is a generic Slackware-style repo importer. It creates port
+# scripts, that--instead of building packages by source--download a certain
+# binary package from a repo. (Such a repo needs to have the files
+# ChangeLog.txt, FILELIST.TXT, PACKAGES.TXT and CHECKSUMS.md5.)
+#
+# How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
+# the lines SOURCE= and TREE= and enable the plugin with pp-config.
+
+SLACK_VERSION=`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`
+SOURCE=ftp://ftp.scarlet.be/pub/linuxpackages/Slackware-$SLACK_VERSION
+TREE=$PRT_DIR/z/bin/linuxpackages
+
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if  [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+row "Syncing $TREE/ with $SOURCE"
+t=`mktemp -d`
+mkdir -p $TREE
+
+# check if there're updates
+get $SOURCE/ChangeLog.txt $t/ChangeLog.txt || die
+if [ -f $TREE/ChangeLog.txt ] && cmp -s $TREE/ChangeLog.txt $t/ChangeLog.txt; then
+  # exit silently
+  exit 0
+fi
+
+# rebuild the tree
+rm -rf $TREE
+mkdir -p $TREE
+row "Retrieving FILELIST.TXT"
+get $SOURCE/FILELIST.TXT $TREE/FILELIST.TXT
+row "Retrieving PACKAGES.TXT"
+get $SOURCE/PACKAGES.TXT $TREE/PACKAGES.TXT
+row "Retrieving CHECKSUMS.md5"
+get $SOURCE/CHECKSUMS.md5 $TREE/CHECKSUMS.md5
+
+# make a *simple* file list
+grep -v ^d $TREE/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
+
+# find each binary packages
+row "Rebuilding pseudo ports"
+grep "/[^/]*-[^/-]*-[^/-]*-[^/-]*\.tgz$" $t/files | egrep -v "(^|/)source/" \
+| while read s; do
+  pkg=`echo $s | sed -r "s,^.*/(.*)\.tgz$,\1,"`
+  name=`echo $pkg | pkg2name`
+  rel=`echo $pkg | pkg2rel`
+  ver=`echo $rel | cut -d - -f 1`
+  arch=`echo $rel | cut -d - -f 2`
+  build=`echo $rel | cut -d - -f 3`
+  path=$TREE/`dirname $s`/$name
+  mkdir -p $path
+
+  # make the SlackBuild
+  cat >$path/SlackBuild <<EOF
+# This is a pseudo port
+
+TMP=\${TMP:-/tmp}
+
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
+
+CWD=\`pwd\`
+cp \$CWD/$name-\$VERSION-\$ARCH-\$BUILD.tgz \$TMP/
+EOF
+
+  # make the sources file
+  echo "$SOURCE/$s" >$path/sources
+
+  # make the md5sums file
+  grep "/$s$" $TREE/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
+
+  # make the slack-desc file
+  grep "^$name:" $TREE/PACKAGES.TXT >$path/slack-desc || true
+done
+
+# done? make the changes valid
+mv $t/ChangeLog.txt $TREE/
