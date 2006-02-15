@@ -42,7 +42,7 @@ row "Retrieving CHECKSUMS.md5"
 get $SOURCE/CHECKSUMS.md5 $TREE/CHECKSUMS.md5
 
 # make a *simple* file list
-cat $TREE/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
+grep -v ^d $TREE/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
 
 # find each binary packages
 row "Rebuilding pseudo ports"
