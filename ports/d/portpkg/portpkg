@@ -498,7 +498,7 @@ build_pkg()
       $DRY_RUN || get $src $SRC_DIR/$srcname || return 1
     fi
     if ! $DRY_RUN; then
-      ln -s $SRC_DIR/$srcname .
+      ln -sf $SRC_DIR/$srcname .
       # check md5sums when non-maintainer-mode
       if $maintain; then
         md5sum $srcname >>md5sums
