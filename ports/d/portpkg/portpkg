@@ -775,6 +775,8 @@ do_info() # pkgex-list
     get_info $arg || continue
     echo
     echo "PACKAGE NAME:  $package"
+    local inst=`ls_inst $(regex $name)`
+    [ "$inst" ] && echo "INSTALLED VERSION:  "$inst
     [ "$size" ] && echo "COMPRESSED PACKAGE SIZE:  $size K"
     [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
     [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file"
