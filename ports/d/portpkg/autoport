@@ -448,6 +448,7 @@ if grep -sqe "#!section-config" -e "#!section-make" $script; then
       check "--program-prefix" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
       check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
       check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
+      check "--disable-scrollkeeper" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
       snip cfg_autogen $script
     elif check "^autogen.sh$" $t/footprint; then
       :
@@ -697,6 +698,7 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
+  --disable-scrollkeeper \ ##ac_disable_scrollkeeper
   $ARCH-slackware-linux || exit 1
 #!cfg_configure
 perl Makefile.PL || exit 1 ##perl
