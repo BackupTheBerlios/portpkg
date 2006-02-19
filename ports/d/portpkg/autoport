@@ -541,6 +541,16 @@ else
   snip schemas $script
 fi
 
+# icon-cache
+if check "^index.theme(|\.in|\.in\.in)$" $t/footprint; then
+  if ! grep -sq "usr/bin/gtk-update-icon-cache " $path/doinst.sh; then
+    row "Adding gtk-update-icon-cache to doinst.sh"
+    sed '/^#\!doinst.sh_icons$/,/^#\!doinst.sh_icons$/!d' $0 >>$path/doinst.sh
+  fi
+else
+  snip icons $script
+fi
+
 # old inst()
 if grep -sq "^inst()" $path/doinst.sh; then
   row "Removing old inst() from doinst.sh"
@@ -756,6 +766,7 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh ##schemas
+( cd $PKG; find -name index.theme ) | xargs -l echo icons >>$PKG/install/doinst.sh ##icons
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
@@ -787,3 +798,10 @@ gconf() {
   fi
 }
 #!doinst.sh_gconf
+#!doinst.sh_icons
+icons() {
+  if [ -x usr/bin/gtk-update-icon-cache ]; then
+    usr/bin/gtk-update-icon-cache `dirname $1` >/dev/null 2>&1
+  fi
+}
+#!doinst.sh_icons
