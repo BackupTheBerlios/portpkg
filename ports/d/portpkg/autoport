@@ -570,6 +570,7 @@ if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint; then
   add_inst "usr/bin/update-mime-database usr/share/mime" $path/doinst.sh
 else
   remove_inst "update-mime-database" $path/doinst.sh
+  snip mime-database $script
 fi
 
 # desktop-database
@@ -737,6 +738,7 @@ python setup.py build install --root=$PKG || exit 1 ##python
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rf $PKG/usr/info/dir
+find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
 #!section-install
 #%install-fix%
 #%post-install-fix%
