@@ -4,7 +4,13 @@
 source `which portpkg` || exit 1
 t=`mktemp -d`
 #is_root || die
-[ "`whoami`" = "root" ] && RC=$CFG_DIR/local.conf || RC=~/.portpkg.conf
+if [ -f $PRT_DIR/portpkg.conf ]; then
+  RC=$PRT_DIR/portpkg.conf
+elif [ "`whoami`" = "root" ]; then
+  RC=$CFG_DIR/local.conf
+else
+  RC=~/.portpkg.conf
+fi
 #newest_slack=10.1
 
 target()
