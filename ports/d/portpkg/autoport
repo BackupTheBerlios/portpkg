@@ -125,6 +125,10 @@ build=""
 build_pkg=false
 
 # parse options
+shorts="afv:g:n:u:bh"
+args=`getopt -qo $shorts -- "$@"`
+[ "$?" == "0" ] || die "Bad Arguments! Try: autoport -h"
+eval set -- "$args"
 if [ "$*" ]; then
   while [ "$1" ]; do
     case $1 in
@@ -149,9 +153,7 @@ if [ "$*" ]; then
         shift;;
       -b)
         build_pkg=true;;
-      *://*)
-        sources=$1;;
-      *)
+      -h)
         # usage
         stanza "Usage: autoport [-a] [-n name] [-v version] [-g group] [-u port] [-b] [source url]
 Options:
@@ -164,6 +166,8 @@ Options:
   -b             Execute portpkg after port generation
   source url     Preset URL of source code (if not found via -u)"
         exit 1;;
+      *://*)
+        sources=$1;;
     esac
     shift
   done
