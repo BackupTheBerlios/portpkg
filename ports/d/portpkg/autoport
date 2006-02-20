@@ -424,11 +424,16 @@ sed -i "s,^$srcdir_prefix/,," $t/footprint
 for i in `ls $path/*-fix.autoport 2>/dev/null`; do
   i=`basename $i -fix.autoport`
 #  if [ -f $t/$i-fix ]; then
-  if grep -sq "^#%$i-fix%$" $script; then
+  if egrep -sq "^#%(|post-)$i-fix%$" $script; then
     row "Fixing $i"
-    sed -i "\,^#%$i-fix%$,r$path/$i-fix.autoport" $script
     # if it's not a post-xxx, then it's meant to replace the section
-    case $i in post-*) ;; *) snip $i $script;; esac
+    case $i in
+      post-*)
+        sed -i "\,^#%$i-fix%$,r$path/$i-fix.autoport" $script;;
+      *)
+        sed -i "\,^#%post-$i-fix%$,r$path/$i-fix.autoport" $script
+        snip $i $script;;
+    esac
   else
     die "Couldn't locate $i fix. Maybe you're using the wrong version of autoport?"
   fi
@@ -691,7 +696,7 @@ NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
 #!head
-#%head-fix%
+#%post-head-fix%
 #!vars
 VERSION=%version%
 ##SRCVER=%srcver% ##srcver
@@ -699,7 +704,7 @@ ARCH=%arch%
 BUILD=%build%
 
 #!vars
-#%vars-fix%
+#%post-vars-fix%
 #!slkcflags
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -712,7 +717,7 @@ elif [ "$ARCH" = "x86_64" ]; then
 fi
 
 #!slkcflags
-#%slkcflags-fix%
+#%post-slkcflags-fix%
 #!prepare
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -731,7 +736,7 @@ chown -R root.root .
 ##find . -perm %perm644% -exec chmod 644 {} \; ##perms644
 ##find . -perm %perm755% -exec chmod 755 {} \; ##perms755
 #!prepare
-#%prepare-fix%
+#%post-prepare-fix%
 #!config
 #!configure
 ./autogen.sh ##cfg_autogen
@@ -746,10 +751,10 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --disable-static \ ##ac_disable_static
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
 #!configure-opts
-#%configure-opts-fix%
+#%post-configure-opts-fix%
   $ARCH-slackware-linux
 #!configure
-#%configure-fix%
+#%post-configure-fix%
 perl Makefile.PL ##perl
 ##find -name Makefile | xargs sed -i "s,/usr/local/etc,$PKG/etc,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local/var,$PKG/var,g" ##cfg_mk_hard
@@ -757,7 +762,7 @@ perl Makefile.PL ##perl
 ##find -name Makefile | xargs sed -i "s,/share/doc,/doc,g" ##fix_mk_doc
 ##find -name Makefile | xargs sed -i "s,/share/man,/man,g" ##fix_mk_man
 #!config
-#%config-fix%
+#%post-config-fix%
 #!install
 make ##mk
 ##make PREFIX=/usr ##mk_PREFIX
@@ -769,7 +774,7 @@ make install prefix=$PKG/usr ##inst_prefix
 ##make install ##inst
 python setup.py build install --root=$PKG ##python
 #!install
-#%install-fix%
+#%post-install-fix%
 #!refine
 ##mkdir -p $PKG/etc/gconf/gconf.xml.defaults ##schemas
 ##GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
@@ -781,7 +786,7 @@ rm -rf $PKG/usr/info/dir
 find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 #!refine
-#%refine-fix%
+#%post-refine-fix%
 #!strip
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -789,21 +794,21 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 #!strip
-#%strip-fix%
+#%post-strip-fix%
 #!doc
-mv $PKG/usr/share/{man,doc} $PKG/usr/
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #!docfiles
 cp -a \ ##docs
   %docs% \ ##docs
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
 #!docfiles
-#%docfiles-fix%
+#%post-docfiles-fix%
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 #!doc
-#%doc-fix%
+#%post-doc-fix%
 #!tail
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
@@ -812,20 +817,20 @@ find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/i
 ( cd $PKG; find -name index.theme ) | xargs -l echo icons >>$PKG/install/doinst.sh ##icons
 
 #!tail
-#%tail-fix%
+#%post-tail-fix%
 #!package
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 #!package
-#%package-fix%
+#%post-package-fix%
 #!cleanup
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/%srcdirprefix%
   rm -rf $PKG
 fi
 #!cleanup
-#%cleanup-fix%
+#%post-cleanup-fix%
 #!SlackBuild.skel
 
 #!doinst.sh_config
