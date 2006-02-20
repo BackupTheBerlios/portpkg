@@ -20,7 +20,7 @@
 source `which portpkg` || exit 1
 t=`mktemp -d`
 
-sections="config post-config install post-install strip doc post-doc"
+#sections="config post-config install post-install strip doc post-doc"
 
 ask()
 {
@@ -440,7 +440,7 @@ else
 fi
 
 # docs
-if grep -sq "#!section-doc" $script; then
+if grep -sq "#!doc" $script; then
   docs=`egrep "^ABOUT$|^ABOUT-NLS$|^ANNOUNCE$|^AUTHORS$|^CONFIGURATION$|^CHANGES$\
   |^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
   |^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
@@ -458,7 +458,7 @@ if grep -sq "#!section-doc" $script; then
 fi
 
 # configure/make
-if grep -sqe "#!section-config" -e "#!section-make" $script; then
+if grep -sqe "#!config" -e "#!make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
     snip cfg_autogen $script
@@ -492,7 +492,7 @@ if grep -sqe "#!section-config" -e "#!section-make" $script; then
 fi
 
 # installation prefix
-if grep -sq "#!section-install" $script; then
+if grep -sq "#!install" $script; then
   if check "^Makefile" $t/footprint; then
     snip python $script
     # Makefile.PL will always use DESTDIR
@@ -682,16 +682,22 @@ exit 0
 #----------------------------------------
 
 #!SlackBuild.skel
+#!head
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
+#!head
+#%head-fix%
+#!vars
 VERSION=%version%
 ##SRCVER=%srcver% ##srcver
 ARCH=%arch%
 BUILD=%build%
 
+#!vars
+#%vars-fix%
 #!slkcflags
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -704,6 +710,8 @@ elif [ "$ARCH" = "x86_64" ]; then
 fi
 
 #!slkcflags
+#%slkcflags-fix%
+#!prepare
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
@@ -711,41 +719,44 @@ rm -rf $NAME-$VERSION || exit 1 ##extra_sdp
 mkdir -p $NAME-$VERSION ##extra_sdp
 cd $NAME-$VERSION || exit 1 ##extra_sdp
 ##rm -rf %srcdirprefix% || exit 1 ##cd_sdp
-#!rpm
-rpm2targz $CWD/%tarball%
-tar xzvf `basename %tarball% .rpm`.tar.gz
-tar xzvf $NAME-$VERSION.tar.gz
-#!rpm
+rpm2targz $CWD/%tarball% ##rpm
+tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
+tar xzvf $NAME-$VERSION.tar.gz ##rpm
 tar x%tarmode%vf $CWD/%tarball% || exit 1 ##tar
 cd %srcdirprefix% || exit 1 ##cd_sdp
 cat $CWD/*.patch | patch -p1 --verbose ##patch
 chown -R root.root .
 ##find . -perm %perm644% -exec chmod 644 {} \; ##perms644
 ##find . -perm %perm755% -exec chmod 755 {} \; ##perms755
-#!section-config
+#!prepare
+#%prepare-fix%
+#!config
+#!configure
 ./autogen.sh || exit 1 ##cfg_autogen
-#!cfg_configure
 CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 ./configure \
+#!configure-opts
   --prefix=/usr \ ##ac_prefix
   --sysconfdir=/etc \ ##ac_sysconfdir
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
+#!configure-opts
+#%configure-opts-fix%
   $ARCH-slackware-linux || exit 1
-#!cfg_configure
+#!configure
+#%configure-fix%
 perl Makefile.PL || exit 1 ##perl
 ##find -name Makefile | xargs sed -i "s,/usr/local/etc,$PKG/etc,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local/var,$PKG/var,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local,$PKG/usr,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/share/doc,/doc,g" ##fix_mk_doc
 ##find -name Makefile | xargs sed -i "s,/share/man,/man,g" ##fix_mk_man
-#!section-config
+#!config
 #%config-fix%
-#%post-config-fix%
-#!section-install
+#!install
 make || exit 1 ##mk
 ##make PREFIX=/usr || exit 1 ##mk_PREFIX
 ##make prefix=/usr || exit 1 ##mk_prefix
@@ -755,6 +766,9 @@ make install PREFIX=$PKG/usr || exit 1 ##inst_PREFIX
 make install prefix=$PKG/usr || exit 1 ##inst_prefix
 ##make install || exit 1 ##inst
 python setup.py build install --root=$PKG || exit 1 ##python
+#!install
+#%install-fix%
+#!refine
 ##mkdir -p $PKG/etc/gconf/gconf.xml.defaults ##schemas
 ##GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 ##gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
@@ -763,11 +777,9 @@ rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rf $PKG/usr/info/dir
 find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
-#!section-install
-#%install-fix%
-#%post-install-fix%
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
-#!section-strip
+#!refine
+#%refine-fix%
 #!strip
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -775,32 +787,43 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 #!strip
-#!section-strip
+#%strip-fix%
+#!doc
 mv $PKG/usr/share/{man,doc} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-#!section-doc
+#!docfiles
 cp -a \ ##docs
   %docs% \ ##docs
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
-#!section-doc
-#%doc-fix%
-#%post-doc-fix%
+#!docfiles
+#%docfiles-fix%
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+#!doc
+#%doc-fix%
+#!tail
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh ##schemas
 ( cd $PKG; find -name index.theme ) | xargs -l echo icons >>$PKG/install/doinst.sh ##icons
 
+#!tail
+#%tail-fix%
+#!package
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
+#!package
+#%package-fix%
+#!cleanup
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/%srcdirprefix%
   rm -rf $PKG
 fi
+#!cleanup
+#%cleanup-fix%
 #!SlackBuild.skel
 
 #!doinst.sh_config
