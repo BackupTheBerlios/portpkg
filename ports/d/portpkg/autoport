@@ -582,7 +582,7 @@ if grep -sq "^inst()" $path/doinst.sh; then
 fi
 
 # scrollkeeper
-if check "\.omf$" $t/footprint; then
+if check "\.omf(|\.in)$" $t/footprint; then
   add_inst "usr/bin/scrollkeeper-update -p var/lib/scrollkeeper" $path/doinst.sh
 else
   remove_inst "scrollkeeper-update" $path/doinst.sh
