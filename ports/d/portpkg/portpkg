@@ -33,7 +33,8 @@ ADM_DIR=/var/log
 LOG_DIR=/var/log/portpkg
 SRC_DIR=/usr/src/dist
 PKG_DIR=/usr/obj/pkg
-PRT_DIR=/usr/ports
+PRT_DIR=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
+PRT_DIR=${PRT_DIR:-/usr/ports}
 CFG_DIR=/etc/portpkg
 TMP=/tmp
 INSTALLPKG=installpkg
@@ -929,6 +930,7 @@ maintain,export"
   debug "init(): ignore=\"$ignore\""
   debug "init(): use=\"$use\""
   debug "init(): ARCH=$ARCH"
+  debug "init(): PRT_DIR=$PRT_DIR"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
 
