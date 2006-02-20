@@ -714,16 +714,16 @@ fi
 #!prepare
 rm -rf $PKG
 mkdir -p $PKG/usr
-cd $TMP || exit 1
-rm -rf $NAME-$VERSION || exit 1 ##extra_sdp
+cd $TMP
+rm -rf $NAME-$VERSION ##extra_sdp
 mkdir -p $NAME-$VERSION ##extra_sdp
-cd $NAME-$VERSION || exit 1 ##extra_sdp
-##rm -rf %srcdirprefix% || exit 1 ##cd_sdp
+cd $NAME-$VERSION ##extra_sdp
+##rm -rf %srcdirprefix% ##cd_sdp
 rpm2targz $CWD/%tarball% ##rpm
 tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
 tar xzvf $NAME-$VERSION.tar.gz ##rpm
-tar x%tarmode%vf $CWD/%tarball% || exit 1 ##tar
-cd %srcdirprefix% || exit 1 ##cd_sdp
+tar x%tarmode%vf $CWD/%tarball% ##tar
+cd %srcdirprefix% ##cd_sdp
 cat $CWD/*.patch | patch -p1 --verbose ##patch
 chown -R root.root .
 ##find . -perm %perm644% -exec chmod 644 {} \; ##perms644
@@ -732,7 +732,7 @@ chown -R root.root .
 #%prepare-fix%
 #!config
 #!configure
-./autogen.sh || exit 1 ##cfg_autogen
+./autogen.sh ##cfg_autogen
 CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 ./configure \
@@ -745,10 +745,10 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
 #!configure-opts
 #%configure-opts-fix%
-  $ARCH-slackware-linux || exit 1
+  $ARCH-slackware-linux
 #!configure
 #%configure-fix%
-perl Makefile.PL || exit 1 ##perl
+perl Makefile.PL ##perl
 ##find -name Makefile | xargs sed -i "s,/usr/local/etc,$PKG/etc,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local/var,$PKG/var,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/usr/local,$PKG/usr,g" ##cfg_mk_hard
@@ -757,15 +757,15 @@ perl Makefile.PL || exit 1 ##perl
 #!config
 #%config-fix%
 #!install
-make || exit 1 ##mk
-##make PREFIX=/usr || exit 1 ##mk_PREFIX
-##make prefix=/usr || exit 1 ##mk_prefix
+make ##mk
+##make PREFIX=/usr ##mk_PREFIX
+##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
-make install DESTDIR=$PKG || exit 1 ##inst_destdir
-make install PREFIX=$PKG/usr || exit 1 ##inst_PREFIX
-make install prefix=$PKG/usr || exit 1 ##inst_prefix
-##make install || exit 1 ##inst
-python setup.py build install --root=$PKG || exit 1 ##python
+make install DESTDIR=$PKG ##inst_destdir
+make install PREFIX=$PKG/usr ##inst_PREFIX
+make install prefix=$PKG/usr ##inst_prefix
+##make install ##inst
+python setup.py build install --root=$PKG ##python
 #!install
 #%install-fix%
 #!refine
@@ -812,7 +812,7 @@ find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/i
 #!tail
 #%tail-fix%
 #!package
-cd $PKG || exit 1
+cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 #!package
