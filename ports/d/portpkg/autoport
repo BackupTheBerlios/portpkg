@@ -116,6 +116,7 @@ remove_inst() # command_to_remove file
 
 # defaults
 i_act=true
+force=false
 sources=""
 name=""
 group=""
@@ -129,6 +130,8 @@ if [ "$*" ]; then
     case $1 in
       -a)
         i_act=false;;
+      -f)
+        force=true;;
       -v)
         version=$2
         shift;;
@@ -153,6 +156,7 @@ if [ "$*" ]; then
         stanza "Usage: autoport [-a] [-n name] [-v version] [-g group] [-u port] [-b] [source url]
 Options:
   -a             Run non-interactive (use defaults)
+  -f             Force to re-autobuild a port when non-interactve
   -n name        Preset name of port
   -v version     Preset version of port
   -g group       Preset group of port
@@ -291,6 +295,15 @@ if [ -f $path/stop.autoport ]; then
 fi
 if [ -d $path ]; then
   ask "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
+  # quit if not -f in non-interactive mode
+  if ! $i_act && ! $force && \
+  [ "`grep "^VERSION=" $script | cut -d = -f 2-`" = "$version" ]; then
+    error "There's already a build script for that version. Skipping.
+(Use -f to force a re-autoport!)"
+    exit 0
+  fi
+  cp $script $script.new
+  script=$script.new
 fi
 
 stanza "Autoporting $group/$name-$version-$arch-$build:"
@@ -675,6 +688,12 @@ fi
 
 # any errors?
 $failed && die "There's been an error. Please write SlackBuild by hand."
+
+# rename the new script
+case $script in *.new)
+  script=`echo $script | sed "s,\.new$,,"`
+  mv $script.new $script
+esac
 
 # portpkg?
 if $build_pkg; then
