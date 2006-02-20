@@ -9,7 +9,7 @@
 # How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
-SLACK_VERSION=`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`
+SLACK_VERSION=${SLACK_VERSION:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
 SOURCE=ftp://ftp.slackware.com/pub/slackware/slackware-$SLACK_VERSION
 TREE=$PRT_DIR/z/bin/slackware
 
