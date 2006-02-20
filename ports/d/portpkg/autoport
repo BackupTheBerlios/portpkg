@@ -298,17 +298,36 @@ mkdir -p $path
 touch $script
 
 # check for fixes in the script (style: #+post-config-fix)
-for i in $sections; do
-  sed -n "/^#+$i-fix$/,/^#+$i-fix$/p" $script >$t/$i-fix
-  # ...and old-style (post-config-fix.autoport) files
-  if [ -f $path/$i-fix.autoport ]; then
-    echo "#+$i-fix" >$t/$i-fix
-    cat $path/$i-fix.autoport >>$t/$i-fix
-    echo "#+$i-fix" >>$t/$i-fix
-    # obsolete
-    rm $path/$i-fix.autoport
-  fi
-  [ -s $t/$i-fix ] && row "Found $i-fix" || rm $t/$i-fix
+#for i in $sections; do
+grep -o "^#+.*-fix$" $script | cut -c 3- | sort -u | while read s; do
+  row "Extracting inlined $s"
+  sed -n "/^#+$s$/,/^#+$s$/p" $script >$path/$s.autoport
+  sed -i "/^#+$s$/,/^#+$s$/d" $script
+#  # ...and old-style (post-config-fix.autoport) files
+#  if [ -f $path/$i-fix.autoport ]; then
+#    echo "#+$i-fix" >$t/$i-fix
+#    cat $path/$i-fix.autoport >>$t/$i-fix
+#    echo "#+$i-fix" >>$t/$i-fix
+#    # obsolete
+#    rm $path/$i-fix.autoport
+#  fi
+#  [ -s $t/$i-fix ] && row "Found $i-fix" || rm $t/$i-fix
+done
+# (...and style #[+-=]section)
+grep -o "^#+.*$" $script | cut -c 3- | sort -u | while read s; do
+  row "Extracting inlined (new-style) post-$s"
+  sed -n "/^#+$s$/,/^#+$s$/p" $script >$path/post-$s-fix.autoport
+  sed -i "/^#+$s$/,/^#+$s$/d" $script
+done
+grep -o "^#=.*$" $script | cut -c 3- | sort -u | while read s; do
+  row "Extracting inlined (new-style) $s"
+  sed -n "/^#=$s$/,/^#=$s$/p" $script >$path/$s-fix.autoport
+  sed -i "/^#=$s$/,/^#=$s$/d" $script
+done
+grep -o "^#-.*$" $script | cut -c 3- | sort -u | while read s; do
+  row "Extracting inlined (new-style) $s"
+  >$path/$s-fix.autoport
+  sed -i "/^#-$s$/d" $script
 done
 
 # downlaod source file
@@ -399,12 +418,17 @@ sed -i "s,^\./,," $t/footprint
 sed -i "s,^$srcdir_prefix/,," $t/footprint
 
 # insert fixes
-for i in $sections; do
-  if [ -f $t/$i-fix ]; then
+#for i in $sections; do
+for i in `ls $path/*-fix.autoport 2>/dev/null`; do
+  i=`basename $i -fix.autoport`
+#  if [ -f $t/$i-fix ]; then
+  if grep -sq "^#%$i-fix%$" $script; then
     row "Fixing $i"
     sed -i "\,^#%$i-fix%$,r$t/$i-fix" $script
     # if it's not a post-xxx, then it's meant to replace the section
     case $section in post-*) ;; *) snip section-$i $script;; esac
+  else
+    die "Couldn't locate $i fix. Maybe you're using the wrong version of autoport?"
   fi
 done
 
