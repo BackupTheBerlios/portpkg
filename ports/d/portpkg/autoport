@@ -426,7 +426,7 @@ for i in `ls $path/*-fix.autoport 2>/dev/null`; do
     row "Fixing $i"
     sed -i "\,^#%$i-fix%$,r$path/$i-fix.autoport" $script
     # if it's not a post-xxx, then it's meant to replace the section
-    case $section in post-*) ;; *) snip section-$i $script;; esac
+    case $i in post-*) ;; *) snip $i $script;; esac
   else
     die "Couldn't locate $i fix. Maybe you're using the wrong version of autoport?"
   fi
