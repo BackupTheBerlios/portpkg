@@ -329,6 +329,8 @@ grep -o "^#-.*$" $script | cut -c 3- | sort -u | while read s; do
   >$path/$s-fix.autoport
   sed -i "/^#-$s$/d" $script
 done
+# remove #[+-=] lines form .autoport files
+sed -i "/^#[+-=]/d" $path/*.autoport
 
 # downlaod source file
 #file=`basename $src`
