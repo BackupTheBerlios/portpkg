@@ -42,6 +42,7 @@ UPGRADEPKG=upgradepkg
 # include configuration overlay
 [ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
 [ -f ~/.portpkg.conf ] && . ~/.portpkg.conf
+[ -f $PRT_DIR/portpkg.conf ] && . $PRT_DIR/portpkg.conf
 
 # constant values
 ENGINE_VER=cvs
