@@ -25,22 +25,22 @@ If unsure enter '$newest_slack'." 0 0 \
   sed -i "/^DIST_VER=/d" $RC
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$RC
-    if [ $DIST_VER == current ]; then
+#    if [ $DIST_VER == current ]; then
+##      if dialog --title "$heading" --yesno \
+##"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
+##Shall I do that for you?
+##If unsure answer 'yes'." 0 0; then
 #      if dialog --title "$heading" --yesno \
-#"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
+#"It is recommended to add pasture/ to exclude.local for Slackware-current. \
 #Shall I do that for you?
 #If unsure answer 'yes'." 0 0; then
-      if dialog --title "$heading" --yesno \
-"It is recommended to add pasture/ to exclude.local for Slackware-current. \
-Shall I do that for you?
-If unsure answer 'yes'." 0 0; then
-        # add pasture/ to the list of excluded ports
-        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
-        echo "pasture/" >>$CFG_DIR/exclude.local
-#         rm -rf $CFG_DIR/exclude
-#         ln -s exclude.$DIST_VER $CFG_DIR/exclude
-      fi
-    fi
+#        # add pasture/ to the list of excluded ports
+#        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
+#        echo "pasture/" >>$CFG_DIR/exclude.local
+##         rm -rf $CFG_DIR/exclude
+##         ln -s exclude.$DIST_VER $CFG_DIR/exclude
+#      fi
+#    fi
   fi
 }
 
