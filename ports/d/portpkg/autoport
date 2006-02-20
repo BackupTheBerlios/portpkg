@@ -424,7 +424,7 @@ for i in `ls $path/*-fix.autoport 2>/dev/null`; do
 #  if [ -f $t/$i-fix ]; then
   if grep -sq "^#%$i-fix%$" $script; then
     row "Fixing $i"
-    sed -i "\,^#%$i-fix%$,r$t/$i-fix" $script
+    sed -i "\,^#%$i-fix%$,r$path/$i-fix.autoport" $script
     # if it's not a post-xxx, then it's meant to replace the section
     case $section in post-*) ;; *) snip section-$i $script;; esac
   else
