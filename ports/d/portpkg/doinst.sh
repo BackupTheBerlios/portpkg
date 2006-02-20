@@ -11,10 +11,10 @@ config() {
 }
 #config etc/portpkg/exclude.new
 
-if [ -x etc/portpkg/importers/pp-sync-bin ]; then
-  chmod 755 etc/portpkg/importers/pp-sync-bin.new
-fi
-mv etc/portpkg/importers/pp-sync-bin{.new,}
+#if [ -x etc/portpkg/importers/pp-sync-bin ]; then
+#  chmod 755 etc/portpkg/importers/pp-sync-bin.new
+#fi
+#mv etc/portpkg/importers/pp-sync-bin{.new,}
 
 ## ok this is a hot-fix for 0.35cvs-7tom/8tom:
 #if ! [ -c dev/stdout ] && ! [ -L dev/stdout ]; then
