@@ -9,8 +9,8 @@
 # How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
-SLACK_VERSION=${SLACK_VERSION:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
-SOURCE=ftp://ftp.scarlet.be/pub/linuxpackages/Slackware-$SLACK_VERSION
+DIST_VER=${DIST_VER:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
+SOURCE=ftp://ftp.scarlet.be/pub/linuxpackages/Slackware-$DIST_VER
 TREE=$PRT_DIR/z/bin/linuxpackages
 
 # check that we're a plug-in
