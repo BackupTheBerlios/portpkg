@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.11.24
+VERSION=3.0
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -20,8 +20,9 @@ fi
 rm -rf $PKG $TMP/$NAME
 mkdir -p $PKG
 cd $TMP || exit 1
-tar xjvf $CWD/$NAME.tar.bz2 || exit 1
-cd $NAME || exit 1
+rm -rf $NAME-$VERSION
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
