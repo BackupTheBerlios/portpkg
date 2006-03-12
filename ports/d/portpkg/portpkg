@@ -108,7 +108,7 @@ debug()  { $DEBUG && echo "$@" >&2; }
 has_args()  { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
 is_root()   { [ "$UID" == "0" ] || error "You must be root to run this action!"; }
 has_prog()  { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
-has_ports() { [ -d "$PRT_DIR" ] || error "No ports found! Try: portpkg --sync"; }
+has_ports() { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
 
 # cache the output of "action" and grep a regex
 cache() # file action regex
