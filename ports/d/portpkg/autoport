@@ -47,8 +47,8 @@ check()
 
 snip()
 {
-  # the #!tag ... #!tag method
-  sed -i "/^#\!$1$/,/^#\!$1$/d" $2
+  # the #:tag ... #:tag method
+  sed -i "/^#:$1$/,/^#:$1$/d" $2
   # the xxx ##tag method
   sed -i "/ *##$1$/d" $2
 }
@@ -362,7 +362,7 @@ fi
 
 # write skeletons
 failed=false
-sed '/^#\!SlackBuild.skel$/,/^#\!SlackBuild.skel$/!d' $0 >$script
+sed '/^#:SlackBuild.skel$/,/^#:SlackBuild.skel$/!d' $0 >$script
 echo `encode "$sources"` >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
@@ -464,7 +464,7 @@ else
 fi
 
 # docs
-if grep -sq "#!doc" $script; then
+if grep -sq "#:doc" $script; then
   docs=`egrep "^ABOUT$|^ABOUT-NLS$|^ANNOUNCE$|^AUTHORS$|^CONFIGURATION$|^CHANGES$\
   |^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
   |^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
@@ -482,7 +482,7 @@ if grep -sq "#!doc" $script; then
 fi
 
 # configure/make
-if grep -sqe "#!config" -e "#!make" $script; then
+if grep -sqe "#:config" -e "#:make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
     snip cfg_autogen $script
@@ -516,7 +516,7 @@ if grep -sqe "#!config" -e "#!make" $script; then
 fi
 
 # installation prefix
-if grep -sq "#!install" $script; then
+if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
     snip python $script
     # Makefile.PL will always use DESTDIR
@@ -579,7 +579,7 @@ grep -sqe "CFLAGS" -e "CXXFLAGS" $script || snip slkcflags $script
 if check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
   if ! grep -sq "^gconf()" $path/doinst.sh; then
     row "Adding gconf() to doinst.sh"
-    sed '/^#\!doinst.sh_gconf$/,/^#\!doinst.sh_gconf$/!d' $0 >>$path/doinst.sh
+    sed '/^#:doinst.sh_gconf$/,/^#:doinst.sh_gconf$/!d' $0 >>$path/doinst.sh
   fi
 else
   if grep -sq "^gconf()" $path/doinst.sh; then
@@ -593,7 +593,7 @@ fi
 if check "^index.theme(|\.in|\.in\.in)$" $t/footprint; then
   if ! grep -sq "usr/bin/gtk-update-icon-cache " $path/doinst.sh; then
     row "Adding gtk-update-icon-cache to doinst.sh"
-    sed '/^#\!doinst.sh_icons$/,/^#\!doinst.sh_icons$/!d' $0 >>$path/doinst.sh
+    sed '/^#:doinst.sh_icons$/,/^#:doinst.sh_icons$/!d' $0 >>$path/doinst.sh
   fi
 else
   snip icons $script
@@ -645,7 +645,7 @@ fi
 if grep -sq "\.new" $script; then
   if ! grep -sq "^config()" $path/doinst.sh; then
     row "Adding config() to doinst.sh"
-    sed '/^#\!doinst.sh_config$/,/^#\!doinst.sh_config$/!d' $0 >>$path/doinst.sh
+    sed '/^#:doinst.sh_config$/,/^#:doinst.sh_config$/!d' $0 >>$path/doinst.sh
   fi
 else
   if grep -sq "^config()" $path/doinst.sh; then
@@ -675,7 +675,7 @@ case $arch in
 esac
 
 # clean up
-sed -i "/^#[!#%]/d" $script
+sed -i "/^#[:#%]/d" $script
 sed -i "s, *##[^ ]*,,g" $script
 if [ -f $path/doinst.sh ]; then
   sed -i "/^#/d" $path/doinst.sh
@@ -711,24 +711,24 @@ exit 0
 
 #----------------------------------------
 
-#!SlackBuild.skel
-#!head
+#:SlackBuild.skel
+#:head
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-#!head
+#:head
 #%post-head-fix%
-#!vars
+#:vars
 VERSION=%version%
 ##SRCVER=%srcver% ##srcver
 ARCH=%arch%
 BUILD=%build%
 
-#!vars
+#:vars
 #%post-vars-fix%
-#!slkcflags
+#:slkcflags
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
@@ -739,9 +739,9 @@ elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2"
 fi
 
-#!slkcflags
+#:slkcflags
 #%post-slkcflags-fix%
-#!prepare
+#:prepare
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
@@ -758,25 +758,25 @@ cat $CWD/*.patch | patch -p1 --verbose ##patch
 chown -R root.root .
 ##find . -perm %perm644% -exec chmod 644 {} \; ##perms644
 ##find . -perm %perm755% -exec chmod 755 {} \; ##perms755
-#!prepare
+#:prepare
 #%post-prepare-fix%
-#!config
-#!configure
+#:config
+#:configure
 ./autogen.sh ##cfg_autogen
 CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 ./configure \
-#!configure-opts
+#:configure-opts
   --prefix=/usr \ ##ac_prefix
   --sysconfdir=/etc \ ##ac_sysconfdir
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
-#!configure-opts
+#:configure-opts
 #%post-configure-opts-fix%
   $ARCH-slackware-linux
-#!configure
+#:configure
 #%post-configure-fix%
 perl Makefile.PL ##perl
 ##find -name Makefile | xargs sed -i "s,/usr/local/etc,$PKG/etc,g" ##cfg_mk_hard
@@ -784,9 +784,9 @@ perl Makefile.PL ##perl
 ##find -name Makefile | xargs sed -i "s,/usr/local,$PKG/usr,g" ##cfg_mk_hard
 ##find -name Makefile | xargs sed -i "s,/share/doc,/doc,g" ##fix_mk_doc
 ##find -name Makefile | xargs sed -i "s,/share/man,/man,g" ##fix_mk_man
-#!config
+#:config
 #%post-config-fix%
-#!install
+#:install
 make ##mk
 ##make PREFIX=/usr ##mk_PREFIX
 ##make prefix=/usr ##mk_prefix
@@ -796,9 +796,9 @@ make install PREFIX=$PKG/usr ##inst_PREFIX
 make install prefix=$PKG/usr ##inst_prefix
 ##make install ##inst
 python setup.py build install --root=$PKG ##python
-#!install
+#:install
 #%post-install-fix%
-#!refine
+#:refine
 ##mkdir -p $PKG/etc/gconf/gconf.xml.defaults ##schemas
 ##GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 ##gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
@@ -808,55 +808,55 @@ rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rf $PKG/usr/info/dir
 find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
-#!refine
+#:refine
 #%post-refine-fix%
-#!strip
+#:strip
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-#!strip
+#:strip
 #%post-strip-fix%
-#!doc
+#:doc
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-#!docfiles
+#:docfiles
 cp -a \ ##docs
   %docs% \ ##docs
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
-#!docfiles
+#:docfiles
 #%post-docfiles-fix%
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
-#!doc
+#:doc
 #%post-doc-fix%
-#!tail
+#:tail
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh ##schemas
 ( cd $PKG; find -name index.theme ) | xargs -l echo icons >>$PKG/install/doinst.sh ##icons
 
-#!tail
+#:tail
 #%post-tail-fix%
-#!package
+#:package
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
-#!package
+#:package
 #%post-package-fix%
-#!cleanup
+#:cleanup
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/%srcdirprefix%
   rm -rf $PKG
 fi
-#!cleanup
+#:cleanup
 #%post-cleanup-fix%
-#!SlackBuild.skel
+#:SlackBuild.skel
 
-#!doinst.sh_config
+#:doinst.sh_config
 config() {
   NEW="$1"
   OLD="`dirname $NEW`/`basename $NEW .new`"
@@ -868,19 +868,19 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-#!doinst.sh_config
-#!doinst.sh_gconf
+#:doinst.sh_config
+#:doinst.sh_gconf
 gconf() {
   if [ -x /usr/bin/gconftool-2 ]; then
     GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
     gconftool-2 --makefile-install-rule $1 >/dev/null 2>&1
   fi
 }
-#!doinst.sh_gconf
-#!doinst.sh_icons
+#:doinst.sh_gconf
+#:doinst.sh_icons
 icons() {
   if [ -x usr/bin/gtk-update-icon-cache ]; then
     usr/bin/gtk-update-icon-cache `dirname $1` >/dev/null 2>&1
   fi
 }
-#!doinst.sh_icons
+#:doinst.sh_icons
