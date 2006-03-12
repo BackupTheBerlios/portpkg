@@ -516,6 +516,9 @@ if grep -sqe "#:config" -e "#:make" $script; then
   fi
 fi
 
+# set the prefix to /usr if this is still undefined
+sed -i "s,%prefix%,usr,g" $script
+
 # installation prefix
 if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
@@ -744,7 +747,7 @@ fi
 #%post-slkcflags-fix%
 #:prepare
 rm -rf $PKG
-mkdir -p $PKG/usr
+mkdir -p $PKG/%prefix%
 cd $TMP
 rm -rf $NAME-$VERSION ##extra_sdp
 mkdir -p $NAME-$VERSION ##extra_sdp
@@ -768,7 +771,7 @@ CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
 ./configure \
 #:configure-opts
-  --prefix=/usr \ ##ac_prefix
+  --prefix=/%prefix% \ ##ac_prefix
   --sysconfdir=/etc \ ##ac_sysconfdir
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
@@ -794,8 +797,8 @@ make ##mk
 ##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
 make install DESTDIR=$PKG ##inst_destdir
-make install PREFIX=$PKG/usr ##inst_PREFIX
-make install prefix=$PKG/usr ##inst_prefix
+make install PREFIX=$PKG/%prefix% ##inst_PREFIX
+make install prefix=$PKG/%prefix% ##inst_prefix
 ##make install ##inst
 python setup.py build install --root=$PKG ##python
 #:install
@@ -807,7 +810,7 @@ python setup.py build install --root=$PKG ##python
 ##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
-rm -rf $PKG/usr/info/dir
+rm -rf $PKG/%prefix%/info/dir
 find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 #:refine
