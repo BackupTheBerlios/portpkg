@@ -491,10 +491,16 @@ if grep -sqe "#:config" -e "#:make" $script; then
   else
     snip perl $script
     if check "^configure$" $t/footprint; then
-      check "--prefix" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
-      check "--sysconfdir" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
+      if check "KDEDIRS" $TMP/$srcdir_prefix/configure; then
+        sed -i "s,%prefix%,opt/kde,g" $script
+        snip ac_sysconfdir $script
+        snip ac_localstatedir $script
+      else
+        check "--prefix" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
+        check "--sysconfdir" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
+        check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
+      fi
       check "--program-prefix" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
-      check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
       check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
       check "--disable-scrollkeeper" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
       check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
