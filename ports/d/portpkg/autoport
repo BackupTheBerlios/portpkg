@@ -57,12 +57,12 @@ encode()
 {
   local ver=`echo $version | sed "s,\.,\.,g"`
   local enc=`echo "$@" | sed -e "s,$name,\\$NAME,g" -e "s,$ver,\\$VERSION,g"`
-  local test
-  local NAME=$name
-  local VERSION=$version
-  eval test=\"$enc\"
+#  local test
+#  local NAME=$name
+#  local VERSION=$version
+#  eval test=\"$enc\"
   # try ${NAME} and ${VERSION}
-  [ "$test" != "$@" ] && enc=`echo "$@" | sed -e "s,$name,\\${NAME},g" -e "s,$ver,\\${VERSION},g"`
+  [ "`decode "$enc"`" != "$@" ] && enc=`echo "$@" | sed -e "s,$name,\\${NAME},g" -e "s,$ver,\\${VERSION},g"`
   echo "$enc"
 }
 
