@@ -111,7 +111,7 @@ for arg in `explicit "$@"`; do
     [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
 
     # compare local tree with CVS
-    find ! -path "*CVS*" ! -path "." | sort >$t/local
+    find ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
     find -path "*/CVS/Entries" -exec grep -H / {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
 
     # add/remove entries that are new/not here anymore
@@ -151,7 +151,7 @@ for arg in `explicit "$@"`; do
     ( cd `dirname $script`
       cp -a . $t/$package/$name
       cd $t/$package/$name
-      rm -rf .CVS CVS arbitrary
+      rm -rf .CVS CVS arbitrary *.autoport
       echo "Package:  $package" >info
       echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >>info
 #      echo "Intended group:  $group/" >>info
