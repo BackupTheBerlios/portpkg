@@ -497,6 +497,7 @@ if grep -sqe "#:config" -e "#:make" $script; then
       check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
       check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
       check "--disable-scrollkeeper" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
+      check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
       snip cfg_autogen $script
     elif check "^autogen.sh$" $t/footprint; then
       :
@@ -773,6 +774,7 @@ CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
+  --disable-update-mimedb \ ##ac_disable_update_mimedb
 #:configure-opts
 #%post-configure-opts-fix%
   $ARCH-slackware-linux
