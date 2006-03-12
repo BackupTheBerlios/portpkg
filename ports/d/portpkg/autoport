@@ -486,7 +486,7 @@ if grep -sqe "#:config" -e "#:make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
     snip cfg_autogen $script
-    snip cfg_configure $script
+    snip configure $script
     arch=noarch
   else
     snip perl $script
@@ -501,7 +501,7 @@ if grep -sqe "#:config" -e "#:make" $script; then
     elif check "^autogen.sh$" $t/footprint; then
       :
     else
-      snip cfg_configure $script
+      snip configure $script
       snip cfg_autogen $script
       if check "^setup\.py$" $t/footprint; then
 #        snip cfg_mk_hard $script
