@@ -1,42 +1,47 @@
-2005-09-23 14:27  topf
+2006-03-12  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint, md5sums, requires, sources:
-	  Version update.
+  * SlackBuild, SlackBuild.cp, doinst.sh, footprint, md5sums, post-configure-opts-fix.autoport, requires:
+  Updated to 0.9.3.1.
 
-2005-07-16 14:23  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* md5sums: Cleaned up.	Removed filenames without version numbers.
-	  Removed PGP signatures.
+  * ChangeLog: Updated.
 
-2005-06-04 11:11  topf
+2005-09-23  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint, md5sums, requires, slack-desc,
-	  sources: Minor script fixes.
+  * SlackBuild, doinst.sh, footprint, md5sums, requires, sources:
+  Version update.
 
-2005-03-16 21:12  topf
+2005-07-16  topf  <topf@users.berlios.de>
 
-	* requires: Removed obsolete dependencies according to updated
-	  "ignore" file.
+  * md5sums: Cleaned up.
+  Removed filenames without version numbers.
+  Removed PGP signatures.
 
-2005-02-08 09:52  topf
+2005-06-04  topf  <topf@users.berlios.de>
 
-	* SlackBuild: Patched to use $SLKCFLAGS.
+  * SlackBuild, doinst.sh, footprint, md5sums, requires, slack-desc, sources:
+  Minor script fixes.
 
-2004-12-08 23:12  topf
+2005-03-16  topf  <topf@users.berlios.de>
 
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+  * requires: Removed obsolete dependencies according to updated "ignore" file.
 
-2004-11-09 20:43  tomtoastbrot
+2005-02-08  topf  <topf@users.berlios.de>
 
-	* requires: Added x11-devel to requires and a few other for gnome
+  * SlackBuild: Patched to use $SLKCFLAGS.
 
-2004-10-30 14:00  tomtoastbrot
+2004-12-08  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: Initial
-	  revision
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-2004-10-30 14:00  tomtoastbrot
+2004-11-09  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: [no log
-	  message]
+  * requires: Added x11-devel to requires and a few other for gnome
+
+2004-10-30  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * SlackBuild, doinst.sh, requires, slack-desc, sources:
+
+  * SlackBuild, doinst.sh, requires, slack-desc, sources: New file.
 
