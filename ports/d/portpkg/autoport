@@ -714,7 +714,8 @@ if $build_pkg; then
   ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   # ok, if this port is new, it has no dependencies, if it's rewritten,
   # let's assume, the user wants to rebuild only this port
-  portpkg -q $group/$name
+  cd $PRT_DIR/$group/$name
+  portpkg #-q $group/$name
 fi
 
 exit 0
