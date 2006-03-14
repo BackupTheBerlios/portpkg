@@ -216,6 +216,19 @@ ask "Version [$version]:"
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
+# correct GNOME urls when updating an existing build script
+if [ "$script" ]; then
+  sver=`echo $version | cut -d . -f 1-2`
+  case `decode $src` in
+    *.gnome.org/*/$name/$sver/$name-$version.tar.*)
+      ;; # good
+    *.gnome.org/*/$name/*/$name-$version.tar.*)
+      # wrong url
+      wrong_sver=`echo "$src" | rev | cut -d / -f 2 | rev`
+      src=`echo "$src" | sed "s,/$wrong_sver/,/$sver/,g"`
+      sources=`echo "$sources" | sed "s,/$wrong_sver/,/$sver/,g"`;;
+  esac
+fi
 # arch
 ask "Arch [$arch]:"
 arch=${s:-$arch}
