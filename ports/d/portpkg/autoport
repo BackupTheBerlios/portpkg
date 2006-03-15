@@ -728,7 +728,7 @@ if $build_pkg; then
   # ok, if this port is new, it has no dependencies, if it's rewritten,
   # let's assume, the user wants to rebuild only this port
   cd $PRT_DIR/$group/$name
-  portpkg #-q $group/$name
+  portpkg -b #-q $group/$name
 fi
 
 exit 0
