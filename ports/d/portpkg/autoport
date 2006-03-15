@@ -848,7 +848,10 @@ mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #:docfiles
 cp -a \ ##docs
+#:docfiles2
   %docs% \ ##docs
+#:docfiles2
+#%post-docfiles2-fix%
   $PKG/usr/doc/$NAME-$VERSION/ ##docs
 #:docfiles
 #%post-docfiles-fix%
