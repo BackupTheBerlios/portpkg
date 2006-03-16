@@ -1,0 +1,108 @@
+#!/bin/sh
+
+PATH="/sbin:/bin"
+
+case "$1" in
+    start)
+	# disable hotplug helper, udevd listens to netlink
+	echo "" > /proc/sys/kernel/hotplug
+
+	# mount tmpfs on /dev, the SUSE kernel initramfs does this normally
+	if ! grep -E -q "^[^[:space:]]+ /dev tmpfs" /proc/mounts; then
+	    # umount shm if needed
+	    if grep -E -q "^[^[:space:]]+ /dev/shm tmpfs" /proc/mounts; then
+		umount -l /dev/shm
+	    fi
+
+	    # umount pts if needed, will remount it
+	    if grep -E -q "^[^[:space:]]+ /dev/pts devpts" /proc/mounts; then
+		umount -n -l /dev/pts
+	    fi
+
+	    # mount tmpfs on /dev
+	    mount -n -o mode=0755 -t tmpfs tmpfs /dev
+
+	    # we are on tmpfs anyway
+	    mkdir /dev/shm
+
+	    # remount pts
+	    mkdir /dev/pts
+	    mount -n -o mode=0620,gid=5 -t devpts devpts /dev/pts
+	fi
+
+	# populate initial /dev with the static nodes
+	cp --preserve=all --recursive --remove-destination /lib/udev/devices/* /dev
+
+	# start udevd
+	echo "Starting udevd "
+	/sbin/udevd --daemon	
+
+	# generate events with the sysfs trigger
+	mkdir -p /dev/.udev/queue
+	list=$(echo /sys/bus/*/devices/*/uevent)
+	list="$list $(echo /sys/class/*/*/uevent)"
+	list="$list $(echo /sys/block/*/uevent /sys/block/*/*/uevent)"
+	for i in $list; do
+	    case "$i" in
+		*/device/uevent)
+		    # skip followed device symlinks
+		    continue
+		    ;;
+
+		*/class/mem/*|*/class/tty/*)
+		    first="$first $i"
+		    ;;
+
+		*/block/md*)
+		    last="$last $i"
+		    ;;
+
+		*/*)
+		    default="$default $i"
+		    ;;
+	    esac
+	done
+
+	# trigger the sorted events
+	for i in $first $default $last; do
+	    echo "add" > "$i"
+	done
+
+	udevd_timeout=20
+    	while [ -d /dev/.udev/queue ]; do
+	    sleep 2 
+	    udevd_timeout=$(($udevd_timeout - 1))
+	    if [ $udevd_timeout -eq 0 ]; then
+		break
+ 	    fi 
+    	done
+
+	;;
+    stop)
+	echo "Stopping udevd"
+	echo "/sbin/hotplug" > /proc/sys/kernel/hotplug
+	killall udevd 
+	;;
+    restart)
+	echo "Restarting udevd"
+	killall udevd
+	sleep 5
+	udevd --daemon
+	;;
+    reload)
+	echo "Reloading udev rules"
+	udevcontrol reload_rules
+	cp --preserve=all --recursive --update /lib/udev/devices/* /dev
+	;;
+    force-reload)
+	echo "Updating all available device nodes in /dev"
+	udevcontrol reload_rules
+	rm -rf /dev/.udev /dev/disk
+	export UDEV_RUN=0
+	/sbin/udevstart
+	;;
+    *)
+	echo "Usage: $0 {start|stop|restart|reload|force-reload}"
+	exit 1
+	;;
+esac
