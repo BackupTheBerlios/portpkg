@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.8.10
+VERSION=0.10.3
 ARCH=${ARCH:-i486}
 BUILD=2tom
 
@@ -32,30 +32,24 @@ CXXFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux
-make PREFIX=/usr
-make prefix=/usr
 make
 make install DESTDIR=$PKG
 rm -rfv $PKG/usr/info/dir
-find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-#+post-install-fix
-rm -f $PKG/var/lib/cache/gstreamer-0.8/registry.xml
-mkdir -p $PKG/var/lib/cache/gstreamer-0.8
-mkdir -p $PKG/var/log/setup
-zcat $CWD/setup.07.get-register.gz >$PKG/var/log/setup/setup.07.get-register
-chmod 755 $PKG/var/log/setup/setup.07.get-register
-#+post-install-fix
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+rm -f $PKG/var/lib/cache/gstreamer-*/registry.xml
+mkdir -p $PKG/var/lib/cache/gstreamer-0.{8,10}
+#mkdir -p $PKG/var/log/setup
+#zcat $CWD/setup.07.get-register.gz >$PKG/var/log/setup/setup.07.get-register
+#chmod 755 $PKG/var/log/setup/setup.07.get-register
+chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
+gzip -9 $PKG/usr/man/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README RELEASE TODO \
+  ABOUT-NLS AUTHORS COPYING ChangeLog NEWS README RELEASE TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;

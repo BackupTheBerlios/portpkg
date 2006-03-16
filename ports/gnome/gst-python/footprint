@@ -1,46 +1,66 @@
-drwxr-xr-x  root/root  0       ./
-drwxr-xr-x  root/root  0       install/
--rw-r--r--  root/root  202     install/slack-desc
-drwxr-xr-x  root/root  0       usr/
-drwxr-xr-x  root/root  0       usr/doc/
-drwxr-xr-x  root/root  0       usr/doc/gst-python-0.8.2/
--rw-r--r--  root/root  246     usr/doc/gst-python-0.8.2/AUTHORS
--rw-r--r--  root/root  26519   usr/doc/gst-python-0.8.2/COPYING
--rw-r--r--  root/root  44850   usr/doc/gst-python-0.8.2/ChangeLog
--rw-r--r--  root/root  354     usr/doc/gst-python-0.8.2/NEWS
--rw-r--r--  root/root  0       usr/doc/gst-python-0.8.2/README
--rw-r--r--  root/root  1594    usr/doc/gst-python-0.8.2/RELEASE
--rw-r--r--  root/root  58      usr/doc/gst-python-0.8.2/TODO
-drwxr-xr-x  root/root  0       usr/lib/
-drwxr-xr-x  root/root  0       usr/lib/pkgconfig/
--rw-r--r--  root/root  596     usr/lib/pkgconfig/gst-python-0.8.pc
-drwxr-xr-x  root/root  0       usr/lib/python2.4/
-drwxr-xr-x  root/root  0       usr/lib/python2.4/site-packages/
-drwxr-xr-x  root/root  0       usr/lib/python2.4/site-packages/gst/
--rw-r--r--  root/root  2120    usr/lib/python2.4/site-packages/gst/__init__.py
--rw-r--r--  root/root  2632    usr/lib/python2.4/site-packages/gst/__init__.pyc
--rw-r--r--  root/root  2548    usr/lib/python2.4/site-packages/gst/__init__.pyo
--rwxr-xr-x  root/root  975     usr/lib/python2.4/site-packages/gst/_gst.la
--rwxr-xr-x  root/root  197092  usr/lib/python2.4/site-packages/gst/_gst.so
--rwxr-xr-x  root/root  1044    usr/lib/python2.4/site-packages/gst/interfaces.la
--rwxr-xr-x  root/root  25720   usr/lib/python2.4/site-packages/gst/interfaces.so
--rwxr-xr-x  root/root  1065    usr/lib/python2.4/site-packages/gst/play.la
--rwxr-xr-x  root/root  10404   usr/lib/python2.4/site-packages/gst/play.so
-drwxr-xr-x  root/root  0       usr/share/
-drwxr-xr-x  root/root  0       usr/share/gst-python/
-drwxr-xr-x  root/root  0       usr/share/gst-python/2.0/
-drwxr-xr-x  root/root  0       usr/share/gst-python/2.0/defs/
--rw-r--r--  root/root  431     usr/share/gst-python/2.0/defs/gst-extrafuncs.defs
--rw-r--r--  root/root  22160   usr/share/gst-python/2.0/defs/gst-types.defs
-drwxr-xr-x  root/root  0       usr/share/gst-python/examples/
--rw-r--r--  root/root  4186    usr/share/gst-python/examples/audioconcat.py
--rw-r--r--  root/root  4006    usr/share/gst-python/examples/bps.py
--rw-r--r--  root/root  1936    usr/share/gst-python/examples/cp.py
--rw-r--r--  root/root  1537    usr/share/gst-python/examples/f2f.py
--rw-r--r--  root/root  2410    usr/share/gst-python/examples/filesrc.py
--rw-r--r--  root/root  3452    usr/share/gst-python/examples/gst123
--rw-r--r--  root/root  7696    usr/share/gst-python/examples/gstfile.py
--rw-r--r--  root/root  5743    usr/share/gst-python/examples/play.py
--rw-r--r--  root/root  2167    usr/share/gst-python/examples/player.py
--rw-r--r--  root/root  3979    usr/share/gst-python/examples/videoplayer.py
--rw-r--r--  root/root  4154    usr/share/gst-python/examples/vorbisplay.py
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/gst-python-0.10.2/
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/AUTHORS
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/COPYING
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/ChangeLog
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/NEWS
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/README
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/RELEASE
+-rw-r--r-- root/root usr/doc/gst-python-0.10.2/TODO
+drwxr-xr-x root/root usr/lib/
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/gst-python-0.10.pc
+drwxr-xr-x root/root usr/lib/python2.4/
+drwxr-xr-x root/root usr/lib/python2.4/site-packages/
+drwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/
+drwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/gst/
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/__init__.py
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/__init__.pyc
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/__init__.pyo
+-rwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/gst/_gst.la
+-rwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/gst/_gst.so
+drwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/__init__.py
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/__init__.pyc
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/__init__.pyo
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/discoverer.py
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/discoverer.pyc
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/discoverer.pyo
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/pygobject.py
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/pygobject.pyc
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/pygobject.pyo
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/utils.py
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/utils.pyc
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/gst-0.10/gst/extend/utils.pyo
+-rwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/gst/interfaces.la
+-rwxr-xr-x root/root usr/lib/python2.4/site-packages/gst-0.10/gst/interfaces.so
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/pygst.pth
+-rw-r--r-- root/root usr/lib/python2.4/site-packages/pygst.py
+drwxr-xr-x root/root usr/share/
+drwxr-xr-x root/root usr/share/gst-python/
+drwxr-xr-x root/root usr/share/gst-python/0.10/
+drwxr-xr-x root/root usr/share/gst-python/0.10/defs/
+-rw-r--r-- root/root usr/share/gst-python/0.10/defs/base.defs
+-rw-r--r-- root/root usr/share/gst-python/0.10/defs/gst-extrafuncs.defs
+-rw-r--r-- root/root usr/share/gst-python/0.10/defs/gst-types.defs
+-rw-r--r-- root/root usr/share/gst-python/0.10/defs/libs.defs
+drwxr-xr-x root/root usr/share/gst-python/0.10/examples/
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/audio-controller.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/audioconcat.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/bps.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/cp.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/debugslider.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/f2f.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/filesrc.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/fvumeter.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/gst123
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/gstfile.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/pipeline-tester
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/play.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/sinkelement.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/vorbisplay.py
+-rw-r--r-- root/root usr/share/gst-python/0.10/examples/vumeter.py

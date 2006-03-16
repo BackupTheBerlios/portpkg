@@ -1,3 +1,5 @@
-if [ -x usr/bin/update-mime-database ]; then
-  usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1
-fi
+icons() {
+  if [ -x usr/bin/gtk-update-icon-cache ]; then
+    usr/bin/gtk-update-icon-cache `dirname $1` >/dev/null 2>&1
+  fi
+}
