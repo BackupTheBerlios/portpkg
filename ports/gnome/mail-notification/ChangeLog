@@ -1,63 +1,61 @@
-2005-07-16 14:23  topf
+2006-03-16  topf  <topf@users.berlios.de>
 
-	* md5sums: Cleaned up.	Removed filenames without version numbers.
-	  Removed PGP signatures.
+  * SlackBuild, footprint, mail-notification-2.0-buildfix.diff, mail-notification-2.0-evolution-2.4.diff, mail-notification-2.0-gmail-properties-fix.diff, mail-notification-2.0-imapauth.diff, md5sums, requires:
+  Version bump.
 
-2005-06-04 11:41  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint, md5sums, slack-desc: Gconf
-	  installation fixes.
+  * ChangeLog: Updated.
 
-2005-04-12 20:08  topf
+2005-07-16  topf  <topf@users.berlios.de>
 
-	* footprint: Synced dir.
+  * md5sums: Cleaned up.
+  Removed filenames without version numbers.
+  Removed PGP signatures.
 
-2005-03-16 21:15  topf
+2005-06-04  topf  <topf@users.berlios.de>
 
-	* optional: Removed empty file.
+  * SlackBuild, doinst.sh, footprint, md5sums, slack-desc:
+  Gconf installation fixes.
 
-2005-03-16 21:12  topf
+2005-04-12  topf  <topf@users.berlios.de>
 
-	* requires: Removed obsolete dependencies according to updated
-	  "ignore" file.
+  * footprint: Synced dir.
 
-2005-03-07 19:26  topf
+2005-03-16  topf  <topf@users.berlios.de>
 
-	* optional, requires: Updated gnome/mail-notification to
-	  1.1-i686-1tom.
+  * optional: Removed empty file.
 
-2005-03-07 19:20  topf
+  * requires: Removed obsolete dependencies according to updated "ignore" file.
 
-	* SlackBuild, doinst.sh, footprint, md5sums, requires, sources:
-	  Updated gnome/mail-notification to 1.1-i686-1tom.
+2005-03-07  topf  <topf@users.berlios.de>
 
-2005-02-10 21:45  topf
+  * optional, requires, doinst.sh, footprint, md5sums, sources, SlackBuild:
+  Updated gnome/mail-notification to 1.1-i686-1tom.
 
-	* slack-desc, footprint: [no log message]
+2005-02-10  topf  <topf@users.berlios.de>
 
-2005-02-08 09:52  topf
+  * footprint, slack-desc: *** empty log message ***
 
-	* SlackBuild: Patched to use $SLKCFLAGS.
+2005-02-08  topf  <topf@users.berlios.de>
 
-2004-12-08 23:12  topf
+  * SlackBuild: Patched to use $SLKCFLAGS.
 
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+2004-12-08  topf  <topf@users.berlios.de>
 
-2004-11-09 20:43  tomtoastbrot
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-	* requires: Added x11-devel to requires and a few other for gnome
+2004-11-09  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-11-08 22:04  tomtoastbrot
+  * requires: Added x11-devel to requires and a few other for gnome
 
-	* slack-desc: [no log message]
+2004-11-08  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-10-30 14:00  tomtoastbrot
+  * slack-desc: *** empty log message ***
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: Initial
-	  revision
+2004-10-30  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-10-30 14:00  tomtoastbrot
+  * SlackBuild, doinst.sh, requires, slack-desc, sources:
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: [no log
-	  message]
+  * SlackBuild, doinst.sh, requires, slack-desc, sources: New file.
 

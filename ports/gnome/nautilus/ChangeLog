@@ -1,85 +1,82 @@
-2005-09-23 14:19  topf
+2006-03-16  topf  <topf@users.berlios.de>
 
-	* SlackBuild, footprint, md5sums, requires, sources: Version
-	  update.
+  * SlackBuild, footprint, md5sums, requires, sources: Version bump.
 
-2005-07-16 14:23  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* md5sums: Cleaned up.	Removed filenames without version numbers.
-	  Removed PGP signatures.
+  * ChangeLog: Updated.
 
-2005-06-04 11:34  topf
+2005-09-23  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint, md5sums: Gconf installation
-	  fixes.
+  * SlackBuild, footprint, md5sums, requires, sources: Version update.
 
-2005-04-17 09:35  topf
+2005-07-16  topf  <topf@users.berlios.de>
 
-	* SlackBuild: Reverted to -mcpu.
+  * md5sums: Cleaned up.
+  Removed filenames without version numbers.
+  Removed PGP signatures.
 
-2005-04-17 00:33  topf
+2005-06-04  topf  <topf@users.berlios.de>
 
-	* SlackBuild, footprint: Updated gnome/nautilus to
-	  2.10.1-i486-6tom.
+  * SlackBuild, doinst.sh, footprint, md5sums: Gconf installation fixes.
 
-2005-04-16 20:37  topf
+2005-04-17  topf  <topf@users.berlios.de>
 
-	* SlackBuild, footprint: Updated gnome/nautilus to
-	  2.10.1-i486-5tom.
+  * SlackBuild: Reverted to -mcpu.
 
-2005-04-12 16:21  topf
+2005-04-16  topf  <topf@users.berlios.de>
 
-	* SlackBuild, footprint, md5sums,
-	  nautilus-2.8.2-libexif_fix-1.patch, requires, sources: Updated
-	  gnome/nautilus to 2.10.1-i486-2tom.
+  * footprint, SlackBuild: Updated gnome/nautilus to 2.10.1-i486-6tom.
 
-2005-04-07 22:22  topf
+  * SlackBuild, footprint: Updated gnome/nautilus to 2.10.1-i486-5tom.
 
-	* SlackBuild, doinst.sh, footprint, md5sums, requires, slack-desc,
-	  sources: Updated gnome/nautilus to 2.10.0-i486-1tom.
+2005-04-12  topf  <topf@users.berlios.de>
 
-2005-03-16 21:12  topf
+  * SlackBuild, footprint, md5sums, nautilus-2.8.2-libexif_fix-1.patch, requires, sources:
+  Updated gnome/nautilus to 2.10.1-i486-2tom.
 
-	* requires: Removed obsolete dependencies according to updated
-	  "ignore" file.
+2005-04-07  topf  <topf@users.berlios.de>
 
-2005-02-08 10:25  topf
+  * SlackBuild, doinst.sh, footprint, md5sums, requires, slack-desc, sources:
+  Updated gnome/nautilus to 2.10.0-i486-1tom.
 
-	* SlackBuild: Patched against new $SLKCFLAGS style.
+2005-03-16  topf  <topf@users.berlios.de>
 
-2005-01-31 18:36  topf
+  * requires: Removed obsolete dependencies according to updated "ignore" file.
 
-	* sources: [no log message]
+2005-02-08  topf  <topf@users.berlios.de>
 
-2004-12-11 14:14  topf
+  * SlackBuild: Patched against new $SLKCFLAGS style.
 
-	* SlackBuild, doinst.sh, nautilus-2.8.2-libexif_fix-1.patch,
-	  slack-desc, sources: Updated gnome/nautilus to 2.8.2-i486-1tom.
+2005-01-31  topf  <topf@users.berlios.de>
 
-2004-12-08 23:12  topf
+  * sources: *** empty log message ***
 
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+2004-12-11  topf  <topf@users.berlios.de>
 
-2004-12-01 20:35  topf
+  * slack-desc, sources, SlackBuild, doinst.sh, nautilus-2.8.2-libexif_fix-1.patch:
+  Updated gnome/nautilus to 2.8.2-i486-1tom.
 
-	* SlackBuild: Fixed a SlackBuild typo ("SLKFLAGS") coming from the
-	  SlackBuild-skeleton.
+2004-12-08  topf  <topf@users.berlios.de>
 
-2004-11-09 20:43  tomtoastbrot
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-	* requires: Added x11-devel to requires and a few other for gnome
+2004-12-01  topf  <topf@users.berlios.de>
 
-2004-11-08 22:04  tomtoastbrot
+  * SlackBuild:
+  Fixed a SlackBuild typo ("SLKFLAGS") coming from the SlackBuild-skeleton.
 
-	* slack-desc: [no log message]
+2004-11-09  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-10-30 14:00  tomtoastbrot
+  * requires: Added x11-devel to requires and a few other for gnome
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: Initial
-	  revision
+2004-11-08  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-10-30 14:00  tomtoastbrot
+  * slack-desc: *** empty log message ***
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: [no log
-	  message]
+2004-10-30  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * SlackBuild, doinst.sh, requires, slack-desc, sources:
+
+  * SlackBuild, doinst.sh, requires, slack-desc, sources: New file.
 
