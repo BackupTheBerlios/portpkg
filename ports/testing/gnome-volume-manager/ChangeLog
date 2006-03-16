@@ -1,45 +1,49 @@
-2005-06-19 15:45  topf
+2006-03-16  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint, md5sums, slack-desc, sources:
-	  Version update.
+  * SlackBuild, footprint, md5sums, requires, slack-desc, sources:
+  Version bump.
 
-2005-03-16 21:12  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* requires: Removed obsolete dependencies according to updated
-	  "ignore" file.
+  * ChangeLog: Updated.
 
-2005-02-10 20:37  topf
+2005-06-19  topf  <topf@users.berlios.de>
 
-	* footprint, md5sums: [no log message]
+  * SlackBuild, doinst.sh, footprint, md5sums, slack-desc, sources:
+  Version update.
 
-2005-02-08 10:25  topf
+2005-03-16  topf  <topf@users.berlios.de>
 
-	* SlackBuild: Patched against new $SLKCFLAGS style.
+  * requires: Removed obsolete dependencies according to updated "ignore" file.
 
-2004-12-11 20:49  topf
+2005-02-10  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: Updated
-	  testing/gnome-volume-manager to 1.0.2-i486-1tom.
+  * md5sums, footprint: *** empty log message ***
 
-2004-12-11 14:10  topf
+2005-02-08  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, requires, sources: [no log message]
+  * SlackBuild: Patched against new $SLKCFLAGS style.
 
-2004-12-08 23:12  topf
+2004-12-11  topf  <topf@users.berlios.de>
 
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+  * SlackBuild, doinst.sh, requires, slack-desc, sources:
+  Updated testing/gnome-volume-manager to 1.0.2-i486-1tom.
 
-2004-12-01 20:35  topf
+  * SlackBuild, doinst.sh, requires, sources: *** empty log message ***
 
-	* SlackBuild: Fixed a SlackBuild typo ("SLKFLAGS") coming from the
-	  SlackBuild-skeleton.
+2004-12-08  topf  <topf@users.berlios.de>
 
-2004-11-09 20:43  tomtoastbrot
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-	* requires: Added x11-devel to requires and a few other for gnome
+2004-12-01  topf  <topf@users.berlios.de>
 
-2004-11-09 15:01  tomtoastbrot
+  * SlackBuild:
+  Fixed a SlackBuild typo ("SLKFLAGS") coming from the SlackBuild-skeleton.
 
-	* SlackBuild, doinst.sh, requires, sources: Moved dbus, hal,
-	  gnome-volume-manager to testing/
+2004-11-09  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * requires: Added x11-devel to requires and a few other for gnome
+
+  * SlackBuild, doinst.sh, requires, sources:
+  Moved dbus, hal, gnome-volume-manager to testing/
 
