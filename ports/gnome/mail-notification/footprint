@@ -1,86 +1,83 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
-drwxr-xr-x root/root           0 etc/gconf/
-drwxr-xr-x root/root           0 etc/gconf/schemas/
--rw-r--r-- root/root       62503 etc/gconf/schemas/mail-notification.schemas
-drwxr-xr-x root/root           0 etc/sound/
-drwxr-xr-x root/root           0 etc/sound/events/
--rw-r--r-- root/root         679 etc/sound/events/mail-notification.soundlist
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         451 install/doinst.sh
--rw-r--r-- root/root         512 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin       343168 usr/bin/mail-notification
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/mail-notification-1.1/
--rw-r--r-- root/root         979 usr/doc/mail-notification-1.1/AUTHORS
--rw-r--r-- root/root       18007 usr/doc/mail-notification-1.1/COPYING
--rw-r--r-- root/root       10399 usr/doc/mail-notification-1.1/NEWS
--rw-r--r-- root/root        1875 usr/doc/mail-notification-1.1/README
--rw-r--r-- root/root         422 usr/doc/mail-notification-1.1/TODO
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/bonobo/
-drwxr-xr-x root/root           0 usr/lib/bonobo/servers/
--rw-r--r-- root/root        3991 usr/lib/bonobo/servers/GNOME_MailNotification_Automation.server
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root        1219 usr/share/applications/mail-notification.desktop
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/
-drwxr-xr-x root/root           0 usr/share/control-center-2.0/capplets/
--rw-r--r-- root/root        1007 usr/share/control-center-2.0/capplets/mail-notification-properties.desktop
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/help/
-drwxr-xr-x root/root           0 usr/share/gnome/help/mail-notification/
-drwxr-xr-x root/root           0 usr/share/gnome/help/mail-notification/C/
--rw-r--r-- root/root        1767 usr/share/gnome/help/mail-notification/C/documentation-license.xml
-drwxr-xr-x root/root           0 usr/share/gnome/help/mail-notification/C/figures/
--rw-r--r-- root/root         551 usr/share/gnome/help/mail-notification/C/figures/mail.png
--rw-r--r-- root/root       47307 usr/share/gnome/help/mail-notification/C/mail-notification.xml
--rw-r--r-- root/root         386 usr/share/gnome/help/mail-notification/C/software-license.xml
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/bg/
-drwxr-xr-x root/root           0 usr/share/locale/bg/LC_MESSAGES/
--rw-r--r-- root/root       17864 usr/share/locale/bg/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root       42975 usr/share/locale/de/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       44884 usr/share/locale/fr/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/pl/
-drwxr-xr-x root/root           0 usr/share/locale/pl/LC_MESSAGES/
--rw-r--r-- root/root       34693 usr/share/locale/pl/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt/
-drwxr-xr-x root/root           0 usr/share/locale/pt/LC_MESSAGES/
--rw-r--r-- root/root       42238 usr/share/locale/pt/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root         854 usr/share/locale/ru/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr/
-drwxr-xr-x root/root           0 usr/share/locale/sr/LC_MESSAGES/
--rw-r--r-- root/root       54238 usr/share/locale/sr/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r-- root/root       42090 usr/share/locale/sr@Latn/LC_MESSAGES/mail-notification.mo
-drwxr-xr-x root/root           0 usr/share/mail-notification/
-drwxr-xr-x root/root           0 usr/share/mail-notification/ui/
--rw-r--r-- root/root        9400 usr/share/mail-notification/ui/authentication.glade
--rw-r--r-- root/root        5817 usr/share/mail-notification/ui/edit-toolbars.glade
--rw-r--r-- root/root        1117 usr/share/mail-notification/ui/gmail.png
--rw-r--r-- root/root        1088 usr/share/mail-notification/ui/hand-open.png
--rw-r--r-- root/root       12450 usr/share/mail-notification/ui/logo.png
--rw-r--r-- root/root        4207 usr/share/mail-notification/ui/mailbox-properties.glade
--rw-r--r-- root/root         549 usr/share/mail-notification/ui/main-window.png
--rw-r--r-- root/root        3263 usr/share/mail-notification/ui/main.glade
--rw-r--r-- root/root        1034 usr/share/mail-notification/ui/menus.xml
--rw-r--r-- root/root       68766 usr/share/mail-notification/ui/properties.glade
--rw-r--r-- root/root        4232 usr/share/mail-notification/ui/summary-popup.glade
--rw-r--r-- root/root         376 usr/share/mail-notification/ui/toolbars.xml
--rw-r--r-- root/root         454 usr/share/mail-notification/ui/unsupported.png
--rw-r--r-- root/root        9031 usr/share/mail-notification/ui/welcome.glade
-drwxr-xr-x root/root           0 usr/share/omf/
-drwxr-xr-x root/root           0 usr/share/omf/mail-notification/
--rw-r--r-- root/root        1022 usr/share/omf/mail-notification/mail-notification-C.omf
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        2937 usr/share/pixmaps/mail-notification.png
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root etc/
+drwxr-xr-x root/root etc/gconf/
+drwxr-xr-x root/root etc/gconf/schemas/
+-rw-r--r-- root/root etc/gconf/schemas/mail-notification.schemas
+drwxr-xr-x root/root etc/sound/
+drwxr-xr-x root/root etc/sound/events/
+-rw-r--r-- root/root etc/sound/events/mail-notification.soundlist
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/mail-notification
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/mail-notification-2.0/
+-rw-r--r-- root/root usr/doc/mail-notification-2.0/AUTHORS
+-rw-r--r-- root/root usr/doc/mail-notification-2.0/COPYING
+-rw-r--r-- root/root usr/doc/mail-notification-2.0/NEWS
+-rw-r--r-- root/root usr/doc/mail-notification-2.0/README
+-rw-r--r-- root/root usr/doc/mail-notification-2.0/TODO
+drwxr-xr-x root/root usr/lib/
+drwxr-xr-x root/root usr/lib/bonobo/
+drwxr-xr-x root/root usr/lib/bonobo/servers/
+-rw-r--r-- root/root usr/lib/bonobo/servers/GNOME_MailNotification.server
+drwxr-xr-x root/root usr/share/
+drwxr-xr-x root/root usr/share/applications/
+-rw-r--r-- root/root usr/share/applications/mail-notification-properties.desktop
+-rw-r--r-- root/root usr/share/applications/mail-notification.desktop
+drwxr-xr-x root/root usr/share/gnome/
+drwxr-xr-x root/root usr/share/gnome/help/
+drwxr-xr-x root/root usr/share/gnome/help/mail-notification/
+drwxr-xr-x root/root usr/share/gnome/help/mail-notification/C/
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/documentation-license.xml
+drwxr-xr-x root/root usr/share/gnome/help/mail-notification/C/figures/
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/figures/mail.png
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/figures/mailbox-emblem-error.png
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/figures/mailbox-emblem-polled.png
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/figures/mailbox-emblem-unknown.png
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/mail-notification.xml
+-rw-r--r-- root/root usr/share/gnome/help/mail-notification/C/software-license.xml
+drwxr-xr-x root/root usr/share/locale/
+drwxr-xr-x root/root usr/share/locale/bg/
+drwxr-xr-x root/root usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/bg/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/de/
+drwxr-xr-x root/root usr/share/locale/de/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/de/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/fr/
+drwxr-xr-x root/root usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/fr/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/pl/
+drwxr-xr-x root/root usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pl/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/pt/
+drwxr-xr-x root/root usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pt/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/ru/
+drwxr-xr-x root/root usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ru/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/sr/
+drwxr-xr-x root/root usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/sr/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/locale/sr@Latn/
+drwxr-xr-x root/root usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/sr@Latn/LC_MESSAGES/mail-notification.mo
+drwxr-xr-x root/root usr/share/mail-notification/
+drwxr-xr-x root/root usr/share/mail-notification/ui/
+-rw-r--r-- root/root usr/share/mail-notification/ui/edit-toolbars-dialog.glade
+-rw-r--r-- root/root usr/share/mail-notification/ui/gmail.png
+-rw-r--r-- root/root usr/share/mail-notification/ui/hand-open.png
+-rw-r--r-- root/root usr/share/mail-notification/ui/logo.png
+-rw-r--r-- root/root usr/share/mail-notification/ui/mail-summary-popup.glade
+-rw-r--r-- root/root usr/share/mail-notification/ui/mailbox-properties-dialog.glade
+-rw-r--r-- root/root usr/share/mail-notification/ui/main-window.png
+-rw-r--r-- root/root usr/share/mail-notification/ui/menus.xml
+-rw-r--r-- root/root usr/share/mail-notification/ui/properties-dialog.glade
+-rw-r--r-- root/root usr/share/mail-notification/ui/toolbars.xml
+drwxr-xr-x root/root usr/share/omf/
+drwxr-xr-x root/root usr/share/omf/mail-notification/
+-rw-r--r-- root/root usr/share/omf/mail-notification/mail-notification-C.omf
+drwxr-xr-x root/root usr/share/pixmaps/
+-rw-r--r-- root/root usr/share/pixmaps/mail-notification.png
