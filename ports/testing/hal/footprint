@@ -1,193 +1,259 @@
-drwxr-xr-x  root/root  0       ./
-drwxr-xr-x  root/root  0       etc/
-drwxr-xr-x  root/root  0       etc/dbus-1/
-drwxr-xr-x  root/root  0       etc/dbus-1/system.d/
--rw-r--r--  root/root  943     etc/dbus-1/system.d/hal.conf
-drwxr-xr-x  root/root  0       etc/hal/
-drwxr-xr-x  root/root  0       etc/hal/fdi/
-drwxr-xr-x  root/root  0       etc/hal/fdi/information/
-drwxr-xr-x  root/root  0       etc/hal/fdi/policy/
-drwxr-xr-x  root/root  0       etc/hal/fdi/preprobe/
-drwxr-xr-x  root/root  0       etc/hotplug.d/
-drwxr-xr-x  root/root  0       etc/hotplug.d/default/
-drwxr-xr-x  root/root  0       etc/rc.d/
--rw-r--r--  root/root  793     etc/rc.d/rc.hald.new
-drwxr-xr-x  root/root  0       install/
--rw-r--r--  root/root  891     install/doinst.sh
--rw-r--r--  root/root  60      install/slack-desc
-drwxr-xr-x  root/root  0       usr/
-drwxr-xr-x  root/bin   0       usr/bin/
--rwxr-xr-x  root/bin   12888   usr/bin/hal-device
--rwxr-xr-x  root/bin   407     usr/bin/hal-device-manager
--rwxr-xr-x  root/bin   5928    usr/bin/hal-find-by-capability
--rwxr-xr-x  root/bin   6072    usr/bin/hal-find-by-property
--rwxr-xr-x  root/bin   7464    usr/bin/hal-get-property
--rwxr-xr-x  root/bin   8008    usr/bin/hal-set-property
--rwxr-xr-x  root/bin   11912   usr/bin/lshal
-drwxr-xr-x  root/root  0       usr/doc/
-drwxr-xr-x  root/root  0       usr/doc/hal-0.5.3/
--rw-r--r--  root/root  96      usr/doc/hal-0.5.3/AUTHORS
--rw-r--r--  root/root  29063   usr/doc/hal-0.5.3/COPYING
--rw-r--r--  root/root  297706  usr/doc/hal-0.5.3/ChangeLog
--rw-r--r--  root/root  723     usr/doc/hal-0.5.3/HACKING
--rw-r--r--  root/root  9478    usr/doc/hal-0.5.3/INSTALL
--rw-r--r--  root/root  18753   usr/doc/hal-0.5.3/NEWS
--rw-r--r--  root/root  214     usr/doc/hal-0.5.3/README
-drwxr-xr-x  root/root  0       usr/doc/hal-0.5.3/api/
--rw-r--r--  root/root  1790    usr/doc/hal-0.5.3/api/annotated.html
--rw-r--r--  root/root  1683    usr/doc/hal-0.5.3/api/dir_000000.html
--rw-r--r--  root/root  1627    usr/doc/hal-0.5.3/api/dir_000001.html
--rw-r--r--  root/root  1219    usr/doc/hal-0.5.3/api/dirs.html
--rw-r--r--  root/root  6959    usr/doc/hal-0.5.3/api/doxygen.css
--rw-r--r--  root/root  1281    usr/doc/hal-0.5.3/api/doxygen.png
--rw-r--r--  root/root  1614    usr/doc/hal-0.5.3/api/files.html
--rw-r--r--  root/root  3913    usr/doc/hal-0.5.3/api/functions.html
--rw-r--r--  root/root  3808    usr/doc/hal-0.5.3/api/functions_vars.html
--rw-r--r--  root/root  48364   usr/doc/hal-0.5.3/api/group__HAL.html
--rw-r--r--  root/root  206471  usr/doc/hal-0.5.3/api/group__LibHal.html
--rw-r--r--  root/root  48522   usr/doc/hal-0.5.3/api/group__LibHalStorage.html
--rw-r--r--  root/root  1044    usr/doc/hal-0.5.3/api/index.html
--rw-r--r--  root/root  91240   usr/doc/hal-0.5.3/api/libhal-storage_8c-source.html
--rw-r--r--  root/root  25639   usr/doc/hal-0.5.3/api/libhal-storage_8h-source.html
--rw-r--r--  root/root  142220  usr/doc/hal-0.5.3/api/libhal_8c-source.html
--rw-r--r--  root/root  38003   usr/doc/hal-0.5.3/api/libhal_8h-source.html
--rw-r--r--  root/root  1282    usr/doc/hal-0.5.3/api/modules.html
--rw-r--r--  root/root  1121    usr/doc/hal-0.5.3/api/pages.html
--rw-r--r--  root/root  6707    usr/doc/hal-0.5.3/api/structLibHalContext__s.html
--rw-r--r--  root/root  3847    usr/doc/hal-0.5.3/api/structLibHalPropertySetIterator__s.html
--rw-r--r--  root/root  2563    usr/doc/hal-0.5.3/api/structLibHalPropertySet__s.html
--rw-r--r--  root/root  5057    usr/doc/hal-0.5.3/api/structLibHalProperty__s.html
--rw-r--r--  root/root  2732    usr/doc/hal-0.5.3/api/todo.html
-drwxr-xr-x  root/root  0       usr/doc/hal-0.5.3/conf/
--rw-r--r--  root/root  653     usr/doc/hal-0.5.3/conf/storage-non-fixed.fdi
--rw-r--r--  root/root  1516    usr/doc/hal-0.5.3/conf/storage-policy-examples.fdi
--rw-r--r--  root/root  338     usr/doc/hal-0.5.3/conf/storage-skip-all.fdi
-drwxr-xr-x  root/root  0       usr/include/
-drwxr-xr-x  root/root  0       usr/include/hal/
--rw-r--r--  root/root  16154   usr/include/hal/libhal-storage.h
--rw-r--r--  root/root  17893   usr/include/hal/libhal.h
-drwxr-xr-x  root/root  0       usr/lib/
--rwxr-xr-x  root/root  886     usr/lib/libhal-storage.la
--rwxr-xr-x  root/root  25724   usr/lib/libhal-storage.so.1.0.0
--rwxr-xr-x  root/root  819     usr/lib/libhal.la
--rwxr-xr-x  root/root  28896   usr/lib/libhal.so.1.0.0
-drwxr-xr-x  root/root  0       usr/lib/pkgconfig/
--rw-r--r--  root/root  290     usr/lib/pkgconfig/hal-storage.pc
--rw-r--r--  root/root  266     usr/lib/pkgconfig/hal.pc
-drwxr-xr-x  root/root  0       usr/libexec/
--rwxr-xr-x  root/root  5868    usr/libexec/hal.hotplug
--rwxr-xr-x  root/root  6428    usr/libexec/hald-addon-acpi
--rwxr-xr-x  root/root  6800    usr/libexec/hald-addon-hid-ups
--rwxr-xr-x  root/root  5888    usr/libexec/hald-addon-pmu
--rwxr-xr-x  root/root  8020    usr/libexec/hald-addon-storage
--rwxr-xr-x  root/root  10256   usr/libexec/hald-addon-usb-csr
--rwxr-xr-x  root/root  5320    usr/libexec/hald-probe-hiddev
--rwxr-xr-x  root/root  5416    usr/libexec/hald-probe-input
--rwxr-xr-x  root/root  4976    usr/libexec/hald-probe-pc-floppy
--rwxr-xr-x  root/root  6180    usr/libexec/hald-probe-printer
--rwxr-xr-x  root/root  7716    usr/libexec/hald-probe-smbios
--rwxr-xr-x  root/root  39340   usr/libexec/hald-probe-storage
--rwxr-xr-x  root/root  40264   usr/libexec/hald-probe-volume
-drwxr-xr-x  root/root  0       usr/man/
-drwxr-xr-x  root/root  0       usr/man/man8/
--rw-r--r--  root/root  1804    usr/man/man8/fstab-sync.8.gz
-drwxr-xr-x  root/bin   0       usr/sbin/
--rwxr-xr-x  root/bin   24752   usr/sbin/fstab-sync
--rwxr-xr-x  root/bin   199380  usr/sbin/hald
-drwxr-xr-x  root/root  0       usr/share/
-drwxr-xr-x  root/root  0       usr/share/hal/
-drwxr-xr-x  root/root  0       usr/share/hal/device-manager/
--rw-r--r--  root/root  1629    usr/share/hal/device-manager/Const.py
--rw-r--r--  root/root  1716    usr/share/hal/device-manager/Const.pyc
--rw-r--r--  root/root  1716    usr/share/hal/device-manager/Const.pyo
--rw-r--r--  root/root  2479    usr/share/hal/device-manager/Device.py
--rw-r--r--  root/root  2100    usr/share/hal/device-manager/Device.pyc
--rw-r--r--  root/root  2100    usr/share/hal/device-manager/Device.pyo
--rw-r--r--  root/root  20032   usr/share/hal/device-manager/DeviceManager.py
--rw-r--r--  root/root  16009   usr/share/hal/device-manager/DeviceManager.pyc
--rw-r--r--  root/root  16009   usr/share/hal/device-manager/DeviceManager.pyo
--rw-r--r--  root/root  2101    usr/share/hal/device-manager/GtkAttributesFacade.py
--rw-r--r--  root/root  2450    usr/share/hal/device-manager/GtkAttributesFacade.pyc
--rw-r--r--  root/root  2450    usr/share/hal/device-manager/GtkAttributesFacade.pyo
--rw-r--r--  root/root  1940    usr/share/hal/device-manager/LibGladeApplication.py
--rw-r--r--  root/root  2531    usr/share/hal/device-manager/LibGladeApplication.pyc
--rw-r--r--  root/root  2531    usr/share/hal/device-manager/LibGladeApplication.pyo
--rw-r--r--  root/root  4343    usr/share/hal/device-manager/Representation.py
--rw-r--r--  root/root  3701    usr/share/hal/device-manager/Representation.pyc
--rw-r--r--  root/root  3701    usr/share/hal/device-manager/Representation.pyo
--rw-r--r--  root/root  6963    usr/share/hal/device-manager/fdo-logo.png
--rw-r--r--  root/root  455     usr/share/hal/device-manager/hal-abstract.png
--rw-r--r--  root/root  4017    usr/share/hal/device-manager/hal-audio.png
--rw-r--r--  root/root  3766    usr/share/hal/device-manager/hal-bus-pci.png
--rw-r--r--  root/root  483     usr/share/hal/device-manager/hal-bus-usb.png
--rw-r--r--  root/root  3595    usr/share/hal/device-manager/hal-camera.png
--rw-r--r--  root/root  675     usr/share/hal/device-manager/hal-cat-cardbus.png
--rw-r--r--  root/root  2962    usr/share/hal/device-manager/hal-cat-keyboard.png
--rw-r--r--  root/root  3047    usr/share/hal/device-manager/hal-cat-mouse.png
--rw-r--r--  root/root  676     usr/share/hal/device-manager/hal-cdrom.png
--rw-r--r--  root/root  2274    usr/share/hal/device-manager/hal-computer.png
--rwxr-xr-x  root/root  407     usr/share/hal/device-manager/hal-device-manager
--rw-r--r--  root/root  48981   usr/share/hal/device-manager/hal-device-manager.glade
--rw-r--r--  root/root  2550    usr/share/hal/device-manager/hal-flash.png
--rw-r--r--  root/root  504     usr/share/hal/device-manager/hal-floppy.png
--rw-r--r--  root/root  3913    usr/share/hal/device-manager/hal-harddisk.png
--rw-r--r--  root/root  1241    usr/share/hal/device-manager/hal-network.png
--rw-r--r--  root/root  2338    usr/share/hal/device-manager/hal-serial-port.png
--rw-r--r--  root/root  1302    usr/share/hal/device-manager/hal-unknown.png
--rw-r--r--  root/root  2814    usr/share/hal/device-manager/hal-video.png
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/
--rw-r--r--  root/root  603     usr/share/hal/fdi/fdi.dtd
--rw-r--r--  root/root  1631    usr/share/hal/fdi/fdi.rng
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/information/
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/information/10freedesktop/
--rw-r--r--  root/root  609     usr/share/hal/fdi/information/10freedesktop/10-camera-ptp.fdi
--rw-r--r--  root/root  1853    usr/share/hal/fdi/information/10freedesktop/10-usb-card-readers.fdi
--rw-r--r--  root/root  23705   usr/share/hal/fdi/information/10freedesktop/10-usb-music-players.fdi
--rw-r--r--  root/root  2552    usr/share/hal/fdi/information/10freedesktop/10-usb-pda.fdi
--rw-r--r--  root/root  558     usr/share/hal/fdi/information/10freedesktop/10-usb-zip-drives.fdi
--rw-r--r--  root/root  1415    usr/share/hal/fdi/information/10freedesktop/10-wireless-mice.fdi
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/information/20thirdparty/
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/policy/
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/policy/10osvendor/
--rw-r--r--  root/root  667     usr/share/hal/fdi/policy/10osvendor/10-power-mgmt-policy.fdi
--rw-r--r--  root/root  8624    usr/share/hal/fdi/policy/10osvendor/10-storage-policy.fdi
--rw-r--r--  root/root  890     usr/share/hal/fdi/policy/10osvendor/90-fstab-sync.fdi
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/policy/20thirdparty/
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/preprobe/
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/preprobe/10osvendor/
--rw-r--r--  root/root  3599    usr/share/hal/fdi/preprobe/10osvendor/10-ide-drives.fdi
-drwxr-xr-x  root/root  0       usr/share/hal/fdi/preprobe/20thirdparty/
-drwxr-xr-x  root/root  0       usr/share/locale/
-drwxr-xr-x  root/root  0       usr/share/locale/da/
-drwxr-xr-x  root/root  0       usr/share/locale/da/LC_MESSAGES/
--rw-r--r--  root/root  1798    usr/share/locale/da/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/de/
-drwxr-xr-x  root/root  0       usr/share/locale/de/LC_MESSAGES/
--rw-r--r--  root/root  1808    usr/share/locale/de/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/es/
-drwxr-xr-x  root/root  0       usr/share/locale/es/LC_MESSAGES/
--rw-r--r--  root/root  1801    usr/share/locale/es/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/fr/
-drwxr-xr-x  root/root  0       usr/share/locale/fr/LC_MESSAGES/
--rw-r--r--  root/root  1783    usr/share/locale/fr/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/hu/
-drwxr-xr-x  root/root  0       usr/share/locale/hu/LC_MESSAGES/
--rw-r--r--  root/root  1831    usr/share/locale/hu/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/it/
-drwxr-xr-x  root/root  0       usr/share/locale/it/LC_MESSAGES/
--rw-r--r--  root/root  1849    usr/share/locale/it/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nb/
-drwxr-xr-x  root/root  0       usr/share/locale/nb/LC_MESSAGES/
--rw-r--r--  root/root  5202    usr/share/locale/nb/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/nl/
-drwxr-xr-x  root/root  0       usr/share/locale/nl/LC_MESSAGES/
--rw-r--r--  root/root  1832    usr/share/locale/nl/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/pt/
-drwxr-xr-x  root/root  0       usr/share/locale/pt/LC_MESSAGES/
--rw-r--r--  root/root  1871    usr/share/locale/pt/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/ru/
-drwxr-xr-x  root/root  0       usr/share/locale/ru/LC_MESSAGES/
--rw-r--r--  root/root  2172    usr/share/locale/ru/LC_MESSAGES/hal.mo
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/
-drwxr-xr-x  root/root  0       usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r--  root/root  1850    usr/share/locale/zh_TW/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root etc/
+drwxr-xr-x root/root etc/dbus-1/
+drwxr-xr-x root/root etc/dbus-1/system.d/
+-rw-r--r-- root/root etc/dbus-1/system.d/hal.conf
+drwxr-xr-x root/root etc/hal/
+drwxr-xr-x root/root etc/hal/fdi/
+drwxr-xr-x root/root etc/hal/fdi/information/
+drwxr-xr-x root/root etc/hal/fdi/policy/
+drwxr-xr-x root/root etc/hal/fdi/preprobe/
+drwxr-xr-x root/root etc/rc.d/
+-rw-r--r-- root/root etc/rc.d/rc.hal.new
+drwxr-xr-x root/root etc/udev/
+drwxr-xr-x root/root etc/udev/rules.d/
+-rw-r--r-- root/root etc/udev/rules.d/90-hal.rules
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/hal-device
+-rwxr-xr-x root/bin usr/bin/hal-device-manager
+-rwxr-xr-x root/bin usr/bin/hal-find-by-capability
+-rwxr-xr-x root/bin usr/bin/hal-find-by-property
+-rwxr-xr-x root/bin usr/bin/hal-get-property
+-rwxr-xr-x root/bin usr/bin/hal-set-property
+-rwxr-xr-x root/bin usr/bin/lshal
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/hal-0.5.7/
+-rw-r--r-- root/root usr/doc/hal-0.5.7/AUTHORS
+-rw-r--r-- root/root usr/doc/hal-0.5.7/COPYING
+-rw-r--r-- root/root usr/doc/hal-0.5.7/ChangeLog
+-rw-r--r-- root/root usr/doc/hal-0.5.7/HACKING
+-rw-r--r-- root/root usr/doc/hal-0.5.7/NEWS
+-rw-r--r-- root/root usr/doc/hal-0.5.7/README
+drwxr-xr-x root/root usr/doc/hal-0.5.7/api/
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/annotated.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/doxygen.css
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/doxygen.png
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/files.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/functions.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/functions_vars.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/group__HAL.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/group__LibHal.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/group__LibHalStorage.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/hierarchy.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/index.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/libhal-storage_8c-source.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/libhal-storage_8h-source.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/libhal_8c-source.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/libhal_8h-source.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/modules.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/pages.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structIconMappingEntry__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalContext__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalDrive__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalPropertySetIterator__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalPropertySet__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalProperty__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalStoragePolicyIconPair.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalStoragePolicy__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/structLibHalVolume__s.html
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/tab_b.gif
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/tab_l.gif
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/tab_r.gif
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/tabs.css
+-rw-r--r-- root/root usr/doc/hal-0.5.7/api/todo.html
+drwxr-xr-x root/root usr/doc/hal-0.5.7/conf/
+-rw-r--r-- root/root usr/doc/hal-0.5.7/conf/match-USB-camera.fdi
+-rw-r--r-- root/root usr/doc/hal-0.5.7/conf/match-USB-mp3-player.fdi
+-rw-r--r-- root/root usr/doc/hal-0.5.7/conf/match-cardreader.fdi
+-rw-r--r-- root/root usr/doc/hal-0.5.7/conf/storage-non-fixed.fdi
+-rw-r--r-- root/root usr/doc/hal-0.5.7/conf/storage-policy-examples.fdi
+-rw-r--r-- root/root usr/doc/hal-0.5.7/conf/storage-skip-all.fdi
+drwxr-xr-x root/root usr/include/
+drwxr-xr-x root/root usr/include/hal/
+-rw-r--r-- root/root usr/include/hal/libhal-storage.h
+-rw-r--r-- root/root usr/include/hal/libhal.h
+drwxr-xr-x root/root usr/lib/
+-rwxr-xr-x root/root usr/lib/libhal-storage.la
+-rwxr-xr-x root/root usr/lib/libhal-storage.so.1.0.0
+-rwxr-xr-x root/root usr/lib/libhal.la
+-rwxr-xr-x root/root usr/lib/libhal.so.1.0.0
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/hal-storage.pc
+-rw-r--r-- root/root usr/lib/pkgconfig/hal.pc
+drwxr-xr-x root/root usr/libexec/
+-rwxr-xr-x root/root usr/libexec/hal-system-power-pmu
+-rwxr-xr-x root/root usr/libexec/hald-addon-acpi
+-rwxr-xr-x root/root usr/libexec/hald-addon-hid-ups
+-rwxr-xr-x root/root usr/libexec/hald-addon-keyboard
+-rwxr-xr-x root/root usr/libexec/hald-addon-pmu
+-rwxr-xr-x root/root usr/libexec/hald-addon-storage
+-rwxr-xr-x root/root usr/libexec/hald-addon-usb-csr
+-rwxr-xr-x root/root usr/libexec/hald-probe-hiddev
+-rwxr-xr-x root/root usr/libexec/hald-probe-input
+-rwxr-xr-x root/root usr/libexec/hald-probe-pc-floppy
+-rwxr-xr-x root/root usr/libexec/hald-probe-printer
+-rwxr-xr-x root/root usr/libexec/hald-probe-serial
+-rwxr-xr-x root/root usr/libexec/hald-probe-smbios
+-rwxr-xr-x root/root usr/libexec/hald-probe-storage
+-rwxr-xr-x root/root usr/libexec/hald-probe-volume
+-rwxr-xr-x root/root usr/libexec/hald-runner
+drwxr-xr-x root/bin usr/sbin/
+-rwxr-xr-x root/bin usr/sbin/hald
+drwxr-xr-x root/root usr/share/
+drwxr-xr-x root/root usr/share/hal/
+drwxr-xr-x root/root usr/share/hal/device-manager/
+-rw-r--r-- root/root usr/share/hal/device-manager/Const.py
+-rw-r--r-- root/root usr/share/hal/device-manager/Const.pyc
+-rw-r--r-- root/root usr/share/hal/device-manager/Const.pyo
+-rw-r--r-- root/root usr/share/hal/device-manager/Device.py
+-rw-r--r-- root/root usr/share/hal/device-manager/Device.pyc
+-rw-r--r-- root/root usr/share/hal/device-manager/Device.pyo
+-rw-r--r-- root/root usr/share/hal/device-manager/DeviceManager.py
+-rw-r--r-- root/root usr/share/hal/device-manager/DeviceManager.pyc
+-rw-r--r-- root/root usr/share/hal/device-manager/DeviceManager.pyo
+-rw-r--r-- root/root usr/share/hal/device-manager/GtkAttributesFacade.py
+-rw-r--r-- root/root usr/share/hal/device-manager/GtkAttributesFacade.pyc
+-rw-r--r-- root/root usr/share/hal/device-manager/GtkAttributesFacade.pyo
+-rw-r--r-- root/root usr/share/hal/device-manager/LibGladeApplication.py
+-rw-r--r-- root/root usr/share/hal/device-manager/LibGladeApplication.pyc
+-rw-r--r-- root/root usr/share/hal/device-manager/LibGladeApplication.pyo
+-rw-r--r-- root/root usr/share/hal/device-manager/Representation.py
+-rw-r--r-- root/root usr/share/hal/device-manager/Representation.pyc
+-rw-r--r-- root/root usr/share/hal/device-manager/Representation.pyo
+-rw-r--r-- root/root usr/share/hal/device-manager/fdo-logo.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-abstract.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-audio.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-bus-pci.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-bus-usb.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-camera.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-cat-cardbus.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-cat-keyboard.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-cat-mouse.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-cdrom.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-computer.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-device-manager.glade
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-flash.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-floppy.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-harddisk.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-network.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-serial-port.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-unknown.png
+-rw-r--r-- root/root usr/share/hal/device-manager/hal-video.png
+drwxr-xr-x root/root usr/share/hal/fdi/
+-rw-r--r-- root/root usr/share/hal/fdi/fdi.dtd
+-rw-r--r-- root/root usr/share/hal/fdi/fdi.rng
+drwxr-xr-x root/root usr/share/hal/fdi/information/
+drwxr-xr-x root/root usr/share/hal/fdi/information/10freedesktop/
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-camera-ptp.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-cd-dvd-burner.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-usb-card-readers.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-usb-music-players.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-usb-pda.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-usb-zip-drives.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/information/10freedesktop/10-wireless-mice.fdi
+drwxr-xr-x root/root usr/share/hal/fdi/information/20thirdparty/
+drwxr-xr-x root/root usr/share/hal/fdi/policy/
+drwxr-xr-x root/root usr/share/hal/fdi/policy/10osvendor/
+-rw-r--r-- root/root usr/share/hal/fdi/policy/10osvendor/10-keyboard-policy.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/policy/10osvendor/10-laptop-panel-mgmt-policy.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/policy/10osvendor/10-power-mgmt-policy.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/policy/10osvendor/15-storage-luks.fdi
+-rw-r--r-- root/root usr/share/hal/fdi/policy/10osvendor/20-storage-methods.fdi
+drwxr-xr-x root/root usr/share/hal/fdi/policy/20thirdparty/
+drwxr-xr-x root/root usr/share/hal/fdi/preprobe/
+drwxr-xr-x root/root usr/share/hal/fdi/preprobe/10osvendor/
+-rw-r--r-- root/root usr/share/hal/fdi/preprobe/10osvendor/10-ide-drives.fdi
+drwxr-xr-x root/root usr/share/hal/fdi/preprobe/20thirdparty/
+drwxr-xr-x root/root usr/share/hal/scripts/
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-luks-remove
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-luks-setup
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-luks-teardown
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-lcd-get-brightness
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-lcd-set-brightness
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-power-hibernate
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-power-reboot
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-power-set-power-save
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-power-shutdown
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-power-suspend
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-storage-cleanup-mountpoint
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-storage-cleanup-mountpoints
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-storage-eject
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-storage-mount
+-rwxr-xr-x root/root usr/share/hal/scripts/hal-system-storage-unmount
+drwxr-xr-x root/root usr/share/locale/
+drwxr-xr-x root/root usr/share/locale/cs/
+drwxr-xr-x root/root usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/cs/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/da/
+drwxr-xr-x root/root usr/share/locale/da/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/da/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/de/
+drwxr-xr-x root/root usr/share/locale/de/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/de/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/el/
+drwxr-xr-x root/root usr/share/locale/el/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/el/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/es/
+drwxr-xr-x root/root usr/share/locale/es/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/es/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/eu/
+drwxr-xr-x root/root usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/eu/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/fi/
+drwxr-xr-x root/root usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/fi/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/fr/
+drwxr-xr-x root/root usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/fr/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/hu/
+drwxr-xr-x root/root usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/hu/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/it/
+drwxr-xr-x root/root usr/share/locale/it/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/it/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/ja/
+drwxr-xr-x root/root usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ja/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/ko/
+drwxr-xr-x root/root usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ko/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/lt/
+drwxr-xr-x root/root usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/lt/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/nb/
+drwxr-xr-x root/root usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/nb/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/nl/
+drwxr-xr-x root/root usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/nl/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/pa/
+drwxr-xr-x root/root usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pa/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/pl/
+drwxr-xr-x root/root usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pl/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/pt/
+drwxr-xr-x root/root usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pt/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/pt_BR/
+drwxr-xr-x root/root usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pt_BR/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/ru/
+drwxr-xr-x root/root usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ru/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/sl_SI/
+drwxr-xr-x root/root usr/share/locale/sl_SI/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/sl_SI/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/uk/
+drwxr-xr-x root/root usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/uk/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/zh_CN/
+drwxr-xr-x root/root usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/zh_CN/LC_MESSAGES/hal.mo
+drwxr-xr-x root/root usr/share/locale/zh_TW/
+drwxr-xr-x root/root usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/zh_TW/LC_MESSAGES/hal.mo
