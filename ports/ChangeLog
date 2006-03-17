@@ -1,4 +1,470 @@
+2006-03-17  topf  <topf@users.berlios.de>
+
+	* gnome/gnome-menus/ChangeLog: Updated.
+
+	* gnome/gnome-menus/SlackBuild, gnome/gnome-menus/SlackBuild.new, gnome/gnome-menus/doinst.sh, gnome/gnome-menus/footprint, gnome/gnome-menus/md5sums, gnome/gnome-menus/requires, gnome/gnome-menus/slack-desc, gnome/gnome-menus/sources:
+	Version bump.
+
+	* gnome/gcalctool/ChangeLog: Updated.
+
+	* gnome/gcalctool/md5sums, gnome/gcalctool/requires, gnome/gcalctool/sources, gnome/gcalctool/doinst.sh, gnome/gcalctool/footprint, gnome/gcalctool/SlackBuild:
+	Version bump.
+
+	* gnome/gail/ChangeLog: Updated.
+
+	* gnome/gail/SlackBuild, gnome/gail/footprint, gnome/gail/md5sums, gnome/gail/requires, gnome/gail/slack-desc:
+	Version bump.
+
+	* gnome/file-roller/ChangeLog: Updated.
+
+	* gnome/file-roller/SlackBuild, gnome/file-roller/doinst.sh, gnome/file-roller/footprint, gnome/file-roller/md5sums, gnome/file-roller/sources:
+	Version bump.
+
+	* gnome/evolution-data-server/ChangeLog: Updated.
+
+	* gnome/evolution-data-server/SlackBuild, gnome/evolution-data-server/footprint, gnome/evolution-data-server/md5sums, gnome/evolution-data-server/requires, gnome/evolution-data-server/sources:
+	Version bump.
+
+	* gnome/evolution-webcal/ChangeLog: Updated.
+
+	* gnome/evolution-webcal/SlackBuild, gnome/evolution-webcal/doinst.sh, gnome/evolution-webcal/footprint, gnome/evolution-webcal/md5sums, gnome/evolution-webcal/requires, gnome/evolution-webcal/slack-desc, gnome/evolution-webcal/sources:
+	Version bump.
+
+	* gnome/epiphany-extensions/ChangeLog: Updated.
+
+	* gnome/epiphany-extensions/SlackBuild, gnome/epiphany-extensions/footprint, gnome/epiphany-extensions/md5sums, gnome/epiphany-extensions/requires, gnome/epiphany-extensions/sources:
+	Version bump.
+
+	* gnome/eog/ChangeLog: Updated.
+
+	* gnome/eog/SlackBuild, gnome/eog/doinst.sh, gnome/eog/footprint, gnome/eog/md5sums, gnome/eog/requires, gnome/eog/slack-desc, gnome/eog/sources:
+	Version bump.
+
+	* gnome/gnome-python-desktop/ChangeLog: Updated.
+
+	* gnome/gnome-python-desktop/SlackBuild, gnome/gnome-python-desktop/footprint, gnome/gnome-python-desktop/md5sums, gnome/gnome-python-desktop/requires, gnome/gnome-python-desktop/slack-desc, gnome/gnome-python-desktop/sources:
+	Added gnome-python-desktop.
+
+	* gnome/nautilus-python/ChangeLog: Updated.
+
+	* gnome/nautilus-python/SlackBuild, gnome/nautilus-python/footprint, gnome/nautilus-python/md5sums, gnome/nautilus-python/requires, gnome/nautilus-python/slack-desc, gnome/nautilus-python/sources:
+	Added nautilus-python.
+
+	* gnome/gnome-user-docs/ChangeLog: Updated.
+
+	* gnome/gnome-user-docs/SlackBuild, gnome/gnome-user-docs/doinst.sh, gnome/gnome-user-docs/footprint, gnome/gnome-user-docs/md5sums, gnome/gnome-user-docs/slack-desc, gnome/gnome-user-docs/sources:
+	Added gnome-user-docs.
+
+	* gnome/nautilus-sendto/ChangeLog: Updated.
+
+	* gnome/nautilus-sendto/SlackBuild, gnome/nautilus-sendto/footprint, gnome/nautilus-sendto/md5sums, gnome/nautilus-sendto/requires, gnome/nautilus-sendto/slack-desc, gnome/nautilus-sendto/sources:
+	Added nautilus-sendto.
+
+	* xap/tango-icon-theme/ChangeLog: Updated.
+
+	* xap/tango-icon-theme/SlackBuild, xap/tango-icon-theme/doinst.sh, xap/tango-icon-theme/footprint, xap/tango-icon-theme/md5sums, xap/tango-icon-theme/slack-desc, xap/tango-icon-theme/sources:
+	Added tango-icon-theme.
+
+	* xap/pcmanfm/ChangeLog: Updated.
+
+	* xap/pcmanfm/SlackBuild, xap/pcmanfm/doinst.sh, xap/pcmanfm/footprint, xap/pcmanfm/md5sums, xap/pcmanfm/requires, xap/pcmanfm/slack-desc, xap/pcmanfm/sources:
+	Added pxmanfm.
+
+	* ap/acpitool/ChangeLog: Updated.
+
+	* ap/acpitool/SlackBuild, ap/acpitool/footprint, ap/acpitool/md5sums, ap/acpitool/slack-desc, ap/acpitool/sources:
+	Added acpitool.
+
+	* ap/shuffle/ChangeLog: Updated.
+
+	* ap/shuffle/SlackBuild, ap/shuffle/footprint, ap/shuffle/md5sums, ap/shuffle/slack-desc, ap/shuffle/sources:
+	Added shuffle.
+
+	* gnome/gst-plugins-ugly/ChangeLog: Updated.
+
+	* gnome/gst-plugins-ugly/SlackBuild, gnome/gst-plugins-ugly/doinst.sh, gnome/gst-plugins-ugly/footprint, gnome/gst-plugins-ugly/md5sums, gnome/gst-plugins-ugly/requires, gnome/gst-plugins-ugly/slack-desc, gnome/gst-plugins-ugly/sources:
+	Added to replace gst-plugins.
+
+	* gnome/gst-plugins-good/ChangeLog: Updated.
+
+	* gnome/gst-plugins-good/SlackBuild, gnome/gst-plugins-good/doinst.sh, gnome/gst-plugins-good/footprint, gnome/gst-plugins-good/md5sums, gnome/gst-plugins-good/requires, gnome/gst-plugins-good/slack-desc, gnome/gst-plugins-good/sources:
+	Added to replace gst-plugins.
+
+	* gnome/gst-plugins-base/ChangeLog: Updated.
+
+	* gnome/gst-plugins-base/slack-desc, gnome/gst-plugins-base/sources, gnome/gst-plugins-base/SlackBuild, gnome/gst-plugins-base/doinst.sh, gnome/gst-plugins-base/footprint, gnome/gst-plugins-base/md5sums, gnome/gst-plugins-base/requires:
+	Added to replace gst-plugins.
+
+2006-03-16  topf  <topf@users.berlios.de>
+
+	* gnome/control-center/ChangeLog: Updated.
+
+	* gnome/control-center/SlackBuild, gnome/control-center/doinst.sh, gnome/control-center/footprint, gnome/control-center/md5sums, gnome/control-center/requires, gnome/control-center/sources:
+	Version bump.
+
+	* gnome/epiphany/ChangeLog: Updated.
+
+	* gnome/epiphany/SlackBuild, gnome/epiphany/doinst.sh, gnome/epiphany/footprint, gnome/epiphany/md5sums, gnome/epiphany/requires, gnome/epiphany/sources:
+	Version bump.
+
+	* gnome/eel/ChangeLog: Updated.
+
+	* gnome/eel/ChangeLog, gnome/eel/SlackBuild, gnome/eel/footprint, gnome/eel/md5sums, gnome/eel/sources:
+	Version bump.
+
+	* gnome/gconf/ChangeLog: Updated.
+
+	* gnome/gconf/SlackBuild, gnome/gconf/footprint, gnome/gconf/md5sums, gnome/gconf/requires, gnome/gconf/sources:
+	Version bump.
+
+	* gnome/gconf-editor/ChangeLog: Updated.
+
+	* gnome/gconf-editor/SlackBuild, gnome/gconf-editor/footprint, gnome/gconf-editor/md5sums, gnome/gconf-editor/sources:
+	Version bump.
+
+	* gnome/gdm/ChangeLog: Updated.
+
+	* gnome/gdm/SlackBuild, gnome/gdm/footprint, gnome/gdm/md5sums, gnome/gdm/requires, gnome/gdm/sources:
+	Version bump.
+
+	* gnome/gedit/ChangeLog: Updated.
+
+	* gnome/gedit/SlackBuild, gnome/gedit/doinst.sh, gnome/gedit/footprint, gnome/gedit/md5sums, gnome/gedit/requires, gnome/gedit/sources:
+	Version bump.
+
+	* gnome/gnome-applets/ChangeLog: Updated.
+
+	* gnome/gnome-applets/SlackBuild, gnome/gnome-applets/doinst.sh, gnome/gnome-applets/footprint, gnome/gnome-applets/md5sums, gnome/gnome-applets/requires, gnome/gnome-applets/sources:
+	Version bump.
+
+	* gnome/gnome-backgrounds/ChangeLog: Updated.
+
+	* gnome/gnome-backgrounds/SlackBuild, gnome/gnome-backgrounds/footprint, gnome/gnome-backgrounds/md5sums, gnome/gnome-backgrounds/slack-desc, gnome/gnome-backgrounds/sources:
+	Version bump.
+
+	* gnome/gnome-desktop/ChangeLog: Updated.
+
+	* gnome/gnome-desktop/SlackBuild, gnome/gnome-desktop/doinst.sh, gnome/gnome-desktop/footprint, gnome/gnome-desktop/md5sums, gnome/gnome-desktop/sources:
+	Version bump.
+
+	* gnome/gnome-doc-utils/ChangeLog: Updated.
+
+	* gnome/gnome-doc-utils/SlackBuild, gnome/gnome-doc-utils/doinst.sh, gnome/gnome-doc-utils/footprint, gnome/gnome-doc-utils/md5sums, gnome/gnome-doc-utils/sources:
+	Version bump.
+
+	* gnome/gnome-icon-theme/ChangeLog: Updated.
+
+	* gnome/gnome-icon-theme/SlackBuild, gnome/gnome-icon-theme/doinst.sh, gnome/gnome-icon-theme/footprint, gnome/gnome-icon-theme/md5sums, gnome/gnome-icon-theme/sources:
+	Version bump.
+
+	* gnome/gnome-media/ChangeLog: Updated.
+
+	* gnome/gnome-media/SlackBuild, gnome/gnome-media/doinst.sh, gnome/gnome-media/footprint, gnome/gnome-media/md5sums, gnome/gnome-media/requires, gnome/gnome-media/sources:
+	Version bump.
+
+	* gnome/gnome-panel/ChangeLog: Updated.
+
+	* gnome/gnome-panel/SlackBuild, gnome/gnome-panel/doinst.sh, gnome/gnome-panel/footprint, gnome/gnome-panel/md5sums, gnome/gnome-panel/sources:
+	Version bump.
+
+	* gnome/gnome-power-manager/ChangeLog: Updated.
+
+	* gnome/gnome-power-manager/SlackBuild, gnome/gnome-power-manager/doinst.sh, gnome/gnome-power-manager/footprint, gnome/gnome-power-manager/md5sums, gnome/gnome-power-manager/requires, gnome/gnome-power-manager/sources:
+	Version bump.
+
+	* gnome/gnome-python/ChangeLog: Updated.
+
+	* gnome/gnome-python/requires, gnome/gnome-python/sources, gnome/gnome-python/SlackBuild, gnome/gnome-python/footprint, gnome/gnome-python/md5sums:
+	Version bump.
+
+	* gnome/gnome-python-extras/ChangeLog: Updated.
+
+	* gnome/gnome-python-extras/SlackBuild, gnome/gnome-python-extras/footprint, gnome/gnome-python-extras/md5sums, gnome/gnome-python-extras/requires, gnome/gnome-python-extras/sources:
+	Version bump.
+
+	* gnome/gnome-screensaver/ChangeLog: Updated.
+
+	* gnome/gnome-screensaver/SlackBuild, gnome/gnome-screensaver/footprint, gnome/gnome-screensaver/md5sums, gnome/gnome-screensaver/requires, gnome/gnome-screensaver/sources:
+	Version bump.
+
+	* gnome/gnome-session/ChangeLog: Updated.
+
+	* gnome/gnome-session/SlackBuild, gnome/gnome-session/footprint, gnome/gnome-session/md5sums, gnome/gnome-session/requires, gnome/gnome-session/sources:
+	Version bump.
+
+	* gnome/gnome-system-monitor/ChangeLog: Updated.
+
+	* gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-monitor/doinst.sh, gnome/gnome-system-monitor/footprint, gnome/gnome-system-monitor/md5sums, gnome/gnome-system-monitor/requires, gnome/gnome-system-monitor/slack-desc, gnome/gnome-system-monitor/sources:
+	Version bump.
+
+	* gnome/gnome-system-tools/ChangeLog: Updated.
+
+	* gnome/gnome-system-tools/SlackBuild, gnome/gnome-system-tools/footprint, gnome/gnome-system-tools/md5sums, gnome/gnome-system-tools/sources:
+	Version bump.
+
+	* gnome/gnome-terminal/ChangeLog: Updated.
+
+	* gnome/gnome-terminal/SlackBuild, gnome/gnome-terminal/doinst.sh, gnome/gnome-terminal/footprint, gnome/gnome-terminal/md5sums, gnome/gnome-terminal/requires, gnome/gnome-terminal/sources:
+	Version bump.
+
+	* gnome/gnome-themes/ChangeLog: Updated.
+
+	* gnome/gnome-themes/SlackBuild, gnome/gnome-themes/footprint, gnome/gnome-themes/md5sums, gnome/gnome-themes/requires, gnome/gnome-themes/sources:
+	Version bump.
+
+	* gnome/gnome-utils/ChangeLog: Updated.
+
+	* gnome/gnome-utils/SlackBuild, gnome/gnome-utils/doinst.sh, gnome/gnome-utils/footprint, gnome/gnome-utils/md5sums, gnome/gnome-utils/sources:
+	Version bump.
+
+	* gnome/gnome-vfs/ChangeLog: Updated.
+
+	* gnome/gnome-vfs/SlackBuild, gnome/gnome-vfs/doinst.sh, gnome/gnome-vfs/footprint, gnome/gnome-vfs/md5sums, gnome/gnome-vfs/requires, gnome/gnome-vfs/sources:
+	Version bump.
+
+	* gnome/gst-python/ChangeLog: Updated.
+
+	* gnome/gst-python/requires, gnome/gst-python/SlackBuild, gnome/gst-python/footprint, gnome/gst-python/md5sums:
+	Version bump.
+
+	* gnome/gstreamer/ChangeLog: Updated.
+
+	* gnome/gstreamer/footprint, gnome/gstreamer/md5sums, gnome/gstreamer/requires, gnome/gstreamer/SlackBuild:
+	Version bump.
+
+	* gnome/gthumb/ChangeLog: Updated.
+
+	* gnome/gthumb/SlackBuild, gnome/gthumb/footprint, gnome/gthumb/md5sums, gnome/gthumb/requires:
+	Version bump.
+
+	* gnome/gtk-engines/ChangeLog: Updated.
+
+	* gnome/gtk-engines/SlackBuild, gnome/gtk-engines/footprint, gnome/gtk-engines/md5sums, gnome/gtk-engines/requires, gnome/gtk-engines/sources:
+	Version bump.
+
+	* gnome/libbonobo/ChangeLog: Updated.
+
+	* gnome/libbonobo/SlackBuild, gnome/libbonobo/footprint, gnome/libbonobo/md5sums, gnome/libbonobo/slack-desc, gnome/libbonobo/sources:
+	Version bump.
+
+	* gnome/libbonoboui/ChangeLog: Updated.
+
+	* gnome/libbonoboui/SlackBuild, gnome/libbonoboui/doinst.sh, gnome/libbonoboui/footprint, gnome/libbonoboui/md5sums, gnome/libbonoboui/requires, gnome/libbonoboui/slack-desc, gnome/libbonoboui/sources:
+	Version bump.
+
+	* gnome/libgnome/ChangeLog: Updated.
+
+	* gnome/libgnome/SlackBuild, gnome/libgnome/footprint, gnome/libgnome/md5sums, gnome/libgnome/sources:
+	Version bump.
+
+	* gnome/libgnomecanvas/ChangeLog: Updated.
+
+	* gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvas/footprint, gnome/libgnomecanvas/md5sums, gnome/libgnomecanvas/requires, gnome/libgnomecanvas/sources:
+	Version bump.
+
+	* gnome/libgnomeui/ChangeLog: Updated.
+
+	* gnome/libgnomeui/md5sums, gnome/libgnomeui/requires, gnome/libgnomeui/sources, gnome/libgnomeui/footprint, gnome/libgnomeui/SlackBuild:
+	Version bump.
+
+	* gnome/libgtop/ChangeLog: Updated.
+
+	* gnome/libgtop/footprint, gnome/libgtop/md5sums, gnome/libgtop/requires, gnome/libgtop/sources, gnome/libgtop/SlackBuild:
+	Version bump.
+
+	* gnome/libwnck/ChangeLog: Updated.
+
+	* gnome/libwnck/md5sums, gnome/libwnck/requires, gnome/libwnck/sources, gnome/libwnck/SlackBuild, gnome/libwnck/footprint:
+	Version bump.
+
+	* gnome/libxklavier/ChangeLog: Updated.
+
+	* gnome/libxklavier/SlackBuild, gnome/libxklavier/footprint, gnome/libxklavier/md5sums:
+	Version bump.
+
+	* gnome/liferea/ChangeLog: Updated.
+
+	* gnome/liferea/md5sums, gnome/liferea/SlackBuild, gnome/liferea/doinst.sh, gnome/liferea/footprint:
+	Version bump.
+
+	* gnome/mail-notification/ChangeLog: Updated.
+
+	* gnome/mail-notification/SlackBuild, gnome/mail-notification/footprint, gnome/mail-notification/mail-notification-2.0-buildfix.diff, gnome/mail-notification/mail-notification-2.0-evolution-2.4.diff, gnome/mail-notification/mail-notification-2.0-gmail-properties-fix.diff, gnome/mail-notification/mail-notification-2.0-imapauth.diff, gnome/mail-notification/md5sums, gnome/mail-notification/requires:
+	Version bump.
+
+	* gnome/metacity/metacity-2.14.0.tar.bz2: *** empty log message ***
+
+	* gnome/metacity/ChangeLog: Updated.
+
+	* gnome/metacity/sources, gnome/metacity/SlackBuild, gnome/metacity/arbitrary, gnome/metacity/footprint, gnome/metacity/md5sums, gnome/metacity/metacity-2.14.0.tar.bz2:
+	Version bump.
+
+	* gnome/nautilus/ChangeLog: Updated.
+
+	* gnome/nautilus/SlackBuild, gnome/nautilus/footprint, gnome/nautilus/md5sums, gnome/nautilus/requires, gnome/nautilus/sources:
+	Version bump.
+
+	* gnome/nautilus-cd-burner/ChangeLog: Updated.
+
+	* gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-cd-burner/doinst.sh, gnome/nautilus-cd-burner/footprint, gnome/nautilus-cd-burner/md5sums, gnome/nautilus-cd-burner/sources:
+	Version bump.
+
+	* gnome/orbit2/ChangeLog: Updated.
+
+	* gnome/orbit2/SlackBuild, gnome/orbit2/footprint, gnome/orbit2/md5sums, gnome/orbit2/sources:
+	Version bump.
+
+	* gnome/serpentine/ChangeLog: Updated.
+
+	* gnome/serpentine/SlackBuild, gnome/serpentine/footprint, gnome/serpentine/md5sums:
+	Version bump.
+
+	* gnome/sound-juicer/ChangeLog: Updated.
+
+	* gnome/sound-juicer/SlackBuild, gnome/sound-juicer/doinst.sh, gnome/sound-juicer/footprint, gnome/sound-juicer/md5sums, gnome/sound-juicer/requires, gnome/sound-juicer/sources:
+	Version bump.
+
+	* gnome/totem/ChangeLog: Updated.
+
+	* gnome/totem/md5sums, gnome/totem/requires, gnome/totem/sources, gnome/totem/SlackBuild, gnome/totem/doinst.sh, gnome/totem/footprint:
+	Version bump.
+
+	* gnome/vte/ChangeLog: Updated.
+
+	* gnome/vte/SlackBuild, gnome/vte/footprint, gnome/vte/md5sums, gnome/vte/requires, gnome/vte/sources:
+	Version bump.
+
+	* gnome/yelp/ChangeLog: Updated.
+
+	* gnome/yelp/SlackBuild, gnome/yelp/doinst.sh, gnome/yelp/footprint, gnome/yelp/md5sums, gnome/yelp/requires, gnome/yelp/sources:
+	Version bump.
+
+	* gnome/zenity/ChangeLog: Updated.
+
+	* gnome/zenity/md5sums, gnome/zenity/requires, gnome/zenity/slack-desc, gnome/zenity/sources, gnome/zenity/SlackBuild, gnome/zenity/doinst.sh, gnome/zenity/footprint:
+	Version bump.
+
+	* xap/zim/ChangeLog: Updated.
+
+	* xap/zim/SlackBuild, xap/zim/doinst.sh, xap/zim/footprint, xap/zim/md5sums, xap/zim/requires, xap/zim/slack-desc, xap/zim/sources:
+	Added Zim.
+
+	* l/file-mimeinfo/ChangeLog: Updated.
+
+	* l/file-mimeinfo/slack-desc, l/file-mimeinfo/sources, l/file-mimeinfo/SlackBuild, l/file-mimeinfo/doinst.sh, l/file-mimeinfo/footprint, l/file-mimeinfo/md5sums, l/file-mimeinfo/requires:
+	Added File::MimeInfo.
+
+	* l/file-basedir/ChangeLog: Updated.
+
+	* l/file-basedir/SlackBuild, l/file-basedir/footprint, l/file-basedir/md5sums, l/file-basedir/requires, l/file-basedir/slack-desc, l/file-basedir/sources:
+	Added File::BaseDir.
+
+	* l/libgphoto2/ChangeLog: Updated.
+
+	* l/libgphoto2/SlackBuild, l/libgphoto2/footprint, l/libgphoto2/md5sums, l/libgphoto2/requires:
+	Version bump.
+
+	* testing/gnome-volume-manager/ChangeLog: Updated.
+
+	* testing/gnome-volume-manager/SlackBuild, testing/gnome-volume-manager/footprint, testing/gnome-volume-manager/md5sums, testing/gnome-volume-manager/requires, testing/gnome-volume-manager/slack-desc, testing/gnome-volume-manager/sources:
+	Version bump.
+
+	* testing/hal/ChangeLog: Updated.
+
+	* testing/hal/SlackBuild, testing/hal/doinst.sh, testing/hal/footprint, testing/hal/md5sums, testing/hal/rc.hal, testing/hal/rc.hald.new, testing/hal/requires, testing/hal/slack-desc:
+	Version bump.
+
+	* testing/dbus/ChangeLog: Updated.
+
+	* testing/dbus/SlackBuild, testing/dbus/doinst.sh, testing/dbus/flags, testing/dbus/footprint, testing/dbus/md5sums, testing/dbus/no-fakeroot, testing/dbus/rc.messagebus, testing/dbus/requires, testing/dbus/slack-desc:
+	Version bump.
+
+	* testing/udev/ChangeLog: Updated.
+
+	* testing/udev/ChangeLog, testing/udev/config/rc.d/rc.udev, testing/udev/config/rules.d/udev.rules, testing/udev/config/udev.conf, testing/udev/doinst.sh.gz, testing/udev/footprint, testing/udev/slack-desc, testing/udev/sources, testing/udev/udev-script-devices.tar.gz, testing/udev/udev.SlackBuild:
+	Added udev-086.
+
+	* pasture/gtk+2/ChangeLog: Updated.
+
+	* pasture/gtk+2/ChangeLog, pasture/gtk+2/SlackBuild, pasture/gtk+2/doinst.sh, pasture/gtk+2/footprint, pasture/gtk+2/md5sums, pasture/gtk+2/profile.d/ChangeLog, pasture/gtk+2/requires, pasture/gtk+2/slack-desc, pasture/gtk+2/sources:
+	Moved from patches/.
+
+	* patches/pango/ChangeLog: Updated.
+
+	* patches/pango/SlackBuild, patches/pango/footprint, patches/pango/md5sums, patches/pango/sources:
+	Version bump.
+
+	* patches/librsvg/ChangeLog: Updated.
+
+	* patches/librsvg/ChangeLog, patches/librsvg/SlackBuild, patches/librsvg/doinst.sh, patches/librsvg/footprint, patches/librsvg/md5sums, patches/librsvg/requires, patches/librsvg/sources:
+	Version bump.
+
+	* patches/gucharmap/ChangeLog: Updated.
+
+	* patches/gucharmap/SlackBuild, patches/gucharmap/doinst.sh, patches/gucharmap/footprint, patches/gucharmap/md5sums, patches/gucharmap/requires, patches/gucharmap/slack-desc, patches/gucharmap/sources:
+	Version bump.
+
+	* patches/glib2/ChangeLog: Updated.
+
+	* patches/glib2/SlackBuild, patches/glib2/footprint, patches/glib2/md5sums, patches/glib2/sources:
+	Version bump.
+
+	* patches/atk/ChangeLog: Updated.
+
+	* patches/atk/SlackBuild, patches/atk/footprint, patches/atk/md5sums, patches/atk/sources:
+	Version bump.
+
+	* pasture/cairo/ChangeLog: Updated.
+
+	* pasture/cairo/SlackBuild, pasture/cairo/footprint, pasture/cairo/md5sums, pasture/cairo/requires, pasture/cairo/sources, pasture/cairo/ChangeLog:
+	Moved to pasture/.
+
+	* patches/cairo/ChangeLog: Updated.
+
+	* patches/cairo/ChangeLog, patches/cairo/SlackBuild, patches/cairo/footprint, patches/cairo/md5sums, patches/cairo/requires, patches/cairo/slack-desc, patches/cairo/sources:
+	Version bump. Moved to patches/.
+
+	* gnome/balsa/ChangeLog: Updated.
+
+	* gnome/balsa/SlackBuild, gnome/balsa/doinst.sh, gnome/balsa/footprint, gnome/balsa/md5sums, gnome/balsa/requires, gnome/balsa/slack-desc, gnome/balsa/sources:
+	Version bump.
+
+	* pasture/kernel-modules/ChangeLog: Updated.
+
+	* pasture/kernel-modules/ChangeLog, pasture/kernel-modules/README, pasture/kernel-modules/SlackBuild, pasture/kernel-modules/config-2.6.11.10, pasture/kernel-modules/doinst.sh, pasture/kernel-modules/footprint, pasture/kernel-modules/rc.modules-2.6.11.10.new, pasture/kernel-modules/slack-desc, pasture/kernel-modules/slot-in, pasture/kernel-modules/sources:
+	Moved to pasture/.
+
+	* pasture/kernel-generic/ChangeLog: Updated.
+
+	* pasture/kernel-generic/ChangeLog, pasture/kernel-generic/README, pasture/kernel-generic/SlackBuild, pasture/kernel-generic/config-2.6.11.10, pasture/kernel-generic/footprint, pasture/kernel-generic/logo_linux_clut224.ppm, pasture/kernel-generic/slack-desc, pasture/kernel-generic/slot-in, pasture/kernel-generic/sources:
+	Moved to pasture/.
+
+	* patches/libglade/ChangeLog: Updated.
+
+	* patches/libglade/ChangeLog, patches/libglade/SlackBuild, patches/libglade/doinst.sh, patches/libglade/footprint, patches/libglade/md5sums, patches/libglade/requires, patches/libglade/slack-desc, patches/libglade/sources:
+	Moved to patches/.
+
+	* d/portpkg/autoport: Avoid error message.
+
+2006-03-15  topf  <topf@users.berlios.de>
+
+	* d/portpkg/autoport: Added docfiles2 section.
+
+	* d/portpkg/autoport: Avoid using an existing binary when -b is set.
+
+	* d/portpkg/autoport:
+	Use the name of the source package to correct GNOME urls.
+
+2006-03-14  topf  <topf@users.berlios.de>
+
+	* d/portpkg/autoport:
+	Correct the urls of GNOME source files automatically when updating an existing build script.
+
+	* d/portpkg/autoport: Make sure -b runs the port we want it to run.
+
 2006-03-12  topf  <topf@users.berlios.de>
+
+	* ChangeLog: Updated.
 
 	* d/portpkg/export.portpkg: Don't export \*.autoport files.
 
@@ -523,11 +989,6 @@
 	* patches/librsvg/SlackBuild, patches/librsvg/doinst.sh, patches/librsvg/footprint, patches/librsvg/md5sums, patches/librsvg/requires, patches/librsvg/slack-desc, patches/librsvg/sources, patches/librsvg/ChangeLog:
 	Moved to patches/.
 
-	* patches/gtk+2/ChangeLog: Updated.
-
-	* patches/gtk+2/ChangeLog, patches/gtk+2/SlackBuild, patches/gtk+2/doinst.sh, patches/gtk+2/footprint, patches/gtk+2/md5sums, patches/gtk+2/profile.d/ChangeLog, patches/gtk+2/profile.d/gtk+.csh, patches/gtk+2/profile.d/gtk+.sh, patches/gtk+2/requires, patches/gtk+2/slack-desc, patches/gtk+2/sources:
-	Moved to patches/.
-
 	* patches/glib2/ChangeLog: Updated.
 
 	* patches/glib2/ChangeLog, patches/glib2/SlackBuild, patches/glib2/footprint, patches/glib2/md5sums, patches/glib2/requires, patches/glib2/slack-desc, patches/glib2/sources:
@@ -875,7 +1336,7 @@
 
 2005-10-15  topf  <topf@users.berlios.de>
 
-	* ChangeLog, extra/aterm/ChangeLog, extra/gpgme/ChangeLog, extra/libgsf/ChangeLog, extra/openssh-x509/ChangeLog, extra/windowmaker/ChangeLog, ap/abook/ChangeLog, ap/anacron/ChangeLog, ap/antiword/ChangeLog, ap/athcool/ChangeLog, ap/bonnie++/ChangeLog, ap/cabextract/ChangeLog, ap/convmv/ChangeLog, ap/cpan2tgz/ChangeLog, ap/cpudyn/ChangeLog, ap/dd_rescue/ChangeLog, ap/dosemu/ChangeLog, ap/dvdauthor/ChangeLog, ap/exiftags/ChangeLog, ap/exifutils/ChangeLog, ap/ffmpeg/ChangeLog, ap/fuse/ChangeLog, ap/fvcool/ChangeLog, ap/giftcurs/ChangeLog, ap/hibernate-script/ChangeLog, ap/html2text/ChangeLog, ap/htop/ChangeLog, ap/jack/ChangeLog, ap/jhead/ChangeLog, ap/john/ChangeLog, ap/lame/ChangeLog, ap/lapack/ChangeLog, ap/lirc/ChangeLog, ap/lsdvd/ChangeLog, ap/lshw/ChangeLog, ap/mjpegtools/ChangeLog, ap/nano/ChangeLog, ap/nrg2iso/ChangeLog, ap/ntfsprogs/ChangeLog, ap/ogmtools/ChangeLog, ap/pinfo/ChangeLog, ap/pnm2ppa/ChangeLog, ap/prelink/ChangeLog, ap/qstat/ChangeLog, ap/setcd/ChangeLog, ap/subtitleripper/ChangeLog, ap/swatch/ChangeLog, ap/tpb/ChangeLog, ap/transcode/ChangeLog, ap/unrar/ChangeLog, ap/vcdimager/ChangeLog, ap/x86cpucaps/ChangeLog, ap/xmltv/ChangeLog, ap/yafray/ChangeLog, ap/zsnes/ChangeLog, y/quake3/ChangeLog, xap/bookmarkbridge/ChangeLog, xap/ed2k-gtk-gui/ChangeLog, xap/gaim-encryption/ChangeLog, xap/giftoxic/ChangeLog, xap/gimp-gap/ChangeLog, xap/icon-slicer/ChangeLog, xap/linphone/ChangeLog, xap/rdesktop/ChangeLog, xap/sylpheed-claws-themes/ChangeLog, xap/acidrip/ChangeLog, xap/acroread/ChangeLog, xap/amule/ChangeLog, xap/amyedit/ChangeLog, xap/ardour/ChangeLog, xap/armagetron/ChangeLog, xap/arphicfonts/ChangeLog, xap/aterm/ChangeLog, xap/audacity/ChangeLog, xap/avidemux/ChangeLog, xap/baobab/ChangeLog, xap/bbkeys/ChangeLog, xap/bmp/ChangeLog, xap/cire/ChangeLog, xap/deng/ChangeLog, xap/desktop-file-utils/ChangeLog, xap/dia/ChangeLog, xap/dillo/ChangeLog, xap/edonkeyclc/ChangeLog, xap/enlightenment/ChangeLog, xap/eterm/ChangeLog, xap/ettercap-ng/ChangeLog, xap/fcitx/ChangeLog, xap/feh/ChangeLog, xap/freedoom/ChangeLog, xap/freevo/ChangeLog, xap/fyre/ChangeLog, xap/gfeed/ChangeLog, xap/giftui/ChangeLog, xap/gksu/ChangeLog, xap/gnofract4d/ChangeLog, xap/gnuitar/ChangeLog, xap/gnumeric/ChangeLog, xap/gocr/ChangeLog, xap/gqradio/ChangeLog, xap/gqview/ChangeLog, xap/graphviz/ChangeLog, xap/graveman/ChangeLog, xap/gtk-gnutella/ChangeLog, xap/gtk-server/ChangeLog, xap/gtklp/ChangeLog, xap/gtksourceview/ChangeLog, xap/gxmessage/ChangeLog, xap/hydrogen/ChangeLog, xap/i855crt/ChangeLog, xap/idesk/ChangeLog, xap/jimmac/ChangeLog, xap/jpilot/ChangeLog, xap/kino/ChangeLog, xap/lbreakout2/ChangeLog, xap/libnotify/ChangeLog, xap/mbox/ChangeLog, xap/mixmos/ChangeLog, xap/mplayer-codecs/ChangeLog, xap/mplayer-fonts/ChangeLog, xap/mplayer-skins/ChangeLog, xap/mplayer/ChangeLog, xap/nicotine/ChangeLog, xap/notification-daemon/ChangeLog, xap/ogle/ChangeLog, xap/ogle_gui/ChangeLog, xap/perlpanel/ChangeLog, xap/pitivi/ChangeLog, xap/pyne/ChangeLog, xap/qemu/ChangeLog, xap/quodlibet/ChangeLog, xap/redhat-artwork/ChangeLog, xap/root-tail/ChangeLog, xap/scrot/ChangeLog, xap/scummvm/ChangeLog, xap/sqlitebrowser/ChangeLog, xap/straw/ChangeLog, xap/sylpheed-claws/ChangeLog, xap/tagtool/ChangeLog, xap/texmacs/ChangeLog, xap/torsmo/ChangeLog, xap/tvtime/ChangeLog, xap/video-dvdrip/ChangeLog, xap/wired/ChangeLog, xap/wmi/ChangeLog, xap/xchm/ChangeLog, xap/xdaf/ChangeLog, xap/xf86-corefonts/ChangeLog, xap/xmame/ChangeLog, xap/xmbmon/ChangeLog, xap/xosd/ChangeLog, xap/xqf/ChangeLog, xap/xvid4conf/ChangeLog, xap/zinf/ChangeLog, testing/balsa/ChangeLog, testing/bootchart/ChangeLog, testing/cairo/ChangeLog, testing/criawips/ChangeLog, testing/dbus/ChangeLog, testing/deltup/ChangeLog, testing/eel/ChangeLog, testing/eina-gnome/ChangeLog, testing/evolution-data-server/ChangeLog, testing/evolution/ChangeLog, testing/fontconfig/ChangeLog, testing/gazpacho/ChangeLog, testing/glitz/ChangeLog, testing/gnome-desktop/ChangeLog, testing/gnome-icon-theme/ChangeLog, testing/gnome-menus/ChangeLog, testing/gnome-panel/ChangeLog, testing/gnome-system-tools/ChangeLog, testing/gnome-vfs/ChangeLog, testing/gnome-volume-manager/ChangeLog, testing/gstreamer/ChangeLog, testing/gtk-sharp/ChangeLog, testing/gtk-webcore/ChangeLog, testing/gtkhtml/ChangeLog, testing/hal/ChangeLog, testing/initng/ChangeLog, testing/kernel-generic/ChangeLog, testing/kernel-modules/ChangeLog, testing/libeina/ChangeLog, testing/libgnomecanvas/ChangeLog, testing/libxft/ChangeLog, testing/manedit/ChangeLog, testing/metacity/ChangeLog, testing/mono/ChangeLog, testing/mplayer-gtk2/ChangeLog, testing/nautilus/ChangeLog, testing/nvidia/ChangeLog, testing/polypaudio/ChangeLog, testing/portpkg/ChangeLog, testing/pycairo/ChangeLog, testing/pygtk/ChangeLog, testing/sabayon/ChangeLog, testing/seahorse/ChangeLog, testing/system-tools-backends/ChangeLog, testing/wxgtk/ChangeLog, testing/xfce-goodies/ChangeLog, testing/xfmedia/ChangeLog, testing/ximian-connector/ChangeLog, pasture/aalib/ChangeLog, pasture/abiword/ChangeLog, pasture/bittornado/ChangeLog, pasture/bittorrent/ChangeLog, pasture/blackbox/ChangeLog, pasture/cyrus-sasl/ChangeLog, pasture/esound/ChangeLog, pasture/expat/ChangeLog, pasture/fribidi/ChangeLog, pasture/gal20/ChangeLog, pasture/gconfmm20/ChangeLog, pasture/gthumb/ChangeLog, pasture/gtk+2/ChangeLog, pasture/gtk+2/profile.d/ChangeLog, pasture/gtkhtml30/ChangeLog, pasture/gtkmm22/ChangeLog, pasture/k3b-i18n/ChangeLog, pasture/libart_lgpl/ChangeLog, pasture/libgsf/ChangeLog, pasture/libgtkhtml/ChangeLog, pasture/libidl/ChangeLog, pasture/librsvg/ChangeLog, pasture/libsigc++1/ChangeLog, pasture/libsoup20/ChangeLog, pasture/libwpd/ChangeLog, pasture/libxml++1/ChangeLog, pasture/libxml2/ChangeLog, pasture/libxslt/ChangeLog, pasture/linux-pam/ChangeLog, pasture/magicdev/ChangeLog, pasture/mozilla-firefox/ChangeLog, pasture/pango/ChangeLog, pasture/shared-mime-info/ChangeLog, pasture/startup-notification/ChangeLog, pasture/storable/ChangeLog, pasture/xcdroast/ChangeLog, pasture/xine-lib/ChangeLog, pasture/xsane/ChangeLog, pasture/atk/ChangeLog, pasture/db41/ChangeLog, pasture/gaim/ChangeLog, pasture/gdm/ChangeLog, pasture/gftp/ChangeLog, pasture/gimp/ChangeLog, pasture/gnet/ChangeLog, pasture/k3b/ChangeLog, pasture/lcms/ChangeLog, pasture/xfce/ChangeLog, open/ChangeLog, open/bchunk/ChangeLog, open/links/ChangeLog, open/slackins/ChangeLog, n/ddclient/ChangeLog, n/ebayagent/ChangeLog, n/elinks/ChangeLog, n/email/ChangeLog, n/fping/ChangeLog, n/gift/ChangeLog, n/httpup/ChangeLog, n/ibmonitor/ChangeLog, n/mail-spamassassin/ChangeLog, n/mailfilter/ChangeLog, n/micq/ChangeLog, n/mpd/ChangeLog, n/msmtp/ChangeLog, n/mutella/ChangeLog, n/nagios/ChangeLog, n/neon/ChangeLog, n/nessus-core/ChangeLog, n/pavuk/ChangeLog, n/postfix-sasl/ChangeLog, n/postfix/ChangeLog, n/rdate/ChangeLog, n/renattach/ChangeLog, n/sarg/ChangeLog, n/scponly/ChangeLog, n/snarf/ChangeLog, n/snort/ChangeLog, n/snort/rules/ChangeLog, n/squid/ChangeLog, n/squid/patches/ChangeLog, n/thttpd/ChangeLog, n/tmsnc/ChangeLog, n/wifi-radar/ChangeLog, n/wvdial/ChangeLog, n/wvstreams/ChangeLog, n/yp-tools/ChangeLog, kde/amarok/ChangeLog, kde/digikam/ChangeLog, kde/digikamimageplugins/ChangeLog, kde/gwenview/ChangeLog, kde/k3bmonkeyaudioplugin/ChangeLog, kde/kipi-plugins/ChangeLog, kde/knetworkconf/ChangeLog, kde/libkexif/ChangeLog, kde/libkipi/ChangeLog, kde/showimg/ChangeLog, kde/superkaramba/ChangeLog, kde/thinkeramik/ChangeLog, gnome/diacanvas2/ChangeLog, gnome/gnome-clipboard-daemon/ChangeLog, gnome/gnome-desktop/ChangeLog, gnome/gnome-keyring/ChangeLog, gnome/gnome-netstatus/ChangeLog, gnome/gnome-screensaver/ChangeLog, gnome/gnome-system-monitor/ChangeLog, gnome/gnome2-vte-perl/ChangeLog, gnome/hardware-monitor/ChangeLog, gnome/inkscape/ChangeLog, gnome/libbonobo/ChangeLog, gnome/nautilus-cd-burner/ChangeLog, gnome/netspeed_applet/ChangeLog, gnome/system-tools-backends/ChangeLog, gnome/epiphany/ChangeLog, gnome/evolution/ChangeLog, gnome/gdesklets/ChangeLog, gnome/gnome-doc-utils/ChangeLog, gnome/gnome-icon-theme/ChangeLog, gnome/gst-plugins/ChangeLog, gnome/hicolor-icon-theme/ChangeLog, gnome/libcroco/ChangeLog, gnome/libgail-gnome/ChangeLog, gnome/libghttp/ChangeLog, gnome/libgnome/ChangeLog, gnome/firestarter/ChangeLog, gnome/anjuta/ChangeLog, gnome/at-spi/ChangeLog, gnome/bluefish/ChangeLog, gnome/bubblemon/ChangeLog, gnome/bug-buddy/ChangeLog, gnome/conglomerate/ChangeLog, gnome/control-center/ChangeLog, gnome/dasher/ChangeLog, gnome/drwright/ChangeLog, gnome/epiphany-extensions/ChangeLog, gnome/evince/ChangeLog, gnome/evolution-data-server/ChangeLog, gnome/evolution-webcal/ChangeLog, gnome/f-spot/ChangeLog, gnome/galeon/ChangeLog, gnome/gcalctool/ChangeLog, gnome/gconfmm/ChangeLog, gnome/gcursor/ChangeLog, gnome/glabels/ChangeLog, gnome/gnome-applets/ChangeLog, gnome/gnome-audio/ChangeLog, gnome/gnome-backgrounds/ChangeLog, gnome/gnome-blog/ChangeLog, gnome/gnome-btdownload/ChangeLog, gnome/gnome-cpufreq-applet/ChangeLog, gnome/gnome-cups-manager/ChangeLog, gnome/gnome-dial/ChangeLog, gnome/gnome-games/ChangeLog, gnome/gnome-media/ChangeLog, gnome/gnome-menus/ChangeLog, gnome/gnome-mime-data/ChangeLog, gnome/gnome-nettool/ChangeLog, gnome/gnome-panel/ChangeLog, gnome/gnome-pkgtool/ChangeLog, gnome/gnome-python-extras/ChangeLog, gnome/gnome-python/ChangeLog, gnome/gnome-schedule/ChangeLog, gnome/gnome-settings-visualeffects/ChangeLog, gnome/gnome-speech/ChangeLog, gnome/gnome-sshman/ChangeLog, gnome/gnome-terminal/ChangeLog, gnome/gnome-themes/ChangeLog, gnome/gnome-utils/ChangeLog, gnome/gnome-vfsmm/ChangeLog, gnome/gnome2-canvas-perl/ChangeLog, gnome/gnome2-dia-perl/ChangeLog, gnome/gnome2-gconf-perl/ChangeLog, gnome/gnome2-perl/ChangeLog, gnome/gnome2-user-docs/ChangeLog, gnome/gnomebaker/ChangeLog, gnome/gnomemeeting/ChangeLog, gnome/gnopernicus/ChangeLog, gnome/gnubiff/ChangeLog, gnome/goobox/ChangeLog, gnome/gparted/ChangeLog, gnome/gphoto2/ChangeLog, gnome/gsplashfu/ChangeLog, gnome/gthumb/ChangeLog, gnome/gtk-doc/ChangeLog, gnome/gtk-engines/ChangeLog, gnome/gtkglext/ChangeLog, gnome/gtkhtml/ChangeLog, gnome/gtkspell/ChangeLog, gnome/gtorrentviewer/ChangeLog, gnome/gtweakui/ChangeLog, gnome/jamboree/ChangeLog, gnome/kazehakase/ChangeLog, gnome/libbonoboui/ChangeLog, gnome/libgnomecanvas/ChangeLog, gnome/libgnomecanvasmm/ChangeLog, gnome/libgnomecups/ChangeLog, gnome/libgnomedb/ChangeLog, gnome/libgnomemm/ChangeLog, gnome/libgnomeprint/ChangeLog, gnome/libgnomeprintui/ChangeLog, gnome/libgnomesu/ChangeLog, gnome/libgnomeui/ChangeLog, gnome/libgnomeuimm/ChangeLog, gnome/mihais-memfree/ChangeLog, gnome/nautilus-media/ChangeLog, gnome/orbit2/ChangeLog, gnome/revelation/ChangeLog, gnome/rhythmbox/ChangeLog, gnome/rubrica/ChangeLog, gnome/screem/ChangeLog, gnome/seahorse/ChangeLog, gnome/serpentine/ChangeLog, gnome/sound-juicer/ChangeLog, gnome/ximian-artwork/ChangeLog, gnome/yarssr/ChangeLog, gnome/zenity/ChangeLog, gnome/aegis-virus-scanner/ChangeLog, gnome/balsa/ChangeLog, gnome/bmp-extra-plugins/ChangeLog, gnome/cog/ChangeLog, gnome/disksearch/ChangeLog, gnome/eel/ChangeLog, gnome/eog/ChangeLog, gnome/file-roller/ChangeLog, gnome/gai/ChangeLog, gnome/gail/ChangeLog, gnome/gal/ChangeLog, gnome/gamp/ChangeLog, gnome/gconf-editor/ChangeLog, gnome/gconf/ChangeLog, gnome/gdm/ChangeLog, gnome/gedit/ChangeLog, gnome/ggv/ChangeLog, gnome/glade/ChangeLog, gnome/gmencoder/ChangeLog, gnome/gmpc/ChangeLog, gnome/gnome-common/ChangeLog, gnome/gnome-osd/ChangeLog, gnome/gnome-ppp/ChangeLog, gnome/gnome-ppx/ChangeLog, gnome/gnome-session/ChangeLog, gnome/gnome-system-tools/ChangeLog, gnome/gnome-themes-extras/ChangeLog, gnome/gnome-vfs/ChangeLog, gnome/gnome2-print-perl/ChangeLog, gnome/gnome2-rsvg-perl/ChangeLog, gnome/gnome2-vfs-perl/ChangeLog, gnome/gnome2-wnck-perl/ChangeLog, gnome/gnomevfs-mount/ChangeLog, gnome/gok/ChangeLog, gnome/gpass/ChangeLog, gnome/gpdf/ChangeLog, gnome/gpp/ChangeLog, gnome/grip/ChangeLog, gnome/gst-ffmpeg/ChangeLog, gnome/gst-python/ChangeLog, gnome/gstreamer/ChangeLog, gnome/gtkam/ChangeLog, gnome/gurlchecker/ChangeLog, gnome/gwget/ChangeLog, gnome/intltool/ChangeLog, gnome/leafpad/ChangeLog, gnome/libgtop/ChangeLog, gnome/libsoup/ChangeLog, gnome/libwnck/ChangeLog, gnome/libxklavier/ChangeLog, gnome/liferea/ChangeLog, gnome/mail-notification/ChangeLog, gnome/metacity/ChangeLog, gnome/monkey-bubble/ChangeLog, gnome/muine/ChangeLog, gnome/nautilus/ChangeLog, gnome/ontv/ChangeLog, gnome/sclog/ChangeLog, gnome/scrollkeeper/ChangeLog, gnome/sodipodi/ChangeLog, gnome/timer-applet/ChangeLog, gnome/totem/ChangeLog, gnome/tsclient/ChangeLog, gnome/tutka/ChangeLog, gnome/ubuntu-artwork/ChangeLog, gnome/vino/ChangeLog, gnome/vte/ChangeLog, gnome/yelp/ChangeLog, gnome/zapping/ChangeLog, n/p0f/ChangeLog, l/gift-gnutella/ChangeLog, l/libdvdnav/ChangeLog, l/libdvdcss/ChangeLog, l/compress-zlib/ChangeLog, l/libdvdread/ChangeLog, l/file-scan/ChangeLog, l/poppler/ChangeLog, l/gtk2-mozembed-perl/ChangeLog, l/xanimdlls/ChangeLog, l/pyvorbis/ChangeLog, l/plugger/ChangeLog, l/wxpython/ChangeLog, l/digest-sha1/ChangeLog, l/pysparse/ChangeLog, l/soundtouch/ChangeLog, l/bmp-wma/ChangeLog, l/bluecurve/ChangeLog, l/qt63dlls/ChangeLog, l/gift-ares/ChangeLog, l/glib-perl/ChangeLog, l/libxml++/ChangeLog, l/timedate/ChangeLog, l/libglade/ChangeLog, l/libevent/ChangeLog, l/libesmtp/ChangeLog, l/libgpg-error/ChangeLog, l/exif-browser/ChangeLog, l/rp9codecs/ChangeLog, l/gtk-xfce-engine/ChangeLog, l/codec-binaries/ChangeLog, l/libraw1394/ChangeLog, l/clearlooks/ChangeLog, l/pymodplug/ChangeLog, l/xml-twig/ChangeLog, l/pyid3lib/ChangeLog, l/libsamplerate/ChangeLog, l/numeric/ChangeLog, l/openldap/ChangeLog, l/extutils-pkgconfig/ChangeLog, l/openh323/ChangeLog, l/sqlite/ChangeLog, l/pycrypto/ChangeLog, l/rmxmms/ChangeLog, l/pygame/ChangeLog, l/pyflac/ChangeLog, l/raptor/ChangeLog, l/gtk2-html2-perl/ChangeLog, l/twisted/ChangeLog, l/gtk-qt-engine/ChangeLog, l/libmusicbrainz/ChangeLog, l/gtk2-glext-perl/ChangeLog, l/freetype/ChangeLog, l/out_lame/ChangeLog, l/soap-lite/ChangeLog, l/experience-engine/ChangeLog, l/libnet/ChangeLog, l/libgda/ChangeLog, l/libelf/ChangeLog, l/libcap/ChangeLog, l/libast/ChangeLog, l/flash-plugin/ChangeLog, l/ladspa/ChangeLog, l/nessus-plugins/ChangeLog, l/locale-maketext-lexicon/ChangeLog, l/imlib2/ChangeLog, l/libavc1394/ChangeLog, l/id3lib/ChangeLog, l/gtk2-gladexml-perl/ChangeLog, l/gnutls/ChangeLog, l/glibmm/ChangeLog, l/giblib/ChangeLog, l/iso-codes/ChangeLog, l/gtk-perl/ChangeLog, l/aspell6-cs/ChangeLog, l/mpeg2dec/ChangeLog, l/portaudio/ChangeLog, l/nessus-libraries/ChangeLog, l/chmlib/ChangeLog, l/libwww-perl/ChangeLog, l/gtk-sharp/ChangeLog, l/locale-gettext/ChangeLog, l/termreadkey/ChangeLog, l/gift-openft/ChangeLog, l/gtk2-perl/ChangeLog, l/gift-fasttrack/ChangeLog, l/memoize/ChangeLog, l/a52dec/ChangeLog, l/slmodem/ChangeLog, l/libgphoto2/ChangeLog, l/extutils-depends/ChangeLog, l/libintl-perl/ChangeLog, l/enchant/ChangeLog, l/datemanip/ChangeLog, l/xml-writer/ChangeLog, l/libtunepimp/ChangeLog, l/libglademm/ChangeLog, l/libosip/ChangeLog, l/libnasl/ChangeLog, l/liblrdf/ChangeLog, l/libdnet/ChangeLog, l/libcdio/ChangeLog, l/libcddb/ChangeLog, l/pymusepack/ChangeLog, l/date-calc/ChangeLog, l/libvisual/ChangeLog, l/xml-simple/ChangeLog, l/mmpython/ChangeLog, l/egenix-mx-base/ChangeLog, l/libtheora/ChangeLog, l/dvtitler/ChangeLog, l/libmodplug/ChangeLog, l/libsigc++/ChangeLog, l/gtk2-spell-perl/ChangeLog, l/algorithm-diff/ChangeLog, l/wxgtk/ChangeLog, l/speex/ChangeLog, l/smpeg/ChangeLog, l/pyxml/ChangeLog, l/pyrex/ChangeLog, l/pyogg/ChangeLog, l/pymad/ChangeLog, l/pygtk/ChangeLog, l/pwlib/ChangeLog, l/libdv/ChangeLog, l/gtkmm/ChangeLog, l/gpgme/ChangeLog, l/gmime/ChangeLog, l/fnlib/ChangeLog, l/gamin/ChangeLog, l/event/ChangeLog, l/faad2/ChangeLog, l/archive-zip/ChangeLog, l/archive-tar/ChangeLog, l/boost/ChangeLog, l/cairo/ChangeLog, l/libmpcdec/ChangeLog, l/html-tagset/ChangeLog, l/pyorbit/ChangeLog, l/xvidcore/ChangeLog, l/xml-rss/ChangeLog, l/divx4linux/ChangeLog, l/pyfemax/ChangeLog, l/libsndfile/ChangeLog, l/html-parser/ChangeLog, l/gtk2-trayicon-perl/ChangeLog, l/libgcrypt/ChangeLog, l/pyao/ChangeLog, l/howl/ChangeLog, l/faac/ChangeLog, l/html-tree/ChangeLog, l/tv_grab_cz/ChangeLog, l/uri/ChangeLog, l/pil/ChangeLog, l/gd/ChangeLog, l/gc/ChangeLog, d/valgrind/ChangeLog, d/ltrace/ChangeLog, d/fakeroot/ChangeLog, d/scons/ChangeLog, d/psyco/ChangeLog, d/stow/ChangeLog, d/ruby/ChangeLog, d/mono/ChangeLog, d/tla/ChangeLog, d/lua/ChangeLog, d/ddd/ChangeLog:
+	* ChangeLog, extra/aterm/ChangeLog, extra/gpgme/ChangeLog, extra/libgsf/ChangeLog, extra/openssh-x509/ChangeLog, extra/windowmaker/ChangeLog, ap/abook/ChangeLog, ap/anacron/ChangeLog, ap/antiword/ChangeLog, ap/athcool/ChangeLog, ap/bonnie++/ChangeLog, ap/cabextract/ChangeLog, ap/convmv/ChangeLog, ap/cpan2tgz/ChangeLog, ap/cpudyn/ChangeLog, ap/dd_rescue/ChangeLog, ap/dosemu/ChangeLog, ap/dvdauthor/ChangeLog, ap/exiftags/ChangeLog, ap/exifutils/ChangeLog, ap/ffmpeg/ChangeLog, ap/fuse/ChangeLog, ap/fvcool/ChangeLog, ap/giftcurs/ChangeLog, ap/hibernate-script/ChangeLog, ap/html2text/ChangeLog, ap/htop/ChangeLog, ap/jack/ChangeLog, ap/jhead/ChangeLog, ap/john/ChangeLog, ap/lame/ChangeLog, ap/lapack/ChangeLog, ap/lirc/ChangeLog, ap/lsdvd/ChangeLog, ap/lshw/ChangeLog, ap/mjpegtools/ChangeLog, ap/nano/ChangeLog, ap/nrg2iso/ChangeLog, ap/ntfsprogs/ChangeLog, ap/ogmtools/ChangeLog, ap/pinfo/ChangeLog, ap/pnm2ppa/ChangeLog, ap/prelink/ChangeLog, ap/qstat/ChangeLog, ap/setcd/ChangeLog, ap/subtitleripper/ChangeLog, ap/swatch/ChangeLog, ap/tpb/ChangeLog, ap/transcode/ChangeLog, ap/unrar/ChangeLog, ap/vcdimager/ChangeLog, ap/x86cpucaps/ChangeLog, ap/xmltv/ChangeLog, ap/yafray/ChangeLog, ap/zsnes/ChangeLog, y/quake3/ChangeLog, xap/bookmarkbridge/ChangeLog, xap/ed2k-gtk-gui/ChangeLog, xap/gaim-encryption/ChangeLog, xap/giftoxic/ChangeLog, xap/gimp-gap/ChangeLog, xap/icon-slicer/ChangeLog, xap/linphone/ChangeLog, xap/rdesktop/ChangeLog, xap/sylpheed-claws-themes/ChangeLog, xap/acidrip/ChangeLog, xap/acroread/ChangeLog, xap/amule/ChangeLog, xap/amyedit/ChangeLog, xap/ardour/ChangeLog, xap/armagetron/ChangeLog, xap/arphicfonts/ChangeLog, xap/aterm/ChangeLog, xap/audacity/ChangeLog, xap/avidemux/ChangeLog, xap/baobab/ChangeLog, xap/bbkeys/ChangeLog, xap/bmp/ChangeLog, xap/cire/ChangeLog, xap/deng/ChangeLog, xap/desktop-file-utils/ChangeLog, xap/dia/ChangeLog, xap/dillo/ChangeLog, xap/edonkeyclc/ChangeLog, xap/enlightenment/ChangeLog, xap/eterm/ChangeLog, xap/ettercap-ng/ChangeLog, xap/fcitx/ChangeLog, xap/feh/ChangeLog, xap/freedoom/ChangeLog, xap/freevo/ChangeLog, xap/fyre/ChangeLog, xap/gfeed/ChangeLog, xap/giftui/ChangeLog, xap/gksu/ChangeLog, xap/gnofract4d/ChangeLog, xap/gnuitar/ChangeLog, xap/gnumeric/ChangeLog, xap/gocr/ChangeLog, xap/gqradio/ChangeLog, xap/gqview/ChangeLog, xap/graphviz/ChangeLog, xap/graveman/ChangeLog, xap/gtk-gnutella/ChangeLog, xap/gtk-server/ChangeLog, xap/gtklp/ChangeLog, xap/gtksourceview/ChangeLog, xap/gxmessage/ChangeLog, xap/hydrogen/ChangeLog, xap/i855crt/ChangeLog, xap/idesk/ChangeLog, xap/jimmac/ChangeLog, xap/jpilot/ChangeLog, xap/kino/ChangeLog, xap/lbreakout2/ChangeLog, xap/libnotify/ChangeLog, xap/mbox/ChangeLog, xap/mixmos/ChangeLog, xap/mplayer-codecs/ChangeLog, xap/mplayer-fonts/ChangeLog, xap/mplayer-skins/ChangeLog, xap/mplayer/ChangeLog, xap/nicotine/ChangeLog, xap/notification-daemon/ChangeLog, xap/ogle/ChangeLog, xap/ogle_gui/ChangeLog, xap/perlpanel/ChangeLog, xap/pitivi/ChangeLog, xap/pyne/ChangeLog, xap/qemu/ChangeLog, xap/quodlibet/ChangeLog, xap/redhat-artwork/ChangeLog, xap/root-tail/ChangeLog, xap/scrot/ChangeLog, xap/scummvm/ChangeLog, xap/sqlitebrowser/ChangeLog, xap/straw/ChangeLog, xap/sylpheed-claws/ChangeLog, xap/tagtool/ChangeLog, xap/texmacs/ChangeLog, xap/torsmo/ChangeLog, xap/tvtime/ChangeLog, xap/video-dvdrip/ChangeLog, xap/wired/ChangeLog, xap/wmi/ChangeLog, xap/xchm/ChangeLog, xap/xdaf/ChangeLog, xap/xf86-corefonts/ChangeLog, xap/xmame/ChangeLog, xap/xmbmon/ChangeLog, xap/xosd/ChangeLog, xap/xqf/ChangeLog, xap/xvid4conf/ChangeLog, xap/zinf/ChangeLog, testing/bootchart/ChangeLog, testing/criawips/ChangeLog, testing/dbus/ChangeLog, testing/deltup/ChangeLog, testing/eel/ChangeLog, testing/eina-gnome/ChangeLog, testing/evolution-data-server/ChangeLog, testing/evolution/ChangeLog, testing/fontconfig/ChangeLog, testing/gazpacho/ChangeLog, testing/glitz/ChangeLog, testing/gnome-desktop/ChangeLog, testing/gnome-icon-theme/ChangeLog, testing/gnome-menus/ChangeLog, testing/gnome-panel/ChangeLog, testing/gnome-system-tools/ChangeLog, testing/gnome-vfs/ChangeLog, testing/gnome-volume-manager/ChangeLog, testing/gstreamer/ChangeLog, testing/gtk-sharp/ChangeLog, testing/gtk-webcore/ChangeLog, testing/gtkhtml/ChangeLog, testing/hal/ChangeLog, testing/initng/ChangeLog, testing/libeina/ChangeLog, testing/libgnomecanvas/ChangeLog, testing/libxft/ChangeLog, testing/manedit/ChangeLog, testing/metacity/ChangeLog, testing/mono/ChangeLog, testing/mplayer-gtk2/ChangeLog, testing/nautilus/ChangeLog, testing/nvidia/ChangeLog, testing/polypaudio/ChangeLog, testing/portpkg/ChangeLog, testing/pycairo/ChangeLog, testing/pygtk/ChangeLog, testing/sabayon/ChangeLog, testing/seahorse/ChangeLog, testing/system-tools-backends/ChangeLog, testing/wxgtk/ChangeLog, testing/xfce-goodies/ChangeLog, testing/xfmedia/ChangeLog, testing/ximian-connector/ChangeLog, pasture/aalib/ChangeLog, pasture/abiword/ChangeLog, pasture/bittornado/ChangeLog, pasture/bittorrent/ChangeLog, pasture/blackbox/ChangeLog, pasture/cyrus-sasl/ChangeLog, pasture/esound/ChangeLog, pasture/expat/ChangeLog, pasture/fribidi/ChangeLog, pasture/gal20/ChangeLog, pasture/gconfmm20/ChangeLog, pasture/gthumb/ChangeLog, pasture/gtk+2/ChangeLog, pasture/gtk+2/profile.d/ChangeLog, pasture/gtkhtml30/ChangeLog, pasture/gtkmm22/ChangeLog, pasture/k3b-i18n/ChangeLog, pasture/libart_lgpl/ChangeLog, pasture/libgsf/ChangeLog, pasture/libgtkhtml/ChangeLog, pasture/libidl/ChangeLog, pasture/librsvg/ChangeLog, pasture/libsigc++1/ChangeLog, pasture/libsoup20/ChangeLog, pasture/libwpd/ChangeLog, pasture/libxml++1/ChangeLog, pasture/libxml2/ChangeLog, pasture/libxslt/ChangeLog, pasture/linux-pam/ChangeLog, pasture/magicdev/ChangeLog, pasture/mozilla-firefox/ChangeLog, pasture/pango/ChangeLog, pasture/shared-mime-info/ChangeLog, pasture/startup-notification/ChangeLog, pasture/storable/ChangeLog, pasture/xcdroast/ChangeLog, pasture/xine-lib/ChangeLog, pasture/xsane/ChangeLog, pasture/atk/ChangeLog, pasture/db41/ChangeLog, pasture/gaim/ChangeLog, pasture/gdm/ChangeLog, pasture/gftp/ChangeLog, pasture/gimp/ChangeLog, pasture/gnet/ChangeLog, pasture/k3b/ChangeLog, pasture/lcms/ChangeLog, pasture/xfce/ChangeLog, open/ChangeLog, open/bchunk/ChangeLog, open/links/ChangeLog, open/slackins/ChangeLog, n/ddclient/ChangeLog, n/ebayagent/ChangeLog, n/elinks/ChangeLog, n/email/ChangeLog, n/fping/ChangeLog, n/gift/ChangeLog, n/httpup/ChangeLog, n/ibmonitor/ChangeLog, n/mail-spamassassin/ChangeLog, n/mailfilter/ChangeLog, n/micq/ChangeLog, n/mpd/ChangeLog, n/msmtp/ChangeLog, n/mutella/ChangeLog, n/nagios/ChangeLog, n/neon/ChangeLog, n/nessus-core/ChangeLog, n/pavuk/ChangeLog, n/postfix-sasl/ChangeLog, n/postfix/ChangeLog, n/rdate/ChangeLog, n/renattach/ChangeLog, n/sarg/ChangeLog, n/scponly/ChangeLog, n/snarf/ChangeLog, n/snort/ChangeLog, n/snort/rules/ChangeLog, n/squid/ChangeLog, n/squid/patches/ChangeLog, n/thttpd/ChangeLog, n/tmsnc/ChangeLog, n/wifi-radar/ChangeLog, n/wvdial/ChangeLog, n/wvstreams/ChangeLog, n/yp-tools/ChangeLog, kde/amarok/ChangeLog, kde/digikam/ChangeLog, kde/digikamimageplugins/ChangeLog, kde/gwenview/ChangeLog, kde/k3bmonkeyaudioplugin/ChangeLog, kde/kipi-plugins/ChangeLog, kde/knetworkconf/ChangeLog, kde/libkexif/ChangeLog, kde/libkipi/ChangeLog, kde/showimg/ChangeLog, kde/superkaramba/ChangeLog, kde/thinkeramik/ChangeLog, gnome/diacanvas2/ChangeLog, gnome/gnome-clipboard-daemon/ChangeLog, gnome/gnome-desktop/ChangeLog, gnome/gnome-keyring/ChangeLog, gnome/gnome-netstatus/ChangeLog, gnome/gnome-screensaver/ChangeLog, gnome/gnome-system-monitor/ChangeLog, gnome/gnome2-vte-perl/ChangeLog, gnome/hardware-monitor/ChangeLog, gnome/inkscape/ChangeLog, gnome/libbonobo/ChangeLog, gnome/nautilus-cd-burner/ChangeLog, gnome/netspeed_applet/ChangeLog, gnome/system-tools-backends/ChangeLog, gnome/epiphany/ChangeLog, gnome/evolution/ChangeLog, gnome/gdesklets/ChangeLog, gnome/gnome-doc-utils/ChangeLog, gnome/gnome-icon-theme/ChangeLog, gnome/gst-plugins/ChangeLog, gnome/hicolor-icon-theme/ChangeLog, gnome/libcroco/ChangeLog, gnome/libgail-gnome/ChangeLog, gnome/libghttp/ChangeLog, gnome/libgnome/ChangeLog, gnome/firestarter/ChangeLog, gnome/anjuta/ChangeLog, gnome/at-spi/ChangeLog, gnome/bluefish/ChangeLog, gnome/bubblemon/ChangeLog, gnome/bug-buddy/ChangeLog, gnome/conglomerate/ChangeLog, gnome/control-center/ChangeLog, gnome/dasher/ChangeLog, gnome/drwright/ChangeLog, gnome/epiphany-extensions/ChangeLog, gnome/evince/ChangeLog, gnome/evolution-data-server/ChangeLog, gnome/evolution-webcal/ChangeLog, gnome/f-spot/ChangeLog, gnome/galeon/ChangeLog, gnome/gcalctool/ChangeLog, gnome/gconfmm/ChangeLog, gnome/gcursor/ChangeLog, gnome/glabels/ChangeLog, gnome/gnome-applets/ChangeLog, gnome/gnome-audio/ChangeLog, gnome/gnome-backgrounds/ChangeLog, gnome/gnome-blog/ChangeLog, gnome/gnome-btdownload/ChangeLog, gnome/gnome-cpufreq-applet/ChangeLog, gnome/gnome-cups-manager/ChangeLog, gnome/gnome-dial/ChangeLog, gnome/gnome-games/ChangeLog, gnome/gnome-media/ChangeLog, gnome/gnome-menus/ChangeLog, gnome/gnome-mime-data/ChangeLog, gnome/gnome-nettool/ChangeLog, gnome/gnome-panel/ChangeLog, gnome/gnome-pkgtool/ChangeLog, gnome/gnome-python-extras/ChangeLog, gnome/gnome-python/ChangeLog, gnome/gnome-schedule/ChangeLog, gnome/gnome-settings-visualeffects/ChangeLog, gnome/gnome-speech/ChangeLog, gnome/gnome-sshman/ChangeLog, gnome/gnome-terminal/ChangeLog, gnome/gnome-themes/ChangeLog, gnome/gnome-utils/ChangeLog, gnome/gnome-vfsmm/ChangeLog, gnome/gnome2-canvas-perl/ChangeLog, gnome/gnome2-dia-perl/ChangeLog, gnome/gnome2-gconf-perl/ChangeLog, gnome/gnome2-perl/ChangeLog, gnome/gnome2-user-docs/ChangeLog, gnome/gnomebaker/ChangeLog, gnome/gnomemeeting/ChangeLog, gnome/gnopernicus/ChangeLog, gnome/gnubiff/ChangeLog, gnome/goobox/ChangeLog, gnome/gparted/ChangeLog, gnome/gphoto2/ChangeLog, gnome/gsplashfu/ChangeLog, gnome/gthumb/ChangeLog, gnome/gtk-doc/ChangeLog, gnome/gtk-engines/ChangeLog, gnome/gtkglext/ChangeLog, gnome/gtkhtml/ChangeLog, gnome/gtkspell/ChangeLog, gnome/gtorrentviewer/ChangeLog, gnome/gtweakui/ChangeLog, gnome/jamboree/ChangeLog, gnome/kazehakase/ChangeLog, gnome/libbonoboui/ChangeLog, gnome/libgnomecanvas/ChangeLog, gnome/libgnomecanvasmm/ChangeLog, gnome/libgnomecups/ChangeLog, gnome/libgnomedb/ChangeLog, gnome/libgnomemm/ChangeLog, gnome/libgnomeprint/ChangeLog, gnome/libgnomeprintui/ChangeLog, gnome/libgnomesu/ChangeLog, gnome/libgnomeui/ChangeLog, gnome/libgnomeuimm/ChangeLog, gnome/mihais-memfree/ChangeLog, gnome/nautilus-media/ChangeLog, gnome/orbit2/ChangeLog, gnome/revelation/ChangeLog, gnome/rhythmbox/ChangeLog, gnome/rubrica/ChangeLog, gnome/screem/ChangeLog, gnome/seahorse/ChangeLog, gnome/serpentine/ChangeLog, gnome/sound-juicer/ChangeLog, gnome/ximian-artwork/ChangeLog, gnome/yarssr/ChangeLog, gnome/zenity/ChangeLog, gnome/aegis-virus-scanner/ChangeLog, gnome/balsa/ChangeLog, gnome/bmp-extra-plugins/ChangeLog, gnome/cog/ChangeLog, gnome/disksearch/ChangeLog, gnome/eel/ChangeLog, gnome/eog/ChangeLog, gnome/file-roller/ChangeLog, gnome/gai/ChangeLog, gnome/gail/ChangeLog, gnome/gal/ChangeLog, gnome/gamp/ChangeLog, gnome/gconf-editor/ChangeLog, gnome/gconf/ChangeLog, gnome/gdm/ChangeLog, gnome/gedit/ChangeLog, gnome/ggv/ChangeLog, gnome/glade/ChangeLog, gnome/gmencoder/ChangeLog, gnome/gmpc/ChangeLog, gnome/gnome-common/ChangeLog, gnome/gnome-osd/ChangeLog, gnome/gnome-ppp/ChangeLog, gnome/gnome-ppx/ChangeLog, gnome/gnome-session/ChangeLog, gnome/gnome-system-tools/ChangeLog, gnome/gnome-themes-extras/ChangeLog, gnome/gnome-vfs/ChangeLog, gnome/gnome2-print-perl/ChangeLog, gnome/gnome2-rsvg-perl/ChangeLog, gnome/gnome2-vfs-perl/ChangeLog, gnome/gnome2-wnck-perl/ChangeLog, gnome/gnomevfs-mount/ChangeLog, gnome/gok/ChangeLog, gnome/gpass/ChangeLog, gnome/gpdf/ChangeLog, gnome/gpp/ChangeLog, gnome/grip/ChangeLog, gnome/gst-ffmpeg/ChangeLog, gnome/gst-python/ChangeLog, gnome/gstreamer/ChangeLog, gnome/gtkam/ChangeLog, gnome/gurlchecker/ChangeLog, gnome/gwget/ChangeLog, gnome/intltool/ChangeLog, gnome/leafpad/ChangeLog, gnome/libgtop/ChangeLog, gnome/libsoup/ChangeLog, gnome/libwnck/ChangeLog, gnome/libxklavier/ChangeLog, gnome/liferea/ChangeLog, gnome/mail-notification/ChangeLog, gnome/metacity/ChangeLog, gnome/monkey-bubble/ChangeLog, gnome/muine/ChangeLog, gnome/nautilus/ChangeLog, gnome/ontv/ChangeLog, gnome/sclog/ChangeLog, gnome/scrollkeeper/ChangeLog, gnome/sodipodi/ChangeLog, gnome/timer-applet/ChangeLog, gnome/totem/ChangeLog, gnome/tsclient/ChangeLog, gnome/tutka/ChangeLog, gnome/ubuntu-artwork/ChangeLog, gnome/vino/ChangeLog, gnome/vte/ChangeLog, gnome/yelp/ChangeLog, gnome/zapping/ChangeLog, n/p0f/ChangeLog, l/gift-gnutella/ChangeLog, l/libdvdnav/ChangeLog, l/libdvdcss/ChangeLog, l/compress-zlib/ChangeLog, l/libdvdread/ChangeLog, l/file-scan/ChangeLog, l/poppler/ChangeLog, l/gtk2-mozembed-perl/ChangeLog, l/xanimdlls/ChangeLog, l/pyvorbis/ChangeLog, l/plugger/ChangeLog, l/wxpython/ChangeLog, l/digest-sha1/ChangeLog, l/pysparse/ChangeLog, l/soundtouch/ChangeLog, l/bmp-wma/ChangeLog, l/bluecurve/ChangeLog, l/qt63dlls/ChangeLog, l/gift-ares/ChangeLog, l/glib-perl/ChangeLog, l/libxml++/ChangeLog, l/timedate/ChangeLog, l/libevent/ChangeLog, l/libesmtp/ChangeLog, l/libgpg-error/ChangeLog, l/exif-browser/ChangeLog, l/rp9codecs/ChangeLog, l/gtk-xfce-engine/ChangeLog, l/codec-binaries/ChangeLog, l/libraw1394/ChangeLog, l/clearlooks/ChangeLog, l/pymodplug/ChangeLog, l/xml-twig/ChangeLog, l/pyid3lib/ChangeLog, l/libsamplerate/ChangeLog, l/numeric/ChangeLog, l/openldap/ChangeLog, l/extutils-pkgconfig/ChangeLog, l/openh323/ChangeLog, l/sqlite/ChangeLog, l/pycrypto/ChangeLog, l/rmxmms/ChangeLog, l/pygame/ChangeLog, l/pyflac/ChangeLog, l/raptor/ChangeLog, l/gtk2-html2-perl/ChangeLog, l/twisted/ChangeLog, l/gtk-qt-engine/ChangeLog, l/libmusicbrainz/ChangeLog, l/gtk2-glext-perl/ChangeLog, l/freetype/ChangeLog, l/out_lame/ChangeLog, l/soap-lite/ChangeLog, l/experience-engine/ChangeLog, l/libnet/ChangeLog, l/libgda/ChangeLog, l/libelf/ChangeLog, l/libcap/ChangeLog, l/libast/ChangeLog, l/flash-plugin/ChangeLog, l/ladspa/ChangeLog, l/nessus-plugins/ChangeLog, l/locale-maketext-lexicon/ChangeLog, l/imlib2/ChangeLog, l/libavc1394/ChangeLog, l/id3lib/ChangeLog, l/gtk2-gladexml-perl/ChangeLog, l/gnutls/ChangeLog, l/glibmm/ChangeLog, l/giblib/ChangeLog, l/iso-codes/ChangeLog, l/gtk-perl/ChangeLog, l/aspell6-cs/ChangeLog, l/mpeg2dec/ChangeLog, l/portaudio/ChangeLog, l/nessus-libraries/ChangeLog, l/chmlib/ChangeLog, l/libwww-perl/ChangeLog, l/gtk-sharp/ChangeLog, l/locale-gettext/ChangeLog, l/termreadkey/ChangeLog, l/gift-openft/ChangeLog, l/gtk2-perl/ChangeLog, l/gift-fasttrack/ChangeLog, l/memoize/ChangeLog, l/a52dec/ChangeLog, l/slmodem/ChangeLog, l/libgphoto2/ChangeLog, l/extutils-depends/ChangeLog, l/libintl-perl/ChangeLog, l/enchant/ChangeLog, l/datemanip/ChangeLog, l/xml-writer/ChangeLog, l/libtunepimp/ChangeLog, l/libglademm/ChangeLog, l/libosip/ChangeLog, l/libnasl/ChangeLog, l/liblrdf/ChangeLog, l/libdnet/ChangeLog, l/libcdio/ChangeLog, l/libcddb/ChangeLog, l/pymusepack/ChangeLog, l/date-calc/ChangeLog, l/libvisual/ChangeLog, l/xml-simple/ChangeLog, l/mmpython/ChangeLog, l/egenix-mx-base/ChangeLog, l/libtheora/ChangeLog, l/dvtitler/ChangeLog, l/libmodplug/ChangeLog, l/libsigc++/ChangeLog, l/gtk2-spell-perl/ChangeLog, l/algorithm-diff/ChangeLog, l/wxgtk/ChangeLog, l/speex/ChangeLog, l/smpeg/ChangeLog, l/pyxml/ChangeLog, l/pyrex/ChangeLog, l/pyogg/ChangeLog, l/pymad/ChangeLog, l/pygtk/ChangeLog, l/pwlib/ChangeLog, l/libdv/ChangeLog, l/gtkmm/ChangeLog, l/gpgme/ChangeLog, l/gmime/ChangeLog, l/fnlib/ChangeLog, l/gamin/ChangeLog, l/event/ChangeLog, l/faad2/ChangeLog, l/archive-zip/ChangeLog, l/archive-tar/ChangeLog, l/boost/ChangeLog, l/libmpcdec/ChangeLog, l/html-tagset/ChangeLog, l/pyorbit/ChangeLog, l/xvidcore/ChangeLog, l/xml-rss/ChangeLog, l/divx4linux/ChangeLog, l/pyfemax/ChangeLog, l/libsndfile/ChangeLog, l/html-parser/ChangeLog, l/gtk2-trayicon-perl/ChangeLog, l/libgcrypt/ChangeLog, l/pyao/ChangeLog, l/howl/ChangeLog, l/faac/ChangeLog, l/html-tree/ChangeLog, l/tv_grab_cz/ChangeLog, l/uri/ChangeLog, l/pil/ChangeLog, l/gd/ChangeLog, l/gc/ChangeLog, d/valgrind/ChangeLog, d/ltrace/ChangeLog, d/fakeroot/ChangeLog, d/scons/ChangeLog, d/psyco/ChangeLog, d/stow/ChangeLog, d/ruby/ChangeLog, d/mono/ChangeLog, d/tla/ChangeLog, d/lua/ChangeLog, d/ddd/ChangeLog:
 	Updated.
 
 	* open/links/SlackBuild, open/links/footprint, open/links/info, open/links/md5sums, open/links/requires, open/links/slack-desc, open/links/sources:
@@ -943,9 +1404,6 @@
 
 	* l/chmlib/SlackBuild, l/chmlib/footprint, l/chmlib/md5sums:
 	Upgraded to version 0.36 (mk)
-
-	* l/cairo/SlackBuild, l/cairo/footprint, l/cairo/md5sums, l/cairo/requires, l/cairo/slack-desc, l/cairo/sources:
-	version update (lem)
 
 	* extra/aterm/1.patch, extra/aterm/2.patch, extra/aterm/3.patch, extra/aterm/4.patch, extra/aterm/5.patch, extra/aterm/6.patch, extra/aterm/7.patch, extra/aterm/SlackBuild, extra/aterm/aterm-16.xpm, extra/aterm/aterm-32.xpm, extra/aterm/aterm-48.xpm, extra/aterm/footprint, extra/aterm/md5sums, extra/aterm/requires, extra/aterm/slack-desc, extra/aterm/sources:
 	Just new version with some additional patch (mbr)
@@ -1196,9 +1654,6 @@
 	* testing/dbus/SlackBuild, testing/dbus/footprint, testing/dbus/md5sums, testing/dbus/no-fakeroot, testing/dbus/requires:
 	version update, tools added (lem)
 
-	* testing/cairo/SlackBuild, testing/cairo/footprint, testing/cairo/md5sums, testing/cairo/sources:
-	version update (lem)
-
 2005-08-11  hnaz  <hnaz@users.berlios.de>
 
 	* l/sqlite/SlackBuild, l/sqlite/footprint, l/sqlite/md5sums, l/sqlite/requires:
@@ -1265,9 +1720,6 @@
 
 	* l/clearlooks/SlackBuild, l/clearlooks/footprint, l/clearlooks/md5sums, l/clearlooks/slack-desc:
 	version update (lem)
-
-	* testing/cairo/SlackBuild, testing/cairo/footprint, testing/cairo/md5sums, testing/cairo/requires, testing/cairo/slack-desc, testing/cairo/sources:
-	new entry (lem)
 
 	* pasture/fribidi/SlackBuild, pasture/fribidi/footprint, pasture/fribidi/md5sums, pasture/fribidi/requires, pasture/fribidi/slack-desc, pasture/fribidi/sources:
 	Moved l/fribidi-0.10.4-i686-1tom to pasture/.
@@ -1429,9 +1881,6 @@
 
 2005-07-14  topf  <topf@users.berlios.de>
 
-	* testing/balsa/SlackBuild, testing/balsa/footprint, testing/balsa/md5sums:
-	Version update.
-
 	* testing/gtk-sharp/SlackBuild, testing/gtk-sharp/footprint, testing/gtk-sharp/md5sums, testing/gtk-sharp/requires, testing/gtk-sharp/slack-desc, testing/gtk-sharp/sources:
 	Moved to testing/.
 
@@ -1501,11 +1950,6 @@
 	* d/fakeroot/SlackBuild, d/fakeroot/footprint, d/fakeroot/md5sums:
 	1.2.10 >> 1.4.1
 
-2005-06-30  topf  <topf@users.berlios.de>
-
-	* testing/balsa/SlackBuild, testing/balsa/footprint, testing/balsa/md5sums:
-	Version update.
-
 2005-06-20  topf  <topf@users.berlios.de>
 
 	* gnome/serpentine/footprint, gnome/serpentine/md5sums, gnome/serpentine/requires, gnome/serpentine/slack-desc, gnome/serpentine/sources, gnome/serpentine/SlackBuild:
@@ -1552,9 +1996,6 @@
 
 	* pasture/aalib/SlackBuild, pasture/aalib/footprint, pasture/aalib/md5sums, pasture/aalib/requires, pasture/aalib/slack-desc, pasture/aalib/sources:
 	Moved open/aalib-1.2-i686-1stb to pasture/. (stb)
-
-	* testing/kernel-modules/README, testing/kernel-modules/SlackBuild, testing/kernel-modules/config-2.6.11.10, testing/kernel-modules/doinst.sh, testing/kernel-modules/footprint, testing/kernel-modules/rc.modules-2.6.11.10.new, testing/kernel-modules/slack-desc, testing/kernel-modules/slot-in, testing/kernel-modules/sources, testing/kernel-generic/README, testing/kernel-generic/SlackBuild, testing/kernel-generic/config-2.6.11.10, testing/kernel-generic/footprint, testing/kernel-generic/logo_linux_clut224.ppm, testing/kernel-generic/slack-desc, testing/kernel-generic/slot-in, testing/kernel-generic/sources:
-	experimental stuff (please test it yourself) (lem)
 
 	* pasture/gnet/SlackBuild, pasture/gnet/footprint, pasture/gnet/md5sums, pasture/gnet/requires, pasture/gnet/slack-desc, pasture/gnet/sources:
 	Moved from l/.
@@ -1853,11 +2294,6 @@
 	* gnome/libgnomesu/SlackBuild, gnome/libgnomesu/footprint, gnome/libgnomesu/md5sums, gnome/libgnomesu/requires, gnome/libgnomesu/slack-desc, gnome/libgnomesu/sources:
 	Moved to gnome/.
 
-	* testing/balsa/imagemakefile.patch: *** empty log message ***
-
-	* testing/balsa/SlackBuild, testing/balsa/doinst.sh, testing/balsa/footprint, testing/balsa/md5sums, testing/balsa/slack-desc:
-	Updated to 2.3.2.
-
 	* ChangeLog: Updated. (cronjob)
 
 2005-05-14  topf  <topf@users.berlios.de>
@@ -2081,9 +2517,6 @@
 	* n/postfix/SlackBuild, n/postfix/doinst.sh, n/postfix/footprint, n/postfix/makedefs, n/postfix/md5sums, n/postfix/rc.postfix.new, n/postfix/requires, n/postfix/slack-desc, n/postfix/sources:
 	Moved open/postfix-2.2.2-i486-1stb to n/.
 
-	* l/libglade/SlackBuild, l/libglade/doinst.sh, l/libglade/footprint, l/libglade/slack-desc, l/libglade/sources:
-	added xmlcatalog support into doinst.sh (lem)
-
 	* gnome/gnome-python-extras/SlackBuild, gnome/gnome-python-extras/footprint, gnome/gnome-python-extras/md5sums, gnome/gnome-python-extras/requires, gnome/gnome-python-extras/slack-desc, gnome/gnome-python-extras/sources:
 	new entry (lem)
 
@@ -2290,7 +2723,7 @@
 	* n/ddclient/SlackBuild, n/ddclient/doinst.sh, n/ddclient/footprint, n/ddclient/md5sums, n/ddclient/rc.ddclient.new, n/ddclient/requires, n/ddclient/slack-desc, n/ddclient/sources:
 	new entry - repaired rc.ddclient
 
-	* xap/xosd/footprint, xap/mplayer/footprint, xap/gtk-gnutella/footprint, xap/gtk-gnutella/requires, xap/graveman/footprint, testing/balsa/footprint, l/libtheora/footprint, l/libgpg-error/footprint, l/libglade/footprint, gnome/orbit2/footprint, gnome/mail-notification/footprint, gnome/liferea/footprint, gnome/libgnomeui/footprint, gnome/libgnomeprintui/footprint, gnome/libgnomeprint/footprint, gnome/libgnomecanvas/footprint, gnome/libgnome/footprint, gnome/libbonoboui/footprint, gnome/libbonobo/footprint:
+	* xap/xosd/footprint, xap/mplayer/footprint, xap/gtk-gnutella/footprint, xap/gtk-gnutella/requires, xap/graveman/footprint, l/libtheora/footprint, l/libgpg-error/footprint, gnome/orbit2/footprint, gnome/mail-notification/footprint, gnome/liferea/footprint, gnome/libgnomeui/footprint, gnome/libgnomeprintui/footprint, gnome/libgnomeprint/footprint, gnome/libgnomecanvas/footprint, gnome/libgnome/footprint, gnome/libbonoboui/footprint, gnome/libbonobo/footprint:
 	Synced dir.
 
 	* n/httpup/SlackBuild, n/httpup/footprint, n/httpup/md5sums, n/httpup/requires:
@@ -2837,9 +3270,6 @@
 	* gnome/libgnome/SlackBuild, gnome/libgnome/footprint, gnome/libgnome/md5sums, gnome/libgnome/sources:
 	Merged local/libgnome-2.10.0-i686-1tom into gnome/.
 
-	* l/libglade/SlackBuild, l/libglade/footprint, l/libglade/md5sums, l/libglade/requires, l/libglade/sources:
-	Merged local/libglade-2.5.1-i686-1tom into l/.
-
 	* gnome/libbonoboui/doinst.sh, gnome/libbonoboui/footprint, gnome/libbonoboui/md5sums, gnome/libbonoboui/sources, gnome/libbonoboui/SlackBuild:
 	Merged local/libbonoboui-2.8.1-i686-5tom into gnome/.
 
@@ -2893,7 +3323,7 @@
 	* xap/graveman/graveman.desktop.fixediconpath.diff.gz, xap/graveman/info, xap/graveman/requires, xap/graveman/SlackBuild, xap/graveman/doinst.sh, xap/graveman/footprint:
 	Moved open/graveman-0.3.8-i686-1sjn to xap/.
 
-	* pasture/gdm/.#requires.1.2, pasture/xine-lib/.#requires.1.1, testing/balsa/.#SlackBuild.1.1, testing/balsa/.#footprint.1.1, xap/redhat-artwork/.#SlackBuild.1.6:
+	* pasture/gdm/.#requires.1.2, pasture/xine-lib/.#requires.1.1, xap/redhat-artwork/.#SlackBuild.1.6:
 	*** empty log message ***
 
 	* gnome/gnome-mime-data/requires, gnome/gnome2-user-docs/requires, gnome/mail-notification/optional, gnome/totem/optional, n/ibmonitor/requires, pasture/esound/requires, xap/jimmac/requires:
@@ -2901,7 +3331,7 @@
 
 	* gnome/bmp-extra-plugins/optional: *** empty log message ***
 
-	* gnome/bubblemon/requires, gnome/bug-buddy/requires, gnome/cog/requires, gnome/control-center/requires, gnome/dasher/requires, gnome/drwright/requires, gnome/eel/requires, gnome/eog/requires, gnome/epiphany/requires, gnome/evolution-data-server/requires, gnome/evolution-webcal/requires, gnome/evolution/requires, gnome/file-roller/requires, gnome/firestarter/requires, gnome/gai/requires, gnome/gal/requires, gnome/galeon/requires, gnome/gamp/requires, gnome/gcalctool/requires, gnome/gconf-editor/requires, gnome/gcursor/requires, gnome/gdesklets/requires, gnome/gedit/requires, gnome/ggv/requires, gnome/glabels/requires, gnome/gmencoder/requires, gnome/gnome-applets/requires, gnome/gnome-cpufreq-applet/requires, gnome/gnome-cups-manager/requires, gnome/gnome-desktop/requires, gnome/gnome-dial/requires, gnome/gnome-games/requires, gnome/gnome-media/requires, gnome/gnome-netstatus/requires, gnome/gnome-nettool/requires, gnome/gnome-panel/requires, gnome/gnome-pkgtool/requires, gnome/gnome-ppp/requires, gnome/gnome-ppx/requires, gnome/gnome-python/requires, gnome/gnome-session/requires, gnome/gnome-settings-visualeffects/requires, gnome/gnome-system-monitor/requires, gnome/gnome-system-tools/requires, gnome/gnome-terminal/requires, gnome/gnome-utils/requires, gnome/gnome2-perl/requires, gnome/gnomebaker/requires, gnome/gnopernicus/requires, gnome/gnubiff/requires, gnome/gok/requires, gnome/goobox/requires, gnome/gpass/requires, gnome/gpdf/requires, gnome/gpp/requires, gnome/grip/requires, gnome/gsplashfu/requires, gnome/gst-plugins/requires, gnome/gtkam/requires, gnome/gtweakui/requires, gnome/gurlchecker/requires, gnome/gwget/requires, gnome/hardware-monitor/requires, gnome/jamboree/requires, gnome/libbonoboui/requires, gnome/libgail-gnome/requires, gnome/libgnome/requires, gnome/libgnomedb/requires, gnome/libgnomemm/requires, gnome/libgnomeui/requires, gnome/libgnomeuimm/requires, gnome/mail-notification/requires, gnome/mihais-memfree/requires, gnome/monkey-bubble/requires, gnome/muine/requires, gnome/nautilus-cd-burner/requires, gnome/nautilus-media/requires, gnome/nautilus/requires, gnome/netspeed_applet/requires, gnome/revelation/requires, gnome/rhythmbox/requires, gnome/rubrica/requires, gnome/screem/requires, gnome/seahorse/requires, gnome/sound-juicer/requires, gnome/timer-applet/requires, gnome/totem/requires, gnome/tsclient/requires, gnome/tutka/requires, gnome/vino/requires, gnome/yelp/requires, kde/amarok/requires, l/gtk-sharp/requires, l/libsndfile/requires, l/portaudio/requires, l/pygame/requires, l/smpeg/requires, n/mpd/requires, pasture/gal20/requires, pasture/gdm/requires, pasture/gimp/requires, pasture/gthumb/requires, pasture/gtkhtml30/requires, pasture/magicdev/requires, pasture/xine-lib/requires, testing/balsa/requires, testing/criawips/requires, testing/eina-gnome/requires, testing/gnome-volume-manager/requires, testing/mplayer-gtk2/requires, testing/polypaudio/requires, xap/armagetron/requires, xap/avidemux/requires, xap/bmp/requires, xap/deng/requires, xap/enlightenment/requires, xap/hydrogen/requires, xap/lbreakout2/requires, xap/mplayer/optional, xap/qemu/requires, xap/wired/requires, xap/zinf/requires, ap/jack/requires, ap/mjpegtools/requires, gnome/anjuta/requires, gnome/balsa/requires, gnome/bluefish/requires, gnome/bmp-extra-plugins/requires:
+	* gnome/bubblemon/requires, gnome/bug-buddy/requires, gnome/cog/requires, gnome/control-center/requires, gnome/dasher/requires, gnome/drwright/requires, gnome/eel/requires, gnome/eog/requires, gnome/epiphany/requires, gnome/evolution-data-server/requires, gnome/evolution-webcal/requires, gnome/evolution/requires, gnome/file-roller/requires, gnome/firestarter/requires, gnome/gai/requires, gnome/gal/requires, gnome/galeon/requires, gnome/gamp/requires, gnome/gcalctool/requires, gnome/gconf-editor/requires, gnome/gcursor/requires, gnome/gdesklets/requires, gnome/gedit/requires, gnome/ggv/requires, gnome/glabels/requires, gnome/gmencoder/requires, gnome/gnome-applets/requires, gnome/gnome-cpufreq-applet/requires, gnome/gnome-cups-manager/requires, gnome/gnome-desktop/requires, gnome/gnome-dial/requires, gnome/gnome-games/requires, gnome/gnome-media/requires, gnome/gnome-netstatus/requires, gnome/gnome-nettool/requires, gnome/gnome-panel/requires, gnome/gnome-pkgtool/requires, gnome/gnome-ppp/requires, gnome/gnome-ppx/requires, gnome/gnome-python/requires, gnome/gnome-session/requires, gnome/gnome-settings-visualeffects/requires, gnome/gnome-system-monitor/requires, gnome/gnome-system-tools/requires, gnome/gnome-terminal/requires, gnome/gnome-utils/requires, gnome/gnome2-perl/requires, gnome/gnomebaker/requires, gnome/gnopernicus/requires, gnome/gnubiff/requires, gnome/gok/requires, gnome/goobox/requires, gnome/gpass/requires, gnome/gpdf/requires, gnome/gpp/requires, gnome/grip/requires, gnome/gsplashfu/requires, gnome/gst-plugins/requires, gnome/gtkam/requires, gnome/gtweakui/requires, gnome/gurlchecker/requires, gnome/gwget/requires, gnome/hardware-monitor/requires, gnome/jamboree/requires, gnome/libbonoboui/requires, gnome/libgail-gnome/requires, gnome/libgnome/requires, gnome/libgnomedb/requires, gnome/libgnomemm/requires, gnome/libgnomeui/requires, gnome/libgnomeuimm/requires, gnome/mail-notification/requires, gnome/mihais-memfree/requires, gnome/monkey-bubble/requires, gnome/muine/requires, gnome/nautilus-cd-burner/requires, gnome/nautilus-media/requires, gnome/nautilus/requires, gnome/netspeed_applet/requires, gnome/revelation/requires, gnome/rhythmbox/requires, gnome/rubrica/requires, gnome/screem/requires, gnome/seahorse/requires, gnome/sound-juicer/requires, gnome/timer-applet/requires, gnome/totem/requires, gnome/tsclient/requires, gnome/tutka/requires, gnome/vino/requires, gnome/yelp/requires, kde/amarok/requires, l/gtk-sharp/requires, l/libsndfile/requires, l/portaudio/requires, l/pygame/requires, l/smpeg/requires, n/mpd/requires, pasture/gal20/requires, pasture/gdm/requires, pasture/gimp/requires, pasture/gthumb/requires, pasture/gtkhtml30/requires, pasture/magicdev/requires, pasture/xine-lib/requires, testing/criawips/requires, testing/eina-gnome/requires, testing/gnome-volume-manager/requires, testing/mplayer-gtk2/requires, testing/polypaudio/requires, xap/armagetron/requires, xap/avidemux/requires, xap/bmp/requires, xap/deng/requires, xap/enlightenment/requires, xap/hydrogen/requires, xap/lbreakout2/requires, xap/mplayer/optional, xap/qemu/requires, xap/wired/requires, xap/zinf/requires, ap/jack/requires, ap/mjpegtools/requires, gnome/anjuta/requires, gnome/balsa/requires, gnome/bluefish/requires, gnome/bmp-extra-plugins/requires:
 	Removed obsolete dependencies according to updated "ignore" file.
 
 	* gnome/gnome-vfs/optional: Updated gnome/gnome-vfs to 2.8.3-i686-2tom.
@@ -2943,8 +3373,6 @@
 
 	* l/freetype/doinst.sh, l/freetype/footprint, l/freetype/illadvisederror.patch, l/freetype/local.conf.new, l/freetype/md5sums, l/freetype/SlackBuild, l/freetype/slack-desc, l/freetype/sources:
 	Updated l/freetype to 2.1.9-i686-3tom.
-
-	* testing/balsa/SlackBuild: Fixed typo.
 
 	* d/mono/SlackBuild, d/mono/footprint, d/mono/md5sums, d/mono/slack-desc, d/mono/sources:
 	Updated d/mono to 1.0.6-i686-2tom.
@@ -3227,9 +3655,6 @@
 	* testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/portpkg, testing/portpkg/pp-sync-bin:
 	Updated testing/portpkg to 0.35cvs-noarch-4tom.
 
-	* testing/balsa/.#SlackBuild.1.1, testing/balsa/.#footprint.1.1, testing/balsa/SlackBuild, testing/balsa/doinst.sh, testing/balsa/footprint, testing/balsa/imagemakefile.patch, testing/balsa/md5sums, testing/balsa/slack-desc, testing/balsa/sources:
-	Updated testing/balsa to 2.3.0-i486-2tom.
-
 	* l/gpgme/SlackBuild.old, l/gpgme/doinst.sh: *** empty log message ***
 
 	* l/gpgme/SlackBuild, l/gpgme/SlackBuild.old, l/gpgme/footprint, l/gpgme/md5sums, l/gpgme/post-install-fix.autoport, l/gpgme/slack-desc, l/gpgme/sources:
@@ -3281,8 +3706,7 @@
 	* xap/mplayer/.#footprint.1.2, xap/mplayer/.#requires.1.7, xap/mplayer/.#sources.1.4, xap/mplayer/.part, xap/mplayer/SlackBuild, xap/mplayer/SlackBuild.old, xap/mplayer/config-fix.autoport, xap/mplayer/footprint, xap/mplayer/requires, xap/mplayer/sources:
 	Updated xap/mplayer to 1.0pre6-i486-4tom.
 
-	* gnome/nautilus-cd-burner/SlackBuild, testing/balsa/SlackBuild:
-	*** empty log message ***
+	* gnome/nautilus-cd-burner/SlackBuild: *** empty log message ***
 
 	* ap/hibernate-script/README, ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/footprint, ap/hibernate-script/install-fix.autoport:
 	Updated ap/hibernate-script to 1.05-i486-1tom.
@@ -3298,7 +3722,7 @@
 
 2005-02-20  topf  <topf@users.berlios.de>
 
-	* gnome/diacanvas2/md5sums, gnome/gnome-common/footprint, gnome/gnome-common/md5sums, gnome/gtkglext/footprint, gnome/gtkglext/md5sums, gnome/libgnomecups/footprint, gnome/libgnomecups/md5sums, gnome/netspeed_applet/footprint, gnome/netspeed_applet/md5sums, l/gtk-perl/footprint, l/gtk-perl/md5sums, l/html-parser/footprint, l/html-parser/md5sums, l/libdv/footprint, l/libdv/md5sums, l/libglade/footprint, l/libintl-perl/footprint, l/libintl-perl/md5sums, l/libsigc++/footprint, l/libsigc++/md5sums, l/libsndfile/footprint, l/libsndfile/md5sums, l/libwww-perl/footprint, l/libwww-perl/md5sums, l/sqlite/footprint, l/sqlite/md5sums, l/xml-writer/footprint, l/xml-writer/md5sums, xap/icon-slicer/slack-desc, ap/lame/footprint, ap/lame/md5sums, d/portpkg/footprint, d/portpkg/portpkg, d/portpkg/SlackBuild, d/portpkg/pp-clean-cache, d/portpkg/md5sums, d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.Links, d/portpkg/README.PortpkgGuide, d/portpkg/README.QuestionsAndAnswers, d/portpkg/README.QuickStart, d/portpkg/autoport, d/portpkg/checkpkg, d/portpkg/portpkg.1, d/portpkg/pp-config, d/portpkg/pp-export, d/portpkg/pp-sync-bin, d/portpkg/pp-sync-src, d/portpkg/prepare, d/portpkg/slack-desc, d/portpkg/README.AutoportGuide, d/portpkg/README.MaintainerGuide, d/portpkg/README.UserGuide:
+	* gnome/diacanvas2/md5sums, gnome/gnome-common/footprint, gnome/gnome-common/md5sums, gnome/gtkglext/footprint, gnome/gtkglext/md5sums, gnome/libgnomecups/footprint, gnome/libgnomecups/md5sums, gnome/netspeed_applet/footprint, gnome/netspeed_applet/md5sums, l/gtk-perl/footprint, l/gtk-perl/md5sums, l/html-parser/footprint, l/html-parser/md5sums, l/libdv/footprint, l/libdv/md5sums, l/libintl-perl/footprint, l/libintl-perl/md5sums, l/libsigc++/footprint, l/libsigc++/md5sums, l/libsndfile/footprint, l/libsndfile/md5sums, l/libwww-perl/footprint, l/libwww-perl/md5sums, l/sqlite/footprint, l/sqlite/md5sums, l/xml-writer/footprint, l/xml-writer/md5sums, xap/icon-slicer/slack-desc, ap/lame/footprint, ap/lame/md5sums, d/portpkg/footprint, d/portpkg/portpkg, d/portpkg/SlackBuild, d/portpkg/pp-clean-cache, d/portpkg/md5sums, d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.Links, d/portpkg/README.PortpkgGuide, d/portpkg/README.QuestionsAndAnswers, d/portpkg/README.QuickStart, d/portpkg/autoport, d/portpkg/checkpkg, d/portpkg/portpkg.1, d/portpkg/pp-config, d/portpkg/pp-export, d/portpkg/pp-sync-bin, d/portpkg/pp-sync-src, d/portpkg/prepare, d/portpkg/slack-desc, d/portpkg/README.AutoportGuide, d/portpkg/README.MaintainerGuide, d/portpkg/README.UserGuide:
 	*** empty log message ***
 
 2005-02-17  topf  <topf@users.berlios.de>
@@ -3322,7 +3746,7 @@
 
 2005-02-15  topf  <topf@users.berlios.de>
 
-	* gnome/aegis-virus-scanner/requires, gnome/gdesklets/requires, gnome/gnome2-perl/requires, gnome/gnome2-rsvg-perl/requires, gnome/gnome2-vfs-perl/requires, gnome/nautilus-cd-burner/requires, gnome/sclog/requires, gnome/seahorse/requires, testing/balsa/requires:
+	* gnome/aegis-virus-scanner/requires, gnome/gdesklets/requires, gnome/gnome2-perl/requires, gnome/gnome2-rsvg-perl/requires, gnome/gnome2-vfs-perl/requires, gnome/nautilus-cd-burner/requires, gnome/sclog/requires, gnome/seahorse/requires:
 	Removed dependency howl
 
 	* gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-cd-burner/footprint, gnome/nautilus-cd-burner/md5sums, gnome/nautilus-cd-burner/requires, gnome/nautilus-cd-burner/sources:
@@ -3336,9 +3760,6 @@
 2005-02-13  topf  <topf@users.berlios.de>
 
 	* d/fakeroot/sources: Corrected $NAME and $VERSION
-
-	* testing/balsa/SlackBuild, testing/balsa/doinst.sh, testing/balsa/footprint, testing/balsa/md5sums, testing/balsa/requires, testing/balsa/slack-desc:
-	Moved local/balsa-cvs-i486-1tom to testing/.
 
 2005-02-12  topf  <topf@users.berlios.de>
 
@@ -3383,7 +3804,7 @@
 	* ap/fvcool/SlackBuild, d/stow/SlackBuild, gnome/bluefish/SlackBuild, gnome/bug-buddy/SlackBuild, gnome/control-center/SlackBuild, gnome/eel/SlackBuild, gnome/evolution-data-server/SlackBuild, gnome/evolution/SlackBuild, gnome/gai/SlackBuild, gnome/gal/SlackBuild, gnome/gconf-editor/SlackBuild, gnome/ggv/SlackBuild, gnome/gnome-applets/SlackBuild, gnome/gnome-netstatus/SlackBuild, gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-tools/SlackBuild, gnome/gnome-terminal/SlackBuild, gnome/gnome2-user-docs/SlackBuild, gnome/gparted/SlackBuild, gnome/gsplashfu/SlackBuild, gnome/kazehakase/SlackBuild, gnome/libgail-gnome/SlackBuild, gnome/libgtop/SlackBuild, gnome/libwnck/SlackBuild, gnome/metacity/SlackBuild, gnome/nautilus/SlackBuild, gnome/orbit2/SlackBuild, gnome/seahorse/SlackBuild, gnome/totem/SlackBuild, gnome/vino/SlackBuild, gnome/yelp/SlackBuild, l/experience-engine/SlackBuild, l/gtkmm/SlackBuild, l/howl/SlackBuild, l/libnet/SlackBuild, l/pil/SlackBuild, testing/gnome-volume-manager/SlackBuild, testing/mplayer-gtk2/SlackBuild, xap/redhat-artwork/SlackBuild:
 	Patched against new $SLKCFLAGS style.
 
-	* xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gksu/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/graveman/SlackBuild, xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild, xap/tvtime/SlackBuild, xap/wired/SlackBuild, xap/xmbmon/SlackBuild, xap/xqf/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, xap/ettercap-ng/SlackBuild, testing/polypaudio/SlackBuild, testing/wxgtk/SlackBuild, testing/xfce-goodies/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/avidemux/SlackBuild, xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/enlightenment/SlackBuild, xap/eterm/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/dd_rescue/SlackBuild, ap/dvdauthor/SlackBuild, ap/fuse/SlackBuild, ap/giftcurs/SlackBuild, ap/jack/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/qstat/SlackBuild, ap/subtitleripper/SlackBuild, ap/vcdimager/SlackBuild, d/fakeroot/SlackBuild, d/mono/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/cog/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/firestarter/SlackBuild, gnome/gail/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gdesklets/SlackBuild, gnome/gedit/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppp/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild, gnome/gst-plugins/SlackBuild, gnome/gstreamer/SlackBuild, gnome/gtk-engines/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/inkscape/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libsoup/SlackBuild, gnome/libxklavier/SlackBuild, gnome/liferea/SlackBuild, gnome/mail-notification/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/muine/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/netspeed_applet/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/screem/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/timer-applet/SlackBuild, gnome/tsclient/SlackBuild, gnome/tutka/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/enchant/SlackBuild, l/exif-browser/SlackBuild, l/fnlib/SlackBuild, l/freetype/SlackBuild, l/gamin/SlackBuild, l/gc/SlackBuild, l/gift-ares/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/glibmm/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-sharp/SlackBuild, l/id3lib/SlackBuild, l/imlib2/SlackBuild, l/libast/SlackBuild, l/libavc1394/SlackBuild, l/libcddb/SlackBuild, l/libcdio/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libglade/SlackBuild, l/libglademm/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libsndfile/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/portaudio/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/smpeg/SlackBuild, l/soundtouch/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/elinks/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvstreams/SlackBuild, pasture/atk/SlackBuild, pasture/db41/SlackBuild, pasture/esound/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gimp/SlackBuild, pasture/gthumb/SlackBuild, pasture/gtk+2/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/libxslt/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, pasture/pango/SlackBuild, pasture/xfce/SlackBuild, pasture/xine-lib/SlackBuild, testing/criawips/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild:
+	* xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gksu/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/graveman/SlackBuild, xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild, xap/tvtime/SlackBuild, xap/wired/SlackBuild, xap/xmbmon/SlackBuild, xap/xqf/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, xap/ettercap-ng/SlackBuild, testing/polypaudio/SlackBuild, testing/wxgtk/SlackBuild, testing/xfce-goodies/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/avidemux/SlackBuild, xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/enlightenment/SlackBuild, xap/eterm/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/dd_rescue/SlackBuild, ap/dvdauthor/SlackBuild, ap/fuse/SlackBuild, ap/giftcurs/SlackBuild, ap/jack/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/qstat/SlackBuild, ap/subtitleripper/SlackBuild, ap/vcdimager/SlackBuild, d/fakeroot/SlackBuild, d/mono/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/cog/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/firestarter/SlackBuild, gnome/gail/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gdesklets/SlackBuild, gnome/gedit/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppp/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild, gnome/gst-plugins/SlackBuild, gnome/gstreamer/SlackBuild, gnome/gtk-engines/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/inkscape/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libsoup/SlackBuild, gnome/libxklavier/SlackBuild, gnome/liferea/SlackBuild, gnome/mail-notification/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/muine/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/netspeed_applet/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/screem/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/timer-applet/SlackBuild, gnome/tsclient/SlackBuild, gnome/tutka/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/enchant/SlackBuild, l/exif-browser/SlackBuild, l/fnlib/SlackBuild, l/freetype/SlackBuild, l/gamin/SlackBuild, l/gc/SlackBuild, l/gift-ares/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/glibmm/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-sharp/SlackBuild, l/id3lib/SlackBuild, l/imlib2/SlackBuild, l/libast/SlackBuild, l/libavc1394/SlackBuild, l/libcddb/SlackBuild, l/libcdio/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libglademm/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libsndfile/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/portaudio/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/smpeg/SlackBuild, l/soundtouch/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/elinks/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvstreams/SlackBuild, pasture/atk/SlackBuild, pasture/db41/SlackBuild, pasture/esound/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gimp/SlackBuild, pasture/gthumb/SlackBuild, pasture/gtk+2/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/libxslt/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, pasture/pango/SlackBuild, pasture/xfce/SlackBuild, pasture/xine-lib/SlackBuild, testing/criawips/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild:
 	Patched to use $SLKCFLAGS.
 
 2005-02-07  topf  <topf@users.berlios.de>
@@ -3971,7 +4392,7 @@
 
 2004-12-18  topf  <topf@users.berlios.de>
 
-	* d/portpkg/pp-export, d/portpkg/README, d/portpkg/README.AutoportGuide, d/portpkg/README.MaintainerGuide, d/portpkg/autoport, xap/eterm/slack-desc, xap/freedoom/slack-desc, xap/graphviz/slack-desc, xap/gtk-server/slack-desc, xap/hydrogen/slack-desc, xap/jimmac/slack-desc, gnome/gail/slack-desc, gnome/gconf/slack-desc, gnome/gparted/slack-desc, gnome/inkscape/slack-desc, gnome/intltool/slack-desc, gnome/kazehakase/slack-desc, gnome/libbonobo/slack-desc, gnome/libbonoboui/slack-desc, gnome/libgnome/slack-desc, gnome/libgnomecanvas/slack-desc, gnome/libgnomeprint/slack-desc, gnome/libgnomeprintui/slack-desc, gnome/libgnomeui/slack-desc, gnome/liferea/slack-desc, gnome/netspeed_applet/slack-desc, gnome/orbit2/slack-desc, gnome/screem/slack-desc, l/fnlib/slack-desc, l/gc/slack-desc, l/gtk-xfce-engine/slack-desc, l/imlib2/slack-desc, l/libast/slack-desc, l/libcddb/slack-desc, l/libcdio/slack-desc, l/libglade/slack-desc, l/libsndfile/slack-desc, l/slmodem/slack-desc, n/email/slack-desc, testing/criawips/slack-desc, testing/dbus/slack-desc, testing/eina-gnome/slack-desc, testing/gazpacho/slack-desc, testing/hal/slack-desc, testing/libeina/slack-desc, testing/polypaudio/slack-desc, xap/cire/slack-desc, ap/athcool/slack-desc, ap/convmv/slack-desc, ap/html2text/slack-desc, ap/vcdimager/slack-desc, ap/x86cpucaps/slack-desc, gnome/disksearch/slack-desc, gnome/firestarter/slack-desc:
+	* d/portpkg/pp-export, d/portpkg/README, d/portpkg/README.AutoportGuide, d/portpkg/README.MaintainerGuide, d/portpkg/autoport, xap/eterm/slack-desc, xap/freedoom/slack-desc, xap/graphviz/slack-desc, xap/gtk-server/slack-desc, xap/hydrogen/slack-desc, xap/jimmac/slack-desc, gnome/gail/slack-desc, gnome/gconf/slack-desc, gnome/gparted/slack-desc, gnome/inkscape/slack-desc, gnome/intltool/slack-desc, gnome/kazehakase/slack-desc, gnome/libbonobo/slack-desc, gnome/libbonoboui/slack-desc, gnome/libgnome/slack-desc, gnome/libgnomecanvas/slack-desc, gnome/libgnomeprint/slack-desc, gnome/libgnomeprintui/slack-desc, gnome/libgnomeui/slack-desc, gnome/liferea/slack-desc, gnome/netspeed_applet/slack-desc, gnome/orbit2/slack-desc, gnome/screem/slack-desc, l/fnlib/slack-desc, l/gc/slack-desc, l/gtk-xfce-engine/slack-desc, l/imlib2/slack-desc, l/libast/slack-desc, l/libcddb/slack-desc, l/libcdio/slack-desc, l/libsndfile/slack-desc, l/slmodem/slack-desc, n/email/slack-desc, testing/criawips/slack-desc, testing/dbus/slack-desc, testing/eina-gnome/slack-desc, testing/gazpacho/slack-desc, testing/hal/slack-desc, testing/libeina/slack-desc, testing/polypaudio/slack-desc, xap/cire/slack-desc, ap/athcool/slack-desc, ap/convmv/slack-desc, ap/html2text/slack-desc, ap/vcdimager/slack-desc, ap/x86cpucaps/slack-desc, gnome/disksearch/slack-desc, gnome/firestarter/slack-desc:
 	*** empty log message ***
 
 	* d/portpkg/NEWS, d/portpkg/README.QuickStart, d/portpkg/README.UserGuide, d/portpkg/SlackBuild, d/portpkg/autoport, d/portpkg/portpkg, d/portpkg/pp-export, d/portpkg/prepare, d/portpkg/slack-desc, d/portpkg/README, d/portpkg/README.AutoportGuide, d/portpkg/README.Links, d/portpkg/README.MaintainerGuide, d/portpkg/README.PortpkgGuide, d/portpkg/README.QuestionsAndAnswers:
@@ -4298,9 +4719,6 @@
 
 	* gnome/libgnome/SlackBuild, gnome/libgnome/doinst.sh, gnome/libgnome/slack-desc, gnome/libgnome/sources:
 	Updated gnome/libgnome to 2.8.0-i486-2tom.
-
-	* l/libglade/SlackBuild, l/libglade/requires, l/libglade/slack-desc, l/libglade/sources:
-	Added l/libglade-2.4.1-i486-1tom.
 
 	* gnome/libbonoboui/SlackBuild, gnome/libbonoboui/slack-desc, gnome/libbonoboui/sources:
 	Updated gnome/libbonoboui to 2.8.0-i486-2tom.
