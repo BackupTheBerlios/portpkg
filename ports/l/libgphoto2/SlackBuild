@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.1.99
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=5tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -22,6 +22,7 @@ mkdir -p $PKG/usr
 cd $TMP
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
+cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \

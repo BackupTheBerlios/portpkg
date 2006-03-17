@@ -1,0 +1,15 @@
+--- libgphoto2-2.1.99/libgphoto2_port/disk/disk.c.orig	2006-03-16 20:37:41.000000000 +0100
++++ libgphoto2-2.1.99/libgphoto2_port/disk/disk.c	2006-03-16 20:39:04.000000000 +0100
+@@ -172,9 +172,9 @@
+         }
+ 
+ 	libhal_free_string_array (volumes);
+-	libhal_ctx_free(ctx);
+-
+-	dbus_connection_unref(dbus_connection);
++	libhal_ctx_free (ctx);
++	dbus_connection_disconnect (dbus_connection);
++	dbus_connection_unref (dbus_connection); 
+ #else
+ 	FILE *mnt;
+ 	struct mntent *mntent;
