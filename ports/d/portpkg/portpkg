@@ -22,6 +22,7 @@ MAINTAIN_ALL=false
 VERBOSE=false
 DRY_RUN=false
 NO_REQS=false
+TEST_REQS=false
 LAZY_CHECKS=false
 DEBUG=false
 ARCH=i486
@@ -225,7 +226,8 @@ get_info() # pkgex
   case $1 in
     .)   # direct mode: find SlackBuild in current dir
          loc=`find $(pwd) -maxdepth 1 -name "*SlackBuild" | head -n 1 | slk2loc`
-         NO_REQS=true
+#         NO_REQS=true
+         TEST_REQS=true
          warn "Direct mode: Dependencies resolution disabled!";;
     */*) # explicitly named port: no exclude list
          loc=`ls_loc $(regex $1) | head -n 1`
@@ -256,7 +258,7 @@ grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
   blocks=`{ \
 grep -sve ^$ -e ^# $path/blocks
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
-  uses=`$NO_REQS || ls_loc $(regex $optional) | grep $use | pkg2name | any2base | sort -u`
+  uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $use | pkg2name | any2base | sort -u`
 
   # info about cached .tgz-packages
   pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
@@ -297,18 +299,22 @@ check_reqs()
   # remember group and name for a refresh later
   local gpkg=""
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
+  $TEST_REQS && debug "check_reqs(): testing only"
   debug "check_reqs(): $name requires: "$requires
   local req
   for req in $requires $uses; do
     debug "check_reqs(): checking $req"
     local inst_pkg=`ls_inst $(regex $req) | head -n 1`
-    local avail_pkg=`ls_loc $(regex $req) | grep -v $exclude | any2base | head -n 1`
+    local avail_pkg=`$TEST_REQS || ls_loc $(regex $req) | grep -v $exclude | any2base | head -n 1`
 
     # is any version installed?
     if [ "$inst_pkg" ]; then
       debug "check_reqs(): $req is installed ($inst_pkg)"
       # if not in strict mode then it's sufficient
       $LAZY_CHECKS && continue
+    elif $TEST_REQS; then
+      error "Dependency $req is not installed! Stopped."
+      return 1
     fi
 
     # anyway, is there an available port?
