@@ -815,6 +815,8 @@ do_list() # [pkgex-list] >glist
 
 do_sync()
 {
+  [ "$SYNC" ] || die "Run pp-config to define what to sync!"
+
   stanza "Syncing your data base:"
 
 #  ( . $CFG_DIR/plugins/sync.portpkg )
@@ -829,6 +831,10 @@ do_sync()
   done
 
 #  ( . $CFG_DIR/plugins/sync.zz.cleanup )
+
+  if [ $? != 0 ] && [ "`whoami`" != "root" ]; then
+    error "Try this: mkdir -p ~/ports; touch ~/ports/.ports_root; cd ~/ports"
+  fi
 }
 
 # upgrade all installed ports that are not available
@@ -968,6 +974,7 @@ init()
     *-*)  die "ARCH value not allowed: $ARCH";;
     *)    arch_filter="-\($ARCH\|noarch\)-[^-]*$";;
   esac
+  [ "`whoami`" = "root" ] && warn "You are root! Please run portpkg as unprivileged user!"
 
   # read mirrors, ignore and exclude
   repos=`grep -vshe ^# -e ^$ $CFG_DIR/repos{.local,} | sed "s,^,$PRT_DIR/,"`
