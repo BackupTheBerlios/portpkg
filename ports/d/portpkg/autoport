@@ -220,9 +220,9 @@ version=`echo $version | sed "s,-,,g"`
 if [ "$script" ]; then
   sver=`echo $version | cut -d . -f 1-2`
   case `decode $src` in
-    *.gnome.org/*/$raw_name/$sver/$raw_name-$version.tar.*)
+    *.gnome.org/pub/*/sources/$raw_name/$sver/$raw_name-$version.tar.*)
       ;; # good
-    *.gnome.org/*/$raw_name/*/$raw_name-$version.tar.*)
+    *.gnome.org/pub/*/sources/$raw_name/*/$raw_name-$version.tar.*)
       # wrong url
       wrong_sver=`echo "$src" | rev | cut -d / -f 2 | rev`
       src=`echo "$src" | sed "s,/$wrong_sver/,/$sver/,g"`
