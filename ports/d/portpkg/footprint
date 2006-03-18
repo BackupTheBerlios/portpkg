@@ -1,37 +1,44 @@
-./
-etc/
-etc/portpkg/
-etc/portpkg/exclude
-etc/portpkg/ignore
-etc/portpkg/importers/
-etc/portpkg/importers/pp-sync-bin.new
-etc/portpkg/mirrors.au
-etc/portpkg/mirrors.de
-etc/portpkg/mirrors.jp
-etc/portpkg/mirrors.us
-install/
-install/doinst.sh
-install/slack-desc
-usr/
-usr/bin/
-usr/bin/autoport
-usr/bin/checkpkg
-usr/bin/portpkg
-usr/bin/pp-config
-usr/doc/
-usr/doc/portpkg-0.37.3a/
-usr/doc/portpkg-0.37.3a/COPYING
-usr/doc/portpkg-0.37.3a/CREDITS
-usr/doc/portpkg-0.37.3a/NEWS
-usr/doc/portpkg-0.37.3a/README
-usr/doc/portpkg-0.37.3a/README.Links
-usr/doc/portpkg-0.37.3a/README.PortpkgGuide
-usr/doc/portpkg-0.37.3a/README.QuestionsAndAnswers
-usr/doc/portpkg-0.37.3a/README.QuickStart
-usr/man/
-usr/man/man1/
-usr/man/man1/portpkg.1.gz
-var/
-var/log/
-var/log/portpkg/
-var/log/setup/
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root etc/
+drwxr-xr-x root/root etc/portpkg/
+-rw-r--r-- root/root etc/portpkg/exclude
+-rw-r--r-- root/root etc/portpkg/ignore
+-rw-r--r-- root/root etc/portpkg/mirrors.au
+-rw-r--r-- root/root etc/portpkg/mirrors.de
+-rw-r--r-- root/root etc/portpkg/mirrors.jp
+-rw-r--r-- root/root etc/portpkg/mirrors.us
+drwxr-xr-x root/root etc/portpkg/plugins/
+-rw-r--r-- root/root etc/portpkg/plugins/export.portpkg
+-rw-r--r-- root/root etc/portpkg/plugins/sync.gsb-frg
+-rw-r--r-- root/root etc/portpkg/plugins/sync.linuxpackages-bin
+-rw-r--r-- root/root etc/portpkg/plugins/sync.portpkg
+-rw-r--r-- root/root etc/portpkg/plugins/sync.slackware-bin
+-rw-r--r-- root/root etc/portpkg/plugins/sync.slackyit-bin
+-rw-r--r-- root/root etc/portpkg/plugins/sync.update-open
+-rw-r--r-- root/root etc/portpkg/plugins/sync.zz.cleanup
+-rw-r--r-- root/root etc/portpkg/repos
+-rw-r--r-- root/root etc/portpkg/use
+-rw-r--r-- root/root etc/portpkg/virtual
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/autoport
+-rwxr-xr-x root/bin usr/bin/checkpkg
+-rwxr-xr-x root/bin usr/bin/portpkg
+-rwxr-xr-x root/bin usr/bin/pp-config
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/portpkg-0.38/
+-rw-r--r-- root/root usr/doc/portpkg-0.38/ABOUT
+-rw-r--r-- root/root usr/doc/portpkg-0.38/COPYING
+-rw-r--r-- root/root usr/doc/portpkg-0.38/CREDITS
+-rw-r--r-- root/root usr/doc/portpkg-0.38/FAQ
+-rw-r--r-- root/root usr/doc/portpkg-0.38/NEWS
+-rw-r--r-- root/root usr/doc/portpkg-0.38/README
+-rw-r--r-- root/root usr/doc/portpkg-0.38/README.Links
+-rw-r--r-- root/root usr/doc/portpkg-0.38/README.QuickStart
+-rw-r--r-- root/root usr/doc/portpkg-0.38/ROADMAP
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man1/
+-rw-r--r-- root/root usr/man/man1/portpkg.1.gz
