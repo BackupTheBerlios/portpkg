@@ -3,9 +3,19 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.023
+VERSION=1.040
 ARCH=noarch
 BUILD=1tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -16,17 +26,17 @@ chown -R root.root .
 perl Makefile.PL
 make
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS ChangeLog LICENSE MANIFEST NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
