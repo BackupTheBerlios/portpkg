@@ -59,6 +59,11 @@ for arg in `explicit "$@"`; do
     continue
   fi
 
+  if [ "`find $path/ -type l`" ]; then
+    error "Remove any links before export: $group/$name"
+    continue
+  fi
+
   # check "ownership"
 #  case $package in *[0-9]$MY_TAG) ;; *)
   if ! $maintain; then
