@@ -31,11 +31,11 @@ MY_TAG=""
 SYNC=""
 MIRRORS=""
 ADM_DIR=/var/log
-LOG_DIR=/var/log/portpkg
-SRC_DIR=/usr/src/dist
-PKG_DIR=/usr/obj/pkg
-PRT_DIR=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
-PRT_DIR=${PRT_DIR:-/usr/ports}
+PRT_ROOT=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
+LOG_DIR=${PRT_ROOT:-/var/portpkg}/log
+SRC_DIR=${PRT_ROOT:-/usr/src}/dist
+PKG_DIR=${PRT_ROOT:-/usr/obj}/pkg
+PRT_DIR=${PRT_ROOT:-/usr/ports}
 CFG_DIR=/etc/portpkg
 TMP=/tmp
 INSTALLPKG=installpkg
@@ -937,6 +937,9 @@ maintain,export"
   debug "init(): use=\"$use\""
   debug "init(): ARCH=$ARCH"
   debug "init(): PRT_DIR=$PRT_DIR"
+  debug "init(): SRC_DIR=$SRC_DIR"
+  debug "init(): PKG_DIR=$PKG_DIR"
+  debug "init(): LOG_DIR=$LOG_DIR"
   debug "parse_options(): starting: $start_args"
   debug "parse_options(): call: $action $@"
 
