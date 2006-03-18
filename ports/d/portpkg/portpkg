@@ -949,7 +949,8 @@ init()
 
   # clean up on exit
   trap "rm -rf $TMPDIR" EXIT
-  trap "" PIPE
+  # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
+  case $BASH_VERSION in 3.1*) ;; *) trap "" PIPE;; esac
 
   # check
   has_prog sed || die
