@@ -23,7 +23,7 @@ row "Syncing $TREE/ with `echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`"
 # unhide .CVS
 [ -d $TREE/.CVS ] && find $TREE/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
 
-if [ -d "$TREE" ]; then
+if [ -d "$TREE/CVS" ]; then
   cd $TREE || die
   cvs -qz3 up -dP -I local -I 0 -I z 2>/dev/null
 else
