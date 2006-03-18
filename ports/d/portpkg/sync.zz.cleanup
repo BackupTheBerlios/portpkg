@@ -15,7 +15,7 @@ t=`mktemp -d`
 
 # sync package dir
 row "Syncing $TREE/ with $SOURCE/"
-mkdir -p $TREE
+mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 ls_loc | loc2gpkg >$t/avail
 
 # check groups

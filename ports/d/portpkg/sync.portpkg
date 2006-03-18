@@ -19,6 +19,8 @@ has_prog cvs || die
 # sync port dir
 row "Syncing $TREE/ with `echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`"
 
+mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
+
 # (obsolete now, only, if .CVS is present)
 # unhide .CVS
 [ -d $TREE/.CVS ] && find $TREE/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS

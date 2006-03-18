@@ -21,7 +21,7 @@ fi
 
 row "Syncing $TREE/ with $SOURCE"
 t=`mktemp -d`
-mkdir -p $TREE
+mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
 # check if there're updates
 get $SOURCE/ChangeLog.txt $t/ChangeLog.txt || die
