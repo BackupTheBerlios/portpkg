@@ -1,4 +1,177 @@
+2006-03-18  topf  <topf@users.berlios.de>
+
+  * README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, ROADMAP, SlackBuild, footprint, ABOUT, FAQ, NEWS, README, README.Links:
+  Version bump.
+
+  * autoport: Precise the definition of GNOME sources.
+
+  * portpkg: More meaningful error messages.
+
+  * portpkg:
+  Change $LOG_DIR to /var/portpkg/log instead of /var/log/portpkg. If .ports_root is found as a mark to point to the top of the ports tree, use $PRT_DIR/dist $PRT_DIR/pkg and $PRT_DIR/log.
+
+  * portpkg:
+  Added $TEST_REQS=false. In direct mode, set TEST_REQS=true instead of NO_REQS. In check_reqs(), fail if any dependency is not installed.
+
+  * portpkg: Don't trap broken pipes in Bash-3.1 anymore.
+
+  * export.portpkg: Fail when symlinks are present.
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.portpkg, sync.slackware-bin, sync.slackyit-bin, sync.zz.cleanup:
+  Always fail if no write access to $TREE.
+
+  * sync.portpkg:
+  Test the presence of $TREE/CVS, not $TREE itself, which is always present.
+
+2006-03-16  topf  <topf@users.berlios.de>
+
+  * autoport: Avoid error message.
+
+2006-03-15  topf  <topf@users.berlios.de>
+
+  * autoport: Added docfiles2 section.
+
+  * autoport: Avoid using an existing binary when -b is set.
+
+  * autoport: Use the name of the source package to correct GNOME urls.
+
+2006-03-14  topf  <topf@users.berlios.de>
+
+  * autoport:
+  Correct the urls of GNOME source files automatically when updating an existing build script.
+
+  * autoport: Make sure -b runs the port we want it to run.
+
+2006-03-12  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Don't export \*.autoport files.
+
+  * portpkg: More meaningful error message if no ports found.
+
+  * autoport: Use relative path for gconftool-2 in doinst.sh.
+
+  * autoport: Check for KDEDIRS and use /opt/kde.
+
+  * autoport: Use '%prefix%' instead of '/usr'.
+
+  * autoport: Check for '--disable-update-mimedb'.
+
+  * autoport: Fix use of non-existent marking 'cfg_configure'.
+
+  * autoport: Change '#\!' to '#:' for the template markings.
+
+  * autoport: Use decode() to test the result of encode().
+
+2006-02-20  topf  <topf@users.berlios.de>
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.portpkg, sync.slackware-bin, sync.slackyit-bin, sync.update-open, sync.zz.cleanup:
+  Renewed plugin descriptions.
+
+  * pp-config: Adding pasture/ to exclude.local is obsolete.
+
+  * pp-config: Use $PRT_DIR/portpkg.conf.
+
+  * sync.linuxpackages-bin, sync.slackware-bin:
+  Use $DIST_VER, not $SLACK_VERSION.
+
+  * doinst.sh: Commented out obsolete code.
+
+  * sync.linuxpackages-bin, sync.slackware-bin:
+  Don't overwrite $SLACK_VERSION variable.
+
+  * portpkg: Try to find the ports tree automatically by locating .ports_root.
+
+  * portpkg: Include per-tree config file at $PRT_DIR/portpkg.conf.
+
+  * autoport: Use getopt.
+
+  * autoport:
+  Don't overwrite an existing build script before the new script is complete.
+
+  * autoport: Find x-fix locations.
+
+  * autoport: Remove "#[+-=]" lines from .autoport files.
+
+  * autoport: Removed obsolete " || exit 1".
+
+  * autoport:
+  Re-arranged sections: head, vars, slkcflags, prepare, config, configure, configure-opts, install, refine, strip, doc, docfiles, tail, package and cleanup.
+
+  * autoport: Fixed another two bugs in insertion of .autoport files.
+
+  * autoport: Fixed insertion of .autoport files.
+
+  * autoport: Check for .omf.in files.
+
+  * autoport: Extract "fixes" from build script to .autoport files.
+
+2006-02-19  topf  <topf@users.berlios.de>
+
+  * autoport: Remove mimeinfo.cache files.
+
+  * autoport: Check for index.theme and do gtk-update-icon-cache.
+
+  * autoport: Check for --disable-scrollkeeper.
+
+2006-02-18  topf  <topf@users.berlios.de>
+
+  * portpkg: Show installed version(s) in do_info().
+
+2006-02-15  topf  <topf@users.berlios.de>
+
+  * sync.linuxpackages-bin: Added sync.linuxpackages.
+
+  * repos: Fixed repos path for GSB/FRG.
+
+  * sync.gsb-frg: Update to version 2.12.1.
+
+  * sync.slackware-bin, sync.slackyit-bin, sync.gsb-frg:
+  Parse the file lists better.
+
+  * portpkg: Prevent error message of an already created link.
+
+2006-02-13  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  Added $INSTALLPKG and $UPGRADEPKG to make them customisable (for sudo or such).
+
+  * portpkg: Patched (2nd time) malformed regular expression.
+
+  * portpkg: Don't use 'sort +n'.
+
+  * portpkg:
+  Patched a regular expression that prevented portpkg from being executed in Bash-3.1.
+
+2005-12-09  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Release 0.37.6.
+
+  * prepare: Minor changes.
+
+  * export.portpkg:
+  Added new functionalities for administration of ports via CVS.
+
+  * sync.update-open: Added for administration of uploaded contribs.
+
+  * sync.slackware-bin: Minor cleanups.
+
+  * sync.portpkg: Declare variable t. Minor cleanups.
+
+  * sync.zz.cleanup: Activated new naming conventions and new plugin system.
+
+  * repos: Enabled GSB/FRG and Slacky.it repos.
+
+  * pp-config, portpkg: Activated new naming conventions and new plugin system.
+
+  * portpkg: Fixed a typo in mirror list naming.
+
+  * checkpkg: Clean the cache of installed packages after call of portpkg.
+
+  * sync.gsb-frg, sync.slackyit-bin: Added plugin for binary pseudo ports.
+
 2005-11-19  topf  <topf@users.berlios.de>
+
+  * ignore, ChangeLog: Updated.
 
   * portpkg:
   Added flags file and functionality. Backported new features in maintainer_mode() from the testing version.
