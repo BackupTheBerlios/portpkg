@@ -1,50 +1,49 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         101 install/doinst.sh
--rw-r--r-- root/root         560 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin       106276 usr/bin/gnome-pkgtool
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/gnome-pkgtool-0.5.2/
--rw-r--r-- root/root       18852 usr/doc/gnome-pkgtool-0.5.2/ABOUT-NLS
--rw-r--r-- root/root           0 usr/doc/gnome-pkgtool-0.5.2/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/gnome-pkgtool-0.5.2/COPYING
--rw-r--r-- root/root        1087 usr/doc/gnome-pkgtool-0.5.2/ChangeLog
--rw-r--r-- root/root        9240 usr/doc/gnome-pkgtool-0.5.2/INSTALL
--rw-r--r-- root/root           0 usr/doc/gnome-pkgtool-0.5.2/NEWS
--rw-r--r-- root/root         340 usr/doc/gnome-pkgtool-0.5.2/README
--rw-r--r-- root/root         949 usr/doc/gnome-pkgtool-0.5.2/TODO
-drwxr-xr-x root/root           0 usr/doc/gnome-pkgtool/
--rw-r--r-- root/root       17992 usr/doc/gnome-pkgtool/COPYING
--rw-r--r-- root/root        1087 usr/doc/gnome-pkgtool/ChangeLog
--rw-r--r-- root/root        9240 usr/doc/gnome-pkgtool/INSTALL
--rw-r--r-- root/root         340 usr/doc/gnome-pkgtool/README
-drwxr-xr-x root/root           0 usr/libexec/
-drwxr-xr-x root/root           0 usr/libexec/gnome-pkgtool/
--rwxr-xr-x root/root        5043 usr/libexec/gnome-pkgtool/gpt-build
--rwxr-xr-x root/root         960 usr/libexec/gnome-pkgtool/gpt-upgrade
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/gnome-pkgtool/
--rw-r--r-- root/root       82860 usr/share/gnome-pkgtool/gnome-pkgtool.glade
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/apps/
-drwxr-xr-x root/root           0 usr/share/gnome/apps/System/
--rw-r--r-- root/root         189 usr/share/gnome/apps/System/gnome-pkgtool.desktop
-drwxr-xr-x root/root           0 usr/share/icons/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/24x24/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/24x24/apps/
--rw-r--r-- root/root        1592 usr/share/icons/hicolor/24x24/apps/gnome-pkgtool.png
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/48x48/
-drwxr-xr-x root/root           0 usr/share/icons/hicolor/48x48/apps/
--rw-r--r-- root/root        4333 usr/share/icons/hicolor/48x48/apps/gnome-pkgtool.png
-drwxr-xr-x root/root           0 usr/share/pixmaps/
-drwxr-xr-x root/root           0 usr/share/pixmaps/gnome-pkgtool/
--rw-r--r-- root/root        3825 usr/share/pixmaps/gnome-pkgtool/default-package.png
--rw-r--r-- root/root        5152 usr/share/pixmaps/gnome-pkgtool/gnome-package.png
--rw-r--r-- root/root        4333 usr/share/pixmaps/gnome-pkgtool/gnome-pkgtool.png
--rw-r--r-- root/root        5067 usr/share/pixmaps/gnome-pkgtool/gtk-package.png
--rw-r--r-- root/root        4475 usr/share/pixmaps/gnome-pkgtool/kde-package.png
--rw-r--r-- root/root        3850 usr/share/pixmaps/gnome-pkgtool/kernel-package.png
--rw-r--r-- root/root        5025 usr/share/pixmaps/gnome-pkgtool/lib-package.png
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/gnome-pkgtool
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/gnome-pkgtool-0.5.2/
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/ABOUT-NLS
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/AUTHORS
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/COPYING
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/ChangeLog
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/NEWS
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/README
+-rw-r--r-- root/root usr/doc/gnome-pkgtool-0.5.2/TODO
+drwxr-xr-x root/root usr/doc/gnome-pkgtool/
+-rw-r--r-- root/root usr/doc/gnome-pkgtool/COPYING
+-rw-r--r-- root/root usr/doc/gnome-pkgtool/ChangeLog
+-rw-r--r-- root/root usr/doc/gnome-pkgtool/INSTALL
+-rw-r--r-- root/root usr/doc/gnome-pkgtool/README
+drwxr-xr-x root/root usr/libexec/
+drwxr-xr-x root/root usr/libexec/gnome-pkgtool/
+-rwxr-xr-x root/root usr/libexec/gnome-pkgtool/gpt-build
+-rwxr-xr-x root/root usr/libexec/gnome-pkgtool/gpt-upgrade
+drwxr-xr-x root/root usr/share/
+drwxr-xr-x root/root usr/share/gnome-pkgtool/
+-rw-r--r-- root/root usr/share/gnome-pkgtool/gnome-pkgtool.glade
+drwxr-xr-x root/root usr/share/gnome/
+drwxr-xr-x root/root usr/share/gnome/apps/
+drwxr-xr-x root/root usr/share/gnome/apps/System/
+-rw-r--r-- root/root usr/share/gnome/apps/System/gnome-pkgtool.desktop
+drwxr-xr-x root/root usr/share/icons/
+drwxr-xr-x root/root usr/share/icons/hicolor/
+drwxr-xr-x root/root usr/share/icons/hicolor/24x24/
+drwxr-xr-x root/root usr/share/icons/hicolor/24x24/apps/
+-rw-r--r-- root/root usr/share/icons/hicolor/24x24/apps/gnome-pkgtool.png
+drwxr-xr-x root/root usr/share/icons/hicolor/48x48/
+drwxr-xr-x root/root usr/share/icons/hicolor/48x48/apps/
+-rw-r--r-- root/root usr/share/icons/hicolor/48x48/apps/gnome-pkgtool.png
+drwxr-xr-x root/root usr/share/pixmaps/
+drwxr-xr-x root/root usr/share/pixmaps/gnome-pkgtool/
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/default-package.png
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/gnome-package.png
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/gnome-pkgtool.png
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/gtk-package.png
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/kde-package.png
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/kernel-package.png
+-rw-r--r-- root/root usr/share/pixmaps/gnome-pkgtool/lib-package.png
