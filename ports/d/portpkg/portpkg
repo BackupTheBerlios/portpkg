@@ -443,7 +443,7 @@ maintainer_mode()
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
-  egrep -woe "usr/(local/|etc/|share/doc/|share/man/|info/dir).*" \
+  egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
     -e "/$ARCH-slackware-linux-" footprint >$t/check_path
   egrep -e "^........w" -e " root/root .*( |/)bin/" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
