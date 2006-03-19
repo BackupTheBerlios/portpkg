@@ -759,13 +759,14 @@ do_find() # text [..] >list
   local t=`mktemp -d`
   has_args "$@" || die
   has_ports || die
-  find $PRT_DIR/ -follow -name "*slack-desc" >$t/list
+  find $PRT_DIR/ -follow -name "*slack-desc" >$t/list 2>/dev/null
   local arg
   for arg; do
     cat $t/list | xargs grep -lsi $arg >$t/list.new
     mv $t/list.new $t/list
   done
-  [ -s $t/list ] && do_list `cat $t/list | slk2gname`
+#  [ -s $t/list ] && do_list `cat $t/list | slk2gname`
+  [ -s $t/list ] && do_list `cat $t/list | sed "s,[\./][^\./]*$,," | any2base`
 }
 
 # print information about a port
