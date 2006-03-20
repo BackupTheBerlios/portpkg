@@ -1,4 +1,39 @@
+2006-03-19  topf  <topf@users.berlios.de>
+
+	* d/portpkg/portpkg:
+	Put .../share/pkgconfig/ on the black list of mistakes.
+
+	* d/portpkg/portpkg:
+	Fixed --find to work again and to avoid error messages.
+
 2006-03-18  topf  <topf@users.berlios.de>
+
+	* d/portpkg/ChangeLog: Updated.
+
+	* d/portpkg/README.PortpkgGuide, d/portpkg/README.QuestionsAndAnswers, d/portpkg/README.QuickStart, d/portpkg/ROADMAP, d/portpkg/SlackBuild, d/portpkg/footprint, d/portpkg/ABOUT, d/portpkg/FAQ, d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.Links:
+	Version bump.
+
+	* gnome/nautilus/sources: Don't use mirror here.
+
+	* d/portpkg/autoport: Precise the definition of GNOME sources.
+
+	* d/portpkg/portpkg: More meaningful error messages.
+
+	* d/portpkg/portpkg:
+	Change $LOG_DIR to /var/portpkg/log instead of /var/log/portpkg. If .ports_root is found as a mark to point to the top of the ports tree, use $PRT_DIR/dist $PRT_DIR/pkg and $PRT_DIR/log.
+
+	* d/portpkg/portpkg:
+	Added $TEST_REQS=false. In direct mode, set TEST_REQS=true instead of NO_REQS. In check_reqs(), fail if any dependency is not installed.
+
+	* d/portpkg/portpkg: Don't trap broken pipes in Bash-3.1 anymore.
+
+	* d/portpkg/export.portpkg: Fail when symlinks are present.
+
+	* d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin, d/portpkg/sync.portpkg, d/portpkg/sync.slackware-bin, d/portpkg/sync.slackyit-bin, d/portpkg/sync.zz.cleanup:
+	Always fail if no write access to $TREE.
+
+	* d/portpkg/sync.portpkg:
+	Test the presence of $TREE/CVS, not $TREE itself, which is always present.
 
 	* ChangeLog, gnome/gnome2-wnck-perl/ChangeLog: Updated.
 
