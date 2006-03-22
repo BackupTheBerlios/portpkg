@@ -67,6 +67,7 @@ reinstall=false
 rebuild=false
 remaintain=false
 output=/dev/null
+msg_level=0
 
 # global variables
 declare \
@@ -100,7 +101,6 @@ slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
 # TODO: slk2loc should strip ^$PRT_DIR/
 
 # message system
-msg_level=0
 stanza() { [ "$msg_level" = "0" ] && echo -e "\n$@"; }
 #stanza() { [ "$*" ] && echo -e "\n$@"; }
 row()    { echo -e "  --> $@"; }
