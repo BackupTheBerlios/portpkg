@@ -30,15 +30,18 @@ CFLAGS=""
 MY_TAG=`whoami`
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 MIRRORS=""
+TMP=/tmp
 ADM_DIR=/var/log
+CFG_DIR=/etc/portpkg
+
+# find the ports root and some other locations
 PRT_ROOT=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
 PRT_ROOT=${PRT_ROOT:-`[ "$(whoami)" = "root" ] || echo ~/ports`}
 LOG_DIR=${PRT_ROOT:-/var/portpkg}/log
 SRC_DIR=${PRT_ROOT:-/usr/src}/dist
 PKG_DIR=${PRT_ROOT:-/usr/obj}/pkg
 PRT_DIR=${PRT_ROOT:-/usr/ports}
-CFG_DIR=/etc/portpkg
-TMP=/tmp
+
 INSTALLPKG=installpkg
 UPGRADEPKG=upgradepkg
 
