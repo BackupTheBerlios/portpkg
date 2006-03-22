@@ -196,7 +196,7 @@ explicit() # >pkgex-list
     case $arg in
       */) ls_slk `regex $arg` | slk2gname | any2base
           # also look through virtual groups list
-          grep -s `regex $arg` {$CFG_DIR,$PRT_DIR}/virtual | any2base;;
+          grep -hs `regex $arg` {$CFG_DIR,$PRT_DIR}/virtual | any2base;;
       *)  echo $arg;;
     esac
   done
@@ -818,7 +818,7 @@ do_list() # [pkgex-list] >glist
     *)  # grep arguments
         ls_loc `regex "$@"`
         # in order to see virtual groups we list them here also
-        grep -s `regex "$@"` {$CFG_DIR,$PRT_DIR}/virtual;;
+        grep -hs `regex "$@"` {$CFG_DIR,$PRT_DIR}/virtual;;
   esac | loc2gpkg
 }
 
