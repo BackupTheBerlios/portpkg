@@ -106,10 +106,11 @@ die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && echo "$@" >&2; }
 
 # checks
-has_args()  { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
-is_root()   { [ "$UID" == "0" ] || error "You must be root to run this action!"; }
-has_prog()  { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
-has_ports() { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
+has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
+is_root()    { [ "$UID" == "0" ] || error "You must be root to run this action!"; }
+has_prog()   { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
+has_ports()  { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
+is_integer() { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: `basename $1`!"; }
 
 # cache the output of "action" and grep a regex
 cache() # file action regex
@@ -125,10 +126,11 @@ cache() # file action regex
 }
 
 # download a file and make use of mirrors
-get()
+get() # url dest [md5sum]
 {
-  local url=$1 dest=$2
+  local url=$1 dest=$2 md5sum=${3:-}
   local t=`mktemp -d`
+  debug "get() $@"
   has_prog wget || die
   mkdir -p `dirname $dest`
   local o_url=$url
@@ -149,13 +151,19 @@ get()
   $VERBOSE && log=/dev/stdout
 
   # try primary url if mirror fails
-  if wget -c -O $dest.part $url >$log 2>&1 \
-  || wget -c -O $dest.part $o_url >>$log 2>&1; then
+  local try
+  for try in $url $o_url; do
+    wget -c -O $dest.part $try >$log 2>&1 || continue
+    if [ "$md5sum" ] && ! is_integer $dest.part $md5sum; then
+      mv $dest.part $dest.invalid
+      continue
+    fi
     mv $dest.part $dest
-  else
-    $VERBOSE || tail $log
-    error "Download failed!"
-  fi
+    return 0
+  done
+
+  $VERBOSE || tail $log
+  error "Download failed!"
 }
 
 # generate a regular expression for grep from a pkgex-list
@@ -187,7 +195,7 @@ explicit() # >pkgex-list
     case $arg in
       */) ls_slk `regex $arg` | slk2gname | any2base
           # also look through virtual groups list
-          grep -s `regex $arg` $CFG_DIR/virtual | any2base;;
+          grep -s `regex $arg` {$CFG_DIR,$PRT_DIR}/virtual | any2base;;
       *)  echo $arg;;
     esac
   done
@@ -499,11 +507,12 @@ build_pkg()
     # written behind a % in sources
     local srcname=`basename "$src" | cut -d % -f 2`
     local src=`echo "$src" | cut -d % -f 1`
+    local md5sum=`grep -s " $srcname$" md5sums | cut -d " " -f 1`
     if [ -f $SRC_DIR/$srcname ]; then
       row "$srcname found in $SRC_DIR/"
     else
       row "Downloading $srcname"
-      $DRY_RUN || get $src $SRC_DIR/$srcname || return 1
+      $DRY_RUN || get $src $SRC_DIR/$srcname $md5sum || return 1
     fi
     if ! $DRY_RUN; then
       ln -sf $SRC_DIR/$srcname .
@@ -511,11 +520,8 @@ build_pkg()
       if $maintain; then
         md5sum $srcname >>md5sums
         sort -k 2 -uo md5sums md5sums
-      elif grep -sq " $srcname$" md5sums; then
-        if ! grep " $srcname$" md5sums | md5sum -c --status 2>/dev/null; then
-          error "Integrity checking failed: $srcname"
-          return 1
-        fi
+      elif [ "$md5sum" ]; then
+        is_integer $srcname $md5sum || return 1
       else
         warn "No checksums available for $srcname!"
       fi
@@ -610,7 +616,7 @@ build_pkg()
   fi
 
   # cruft for maintainers of port scripts :)
-  $maintain && maintainer_mode
+  $maintain && maintainer_mode | tee -a $LOG_DIR/$name.buildlog
 
   # clean up
   row "Moving $package to $PKG_DIR/$group/"
@@ -624,6 +630,7 @@ build_pkg()
     # pseudo ports: don't cache sources
     $pseudo && rm -f $SRC_DIR/$srcname
   done
+  gzip -f $LOG_DIR/$name.buildlog
   $maintain || ( [ -d $TMP/package-$name ] && rm -rf $TMP/package-$name )
   true
 }
@@ -810,7 +817,7 @@ do_list() # [pkgex-list] >glist
     *)  # grep arguments
         ls_loc `regex "$@"`
         # in order to see virtual groups we list them here also
-        grep -s `regex "$@"` $CFG_DIR/virtual;;
+        grep -s `regex "$@"` {$CFG_DIR,$PRT_DIR}/virtual;;
   esac | loc2gpkg
 }
 
@@ -978,11 +985,11 @@ init()
   [ "`whoami`" = "root" ] && warn "You are root! Please run portpkg as unprivileged user!"
 
   # read mirrors, ignore and exclude
-  repos=`grep -vshe ^# -e ^$ $CFG_DIR/repos{.local,} | sed "s,^,$PRT_DIR/,"`
-  mirrors=`grep -vshe ^# -e ^$ $CFG_DIR/mirrors{.local,.$MIRRORS}`
-  ignore=`grep -vshe ^# -e ^$ $CFG_DIR/ignore{.local,}`
-  exclude=`grep -vshe ^# -e ^$ $CFG_DIR/exclude{.local,}`
-  use=`grep -vshe ^# -e ^$ $CFG_DIR/use{.local,}`
+  repos=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/repos{.local,} | sed "s,^,$PRT_DIR/,"`
+  mirrors=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/mirrors{.local,.$MIRRORS}`
+  ignore=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/ignore{.local,}`
+  exclude=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/exclude{.local,}`
+  use=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/use{.local,}`
   repos=${repos:-$PRT_DIR}
   ignore=`regex $ignore`
   exclude=`regex $exclude`
