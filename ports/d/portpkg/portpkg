@@ -32,6 +32,7 @@ SYNC=""
 MIRRORS=""
 ADM_DIR=/var/log
 PRT_ROOT=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
+PRT_ROOT=${PRT_ROOT:-`[ "$(whoami)" = "root" ] || echo ~/ports`}
 LOG_DIR=${PRT_ROOT:-/var/portpkg}/log
 SRC_DIR=${PRT_ROOT:-/usr/src}/dist
 PKG_DIR=${PRT_ROOT:-/usr/obj}/pkg
