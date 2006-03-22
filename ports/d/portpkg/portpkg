@@ -27,8 +27,8 @@ LAZY_CHECKS=false
 DEBUG=false
 ARCH=i486
 CFLAGS=""
-MY_TAG=""
-SYNC=""
+MY_TAG=`whoami`
+SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 MIRRORS=""
 ADM_DIR=/var/log
 PRT_ROOT=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
