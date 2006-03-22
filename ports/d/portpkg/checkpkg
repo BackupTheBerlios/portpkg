@@ -45,7 +45,8 @@ check_group()
   local t=`mktemp -d`
   group=$1
   ls_inst >$t/inst
-  ls_loc "^.*/$group/[^/]*$" >$t/locs
+#  ls_loc "^.*/$group/[^/]*$" >$t/locs
+  ls_loc `regex $group/` >$t/locs
   loc2gpkg <$t/locs >$t/gpkgs
   any2base <$t/gpkgs >$t/pkgs
   pkg2name <$t/pkgs >$t/names
