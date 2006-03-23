@@ -81,7 +81,7 @@ install them.\" 21 75 12 " >$t/menu
   done >$t/list_remove
   if [ -s $t/list_remove ]; then
     clear
-    removepkg `cat $t/list_remove` 2>&1
+    su -c "removepkg `cat $t/list_remove` 2>&1"
 #    # fake a summary
 #    echo -e "\nSummary of actions:" >/tmp/portpkg-summary
 #    cat $t/list_remove | xargs -l echo "  --> Removed" >>/tmp/portpkg-summary
