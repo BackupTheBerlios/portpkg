@@ -162,10 +162,19 @@ Options:
   -n name        Preset name of port
   -v version     Preset version of port
   -g group       Preset group of port
-  -u port        Use port
+  -u port        (Re-)Use port (use this option first)
   -b             Execute portpkg after port generation
-  source url     Preset URL of source code (if not found via -u)"
+  source url     Preset URL of source code (if not found via -u)
+                 (Use cpan://file::mimeinfo to search for Perl modules)"
         exit 1;;
+     cpan://*)
+        query=`echo $1 | sed "s,^cpan://,,;s,::,-,g;s,/,-,g"`
+	page=`lynx -dump "http://search.cpan.org/search?query=$query&mode=module" \
+          | grep -i "http://.*/$query-[0-9].*/$" \
+          | grep -o "http://.*" | sort -u | head -n 1`
+	sources=`lynx -dump $page \
+          | grep -ie "http://.*/$query-[0-9].*\.tar\.gz" -e "http://.*/$query-[0-9].*\.tar\.bz2" \
+          | grep -o "http://.*" | sort -u | head -n 1`;;
       *://*)
         sources=$1;;
     esac
