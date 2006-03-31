@@ -21,6 +21,7 @@
 MAINTAIN_ALL=false
 VERBOSE=false
 DRY_RUN=false
+INTERACTIVE=true
 NO_REQS=false
 TEST_REQS=false
 LAZY_CHECKS=false
@@ -108,6 +109,7 @@ warn()   { echo -e "WARNING: $@"; }
 error()  { [ "$*" ] && echo -e "\n$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && echo "$@" >&2; }
+pause()  { $INTERACTIVE || return; echo -ne "\n$@ " >&2; local s; read s; echo -n $s; }
 
 # checks
 has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
@@ -703,12 +705,15 @@ add_pkg()
   # what to display?
 #  ls_inst >$t/inst
   if ! $slot_in && ls_inst -Fqx $package; then
+    case `pause "Continue reinstall $package? (s to skip)"` in s|S) continue;; esac
     stanza "Reinstalling $package..."
     local add="$UPGRADEPKG --reinstall"
   elif ! $slot_in && ls_inst -q $(regex $name); then
+    case `pause "Continue upgrade $(ls_inst -q $(regex $name)) with $package? (s to skip)"` in s|S) continue;; esac
     stanza "Upgrading $name to `echo $package | pkg2rel`..."
     local add="$UPGRADEPKG"
   else
+    case `pause "Continue install $package? (s to skip)"` in s|S) continue;; esac
     stanza "Installing $package..."
     local add="$INSTALLPKG"
   fi
@@ -735,7 +740,10 @@ do_add() # pkgex-list
 #  is_root || die
 
   # if we have implicit expressions here (groups), tell what they contain
-  case "$@" in */|*/\ *) stanza "Resolving targets: "`explicit "$@"` | fmt -t;; esac
+  case "$@" in */|*/\ *)
+    stanza "Targets: "`explicit "$@"` | fmt -t
+    pause "Continue? (ctrl-c to abort)";;
+  esac
 
   local ret
   local arg
@@ -870,6 +878,11 @@ do_upgrade() # [pkgex-list]
   local diff_list=`ls_diff | pkg2name`
   [ "$diff_list" ] || die "No upgrades available."
   debug "do_upgrade(): call: do_add $diff_list"
+
+  # interactive part
+  stanza "Targets: "$diff_list | fmt -t
+  pause "Continue? (ctrl-c to abort)"
+
   do_add $diff_list
 }
 
@@ -916,10 +929,10 @@ EOF
 
 parse_options()
 {
-  local shorts="diflsuvhebogyqxzarpm"
+  local shorts="diflsuvhebogyqxzarpmn"
   local longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
 rebuild,download,verbose,dryrun,noreqs,debug,lazy,remaintain,prepare,\
-maintain,export"
+maintain,export,noask"
   local args
   args=`getopt -qo $shorts -l $longs -- "$@"`
   [ "$?" == "0" ] || die "Bad Arguments! Try: portpkg --help"
@@ -951,6 +964,7 @@ maintain,export"
       -r|--remaintain)  remaintain=true;;
       -p|--prepare)     prepare_only=true;;
       -m|--maintain)    MAINTAIN_ALL=true;;
+      -n|--noask)       INTERACTIVE=false;;
       --)               shift
                         break;;
     esac
