@@ -9,8 +9,8 @@
 # How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
-#DIST_VER=${DIST_VER:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
 SOURCE=ftp://ftp.scarlet.be/pub/linuxpackages/Slackware-10.2
+FILES="FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
 TREE=$PRT_DIR/z/bin/linuxpackages
 
 # check that we're a plug-in
@@ -24,25 +24,27 @@ row "Syncing $TREE/ with $SOURCE"
 t=`mktemp -d`
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
-# check if there're updates
-get $SOURCE/ChangeLog.txt $t/ChangeLog.txt || die
-if [ -f $TREE/ChangeLog.txt ] && cmp -s $TREE/ChangeLog.txt $t/ChangeLog.txt; then
+# check the first file for changes
+first=`echo $FILES | cut -d " " -f 1`
+get $SOURCE/$first $t/$first || die
+if [ -f $TREE/$first ] && cmp -s $t/$first $TREE/$first; then
   # exit silently
   exit 0
 fi
 
+# get the rest
+rest=`echo $FILES | cut -d " " -f 2-`
+for file in $FILES; do
+  row "Retrieving $file"
+  get $SOURCE/$file $t/$file
+done
+
 # rebuild the tree
 rm -rf $TREE
 mkdir -p $TREE
-row "Retrieving FILELIST.TXT"
-get $SOURCE/FILELIST.TXT $TREE/FILELIST.TXT
-row "Retrieving PACKAGES.TXT"
-get $SOURCE/PACKAGES.TXT $TREE/PACKAGES.TXT
-row "Retrieving CHECKSUMS.md5"
-get $SOURCE/CHECKSUMS.md5 $TREE/CHECKSUMS.md5
 
 # make a *simple* file list
-grep -v ^d $TREE/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
+grep -v ^d $t/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
 
 # find each binary packages
 row "Rebuilding pseudo ports"
@@ -75,11 +77,13 @@ EOF
   echo "$SOURCE/$s" >$path/sources
 
   # make the md5sums file
-  grep "/$s$" $TREE/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
+  grep "/$s$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
 
   # make the slack-desc file
-  grep "^$name:" $TREE/PACKAGES.TXT >$path/slack-desc || true
+  grep "^$name:" $t/PACKAGES.TXT >$path/slack-desc || true
 done
 
 # done? make the changes valid
-mv $t/ChangeLog.txt $TREE/
+for file in $FILES; do
+  mv $t/$file $TREE/
+done
