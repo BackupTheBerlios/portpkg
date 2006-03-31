@@ -11,6 +11,7 @@
 
 FRG_VERSION=2.12.1
 SOURCE=http://mirror.datapipe.net/norlug/frg/frg-$FRG_VERSION
+FILES="ChangeLog.txt FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
 TREE=$PRT_DIR/z/bin/gsb-frg
 
 # check that we're a plug-in
@@ -24,25 +25,27 @@ row "Syncing $TREE/ with $SOURCE"
 t=`mktemp -d`
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
-# check if there're updates
-get $SOURCE/ChangeLog $t/ChangeLog || die
-if [ -f $TREE/ChangeLog ] && cmp -s $TREE/ChangeLog $t/ChangeLog; then
+# check the first file for changes
+first=`echo $FILES | cut -d " " -f 1`
+get $SOURCE/$first $t/$first || die
+if [ -f $TREE/$first ] && cmp -s $t/$first $TREE/$first; then
   # exit silently
   exit 0
 fi
 
+# get the rest
+rest=`echo $FILES | cut -d " " -f 2-`
+for file in $FILES; do
+  row "Retrieving $file"
+  get $SOURCE/$file $t/$file
+done
+
 # rebuild the tree
 rm -rf $TREE
 mkdir -p $TREE
-row "Retrieving FILELIST.TXT"
-get $SOURCE/FILELIST.TXT $TREE/FILELIST.TXT
-row "Retrieving PACKAGES.TXT"
-get $SOURCE/PACKAGES.TXT $TREE/PACKAGES.TXT
-row "Retrieving CHECKSUMS.md5"
-get $SOURCE/CHECKSUMS.md5 $TREE/CHECKSUMS.md5
 
 # make a *simple* file list
-grep -v ^d $TREE/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
+grep -v ^d $t/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
 
 # find each binary packages
 row "Rebuilding pseudo ports"
@@ -75,11 +78,13 @@ EOF
   echo "$SOURCE/$s" >$path/sources
 
   # make the md5sums file
-  grep "/$s$" $TREE/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
+  grep "/$s$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
 
   # make the slack-desc file
-  grep "^$name:" $TREE/PACKAGES.TXT >$path/slack-desc || true
+  grep "^$name:" $t/PACKAGES.TXT >$path/slack-desc || true
 done
 
 # done? make the changes valid
-mv $t/ChangeLog $TREE/
+for file in $FILES; do
+  mv $t/$file $TREE/
+done
