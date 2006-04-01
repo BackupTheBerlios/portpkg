@@ -266,7 +266,7 @@ get_info() # pkgex
 
   case $1 in
     .)   # direct mode: find SlackBuild in current dir
-         loc=`find $(pwd) -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
+         loc=`find $(pwd)/ -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
 #         NO_REQS=true
          TEST_REQS=true
          warn "Direct mode: Dependencies resolution disabled!";;
