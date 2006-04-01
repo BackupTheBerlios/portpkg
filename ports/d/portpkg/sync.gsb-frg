@@ -82,6 +82,14 @@ EOF
 
   # make the slack-desc file
   grep "^$name:" $t/PACKAGES.TXT >$path/slack-desc || true
+
+  # make the slack-* files
+  grep -A 7 "$pkg" $t/PACKAGES.TXT | grep REQUIRED | cut -d " " -f 4- | tr "," "\n" | xargs -r -l >$path/slack-required
+  grep -A 7 "$pkg" $t/PACKAGES.TXT | grep SUGGESTS | cut -d " " -f 4- | tr "," "\n" | xargs -r -l >$path/slack-suggests
+  grep -A 7 "$pkg" $t/PACKAGES.TXT | grep CONFLICTS | cut -d " " -f 4- | tr "," "\n" | xargs -r -l >$path/slack-conflicts
+  [ -s $path/slack-required ] || rm $path/slack-required
+  [ -s $path/slack-suggests ] || rm $path/slack-suggests
+  [ -s $path/slack-conflicts ] || rm $path/slack-conflicts
 done
 
 # done? make the changes valid
