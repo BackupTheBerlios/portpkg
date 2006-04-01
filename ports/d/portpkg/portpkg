@@ -159,7 +159,7 @@ get() # url dest [md5sum]
     echo "$mirrors" >$t/mirrors
     local master mirror
     while read master mirror; do
-      url=`echo $url | sed "s,^$master,$mirror,"`
+      url=`echo $o_url | sed "s,^$master,$mirror,"`
     done <$t/mirrors
   fi
   debug "get(): \$url=$url"
