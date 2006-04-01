@@ -81,6 +81,8 @@ for arg in `explicit "$@"`; do
     has_prog rcs2log || die
     has_prog ssh || die
 
+    pause "Continue export $package? (ctrl-c to abort)"
+
     row "Submitting $package to CVS"
 
     # CVS in berlios.de requires ssh
