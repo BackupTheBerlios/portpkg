@@ -3,11 +3,10 @@
 #
 # This plugins is basically a "cvs up -dP" in $PRT_DIR.
 
-SOURCE=:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg
+SOURCE=cvs://:pserver:anonymous@cvs.portpkg.berlios.de:/cvsroot/portpkg/ports
 TREE=$PRT_DIR
 
 # check that we're a plug-in
-#if ! [ "$PORTPKG" ]; then
 if [ "`basename $0`" != "portpkg" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
@@ -21,24 +20,10 @@ row "Syncing $TREE/ with `echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`"
 
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
-# (obsolete now, only, if .CVS is present)
-# unhide .CVS
-[ -d $TREE/.CVS ] && find $TREE/ -name .CVS -depth -exec dirname {} \; | xargs -i mv {}/.CVS {}/CVS
-
-if [ -d "$TREE/CVS" ]; then
-  cd $TREE || die
-  cvs -qz3 up -dP -I local -I 0 -I z 2>/dev/null
-else
-  cd `dirname $TREE` || die
-  cvs -qz3 -d $SOURCE co -Pd `basename $TREE` ports 2>/dev/null
-fi | sed -r \
--e "s,^.*$,  --> &," \
--e "s, U , Updating ," \
--e "s, C , Conflict with ," \
--e "s, P , Patching ," \
--e "s, M , Locally modified ," \
--e "s, \\? , Unknown entry ,"
-
-# (obsolete now)
-## hide CVS
-#find $TREE/ -name CVS -depth -exec dirname {} \; | xargs -i mv {}/CVS {}/.CVS
+get $SOURCE $TREE | sed -r "\
+s,^.*$,  --> &,;\
+s, U , Updating ,;\
+s, C , Conflict with ,;\
+s, P , Patching ,;\
+s, M , Locally modified ,;\
+s, \\? , Unknown entry ,"
