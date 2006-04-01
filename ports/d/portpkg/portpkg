@@ -1007,6 +1007,7 @@ maintain,export,noask"
   $NO_REQS && warn "Dependency resolving disabled!"
   $LAZY_CHECKS && warn "Enable lazy dependency checking!"
   $DRY_RUN && warn "Up-/downloading, packaging and installing simulated!"
+  $DRY_RUN && INTERACTIVE=false
   $action "$@"
 
   exit $?
