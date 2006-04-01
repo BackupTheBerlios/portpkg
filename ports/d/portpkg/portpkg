@@ -724,7 +724,7 @@ add_pkg()
     stanza "Reinstalling $package..."
     local add="$UPGRADEPKG --reinstall"
   elif ! $slot_in && ls_inst -q $(regex $name); then
-    case `pause "Continue upgrade $(ls_inst -q $(regex $name)) with $package? (s to skip)"` in s|S) continue;; esac
+    case `pause "Continue upgrade $(ls_inst $(regex $name)) with $package? (s to skip)"` in s|S) continue;; esac
     stanza "Upgrading $name to `echo $package | pkg2rel`..."
     local add="$UPGRADEPKG"
   else
