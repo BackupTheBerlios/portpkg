@@ -118,6 +118,19 @@ has_prog()   { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
 has_ports()  { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
 is_integer() { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: `basename $1`!"; }
 
+# sort a pkg-list by version
+sort_ver() # <pkg_list >pkg_list
+{
+  sed -r "s,-([^-]*)-([^-]*-[^-]*)$, \1 \2,;\
+s,( [^-]*)\.,\1 ,;s,( [^-]*)\.,\1 ,;s,( [^-]*)\.,\1 ,;s,( [^-]*)\.,\1 ," \
+| sort -k 2n -k 3n -k 4n -k 5n | sed -r "s, ,-,;s, ([^ ]*)$,-\1," | tr " " . | tac
+}
+
+# pipe only the "default" package of a list (old style)
+default() { head -n 1; }
+## pipe only the "default" package of a list (new style)
+#default() { sort_ver | head -n 1; }
+
 # cache the output of "action" and grep a regex
 cache() # file action regex
 {
@@ -228,6 +241,7 @@ ls_diff() # >list
   debug "ls_diff(): starting"
   local t=`mktemp -d`
   ls_loc -v $exclude | any2base >$t/avail
+#  ( ls_loc -v $exclude; ls_inst ) | sort_ver | any2base >$t/avail
   ls_inst >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -252,15 +266,15 @@ get_info() # pkgex
 
   case $1 in
     .)   # direct mode: find SlackBuild in current dir
-         loc=`find $(pwd) -maxdepth 1 -name "*SlackBuild" | head -n 1 | slk2loc`
+         loc=`find $(pwd) -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
 #         NO_REQS=true
          TEST_REQS=true
          warn "Direct mode: Dependencies resolution disabled!";;
     */*) # explicitly named port: no exclude list
-         loc=`ls_loc $(regex $1) | head -n 1`
+         loc=`ls_loc $(regex $1) | default`
          [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
     *)   # find port, take the first if more than one available
-         local loc=`ls_loc $(regex $1) | grep -v $exclude | head -n 1`;;
+         local loc=`ls_loc $(regex $1) | grep -v $exclude | default`;;
   esac
 
   if ! [ "$loc" ]; then
@@ -332,7 +346,7 @@ check_reqs()
   for req in $requires $uses; do
     debug "check_reqs(): checking $req"
     local inst_pkg=`ls_inst $(regex $req) | head -n 1`
-    local avail_pkg=`$TEST_REQS || ls_loc $(regex $req) | grep -v $exclude | any2base | head -n 1`
+    local avail_pkg=`$TEST_REQS || ls_loc $(regex $req) | grep -v $exclude | any2base | default`
 
     # is any version installed?
     if [ "$inst_pkg" ]; then
