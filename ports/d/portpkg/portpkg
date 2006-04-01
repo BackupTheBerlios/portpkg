@@ -488,20 +488,20 @@ maintainer_mode()
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
 
   # check for common mistakes
-  egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
-    -e "/$ARCH-slackware-linux-" footprint >$t/check_path
-#  egrep -e "^........w" -e " root/root .*( |/)bin/" footprint >$t/check_perm
-  egrep -e "^........w" footprint >$t/check_perm
+#  egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
+#    -e "/$ARCH-slackware-linux-" footprint >$t/check_path
+##  egrep -e "^........w" -e " root/root .*( |/)bin/" footprint >$t/check_perm
+#  egrep -e "^........w" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
   ls_loc -v $exclude | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
-  cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
-  cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
+#  cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
+#  cat $t/check_perm | xargs -r -l echo "WARNING: Check these permissions:"
   cat $t/check_req | xargs -r echo "WARNING: Check these dependencies:"
 
-  # check for files that interfere with other packages
-  cat footprint | sed "s,.* ,," | grep -ve /$ -e ^install/ \
-| ( cd $ADM_DIR/packages; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
-| sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
+#  # check for files that interfere with other packages
+#  cat footprint | sed "s,.* ,," | grep -ve /$ -e ^install/ \
+#| ( cd $ADM_DIR/packages; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
+#| sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
 
   # remove empty files
 #  [ -s arbitrary ] || rm -f arbitrary
@@ -674,6 +674,30 @@ build_pkg()
   true
 }
 
+check_pkg()
+{
+  $DRY_RUN && return 0
+  local t=`mktemp -d`
+  debug "check_pkg()" "$@"
+  tar tzf $pkg_file >$t/footprint
+
+  # check for common mistakes
+  egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
+    -e "/$ARCH-slackware-linux-" $t/footprint >$t/check_path
+  egrep -e "^........w" $t/footprint >$t/check_perm
+  cat $t/check_path | xargs -r -l echo "WARNING: Unusual directories:"
+
+  # check for files that interfere with other packages
+  cat $t/footprint | sed "s,.* ,," | grep -ve /$ -e ^install/ \
+| ( cd $ADM_DIR/packages; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
+| sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
+
+  # warn about tags
+  case $package in *[0-9]) case $sources in ftp://ftp.slackware.com/*) ;; *)
+    warn "No packager tag although not from slackware.com!";;
+  esac;; esac
+}
+
 # really (re)install/upgrade current port
 add_pkg()
 {
@@ -720,6 +744,8 @@ add_pkg()
     return 0
   fi
   $slot_in && warn "Slot-in: Other releases will stay installed!"
+
+  check_pkg || return 1
 
   # what to display?
 #  ls_inst >$t/inst
