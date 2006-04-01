@@ -35,7 +35,7 @@ fi
 
 # get the rest
 rest=`echo $FILES | cut -d " " -f 2-`
-for file in $FILES; do
+for file in $rest; do
   row "Retrieving $file"
   get $SOURCE/$file $t/$file
 done
