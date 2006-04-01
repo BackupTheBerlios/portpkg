@@ -486,7 +486,8 @@ maintainer_mode()
   # check for common mistakes
   egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
     -e "/$ARCH-slackware-linux-" footprint >$t/check_path
-  egrep -e "^........w" -e " root/root .*( |/)bin/" footprint >$t/check_perm
+#  egrep -e "^........w" -e " root/root .*( |/)bin/" footprint >$t/check_perm
+  egrep -e "^........w" footprint >$t/check_perm
   grep -e "-upgraded$" $t/auto_req >$t/check_req
   ls_loc -v $exclude | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
   cat $t/check_path | xargs -r -l echo "WARNING: Check this path:"
