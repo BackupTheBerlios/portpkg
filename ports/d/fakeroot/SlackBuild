@@ -8,9 +8,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.5.5
+VERSION=1.5.8
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=1hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -28,6 +28,9 @@ cd $TMP || exit 1
 tar xzvf $CWD/${NAME}_${VERSION}.tar.gz || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
+# Don't make those docs..
+sed -i 's,SUBDIRS=.*,SUBDIRS=scripts test,' Makefile.am
+automake
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
