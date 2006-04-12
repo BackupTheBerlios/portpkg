@@ -1,6 +1,6 @@
 VERSION=0.8
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=2hnaz
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -25,7 +25,7 @@ make install DESTDIR=$PKG || exit 1
 cp -a \
   AUTHORS COPYING ChangeLog README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-
+rm -rf $PKG/usr/doc/$NAME
 cd $PKG || exit 1
 cat $CWD/slack-desc >$PKG/install/slack-desc
 find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
