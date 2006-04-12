@@ -1,0 +1,54 @@
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=20050718
+ARCH=${ARCH:-i486}
+BUILD=1hnaz
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/$NAME-2005-07-18.tar.gz
+cd $NAME
+chown -R root.root .
+cat $CWD/$NAME.config > .config
+make subconfig
+make
+make install DESTDIR=$PKG
+rm -rf $PKG/usr/info/dir
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a pppdcapiplugin/README $PKG/usr/doc/$NAME-$VERSION/REAME.pppdcapiplugin
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+for orig in $PKG/etc/ppp/peers/isdn/*; do mv $orig ${orig}.example; done
+mv $PKG/etc/drdsl/adsl.conf $PKG/etc/drdsl/adsl.conf.new
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME
+  rm -rf $PKG
+fi
