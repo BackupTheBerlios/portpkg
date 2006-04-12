@@ -3,7 +3,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.5.3
+VERSION=3.6.1
 ARCH=${ARCH:-i486}
 BUILD=1hnaz
 
@@ -27,6 +27,8 @@ CFLAGS="$SLKCFLAGS" \
 make -f makefile.unix CXXFLAGS="$SLKCFLAGS" || exit 1
 cp unrar $PKG/usr/bin
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp {license,readme}.txt $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
