@@ -5,7 +5,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=20050718
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=2hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -42,6 +42,7 @@ find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 for orig in $PKG/etc/ppp/peers/isdn/*; do mv $orig ${orig}.example; done
 mv $PKG/etc/drdsl/adsl.conf $PKG/etc/drdsl/adsl.conf.new
+cat $CWD/capi.conf > $PKG/etc/capi.conf.new
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
