@@ -1,971 +1,667 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root           0 install/doinst.sh
--rw-r--r-- root/root           0 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         3108 usr/bin/erb
--rwxr-xr-x root/bin          346 usr/bin/irb
--rwxr-xr-x root/bin         1535 usr/bin/rdoc
--rwxr-xr-x root/bin         1485 usr/bin/ri
--rwxr-xr-x root/bin       673936 usr/bin/ruby
--rwxr-xr-x root/bin          147 usr/bin/testrb
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/ruby-1.8.2/
--rw-r--r-- root/root        2493 usr/doc/ruby-1.8.2/COPYING
--rw-r--r-- root/root      333210 usr/doc/ruby-1.8.2/ChangeLog
--rw-r--r-- root/root       18009 usr/doc/ruby-1.8.2/GPL
--rw-r--r-- root/root        2803 usr/doc/ruby-1.8.2/README
--rw-r--r-- root/root       28984 usr/doc/ruby-1.8.2/README.EXT
--rw-r--r-- root/root       32399 usr/doc/ruby-1.8.2/README.EXT.ja
--rw-r--r-- root/root        4018 usr/doc/ruby-1.8.2/README.ja
-drwxr-xr-x root/root           0 usr/doc/ruby-1.8.2/doc/
--rw-r--r-- root/root      745467 usr/doc/ruby-1.8.2/doc/ChangeLog-1.8.0
--rw-r--r-- root/root       15185 usr/doc/ruby-1.8.2/doc/NEWS
--rw-r--r-- root/root        2261 usr/doc/ruby-1.8.2/doc/forwardable.rd
--rw-r--r-- root/root        2216 usr/doc/ruby-1.8.2/doc/forwardable.rd.ja
-drwxr-xr-x root/root           0 usr/doc/ruby-1.8.2/doc/irb/
--rw-r--r-- root/root        4131 usr/doc/ruby-1.8.2/doc/irb/irb-tools.rd.ja
--rw-r--r-- root/root       11428 usr/doc/ruby-1.8.2/doc/irb/irb.rd
--rw-r--r-- root/root       11740 usr/doc/ruby-1.8.2/doc/irb/irb.rd.ja
--rw-r--r-- root/root        7740 usr/doc/ruby-1.8.2/doc/shell.rd
--rw-r--r-- root/root        7408 usr/doc/ruby-1.8.2/doc/shell.rd.ja
-drwxr-xr-x root/root           0 usr/lib/
--rw-r--r-- root/root     1025042 usr/lib/libruby-static.a
-drwxr-xr-x root/root           0 usr/lib/ruby/
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/
--rw-r--r-- root/root        5732 usr/lib/ruby/1.8/English.rb
--rw-r--r-- root/root         274 usr/lib/ruby/1.8/Env.rb
--rw-r--r-- root/root        2566 usr/lib/ruby/1.8/abbrev.rb
--rw-r--r-- root/root        3457 usr/lib/ruby/1.8/base64.rb
--rw-r--r-- root/root       18129 usr/lib/ruby/1.8/benchmark.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/bigdecimal/
--rw-r--r-- root/root        1253 usr/lib/ruby/1.8/bigdecimal/jacobian.rb
--rw-r--r-- root/root        1801 usr/lib/ruby/1.8/bigdecimal/ludcmp.rb
--rw-r--r-- root/root        4802 usr/lib/ruby/1.8/bigdecimal/math.rb
--rw-r--r-- root/root        1721 usr/lib/ruby/1.8/bigdecimal/newton.rb
--rw-r--r-- root/root         825 usr/lib/ruby/1.8/bigdecimal/nlsolve.rb
--rw-r--r-- root/root        1426 usr/lib/ruby/1.8/bigdecimal/util.rb
--rw-r--r-- root/root        6948 usr/lib/ruby/1.8/cgi-lib.rb
--rw-r--r-- root/root       74983 usr/lib/ruby/1.8/cgi.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/cgi/
--rw-r--r-- root/root       17124 usr/lib/ruby/1.8/cgi/session.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/cgi/session/
--rw-r--r-- root/root        3300 usr/lib/ruby/1.8/cgi/session/pstore.rb
--rw-r--r-- root/root       12637 usr/lib/ruby/1.8/complex.rb
--rw-r--r-- root/root       25049 usr/lib/ruby/1.8/csv.rb
--rw-r--r-- root/root       43634 usr/lib/ruby/1.8/date.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/date/
--rw-r--r-- root/root       14161 usr/lib/ruby/1.8/date/format.rb
--rw-r--r-- root/root         128 usr/lib/ruby/1.8/date2.rb
--rw-r--r-- root/root       20930 usr/lib/ruby/1.8/debug.rb
--rw-r--r-- root/root        3404 usr/lib/ruby/1.8/delegate.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/dl/
--rw-r--r-- root/root        4435 usr/lib/ruby/1.8/dl/import.rb
--rw-r--r-- root/root        2937 usr/lib/ruby/1.8/dl/struct.rb
--rw-r--r-- root/root        7172 usr/lib/ruby/1.8/dl/types.rb
--rw-r--r-- root/root         564 usr/lib/ruby/1.8/dl/win32.rb
--rw-r--r-- root/root          19 usr/lib/ruby/1.8/drb.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/drb/
--rw-r--r-- root/root        2576 usr/lib/ruby/1.8/drb/acl.rb
--rw-r--r-- root/root       50294 usr/lib/ruby/1.8/drb/drb.rb
--rw-r--r-- root/root         253 usr/lib/ruby/1.8/drb/eq.rb
--rw-r--r-- root/root        1115 usr/lib/ruby/1.8/drb/extserv.rb
--rw-r--r-- root/root        1689 usr/lib/ruby/1.8/drb/extservm.rb
--rw-r--r-- root/root        1079 usr/lib/ruby/1.8/drb/gw.rb
--rw-r--r-- root/root         775 usr/lib/ruby/1.8/drb/invokemethod.rb
--rw-r--r-- root/root         369 usr/lib/ruby/1.8/drb/observer.rb
--rw-r--r-- root/root        4858 usr/lib/ruby/1.8/drb/ssl.rb
--rw-r--r-- root/root        1507 usr/lib/ruby/1.8/drb/timeridconv.rb
--rw-r--r-- root/root        2443 usr/lib/ruby/1.8/drb/unix.rb
--rw-r--r-- root/root        4134 usr/lib/ruby/1.8/e2mmap.rb
--rw-r--r-- root/root       20201 usr/lib/ruby/1.8/erb.rb
--rw-r--r-- root/root         487 usr/lib/ruby/1.8/eregex.rb
--rw-r--r-- root/root         629 usr/lib/ruby/1.8/expect.rb
--rw-r--r-- root/root       28046 usr/lib/ruby/1.8/fileutils.rb
--rw-r--r-- root/root        5492 usr/lib/ruby/1.8/finalize.rb
--rw-r--r-- root/root        1879 usr/lib/ruby/1.8/find.rb
--rw-r--r-- root/root        2166 usr/lib/ruby/1.8/forwardable.rb
--rw-r--r-- root/root        6198 usr/lib/ruby/1.8/ftools.rb
--rw-r--r-- root/root        7274 usr/lib/ruby/1.8/generator.rb
--rw-r--r-- root/root        9945 usr/lib/ruby/1.8/getoptlong.rb
--rw-r--r-- root/root        2171 usr/lib/ruby/1.8/getopts.rb
--rw-r--r-- root/root        6571 usr/lib/ruby/1.8/gserver.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/i686-linux/
--rwxr-xr-x root/root       38596 usr/lib/ruby/1.8/i686-linux/bigdecimal.so
--rw-r--r-- root/root        4217 usr/lib/ruby/1.8/i686-linux/config.h
--rwxr-xr-x root/root       42908 usr/lib/ruby/1.8/i686-linux/curses.so
--rw-r--r-- root/root        5742 usr/lib/ruby/1.8/i686-linux/defines.h
--rwxr-xr-x root/root        6896 usr/lib/ruby/1.8/i686-linux/digest.so
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/i686-linux/digest/
--rwxr-xr-x root/root        4172 usr/lib/ruby/1.8/i686-linux/digest/md5.so
--rwxr-xr-x root/root        4396 usr/lib/ruby/1.8/i686-linux/digest/rmd160.so
--rwxr-xr-x root/root        4392 usr/lib/ruby/1.8/i686-linux/digest/sha1.so
--rwxr-xr-x root/root       16408 usr/lib/ruby/1.8/i686-linux/digest/sha2.so
--rw-r--r-- root/root        8870 usr/lib/ruby/1.8/i686-linux/dl.h
--rwxr-xr-x root/root       72020 usr/lib/ruby/1.8/i686-linux/dl.so
--rw-r--r-- root/root         391 usr/lib/ruby/1.8/i686-linux/dlconfig.h
--rw-r--r-- root/root         773 usr/lib/ruby/1.8/i686-linux/dln.h
--rwxr-xr-x root/root        6608 usr/lib/ruby/1.8/i686-linux/enumerator.so
--rw-r--r-- root/root        1113 usr/lib/ruby/1.8/i686-linux/env.h
--rwxr-xr-x root/root        7980 usr/lib/ruby/1.8/i686-linux/etc.so
--rwxr-xr-x root/root        4084 usr/lib/ruby/1.8/i686-linux/fcntl.so
--rwxr-xr-x root/root       18136 usr/lib/ruby/1.8/i686-linux/gdbm.so
--rwxr-xr-x root/root       12664 usr/lib/ruby/1.8/i686-linux/iconv.so
--rw-r--r-- root/root       18199 usr/lib/ruby/1.8/i686-linux/intern.h
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/i686-linux/io/
--rwxr-xr-x root/root        4568 usr/lib/ruby/1.8/i686-linux/io/wait.so
--rw-r--r-- root/root        2566 usr/lib/ruby/1.8/i686-linux/missing.h
--rwxr-xr-x root/root      131396 usr/lib/ruby/1.8/i686-linux/nkf.so
--rw-r--r-- root/root       10355 usr/lib/ruby/1.8/i686-linux/node.h
--rwxr-xr-x root/root      215548 usr/lib/ruby/1.8/i686-linux/openssl.so
--rwxr-xr-x root/root        8636 usr/lib/ruby/1.8/i686-linux/pty.so
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/i686-linux/racc/
--rwxr-xr-x root/root       11484 usr/lib/ruby/1.8/i686-linux/racc/cparse.so
--rw-r--r-- root/root        6039 usr/lib/ruby/1.8/i686-linux/rbconfig.rb
--rw-r--r-- root/root         962 usr/lib/ruby/1.8/i686-linux/re.h
--rwxr-xr-x root/root       14740 usr/lib/ruby/1.8/i686-linux/readline.so
--rw-r--r-- root/root        7703 usr/lib/ruby/1.8/i686-linux/regex.h
--rw-r--r-- root/root       19260 usr/lib/ruby/1.8/i686-linux/ruby.h
--rw-r--r-- root/root        2314 usr/lib/ruby/1.8/i686-linux/rubyio.h
--rw-r--r-- root/root        2828 usr/lib/ruby/1.8/i686-linux/rubysig.h
--rwxr-xr-x root/root       22432 usr/lib/ruby/1.8/i686-linux/sdbm.so
--rwxr-xr-x root/root       35248 usr/lib/ruby/1.8/i686-linux/socket.so
--rw-r--r-- root/root        1668 usr/lib/ruby/1.8/i686-linux/st.h
--rwxr-xr-x root/root       16332 usr/lib/ruby/1.8/i686-linux/stringio.so
--rwxr-xr-x root/root       14968 usr/lib/ruby/1.8/i686-linux/strscan.so
--rwxr-xr-x root/root       85260 usr/lib/ruby/1.8/i686-linux/syck.so
--rwxr-xr-x root/root       10172 usr/lib/ruby/1.8/i686-linux/syslog.so
--rwxr-xr-x root/root       19960 usr/lib/ruby/1.8/i686-linux/tkutil.so
--rw-r--r-- root/root        1516 usr/lib/ruby/1.8/i686-linux/util.h
--rw-r--r-- root/root         434 usr/lib/ruby/1.8/i686-linux/version.h
--rwxr-xr-x root/root       32364 usr/lib/ruby/1.8/i686-linux/zlib.so
--rw-r--r-- root/root         480 usr/lib/ruby/1.8/importenv.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/io/
--rw-r--r-- root/root         380 usr/lib/ruby/1.8/io/nonblock.rb
--rw-r--r-- root/root       20822 usr/lib/ruby/1.8/ipaddr.rb
--rw-r--r-- root/root        7339 usr/lib/ruby/1.8/irb.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/irb/
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/irb/cmd/
--rw-r--r-- root/root         508 usr/lib/ruby/1.8/irb/cmd/chws.rb
--rw-r--r-- root/root         367 usr/lib/ruby/1.8/irb/cmd/fork.rb
--rw-r--r-- root/root        1183 usr/lib/ruby/1.8/irb/cmd/load.rb
--rw-r--r-- root/root         583 usr/lib/ruby/1.8/irb/cmd/nop.rb
--rw-r--r-- root/root         632 usr/lib/ruby/1.8/irb/cmd/pushws.rb
--rw-r--r-- root/root         641 usr/lib/ruby/1.8/irb/cmd/subirb.rb
--rw-r--r-- root/root        4602 usr/lib/ruby/1.8/irb/completion.rb
--rw-r--r-- root/root        5617 usr/lib/ruby/1.8/irb/context.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/irb/ext/
--rw-r--r-- root/root        1153 usr/lib/ruby/1.8/irb/ext/change-ws.rb
--rw-r--r-- root/root        2125 usr/lib/ruby/1.8/irb/ext/history.rb
--rw-r--r-- root/root        2111 usr/lib/ruby/1.8/irb/ext/loader.rb
--rw-r--r-- root/root         608 usr/lib/ruby/1.8/irb/ext/math-mode.rb
--rw-r--r-- root/root        4829 usr/lib/ruby/1.8/irb/ext/multi-irb.rb
--rw-r--r-- root/root        1173 usr/lib/ruby/1.8/irb/ext/tracer.rb
--rw-r--r-- root/root        1346 usr/lib/ruby/1.8/irb/ext/use-loader.rb
--rw-r--r-- root/root         961 usr/lib/ruby/1.8/irb/ext/workspaces.rb
--rw-r--r-- root/root        5388 usr/lib/ruby/1.8/irb/extend-command.rb
--rw-r--r-- root/root        1275 usr/lib/ruby/1.8/irb/frame.rb
--rw-r--r-- root/root         553 usr/lib/ruby/1.8/irb/help.rb
--rw-r--r-- root/root        4892 usr/lib/ruby/1.8/irb/init.rb
--rw-r--r-- root/root        1809 usr/lib/ruby/1.8/irb/input-method.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/irb/lc/
--rw-r--r-- root/root         897 usr/lib/ruby/1.8/irb/lc/error.rb
--rw-r--r-- root/root        1301 usr/lib/ruby/1.8/irb/lc/help-message
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/irb/lc/ja/
--rw-r--r-- root/root        1043 usr/lib/ruby/1.8/irb/lc/ja/error.rb
--rw-r--r-- root/root        1653 usr/lib/ruby/1.8/irb/lc/ja/help-message
--rw-r--r-- root/root        3486 usr/lib/ruby/1.8/irb/locale.rb
--rw-r--r-- root/root       20299 usr/lib/ruby/1.8/irb/ruby-lex.rb
--rw-r--r-- root/root        7575 usr/lib/ruby/1.8/irb/ruby-token.rb
--rw-r--r-- root/root        5830 usr/lib/ruby/1.8/irb/slex.rb
--rw-r--r-- root/root         272 usr/lib/ruby/1.8/irb/version.rb
--rw-r--r-- root/root        2583 usr/lib/ruby/1.8/irb/workspace.rb
--rw-r--r-- root/root         229 usr/lib/ruby/1.8/irb/ws-for-case-2.rb
--rw-r--r-- root/root        1490 usr/lib/ruby/1.8/irb/xmp.rb
--rw-r--r-- root/root        4379 usr/lib/ruby/1.8/jcode.rb
--rw-r--r-- root/root        6293 usr/lib/ruby/1.8/kconv.rb
--rw-r--r-- root/root       19053 usr/lib/ruby/1.8/logger.rb
--rw-r--r-- root/root         723 usr/lib/ruby/1.8/mailread.rb
--rw-r--r-- root/root        5473 usr/lib/ruby/1.8/mathn.rb
--rw-r--r-- root/root       27785 usr/lib/ruby/1.8/matrix.rb
--rw-r--r-- root/root         261 usr/lib/ruby/1.8/md5.rb
--rw-r--r-- root/root       26023 usr/lib/ruby/1.8/mkmf.rb
--rw-r--r-- root/root        6791 usr/lib/ruby/1.8/monitor.rb
--rw-r--r-- root/root       60061 usr/lib/ruby/1.8/multi-tk.rb
--rw-r--r-- root/root        2044 usr/lib/ruby/1.8/mutex_m.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/net/
--rw-r--r-- root/root       21860 usr/lib/ruby/1.8/net/ftp.rb
--rw-r--r-- root/root         984 usr/lib/ruby/1.8/net/ftptls.rb
--rw-r--r-- root/root       49791 usr/lib/ruby/1.8/net/http.rb
--rw-r--r-- root/root        4691 usr/lib/ruby/1.8/net/https.rb
--rw-r--r-- root/root      100827 usr/lib/ruby/1.8/net/imap.rb
--rw-r--r-- root/root       23457 usr/lib/ruby/1.8/net/pop.rb
--rw-r--r-- root/root        9222 usr/lib/ruby/1.8/net/protocol.rb
--rw-r--r-- root/root        1423 usr/lib/ruby/1.8/net/protocols.rb
--rw-r--r-- root/root       20358 usr/lib/ruby/1.8/net/smtp.rb
--rw-r--r-- root/root       31806 usr/lib/ruby/1.8/net/telnet.rb
--rw-r--r-- root/root        7882 usr/lib/ruby/1.8/net/telnets.rb
--rw-r--r-- root/root        5278 usr/lib/ruby/1.8/observer.rb
--rw-r--r-- root/root       18803 usr/lib/ruby/1.8/open-uri.rb
--rw-r--r-- root/root        1257 usr/lib/ruby/1.8/open3.rb
--rw-r--r-- root/root         526 usr/lib/ruby/1.8/openssl.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/openssl/
--rw-r--r-- root/root         650 usr/lib/ruby/1.8/openssl/bn.rb
--rw-r--r-- root/root        3201 usr/lib/ruby/1.8/openssl/buffering.rb
--rw-r--r-- root/root        1155 usr/lib/ruby/1.8/openssl/cipher.rb
--rw-r--r-- root/root         958 usr/lib/ruby/1.8/openssl/digest.rb
--rw-r--r-- root/root        1747 usr/lib/ruby/1.8/openssl/ssl.rb
--rw-r--r-- root/root        4463 usr/lib/ruby/1.8/openssl/x509.rb
--rw-r--r-- root/root       50971 usr/lib/ruby/1.8/optparse.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/optparse/
--rw-r--r-- root/root         325 usr/lib/ruby/1.8/optparse/date.rb
--rw-r--r-- root/root         121 usr/lib/ruby/1.8/optparse/shellwords.rb
--rw-r--r-- root/root         188 usr/lib/ruby/1.8/optparse/time.rb
--rw-r--r-- root/root         100 usr/lib/ruby/1.8/optparse/uri.rb
--rw-r--r-- root/root        2032 usr/lib/ruby/1.8/optparse/version.rb
--rw-r--r-- root/root        2996 usr/lib/ruby/1.8/ostruct.rb
--rw-r--r-- root/root        1460 usr/lib/ruby/1.8/parsearg.rb
--rw-r--r-- root/root         328 usr/lib/ruby/1.8/parsedate.rb
--rw-r--r-- root/root       36198 usr/lib/ruby/1.8/pathname.rb
--rw-r--r-- root/root        1428 usr/lib/ruby/1.8/ping.rb
--rw-r--r-- root/root       15643 usr/lib/ruby/1.8/pp.rb
--rw-r--r-- root/root       19280 usr/lib/ruby/1.8/prettyprint.rb
--rw-r--r-- root/root          90 usr/lib/ruby/1.8/profile.rb
--rw-r--r-- root/root        1655 usr/lib/ruby/1.8/profiler.rb
--rw-r--r-- root/root        3996 usr/lib/ruby/1.8/pstore.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/racc/
--rw-r--r-- root/root       12104 usr/lib/ruby/1.8/racc/parser.rb
--rw-r--r-- root/root        6723 usr/lib/ruby/1.8/rational.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/
--rw-r--r-- root/root       18467 usr/lib/ruby/1.8/rdoc/code_objects.rb
--rw-r--r-- root/root       12263 usr/lib/ruby/1.8/rdoc/diagram.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/dot/
--rw-r--r-- root/root        6267 usr/lib/ruby/1.8/rdoc/dot/dot.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/generators/
--rw-r--r-- root/root        2904 usr/lib/ruby/1.8/rdoc/generators/chm_generator.rb
--rw-r--r-- root/root       38810 usr/lib/ruby/1.8/rdoc/generators/html_generator.rb
--rw-r--r-- root/root        7245 usr/lib/ruby/1.8/rdoc/generators/ri_generator.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/generators/template/
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/generators/template/chm/
--rw-r--r-- root/root        1773 usr/lib/ruby/1.8/rdoc/generators/template/chm/chm.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/generators/template/html/
--rw-r--r-- root/root        8712 usr/lib/ruby/1.8/rdoc/generators/template/html/hefss.rb
--rw-r--r-- root/root       16115 usr/lib/ruby/1.8/rdoc/generators/template/html/html.rb
--rw-r--r-- root/root        8587 usr/lib/ruby/1.8/rdoc/generators/template/html/kilmer.rb
--rw-r--r-- root/root       17243 usr/lib/ruby/1.8/rdoc/generators/template/html/old_html.rb
--rw-r--r-- root/root        1956 usr/lib/ruby/1.8/rdoc/generators/template/html/one_page_html.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/generators/template/xml/
--rw-r--r-- root/root        2326 usr/lib/ruby/1.8/rdoc/generators/template/xml/rdf.rb
--rw-r--r-- root/root        2167 usr/lib/ruby/1.8/rdoc/generators/template/xml/xml.rb
--rw-r--r-- root/root        2846 usr/lib/ruby/1.8/rdoc/generators/xml_generator.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/markup/
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/markup/sample/
--rw-r--r-- root/root         402 usr/lib/ruby/1.8/rdoc/markup/sample/rdoc2latex.rb
--rw-r--r-- root/root        1087 usr/lib/ruby/1.8/rdoc/markup/sample/sample.rb
--rw-r--r-- root/root       14445 usr/lib/ruby/1.8/rdoc/markup/simple_markup.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/markup/simple_markup/
--rw-r--r-- root/root        7419 usr/lib/ruby/1.8/rdoc/markup/simple_markup/fragments.rb
--rw-r--r-- root/root        8659 usr/lib/ruby/1.8/rdoc/markup/simple_markup/inline.rb
--rw-r--r-- root/root        3065 usr/lib/ruby/1.8/rdoc/markup/simple_markup/lines.rb
--rw-r--r-- root/root        1600 usr/lib/ruby/1.8/rdoc/markup/simple_markup/preprocess.rb
--rw-r--r-- root/root        4464 usr/lib/ruby/1.8/rdoc/markup/simple_markup/to_flow.rb
--rw-r--r-- root/root        7213 usr/lib/ruby/1.8/rdoc/markup/simple_markup/to_html.rb
--rw-r--r-- root/root        8474 usr/lib/ruby/1.8/rdoc/markup/simple_markup/to_latex.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/markup/test/
--rw-r--r-- root/root          47 usr/lib/ruby/1.8/rdoc/markup/test/AllTests.rb
--rw-r--r-- root/root        5152 usr/lib/ruby/1.8/rdoc/markup/test/TestInline.rb
--rw-r--r-- root/root       11468 usr/lib/ruby/1.8/rdoc/markup/test/TestParse.rb
--rw-r--r-- root/root       17111 usr/lib/ruby/1.8/rdoc/options.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/parsers/
--rw-r--r-- root/root       17107 usr/lib/ruby/1.8/rdoc/parsers/parse_c.rb
--rw-r--r-- root/root        2924 usr/lib/ruby/1.8/rdoc/parsers/parse_f95.rb
--rw-r--r-- root/root       59371 usr/lib/ruby/1.8/rdoc/parsers/parse_rb.rb
--rw-r--r-- root/root         931 usr/lib/ruby/1.8/rdoc/parsers/parse_simple.rb
--rw-r--r-- root/root        2706 usr/lib/ruby/1.8/rdoc/parsers/parserfactory.rb
--rw-r--r-- root/root        7901 usr/lib/ruby/1.8/rdoc/rdoc.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rdoc/ri/
--rw-r--r-- root/root        4920 usr/lib/ruby/1.8/rdoc/ri/ri_cache.rb
--rw-r--r-- root/root        2956 usr/lib/ruby/1.8/rdoc/ri/ri_descriptions.rb
--rw-r--r-- root/root        7130 usr/lib/ruby/1.8/rdoc/ri/ri_display.rb
--rw-r--r-- root/root        4070 usr/lib/ruby/1.8/rdoc/ri/ri_driver.rb
--rw-r--r-- root/root       14324 usr/lib/ruby/1.8/rdoc/ri/ri_formatter.rb
--rw-r--r-- root/root        6754 usr/lib/ruby/1.8/rdoc/ri/ri_options.rb
--rw-r--r-- root/root        1331 usr/lib/ruby/1.8/rdoc/ri/ri_paths.rb
--rw-r--r-- root/root        2237 usr/lib/ruby/1.8/rdoc/ri/ri_reader.rb
--rw-r--r-- root/root        2146 usr/lib/ruby/1.8/rdoc/ri/ri_util.rb
--rw-r--r-- root/root        1541 usr/lib/ruby/1.8/rdoc/ri/ri_writer.rb
--rw-r--r-- root/root        5952 usr/lib/ruby/1.8/rdoc/template.rb
--rw-r--r-- root/root         644 usr/lib/ruby/1.8/rdoc/tokenstream.rb
--rw-r--r-- root/root        4871 usr/lib/ruby/1.8/rdoc/usage.rb
--rw-r--r-- root/root         587 usr/lib/ruby/1.8/readbytes.rb
--rw-r--r-- root/root       12228 usr/lib/ruby/1.8/remote-tk.rb
--rw-r--r-- root/root        1560 usr/lib/ruby/1.8/resolv-replace.rb
--rw-r--r-- root/root       45664 usr/lib/ruby/1.8/resolv.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rexml/
--rw-r--r-- root/root        1839 usr/lib/ruby/1.8/rexml/attlistdecl.rb
--rw-r--r-- root/root        4153 usr/lib/ruby/1.8/rexml/attribute.rb
--rw-r--r-- root/root        2063 usr/lib/ruby/1.8/rexml/cdata.rb
--rw-r--r-- root/root        2523 usr/lib/ruby/1.8/rexml/child.rb
--rw-r--r-- root/root        2474 usr/lib/ruby/1.8/rexml/comment.rb
--rw-r--r-- root/root        5274 usr/lib/ruby/1.8/rexml/doctype.rb
--rw-r--r-- root/root        5854 usr/lib/ruby/1.8/rexml/document.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rexml/dtd/
--rw-r--r-- root/root         182 usr/lib/ruby/1.8/rexml/dtd/attlistdecl.rb
--rw-r--r-- root/root        1131 usr/lib/ruby/1.8/rexml/dtd/dtd.rb
--rw-r--r-- root/root         385 usr/lib/ruby/1.8/rexml/dtd/elementdecl.rb
--rw-r--r-- root/root        1484 usr/lib/ruby/1.8/rexml/dtd/entitydecl.rb
--rw-r--r-- root/root         951 usr/lib/ruby/1.8/rexml/dtd/notationdecl.rb
--rw-r--r-- root/root       40057 usr/lib/ruby/1.8/rexml/element.rb
--rw-r--r-- root/root        1585 usr/lib/ruby/1.8/rexml/encoding.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rexml/encodings/
--rw-r--r-- root/root        4037 usr/lib/ruby/1.8/rexml/encodings/CP-1252.rb
--rw-r--r-- root/root         716 usr/lib/ruby/1.8/rexml/encodings/EUC-JP.rb
--rw-r--r-- root/root         320 usr/lib/ruby/1.8/rexml/encodings/ICONV.rb
--rw-r--r-- root/root         545 usr/lib/ruby/1.8/rexml/encodings/ISO-8859-1.rb
--rw-r--r-- root/root        2239 usr/lib/ruby/1.8/rexml/encodings/ISO-8859-15.rb
--rw-r--r-- root/root         714 usr/lib/ruby/1.8/rexml/encodings/SHIFT-JIS.rb
--rw-r--r-- root/root          36 usr/lib/ruby/1.8/rexml/encodings/SHIFT_JIS.rb
--rw-r--r-- root/root         646 usr/lib/ruby/1.8/rexml/encodings/UNILE.rb
--rw-r--r-- root/root         545 usr/lib/ruby/1.8/rexml/encodings/US-ASCII.rb
--rw-r--r-- root/root         646 usr/lib/ruby/1.8/rexml/encodings/UTF-16.rb
--rw-r--r-- root/root         172 usr/lib/ruby/1.8/rexml/encodings/UTF-8.rb
--rw-r--r-- root/root        4735 usr/lib/ruby/1.8/rexml/entity.rb
--rw-r--r-- root/root       10638 usr/lib/ruby/1.8/rexml/functions.rb
--rw-r--r-- root/root        1760 usr/lib/ruby/1.8/rexml/instruction.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rexml/light/
--rw-r--r-- root/root        4231 usr/lib/ruby/1.8/rexml/light/node.rb
--rw-r--r-- root/root        1018 usr/lib/ruby/1.8/rexml/namespace.rb
--rw-r--r-- root/root         863 usr/lib/ruby/1.8/rexml/node.rb
--rw-r--r-- root/root         385 usr/lib/ruby/1.8/rexml/output.rb
--rw-r--r-- root/root        4024 usr/lib/ruby/1.8/rexml/parent.rb
--rw-r--r-- root/root        1232 usr/lib/ruby/1.8/rexml/parseexception.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rexml/parsers/
--rw-r--r-- root/root       15123 usr/lib/ruby/1.8/rexml/parsers/baseparser.rb
--rw-r--r-- root/root        1383 usr/lib/ruby/1.8/rexml/parsers/lightparser.rb
--rw-r--r-- root/root        3876 usr/lib/ruby/1.8/rexml/parsers/pullparser.rb
--rw-r--r-- root/root        6831 usr/lib/ruby/1.8/rexml/parsers/sax2parser.rb
--rw-r--r-- root/root        1117 usr/lib/ruby/1.8/rexml/parsers/streamparser.rb
--rw-r--r-- root/root        3105 usr/lib/ruby/1.8/rexml/parsers/treeparser.rb
--rw-r--r-- root/root        1240 usr/lib/ruby/1.8/rexml/parsers/ultralightparser.rb
--rw-r--r-- root/root       19430 usr/lib/ruby/1.8/rexml/parsers/xpathparser.rb
--rw-r--r-- root/root        7837 usr/lib/ruby/1.8/rexml/quickpath.rb
--rw-r--r-- root/root        1219 usr/lib/ruby/1.8/rexml/rexml.rb
--rw-r--r-- root/root        3432 usr/lib/ruby/1.8/rexml/sax2listener.rb
--rw-r--r-- root/root        5871 usr/lib/ruby/1.8/rexml/source.rb
--rw-r--r-- root/root        3741 usr/lib/ruby/1.8/rexml/streamlistener.rb
--rw-r--r-- root/root       10659 usr/lib/ruby/1.8/rexml/text.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rexml/validation/
--rw-r--r-- root/root       14976 usr/lib/ruby/1.8/rexml/validation/relaxng.rb
--rw-r--r-- root/root        4133 usr/lib/ruby/1.8/rexml/validation/validation.rb
--rw-r--r-- root/root         145 usr/lib/ruby/1.8/rexml/validation/validationexception.rb
--rw-r--r-- root/root        2218 usr/lib/ruby/1.8/rexml/xmldecl.rb
--rw-r--r-- root/root         506 usr/lib/ruby/1.8/rexml/xmltokens.rb
--rw-r--r-- root/root        1965 usr/lib/ruby/1.8/rexml/xpath.rb
--rw-r--r-- root/root       17513 usr/lib/ruby/1.8/rexml/xpath_parser.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rinda/
--rw-r--r-- root/root        3871 usr/lib/ruby/1.8/rinda/rinda.rb
--rw-r--r-- root/root        3064 usr/lib/ruby/1.8/rinda/ring.rb
--rw-r--r-- root/root        9162 usr/lib/ruby/1.8/rinda/tuplespace.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rss/
--rw-r--r-- root/root       14922 usr/lib/ruby/1.8/rss/0.9.rb
--rw-r--r-- root/root       12996 usr/lib/ruby/1.8/rss/1.0.rb
--rw-r--r-- root/root        3501 usr/lib/ruby/1.8/rss/2.0.rb
--rw-r--r-- root/root        1118 usr/lib/ruby/1.8/rss/content.rb
--rw-r--r-- root/root        3582 usr/lib/ruby/1.8/rss/converter.rb
--rw-r--r-- root/root        1527 usr/lib/ruby/1.8/rss/dublincore.rb
--rw-r--r-- root/root         583 usr/lib/ruby/1.8/rss/maker.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/rss/maker/
--rw-r--r-- root/root        5274 usr/lib/ruby/1.8/rss/maker/0.9.rb
--rw-r--r-- root/root        4595 usr/lib/ruby/1.8/rss/maker/1.0.rb
--rw-r--r-- root/root        4296 usr/lib/ruby/1.8/rss/maker/2.0.rb
--rw-r--r-- root/root       11704 usr/lib/ruby/1.8/rss/maker/base.rb
--rw-r--r-- root/root         751 usr/lib/ruby/1.8/rss/maker/content.rb
--rw-r--r-- root/root        1202 usr/lib/ruby/1.8/rss/maker/dublincore.rb
--rw-r--r-- root/root         740 usr/lib/ruby/1.8/rss/maker/syndication.rb
--rw-r--r-- root/root        3061 usr/lib/ruby/1.8/rss/maker/trackback.rb
--rw-r--r-- root/root       10026 usr/lib/ruby/1.8/rss/parser.rb
--rw-r--r-- root/root        1009 usr/lib/ruby/1.8/rss/rexmlparser.rb
--rw-r--r-- root/root       20176 usr/lib/ruby/1.8/rss/rss.rb
--rw-r--r-- root/root        2273 usr/lib/ruby/1.8/rss/syndication.rb
--rw-r--r-- root/root         811 usr/lib/ruby/1.8/rss/taxonomy.rb
--rw-r--r-- root/root        6669 usr/lib/ruby/1.8/rss/trackback.rb
--rw-r--r-- root/root         305 usr/lib/ruby/1.8/rss/utils.rb
--rw-r--r-- root/root        2060 usr/lib/ruby/1.8/rss/xml-stylesheet.rb
--rw-r--r-- root/root        1574 usr/lib/ruby/1.8/rss/xmlparser.rb
--rw-r--r-- root/root        1756 usr/lib/ruby/1.8/rss/xmlscanner.rb
--rw-r--r-- root/root         180 usr/lib/ruby/1.8/rubyunit.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/runit/
--rw-r--r-- root/root        1839 usr/lib/ruby/1.8/runit/assert.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/runit/cui/
--rw-r--r-- root/root        1221 usr/lib/ruby/1.8/runit/cui/testrunner.rb
--rw-r--r-- root/root         255 usr/lib/ruby/1.8/runit/error.rb
--rw-r--r-- root/root        1051 usr/lib/ruby/1.8/runit/testcase.rb
--rw-r--r-- root/root         858 usr/lib/ruby/1.8/runit/testresult.rb
--rw-r--r-- root/root         529 usr/lib/ruby/1.8/runit/testsuite.rb
--rw-r--r-- root/root         176 usr/lib/ruby/1.8/runit/topublic.rb
--rw-r--r-- root/root       21108 usr/lib/ruby/1.8/scanf.rb
--rw-r--r-- root/root       26274 usr/lib/ruby/1.8/set.rb
--rw-r--r-- root/root         269 usr/lib/ruby/1.8/sha1.rb
--rw-r--r-- root/root        4767 usr/lib/ruby/1.8/shell.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/shell/
--rw-r--r-- root/root        2492 usr/lib/ruby/1.8/shell/builtin-command.rb
--rw-r--r-- root/root       15177 usr/lib/ruby/1.8/shell/command-processor.rb
--rw-r--r-- root/root         614 usr/lib/ruby/1.8/shell/error.rb
--rw-r--r-- root/root        1732 usr/lib/ruby/1.8/shell/filter.rb
--rw-r--r-- root/root        5149 usr/lib/ruby/1.8/shell/process-controller.rb
--rw-r--r-- root/root        3415 usr/lib/ruby/1.8/shell/system-command.rb
--rw-r--r-- root/root         287 usr/lib/ruby/1.8/shell/version.rb
--rw-r--r-- root/root        1324 usr/lib/ruby/1.8/shellwords.rb
--rw-r--r-- root/root        8336 usr/lib/ruby/1.8/singleton.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/soap/
--rw-r--r-- root/root        2039 usr/lib/ruby/1.8/soap/attachment.rb
--rw-r--r-- root/root       15253 usr/lib/ruby/1.8/soap/baseData.rb
--rw-r--r-- root/root        5441 usr/lib/ruby/1.8/soap/element.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/soap/encodingstyle/
--rw-r--r-- root/root        5003 usr/lib/ruby/1.8/soap/encodingstyle/aspDotNetHandler.rb
--rw-r--r-- root/root        1997 usr/lib/ruby/1.8/soap/encodingstyle/handler.rb
--rw-r--r-- root/root        5044 usr/lib/ruby/1.8/soap/encodingstyle/literalHandler.rb
--rw-r--r-- root/root       14909 usr/lib/ruby/1.8/soap/encodingstyle/soapHandler.rb
--rw-r--r-- root/root        5291 usr/lib/ruby/1.8/soap/generator.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/soap/header/
--rw-r--r-- root/root        1190 usr/lib/ruby/1.8/soap/header/handler.rb
--rw-r--r-- root/root        1191 usr/lib/ruby/1.8/soap/header/handlerset.rb
--rw-r--r-- root/root         886 usr/lib/ruby/1.8/soap/header/simplehandler.rb
--rw-r--r-- root/root         381 usr/lib/ruby/1.8/soap/mapping.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/soap/mapping/
--rw-r--r-- root/root        8854 usr/lib/ruby/1.8/soap/mapping/factory.rb
--rw-r--r-- root/root        7565 usr/lib/ruby/1.8/soap/mapping/mapping.rb
--rw-r--r-- root/root       15169 usr/lib/ruby/1.8/soap/mapping/registry.rb
--rw-r--r-- root/root       14772 usr/lib/ruby/1.8/soap/mapping/rubytypeFactory.rb
--rw-r--r-- root/root        1781 usr/lib/ruby/1.8/soap/mapping/typeMap.rb
--rw-r--r-- root/root        4022 usr/lib/ruby/1.8/soap/mapping/wsdlRegistry.rb
--rw-r--r-- root/root        4772 usr/lib/ruby/1.8/soap/mapping/wsdlencodedregistry.rb
--rw-r--r-- root/root        7684 usr/lib/ruby/1.8/soap/mapping/wsdlliteralregistry.rb
--rw-r--r-- root/root        1554 usr/lib/ruby/1.8/soap/marshal.rb
--rw-r--r-- root/root        5011 usr/lib/ruby/1.8/soap/mimemessage.rb
--rw-r--r-- root/root        4209 usr/lib/ruby/1.8/soap/netHttpClient.rb
--rw-r--r-- root/root        6150 usr/lib/ruby/1.8/soap/parser.rb
--rw-r--r-- root/root        1405 usr/lib/ruby/1.8/soap/processor.rb
--rw-r--r-- root/root        7089 usr/lib/ruby/1.8/soap/property.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/soap/rpc/
--rw-r--r-- root/root        5190 usr/lib/ruby/1.8/soap/rpc/cgistub.rb
--rw-r--r-- root/root        9463 usr/lib/ruby/1.8/soap/rpc/driver.rb
--rw-r--r-- root/root        5375 usr/lib/ruby/1.8/soap/rpc/element.rb
--rw-r--r-- root/root        3500 usr/lib/ruby/1.8/soap/rpc/httpserver.rb
--rw-r--r-- root/root        9104 usr/lib/ruby/1.8/soap/rpc/proxy.rb
--rw-r--r-- root/root        8879 usr/lib/ruby/1.8/soap/rpc/router.rb
--rw-r--r-- root/root         550 usr/lib/ruby/1.8/soap/rpc/rpc.rb
--rw-r--r-- root/root        6961 usr/lib/ruby/1.8/soap/rpc/soaplet.rb
--rw-r--r-- root/root         931 usr/lib/ruby/1.8/soap/rpc/standaloneServer.rb
--rw-r--r-- root/root        3268 usr/lib/ruby/1.8/soap/soap.rb
--rw-r--r-- root/root        7829 usr/lib/ruby/1.8/soap/streamHandler.rb
--rw-r--r-- root/root       12940 usr/lib/ruby/1.8/soap/wsdlDriver.rb
--rw-r--r-- root/root        6245 usr/lib/ruby/1.8/sync.rb
--rw-r--r-- root/root        4435 usr/lib/ruby/1.8/tempfile.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/
--rw-r--r-- root/root       11083 usr/lib/ruby/1.8/test/unit.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/
--rw-r--r-- root/root         291 usr/lib/ruby/1.8/test/unit/assertionfailederror.rb
--rw-r--r-- root/root       15538 usr/lib/ruby/1.8/test/unit/assertions.rb
--rw-r--r-- root/root        6007 usr/lib/ruby/1.8/test/unit/autorunner.rb
--rw-r--r-- root/root         873 usr/lib/ruby/1.8/test/unit/collector.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/collector/
--rw-r--r-- root/root        2859 usr/lib/ruby/1.8/test/unit/collector/dir.rb
--rw-r--r-- root/root         811 usr/lib/ruby/1.8/test/unit/collector/objectspace.rb
--rw-r--r-- root/root        1428 usr/lib/ruby/1.8/test/unit/error.rb
--rw-r--r-- root/root        1312 usr/lib/ruby/1.8/test/unit/failure.rb
--rw-r--r-- root/root        4275 usr/lib/ruby/1.8/test/unit/testcase.rb
--rw-r--r-- root/root        2074 usr/lib/ruby/1.8/test/unit/testresult.rb
--rw-r--r-- root/root        1951 usr/lib/ruby/1.8/test/unit/testsuite.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/ui/
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/ui/console/
--rw-r--r-- root/root        3718 usr/lib/ruby/1.8/test/unit/ui/console/testrunner.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/ui/fox/
--rw-r--r-- root/root        8568 usr/lib/ruby/1.8/test/unit/ui/fox/testrunner.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/ui/gtk/
--rw-r--r-- root/root       14223 usr/lib/ruby/1.8/test/unit/ui/gtk/testrunner.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/ui/gtk2/
--rw-r--r-- root/root       16052 usr/lib/ruby/1.8/test/unit/ui/gtk2/testrunner.rb
--rw-r--r-- root/root        2090 usr/lib/ruby/1.8/test/unit/ui/testrunnermediator.rb
--rw-r--r-- root/root        1145 usr/lib/ruby/1.8/test/unit/ui/testrunnerutilities.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/ui/tk/
--rw-r--r-- root/root        8797 usr/lib/ruby/1.8/test/unit/ui/tk/testrunner.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/test/unit/util/
--rw-r--r-- root/root        1309 usr/lib/ruby/1.8/test/unit/util/backtracefilter.rb
--rw-r--r-- root/root        2861 usr/lib/ruby/1.8/test/unit/util/observable.rb
--rw-r--r-- root/root        1103 usr/lib/ruby/1.8/test/unit/util/procwrapper.rb
--rw-r--r-- root/root        7788 usr/lib/ruby/1.8/thread.rb
--rw-r--r-- root/root        4368 usr/lib/ruby/1.8/thwait.rb
--rw-r--r-- root/root       24083 usr/lib/ruby/1.8/time.rb
--rw-r--r-- root/root        1388 usr/lib/ruby/1.8/timeout.rb
--rw-r--r-- root/root      108919 usr/lib/ruby/1.8/tk.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tk/
--rw-r--r-- root/root         136 usr/lib/ruby/1.8/tk/after.rb
--rw-r--r-- root/root        5280 usr/lib/ruby/1.8/tk/autoload.rb
--rw-r--r-- root/root         667 usr/lib/ruby/1.8/tk/bgerror.rb
--rw-r--r-- root/root        1572 usr/lib/ruby/1.8/tk/bindtag.rb
--rw-r--r-- root/root         564 usr/lib/ruby/1.8/tk/button.rb
--rw-r--r-- root/root       19855 usr/lib/ruby/1.8/tk/canvas.rb
--rw-r--r-- root/root        7623 usr/lib/ruby/1.8/tk/canvastag.rb
--rw-r--r-- root/root         579 usr/lib/ruby/1.8/tk/checkbutton.rb
--rw-r--r-- root/root        1676 usr/lib/ruby/1.8/tk/clipboard.rb
--rw-r--r-- root/root        1557 usr/lib/ruby/1.8/tk/clock.rb
--rw-r--r-- root/root        7157 usr/lib/ruby/1.8/tk/composite.rb
--rw-r--r-- root/root         631 usr/lib/ruby/1.8/tk/console.rb
--rw-r--r-- root/root        8534 usr/lib/ruby/1.8/tk/dialog.rb
--rw-r--r-- root/root        2493 usr/lib/ruby/1.8/tk/encodedstr.rb
--rw-r--r-- root/root        2326 usr/lib/ruby/1.8/tk/entry.rb
--rw-r--r-- root/root        5030 usr/lib/ruby/1.8/tk/event.rb
--rw-r--r-- root/root       41807 usr/lib/ruby/1.8/tk/font.rb
--rw-r--r-- root/root        3247 usr/lib/ruby/1.8/tk/frame.rb
--rw-r--r-- root/root        6075 usr/lib/ruby/1.8/tk/grid.rb
--rw-r--r-- root/root        3979 usr/lib/ruby/1.8/tk/image.rb
--rw-r--r-- root/root       36517 usr/lib/ruby/1.8/tk/itemconfig.rb
--rw-r--r-- root/root        8621 usr/lib/ruby/1.8/tk/itemfont.rb
--rw-r--r-- root/root        1642 usr/lib/ruby/1.8/tk/kinput.rb
--rw-r--r-- root/root         494 usr/lib/ruby/1.8/tk/label.rb
--rw-r--r-- root/root         495 usr/lib/ruby/1.8/tk/labelframe.rb
--rw-r--r-- root/root        7603 usr/lib/ruby/1.8/tk/listbox.rb
--rw-r--r-- root/root        1615 usr/lib/ruby/1.8/tk/macpkg.rb
--rw-r--r-- root/root       14268 usr/lib/ruby/1.8/tk/menu.rb
--rw-r--r-- root/root        3964 usr/lib/ruby/1.8/tk/menubar.rb
--rw-r--r-- root/root        7923 usr/lib/ruby/1.8/tk/menuspec.rb
--rw-r--r-- root/root         445 usr/lib/ruby/1.8/tk/message.rb
--rw-r--r-- root/root         686 usr/lib/ruby/1.8/tk/mngfocus.rb
--rw-r--r-- root/root        8356 usr/lib/ruby/1.8/tk/msgcat.rb
--rw-r--r-- root/root        8111 usr/lib/ruby/1.8/tk/namespace.rb
--rw-r--r-- root/root       11395 usr/lib/ruby/1.8/tk/optiondb.rb
--rw-r--r-- root/root        5006 usr/lib/ruby/1.8/tk/optionobj.rb
--rw-r--r-- root/root        2123 usr/lib/ruby/1.8/tk/pack.rb
--rw-r--r-- root/root        2791 usr/lib/ruby/1.8/tk/package.rb
--rw-r--r-- root/root        1125 usr/lib/ruby/1.8/tk/palette.rb
--rw-r--r-- root/root        6253 usr/lib/ruby/1.8/tk/panedwindow.rb
--rw-r--r-- root/root        3957 usr/lib/ruby/1.8/tk/place.rb
--rw-r--r-- root/root        1323 usr/lib/ruby/1.8/tk/radiobutton.rb
--rw-r--r-- root/root        1876 usr/lib/ruby/1.8/tk/root.rb
--rw-r--r-- root/root        1784 usr/lib/ruby/1.8/tk/scale.rb
--rw-r--r-- root/root        1728 usr/lib/ruby/1.8/tk/scrollable.rb
--rw-r--r-- root/root        2920 usr/lib/ruby/1.8/tk/scrollbar.rb
--rw-r--r-- root/root        1058 usr/lib/ruby/1.8/tk/scrollbox.rb
--rw-r--r-- root/root        2246 usr/lib/ruby/1.8/tk/selection.rb
--rw-r--r-- root/root        1691 usr/lib/ruby/1.8/tk/spinbox.rb
--rw-r--r-- root/root         877 usr/lib/ruby/1.8/tk/tagfont.rb
--rw-r--r-- root/root       39575 usr/lib/ruby/1.8/tk/text.rb
--rw-r--r-- root/root        2176 usr/lib/ruby/1.8/tk/textimage.rb
--rw-r--r-- root/root        3445 usr/lib/ruby/1.8/tk/textmark.rb
--rw-r--r-- root/root        6951 usr/lib/ruby/1.8/tk/texttag.rb
--rw-r--r-- root/root        4271 usr/lib/ruby/1.8/tk/textwindow.rb
--rw-r--r-- root/root       11133 usr/lib/ruby/1.8/tk/timer.rb
--rw-r--r-- root/root        6237 usr/lib/ruby/1.8/tk/toplevel.rb
--rw-r--r-- root/root         785 usr/lib/ruby/1.8/tk/txtwin_abst.rb
--rw-r--r-- root/root        9227 usr/lib/ruby/1.8/tk/validation.rb
--rw-r--r-- root/root       29768 usr/lib/ruby/1.8/tk/variable.rb
--rw-r--r-- root/root        2389 usr/lib/ruby/1.8/tk/virtevent.rb
--rw-r--r-- root/root        8557 usr/lib/ruby/1.8/tk/winfo.rb
--rw-r--r-- root/root        3444 usr/lib/ruby/1.8/tk/winpkg.rb
--rw-r--r-- root/root        6627 usr/lib/ruby/1.8/tk/wm.rb
--rw-r--r-- root/root        2868 usr/lib/ruby/1.8/tk/xim.rb
--rw-r--r-- root/root          57 usr/lib/ruby/1.8/tkafter.rb
--rw-r--r-- root/root          63 usr/lib/ruby/1.8/tkbgerror.rb
--rw-r--r-- root/root          60 usr/lib/ruby/1.8/tkcanvas.rb
--rw-r--r-- root/root         959 usr/lib/ruby/1.8/tkclass.rb
--rw-r--r-- root/root          63 usr/lib/ruby/1.8/tkconsole.rb
--rw-r--r-- root/root          60 usr/lib/ruby/1.8/tkdialog.rb
--rw-r--r-- root/root          57 usr/lib/ruby/1.8/tkentry.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/
--rw-r--r-- root/root         281 usr/lib/ruby/1.8/tkextlib/ICONS.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/ICONS/
--rw-r--r-- root/root        2702 usr/lib/ruby/1.8/tkextlib/ICONS/icons.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/ICONS/setup.rb
--rw-r--r-- root/root        5574 usr/lib/ruby/1.8/tkextlib/SUPPORT_STATUS
--rw-r--r-- root/root        3738 usr/lib/ruby/1.8/tkextlib/blt.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/blt/
--rw-r--r-- root/root        1571 usr/lib/ruby/1.8/tkextlib/blt/barchart.rb
--rw-r--r-- root/root        1836 usr/lib/ruby/1.8/tkextlib/blt/bitmap.rb
--rw-r--r-- root/root        1672 usr/lib/ruby/1.8/tkextlib/blt/busy.rb
--rw-r--r-- root/root       31698 usr/lib/ruby/1.8/tkextlib/blt/component.rb
--rw-r--r-- root/root         552 usr/lib/ruby/1.8/tkextlib/blt/container.rb
--rw-r--r-- root/root         520 usr/lib/ruby/1.8/tkextlib/blt/cutbuffer.rb
--rw-r--r-- root/root        4961 usr/lib/ruby/1.8/tkextlib/blt/dragdrop.rb
--rw-r--r-- root/root         287 usr/lib/ruby/1.8/tkextlib/blt/eps.rb
--rw-r--r-- root/root        1455 usr/lib/ruby/1.8/tkextlib/blt/graph.rb
--rw-r--r-- root/root        2254 usr/lib/ruby/1.8/tkextlib/blt/htext.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/blt/setup.rb
--rw-r--r-- root/root         464 usr/lib/ruby/1.8/tkextlib/blt/spline.rb
--rw-r--r-- root/root        1596 usr/lib/ruby/1.8/tkextlib/blt/stripchart.rb
--rw-r--r-- root/root        7483 usr/lib/ruby/1.8/tkextlib/blt/table.rb
--rw-r--r-- root/root         520 usr/lib/ruby/1.8/tkextlib/blt/tabnotebook.rb
--rw-r--r-- root/root        9360 usr/lib/ruby/1.8/tkextlib/blt/tabset.rb
--rw-r--r-- root/root        1427 usr/lib/ruby/1.8/tkextlib/blt/ted.rb
--rw-r--r-- root/root         720 usr/lib/ruby/1.8/tkextlib/blt/tile.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/blt/tile/
--rw-r--r-- root/root         313 usr/lib/ruby/1.8/tkextlib/blt/tile/button.rb
--rw-r--r-- root/root         368 usr/lib/ruby/1.8/tkextlib/blt/tile/checkbutton.rb
--rw-r--r-- root/root         308 usr/lib/ruby/1.8/tkextlib/blt/tile/frame.rb
--rw-r--r-- root/root         308 usr/lib/ruby/1.8/tkextlib/blt/tile/label.rb
--rw-r--r-- root/root         368 usr/lib/ruby/1.8/tkextlib/blt/tile/radiobutton.rb
--rw-r--r-- root/root         328 usr/lib/ruby/1.8/tkextlib/blt/tile/scrollbar.rb
--rw-r--r-- root/root         323 usr/lib/ruby/1.8/tkextlib/blt/tile/toplevel.rb
--rw-r--r-- root/root       21478 usr/lib/ruby/1.8/tkextlib/blt/tree.rb
--rw-r--r-- root/root       23744 usr/lib/ruby/1.8/tkextlib/blt/treeview.rb
--rw-r--r-- root/root        3604 usr/lib/ruby/1.8/tkextlib/blt/unix_dnd.rb
--rw-r--r-- root/root        4685 usr/lib/ruby/1.8/tkextlib/blt/vector.rb
--rw-r--r-- root/root        2927 usr/lib/ruby/1.8/tkextlib/blt/watch.rb
--rw-r--r-- root/root        1302 usr/lib/ruby/1.8/tkextlib/blt/win_printer.rb
--rw-r--r-- root/root        2715 usr/lib/ruby/1.8/tkextlib/blt/winop.rb
--rw-r--r-- root/root        4364 usr/lib/ruby/1.8/tkextlib/bwidget.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/bwidget/
--rw-r--r-- root/root         452 usr/lib/ruby/1.8/tkextlib/bwidget/arrowbutton.rb
--rw-r--r-- root/root         391 usr/lib/ruby/1.8/tkextlib/bwidget/bitmap.rb
--rw-r--r-- root/root         402 usr/lib/ruby/1.8/tkextlib/bwidget/button.rb
--rw-r--r-- root/root        1455 usr/lib/ruby/1.8/tkextlib/bwidget/buttonbox.rb
--rw-r--r-- root/root         823 usr/lib/ruby/1.8/tkextlib/bwidget/combobox.rb
--rw-r--r-- root/root        3007 usr/lib/ruby/1.8/tkextlib/bwidget/dialog.rb
--rw-r--r-- root/root         621 usr/lib/ruby/1.8/tkextlib/bwidget/dragsite.rb
--rw-r--r-- root/root         763 usr/lib/ruby/1.8/tkextlib/bwidget/dropsite.rb
--rw-r--r-- root/root         913 usr/lib/ruby/1.8/tkextlib/bwidget/dynamichelp.rb
--rw-r--r-- root/root         480 usr/lib/ruby/1.8/tkextlib/bwidget/entry.rb
--rw-r--r-- root/root         463 usr/lib/ruby/1.8/tkextlib/bwidget/label.rb
--rw-r--r-- root/root        1368 usr/lib/ruby/1.8/tkextlib/bwidget/labelentry.rb
--rw-r--r-- root/root         607 usr/lib/ruby/1.8/tkextlib/bwidget/labelframe.rb
--rw-r--r-- root/root        6873 usr/lib/ruby/1.8/tkextlib/bwidget/listbox.rb
--rw-r--r-- root/root        1414 usr/lib/ruby/1.8/tkextlib/bwidget/mainframe.rb
--rw-r--r-- root/root        3721 usr/lib/ruby/1.8/tkextlib/bwidget/messagedlg.rb
--rw-r--r-- root/root        2920 usr/lib/ruby/1.8/tkextlib/bwidget/notebook.rb
--rw-r--r-- root/root        1064 usr/lib/ruby/1.8/tkextlib/bwidget/pagesmanager.rb
--rw-r--r-- root/root         621 usr/lib/ruby/1.8/tkextlib/bwidget/panedwindow.rb
--rw-r--r-- root/root         625 usr/lib/ruby/1.8/tkextlib/bwidget/passwddlg.rb
--rw-r--r-- root/root         407 usr/lib/ruby/1.8/tkextlib/bwidget/progressbar.rb
--rw-r--r-- root/root        1081 usr/lib/ruby/1.8/tkextlib/bwidget/progressdlg.rb
--rw-r--r-- root/root         687 usr/lib/ruby/1.8/tkextlib/bwidget/scrollableframe.rb
--rw-r--r-- root/root         637 usr/lib/ruby/1.8/tkextlib/bwidget/scrolledwindow.rb
--rw-r--r-- root/root         402 usr/lib/ruby/1.8/tkextlib/bwidget/scrollview.rb
--rw-r--r-- root/root         984 usr/lib/ruby/1.8/tkextlib/bwidget/selectcolor.rb
--rw-r--r-- root/root        1636 usr/lib/ruby/1.8/tkextlib/bwidget/selectfont.rb
--rw-r--r-- root/root         397 usr/lib/ruby/1.8/tkextlib/bwidget/separator.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/bwidget/setup.rb
--rw-r--r-- root/root        1700 usr/lib/ruby/1.8/tkextlib/bwidget/spinbox.rb
--rw-r--r-- root/root         537 usr/lib/ruby/1.8/tkextlib/bwidget/titleframe.rb
--rw-r--r-- root/root        8654 usr/lib/ruby/1.8/tkextlib/bwidget/tree.rb
--rw-r--r-- root/root        2480 usr/lib/ruby/1.8/tkextlib/bwidget/widget.rb
--rw-r--r-- root/root         290 usr/lib/ruby/1.8/tkextlib/itcl.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/itcl/
--rw-r--r-- root/root        4154 usr/lib/ruby/1.8/tkextlib/itcl/incr_tcl.rb
--rw-r--r-- root/root         416 usr/lib/ruby/1.8/tkextlib/itcl/setup.rb
--rw-r--r-- root/root         286 usr/lib/ruby/1.8/tkextlib/itk.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/itk/
--rw-r--r-- root/root       10552 usr/lib/ruby/1.8/tkextlib/itk/incr_tk.rb
--rw-r--r-- root/root         413 usr/lib/ruby/1.8/tkextlib/itk/setup.rb
--rw-r--r-- root/root        4273 usr/lib/ruby/1.8/tkextlib/iwidgets.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/iwidgets/
--rw-r--r-- root/root        2234 usr/lib/ruby/1.8/tkextlib/iwidgets/buttonbox.rb
--rw-r--r-- root/root        1808 usr/lib/ruby/1.8/tkextlib/iwidgets/calendar.rb
--rw-r--r-- root/root         743 usr/lib/ruby/1.8/tkextlib/iwidgets/canvasprintbox.rb
--rw-r--r-- root/root         709 usr/lib/ruby/1.8/tkextlib/iwidgets/canvasprintdialog.rb
--rw-r--r-- root/root        2236 usr/lib/ruby/1.8/tkextlib/iwidgets/checkbox.rb
--rw-r--r-- root/root        2070 usr/lib/ruby/1.8/tkextlib/iwidgets/combobox.rb
--rw-r--r-- root/root         429 usr/lib/ruby/1.8/tkextlib/iwidgets/dateentry.rb
--rw-r--r-- root/root         801 usr/lib/ruby/1.8/tkextlib/iwidgets/datefield.rb
--rw-r--r-- root/root         415 usr/lib/ruby/1.8/tkextlib/iwidgets/dialog.rb
--rw-r--r-- root/root        2248 usr/lib/ruby/1.8/tkextlib/iwidgets/dialogshell.rb
--rw-r--r-- root/root         880 usr/lib/ruby/1.8/tkextlib/iwidgets/disjointlistbox.rb
--rw-r--r-- root/root        3381 usr/lib/ruby/1.8/tkextlib/iwidgets/entryfield.rb
--rw-r--r-- root/root         535 usr/lib/ruby/1.8/tkextlib/iwidgets/extbutton.rb
--rw-r--r-- root/root         636 usr/lib/ruby/1.8/tkextlib/iwidgets/extfileselectionbox.rb
--rw-r--r-- root/root         656 usr/lib/ruby/1.8/tkextlib/iwidgets/extfileselectiondialog.rb
--rw-r--r-- root/root         549 usr/lib/ruby/1.8/tkextlib/iwidgets/feedback.rb
--rw-r--r-- root/root         620 usr/lib/ruby/1.8/tkextlib/iwidgets/fileselectionbox.rb
--rw-r--r-- root/root         640 usr/lib/ruby/1.8/tkextlib/iwidgets/fileselectiondialog.rb
--rw-r--r-- root/root         536 usr/lib/ruby/1.8/tkextlib/iwidgets/finddialog.rb
--rw-r--r-- root/root        6243 usr/lib/ruby/1.8/tkextlib/iwidgets/hierarchy.rb
--rw-r--r-- root/root         696 usr/lib/ruby/1.8/tkextlib/iwidgets/hyperhelp.rb
--rw-r--r-- root/root         502 usr/lib/ruby/1.8/tkextlib/iwidgets/labeledframe.rb
--rw-r--r-- root/root         619 usr/lib/ruby/1.8/tkextlib/iwidgets/labeledwidget.rb
--rw-r--r-- root/root        1031 usr/lib/ruby/1.8/tkextlib/iwidgets/mainwindow.rb
--rw-r--r-- root/root        4080 usr/lib/ruby/1.8/tkextlib/iwidgets/menubar.rb
--rw-r--r-- root/root        1625 usr/lib/ruby/1.8/tkextlib/iwidgets/messagebox.rb
--rw-r--r-- root/root         445 usr/lib/ruby/1.8/tkextlib/iwidgets/messagedialog.rb
--rw-r--r-- root/root        3424 usr/lib/ruby/1.8/tkextlib/iwidgets/notebook.rb
--rw-r--r-- root/root        1596 usr/lib/ruby/1.8/tkextlib/iwidgets/optionmenu.rb
--rw-r--r-- root/root        2465 usr/lib/ruby/1.8/tkextlib/iwidgets/panedwindow.rb
--rw-r--r-- root/root        2591 usr/lib/ruby/1.8/tkextlib/iwidgets/promptdialog.rb
--rw-r--r-- root/root         563 usr/lib/ruby/1.8/tkextlib/iwidgets/pushbutton.rb
--rw-r--r-- root/root        2235 usr/lib/ruby/1.8/tkextlib/iwidgets/radiobox.rb
--rw-r--r-- root/root         545 usr/lib/ruby/1.8/tkextlib/iwidgets/scopedobject.rb
--rw-r--r-- root/root        7665 usr/lib/ruby/1.8/tkextlib/iwidgets/scrolledcanvas.rb
--rw-r--r-- root/root        1155 usr/lib/ruby/1.8/tkextlib/iwidgets/scrolledframe.rb
--rw-r--r-- root/root         791 usr/lib/ruby/1.8/tkextlib/iwidgets/scrolledhtml.rb
--rw-r--r-- root/root        3833 usr/lib/ruby/1.8/tkextlib/iwidgets/scrolledlistbox.rb
--rw-r--r-- root/root       14366 usr/lib/ruby/1.8/tkextlib/iwidgets/scrolledtext.rb
--rw-r--r-- root/root         457 usr/lib/ruby/1.8/tkextlib/iwidgets/scrolledwidget.rb
--rw-r--r-- root/root        1930 usr/lib/ruby/1.8/tkextlib/iwidgets/selectionbox.rb
--rw-r--r-- root/root        1950 usr/lib/ruby/1.8/tkextlib/iwidgets/selectiondialog.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/iwidgets/setup.rb
--rw-r--r-- root/root         712 usr/lib/ruby/1.8/tkextlib/iwidgets/shell.rb
--rw-r--r-- root/root         703 usr/lib/ruby/1.8/tkextlib/iwidgets/spindate.rb
--rw-r--r-- root/root         417 usr/lib/ruby/1.8/tkextlib/iwidgets/spinint.rb
--rw-r--r-- root/root        3055 usr/lib/ruby/1.8/tkextlib/iwidgets/spinner.rb
--rw-r--r-- root/root         703 usr/lib/ruby/1.8/tkextlib/iwidgets/spintime.rb
--rw-r--r-- root/root        3198 usr/lib/ruby/1.8/tkextlib/iwidgets/tabnotebook.rb
--rw-r--r-- root/root        1705 usr/lib/ruby/1.8/tkextlib/iwidgets/tabset.rb
--rw-r--r-- root/root         428 usr/lib/ruby/1.8/tkextlib/iwidgets/timeentry.rb
--rw-r--r-- root/root         801 usr/lib/ruby/1.8/tkextlib/iwidgets/timefield.rb
--rw-r--r-- root/root        1794 usr/lib/ruby/1.8/tkextlib/iwidgets/toolbar.rb
--rw-r--r-- root/root         811 usr/lib/ruby/1.8/tkextlib/iwidgets/watch.rb
--rw-r--r-- root/root        4326 usr/lib/ruby/1.8/tkextlib/pkg_checker.rb
--rw-r--r-- root/root         308 usr/lib/ruby/1.8/tkextlib/setup.rb
--rw-r--r-- root/root        1552 usr/lib/ruby/1.8/tkextlib/tcllib.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tcllib/
--rw-r--r-- root/root        3912 usr/lib/ruby/1.8/tkextlib/tcllib/autoscroll.rb
--rw-r--r-- root/root        2883 usr/lib/ruby/1.8/tkextlib/tcllib/ctext.rb
--rw-r--r-- root/root        2580 usr/lib/ruby/1.8/tkextlib/tcllib/cursor.rb
--rw-r--r-- root/root        1324 usr/lib/ruby/1.8/tkextlib/tcllib/datefield.rb
--rw-r--r-- root/root        2889 usr/lib/ruby/1.8/tkextlib/tcllib/ico.rb
--rw-r--r-- root/root        1248 usr/lib/ruby/1.8/tkextlib/tcllib/ip_entry.rb
--rw-r--r-- root/root       20103 usr/lib/ruby/1.8/tkextlib/tcllib/plotchart.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tcllib/setup.rb
--rw-r--r-- root/root        1005 usr/lib/ruby/1.8/tkextlib/tcllib/style.rb
--rw-r--r-- root/root        6533 usr/lib/ruby/1.8/tkextlib/tcllib/tkpiechart.rb
--rw-r--r-- root/root         277 usr/lib/ruby/1.8/tkextlib/tclx.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tclx/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tclx/setup.rb
--rw-r--r-- root/root        1215 usr/lib/ruby/1.8/tkextlib/tclx/tclx.rb
--rw-r--r-- root/root        1541 usr/lib/ruby/1.8/tkextlib/tile.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tile/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tile/setup.rb
--rw-r--r-- root/root        1448 usr/lib/ruby/1.8/tkextlib/tile/style.rb
--rw-r--r-- root/root         617 usr/lib/ruby/1.8/tkextlib/tile/tbutton.rb
--rw-r--r-- root/root         694 usr/lib/ruby/1.8/tkextlib/tile/tcheckbutton.rb
--rw-r--r-- root/root         608 usr/lib/ruby/1.8/tkextlib/tile/tlabel.rb
--rw-r--r-- root/root         653 usr/lib/ruby/1.8/tkextlib/tile/tmenubutton.rb
--rw-r--r-- root/root        1790 usr/lib/ruby/1.8/tkextlib/tile/tnotebook.rb
--rw-r--r-- root/root         694 usr/lib/ruby/1.8/tkextlib/tile/tradiobutton.rb
--rw-r--r-- root/root         398 usr/lib/ruby/1.8/tkextlib/tkDND.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tkDND/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tkDND/setup.rb
--rw-r--r-- root/root        2658 usr/lib/ruby/1.8/tkextlib/tkDND/shape.rb
--rw-r--r-- root/root        4026 usr/lib/ruby/1.8/tkextlib/tkDND/tkdnd.rb
--rw-r--r-- root/root         289 usr/lib/ruby/1.8/tkextlib/tkHTML.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tkHTML/
--rw-r--r-- root/root        8515 usr/lib/ruby/1.8/tkextlib/tkHTML/htmlwidget.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tkHTML/setup.rb
--rw-r--r-- root/root         561 usr/lib/ruby/1.8/tkextlib/tkimg.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tkimg/
--rw-r--r-- root/root         515 usr/lib/ruby/1.8/tkextlib/tkimg/bmp.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/gif.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/ico.rb
--rw-r--r-- root/root         521 usr/lib/ruby/1.8/tkextlib/tkimg/jpeg.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/pcx.rb
--rw-r--r-- root/root         679 usr/lib/ruby/1.8/tkextlib/tkimg/pixmap.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/png.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/ppm.rb
--rw-r--r-- root/root         511 usr/lib/ruby/1.8/tkextlib/tkimg/ps.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tkimg/setup.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/sgi.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/sun.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/tga.rb
--rw-r--r-- root/root         521 usr/lib/ruby/1.8/tkextlib/tkimg/tiff.rb
--rw-r--r-- root/root         531 usr/lib/ruby/1.8/tkextlib/tkimg/window.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/xbm.rb
--rw-r--r-- root/root         516 usr/lib/ruby/1.8/tkextlib/tkimg/xpm.rb
--rw-r--r-- root/root         302 usr/lib/ruby/1.8/tkextlib/tktable.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tktable/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tktable/setup.rb
--rw-r--r-- root/root       18436 usr/lib/ruby/1.8/tkextlib/tktable/tktable.rb
--rw-r--r-- root/root         315 usr/lib/ruby/1.8/tkextlib/tktrans.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/tktrans/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/tktrans/setup.rb
--rw-r--r-- root/root        1138 usr/lib/ruby/1.8/tkextlib/tktrans/tktrans.rb
--rw-r--r-- root/root         297 usr/lib/ruby/1.8/tkextlib/treectrl.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/treectrl/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/treectrl/setup.rb
--rw-r--r-- root/root       21142 usr/lib/ruby/1.8/tkextlib/treectrl/tktreectrl.rb
--rw-r--r-- root/root         883 usr/lib/ruby/1.8/tkextlib/vu.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/vu/
--rw-r--r-- root/root         941 usr/lib/ruby/1.8/tkextlib/vu/bargraph.rb
--rw-r--r-- root/root        1065 usr/lib/ruby/1.8/tkextlib/vu/charts.rb
--rw-r--r-- root/root        2010 usr/lib/ruby/1.8/tkextlib/vu/dial.rb
--rw-r--r-- root/root        4509 usr/lib/ruby/1.8/tkextlib/vu/pie.rb
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/vu/setup.rb
--rw-r--r-- root/root         490 usr/lib/ruby/1.8/tkextlib/vu/spinbox.rb
--rw-r--r-- root/root         325 usr/lib/ruby/1.8/tkextlib/winico.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/tkextlib/winico/
--rw-r--r-- root/root         318 usr/lib/ruby/1.8/tkextlib/winico/setup.rb
--rw-r--r-- root/root        4295 usr/lib/ruby/1.8/tkextlib/winico/winico.rb
--rw-r--r-- root/root          54 usr/lib/ruby/1.8/tkfont.rb
--rw-r--r-- root/root          60 usr/lib/ruby/1.8/tkmacpkg.rb
--rw-r--r-- root/root          63 usr/lib/ruby/1.8/tkmenubar.rb
--rw-r--r-- root/root          66 usr/lib/ruby/1.8/tkmngfocus.rb
--rw-r--r-- root/root          63 usr/lib/ruby/1.8/tkpalette.rb
--rw-r--r-- root/root          69 usr/lib/ruby/1.8/tkscrollbox.rb
--rw-r--r-- root/root          54 usr/lib/ruby/1.8/tktext.rb
--rw-r--r-- root/root          69 usr/lib/ruby/1.8/tkvirtevent.rb
--rw-r--r-- root/root          60 usr/lib/ruby/1.8/tkwinpkg.rb
--rw-r--r-- root/root         979 usr/lib/ruby/1.8/tmpdir.rb
--rw-r--r-- root/root        2892 usr/lib/ruby/1.8/tracer.rb
--rw-r--r-- root/root        8088 usr/lib/ruby/1.8/tsort.rb
--rw-r--r-- root/root        4367 usr/lib/ruby/1.8/un.rb
--rw-r--r-- root/root         698 usr/lib/ruby/1.8/uri.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/uri/
--rw-r--r-- root/root       17413 usr/lib/ruby/1.8/uri/common.rb
--rw-r--r-- root/root        3466 usr/lib/ruby/1.8/uri/ftp.rb
--rw-r--r-- root/root       24186 usr/lib/ruby/1.8/uri/generic.rb
--rw-r--r-- root/root        1192 usr/lib/ruby/1.8/uri/http.rb
--rw-r--r-- root/root         339 usr/lib/ruby/1.8/uri/https.rb
--rw-r--r-- root/root        3346 usr/lib/ruby/1.8/uri/ldap.rb
--rw-r--r-- root/root        5699 usr/lib/ruby/1.8/uri/mailto.rb
--rw-r--r-- root/root        1918 usr/lib/ruby/1.8/weakref.rb
--rw-r--r-- root/root         811 usr/lib/ruby/1.8/webrick.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/webrick/
--rw-r--r-- root/root        2113 usr/lib/ruby/1.8/webrick/accesslog.rb
--rw-r--r-- root/root        6779 usr/lib/ruby/1.8/webrick/cgi.rb
--rw-r--r-- root/root         436 usr/lib/ruby/1.8/webrick/compat.rb
--rw-r--r-- root/root        3198 usr/lib/ruby/1.8/webrick/config.rb
--rw-r--r-- root/root        2130 usr/lib/ruby/1.8/webrick/cookie.rb
--rw-r--r-- root/root         584 usr/lib/ruby/1.8/webrick/htmlutils.rb
--rw-r--r-- root/root        1335 usr/lib/ruby/1.8/webrick/httpauth.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/webrick/httpauth/
--rw-r--r-- root/root        2373 usr/lib/ruby/1.8/webrick/httpauth/authenticator.rb
--rw-r--r-- root/root        1747 usr/lib/ruby/1.8/webrick/httpauth/basicauth.rb
--rw-r--r-- root/root       11543 usr/lib/ruby/1.8/webrick/httpauth/digestauth.rb
--rw-r--r-- root/root        2167 usr/lib/ruby/1.8/webrick/httpauth/htdigest.rb
--rw-r--r-- root/root        1442 usr/lib/ruby/1.8/webrick/httpauth/htgroup.rb
--rw-r--r-- root/root        1714 usr/lib/ruby/1.8/webrick/httpauth/htpasswd.rb
--rw-r--r-- root/root         726 usr/lib/ruby/1.8/webrick/httpauth/userdb.rb
--rw-r--r-- root/root        7321 usr/lib/ruby/1.8/webrick/httpproxy.rb
--rw-r--r-- root/root       10087 usr/lib/ruby/1.8/webrick/httprequest.rb
--rw-r--r-- root/root        8131 usr/lib/ruby/1.8/webrick/httpresponse.rb
--rw-r--r-- root/root        1628 usr/lib/ruby/1.8/webrick/https.rb
--rw-r--r-- root/root        5763 usr/lib/ruby/1.8/webrick/httpserver.rb
--rw-r--r-- root/root         669 usr/lib/ruby/1.8/webrick/httpservlet.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/webrick/httpservlet/
--rw-r--r-- root/root        1761 usr/lib/ruby/1.8/webrick/httpservlet/abstract.rb
--rw-r--r-- root/root         972 usr/lib/ruby/1.8/webrick/httpservlet/cgi_runner.rb
--rw-r--r-- root/root        2989 usr/lib/ruby/1.8/webrick/httpservlet/cgihandler.rb
--rw-r--r-- root/root        1434 usr/lib/ruby/1.8/webrick/httpservlet/erbhandler.rb
--rw-r--r-- root/root       12444 usr/lib/ruby/1.8/webrick/httpservlet/filehandler.rb
--rw-r--r-- root/root         695 usr/lib/ruby/1.8/webrick/httpservlet/prochandler.rb
--rw-r--r-- root/root        3380 usr/lib/ruby/1.8/webrick/httpstatus.rb
--rw-r--r-- root/root       10182 usr/lib/ruby/1.8/webrick/httputils.rb
--rw-r--r-- root/root        1142 usr/lib/ruby/1.8/webrick/httpversion.rb
--rw-r--r-- root/root        2083 usr/lib/ruby/1.8/webrick/log.rb
--rw-r--r-- root/root        4948 usr/lib/ruby/1.8/webrick/server.rb
--rw-r--r-- root/root        4325 usr/lib/ruby/1.8/webrick/ssl.rb
--rw-r--r-- root/root        2248 usr/lib/ruby/1.8/webrick/utils.rb
--rw-r--r-- root/root         351 usr/lib/ruby/1.8/webrick/version.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/wsdl/
--rw-r--r-- root/root        1240 usr/lib/ruby/1.8/wsdl/binding.rb
--rw-r--r-- root/root        2353 usr/lib/ruby/1.8/wsdl/data.rb
--rw-r--r-- root/root        5038 usr/lib/ruby/1.8/wsdl/definitions.rb
--rw-r--r-- root/root         577 usr/lib/ruby/1.8/wsdl/documentation.rb
--rw-r--r-- root/root        1270 usr/lib/ruby/1.8/wsdl/import.rb
--rw-r--r-- root/root        1699 usr/lib/ruby/1.8/wsdl/importer.rb
--rw-r--r-- root/root         624 usr/lib/ruby/1.8/wsdl/info.rb
--rw-r--r-- root/root         936 usr/lib/ruby/1.8/wsdl/message.rb
--rw-r--r-- root/root        2670 usr/lib/ruby/1.8/wsdl/operation.rb
--rw-r--r-- root/root        1419 usr/lib/ruby/1.8/wsdl/operationBinding.rb
--rw-r--r-- root/root        1394 usr/lib/ruby/1.8/wsdl/param.rb
--rw-r--r-- root/root        3407 usr/lib/ruby/1.8/wsdl/parser.rb
--rw-r--r-- root/root         924 usr/lib/ruby/1.8/wsdl/part.rb
--rw-r--r-- root/root        1587 usr/lib/ruby/1.8/wsdl/port.rb
--rw-r--r-- root/root        1374 usr/lib/ruby/1.8/wsdl/portType.rb
--rw-r--r-- root/root        1121 usr/lib/ruby/1.8/wsdl/service.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/wsdl/soap/
--rw-r--r-- root/root         667 usr/lib/ruby/1.8/wsdl/soap/address.rb
--rw-r--r-- root/root         922 usr/lib/ruby/1.8/wsdl/soap/binding.rb
--rw-r--r-- root/root         967 usr/lib/ruby/1.8/wsdl/soap/body.rb
--rw-r--r-- root/root        2306 usr/lib/ruby/1.8/wsdl/soap/cgiStubCreator.rb
--rw-r--r-- root/root        5245 usr/lib/ruby/1.8/wsdl/soap/classDefCreator.rb
--rw-r--r-- root/root        2514 usr/lib/ruby/1.8/wsdl/soap/classDefCreatorSupport.rb
--rw-r--r-- root/root        1697 usr/lib/ruby/1.8/wsdl/soap/clientSkeltonCreator.rb
--rw-r--r-- root/root        3206 usr/lib/ruby/1.8/wsdl/soap/complexType.rb
--rw-r--r-- root/root        1289 usr/lib/ruby/1.8/wsdl/soap/data.rb
--rw-r--r-- root/root        4559 usr/lib/ruby/1.8/wsdl/soap/definitions.rb
--rw-r--r-- root/root        2385 usr/lib/ruby/1.8/wsdl/soap/driverCreator.rb
--rw-r--r-- root/root         640 usr/lib/ruby/1.8/wsdl/soap/element.rb
--rw-r--r-- root/root        1008 usr/lib/ruby/1.8/wsdl/soap/fault.rb
--rw-r--r-- root/root        1479 usr/lib/ruby/1.8/wsdl/soap/header.rb
--rw-r--r-- root/root        1082 usr/lib/ruby/1.8/wsdl/soap/headerfault.rb
--rw-r--r-- root/root        2072 usr/lib/ruby/1.8/wsdl/soap/mappingRegistryCreator.rb
--rw-r--r-- root/root        4773 usr/lib/ruby/1.8/wsdl/soap/methodDefCreator.rb
--rw-r--r-- root/root        2820 usr/lib/ruby/1.8/wsdl/soap/operation.rb
--rw-r--r-- root/root        1564 usr/lib/ruby/1.8/wsdl/soap/servantSkeltonCreator.rb
--rw-r--r-- root/root        2745 usr/lib/ruby/1.8/wsdl/soap/standaloneServerStubCreator.rb
--rw-r--r-- root/root         728 usr/lib/ruby/1.8/wsdl/types.rb
--rw-r--r-- root/root         525 usr/lib/ruby/1.8/wsdl/wsdl.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/wsdl/xmlSchema/
--rw-r--r-- root/root        1113 usr/lib/ruby/1.8/wsdl/xmlSchema/all.rb
--rw-r--r-- root/root        1088 usr/lib/ruby/1.8/wsdl/xmlSchema/any.rb
--rw-r--r-- root/root        1485 usr/lib/ruby/1.8/wsdl/xmlSchema/attribute.rb
--rw-r--r-- root/root        1116 usr/lib/ruby/1.8/wsdl/xmlSchema/choice.rb
--rw-r--r-- root/root        1738 usr/lib/ruby/1.8/wsdl/xmlSchema/complexContent.rb
--rw-r--r-- root/root        2852 usr/lib/ruby/1.8/wsdl/xmlSchema/complexType.rb
--rw-r--r-- root/root        1629 usr/lib/ruby/1.8/wsdl/xmlSchema/content.rb
--rw-r--r-- root/root        2921 usr/lib/ruby/1.8/wsdl/xmlSchema/data.rb
--rw-r--r-- root/root        1963 usr/lib/ruby/1.8/wsdl/xmlSchema/element.rb
--rw-r--r-- root/root         645 usr/lib/ruby/1.8/wsdl/xmlSchema/enumeration.rb
--rw-r--r-- root/root         799 usr/lib/ruby/1.8/wsdl/xmlSchema/import.rb
--rw-r--r-- root/root        3418 usr/lib/ruby/1.8/wsdl/xmlSchema/parser.rb
--rw-r--r-- root/root        2170 usr/lib/ruby/1.8/wsdl/xmlSchema/schema.rb
--rw-r--r-- root/root        1118 usr/lib/ruby/1.8/wsdl/xmlSchema/sequence.rb
--rw-r--r-- root/root        1237 usr/lib/ruby/1.8/wsdl/xmlSchema/simpleContent.rb
--rw-r--r-- root/root         895 usr/lib/ruby/1.8/wsdl/xmlSchema/simpleRestriction.rb
--rw-r--r-- root/root        1593 usr/lib/ruby/1.8/wsdl/xmlSchema/simpleType.rb
--rw-r--r-- root/root         584 usr/lib/ruby/1.8/wsdl/xmlSchema/unique.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/xmlrpc/
--rw-r--r-- root/root        1777 usr/lib/ruby/1.8/xmlrpc/base64.rb
--rw-r--r-- root/root       18267 usr/lib/ruby/1.8/xmlrpc/client.rb
--rw-r--r-- root/root         989 usr/lib/ruby/1.8/xmlrpc/config.rb
--rw-r--r-- root/root        5906 usr/lib/ruby/1.8/xmlrpc/create.rb
--rw-r--r-- root/root        3652 usr/lib/ruby/1.8/xmlrpc/datetime.rb
--rw-r--r-- root/root        3980 usr/lib/ruby/1.8/xmlrpc/httpserver.rb
--rw-r--r-- root/root        1594 usr/lib/ruby/1.8/xmlrpc/marshal.rb
--rw-r--r-- root/root       18316 usr/lib/ruby/1.8/xmlrpc/parser.rb
--rw-r--r-- root/root       23212 usr/lib/ruby/1.8/xmlrpc/server.rb
--rw-r--r-- root/root        3743 usr/lib/ruby/1.8/xmlrpc/utils.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/xsd/
--rw-r--r-- root/root        4924 usr/lib/ruby/1.8/xsd/charset.rb
--rw-r--r-- root/root         442 usr/lib/ruby/1.8/xsd/codegen.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/xsd/codegen/
--rw-r--r-- root/root        4375 usr/lib/ruby/1.8/xsd/codegen/classdef.rb
--rw-r--r-- root/root         605 usr/lib/ruby/1.8/xsd/codegen/commentdef.rb
--rw-r--r-- root/root        2313 usr/lib/ruby/1.8/xsd/codegen/gensupport.rb
--rw-r--r-- root/root        1205 usr/lib/ruby/1.8/xsd/codegen/methoddef.rb
--rw-r--r-- root/root        3990 usr/lib/ruby/1.8/xsd/codegen/moduledef.rb
--rw-r--r-- root/root       24011 usr/lib/ruby/1.8/xsd/datatypes.rb
--rw-r--r-- root/root         671 usr/lib/ruby/1.8/xsd/datatypes1999.rb
--rw-r--r-- root/root         704 usr/lib/ruby/1.8/xsd/iconvcharset.rb
--rw-r--r-- root/root        1273 usr/lib/ruby/1.8/xsd/namedelements.rb
--rw-r--r-- root/root        2766 usr/lib/ruby/1.8/xsd/ns.rb
--rw-r--r-- root/root        1365 usr/lib/ruby/1.8/xsd/qname.rb
--rw-r--r-- root/root        1229 usr/lib/ruby/1.8/xsd/xmlparser.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/xsd/xmlparser/
--rw-r--r-- root/root        1887 usr/lib/ruby/1.8/xsd/xmlparser/parser.rb
--rw-r--r-- root/root        1095 usr/lib/ruby/1.8/xsd/xmlparser/rexmlparser.rb
--rw-r--r-- root/root        1134 usr/lib/ruby/1.8/xsd/xmlparser/xmlparser.rb
--rw-r--r-- root/root        2559 usr/lib/ruby/1.8/xsd/xmlparser/xmlscanner.rb
--rw-r--r-- root/root       11649 usr/lib/ruby/1.8/yaml.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/1.8/yaml/
--rw-r--r-- root/root        5758 usr/lib/ruby/1.8/yaml/baseemitter.rb
--rw-r--r-- root/root        6108 usr/lib/ruby/1.8/yaml/basenode.rb
--rw-r--r-- root/root        1186 usr/lib/ruby/1.8/yaml/constants.rb
--rw-r--r-- root/root        2298 usr/lib/ruby/1.8/yaml/dbm.rb
--rw-r--r-- root/root        2140 usr/lib/ruby/1.8/yaml/emitter.rb
--rw-r--r-- root/root         612 usr/lib/ruby/1.8/yaml/encoding.rb
--rw-r--r-- root/root        1028 usr/lib/ruby/1.8/yaml/error.rb
--rw-r--r-- root/root         296 usr/lib/ruby/1.8/yaml/loader.rb
--rw-r--r-- root/root       16602 usr/lib/ruby/1.8/yaml/rubytypes.rb
--rw-r--r-- root/root         405 usr/lib/ruby/1.8/yaml/store.rb
--rw-r--r-- root/root         766 usr/lib/ruby/1.8/yaml/stream.rb
--rw-r--r-- root/root        1969 usr/lib/ruby/1.8/yaml/stringio.rb
--rw-r--r-- root/root         433 usr/lib/ruby/1.8/yaml/syck.rb
--rw-r--r-- root/root        4548 usr/lib/ruby/1.8/yaml/types.rb
--rw-r--r-- root/root        1216 usr/lib/ruby/1.8/yaml/yamlnode.rb
--rw-r--r-- root/root        1328 usr/lib/ruby/1.8/yaml/ypath.rb
-drwxr-xr-x root/root           0 usr/lib/ruby/site_ruby/
-drwxr-xr-x root/root           0 usr/lib/ruby/site_ruby/1.8/
-drwxr-xr-x root/root           0 usr/lib/ruby/site_ruby/1.8/i686-linux/
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root        3838 usr/man/man1/ruby.1.gz
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/erb
+-rwxr-xr-x root/bin usr/bin/irb
+-rwxr-xr-x root/bin usr/bin/rdoc
+-rwxr-xr-x root/bin usr/bin/ri
+-rwxr-xr-x root/bin usr/bin/ruby
+-rwxr-xr-x root/bin usr/bin/testrb
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/ruby-1.8.4/
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/COPYING
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/ChangeLog
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/GPL
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/README
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/README.EXT
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/README.EXT.ja
+-rw-r--r-- root/root usr/doc/ruby-1.8.4/README.ja
+drwxr-xr-x root/root usr/lib/
+-rw-r--r-- root/root usr/lib/libruby-static.a
+drwxr-xr-x root/root usr/lib/ruby/
+drwxr-xr-x root/root usr/lib/ruby/1.8/
+-rw-r--r-- root/root usr/lib/ruby/1.8/English.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/Env.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/abbrev.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/base64.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/benchmark.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/bigdecimal/
+-rw-r--r-- root/root usr/lib/ruby/1.8/bigdecimal/jacobian.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/bigdecimal/ludcmp.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/bigdecimal/math.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/bigdecimal/newton.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/bigdecimal/util.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/cgi-lib.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/cgi.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/cgi/
+-rw-r--r-- root/root usr/lib/ruby/1.8/cgi/session.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/cgi/session/
+-rw-r--r-- root/root usr/lib/ruby/1.8/cgi/session/pstore.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/complex.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/csv.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/date.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/date/
+-rw-r--r-- root/root usr/lib/ruby/1.8/date/format.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/date2.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/debug.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/delegate.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/dl/
+-rw-r--r-- root/root usr/lib/ruby/1.8/dl/import.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/dl/struct.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/dl/types.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/dl/win32.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/drb/
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/acl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/drb.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/eq.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/extserv.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/extservm.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/gw.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/invokemethod.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/observer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/ssl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/timeridconv.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/drb/unix.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/e2mmap.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/erb.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/eregex.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/expect.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/fileutils.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/finalize.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/find.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/forwardable.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/ftools.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/generator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/getoptlong.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/getopts.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/gserver.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/bigdecimal.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/config.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/curses.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/defines.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/digest.so
+drwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/digest/
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/digest/md5.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/digest/rmd160.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/digest/sha1.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/digest/sha2.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/dl.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/dl.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/dlconfig.h
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/dln.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/enumerator.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/env.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/etc.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/fcntl.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/iconv.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/intern.h
+drwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/io/
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/io/wait.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/missing.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/nkf.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/node.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/openssl.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/pty.so
+drwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/racc/
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/racc/cparse.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/rbconfig.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/re.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/readline.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/regex.h
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/ruby.h
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/rubyio.h
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/rubysig.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/sdbm.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/socket.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/st.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/stringio.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/strscan.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/syck.so
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/syslog.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/util.h
+-rw-r--r-- root/root usr/lib/ruby/1.8/i686-linux/version.h
+-rwxr-xr-x root/root usr/lib/ruby/1.8/i686-linux/zlib.so
+-rw-r--r-- root/root usr/lib/ruby/1.8/importenv.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/io/
+-rw-r--r-- root/root usr/lib/ruby/1.8/io/nonblock.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/ipaddr.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/irb/
+drwxr-xr-x root/root usr/lib/ruby/1.8/irb/cmd/
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/chws.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/fork.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/help.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/load.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/nop.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/pushws.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/cmd/subirb.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/completion.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/context.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/irb/ext/
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/change-ws.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/history.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/loader.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/math-mode.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/multi-irb.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/save-history.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/tracer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/use-loader.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ext/workspaces.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/extend-command.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/frame.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/help.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/init.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/input-method.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/irb/lc/
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/lc/error.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/lc/help-message
+drwxr-xr-x root/root usr/lib/ruby/1.8/irb/lc/ja/
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/lc/ja/error.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/lc/ja/help-message
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/locale.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/notifier.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/output-method.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ruby-lex.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ruby-token.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/slex.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/version.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/workspace.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/ws-for-case-2.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/irb/xmp.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/jcode.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/kconv.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/logger.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/mailread.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/mathn.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/matrix.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/md5.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/mkmf.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/monitor.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/mutex_m.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/net/
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/ftp.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/ftptls.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/http.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/https.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/imap.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/pop.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/protocol.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/smtp.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/telnet.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/net/telnets.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/observer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/open-uri.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/open3.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/openssl/
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl/bn.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl/buffering.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl/cipher.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl/digest.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl/ssl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/openssl/x509.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/optparse.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/optparse/
+-rw-r--r-- root/root usr/lib/ruby/1.8/optparse/date.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/optparse/shellwords.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/optparse/time.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/optparse/uri.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/optparse/version.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/ostruct.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/parsearg.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/parsedate.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/pathname.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/ping.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/pp.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/prettyprint.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/profile.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/profiler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/pstore.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/racc/
+-rw-r--r-- root/root usr/lib/ruby/1.8/racc/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rational.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/code_objects.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/diagram.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/dot/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/dot/dot.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/generators/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/chm_generator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/html_generator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/ri_generator.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/generators/template/
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/generators/template/chm/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/chm/chm.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/generators/template/html/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/html/hefss.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/html/html.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/html/kilmer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/html/old_html.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/html/one_page_html.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/generators/template/xml/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/xml/rdf.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/template/xml/xml.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/generators/xml_generator.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/markup/
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/markup/sample/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/sample/rdoc2latex.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/sample/sample.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/fragments.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/inline.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/lines.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/preprocess.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/to_flow.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/to_html.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/simple_markup/to_latex.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/markup/test/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/test/AllTests.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/test/TestInline.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/markup/test/TestParse.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/options.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/parsers/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/parsers/parse_c.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/parsers/parse_f95.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/parsers/parse_rb.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/parsers/parse_simple.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/parsers/parserfactory.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/rdoc.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rdoc/ri/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_cache.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_descriptions.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_display.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_driver.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_formatter.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_options.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_paths.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_reader.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_util.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/ri/ri_writer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/template.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/tokenstream.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rdoc/usage.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/readbytes.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/resolv-replace.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/resolv.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rexml/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/attlistdecl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/attribute.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/cdata.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/child.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/comment.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/doctype.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/document.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rexml/dtd/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/dtd/attlistdecl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/dtd/dtd.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/dtd/elementdecl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/dtd/entitydecl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/dtd/notationdecl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/element.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encoding.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rexml/encodings/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/CP-1252.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/EUC-JP.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/ICONV.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/ISO-8859-1.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/ISO-8859-15.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/SHIFT-JIS.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/SHIFT_JIS.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/UNILE.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/US-ASCII.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/UTF-16.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/encodings/UTF-8.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/entity.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/functions.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/instruction.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rexml/light/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/light/node.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/namespace.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/node.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/output.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parent.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parseexception.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rexml/parsers/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/baseparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/lightparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/pullparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/sax2parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/streamparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/treeparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/ultralightparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/parsers/xpathparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/quickpath.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/rexml.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/sax2listener.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/source.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/streamlistener.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/syncenumerator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/text.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rexml/validation/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/validation/relaxng.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/validation/validation.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/validation/validationexception.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/xmldecl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/xmltokens.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/xpath.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rexml/xpath_parser.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rinda/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rinda/rinda.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rinda/ring.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rinda/tuplespace.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rss/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/0.9.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/1.0.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/2.0.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/content.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/converter.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/dublincore.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/image.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/rss/maker/
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/0.9.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/1.0.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/2.0.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/base.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/content.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/dublincore.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/image.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/syndication.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/maker/trackback.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/rexmlparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/rss.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/syndication.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/taxonomy.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/trackback.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/utils.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/xml-stylesheet.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/xmlparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rss/xmlscanner.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/rubyunit.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/runit/
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/assert.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/runit/cui/
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/cui/testrunner.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/error.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/testcase.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/testresult.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/testsuite.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/runit/topublic.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/scanf.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/set.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/sha1.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/shell/
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/builtin-command.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/command-processor.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/error.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/filter.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/process-controller.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/system-command.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shell/version.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/shellwords.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/singleton.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/soap/
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/attachment.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/baseData.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/element.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/soap/encodingstyle/
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/encodingstyle/aspDotNetHandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/encodingstyle/handler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/encodingstyle/literalHandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/encodingstyle/soapHandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/generator.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/soap/header/
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/header/handler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/header/handlerset.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/header/simplehandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/httpconfigloader.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/soap/mapping/
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/factory.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/mapping.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/registry.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/rubytypeFactory.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/typeMap.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/wsdlencodedregistry.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mapping/wsdlliteralregistry.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/marshal.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/mimemessage.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/netHttpClient.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/processor.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/property.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/soap/rpc/
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/cgistub.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/driver.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/element.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/httpserver.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/proxy.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/router.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/rpc.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/soaplet.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/rpc/standaloneServer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/soap.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/streamHandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/soap/wsdlDriver.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/sync.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/tempfile.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/assertionfailederror.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/assertions.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/autorunner.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/collector.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/collector/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/collector/dir.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/collector/objectspace.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/error.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/failure.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/testcase.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/testresult.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/testsuite.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/ui/
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/ui/console/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/console/testrunner.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/ui/fox/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/fox/testrunner.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/ui/gtk/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/gtk/testrunner.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/ui/gtk2/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/gtk2/testrunner.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/testrunnermediator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/testrunnerutilities.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/ui/tk/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/ui/tk/testrunner.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/test/unit/util/
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/util/backtracefilter.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/util/observable.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/test/unit/util/procwrapper.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/thread.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/thwait.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/time.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/timeout.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/tmpdir.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/tracer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/tsort.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/un.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/uri/
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/common.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/ftp.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/generic.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/http.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/https.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/ldap.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/uri/mailto.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/weakref.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/webrick/
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/accesslog.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/cgi.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/compat.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/config.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/cookie.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/htmlutils.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/webrick/httpauth/
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/authenticator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/basicauth.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/digestauth.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/htdigest.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/htgroup.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/htpasswd.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpauth/userdb.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpproxy.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httprequest.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpresponse.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/https.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpserver.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/webrick/httpservlet/
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet/abstract.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet/cgi_runner.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet/cgihandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet/erbhandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet/filehandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpservlet/prochandler.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpstatus.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httputils.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/httpversion.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/log.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/server.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/ssl.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/utils.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/webrick/version.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/wsdl/
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/binding.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/data.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/definitions.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/documentation.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/import.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/importer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/info.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/message.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/operation.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/operationBinding.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/param.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/part.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/port.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/portType.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/service.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/wsdl/soap/
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/address.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/binding.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/body.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/cgiStubCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/classDefCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/classDefCreatorSupport.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/clientSkeltonCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/complexType.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/data.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/definitions.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/driverCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/element.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/fault.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/header.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/headerfault.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/mappingRegistryCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/methodDefCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/operation.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/servantSkeltonCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/standaloneServerStubCreator.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/soap/wsdl2ruby.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/types.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/wsdl.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/wsdl/xmlSchema/
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/all.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/annotation.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/any.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/attribute.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/choice.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/complexContent.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/complexType.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/content.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/data.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/element.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/enumeration.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/import.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/importer.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/include.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/length.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/pattern.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/schema.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/sequence.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/simpleContent.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/simpleExtension.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/simpleRestriction.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/simpleType.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/unique.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/wsdl/xmlSchema/xsd2ruby.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/xmlrpc/
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/base64.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/client.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/config.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/create.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/datetime.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/httpserver.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/marshal.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/server.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xmlrpc/utils.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/xsd/
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/charset.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/codegen.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/xsd/codegen/
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/codegen/classdef.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/codegen/commentdef.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/codegen/gensupport.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/codegen/methoddef.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/codegen/moduledef.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/datatypes.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/datatypes1999.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/iconvcharset.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/mapping.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/namedelements.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/ns.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/qname.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/xmlparser.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/xsd/xmlparser/
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/xmlparser/parser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/xmlparser/rexmlparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/xmlparser/xmlparser.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/xsd/xmlparser/xmlscanner.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml.rb
+drwxr-xr-x root/root usr/lib/ruby/1.8/yaml/
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/baseemitter.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/basenode.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/constants.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/dbm.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/encoding.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/error.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/loader.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/rubytypes.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/store.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/stream.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/stringio.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/syck.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/tag.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/types.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/yamlnode.rb
+-rw-r--r-- root/root usr/lib/ruby/1.8/yaml/ypath.rb
+drwxr-xr-x root/root usr/lib/ruby/site_ruby/
+drwxr-xr-x root/root usr/lib/ruby/site_ruby/1.8/
+drwxr-xr-x root/root usr/lib/ruby/site_ruby/1.8/i686-linux/
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man1/
+-rw-r--r-- root/root usr/man/man1/ruby.1.gz
