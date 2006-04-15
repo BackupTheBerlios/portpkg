@@ -735,8 +735,8 @@ add_pkg()
   if ! [ "$pkg_file" ] || $rebuild; then
     build_pkg || return 1
     pkg_file=$PKG_DIR/$group/$package.tgz
-  elif $download_only; then
-    stanza "Already built. No need to download source files. Skipping."
+  elif $download_only || $prepare_only; then
+    stanza "Already built. Skipping."
   fi
 
   # track as finished
