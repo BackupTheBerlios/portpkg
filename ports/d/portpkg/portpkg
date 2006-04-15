@@ -110,7 +110,7 @@ warn()   { echo -e "WARNING: $@"; }
 error()  { [ "$*" ] && echo -e "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && echo "$@" >&2; }
-pause()  { $INTERACTIVE || return; echo -ne "\n$@ " >&2; local s; read s; echo -n $s; }
+pause()  { $INTERACTIVE || return 0; echo -ne "\n$@ " >&2; local s; read s; echo -n $s; }
 
 # checks
 has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
