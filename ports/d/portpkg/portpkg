@@ -181,7 +181,7 @@ get() # url dest [md5sum]
           cvs -qz3 up -dP . )
         else
           ( cd `dirname $dest`
-          cvs -qz3 -d `echo $try | sed "s,^cvs://,,;s,/[^/]*$,,"` co `basename $try` )
+          cvs -qz3 -d `echo $try | sed "s,^cvs://,,;s,/[^/]*$,,"` co -P `basename $try` )
         fi
         return 0;;
       *)
