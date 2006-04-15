@@ -1079,7 +1079,7 @@ init()
 
   # read mirrors, ignore and exclude
   repos=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/repos{.local,} | sed "s,^,$PRT_DIR/,"`
-  mirrors=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/mirrors{.local,.$MIRRORS}`
+  mirrors=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/mirrors{.local,.$MIRRORS,}`
   ignore=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/ignore{.local,}`
   exclude=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/exclude{.local,}`
   use=`grep -vshe ^# -e ^$ {$CFG_DIR,$PRT_DIR}/use{.local,}`
