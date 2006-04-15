@@ -207,13 +207,13 @@ regex() # >regex_list
     case $arg in
       */)
         # groups
-        echo -n " -e \(^\|\/\)$arg";;
+        echo -n " -e \(^\|/\)$arg";;
       */*)
         # explicit expression (group/name and group/package)
-        echo -n " -e \(^\|\/\)${arg%/*}\(/.*/\|\/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
+        echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
       *)
         # (g_)names and (g_)packages
-        echo -n " -e \(^\|\/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
+        echo -n " -e \(^\|/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
   done
   [ $# == 0 ] && echo "-e ^$" || true
