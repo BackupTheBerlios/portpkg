@@ -1032,7 +1032,7 @@ maintain,export,noask"
     shift
   done
 
-  $prepare_only && NO_REQS=true
+  $prepare_only && TEST_REQS=true
   $rebuild && reinstall=true
   $remaintain && rebuild=true
   $VERBOSE && output=/dev/stdout
