@@ -1,27 +1,12 @@
-MPLAYER AND DEPENDENCIES:
+MPLAYER AND DEPENDENCIES
+------------------------
 
-MPlayer can be built with support for many *optional* libraries.
+MPlayer is a feature monster. It can do almost everything if you have
+the libraries, which mplayer autodetects on configuring the source.
 
-These lists of required and optional dependencies is therefore incomplete:
-You may not want to have all that dependencies or you may want to have
-support for more special features which need that you have other packages
-installed *before* you build MPlayer.
+PLEASE check the 'optional'-entries in the requires file and pre-install
+the things you like, because they really are not essential for mplayer to
+run but can be quite nice to have.
 
-I have decided to only include Slackware packages in the requires-file itself,
-(the requires-file is obligatory and this should be ok, since most of Slackware
-systems are full-installations) and to put any other found dependency to
-optional.
-
-Note: You can always run portpkg --noreqs mplayer to skip dependencies
-checking at all!
-
-tom
-
------------------
-
-EDIT: I moved optional packages to optional and packages that are _really_ required to 'requires'.
-Correct me if this is wrong, but -q isn't a solution cause I need at least the essential packages.
-Think this is more like the main principle - mplayer detects what is installed, so if you have ogg
-and use ogg, it will find and configure the player for ogg-support [for example].
-
+----
 hnaz
