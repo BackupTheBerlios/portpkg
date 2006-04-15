@@ -875,11 +875,11 @@ do_info() # pkgex-list
     echo
     echo "PACKAGE NAME:  $package"
     local inst=`ls_inst $(regex $name)`
-    [ "$inst" ] && echo "INSTALLED VERSION:  "$inst
+    [ "$inst" ] && echo "INSTALLED VERSION:  "$inst | fmt -t
     [ "$size" ] && echo "COMPRESSED PACKAGE SIZE:  $size K"
     [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
-    [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file"
-    echo "SCRIPT LOCATION:  $script"
+    [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file" | fmt -t
+    echo "SCRIPT LOCATION:  $script" | fmt -t
     [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
     [ "$uses" ] && echo "PACKAGE USES:  "$uses | fmt -t
