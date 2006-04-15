@@ -307,8 +307,11 @@ grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
   uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $use | pkg2name | any2base | sort -u`
 
   # info about cached .tgz-packages
-  pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
+#  pkg_file=`find $PKG_DIR/{$group/,} -name $package.tgz 2>/dev/null | head -n 1`
+  pkg_file=`ls_pkg "^$group/$package$"`
+  pkg_file=${pkg_file:-`ls_pkg "/$package$"`}
   if [ "$pkg_file" ]; then
+    pkg_file=$PKG_DIR/$pkg_file.tgz
     local s=`gzip -l $pkg_file 2>/dev/null | tail -n 1`
     size=`echo $s | awk '{ print $1 }'`
     u_size=`echo $s | awk '{ print $2 }'`
@@ -321,8 +324,8 @@ grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
 
   # maintained port?
   maintain=false
-  local build=`echo $package | sed -r "s,^.*-(.*)$,\1,"`
-  [ "$MY_TAG" ] && case $build in *[0-9]$MY_TAG) maintain=true;; esac
+#  local build=`echo $package | sed -r "s,^.*-(.*)$,\1,"`
+  [ "$MY_TAG" ] && case $package in *[0-9]$MY_TAG) maintain=true;; esac
   $MAINTAIN_ALL && maintain=true
   [ -f $path/slot-in ] && slot_in=true || slot_in=false
   [ -f $path/pseudo ] && pseudo=true || pseudo=false
