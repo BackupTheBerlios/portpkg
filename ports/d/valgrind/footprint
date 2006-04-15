@@ -1,69 +1,135 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         112 install/doinst.sh
--rw-r--r-- root/root         455 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin        31340 usr/bin/cg_annotate
--rwxr-xr-x root/bin       439628 usr/bin/valgrind
--rwxr-xr-x root/bin         7488 usr/bin/valgrind-listener
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/valgrind-2.2.0/
--rw-r--r-- root/root        1264 usr/doc/valgrind-2.2.0/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/valgrind-2.2.0/COPYING
--rw-r--r-- root/root       16878 usr/doc/valgrind-2.2.0/FAQ.txt
--rw-r--r-- root/root       29121 usr/doc/valgrind-2.2.0/NEWS
--rw-r--r-- root/root        3942 usr/doc/valgrind-2.2.0/README
--rw-r--r-- root/root        6314 usr/doc/valgrind-2.2.0/README_MISSING_SYSCALL_OR_IOCTL
--rw-r--r-- root/root        4133 usr/doc/valgrind-2.2.0/README_PACKAGERS
--rw-r--r-- root/root         173 usr/doc/valgrind-2.2.0/TODO
--rw-r--r-- root/root        4400 usr/doc/valgrind-2.2.0/ac_main.html
--rw-r--r-- root/root        2136 usr/doc/valgrind-2.2.0/cc_main.html
--rw-r--r-- root/root       33012 usr/doc/valgrind-2.2.0/cg_main.html
--rw-r--r-- root/root       17784 usr/doc/valgrind-2.2.0/cg_techdocs.html
--rw-r--r-- root/root       69668 usr/doc/valgrind-2.2.0/coregrind_core.html
--rw-r--r-- root/root        7244 usr/doc/valgrind-2.2.0/coregrind_intro.html
--rw-r--r-- root/root       30624 usr/doc/valgrind-2.2.0/coregrind_tools.html
--rw-r--r-- root/root        9751 usr/doc/valgrind-2.2.0/date.gif
--rw-r--r-- root/root        2124 usr/doc/valgrind-2.2.0/hg_main.html
--rw-r--r-- root/root        2070 usr/doc/valgrind-2.2.0/lk_main.html
--rw-r--r-- root/root        4601 usr/doc/valgrind-2.2.0/manual.html
--rw-r--r-- root/root       36153 usr/doc/valgrind-2.2.0/mc_main.html
--rw-r--r-- root/root       92379 usr/doc/valgrind-2.2.0/mc_techdocs.html
--rw-r--r-- root/root       14187 usr/doc/valgrind-2.2.0/ms_main.html
--rw-r--r-- root/root        1818 usr/doc/valgrind-2.2.0/nl_main.html
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/valgrind/
--rw-r--r-- root/root        3712 usr/include/valgrind/helgrind.h
--rw-r--r-- root/root       11967 usr/include/valgrind/memcheck.h
--rw-r--r-- root/root       16727 usr/include/valgrind/valgrind.h
--rw-r--r-- root/root        2362 usr/include/valgrind/vg_constants_skin.h
--rw-r--r-- root/root       29884 usr/include/valgrind/vg_kerneliface.h
--rw-r--r-- root/root      107968 usr/include/valgrind/vg_skin.h
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         221 usr/lib/pkgconfig/valgrind.pc
-drwxr-xr-x root/root           0 usr/lib/valgrind/
--rw-r--r-- root/root        4860 usr/lib/valgrind/default.supp
--rw-r--r-- root/root        3612 usr/lib/valgrind/glibc-2.1.supp
--rw-r--r-- root/root        8500 usr/lib/valgrind/glibc-2.2.supp
--rw-r--r-- root/root        4759 usr/lib/valgrind/glibc-2.3.supp
--rwxr-xr-x root/root       32000 usr/lib/valgrind/hp2ps
--rwxr-xr-x root/root       56168 usr/lib/valgrind/libpthread.so
--rwxr-xr-x root/root      565284 usr/lib/valgrind/stage2
--rwxr-xr-x root/root      439628 usr/lib/valgrind/valgrind
--rwxr-xr-x root/root        4280 usr/lib/valgrind/vg_inject.so
--rwxr-xr-x root/root       21252 usr/lib/valgrind/vgpreload_addrcheck.so
--rwxr-xr-x root/root       18296 usr/lib/valgrind/vgpreload_helgrind.so
--rwxr-xr-x root/root       18296 usr/lib/valgrind/vgpreload_massif.so
--rwxr-xr-x root/root       21272 usr/lib/valgrind/vgpreload_memcheck.so
--rwxr-xr-x root/root       51436 usr/lib/valgrind/vgskin_addrcheck.so
--rwxr-xr-x root/root       31492 usr/lib/valgrind/vgskin_cachegrind.so
--rwxr-xr-x root/root        3656 usr/lib/valgrind/vgskin_corecheck.so
--rwxr-xr-x root/root       34512 usr/lib/valgrind/vgskin_helgrind.so
--rwxr-xr-x root/root        6912 usr/lib/valgrind/vgskin_lackey.so
--rwxr-xr-x root/root       26948 usr/lib/valgrind/vgskin_massif.so
--rwxr-xr-x root/root       93412 usr/lib/valgrind/vgskin_memcheck.so
--rwxr-xr-x root/root        3560 usr/lib/valgrind/vgskin_none.so
--rw-r--r-- root/root        3107 usr/lib/valgrind/xfree-3.supp
--rw-r--r-- root/root        3119 usr/lib/valgrind/xfree-4.supp
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/cg_annotate
+-rwxr-xr-x root/bin usr/bin/valgrind
+-rwxr-xr-x root/bin usr/bin/valgrind-listener
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/valgrind-3.1.1/
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/AUTHORS
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/COPYING
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/FAQ.txt
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/NEWS
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/README
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/README_DEVELOPERS
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/README_MISSING_SYSCALL_OR_IOCTL
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/README_PACKAGERS
+drwxr-xr-x root/root usr/doc/valgrind-3.1.1/html/
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/FAQ.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/ac-manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/bk01ar01.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/bk03ar01.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/cg-manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/cg-tech-docs.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.acknowledge.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.authors.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.install.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.news.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.readme-developers.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.readme-missing.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.readme-packagers.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/dist.readme.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/hg-manual.html
+drwxr-xr-x root/root usr/doc/valgrind-3.1.1/html/images/
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/images/home.png
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/images/massif-graph-sm.png
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/images/massif-graph.png
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/images/next.png
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/images/prev.png
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/images/up.png
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/index.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/license.gfdl.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/license.gpl.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/licenses.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/lk-manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/manual-core.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/manual-intro.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/mc-manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/mc-tech-docs.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/ms-manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/nl-manual.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/quick-start.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/tech-docs.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/vg_basic.css
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/html/writing-tools.html
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/valgrind_manual.pdf
+-rw-r--r-- root/root usr/doc/valgrind-3.1.1/valgrind_manual.ps
+drwxr-xr-x root/root usr/include/
+drwxr-xr-x root/root usr/include/valgrind/
+-rw-r--r-- root/root usr/include/valgrind/helgrind.h
+-rw-r--r-- root/root usr/include/valgrind/libvex.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_basictypes.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_emwarn.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_guest_amd64.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_guest_arm.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_guest_offsets.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_guest_ppc32.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_guest_x86.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_ir.h
+-rw-r--r-- root/root usr/include/valgrind/libvex_trc_values.h
+-rw-r--r-- root/root usr/include/valgrind/memcheck.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_aspacemgr.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_basics.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_basics_asm.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_clientstate.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_cpuid.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_debuginfo.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_errormgr.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_execontext.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_hashtable.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_libcassert.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_libcbase.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_libcfile.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_libcprint.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_libcproc.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_libcsignal.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_machine.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_mallocfree.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_options.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_oset.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_profile.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_redir.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_replacemalloc.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_signals.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_stacktrace.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_threadstate.h
+-rw-r--r-- root/root usr/include/valgrind/pub_tool_tooliface.h
+-rw-r--r-- root/root usr/include/valgrind/valgrind.h
+-rw-r--r-- root/root usr/include/valgrind/vki-amd64-linux.h
+-rw-r--r-- root/root usr/include/valgrind/vki-linux.h
+-rw-r--r-- root/root usr/include/valgrind/vki-ppc32-linux.h
+-rw-r--r-- root/root usr/include/valgrind/vki-x86-linux.h
+-rw-r--r-- root/root usr/include/valgrind/vki_posixtypes-amd64-linux.h
+-rw-r--r-- root/root usr/include/valgrind/vki_posixtypes-ppc32-linux.h
+-rw-r--r-- root/root usr/include/valgrind/vki_posixtypes-x86-linux.h
+drwxr-xr-x root/root usr/lib/
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/valgrind.pc
+drwxr-xr-x root/root usr/lib/valgrind/
+-rw-r--r-- root/root usr/lib/valgrind/default.supp
+-rw-r--r-- root/root usr/lib/valgrind/glibc-2.2.supp
+-rw-r--r-- root/root usr/lib/valgrind/glibc-2.3.supp
+-rw-r--r-- root/root usr/lib/valgrind/glibc-2.4.supp
+-rwxr-xr-x root/root usr/lib/valgrind/hp2ps
+drwxr-xr-x root/root usr/lib/valgrind/x86-linux/
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/cachegrind
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/helgrind
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/lackey
+-rw-r--r-- root/root usr/lib/valgrind/x86-linux/libcoregrind.a
+-rw-r--r-- root/root usr/lib/valgrind/x86-linux/libvex.a
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/massif
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/memcheck
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/none
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/vgpreload_core.so
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/vgpreload_helgrind.so
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/vgpreload_massif.so
+-rwxr-xr-x root/root usr/lib/valgrind/x86-linux/vgpreload_memcheck.so
+-rw-r--r-- root/root usr/lib/valgrind/xfree-3.supp
+-rw-r--r-- root/root usr/lib/valgrind/xfree-4.supp
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man1/
+-rw-r--r-- root/root usr/man/man1/valgrind.1.gz
