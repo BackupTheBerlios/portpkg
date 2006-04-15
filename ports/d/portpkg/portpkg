@@ -434,14 +434,19 @@ maintainer_mode()
   echo "$requires" >$t/old_req
   echo "$optional" >$t/old_opt
   find $TMP/package-$name/ -type f | xargs file >$t/ftypes
+  deps() { ldd "$@" | grep -v "not found" | awk '{ print $3 }' | grep -v ^$ | sort -u; };
+  deps `grep ":.*ELF" $t/ftypes | cut -d : -f 1` >$t/deps
+  deps `cat $t/deps` >$t/deps_deps
   { # shared libraries
-    grep ":.*ELF" $t/ftypes | cut -d : -f 1 | xargs -r ldd \
-    | sed -n "\,=>,s,^.* => \(.*\) (.*)$,\1,p" | sort -u | cut -c 2- | xargs -i echo ^{}
+    fgrep -vxf $t/deps_deps $t/deps | sed "s,^/,^,"
+#    grep ":.*ELF" $t/ftypes | cut -d : -f 1 | xargs -r ldd \
+#    | sed -n "\,=>,s,^.* => \(.*\) (.*)$,\1,p" | sort -u | cut -c 2- | xargs -i echo ^{}
     # perl modules (identify them by man pages when searching /var/log/packages/*)
     grep -ie ":.*perl" -e "\.pm:" $t/ftypes | cut -d : -f 1 \
     | xargs sed -n "s,^\ *use *\([A-Z][a-z][^';<> ]*\).*,\1,p" | xargs -i echo "/man./{}\."
   } | sed "s,/\./,/,g" | grep -lf - $ADM_DIR/packages/* | pkg2name | any2base \
-  | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel," | grep -v ^$name$ >$t/auto_req_raw
+  | grep -v ^$name$ >$t/auto_req_raw
+#  | sed -e "s,-solibs$,," -e "s,^x11$,&\nx11-devel,"
   # perl or python in general?
   grep -qie ":.*perl" -e "\.pm:" $t/ftypes && echo perl >>$t/auto_req_raw
   grep -qie ":.*python" -e "\.py:" $t/ftypes && echo python >>$t/auto_req_raw
@@ -457,11 +462,9 @@ maintainer_mode()
 
   # if there's alread a "requires" file, add new dependencies as optional
   if [ "$requires" ]; then
-    optional="$optional
-`cat $t/new_req`"
+    optional=`( echo "$optional"; cat $t/new_req ) | sort -u`
   else
-    requires="$requires
-`cat $t/new_req`"
+    requires=`( echo "$requires"; cat $t/new_req ) | sort -u`
   fi
 
   # now generate new "requires" file
@@ -480,10 +483,12 @@ maintainer_mode()
   [ -f flags ] && sort -uo flags flags
 
   # show a few statistics
-  fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "  --> Ignoring dependencies:"
+  $DEBUG && fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "maintainer_mode(): ignored dependencies:" >&2
+#  fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "  --> Ignoring dependencies:"
   cat $t/new_req | xargs -r echo "  --> New dependencies:"
 #  fgrep -xf optional $t/auto_req | xargs -r echo "  --> Dependant options:"
-  fgrep -hxvf $t/auto_req $t/new_req $t/old_req | xargs -r echo "  --> Arbitrary dependencies:"
+  fgrep -hxvf $t/auto_req $t/new_req $t/old_req \
+| xargs -r echo "  --> Arbitrary dependencies (KEEP THIS LIST SHORT):"
 
   # check for common mistakes
 #  egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
