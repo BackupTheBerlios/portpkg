@@ -677,16 +677,18 @@ build_pkg()
   true
 }
 
+# do some basic checks on the current package
 check_pkg()
 {
   $DRY_RUN && return 0
   local t=`mktemp -d`
   debug "check_pkg()" "$@"
+  [ -f $pkg_file ] || return 0
   tar tzf $pkg_file >$t/footprint
 
   # check for common mistakes
   egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
-    -e "/$ARCH-slackware-linux-" $t/footprint >$t/check_path
+    -e "etc/gconf/gconf\.xml\..*" -e ".*/$ARCH-slackware-linux-.*" $t/footprint >$t/check_path
   egrep -e "^........w" $t/footprint >$t/check_perm
   cat $t/check_path | xargs -r -l echo "WARNING: Unusual directories:"
 
