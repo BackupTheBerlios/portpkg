@@ -74,7 +74,7 @@ msg_level=0
 # global variables
 declare \
   repos ignore mirrors exclude use arch_filter \
-  package name group \
+  package name group path \
   script description requires optional blocks uses size u_size sources pkg_file \
   maintain slot_in pseudo no_fakeroot
 
@@ -290,7 +290,7 @@ get_info() # pkgex
 #  local path=`dirname $loc`/$name
 #  script=`find $path/ -name "*SlackBuild" | head -n 1`
   script=`find $(echo $loc | pkg2name){.,/}SlackBuild 2>/dev/null | head -n 1`
-  local path=`dirname $script`
+  path=`dirname $script`
   description=`grep -s ^$name: $path/slack-desc`
   requires=`{ \
 grep -sve ^$ -e ^# $path/requires; \
