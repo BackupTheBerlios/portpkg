@@ -348,7 +348,7 @@ check_reqs()
 #  ls_inst >$t/inst
   debug "check_reqs(): starting: $package"
   # remember group and name for a refresh later
-  local gpkg=""
+  local prev=""
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   $TEST_REQS && debug "check_reqs(): testing only"
   debug "check_reqs(): $name requires: "$requires
@@ -363,9 +363,9 @@ check_reqs()
       debug "check_reqs(): $req is installed ($inst_pkg)"
       # if not in strict mode then it's sufficient
       $LAZY_CHECKS && continue
-    elif $TEST_REQS; then
-      error "Dependency $req is not installed! Stopped."
-      return 1
+#    elif $TEST_REQS; then
+#      error "Dependency $req is not installed! Stopped."
+#      return 1
     fi
 
     # anyway, is there an available port?
@@ -374,20 +374,12 @@ check_reqs()
       # is it up-to-date?
       ls_inst -qx $avail_pkg && continue
       debug "check_reqs(): call: add_pkg $avail_pkg"
-      $DRY_RUN && ! [ "$gpkg" ] && stanza "Preparing dependencies of $package:"
-      gpkg=$group/$package
-      ( $DRY_RUN && msg_level=`expr $msg_level + 1`
+      $DRY_RUN && ! [ "$prev" ] && stanza "Preparing dependencies of $package:"
+      prev=$name
+      ( $DRY_RUN && msg_level=1
       get_info $avail_pkg || exit 1
-      if ! add_pkg; then
-#        $DRY_RUN && msg_level=`expr $msg_level - 1`
-        error "$avail_pkg is broken! Stopping `echo $gpkg | pkg2name | any2base`."
-        exit 1
-      fi ) || return 1
-#      $DRY_RUN && msg_level=`expr $msg_level - 1`
+      add_pkg || die "$avail_pkg is broken! Stopping $prev." ) || return 1
       $DRY_RUN && row "Installing dependency $avail_pkg"
-
-#      # after that add_pkg we have to refresh
-#      get_info $gpkg
     elif ! [ "$inst_pkg" ]; then
       error "Cannot find required package $req! Stopping."
       return 1
