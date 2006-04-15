@@ -436,7 +436,7 @@ maintainer_mode()
   echo "$requires" >$t/old_req
   echo "$optional" >$t/old_opt
   find $TMP/package-$name/ -type f | xargs file >$t/ftypes
-  deps() { ldd "$@" | grep -v "not found" | awk '{ print $3 }' | grep -v ^$ | sort -u; };
+  deps() { ldd "$@" 2>/dev/null | grep -v "not found" | awk '{ print $3 }' | grep -v ^$ | sort -u; };
   deps `grep ":.*ELF" $t/ftypes | cut -d : -f 1` >$t/deps
   deps `cat $t/deps` >$t/deps_deps
   { # shared libraries
