@@ -706,6 +706,12 @@ check_pkg()
     warn "No packager tag although not from slackware.com!";;
   esac;; esac
 
+  # list .new files
+  local s
+  grep -wo "etc/.*\.new$" $t/footprint | while read s; do
+    [ -f /${s%.new} ] && warn "Consider updating /${s%.new} with /$s!"
+  done
+
   # for now, all this is tolerable
   return 0
 }
