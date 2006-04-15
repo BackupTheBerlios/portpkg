@@ -292,7 +292,7 @@ get_info() # pkgex
   script=`find $(echo $loc | pkg2name){.,/}SlackBuild 2>/dev/null | head -n 1`
   path=`dirname $script`
 #  description=`grep -s ^$name: $path/slack-desc`
-  description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script
+  description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script \
 | sed "s,\\$NAME,$name,"`
   requires=`{ \
 grep -sve ^$ -e ^# $path/requires; \
