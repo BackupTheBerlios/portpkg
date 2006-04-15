@@ -845,12 +845,15 @@ do_export()
 {
   [ "$EXPORT" ] || die "Run pp-config to define export method first!"
 
-#  has_args "$@" || die
   stanza "Exporting:"
   
-  [ -f $CFG_DIR/plugins/$EXPORT ] || die "$EXPORT not found!"
-
-  ( . $CFG_DIR/plugins/$EXPORT )
+  if  [ -f $PRT_DIR/plugins/$EXPORT ]; then
+    ( . $PRT_DIR/plugins/$EXPORT )
+  elif  [ -f $CFG_DIR/plugins/$EXPORT ]; then
+    ( . $CFG_DIR/plugins/$EXPORT )
+  else
+    die "$EXPORT not found!"
+  fi
 }
 
 # find ports by pattern
@@ -920,26 +923,17 @@ do_sync()
 
   stanza "Syncing your data base:"
 
-#  ( . $CFG_DIR/plugins/sync.portpkg )
-
-  # start 3rd-party-importers
   local importer
-#  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
-#    [ -x $importer ] && $importer
-#  done
   for importer in $SYNC; do
-    if ! [ -f $CFG_DIR/plugins/$importer ]; then
+    if [ -f $PRT_DIR/plugins/$importer ]; then
+      ( . $PRT_DIR/plugins/$importer )
+    elif [ -f $CFG_DIR/plugins/$importer ]; then
+      ( . $CFG_DIR/plugins/$importer )
+    else
       error "$importer not found!"
       continue
     fi
-    ( . $CFG_DIR/plugins/$importer )
   done
-
-#  ( . $CFG_DIR/plugins/sync.zz.cleanup )
-
-#  if [ $? != 0 ] && [ "`whoami`" != "root" ]; then
-#    error "Try this: mkdir -p ~/ports; touch ~/ports/.ports_root; cd ~/ports"
-#  fi
 }
 
 # upgrade all installed ports that are not available
