@@ -241,8 +241,8 @@ ls_diff() # >list
 {
   debug "ls_diff(): starting"
   local t=`mktemp -d`
-  ls_loc -v $exclude | any2base >$t/avail
-#  ( ls_loc -v $exclude; ls_inst ) | sort_ver | any2base >$t/avail
+#  ls_loc -v $exclude | any2base >$t/avail
+  ( ls_loc -v $exclude; ls_inst ) | sort_ver | any2base >$t/avail
   ls_inst >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
