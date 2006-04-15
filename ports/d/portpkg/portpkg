@@ -74,8 +74,8 @@ msg_level=0
 # global variables
 declare \
   repos ignore mirrors exclude use arch_filter \
-  package name group path \
-  script description requires optional blocks uses size u_size sources pkg_file \
+  package name group path script description \
+  requires optional blocks uses size u_size sources md5sums pkg_file \
   maintain slot_in pseudo no_fakeroot
 
 # listers
@@ -302,6 +302,7 @@ grep -sve ^$ -e ^# $path/optional; \
 grep -sve ^$ -e ^# $path/slack-suggests | cut -d " " -f 1; \
 grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
   sources=`grep -sve ^$ -e ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+  md5sums=`grep -sve ^$ -e ^# $path/md5sums`
   blocks=`{ \
 grep -sve ^$ -e ^# $path/blocks; \
 grep -sve ^$ -e ^# $path/slack-conflicts | cut -d " " -f 1; \
@@ -421,6 +422,7 @@ maintainer_mode()
 
   # write a file list of the package (remove creation time and size)
   tar tzvf $TMP/$package.tgz | awk '{ print $1,$2,$6 }' | sort -k 3 >footprint
+  echo "$md5sums" >md5sums
 
   # explodepkg package tree?
   if ! [ -d $TMP/package-$name ]; then
@@ -532,6 +534,7 @@ build_pkg()
     local script_opt=""
     warn "Maintainer mode: Modifying files: requires md5sums footprint flags"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
+#    md5sums=""
   else
     local script_opt="--cleanup"
   fi
@@ -548,7 +551,7 @@ build_pkg()
     # written behind a % in sources
     local srcname=`basename "$src" | cut -d % -f 2`
     local src=`echo "$src" | cut -d % -f 1`
-    local md5sum=`grep -s " $srcname$" md5sums | cut -d " " -f 1`
+    local md5sum=`echo "$md5sums" | grep -s " $srcname$" | cut -d " " -f 1`
     # if $srcname is an existing file (!) it is not CVS and can be skipped
     if [ -f $SRC_DIR/$srcname ]; then
       row "$srcname found in $SRC_DIR/"
@@ -560,8 +563,9 @@ build_pkg()
       ln -sf $SRC_DIR/$srcname .
       # check md5sums when non-maintainer-mode
       if $maintain && [ -f $SRC_DIR/$srcname ]; then
-        md5sum $srcname >>md5sums
-        sort -k 2 -uo md5sums md5sums
+#        md5sum $srcname >>md5sums
+#        sort -k 2 -uo md5sums md5sums
+        md5sums=`( echo "$md5sums"; md5sum $srcname ) | sort -u -k 2`
       elif [ "$md5sum" ]; then
         is_integer $srcname $md5sum || return 1
       else
