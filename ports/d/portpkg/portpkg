@@ -30,6 +30,7 @@ ARCH=i486
 CFLAGS=""
 MY_TAG=`whoami`
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
+EXPORT="export.portpkg"
 MIRRORS=""
 TMP=/tmp
 ADM_DIR=/var/log
@@ -828,10 +829,14 @@ do_diff()
 
 do_export()
 {
+  [ "$EXPORT" ] || die "Run pp-config to define export method first!"
+
 #  has_args "$@" || die
   stanza "Exporting:"
+  
+  [ -f $CFG_DIR/plugins/$EXPORT ] || die "$EXPORT not found!"
 
-  ( . $CFG_DIR/plugins/export.portpkg )
+  ( . $CFG_DIR/plugins/$EXPORT )
 }
 
 # find ports by pattern
@@ -909,14 +914,18 @@ do_sync()
 #    [ -x $importer ] && $importer
 #  done
   for importer in $SYNC; do
+    if ! [ -f $CFG_DIR/plugins/$importer ]; then
+      error "$importer not found!"
+      continue
+    fi
     ( . $CFG_DIR/plugins/$importer )
   done
 
 #  ( . $CFG_DIR/plugins/sync.zz.cleanup )
 
-  if [ $? != 0 ] && [ "`whoami`" != "root" ]; then
-    error "Try this: mkdir -p ~/ports; touch ~/ports/.ports_root; cd ~/ports"
-  fi
+#  if [ $? != 0 ] && [ "`whoami`" != "root" ]; then
+#    error "Try this: mkdir -p ~/ports; touch ~/ports/.ports_root; cd ~/ports"
+#  fi
 }
 
 # upgrade all installed ports that are not available
