@@ -165,10 +165,10 @@ get() # url dest [md5sum]
   fi
   debug "get(): \$url=$url"
 
-  local log=$LOG_DIR/`basename $dest`.wgetlog
-  mkdir -p $LOG_DIR
-  rm -f $log || die
-  $VERBOSE && log=/dev/stdout
+#  local log=$LOG_DIR/`basename $dest`.wgetlog
+#  mkdir -p $LOG_DIR
+#  rm -f $log || die
+#  $VERBOSE && log=/dev/stdout
 
   # try primary url if mirror fails
   local try
@@ -185,7 +185,7 @@ get() # url dest [md5sum]
         fi
         return 0;;
       *)
-        wget -c -O $dest.part $try >$log 2>&1 || continue
+        wget -c -O $dest.part $try || continue
         if [ "$md5sum" ] && ! is_integer $dest.part $md5sum; then
           mv $dest.part $dest.invalid
           continue
@@ -195,7 +195,7 @@ get() # url dest [md5sum]
     esac
   done
 
-  $VERBOSE || tail $log
+#  $VERBOSE || tail $log
   error "Download failed!"
 }
 
