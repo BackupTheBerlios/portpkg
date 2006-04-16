@@ -3,9 +3,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.7.1
+VERSION=0.8.2
 ARCH=${ARCH:-i486}
-BUILD=2hnaz
+BUILD=1hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -37,8 +37,8 @@ chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+gzip -9 $PKG/usr/man/man?/* || true
 rm -rf $PKG/usr/doc/scummvm
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
