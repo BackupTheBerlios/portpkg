@@ -343,9 +343,9 @@ grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
   grep -sqx slot-in $path/flags && slot_in=true
   grep -sqx pseudo $path/flags && pseudo=true
   grep -sqx no-fakeroot $path/flags && no_fakeroot=true
-  grep -sq "^# FLAGS:.* slot-in\( \|$\)" && slot_in=true
-  grep -sq "^# FLAGS:.* pseudo\( \|$\)" && pseudo=true
-  grep -sq "^# FLAGS:.* no-fakeroot\( \|$\)" && no_fakeroot=true
+  grep -sq "^# FLAGS:.* slot-in\( \|$\)" $script && slot_in=true
+  grep -sq "^# FLAGS:.* pseudo\( \|$\)" $script && pseudo=true
+  grep -sq "^# FLAGS:.* no-fakeroot\( \|$\)" $script && no_fakeroot=true
   debug "get_info(): finished: $@"
   return 0
 }
@@ -426,7 +426,7 @@ maintainer_mode()
   row "Going maintainer mode"
 
   # regenerate md5sums and footprint (assume we are in the script dir)
-  row "Writing: footprint md5sums requires flags"
+  row "Rewriting: footprint script-header"
 #  rm -rf md5sums
 #  rm -rf footprint
 
@@ -442,7 +442,7 @@ maintainer_mode()
 
   # write a file list of the package (remove creation time and size)
   tar tzvf $TMP/$package.tgz | awk '{ print $1,$2,$6 }' | sort -k 3 >footprint
-  echo "$md5sums" >md5sums
+#  echo "$md5sums" >md5sums
 
   # explodepkg package tree?
   if ! [ -d $TMP/package-$name ]; then
@@ -489,20 +489,45 @@ maintainer_mode()
     requires=`( echo "$requires"; cat $t/new_req ) | sort -u`
   fi
 
-  # now generate new "requires" file
-  echo "$requires" >>requires
-  echo "$optional" | xargs -r -l echo "# optional:" >>requires
-  echo "$blocks" | xargs -r -l echo "# block:" >>requires
-  sort -uo requires requires
-  sed -i "/^$/d" requires
-#  touch optional
-#  fgrep -hxvf optional $t/auto_req $t/old_req | grep -v ^$ | sort -u >requires
+#  # now generate new "requires" file
+#  echo "$requires" >>requires
+#  echo "$optional" | xargs -r -l echo "# optional:" >>requires
+#  echo "$blocks" | xargs -r -l echo "# block:" >>requires
+#  sort -uo requires requires
+#  sed -i "/^$/d" requires
+##  touch optional
+##  fgrep -hxvf optional $t/auto_req $t/old_req | grep -v ^$ | sort -u >requires
 
-  # write flags file
-  $slot_in && echo "slot-in" >>flags
-  $pseudo && echo "pseudo" >>flags
-  $no_fakeroot && echo "no-fakeroot" >>flags
-  [ -f flags ] && sort -uo flags flags
+#  # write flags file
+#  $slot_in && echo "slot-in" >>flags
+#  $pseudo && echo "pseudo" >>flags
+#  $no_fakeroot && echo "no-fakeroot" >>flags
+#  [ -f flags ] && sort -uo flags flags
+
+  # remove script header
+  sed -i "/^#!\/bin\/sh$/d" $script
+  local i
+  for i in MAINTAINER FLAGS BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
+    sed -i "/^# $i:/d" $script
+  done
+
+  # write header
+  sed -i "1s,.*,# FLAGS:`$slot_in && echo \ slot-in``$pseudo && echo \ pseudo``$no_fakeroot && echo \ no-fakeroot`\n&," $script
+  sed -i "1s,.*,# BLOCKS: $blocks\n&," $script
+  sed -i "1s,.*,# OPTIONAL: `echo $optional`\n&," $script
+  sed -i "1s,.*,# REQUIRES: `echo $requires`\n&," $script
+  local s m
+  echo "$md5sums" | while read m s; do
+    sed -i "1s,.*,# MD5SUMS: $m  $s\n&," $script
+  done
+  for s in $sources; do
+    sed -i "1s,.*,# SOURCES: $s\n&," $script
+  done
+  sed -i "1s,.*,# MAINTAINER: $MY_REALNAME '$MY_TAG' <$MY_EMAIL>\n&," $script
+  sed -i "1s,.*,#\!/bin/sh\n&," $script
+  for i in MAINTAINER FLAGS BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
+    sed -i "/^# $i: *$/d" $script
+  done
 
   # show a few statistics
   $DEBUG && fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "maintainer_mode(): ignored dependencies:" >&2
@@ -528,17 +553,19 @@ maintainer_mode()
 #| ( cd $ADM_DIR/packages; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
 #| sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
 
-  # remove empty files
-#  [ -s arbitrary ] || rm -f arbitrary
-  [ -s requires ] || rm -f requires
-#  [ -s optional ] || rm -f optional
-  [ -s md5sums ] || rm -f md5sums
-  [ -s flags ] || rm -f flags
+#  # remove empty files
+##  [ -s arbitrary ] || rm -f arbitrary
+#  [ -s requires ] || rm -f requires
+##  [ -s optional ] || rm -f optional
+#  [ -s md5sums ] || rm -f md5sums
+#  [ -s flags ] || rm -f flags
 
   # remove obsolete files
-  rm -f arbitrary
-  rm -f blocks
-  rm -f optional
+  rm -f arbitrary requires blocks optional \
+slot-in pseudo no-fakeroot flags md5sums sources
+#  rm -f arbitrary
+#  rm -f blocks
+#  rm -f optional
 #  rm -f slot-in
 #  rm -f pseudo
 #  rm -f no-fakeroot
