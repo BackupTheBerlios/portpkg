@@ -1,113 +1,250 @@
-.TH PORTPKG 1 "February 2005" "Slackware Linux" "User Manuals"
+.TH portpkg 1
+
 .SH NAME
-portpkg \- build a package by source and install it
+
+portpkg \- automated package building for Slackware Linux systems
+
 .SH SYNOPSIS
-portpkg [action] [options] [list [...]]
-.PP
-While 'list' can have one of these forms:
-.IP
-group/
-.IP
-[group/]name[-version-arch-build]
+
+\fBportpkg\fP [\fIaction\fP] [\fIoptions\fP] [\fIexpression\fP [\fI...\fP]]
+
 .SH DESCRIPTION
-Portpkg starts a so called build script (SlackBuild) found in
-/usr/ports/<group>/<name>/ and installs the resulting package to the system.
-The default behaviour will let it check for dependant ports and packages and
-build them in order to satisfy requirements. Portpkg will always try to
-shorten and reuse existing files: It resumes automatically partly downloaded
-source files and makes use of its cache directories.
+
+portpkg is a script to easily find, build and install packages by
+scripts. Scripts are based around the de-facto standard of
+\fBSlackBuilds\fP, and are expected to be located in predefined
+\fBports tree\fP.
+
+portpkg also does additional work based on meta-information (such as
+source code download, dependency handling, etc.) if the scripts support
+portpkg-specific extensions. Backends are common Slackware \fBpkgtool\fP
+commands (\fBinstallpkg\fP, \fBupgradepkg\fP).
+
+It is recommended to use portpkg as unprivileged user and enter the root
+password when prompted to do so.
+
+.SH EXPRESSIONS
+
+portpkg allows four different types to express a port or a range of ports:
+.TP
+\fBimplicit\fP
+By using the form \fIgroup/\fP. Resulting in a range of ports.
+.TP
+.B basic
+By using the form \fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP].
+Resulting in the default version only. (Up to version 0.38: this is the
+first listed non-restricted port, from version 0.39 on: the most recent
+non-restricted version.)
+.TP
+\fBexplicit\fP
+By using the form
+\fIgroup\fP/\fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP]. Similiar
+to the previous type, but more precisely and bypasses the exclusion of
+restricted ports (see \fBexclude\fP in \fBFILES\fP).
+.TP
+.B direct
+By changing into the directory of the build script. In direct mode,
+dependencies resolution is disabled, missing dependencies stop the
+execution of the build script, but no recursive installation is
+performed. Usable also for build scripts that are outside of the defined
+ports tree.
+
+.SH OPTIONS
+
+There can be multiple options at once to customise portpkg's behaviour (some of
+them can also be defined in your configuration file, see below):
+.TP
+\fB-e\fP, \fB--reinstall\fP
+Reinstall the package, if already installed.
+.TP
+\fB-b\fP, \fB--rebuild\fP
+Rebuild the package if already built (implies \fB--reinstall\fP).
+.TP
+\fB-p\fP, \fB--prepare\fP
+Build package, but don't install (implies \fB--noreqs\fP).
+.TP
+\fB-o\fP, \fB--download\fP
+Download source code files only.
+.TP
+\fB-g\fP, \fB--verbose\fP (\fBVERBOSE=true\fP)
+Show compile output.
+.TP
+\fB-y\fP, \fB--dryrun\fP
+Simulate install/download/build.
+.TP
+\fB-q\fP, \fB--noreqs\fP (\fBNO_REQS=true\fP)
+Don't check for requirements.
+.TP
+\fB-a\fP, \fB--lazy\fP (\fBLAZY_CHECKS=true\fP)
+Don't upgrade dependencies to newest version.
+
 .SH ACTIONS
-If no action is specified, the default action is to install a port, which
-includes downloading source code, compiling and packaging if neccessary. There
-can be only one alternative action:
-.IP "-d, --diff"
+
+portpkg has several \fBactions\fP to act on and one \fBdefault\fP action
+if none is specified. The default action is to \fBadd\fP, which includes
+    \(bu checking recursively for any dependencies to be run initally,
+    \(bu downloading the source code,
+    \(bu running the build script and
+    \(bu installing the package.
+
+Some of these steps will be skipped automatically if they seem to be
+unnecessary. There are options (see below) to force or to skip some of
+these steps. There can be only one \fBalternative\fP action, with
+completely different behaviour:
+.TP
+\fB-d\fP, \fB--diff\fP
 List the difference between installed and available port versions.
-.IP "-f, --find"
+.TP
+\fB-f\fP, \fB--find\fP \fItext\fP [\fI...\fP]
 Find ports by search patterns.
-.IP "-h, --help"
+.TP
+\fB-h\fP, \fB--help\fP
 Show help page.
-.IP "-i, --info"
+.TP
+\fB-i\fP, \fB--info\fP [\fIexpression\fP [\fI...\fP]]
 Show information about ports.
-.IP "-l, --list"
+.TP
+\fB-l\fP, \fB--list\fP [\fIexpression\fP [\fI...\fP]]
 List all (or specified) available ports.
-.IP "-s, --sync"
+.TP
+\fB-s\fP, \fB--sync\fP
 Sync the ports tree with the official tree and the package directory with the
 ports tree.
-.IP "-u, --upgrade"
-Upgrade all (!) outdated ports shown by --diff.
-.IP "-v, --version"
-Show version information about Portpkg.
-.IP "-x, --export"
-Submit ports to the Portpkg Project.
-.SH OPTIONS
-There can be multiple options at once to customise portpkg's behaviour (some of
-them can also be defined in /etc/portpkg/local.conf, see below):
-.IP "-e, --reinstall"
-Reinstall the package, if already installed.
-.IP "-b, --rebuild"
-Rebuild the package if already build (implies --reinstall).
-.IP "-p, --prepare"
-Build package, but don't install (implies --noreqs).
-.IP "-o, --download"
-Download source code files only.
-.IP "-g, --verbose (VERBOSE=true)"
-Show compile output.
-.IP "-y, --dryrun"
-Simulate install/download/build.
-.IP "-q, --noreqs (NO_REQS=true)"
-Don't check for requirements.
-.IP "-a, --lazy (LAZY_CHECKS=true)"
-Don't upgrade dependencies to newest version.
+.TP
+\fB-u\fP, \fB--upgrade\fP
+Upgrade all (!) outdated ports shown by \fB--diff\fP.
+Use with caution!
+.TP
+\fB-v\fP, \fB--version\fP
+Show version information about portpkg.
+.TP
+\fB-x\fP, \fB--export\fP \fIcomment\fP [\fIexpression\fP [\fI...\fP]]
+Submit ports to the Portpkg Project and publish them.
+To avoid unintentional submissions, \fIcomment\fP has to contain at least two
+words.
+
 .SH EXAMPLES
-.IP "Port 'foobar' (download source code, compile, package, install), show compile output, but don't check dependencies:"
-portpkg -gq foobar
-.IP "List all installed packages which have a newer availabe version in the ports tree:"
-portpkg --diff
-.IP "Find any ports, that contain the string 'moz' in their description:"
-portpkg --find moz
-.IP "Give information about the ports 'mozilla' and 'galeon':"
-portpkg --info mozilla galeon
-.IP "List all available ports:"
-portpkg --list
-.IP "List all available ports of one group or with certain conditions:"
-portpkg -l l/ foo n/arg foobar-1.0-i486-1
-.IP "Sync the local ports tree with the official ports tree:"
-portpkg --sync
-.IP "Upgrade any port that is listed by --diff:"
-portpkg --upgrade
+
+Find port \fIfoobar\fP, download source code, compile/package/install it, show
+compile output, but don't check dependencies:
+    $ \fBportpkg -gq foobar\fP
+
+Or in direct mode:
+    $ \fBcd ~/scripts/foobar\fP
+    $ \fBportpkg -g\fP
+
+Find any ports, that contain the strings \fBmoz\fP and \fBned\fP in their
+description:
+    $ \fBportpkg --find moz ned\fP
+
+View meta-information about the port \fBmozilla\fP:
+    $ \fBportpkg --info mozilla\fP
+
+Or in direct mode:
+    $ \fBcd ~/scripts/mozilla\fP
+    $ \fBportpkg -i\fP
+
+List all available ports of one group or with certain conditions and with more
+or less precision:
+    $ \fBportpkg -l l/\fP
+    $ \fBportpkg -l foo\fP
+    $ \fBportpkg -l n/arg\fP
+    $ \fBportpkg -l n/gh/hrr/arg-2.0-i486-1me\fP
+    $ \fBportpkg -l foobar-1.0-i486-1\fP
+
+Sync the local ports tree with the official ports tree of The Portpkg Project
+and then export \fBfancy2000\fP to it:
+    $ \fBportpkg --sync\fP
+    $ \fBportpkg -x "My initial export." fancy2000\fP
+
+List all upgradeable packages first and then simulate a system upgrade:
+    $ \fBportpkg -d\fP
+    $ \fBportpkg --dryrun -u\fP
+
 .SH DIRECTORIES
-.IP /usr/ports
-The ports tree. Customise this path with PRT_DIR=<path> in
-/etc/portpkg/local.conf.
-.IP /usr/src/dist
+
+.TP
+\fB~/ports\fP
+The ports tree. Customise this path with \fBPRT_DIR=\fP\fIpath\fP in
+the configuration file.
+.TP
+\fB~/ports/dist\fP
 The source code files archive. Files that were downloaded before compiling.
-Customise this path with SRC_DIR=<path> in /etc/portpkg/local.conf.
-.IP /usr/obj/pkg
-The binary packages archive. Customise this path with PKG_DIR=<path> in
-/etc/portpkg/local.conf.
+Customise this path with \fBSRC_DIR=\fP\fIpath\fP in the configuration file.
+.TP
+\fB~/ports/pkg\fP
+The binary packages archive. Customise this path with
+\fBPKG_DIR=\fP\fIpath\fP in the configuration file.
+.TP
+\fB~/ports/plugins\fP
+Overlay directory of plugins.
+
 .SH FILES
-.IP /var/log/portpkg/<name>.buildlog
-The detailed output when a SlackBuild was executed. You can view this instantly
-with --verbose.
-.IP /var/log/portpkg/<file>.wgetlog
-The detailed output when a file is downloaded. You can view this instantly
-with --verbose.
-.IP /var/log/portpkg/<package>.tar.bz2
-A copy of ports that were exported.
-.IP /etc/portpkg/local.conf
-The configuration file for optional settings. Empty or non-existend for
-defaults.
-.PP
-Several configuration files are distributed and can be expanded by \.local files:
-.IP "/etc/portpkg/mirrors and mirrors.local"
+
+.TP
+\fB~/ports/portpkg.conf\fP
+The tree-wide configuration file for optional settings.
+Empty or non-existent for defaults.
+Can also be set system-wide in \fB/etc/portpkg/local.conf\fP or user-wide
+in \fB~/.portpkg.conf\fP.
+.LP
+Several configuration files have defaults in \fB/etc/portpkg/\fP and can
+only be expanded:
+.TP
+\fB~/ports/mirrors\fP
 List of mirrors to be used when downloading files. 
-.IP "/etc/portpkg/ignore and ignore.local"
-List of ports to ignore when making the "requires" file.
-.IP "/etc/portpkg/exclude and exclude.local"
+.TP
+\fB~/ports/ignore\fP
+List of ports to ignore when generating the \fBrequires\fP file.
+.TP
+\fB~/ports/exclude\fP
 List of ports to exclude when doing upgrades or diffs.
+.TP
+\fB~/ports/use\fP
+List of ports to be required dependencies when they are actually listed as
+optional dependencies. Usefull in conjunction with \fBvirtual\fP.
+.TP
+\fB~/ports/virtual\fP
+List of ports and their virtual groups. Usefull to cross-link ports.
+.LP
+Log files:
+.TP
+\fB~/ports/log/\fP\fIname\fP\fB.buildlog.gz\fP
+The detailed output when a SlackBuild was executed.
+Viewed instantly with \fB--verbose\fP.
+
+.SH BUGS
+
+Explicit expressions must contain exactly \fBone\fP or \fBall\fP
+parts of the group or \fBsome\fP parts in the exact order:
+
+Expressions that \fBmatch\fP the port \fBlocal/new/l/port-1.0-i486-1me\fP:
+    \fBlocal/port\fP
+    \fBnew/port-1.0-i486-1me\fP
+    \fBl/\fP
+    \fBlocal/new/l/port\fP
+    \fBnew/l/port\fP
+
+Expressions that \fBdo not match\fP:
+    \fBlocal/l/\fP
+    \fBl/new/port\fP
+
+Explicit expressions tend to be greedy.
+Bypassing the exclusion of restricted ports does not check what part of a
+group restricted a port before.
+For example, the expression \fBl/port\fP will unblock \fBlocal/new/l/port\fP
+although \fBnew/\fP is restricted.
+
+.SH SECURITY
+
+todo
+
 .SH AUTHOR
+
 Thomas Pfaff <topf at users dot berlios de>
+
 .SH "SEE ALSO"
-.BR installpkg(8)
-.BR removepkg(8)
-.BR upgradepkg(8)  	
+
+\fBinstallpkg\fP(8)
+\fBremovepkg\fP(8)
+\fBupgradepkg\fP(8)
