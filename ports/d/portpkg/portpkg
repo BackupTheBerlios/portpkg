@@ -343,6 +343,9 @@ grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
   grep -sqx slot-in $path/flags && slot_in=true
   grep -sqx pseudo $path/flags && pseudo=true
   grep -sqx no-fakeroot $path/flags && no_fakeroot=true
+  grep -sq "^# FLAGS:.* slot-in\( \|$\)" && slot_in=true
+  grep -sq "^# FLAGS:.* pseudo\( \|$\)" && pseudo=true
+  grep -sq "^# FLAGS:.* no-fakeroot\( \|$\)" && no_fakeroot=true
   debug "get_info(): finished: $@"
   return 0
 }
