@@ -226,7 +226,8 @@ explicit() # >pkgex-list
   local arg
   for arg; do
     case $arg in
-      */) ls_slk `regex $arg` | slk2gname | any2base
+      */) #ls_slk `regex $arg` | slk2gname | any2base
+	  ls_slk | slk2gname | grep `regex $arg` | any2base
           # also look through virtual groups list
           grep -hs `regex $arg` {$CFG_DIR,$PRT_DIR}/virtual | any2base;;
       *)  echo $arg;;
