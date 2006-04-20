@@ -501,7 +501,7 @@ maintainer_mode()
   cat $t/new_req | xargs -r echo "  --> New dependencies:"
 #  fgrep -xf optional $t/auto_req | xargs -r echo "  --> Dependant options:"
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req \
-| xargs -r echo "  --> Arbitrary dependencies (KEEP THIS LIST SHORT):" | fmt -t
+| xargs -r echo "  --> Arbitrary dependencies (KEEP THIS LIST SHORT):" | fmt
 
   # check for common mistakes
 #  egrep -woe "usr/(local/|etc/|share/pkgconfig/|share/doc/|share/man/|info/dir).*" \
