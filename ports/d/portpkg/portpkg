@@ -401,6 +401,7 @@ check_opts() {
 }
 
 check_blocks() {
+  local block
   for block in $blocks; do
     if ls_inst -q $(regex $block); then
       # we have a blocking package installed, exit!
@@ -750,7 +751,7 @@ add_pkg()
 
   # requirements check
   check_reqs || return 1
-#  check_blocks || return 1
+  check_blocks || return 1
   check_opts || return 1
 
   # package file found in cache? (first in its group, then other places)
