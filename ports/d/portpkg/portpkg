@@ -296,15 +296,21 @@ get_info() # pkgex
   description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script \
 | sed "s,\\$NAME,$name,"`
   requires=`{ \
+grep -s "^# REQUIRES: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/requires; \
 grep -sve ^$ -e ^# $path/slack-required | cut -d " " -f 1; } | sort -u`
   optional=`{ \
+grep -s "^# OPTIONAL: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/optional; \
 grep -sve ^$ -e ^# $path/slack-suggests | cut -d " " -f 1; \
 grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
-  sources=`grep -sve ^$ -e ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+#  sources=`grep -sve ^$ -e ^# $path/sources | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+  sources=`{ \
+grep -s "^# SOURCES: " $script | cut -d " " -f 3- | tr " " "\n"; \
+grep -sve ^$ -e ^# $path/sources; } | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
   md5sums=`grep -sve ^$ -e ^# $path/md5sums`
   blocks=`{ \
+grep -s "^# BLOCKS: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/blocks; \
 grep -sve ^$ -e ^# $path/slack-conflicts | cut -d " " -f 1; \
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
