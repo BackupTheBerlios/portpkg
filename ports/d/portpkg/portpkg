@@ -391,6 +391,15 @@ check_reqs()
   return 0
 }
 
+check_opts() {
+  local opt all_opts
+  for opt in $optional; do
+    ls_inst -q `regex $opt` || all_opts="$all_opts $opt"
+  done
+  [ "$all_opts" ] && warn "Optional dependencies to consider:"$all_opts
+  return 0
+}
+
 check_blocks() {
   for block in $blocks; do
     if ls_inst -q $(regex $block); then
@@ -742,6 +751,7 @@ add_pkg()
   # requirements check
   check_reqs || return 1
 #  check_blocks || return 1
+  check_opts || return 1
 
   # package file found in cache? (first in its group, then other places)
   if ! [ "$pkg_file" ] || $rebuild; then
