@@ -24,10 +24,10 @@ glibc-solibs
 glibc-zoneinfo
 glibc-i18n
 glibc-profile
-gpm
 openssl-solibs
 
 # obsolete and optional packages or ports (also Dropline packages, X-drivers)
+gpm
 elflibs
 freetype
 freetype2
@@ -50,9 +50,9 @@ audiofile
 alsa-lib
 jack
 
-# gtk+2 dependencies (we don't need to repeat them all the time)
-atk
-cairo
-glib2
-glitz
-pango
+## gtk+2 dependencies (we don't need to repeat them all the time)
+#atk
+#cairo
+#glib2
+#glitz
+#pango
