@@ -125,7 +125,7 @@ build=""
 build_pkg=false
 
 # parse options
-shorts="afv:g:n:u:bh"
+shorts="afv:g:n:u:bhd"
 args=`getopt -qo $shorts -- "$@"`
 [ "$?" == "0" ] || die "Bad Arguments! Try: autoport -h"
 eval set -- "$args"
@@ -146,16 +146,34 @@ if [ "$*" ]; then
         name=$2
         shift;;
       -u)
-        get_info $2
+        get_info $2 || die
         # use abstract url
         sources=`encode "$sources"`
         arch=`echo $package | rev | cut -d - -f 2 | rev`
         shift;;
       -b)
         build_pkg=true;;
+      -d)
+        [ "$sources" ] || die "-d must be set after -u!"
+	warn "Guessing recent version (this is alpha code)!"
+        s=`decode "$sources" | head -n 1`
+        reg=`echo "[^ ]*/$(basename $s)" | sed "s,$version,\\\\\([0-9].*\\\\\),g"`
+        up2date=`grep "^# UP2DATE:" $script | cut -d " " -f 3-`
+        up2date=${up2date:-`dirname $s`}
+        o=`lynx -dump $up2date`
+        ver=`echo "$o" | grep -o "$reg" | sed "s,^$reg$,\1,g;s,-\([^-]*\)$, \1," \
+| sort -k 2nr | sed "s, \([^-]*\)$,-\1," | head -n 1`
+        if ! [ "$ver" ]; then
+	  die "Couldn't find anything on $up2date!"
+	else
+	  echo "Found version $ver."
+        fi
+        version=$ver
+        s="";;
       -h)
         # usage
-        stanza "Usage: autoport [-a] [-n name] [-v version] [-g group] [-u port] [-b] [source url]
+        stanza "Usage: autoport [options] [source url]
+
 Options:
   -a             Run non-interactive (use defaults)
   -f             Force to re-autobuild a port when non-interactve
@@ -164,16 +182,17 @@ Options:
   -g group       Preset group of port
   -u port        (Re-)Use port (use this option first)
   -b             Execute portpkg after port generation
+  -d             Try to find up-to-date version
   source url     Preset URL of source code (if not found via -u)
                  (Use cpan://file::mimeinfo to search for Perl modules)"
         exit 1;;
-     cpan://*)
+      cpan://*)
         query=`echo $1 | sed "s,^cpan://,,;s,::,-,g;s,/,-,g"`
 	page=`lynx -dump "http://search.cpan.org/search?query=$query&mode=module" \
           | grep -i "http://.*/$query-[0-9].*/$" \
           | grep -o "http://.*" | sort -u | head -n 1`
 	sources=`lynx -dump $page \
-          | grep -ie "http://.*/$query-[0-9].*\.tar\.gz" -e "http://.*/$query-[0-9].*\.tar\.bz2" \
+          | egrep -ie "http://.*/$query-[0-9].*\.(tgz|tar\.(gz|bz2))$" \
           | grep -o "http://.*" | sort -u | head -n 1`;;
       *://*)
         sources=$1;;
