@@ -1,369 +1,354 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         114 install/doinst.sh
--rw-r--r-- root/root         627 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin        55864 usr/bin/avifix
--rwxr-xr-x root/bin        62712 usr/bin/aviindex
--rwxr-xr-x root/bin        61176 usr/bin/avimerge
--rwxr-xr-x root/bin        72556 usr/bin/avisplit
--rwxr-xr-x root/bin        60812 usr/bin/avisync
--rwxr-xr-x root/bin        91548 usr/bin/tccat
--rwxr-xr-x root/bin       136216 usr/bin/tcdecode
--rwxr-xr-x root/bin        56688 usr/bin/tcdemux
--rwxr-xr-x root/bin       131272 usr/bin/tcextract
--rwxr-xr-x root/bin        14892 usr/bin/tcmodinfo
--rwxr-xr-x root/bin         8540 usr/bin/tcmp3cut
--rwxr-xr-x root/bin       172780 usr/bin/tcprobe
--rwxr-xr-x root/bin        39548 usr/bin/tcrequant
--rwxr-xr-x root/bin        90856 usr/bin/tcscan
--rwxr-xr-x root/bin        14100 usr/bin/tcxmlcheck
--rwxr-xr-x root/bin         8144 usr/bin/tcxpm2rgb
--rwxr-xr-x root/bin       305952 usr/bin/transcode
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/transcode-1.0.0beta2/
--rw-r--r-- root/root        5026 usr/doc/transcode-1.0.0beta2/AUTHORS
--rw-r--r-- root/root       18007 usr/doc/transcode-1.0.0beta2/COPYING
--rw-r--r-- root/root      358965 usr/doc/transcode-1.0.0beta2/ChangeLog
--rw-r--r-- root/root        2253 usr/doc/transcode-1.0.0beta2/README
--rw-r--r-- root/root        1683 usr/doc/transcode-1.0.0beta2/README-0.6.14
--rw-r--r-- root/root        4586 usr/doc/transcode-1.0.0beta2/TODO
-drwxr-xr-x root/root           0 usr/doc/transcode/
--rw-r--r-- root/root      358965 usr/doc/transcode/ChangeLog
--rw-r--r-- root/root       11750 usr/doc/transcode/DV-to-DVD-HOWTO.txt
--rw-r--r-- root/root        5258 usr/doc/transcode/OPTIMIZERS
--rw-r--r-- root/root        9894 usr/doc/transcode/README.Inverse.Telecine.txt
--rw-r--r-- root/root        2974 usr/doc/transcode/README.cluster
--rw-r--r-- root/root        1594 usr/doc/transcode/README.dv
--rw-r--r-- root/root       12296 usr/doc/transcode/README.filter.modfps
--rw-r--r-- root/root        2608 usr/doc/transcode/README.rip
--rw-r--r-- root/root        1372 usr/doc/transcode/README.sync
--rw-r--r-- root/root        4887 usr/doc/transcode/README.vcd
--rw-r--r-- root/root        1752 usr/doc/transcode/README.xvid-credits
--rw-r--r-- root/root        9595 usr/doc/transcode/architecture.txt
--rw-r--r-- root/root        3749 usr/doc/transcode/avi_comments.txt
--rw-r--r-- root/root        3757 usr/doc/transcode/clone.txt
--rw-r--r-- root/root        2571 usr/doc/transcode/export-API.txt
--rw-r--r-- root/root       17354 usr/doc/transcode/export_ffmpeg.txt
--rw-r--r-- root/root        4572 usr/doc/transcode/export_mp2.txt
--rw-r--r-- root/root        3940 usr/doc/transcode/export_mpeg.txt
--rw-r--r-- root/root       34052 usr/doc/transcode/export_pvm.txt
--rw-r--r-- root/root       13474 usr/doc/transcode/faq
--rw-r--r-- root/root        4400 usr/doc/transcode/filter-API.txt
--rw-r--r-- root/root        6066 usr/doc/transcode/filter-socket.txt
--rw-r--r-- root/root        2807 usr/doc/transcode/filter_dnr.txt
--rw-r--r-- root/root        1654 usr/doc/transcode/filter_logo.txt
--rw-r--r-- root/root        5368 usr/doc/transcode/filter_logoaway.txt
--rw-r--r-- root/root        3365 usr/doc/transcode/filter_text.txt
--rw-r--r-- root/root        7064 usr/doc/transcode/filter_yuvdenoise.txt
--rw-r--r-- root/root        6739 usr/doc/transcode/framerate.txt
-drwxr-xr-x root/root           0 usr/doc/transcode/html/
--rw-r--r-- root/root        6813 usr/doc/transcode/html/about.html
--rw-r--r-- root/root        5510 usr/doc/transcode/html/anim.html
--rw-r--r-- root/root        2974 usr/doc/transcode/html/cluster_guide.txt
--rw-r--r-- root/root        8604 usr/doc/transcode/html/core.html
--rw-r--r-- root/root        9462 usr/doc/transcode/html/dv.html
--rw-r--r-- root/root       29743 usr/doc/transcode/html/dvd.html
--rw-r--r-- root/root        2769 usr/doc/transcode/html/export_af6.html
--rw-r--r-- root/root        2562 usr/doc/transcode/html/export_divx.html
--rw-r--r-- root/root        1105 usr/doc/transcode/html/export_divx4.php
--rw-r--r-- root/root         976 usr/doc/transcode/html/export_divx5.php
--rw-r--r-- root/root        1106 usr/doc/transcode/html/export_fame.php
--rw-r--r-- root/root        2179 usr/doc/transcode/html/export_iv50.html
--rw-r--r-- root/root        2022 usr/doc/transcode/html/export_null.html
--rw-r--r-- root/root         912 usr/doc/transcode/html/export_ogg.php
--rw-r--r-- root/root         789 usr/doc/transcode/html/export_opendivx.php
--rw-r--r-- root/root        2259 usr/doc/transcode/html/export_raw.html
--rw-r--r-- root/root        1355 usr/doc/transcode/html/export_xvid.php
--rw-r--r-- root/root        9190 usr/doc/transcode/html/faq.html
--rw-r--r-- root/root       16112 usr/doc/transcode/html/filter.html
--rw-r--r-- root/root        2369 usr/doc/transcode/html/import_ac3.html
--rw-r--r-- root/root        2096 usr/doc/transcode/html/import_avi.html
--rw-r--r-- root/root        2363 usr/doc/transcode/html/import_dv.html
--rw-r--r-- root/root        2688 usr/doc/transcode/html/import_dvd.html
--rw-r--r-- root/root        2380 usr/doc/transcode/html/import_mp3.html
--rw-r--r-- root/root        2407 usr/doc/transcode/html/import_mpeg2.html
--rw-r--r-- root/root        2035 usr/doc/transcode/html/import_mpeg3.html
--rw-r--r-- root/root        1922 usr/doc/transcode/html/import_null.html
--rw-r--r-- root/root        2088 usr/doc/transcode/html/import_nuv.html
--rw-r--r-- root/root         742 usr/doc/transcode/html/import_ogg.php
--rw-r--r-- root/root        1843 usr/doc/transcode/html/import_raw.html
--rw-r--r-- root/root        2540 usr/doc/transcode/html/import_vob.html
--rw-r--r-- root/root        2088 usr/doc/transcode/html/import_yuv4mpeg.html
--rw-r--r-- root/root        4171 usr/doc/transcode/html/index.html
--rw-r--r-- root/root        7134 usr/doc/transcode/html/intro.html
--rw-r--r-- root/root        6523 usr/doc/transcode/html/mes0-00000.png
--rw-r--r-- root/root        8241 usr/doc/transcode/html/mes4-00000.png
--rw-r--r-- root/root        7864 usr/doc/transcode/html/mes5-00000.png
--rw-r--r-- root/root        7942 usr/doc/transcode/html/mes6-00000.png
--rw-r--r-- root/root        6302 usr/doc/transcode/html/mes7-00000.png
--rw-r--r-- root/root       15723 usr/doc/transcode/html/misc.html
--rw-r--r-- root/root       13003 usr/doc/transcode/html/modules.html
--rw-r--r-- root/root       17405 usr/doc/transcode/html/mpeg.html
--rw-r--r-- root/root         204 usr/doc/transcode/html/new.png
--rw-r--r-- root/root        9445 usr/doc/transcode/html/options.html
--rw-r--r-- root/root        6454 usr/doc/transcode/html/other.html
--rw-r--r-- root/root        3221 usr/doc/transcode/html/post.html
--rw-r--r-- root/root        2280 usr/doc/transcode/html/pre.html
--rw-r--r-- root/root       14743 usr/doc/transcode/html/smart.html
--rw-r--r-- root/root         631 usr/doc/transcode/html/sorry.html
--rw-r--r-- root/root       15848 usr/doc/transcode/html/sub0-00000.png
--rw-r--r-- root/root       14193 usr/doc/transcode/html/sub1-00000.png
--rw-r--r-- root/root       15758 usr/doc/transcode/html/sub2-00000.png
--rw-r--r-- root/root       14014 usr/doc/transcode/html/sub3-00000.png
--rw-r--r-- root/root        8210 usr/doc/transcode/html/subtitles.html
--rw-r--r-- root/root        2682 usr/doc/transcode/html/table.php
--rw-r--r-- root/root       12743 usr/doc/transcode/html/tc.png
--rw-r--r-- root/root        3031 usr/doc/transcode/ibp_support.txt
--rw-r--r-- root/root        2425 usr/doc/transcode/import-API.txt
--rw-r--r-- root/root       12225 usr/doc/transcode/import-xml.txt
--rw-r--r-- root/root        8316 usr/doc/transcode/import_nvrec.txt
--rw-r--r-- root/root        4920 usr/doc/transcode/import_v4l2.txt
--rw-r--r-- root/root         486 usr/doc/transcode/import_yuv.txt
--rw-r--r-- root/root        1465 usr/doc/transcode/pvm.cfg
-drwxr-xr-x root/root           0 usr/doc/transcode/release-notes/
--rw-r--r-- root/root        3647 usr/doc/transcode/release-notes/README-0.6.13
--rw-r--r-- root/root        4353 usr/doc/transcode/template.cfg.txt
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/transcode/
--rwxr-xr-x root/root        1013 usr/lib/transcode/af6_decore.la
--rwxr-xr-x root/root        6788 usr/lib/transcode/af6_decore.so
--rwxr-xr-x root/root         809 usr/lib/transcode/export_ac3.la
--rwxr-xr-x root/root        5668 usr/lib/transcode/export_ac3.so
--rw-r--r-- root/root         288 usr/lib/transcode/export_af6.conf
--rwxr-xr-x root/root         893 usr/lib/transcode/export_debugppm.la
--rwxr-xr-x root/root       76648 usr/lib/transcode/export_debugppm.so
--rwxr-xr-x root/root         875 usr/lib/transcode/export_divx4.la
--rwxr-xr-x root/root       76600 usr/lib/transcode/export_divx4.so
--rwxr-xr-x root/root         893 usr/lib/transcode/export_divx4raw.la
--rwxr-xr-x root/root       74444 usr/lib/transcode/export_divx4raw.so
--rwxr-xr-x root/root         875 usr/lib/transcode/export_divx5.la
--rwxr-xr-x root/root       72472 usr/lib/transcode/export_divx5.so
--rwxr-xr-x root/root         893 usr/lib/transcode/export_divx5raw.la
--rwxr-xr-x root/root       74444 usr/lib/transcode/export_divx5raw.so
--rwxr-xr-x root/root         881 usr/lib/transcode/export_ffmpeg.la
--rwxr-xr-x root/root      112916 usr/lib/transcode/export_ffmpeg.so
--rwxr-xr-x root/root         816 usr/lib/transcode/export_jpg.la
--rwxr-xr-x root/root        6868 usr/lib/transcode/export_jpg.so
--rwxr-xr-x root/root         815 usr/lib/transcode/export_lame.la
--rwxr-xr-x root/root        5648 usr/lib/transcode/export_lame.so
--rwxr-xr-x root/root         882 usr/lib/transcode/export_mjpeg.la
--rwxr-xr-x root/root       77504 usr/lib/transcode/export_mjpeg.so
--rwxr-xr-x root/root         815 usr/lib/transcode/export_mp1e.la
--rwxr-xr-x root/root       22960 usr/lib/transcode/export_mp1e.so
--rwxr-xr-x root/root         809 usr/lib/transcode/export_mp2.la
--rwxr-xr-x root/root        5664 usr/lib/transcode/export_mp2.so
--rwxr-xr-x root/root         815 usr/lib/transcode/export_null.la
--rwxr-xr-x root/root        3576 usr/lib/transcode/export_null.so
--rwxr-xr-x root/root         809 usr/lib/transcode/export_ogg.la
--rwxr-xr-x root/root        5676 usr/lib/transcode/export_ogg.so
--rwxr-xr-x root/root         809 usr/lib/transcode/export_pcm.la
--rwxr-xr-x root/root        9788 usr/lib/transcode/export_pcm.so
--rwxr-xr-x root/root         863 usr/lib/transcode/export_ppm.la
--rwxr-xr-x root/root       76648 usr/lib/transcode/export_ppm.so
--rwxr-xr-x root/root         863 usr/lib/transcode/export_pvn.la
--rwxr-xr-x root/root       76648 usr/lib/transcode/export_pvn.so
--rwxr-xr-x root/root         863 usr/lib/transcode/export_raw.la
--rwxr-xr-x root/root       64096 usr/lib/transcode/export_raw.so
--rwxr-xr-x root/root         833 usr/lib/transcode/export_toolame.la
--rwxr-xr-x root/root        5168 usr/lib/transcode/export_toolame.so
--rwxr-xr-x root/root         809 usr/lib/transcode/export_wav.la
--rwxr-xr-x root/root        4992 usr/lib/transcode/export_wav.so
--rwxr-xr-x root/root         875 usr/lib/transcode/export_xvid2.la
--rwxr-xr-x root/root       92204 usr/lib/transcode/export_xvid2.so
--rwxr-xr-x root/root         875 usr/lib/transcode/export_xvid3.la
--rwxr-xr-x root/root       93612 usr/lib/transcode/export_xvid3.so
--rwxr-xr-x root/root         875 usr/lib/transcode/export_xvid4.la
--rwxr-xr-x root/root       76184 usr/lib/transcode/export_xvid4.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_29to23.la
--rwxr-xr-x root/root        4500 usr/lib/transcode/filter_29to23.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_32detect.la
--rwxr-xr-x root/root        7856 usr/lib/transcode/filter_32detect.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_32drop.la
--rwxr-xr-x root/root        4916 usr/lib/transcode/filter_32drop.so
--rwxr-xr-x root/root         821 usr/lib/transcode/filter_aclip.la
--rwxr-xr-x root/root        4944 usr/lib/transcode/filter_aclip.so
--rwxr-xr-x root/root         821 usr/lib/transcode/filter_ascii.la
--rwxr-xr-x root/root       26720 usr/lib/transcode/filter_ascii.so
--rwxr-xr-x root/root         821 usr/lib/transcode/filter_astat.la
--rwxr-xr-x root/root        5668 usr/lib/transcode/filter_astat.so
--rwxr-xr-x root/root         821 usr/lib/transcode/filter_clone.la
--rwxr-xr-x root/root        3616 usr/lib/transcode/filter_clone.so
--rwxr-xr-x root/root         833 usr/lib/transcode/filter_control.la
--rwxr-xr-x root/root        8428 usr/lib/transcode/filter_control.so
--rwxr-xr-x root/root         833 usr/lib/transcode/filter_cpaudio.la
--rwxr-xr-x root/root        4740 usr/lib/transcode/filter_cpaudio.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_cshift.la
--rwxr-xr-x root/root        6420 usr/lib/transcode/filter_cshift.so
--rwxr-xr-x root/root         809 usr/lib/transcode/filter_cut.la
--rwxr-xr-x root/root        5660 usr/lib/transcode/filter_cut.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_decimate.la
--rwxr-xr-x root/root        5032 usr/lib/transcode/filter_decimate.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_denoise3d.la
--rwxr-xr-x root/root        9768 usr/lib/transcode/filter_denoise3d.so
--rwxr-xr-x root/root         875 usr/lib/transcode/filter_detectclipping.la
--rwxr-xr-x root/root        8144 usr/lib/transcode/filter_detectclipping.so
--rwxr-xr-x root/root         869 usr/lib/transcode/filter_detectsilence.la
--rwxr-xr-x root/root        4692 usr/lib/transcode/filter_detectsilence.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_dilyuvmmx.la
--rwxr-xr-x root/root        4228 usr/lib/transcode/filter_dilyuvmmx.so
--rwxr-xr-x root/root         833 usr/lib/transcode/filter_divxkey.la
--rwxr-xr-x root/root       12116 usr/lib/transcode/filter_divxkey.so
--rwxr-xr-x root/root         809 usr/lib/transcode/filter_dnr.la
--rwxr-xr-x root/root        8256 usr/lib/transcode/filter_dnr.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_doublefps.la
--rwxr-xr-x root/root        5144 usr/lib/transcode/filter_doublefps.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_extsub.la
--rwxr-xr-x root/root       18496 usr/lib/transcode/filter_extsub.so
--rwxr-xr-x root/root         833 usr/lib/transcode/filter_extsub2.la
--rwxr-xr-x root/root       18496 usr/lib/transcode/filter_extsub2.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_facemask.la
--rwxr-xr-x root/root       24304 usr/lib/transcode/filter_facemask.so
--rwxr-xr-x root/root         869 usr/lib/transcode/filter_fieldanalysis.la
--rwxr-xr-x root/root       14104 usr/lib/transcode/filter_fieldanalysis.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_fields.la
--rwxr-xr-x root/root       10016 usr/lib/transcode/filter_fields.so
--rwxr-xr-x root/root         809 usr/lib/transcode/filter_fps.la
--rwxr-xr-x root/root        5644 usr/lib/transcode/filter_fps.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_hqdn3d.la
--rwxr-xr-x root/root        8992 usr/lib/transcode/filter_hqdn3d.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_invert.la
--rwxr-xr-x root/root        4960 usr/lib/transcode/filter_invert.so
--rwxr-xr-x root/root         815 usr/lib/transcode/filter_ivtc.la
--rwxr-xr-x root/root        5992 usr/lib/transcode/filter_ivtc.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_levels.la
--rwxr-xr-x root/root        6332 usr/lib/transcode/filter_levels.so
--rwxr-xr-x root/root        1420 usr/lib/transcode/filter_list.awk
--rwxr-xr-x root/root         833 usr/lib/transcode/filter_lowpass.la
--rwxr-xr-x root/root        5660 usr/lib/transcode/filter_lowpass.so
--rwxr-xr-x root/root         815 usr/lib/transcode/filter_mask.la
--rwxr-xr-x root/root        7716 usr/lib/transcode/filter_mask.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_modfps.la
--rwxr-xr-x root/root       14068 usr/lib/transcode/filter_modfps.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_msharpen.la
--rwxr-xr-x root/root       27112 usr/lib/transcode/filter_msharpen.so
--rwxr-xr-x root/root         821 usr/lib/transcode/filter_nored.la
--rwxr-xr-x root/root        5660 usr/lib/transcode/filter_nored.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_normalize.la
--rwxr-xr-x root/root        6664 usr/lib/transcode/filter_normalize.so
--rwxr-xr-x root/root         815 usr/lib/transcode/filter_null.la
--rwxr-xr-x root/root        4904 usr/lib/transcode/filter_null.so
--rwxr-xr-x root/root         803 usr/lib/transcode/filter_pp.la
--rwxr-xr-x root/root       40564 usr/lib/transcode/filter_pp.so
--rwxr-xr-x root/root         834 usr/lib/transcode/filter_pv.la
--rwxr-xr-x root/root       49860 usr/lib/transcode/filter_pv.so
--rwxr-xr-x root/root         870 usr/lib/transcode/filter_resample.la
--rwxr-xr-x root/root        5292 usr/lib/transcode/filter_resample.so
--rwxr-xr-x root/root         815 usr/lib/transcode/filter_skip.la
--rwxr-xr-x root/root        5052 usr/lib/transcode/filter_skip.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_slowmo.la
--rwxr-xr-x root/root        4368 usr/lib/transcode/filter_slowmo.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_smartbob.la
--rwxr-xr-x root/root       26560 usr/lib/transcode/filter_smartbob.so
--rwxr-xr-x root/root         863 usr/lib/transcode/filter_smartdeinter.la
--rwxr-xr-x root/root       33768 usr/lib/transcode/filter_smartdeinter.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_smartyuv.la
--rwxr-xr-x root/root       17508 usr/lib/transcode/filter_smartyuv.so
--rwxr-xr-x root/root         827 usr/lib/transcode/filter_smooth.la
--rwxr-xr-x root/root        6412 usr/lib/transcode/filter_smooth.so
--rwxr-xr-x root/root         925 usr/lib/transcode/filter_subtitler.la
--rwxr-xr-x root/root       93776 usr/lib/transcode/filter_subtitler.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_tc_audio.la
--rwxr-xr-x root/root        4896 usr/lib/transcode/filter_tc_audio.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_tc_video.la
--rwxr-xr-x root/root        5640 usr/lib/transcode/filter_tc_video.so
--rwxr-xr-x root/root         815 usr/lib/transcode/filter_test.la
--rwxr-xr-x root/root       10376 usr/lib/transcode/filter_test.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_testframe.la
--rwxr-xr-x root/root        5660 usr/lib/transcode/filter_testframe.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_text.la
--rwxr-xr-x root/root       15244 usr/lib/transcode/filter_text.so
--rwxr-xr-x root/root         851 usr/lib/transcode/filter_tomsmocomp.la
--rwxr-xr-x root/root      158064 usr/lib/transcode/filter_tomsmocomp.so
--rwxr-xr-x root/root         833 usr/lib/transcode/filter_unsharp.la
--rwxr-xr-x root/root       10032 usr/lib/transcode/filter_unsharp.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_videocore.la
--rwxr-xr-x root/root        8540 usr/lib/transcode/filter_videocore.so
--rwxr-xr-x root/root         863 usr/lib/transcode/filter_whitebalance.la
--rwxr-xr-x root/root       22480 usr/lib/transcode/filter_whitebalance.so
--rwxr-xr-x root/root         839 usr/lib/transcode/filter_xsharpen.la
--rwxr-xr-x root/root       10028 usr/lib/transcode/filter_xsharpen.so
--rwxr-xr-x root/root         851 usr/lib/transcode/filter_yuvdenoise.la
--rwxr-xr-x root/root       45620 usr/lib/transcode/filter_yuvdenoise.so
--rwxr-xr-x root/root         845 usr/lib/transcode/filter_yuvmedian.la
--rwxr-xr-x root/root        8236 usr/lib/transcode/filter_yuvmedian.so
--rwxr-xr-x root/root         851 usr/lib/transcode/filter_yuy2toyv12.la
--rwxr-xr-x root/root        4352 usr/lib/transcode/filter_yuy2toyv12.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_ac3.la
--rwxr-xr-x root/root       55152 usr/lib/transcode/import_ac3.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_avi.la
--rwxr-xr-x root/root        7788 usr/lib/transcode/import_avi.so
--rwxr-xr-x root/root         815 usr/lib/transcode/import_divx.la
--rwxr-xr-x root/root        9832 usr/lib/transcode/import_divx.so
--rwxr-xr-x root/root         803 usr/lib/transcode/import_dv.la
--rwxr-xr-x root/root        6168 usr/lib/transcode/import_dv.so
--rwxr-xr-x root/root         843 usr/lib/transcode/import_dvd.la
--rwxr-xr-x root/root       84280 usr/lib/transcode/import_dvd.so
--rwxr-xr-x root/root         858 usr/lib/transcode/import_ffmpeg.la
--rwxr-xr-x root/root       15372 usr/lib/transcode/import_ffmpeg.so
--rwxr-xr-x root/root         821 usr/lib/transcode/import_fraps.la
--rwxr-xr-x root/root        5948 usr/lib/transcode/import_fraps.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_lav.la
--rwxr-xr-x root/root        5652 usr/lib/transcode/import_lav.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_mp3.la
--rwxr-xr-x root/root        9804 usr/lib/transcode/import_mp3.so
--rwxr-xr-x root/root         821 usr/lib/transcode/import_mpeg2.la
--rwxr-xr-x root/root        7160 usr/lib/transcode/import_mpeg2.so
--rwxr-xr-x root/root         833 usr/lib/transcode/import_mplayer.la
--rwxr-xr-x root/root        6104 usr/lib/transcode/import_mplayer.so
--rwxr-xr-x root/root         815 usr/lib/transcode/import_null.la
--rwxr-xr-x root/root        3668 usr/lib/transcode/import_null.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_nuv.la
--rwxr-xr-x root/root       59568 usr/lib/transcode/import_nuv.so
--rwxr-xr-x root/root         821 usr/lib/transcode/import_nvrec.la
--rwxr-xr-x root/root        9772 usr/lib/transcode/import_nvrec.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_ogg.la
--rwxr-xr-x root/root        5648 usr/lib/transcode/import_ogg.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_pvn.la
--rwxr-xr-x root/root       22224 usr/lib/transcode/import_pvn.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_raw.la
--rwxr-xr-x root/root        5656 usr/lib/transcode/import_raw.so
--rwxr-xr-x root/root         833 usr/lib/transcode/import_rawlist.la
--rwxr-xr-x root/root       10116 usr/lib/transcode/import_rawlist.so
--rwxr-xr-x root/root         803 usr/lib/transcode/import_sh.la
--rwxr-xr-x root/root        5644 usr/lib/transcode/import_sh.so
--rwxr-xr-x root/root         827 usr/lib/transcode/import_vdrac3.la
--rwxr-xr-x root/root       55152 usr/lib/transcode/import_vdrac3.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_vnc.la
--rwxr-xr-x root/root        9832 usr/lib/transcode/import_vnc.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_vob.la
--rwxr-xr-x root/root       71816 usr/lib/transcode/import_vob.so
--rwxr-xr-x root/root         815 usr/lib/transcode/import_xvid.la
--rwxr-xr-x root/root        7536 usr/lib/transcode/import_xvid.so
--rwxr-xr-x root/root         809 usr/lib/transcode/import_yuv.la
--rwxr-xr-x root/root        5640 usr/lib/transcode/import_yuv.so
--rwxr-xr-x root/root         839 usr/lib/transcode/import_yuv4mpeg.la
--rwxr-xr-x root/root        5652 usr/lib/transcode/import_yuv4mpeg.so
--rwxr-xr-x root/root        5371 usr/lib/transcode/parse_csv.awk
--rw-r--r-- root/root        6084 usr/lib/transcode/xvid2.cfg
--rw-r--r-- root/root        6084 usr/lib/transcode/xvid3.cfg
--rw-r--r-- root/root       15475 usr/lib/transcode/xvid4.cfg
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root         931 usr/man/man1/avifix.1.gz
--rw-r--r-- root/root        2736 usr/man/man1/aviindex.1.gz
--rw-r--r-- root/root        1463 usr/man/man1/avimerge.1.gz
--rw-r--r-- root/root        1793 usr/man/man1/avisplit.1.gz
--rw-r--r-- root/root         895 usr/man/man1/avisync.1.gz
--rw-r--r-- root/root        1488 usr/man/man1/tccat.1.gz
--rw-r--r-- root/root        1931 usr/man/man1/tcdecode.1.gz
--rw-r--r-- root/root        2145 usr/man/man1/tcdemux.1.gz
--rw-r--r-- root/root        1461 usr/man/man1/tcextract.1.gz
--rw-r--r-- root/root         897 usr/man/man1/tcmodinfo.1.gz
--rw-r--r-- root/root        1438 usr/man/man1/tcprobe.1.gz
--rw-r--r-- root/root         827 usr/man/man1/tcpvmexportd.1.gz
--rw-r--r-- root/root        1181 usr/man/man1/tcscan.1.gz
--rw-r--r-- root/root         752 usr/man/man1/tcxmlcheck.1.gz
--rw-r--r-- root/root       33925 usr/man/man1/transcode.1.gz
-drwxr-xr-x root/root           0 usr/share/
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/avifix
+-rwxr-xr-x root/bin usr/bin/aviindex
+-rwxr-xr-x root/bin usr/bin/avimerge
+-rwxr-xr-x root/bin usr/bin/avisplit
+-rwxr-xr-x root/bin usr/bin/avisync
+-rwxr-xr-x root/bin usr/bin/tccat
+-rwxr-xr-x root/bin usr/bin/tcdecode
+-rwxr-xr-x root/bin usr/bin/tcdemux
+-rwxr-xr-x root/bin usr/bin/tcextract
+-rwxr-xr-x root/bin usr/bin/tcmodinfo
+-rwxr-xr-x root/bin usr/bin/tcmp3cut
+-rwxr-xr-x root/bin usr/bin/tcprobe
+-rwxr-xr-x root/bin usr/bin/tcrequant
+-rwxr-xr-x root/bin usr/bin/tcscan
+-rwxr-xr-x root/bin usr/bin/tcxmlcheck
+-rwxr-xr-x root/bin usr/bin/tcxpm2rgb
+-rwxr-xr-x root/bin usr/bin/transcode
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/transcode/
+drwxr-xr-x root/root usr/doc/transcode-1.0.2/
+-rw-r--r-- root/root usr/doc/transcode-1.0.2/AUTHORS
+-rw-r--r-- root/root usr/doc/transcode-1.0.2/ChangeLog
+-rw-r--r-- root/root usr/doc/transcode-1.0.2/COPYING
+-rw-r--r-- root/root usr/doc/transcode-1.0.2/README
+-rw-r--r-- root/root usr/doc/transcode-1.0.2/TODO
+-rw-r--r-- root/root usr/doc/transcode/architecture.txt
+-rw-r--r-- root/root usr/doc/transcode/avi_comments.txt
+-rw-r--r-- root/root usr/doc/transcode/ChangeLog
+-rw-r--r-- root/root usr/doc/transcode/clone.txt
+-rw-r--r-- root/root usr/doc/transcode/DV-to-DVD-HOWTO.txt
+-rw-r--r-- root/root usr/doc/transcode/export-API.txt
+-rw-r--r-- root/root usr/doc/transcode/export_ffmpeg.txt
+-rw-r--r-- root/root usr/doc/transcode/export_mp2.txt
+-rw-r--r-- root/root usr/doc/transcode/export_mpeg.txt
+-rw-r--r-- root/root usr/doc/transcode/export_pvm.txt
+-rw-r--r-- root/root usr/doc/transcode/faq
+-rw-r--r-- root/root usr/doc/transcode/filter-API.txt
+-rw-r--r-- root/root usr/doc/transcode/filter_dnr.txt
+-rw-r--r-- root/root usr/doc/transcode/filter_logoaway.txt
+-rw-r--r-- root/root usr/doc/transcode/filter_logo.txt
+-rw-r--r-- root/root usr/doc/transcode/filter-socket.txt
+-rw-r--r-- root/root usr/doc/transcode/filter_text.txt
+-rw-r--r-- root/root usr/doc/transcode/filter_yuvdenoise.txt
+-rw-r--r-- root/root usr/doc/transcode/framerate.txt
+drwxr-xr-x root/root usr/doc/transcode/html/
+-rw-r--r-- root/root usr/doc/transcode/html/dvd.html
+-rw-r--r-- root/root usr/doc/transcode/html/dv.html
+-rw-r--r-- root/root usr/doc/transcode/html/export_divx4.php
+-rw-r--r-- root/root usr/doc/transcode/html/export_divx5.php
+-rw-r--r-- root/root usr/doc/transcode/html/export_divx.html
+-rw-r--r-- root/root usr/doc/transcode/html/export_fame.php
+-rw-r--r-- root/root usr/doc/transcode/html/export_ogg.php
+-rw-r--r-- root/root usr/doc/transcode/html/export_opendivx.php
+-rw-r--r-- root/root usr/doc/transcode/html/export_xvid.php
+-rw-r--r-- root/root usr/doc/transcode/html/import_avi.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_dvd.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_dv.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_mp3.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_mpeg2.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_mpeg3.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_null.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_nuv.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_ogg.php
+-rw-r--r-- root/root usr/doc/transcode/html/import_raw.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_vob.html
+-rw-r--r-- root/root usr/doc/transcode/html/import_yuv4mpeg.html
+-rw-r--r-- root/root usr/doc/transcode/html/index.html
+-rw-r--r-- root/root usr/doc/transcode/html/intro.html
+-rw-r--r-- root/root usr/doc/transcode/html/mes0-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/mes4-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/mes5-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/mes6-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/mes7-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/misc.html
+-rw-r--r-- root/root usr/doc/transcode/html/modules.html
+-rw-r--r-- root/root usr/doc/transcode/html/mpeg.html
+-rw-r--r-- root/root usr/doc/transcode/html/new.png
+-rw-r--r-- root/root usr/doc/transcode/html/other.html
+-rw-r--r-- root/root usr/doc/transcode/html/post.html
+-rw-r--r-- root/root usr/doc/transcode/html/pre.html
+-rw-r--r-- root/root usr/doc/transcode/html/smart.html
+-rw-r--r-- root/root usr/doc/transcode/html/sorry.html
+-rw-r--r-- root/root usr/doc/transcode/html/sub0-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/sub1-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/sub2-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/sub3-00000.png
+-rw-r--r-- root/root usr/doc/transcode/html/subtitles.html
+-rw-r--r-- root/root usr/doc/transcode/html/table.php
+-rw-r--r-- root/root usr/doc/transcode/html/tc.png
+-rw-r--r-- root/root usr/doc/transcode/ibp_support.txt
+-rw-r--r-- root/root usr/doc/transcode/import-API.txt
+-rw-r--r-- root/root usr/doc/transcode/import_nvrec.txt
+-rw-r--r-- root/root usr/doc/transcode/import_v4l2.txt
+-rw-r--r-- root/root usr/doc/transcode/import-xml.txt
+-rw-r--r-- root/root usr/doc/transcode/import_yuv.txt
+-rw-r--r-- root/root usr/doc/transcode/OPTIMIZERS
+-rw-r--r-- root/root usr/doc/transcode/pvm.cfg
+-rw-r--r-- root/root usr/doc/transcode/README.cluster
+-rw-r--r-- root/root usr/doc/transcode/README.dv
+-rw-r--r-- root/root usr/doc/transcode/README.filter.modfps
+-rw-r--r-- root/root usr/doc/transcode/README.Inverse.Telecine.txt
+-rw-r--r-- root/root usr/doc/transcode/README.rip
+-rw-r--r-- root/root usr/doc/transcode/README.sync
+-rw-r--r-- root/root usr/doc/transcode/README.vcd
+-rw-r--r-- root/root usr/doc/transcode/README.xvid-credits
+drwxr-xr-x root/root usr/doc/transcode/release-notes/
+-rw-r--r-- root/root usr/doc/transcode/release-notes/README-0.6.13
+-rw-r--r-- root/root usr/doc/transcode/template.cfg.txt
+drwxr-xr-x root/root usr/lib/
+drwxr-xr-x root/root usr/lib/transcode/
+-rwxr-xr-x root/root usr/lib/transcode/af6_decore.la
+-rwxr-xr-x root/root usr/lib/transcode/af6_decore.so
+-rwxr-xr-x root/root usr/lib/transcode/export_ac3.la
+-rwxr-xr-x root/root usr/lib/transcode/export_ac3.so
+-rw-r--r-- root/root usr/lib/transcode/export_af6.conf
+-rwxr-xr-x root/root usr/lib/transcode/export_debugppm.la
+-rwxr-xr-x root/root usr/lib/transcode/export_debugppm.so
+-rwxr-xr-x root/root usr/lib/transcode/export_divx4.la
+-rwxr-xr-x root/root usr/lib/transcode/export_divx4raw.la
+-rwxr-xr-x root/root usr/lib/transcode/export_divx4raw.so
+-rwxr-xr-x root/root usr/lib/transcode/export_divx4.so
+-rwxr-xr-x root/root usr/lib/transcode/export_divx5.la
+-rwxr-xr-x root/root usr/lib/transcode/export_divx5raw.la
+-rwxr-xr-x root/root usr/lib/transcode/export_divx5raw.so
+-rwxr-xr-x root/root usr/lib/transcode/export_divx5.so
+-rwxr-xr-x root/root usr/lib/transcode/export_ffmpeg.la
+-rwxr-xr-x root/root usr/lib/transcode/export_ffmpeg.so
+-rwxr-xr-x root/root usr/lib/transcode/export_jpg.la
+-rwxr-xr-x root/root usr/lib/transcode/export_jpg.so
+-rwxr-xr-x root/root usr/lib/transcode/export_lame.la
+-rwxr-xr-x root/root usr/lib/transcode/export_lame.so
+-rwxr-xr-x root/root usr/lib/transcode/export_mjpeg.la
+-rwxr-xr-x root/root usr/lib/transcode/export_mjpeg.so
+-rwxr-xr-x root/root usr/lib/transcode/export_mp1e.la
+-rwxr-xr-x root/root usr/lib/transcode/export_mp1e.so
+-rwxr-xr-x root/root usr/lib/transcode/export_mp2.la
+-rwxr-xr-x root/root usr/lib/transcode/export_mp2.so
+-rwxr-xr-x root/root usr/lib/transcode/export_null.la
+-rwxr-xr-x root/root usr/lib/transcode/export_null.so
+-rwxr-xr-x root/root usr/lib/transcode/export_ogg.la
+-rwxr-xr-x root/root usr/lib/transcode/export_ogg.so
+-rwxr-xr-x root/root usr/lib/transcode/export_pcm.la
+-rwxr-xr-x root/root usr/lib/transcode/export_pcm.so
+-rwxr-xr-x root/root usr/lib/transcode/export_ppm.la
+-rwxr-xr-x root/root usr/lib/transcode/export_ppm.so
+-rwxr-xr-x root/root usr/lib/transcode/export_pvn.la
+-rwxr-xr-x root/root usr/lib/transcode/export_pvn.so
+-rwxr-xr-x root/root usr/lib/transcode/export_raw.la
+-rwxr-xr-x root/root usr/lib/transcode/export_raw.so
+-rwxr-xr-x root/root usr/lib/transcode/export_toolame.la
+-rwxr-xr-x root/root usr/lib/transcode/export_toolame.so
+-rwxr-xr-x root/root usr/lib/transcode/export_wav.la
+-rwxr-xr-x root/root usr/lib/transcode/export_wav.so
+-rwxr-xr-x root/root usr/lib/transcode/export_xvid2.la
+-rwxr-xr-x root/root usr/lib/transcode/export_xvid2.so
+-rwxr-xr-x root/root usr/lib/transcode/export_xvid3.la
+-rwxr-xr-x root/root usr/lib/transcode/export_xvid3.so
+-rwxr-xr-x root/root usr/lib/transcode/export_xvid4.la
+-rwxr-xr-x root/root usr/lib/transcode/export_xvid4.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_29to23.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_29to23.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_32detect.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_32detect.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_32drop.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_32drop.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_aclip.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_aclip.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_ascii.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_ascii.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_astat.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_astat.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_clone.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_clone.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_control.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_control.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_cpaudio.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_cpaudio.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_cshift.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_cshift.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_cut.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_cut.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_decimate.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_decimate.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_denoise3d.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_denoise3d.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_detectclipping.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_detectclipping.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_detectsilence.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_detectsilence.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_dilyuvmmx.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_dilyuvmmx.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_divxkey.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_divxkey.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_dnr.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_dnr.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_doublefps.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_doublefps.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_extsub2.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_extsub2.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_extsub.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_extsub.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_facemask.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_facemask.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_fieldanalysis.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_fieldanalysis.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_fields.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_fields.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_fps.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_fps.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_hqdn3d.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_hqdn3d.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_invert.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_invert.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_ivtc.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_ivtc.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_levels.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_levels.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_list.awk
+-rwxr-xr-x root/root usr/lib/transcode/filter_lowpass.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_lowpass.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_mask.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_mask.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_modfps.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_modfps.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_msharpen.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_msharpen.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_nored.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_nored.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_normalize.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_normalize.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_null.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_null.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_pv.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_pv.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_resample.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_resample.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_skip.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_skip.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_slowmo.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_slowmo.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_smartbob.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_smartbob.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_smartdeinter.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_smartdeinter.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_smartyuv.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_smartyuv.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_smooth.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_smooth.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_tc_audio.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_tc_audio.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_tc_video.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_tc_video.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_testframe.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_testframe.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_test.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_test.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_tomsmocomp.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_tomsmocomp.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_unsharp.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_unsharp.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_videocore.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_videocore.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_whitebalance.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_whitebalance.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_xsharpen.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_xsharpen.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_yuvdenoise.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_yuvdenoise.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_yuvmedian.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_yuvmedian.so
+-rwxr-xr-x root/root usr/lib/transcode/filter_yuy2toyv12.la
+-rwxr-xr-x root/root usr/lib/transcode/filter_yuy2toyv12.so
+-rwxr-xr-x root/root usr/lib/transcode/import_ac3.la
+-rwxr-xr-x root/root usr/lib/transcode/import_ac3.so
+-rwxr-xr-x root/root usr/lib/transcode/import_avi.la
+-rwxr-xr-x root/root usr/lib/transcode/import_avi.so
+-rwxr-xr-x root/root usr/lib/transcode/import_bsdav.la
+-rwxr-xr-x root/root usr/lib/transcode/import_bsdav.so
+-rwxr-xr-x root/root usr/lib/transcode/import_divx.la
+-rwxr-xr-x root/root usr/lib/transcode/import_divx.so
+-rwxr-xr-x root/root usr/lib/transcode/import_dvd.la
+-rwxr-xr-x root/root usr/lib/transcode/import_dvd.so
+-rwxr-xr-x root/root usr/lib/transcode/import_dv.la
+-rwxr-xr-x root/root usr/lib/transcode/import_dv.so
+-rwxr-xr-x root/root usr/lib/transcode/import_ffbin.la
+-rwxr-xr-x root/root usr/lib/transcode/import_ffbin.so
+-rwxr-xr-x root/root usr/lib/transcode/import_ffmpeg.la
+-rwxr-xr-x root/root usr/lib/transcode/import_ffmpeg.so
+-rwxr-xr-x root/root usr/lib/transcode/import_fraps.la
+-rwxr-xr-x root/root usr/lib/transcode/import_fraps.so
+-rwxr-xr-x root/root usr/lib/transcode/import_lav.la
+-rwxr-xr-x root/root usr/lib/transcode/import_lav.so
+-rwxr-xr-x root/root usr/lib/transcode/import_mp3.la
+-rwxr-xr-x root/root usr/lib/transcode/import_mp3.so
+-rwxr-xr-x root/root usr/lib/transcode/import_mpeg2.la
+-rwxr-xr-x root/root usr/lib/transcode/import_mpeg2.so
+-rwxr-xr-x root/root usr/lib/transcode/import_mplayer.la
+-rwxr-xr-x root/root usr/lib/transcode/import_mplayer.so
+-rwxr-xr-x root/root usr/lib/transcode/import_null.la
+-rwxr-xr-x root/root usr/lib/transcode/import_null.so
+-rwxr-xr-x root/root usr/lib/transcode/import_nuv.la
+-rwxr-xr-x root/root usr/lib/transcode/import_nuv.so
+-rwxr-xr-x root/root usr/lib/transcode/import_nvrec.la
+-rwxr-xr-x root/root usr/lib/transcode/import_nvrec.so
+-rwxr-xr-x root/root usr/lib/transcode/import_ogg.la
+-rwxr-xr-x root/root usr/lib/transcode/import_ogg.so
+-rwxr-xr-x root/root usr/lib/transcode/import_pvn.la
+-rwxr-xr-x root/root usr/lib/transcode/import_pvn.so
+-rwxr-xr-x root/root usr/lib/transcode/import_raw.la
+-rwxr-xr-x root/root usr/lib/transcode/import_rawlist.la
+-rwxr-xr-x root/root usr/lib/transcode/import_rawlist.so
+-rwxr-xr-x root/root usr/lib/transcode/import_raw.so
+-rwxr-xr-x root/root usr/lib/transcode/import_sh.la
+-rwxr-xr-x root/root usr/lib/transcode/import_sh.so
+-rwxr-xr-x root/root usr/lib/transcode/import_vdrac3.la
+-rwxr-xr-x root/root usr/lib/transcode/import_vdrac3.so
+-rwxr-xr-x root/root usr/lib/transcode/import_vnc.la
+-rwxr-xr-x root/root usr/lib/transcode/import_vnc.so
+-rwxr-xr-x root/root usr/lib/transcode/import_vob.la
+-rwxr-xr-x root/root usr/lib/transcode/import_vob.so
+-rwxr-xr-x root/root usr/lib/transcode/import_xvid.la
+-rwxr-xr-x root/root usr/lib/transcode/import_xvid.so
+-rwxr-xr-x root/root usr/lib/transcode/import_yuv4mpeg.la
+-rwxr-xr-x root/root usr/lib/transcode/import_yuv4mpeg.so
+-rwxr-xr-x root/root usr/lib/transcode/import_yuv.la
+-rwxr-xr-x root/root usr/lib/transcode/import_yuv.so
+-rwxr-xr-x root/root usr/lib/transcode/parse_csv.awk
+-rw-r--r-- root/root usr/lib/transcode/xvid2.cfg
+-rw-r--r-- root/root usr/lib/transcode/xvid3.cfg
+-rw-r--r-- root/root usr/lib/transcode/xvid4.cfg
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man1/
+-rw-r--r-- root/root usr/man/man1/avifix.1.gz
+-rw-r--r-- root/root usr/man/man1/aviindex.1.gz
+-rw-r--r-- root/root usr/man/man1/avimerge.1.gz
+-rw-r--r-- root/root usr/man/man1/avisplit.1.gz
+-rw-r--r-- root/root usr/man/man1/avisync.1.gz
+-rw-r--r-- root/root usr/man/man1/tccat.1.gz
+-rw-r--r-- root/root usr/man/man1/tcdecode.1.gz
+-rw-r--r-- root/root usr/man/man1/tcdemux.1.gz
+-rw-r--r-- root/root usr/man/man1/tcextract.1.gz
+-rw-r--r-- root/root usr/man/man1/tcmodinfo.1.gz
+-rw-r--r-- root/root usr/man/man1/tcprobe.1.gz
+-rw-r--r-- root/root usr/man/man1/tcpvmexportd.1.gz
+-rw-r--r-- root/root usr/man/man1/tcscan.1.gz
+-rw-r--r-- root/root usr/man/man1/tcxmlcheck.1.gz
+-rw-r--r-- root/root usr/man/man1/transcode.1.gz
+drwxr-xr-x root/root usr/share/
