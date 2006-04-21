@@ -1,15 +1,19 @@
-2005-05-03 13:55  topf
+2006-04-21  topf  <topf@users.berlios.de>
 
-	* SlackBuild, classification.config.new, footprint,
-	  gen-msg.map.new, md5sums, reference.config.new, rules.tar.bz2,
-	  sid-msg.map.new, sid.new, snort.conf.new, sources: Moved
-	  open/snort to n/.
+  * rules/other-ids.rules, rules/p2p.rules, rules/policy.rules, rules/pop2.rules, rules/pop3.rules, rules/porn.rules, rules/rpc.rules, rules/rservices.rules, rules/scan.rules, rules/shellcode.rules, rules/smtp.rules, rules/snmp.rules, rules/sql.rules, rules/telnet.rules, rules/tftp.rules, rules/virus.rules, rules/web-attacks.rules, rules/web-cgi.rules, rules/web-client.rules, rules/web-coldfusion.rules, rules/web-frontpage.rules, rules/web-iis.rules, rules/web-misc.rules, rules/web-php.rules, rules/x11.rules, rules/icmp-info.rules, rules/icmp.rules, rules/imap.rules, rules/info.rules, rules/local.rules, rules/misc.rules, rules/multimedia.rules, rules/mysql.rules, rules/netbios.rules, rules/nntp.rules, rules/oracle.rules, ChangeLog, SlackBuild, classification.config.new, footprint, gen-msg.map.new, md5sums, reference.config.new, rules/Makefile.am, rules/attack-responses.rules, rules/backdoor.rules, rules/bad-traffic.rules, rules/chat.rules, rules/ddos.rules, rules/deleted.rules, rules/dns.rules, rules/dos.rules, rules/experimental.rules, rules/exploit.rules, rules/finger.rules, rules/ftp.rules, sid-msg.map.new, sid.new, snort.conf.new, sources:
+  Upgraded to v2.4.3, added rm -rf etc/rules/CVS line to SlackBuild (sjn)
 
-2005-04-28 15:38  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* SlackBuild, classification.config.new, doinst.sh, footprint,
-	  gen-msg.map.new, generators.new, reference.config.new, requires,
-	  rules.tar.bz2, sid-msg.map.new, sid.new, slack-desc,
-	  snort.conf.new, sources, threshold.conf.new, unicode.map.new:
-	  Moved open/snort to n/. (stb)
+  * ChangeLog, rules/ChangeLog: Updated.
+
+2005-05-03  topf  <topf@users.berlios.de>
+
+  * rules/Makefile.am, rules/Makefile.in, rules/attack-responses.rules, rules/backdoor.rules, rules/bad-traffic.rules, rules/chat.rules, rules/ddos.rules, rules/deleted.rules, rules/dns.rules, rules/dos.rules, rules/experimental.rules, rules/exploit.rules, rules/finger.rules, rules/ftp.rules, rules/icmp-info.rules, rules/icmp.rules, rules/imap.rules, rules/info.rules, rules/local.rules, rules/misc.rules, rules/multimedia.rules, rules/mysql.rules, rules/netbios.rules, rules/nntp.rules, rules/oracle.rules, rules/other-ids.rules, rules/p2p.rules, rules/policy.rules, rules/pop2.rules, rules/pop3.rules, rules/porn.rules, rules/rpc.rules, rules/rservices.rules, rules/scan.rules, rules/shellcode.rules, rules/smtp.rules, rules/snmp.rules, rules/sql.rules, rules/telnet.rules, rules/tftp.rules, rules/virus.rules, rules/web-attacks.rules, rules/web-cgi.rules, rules/web-client.rules, rules/web-coldfusion.rules, rules/web-frontpage.rules, rules/web-iis.rules, rules/web-misc.rules, rules/web-php.rules, rules/x11.rules, sid.new, snort.conf.new, sources, SlackBuild, classification.config.new, footprint, gen-msg.map.new, md5sums, reference.config.new, rules.tar.bz2, sid-msg.map.new:
+  Moved open/snort to n/.
+
+2005-04-28  topf  <topf@users.berlios.de>
+
+  * SlackBuild, classification.config.new, doinst.sh, footprint, gen-msg.map.new, generators.new, reference.config.new, requires, rules.tar.bz2, sid-msg.map.new, sid.new, slack-desc, snort.conf.new, sources, threshold.conf.new, unicode.map.new:
+  Moved open/snort to n/. (stb)
 
