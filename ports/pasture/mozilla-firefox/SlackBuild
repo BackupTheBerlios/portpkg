@@ -3,8 +3,8 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.0.5
-ARCH=i686
+VERSION=1.5
+ARCH=i486
 BUILD=1lem
 
 rm -rf $PKG
@@ -22,6 +22,7 @@ ln -s /usr/lib/firefox-$VERSION $PKG/usr/lib/firefox
 cp -a * $PKG/usr/lib/firefox-$VERSION/
 mkdir -p $PKG/usr/bin 
 ln -s /usr/lib/firefox-$VERSION/firefox $PKG/usr/bin/firefox
+ln -s firefox $PKG/usr/lib/firefix-$VERSION
 mkdir -p $PKG/usr/share/applications
 cp -a $CWD/firefox.desktop $PKG/usr/share/applications/
 #=install
@@ -35,9 +36,6 @@ chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
 gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-cp -a \
-  LICENSE README.txt \
-  $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 mkdir -p $PKG/install
