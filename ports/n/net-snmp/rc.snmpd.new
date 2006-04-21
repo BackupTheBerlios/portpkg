@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# $id: rc.snmpd 2005/12/10 00:36:32 root Exp $
+#
+# Author: An1nimous <unvoid@goodline.ru>
+#
+# description: snmpd is net-snmp SNMP daemon 
+#
+
+RETVAL=0
+DAEMON='/usr/sbin/snmpd'
+NAME='snmpd'
+
+[ -x $DAEMON ] || exit 0
+
+start() {
+
+    echo "Starting daemon: $NAME"
+    $DAEMON
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/$NAME
+    return $RETVAL
+}
+
+stop() {
+
+    echo "Stopping daemon: $NAME"
+    kill -TERM `pidof snmpd`
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$NAME
+    return $RETVAL
+}
+
+case "$1" in
+    'start')
+	start
+	;;
+    'stop')
+	stop
+	;;
+    'restart')
+	stop
+	sleep 1
+	start
+	;;
+    *)
+	echo $"Usage: $0 {start|stop|restart}";;
+esac
+exit $RETVAL
