@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.1 2005/05/03 11:55:13 topf Exp $
+## $Id: Makefile.am,v 1.2 2006/04/21 09:53:06 topf Exp $
 AUTOMAKE_OPTIONS=foreign no-dependencies
 
 EXTRA_DIST = attack-responses.rules backdoor.rules bad-traffic.rules \

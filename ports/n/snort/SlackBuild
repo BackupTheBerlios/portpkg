@@ -19,9 +19,9 @@ if [ ! -d $TMP ]; then
 fi
 PKG=/tmp/package-snort
 
-VERSION=2.3.3
+VERSION=2.4.3
 ARCH=${ARCH:-i486}
-BUILD=1stb
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -67,14 +67,11 @@ strip $PKG/usr/bin/*
 chown -R root.bin $PKG/usr/bin
 gzip -9 $PKG/usr/man/man8/*
 mkdir -p $PKG/usr/doc/snort-$VERSION
-cp RELEASE.NOTES $PKG/usr/doc/snort-$VERSION
-cp COPYING $PKG/usr/doc/snort-$VERSION
-cp LICENSE $PKG/usr/doc/snort-$VERSION
-cp doc/* $PKG/usr/doc/snort-$VERSION
-cp ChangeLog $PKG/usr/doc/snort-$VERSION
+cp RELEASE.NOTES COPYING LICENSE doc/* ChangeLog $PKG/usr/doc/snort-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 cd $PKG
+rm -rf etc/rules/CVS
 makepkg -l y -c n ../snort-$VERSION-$ARCH-$BUILD.tgz
 

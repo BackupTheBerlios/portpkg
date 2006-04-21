@@ -1,116 +1,118 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
--rw-r--r-- root/root        3521 etc/classification.config.new
--rw-r--r-- root/root        8066 etc/gen-msg.map.new
--rw-r--r-- root/root        1622 etc/generators.new
--rw-r--r-- root/root         608 etc/reference.config.new
-drwxr-xr-x root/root           0 etc/rules/
--rw-r--r-- root/root         777 etc/rules/Makefile.am
--rw-r--r-- root/root        6009 etc/rules/Makefile.in
--rw-r--r-- root/root        4709 etc/rules/attack-responses.rules
--rw-r--r-- root/root       17026 etc/rules/backdoor.rules
--rw-r--r-- root/root        3002 etc/rules/bad-traffic.rules
--rw-r--r-- root/root        7212 etc/rules/chat.rules
--rw-r--r-- root/root        6786 etc/rules/ddos.rules
--rw-r--r-- root/root       63449 etc/rules/deleted.rules
--rw-r--r-- root/root        5867 etc/rules/dns.rules
--rw-r--r-- root/root        5290 etc/rules/dos.rules
--rw-r--r-- root/root         471 etc/rules/experimental.rules
--rw-r--r-- root/root       26548 etc/rules/exploit.rules
--rw-r--r-- root/root        3353 etc/rules/finger.rules
--rw-r--r-- root/root       20491 etc/rules/ftp.rules
--rw-r--r-- root/root       15618 etc/rules/icmp-info.rules
--rw-r--r-- root/root        4488 etc/rules/icmp.rules
--rw-r--r-- root/root       12579 etc/rules/imap.rules
--rw-r--r-- root/root        2430 etc/rules/info.rules
--rw-r--r-- root/root         199 etc/rules/local.rules
--rw-r--r-- root/root       17159 etc/rules/misc.rules
--rw-r--r-- root/root        2866 etc/rules/multimedia.rules
--rw-r--r-- root/root        1075 etc/rules/mysql.rules
--rw-r--r-- root/root      284703 etc/rules/netbios.rules
--rw-r--r-- root/root        3895 etc/rules/nntp.rules
--rw-r--r-- root/root      176913 etc/rules/oracle.rules
--rw-r--r-- root/root        1383 etc/rules/other-ids.rules
--rw-r--r-- root/root        3953 etc/rules/p2p.rules
--rw-r--r-- root/root        5323 etc/rules/policy.rules
--rw-r--r-- root/root        1228 etc/rules/pop2.rules
--rw-r--r-- root/root        8578 etc/rules/pop3.rules
--rw-r--r-- root/root        5061 etc/rules/porn.rules
--rw-r--r-- root/root       51378 etc/rules/rpc.rules
--rw-r--r-- root/root        2920 etc/rules/rservices.rules
--rw-r--r-- root/root        4092 etc/rules/scan.rules
--rw-r--r-- root/root        4727 etc/rules/shellcode.rules
--rw-r--r-- root/root       22138 etc/rules/smtp.rules
--rw-r--r-- root/root        4915 etc/rules/snmp.rules
--rw-r--r-- root/root       17310 etc/rules/sql.rules
--rw-r--r-- root/root        4260 etc/rules/telnet.rules
--rw-r--r-- root/root        2560 etc/rules/tftp.rules
--rw-r--r-- root/root        1211 etc/rules/virus.rules
--rw-r--r-- root/root       10229 etc/rules/web-attacks.rules
--rw-r--r-- root/root      100925 etc/rules/web-cgi.rules
--rw-r--r-- root/root        9795 etc/rules/web-client.rules
--rw-r--r-- root/root        9166 etc/rules/web-coldfusion.rules
--rw-r--r-- root/root        9484 etc/rules/web-frontpage.rules
--rw-r--r-- root/root       38547 etc/rules/web-iis.rules
--rw-r--r-- root/root       94965 etc/rules/web-misc.rules
--rw-r--r-- root/root       35801 etc/rules/web-php.rules
--rw-r--r-- root/root         573 etc/rules/x11.rules
--rw-r--r-- root/root      261991 etc/sid-msg.map.new
--rw-r--r-- root/root          59 etc/sid.new
--rw-r--r-- root/root       26895 etc/snort.conf.new
--rw-r--r-- root/root        2319 etc/threshold.conf.new
--rw-r--r-- root/root       53841 etc/unicode.map.new
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         604 install/doinst.sh
--rw-r--r-- root/root         255 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin       534068 usr/bin/snort
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/snort-2.3.3/
--rw-r--r-- root/root          58 usr/doc/snort-2.3.3/AUTHORS
--rw-r--r-- root/root        1939 usr/doc/snort-2.3.3/BUGS
--rw-r--r-- root/root       17989 usr/doc/snort-2.3.3/COPYING
--rw-r--r-- root/root        9855 usr/doc/snort-2.3.3/CREDITS
--rw-r--r-- root/root      154891 usr/doc/snort-2.3.3/ChangeLog
--rw-r--r-- root/root       13240 usr/doc/snort-2.3.3/INSTALL
--rw-r--r-- root/root       17989 usr/doc/snort-2.3.3/LICENSE
--rw-r--r-- root/root        7041 usr/doc/snort-2.3.3/Makefile
--rw-r--r-- root/root         934 usr/doc/snort-2.3.3/Makefile.am
--rw-r--r-- root/root        6494 usr/doc/snort-2.3.3/Makefile.in
--rw-r--r-- root/root       29504 usr/doc/snort-2.3.3/NEWS
--rw-r--r-- root/root        1220 usr/doc/snort-2.3.3/PROBLEMS
--rw-r--r-- root/root       15507 usr/doc/snort-2.3.3/README
--rw-r--r-- root/root        1641 usr/doc/snort-2.3.3/README.FLEXRESP
--rw-r--r-- root/root        7136 usr/doc/snort-2.3.3/README.INLINE
--rw-r--r-- root/root        3215 usr/doc/snort-2.3.3/README.PLUGINS
--rw-r--r-- root/root        4655 usr/doc/snort-2.3.3/README.UNSOCK
--rw-r--r-- root/root        8324 usr/doc/snort-2.3.3/README.WIN32
--rw-r--r-- root/root        4977 usr/doc/snort-2.3.3/README.alert_order
--rw-r--r-- root/root        5948 usr/doc/snort-2.3.3/README.asn1
--rw-r--r-- root/root        1379 usr/doc/snort-2.3.3/README.csv
--rw-r--r-- root/root       14849 usr/doc/snort-2.3.3/README.database
--rw-r--r-- root/root        1974 usr/doc/snort-2.3.3/README.event_queue
--rw-r--r-- root/root        1002 usr/doc/snort-2.3.3/README.flow
--rw-r--r-- root/root       10865 usr/doc/snort-2.3.3/README.flow-portscan
--rw-r--r-- root/root        2323 usr/doc/snort-2.3.3/README.flowbits
--rw-r--r-- root/root       19404 usr/doc/snort-2.3.3/README.http_inspect
--rw-r--r-- root/root       14048 usr/doc/snort-2.3.3/README.sfportscan
--rw-r--r-- root/root        7584 usr/doc/snort-2.3.3/README.thresholding
--rw-r--r-- root/root        3888 usr/doc/snort-2.3.3/README.wireless
--rw-r--r-- root/root        5553 usr/doc/snort-2.3.3/RELEASE.NOTES
--rw-r--r-- root/root        4359 usr/doc/snort-2.3.3/RULES.todo
--rw-r--r-- root/root         105 usr/doc/snort-2.3.3/TODO
--rw-r--r-- root/root       11662 usr/doc/snort-2.3.3/USAGE
--rw-r--r-- root/root        1314 usr/doc/snort-2.3.3/WISHLIST
--rw-r--r-- root/root      367563 usr/doc/snort-2.3.3/faq.pdf
--rw-r--r-- root/root      128381 usr/doc/snort-2.3.3/faq.tex
--rw-r--r-- root/root      330702 usr/doc/snort-2.3.3/snort_manual.pdf
--rw-r--r-- root/root      209404 usr/doc/snort-2.3.3/snort_manual.tex
--rw-r--r-- root/root       16949 usr/doc/snort-2.3.3/snort_schema_v106.pdf
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man8/
--rw-r--r-- root/root        8069 usr/man/man8/snort.8.gz
-drwxr-xr-x root/root           0 var/
-drwxr-xr-x root/root           0 var/log/
-drwxr-xr-x root/root           0 var/log/snort/
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root etc/
+-rw-r--r-- root/root etc/classification.config.new
+-rw-r--r-- root/root etc/generators.new
+-rw-r--r-- root/root etc/gen-msg.map.new
+-rw-r--r-- root/root etc/reference.config.new
+drwxr-xr-x root/root etc/rules/
+-rw-r--r-- root/root etc/rules/attack-responses.rules
+-rw-r--r-- root/root etc/rules/backdoor.rules
+-rw-r--r-- root/root etc/rules/bad-traffic.rules
+-rw-r--r-- root/root etc/rules/ChangeLog
+-rw-r--r-- root/root etc/rules/chat.rules
+-rw-r--r-- root/root etc/rules/ddos.rules
+-rw-r--r-- root/root etc/rules/deleted.rules
+-rw-r--r-- root/root etc/rules/dns.rules
+-rw-r--r-- root/root etc/rules/dos.rules
+-rw-r--r-- root/root etc/rules/experimental.rules
+-rw-r--r-- root/root etc/rules/exploit.rules
+-rw-r--r-- root/root etc/rules/finger.rules
+-rw-r--r-- root/root etc/rules/ftp.rules
+-rw-r--r-- root/root etc/rules/icmp-info.rules
+-rw-r--r-- root/root etc/rules/icmp.rules
+-rw-r--r-- root/root etc/rules/imap.rules
+-rw-r--r-- root/root etc/rules/info.rules
+-rw-r--r-- root/root etc/rules/local.rules
+-rw-r--r-- root/root etc/rules/Makefile.am
+-rw-r--r-- root/root etc/rules/Makefile.in
+-rw-r--r-- root/root etc/rules/misc.rules
+-rw-r--r-- root/root etc/rules/multimedia.rules
+-rw-r--r-- root/root etc/rules/mysql.rules
+-rw-r--r-- root/root etc/rules/netbios.rules
+-rw-r--r-- root/root etc/rules/nntp.rules
+-rw-r--r-- root/root etc/rules/oracle.rules
+-rw-r--r-- root/root etc/rules/other-ids.rules
+-rw-r--r-- root/root etc/rules/p2p.rules
+-rw-r--r-- root/root etc/rules/policy.rules
+-rw-r--r-- root/root etc/rules/pop2.rules
+-rw-r--r-- root/root etc/rules/pop3.rules
+-rw-r--r-- root/root etc/rules/porn.rules
+-rw-r--r-- root/root etc/rules/rpc.rules
+-rw-r--r-- root/root etc/rules/rservices.rules
+-rw-r--r-- root/root etc/rules/scan.rules
+-rw-r--r-- root/root etc/rules/shellcode.rules
+-rw-r--r-- root/root etc/rules/smtp.rules
+-rw-r--r-- root/root etc/rules/snmp.rules
+-rw-r--r-- root/root etc/rules/sql.rules
+-rw-r--r-- root/root etc/rules/telnet.rules
+-rw-r--r-- root/root etc/rules/tftp.rules
+-rw-r--r-- root/root etc/rules/virus.rules
+-rw-r--r-- root/root etc/rules/web-attacks.rules
+-rw-r--r-- root/root etc/rules/web-cgi.rules
+-rw-r--r-- root/root etc/rules/web-client.rules
+-rw-r--r-- root/root etc/rules/web-coldfusion.rules
+-rw-r--r-- root/root etc/rules/web-frontpage.rules
+-rw-r--r-- root/root etc/rules/web-iis.rules
+-rw-r--r-- root/root etc/rules/web-misc.rules
+-rw-r--r-- root/root etc/rules/web-php.rules
+-rw-r--r-- root/root etc/rules/x11.rules
+-rw-r--r-- root/root etc/sid-msg.map.new
+-rw-r--r-- root/root etc/sid.new
+-rw-r--r-- root/root etc/snort.conf.new
+-rw-r--r-- root/root etc/threshold.conf.new
+-rw-r--r-- root/root etc/unicode.map.new
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/snort
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/snort-2.4.3/
+-rw-r--r-- root/root usr/doc/snort-2.4.3/AUTHORS
+-rw-r--r-- root/root usr/doc/snort-2.4.3/BUGS
+-rw-r--r-- root/root usr/doc/snort-2.4.3/ChangeLog
+-rw-r--r-- root/root usr/doc/snort-2.4.3/COPYING
+-rw-r--r-- root/root usr/doc/snort-2.4.3/CREDITS
+-rw-r--r-- root/root usr/doc/snort-2.4.3/faq.pdf
+-rw-r--r-- root/root usr/doc/snort-2.4.3/faq.tex
+-rw-r--r-- root/root usr/doc/snort-2.4.3/INSTALL
+-rw-r--r-- root/root usr/doc/snort-2.4.3/LICENSE
+-rw-r--r-- root/root usr/doc/snort-2.4.3/Makefile
+-rw-r--r-- root/root usr/doc/snort-2.4.3/Makefile.am
+-rw-r--r-- root/root usr/doc/snort-2.4.3/Makefile.in
+-rw-r--r-- root/root usr/doc/snort-2.4.3/NEWS
+-rw-r--r-- root/root usr/doc/snort-2.4.3/PROBLEMS
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.alert_order
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.asn1
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.csv
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.database
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.event_queue
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.FLEXRESP
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.flow
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.flowbits
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.flow-portscan
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.frag3
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.http_inspect
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.INLINE
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.PLUGINS
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.sfportscan
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.thresholding
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.UNSOCK
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.WIN32
+-rw-r--r-- root/root usr/doc/snort-2.4.3/README.wireless
+-rw-r--r-- root/root usr/doc/snort-2.4.3/RELEASE.NOTES
+-rw-r--r-- root/root usr/doc/snort-2.4.3/RULES.todo
+-rw-r--r-- root/root usr/doc/snort-2.4.3/snort_manual.pdf
+-rw-r--r-- root/root usr/doc/snort-2.4.3/snort_manual.tex
+-rw-r--r-- root/root usr/doc/snort-2.4.3/snort_schema_v106.pdf
+-rw-r--r-- root/root usr/doc/snort-2.4.3/TODO
+-rw-r--r-- root/root usr/doc/snort-2.4.3/USAGE
+-rw-r--r-- root/root usr/doc/snort-2.4.3/WISHLIST
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man8/
+-rw-r--r-- root/root usr/man/man8/snort.8.gz
+drwxr-xr-x root/root var/
+drwxr-xr-x root/root var/log/
+drwxr-xr-x root/root var/log/snort/
