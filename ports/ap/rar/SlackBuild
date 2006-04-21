@@ -1,0 +1,35 @@
+VERSION=3.5.1
+ARCH=${ARCH:-i386}
+BUILD=1hnaz
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+
+rm -rf $PKG
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+
+cd $TMP || exit 1
+tar zfxv $CWD/${NAME}linux-$VERSION.tar.gz
+cd $NAME || exit 1
+chown -R root.root .
+# Fix this crappy Makefile
+sed 's,/etc,$(PREFIX)&,' -i Makefile
+mkdir -p $PKG/usr/etc
+make install PREFIX=$PKG/usr || exit 1
+mv $PKG/usr/etc $PKG
+cp -a license.txt order.htm rar.txt readme.txt technote.txt whatsnew.txt \
+  $PKG/usr/doc/$NAME-$VERSION
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+chown -R root:bin $PKG/usr/bin
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG || exit 1
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/rar
+  rm -rf $PKG
+fi
