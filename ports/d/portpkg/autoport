@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Autoport -- An Automatic SlackBuild Generator
 # Copyright (C) 2004, 2005 Thomas Pfaff <topf@users.berlios.de>
@@ -160,9 +160,8 @@ if [ "$*" ]; then
         reg=`echo "[^ ]*/$(basename $s)" | sed "s,$version,\\\\\([0-9].*\\\\\),g"`
         up2date=`grep "^# UP2DATE:" $script | cut -d " " -f 3-`
         up2date=${up2date:-`dirname $s`}
-        o=`lynx -dump $up2date`
-        ver=`echo "$o" | grep -o "$reg" | sed "s,^$reg$,\1,g;s,-\([^-]*\)$, \1," \
-| sort -k 2nr | sed "s, \([^-]*\)$,-\1," | head -n 1`
+        ver=`lynx -dump $up2date | grep -o "$reg" | sed "s,^$reg$,\1,g" \
+| sort -nr | head -n 1`
         if ! [ "$ver" ]; then
 	  die "Couldn't find anything on $up2date!"
 	else
@@ -860,7 +859,7 @@ rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -rf $PKG/%prefix%/info/dir
 find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+##find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 #:refine
 #%post-refine-fix%
 #:strip
