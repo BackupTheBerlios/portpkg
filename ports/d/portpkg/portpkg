@@ -153,20 +153,21 @@ get() # url dest [md5sum]
   debug "get() $@"
   has_prog wget || die
   mkdir -p `dirname $dest`
-  local o_url=$url
+#  local o_url=$url
+  local urls
 
   # mirrors
   if [ "$mirrors" ]; then
 #    echo "$mirrors" >$t/mirrors
     local master mirror
-    url=`echo "$mirrors" | while read master mirror; do
-echo $o_url | sed -n "s,^$master,$mirror,p"; done | tail -n 1`
-    url=${url:-$o_url}
+    urls=`echo "$mirrors" | while read master mirror; do
+echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
+#    urls=${urls:-$url}
 #    while read master mirror; do
 #      url=`echo $o_url | sed "s,^$master,$mirror,"`
 #    done <$t/mirrors
   fi
-  debug "get(): \$url=$url"
+  debug "get(): urls="$urls
 
 #  local log=$LOG_DIR/`basename $dest`.wgetlog
 #  mkdir -p $LOG_DIR
@@ -175,7 +176,7 @@ echo $o_url | sed -n "s,^$master,$mirror,p"; done | tail -n 1`
 
   # try primary url if mirror fails
   local try
-  for try in $url $o_url; do
+  for try in $urls; do
     case $try in
       cvs://*)
         # example: cvs://:pserver:anonymous@anoncvs.gnome.org:/cvs/gnome/rhythmbox
@@ -616,8 +617,8 @@ build_pkg()
 #        md5sum $srcname >>md5sums
 #        sort -k 2 -uo md5sums md5sums
         md5sums=`( echo "$md5sums"; md5sum $srcname ) | sort -u -k 2`
-      elif [ "$md5sum" ]; then
-        is_integer $srcname $md5sum || return 1
+#      elif [ "$md5sum" ]; then
+#        is_integer $srcname $md5sum || return 1
       else
         warn "No checksums available for $srcname!"
       fi
