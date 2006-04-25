@@ -1,0 +1,55 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-0.2612.tar.gz
+# MD5SUMS: fa1504741e9c931f75e804953c1d5417  Module-Build-0.2612.tar.gz
+# REQUIRES: perl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.2612
+ARCH=noarch
+BUILD=2tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/Module-Build-$VERSION.tar.gz
+cd Module-Build-$VERSION
+chown -R root.root .
+perl Makefile.PL
+perl ./Build.PL
+./Build install destdir=$PKG
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  MANIFEST README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Module-Build-$VERSION
+  rm -rf $PKG
+fi
