@@ -1,10 +1,11 @@
-module-build: Module-Build
+module-build: Module::Build (Build and install Perl modules)
 module-build:
-module-build: 
-module-build:
-module-build:
-module-build:
-module-build:
+module-build: "Module::Build" is a system for building, testing, and
+module-build: installing Perl modules. It is meant to be an
+module-build: alternative to "ExtUtils::MakeMaker". Developers may
+module-build: alter the behavior of the module through subclassing in
+module-build: a much more straightforward way than with "MakeMaker".
+module-build: (...)
 module-build:
 module-build:
 module-build:
