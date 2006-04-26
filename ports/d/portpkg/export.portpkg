@@ -135,15 +135,16 @@ for arg in `explicit "$@"`; do
 #    cvs_host=`echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`
     mail_host=users.berlios.de
     $DRY_RUN || rcs2log -i 2 -h $mail_host >ChangeLog
+    $pre sed -i "/: Updated./{N;d}" ChangeLog
     $pre cvs -qz3 ci -m "Updated." ChangeLog
   else
     has_prog curl || die
 
     # hm, use at least 7.12.2 (Slackware 10.1)
     case `curl -V | head -n 1 | cut -d " " -f 2` in
-      7.12.0|7.12.1) die "You need curl >= 7.12.2";;
-      7.12.*)        ;;
-      *)             die "You need curl >= 7.12.2";;
+      7.12.0|7.12.1)   die "You need curl >= 7.12.2";;
+      7.1[23456789].*) ;;
+      *)               die "You need curl >= 7.12.2";;
     esac
 
     [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
