@@ -761,7 +761,7 @@ add_pkg()
 # prepare and install ports
 do_add() # pkgex-list
 {
-  local arg
+  local arg ret
   debug "do_add() $@"
 
   # if we have implicit expressions here (groups), tell what they contain
@@ -771,9 +771,13 @@ do_add() # pkgex-list
   esac
 
   for arg in `explicit "$@"`; do
+    ret=1
     get_info $arg || continue
     add_pkg
+    ret=$?
   done
+
+  return $ret
 }
 
 do_diff()
@@ -831,10 +835,12 @@ do_find() # text [..] >list
 # print information about a port
 do_info() # pkgex-list
 {
-  local arg inst
+  local arg inst ret
   has_ports || die
   for arg in `explicit "$@"`; do
+    ret=1
     get_info $arg || continue
+    ret=0
     stanza "PACKAGE NAME:  $package"
     inst=`ls_inst $(regex $name)`
     [ "$inst" ] && echo "INSTALLED VERSION:  "$inst | fmt -t
@@ -848,6 +854,8 @@ do_info() # pkgex-list
     [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
+
+  return $ret
 }
 
 # list available ports
