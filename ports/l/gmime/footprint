@@ -1,155 +1,154 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         210 install/doinst.sh
--rw-r--r-- root/root          13 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         1307 usr/bin/gmime-config
--rwxr-xr-x root/bin         8028 usr/bin/uudecode
--rwxr-xr-x root/bin         6908 usr/bin/uuencode
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/gmime-2.1.10/
--rw-rw-r-- root/root          38 usr/doc/gmime-2.1.10/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/gmime-2.1.10/COPYING
--rw-rw-r-- root/root      161246 usr/doc/gmime-2.1.10/ChangeLog
--rw-rw-r-- root/root           0 usr/doc/gmime-2.1.10/INSTALL
--rw-rw-r-- root/root           0 usr/doc/gmime-2.1.10/NEWS
--rw-rw-r-- root/root        6151 usr/doc/gmime-2.1.10/README
--rw-rw-r-- root/root        2183 usr/doc/gmime-2.1.10/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/gmime-2.0/
-drwxr-xr-x root/root           0 usr/include/gmime-2.0/gmime/
--rw-r--r-- root/root        2085 usr/include/gmime-2.0/gmime/gmime-charset.h
--rw-r--r-- root/root        8240 usr/include/gmime-2.0/gmime/gmime-cipher-context.h
--rw-r--r-- root/root        1970 usr/include/gmime-2.0/gmime/gmime-content-type.h
--rw-r--r-- root/root        2959 usr/include/gmime-2.0/gmime/gmime-data-wrapper.h
--rw-r--r-- root/root        2177 usr/include/gmime-2.0/gmime/gmime-disposition.h
--rw-r--r-- root/root        1879 usr/include/gmime-2.0/gmime/gmime-error.h
--rw-r--r-- root/root        2491 usr/include/gmime-2.0/gmime/gmime-filter-basic.h
--rw-r--r-- root/root        3123 usr/include/gmime-2.0/gmime/gmime-filter-best.h
--rw-r--r-- root/root        2335 usr/include/gmime-2.0/gmime/gmime-filter-charset.h
--rw-r--r-- root/root        2521 usr/include/gmime-2.0/gmime/gmime-filter-crlf.h
--rw-r--r-- root/root        2336 usr/include/gmime-2.0/gmime/gmime-filter-enriched.h
--rw-r--r-- root/root        2359 usr/include/gmime-2.0/gmime/gmime-filter-from.h
--rw-r--r-- root/root        2350 usr/include/gmime-2.0/gmime/gmime-filter-gzip.h
--rw-r--r-- root/root        3494 usr/include/gmime-2.0/gmime/gmime-filter-html.h
--rw-r--r-- root/root        2237 usr/include/gmime-2.0/gmime/gmime-filter-md5.h
--rw-r--r-- root/root        2167 usr/include/gmime-2.0/gmime/gmime-filter-strip.h
--rw-r--r-- root/root        2448 usr/include/gmime-2.0/gmime/gmime-filter-windows.h
--rw-r--r-- root/root        3730 usr/include/gmime-2.0/gmime/gmime-filter-yenc.h
--rw-r--r-- root/root        3406 usr/include/gmime-2.0/gmime/gmime-filter.h
--rw-r--r-- root/root        2402 usr/include/gmime-2.0/gmime/gmime-gpg-context.h
--rw-r--r-- root/root        2319 usr/include/gmime-2.0/gmime/gmime-header.h
--rw-r--r-- root/root        1567 usr/include/gmime-2.0/gmime/gmime-iconv-utils.h
--rw-r--r-- root/root        4249 usr/include/gmime-2.0/gmime/gmime-iconv.h
--rw-r--r-- root/root        2506 usr/include/gmime-2.0/gmime/gmime-message-part.h
--rw-r--r-- root/root        2799 usr/include/gmime-2.0/gmime/gmime-message-partial.h
--rw-r--r-- root/root        4748 usr/include/gmime-2.0/gmime/gmime-message.h
--rw-r--r-- root/root        2836 usr/include/gmime-2.0/gmime/gmime-multipart-encrypted.h
--rw-r--r-- root/root        2755 usr/include/gmime-2.0/gmime/gmime-multipart-signed.h
--rw-r--r-- root/root        3995 usr/include/gmime-2.0/gmime/gmime-multipart.h
--rw-r--r-- root/root        4208 usr/include/gmime-2.0/gmime/gmime-object.h
--rw-r--r-- root/root        1690 usr/include/gmime-2.0/gmime/gmime-param.h
--rw-r--r-- root/root        3481 usr/include/gmime-2.0/gmime/gmime-parser.h
--rw-r--r-- root/root        5226 usr/include/gmime-2.0/gmime/gmime-part.h
--rw-r--r-- root/root        2991 usr/include/gmime-2.0/gmime/gmime-session-simple.h
--rw-r--r-- root/root        2607 usr/include/gmime-2.0/gmime/gmime-session.h
--rw-r--r-- root/root        2681 usr/include/gmime-2.0/gmime/gmime-stream-buffer.h
--rw-r--r-- root/root        2267 usr/include/gmime-2.0/gmime/gmime-stream-cat.h
--rw-r--r-- root/root        2437 usr/include/gmime-2.0/gmime/gmime-stream-file.h
--rw-r--r-- root/root        2469 usr/include/gmime-2.0/gmime/gmime-stream-filter.h
--rw-r--r-- root/root        2367 usr/include/gmime-2.0/gmime/gmime-stream-fs.h
--rw-r--r-- root/root        2538 usr/include/gmime-2.0/gmime/gmime-stream-mem.h
--rw-r--r-- root/root        2338 usr/include/gmime-2.0/gmime/gmime-stream-mmap.h
--rw-r--r-- root/root        2194 usr/include/gmime-2.0/gmime/gmime-stream-null.h
--rw-r--r-- root/root        4310 usr/include/gmime-2.0/gmime/gmime-stream.h
--rw-r--r-- root/root        4994 usr/include/gmime-2.0/gmime/gmime-utils.h
--rw-r--r-- root/root        3529 usr/include/gmime-2.0/gmime/gmime.h
--rw-r--r-- root/root        3071 usr/include/gmime-2.0/gmime/internet-address.h
-drwxr-xr-x root/root           0 usr/lib/
--rw-r--r-- root/root         210 usr/lib/gmimeConf.sh
--rwxr-xr-x root/root         853 usr/lib/libgmime-2.0.la
--rwxr-xr-x root/root      311956 usr/lib/libgmime-2.0.so.2.1.10
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         281 usr/lib/pkgconfig/gmime-2.0.pc
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/gmime/
--rw-r--r-- root/root        3006 usr/share/gtk-doc/html/gmime/CipherContexts.html
--rw-r--r-- root/root        2939 usr/share/gtk-doc/html/gmime/DataWrappers.html
--rw-r--r-- root/root        3775 usr/share/gtk-doc/html/gmime/Filters.html
--rw-r--r-- root/root        3125 usr/share/gtk-doc/html/gmime/Headers.html
--rw-r--r-- root/root        2910 usr/share/gtk-doc/html/gmime/InternetAddresses.html
--rw-r--r-- root/root        3423 usr/share/gtk-doc/html/gmime/MimeParts.html
--rw-r--r-- root/root        2948 usr/share/gtk-doc/html/gmime/Parsers.html
--rw-r--r-- root/root        2968 usr/share/gtk-doc/html/gmime/Sessions.html
--rw-r--r-- root/root        3395 usr/share/gtk-doc/html/gmime/Streams.html
--rw-r--r-- root/root        6062 usr/share/gtk-doc/html/gmime/ch01.html
--rw-r--r-- root/root        2625 usr/share/gtk-doc/html/gmime/classes.html
--rw-r--r-- root/root        2660 usr/share/gtk-doc/html/gmime/core.html
--rw-r--r-- root/root        2702 usr/share/gtk-doc/html/gmime/fundamentals.html
--rw-r--r-- root/root       12803 usr/share/gtk-doc/html/gmime/gmime-building.html
--rw-r--r-- root/root        7115 usr/share/gtk-doc/html/gmime/gmime-changes-2-0.html
--rw-r--r-- root/root        5467 usr/share/gtk-doc/html/gmime/gmime-changes-2-2.html
--rw-r--r-- root/root        4067 usr/share/gtk-doc/html/gmime/gmime-compiling.html
--rw-r--r-- root/root        3484 usr/share/gtk-doc/html/gmime/gmime-data-wrappers.html
--rw-r--r-- root/root        4925 usr/share/gtk-doc/html/gmime/gmime-filters.html
--rw-r--r-- root/root       15507 usr/share/gtk-doc/html/gmime/gmime-gmime-charset.html
--rw-r--r-- root/root       45041 usr/share/gtk-doc/html/gmime/gmime-gmime-cipher-context.html
--rw-r--r-- root/root       12152 usr/share/gtk-doc/html/gmime/gmime-gmime-content-type.html
--rw-r--r-- root/root       12470 usr/share/gtk-doc/html/gmime/gmime-gmime-data-wrapper.html
--rw-r--r-- root/root       12299 usr/share/gtk-doc/html/gmime/gmime-gmime-disposition.html
--rw-r--r-- root/root        5298 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-basic.html
--rw-r--r-- root/root        8358 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-best.html
--rw-r--r-- root/root        4876 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-charset.html
--rw-r--r-- root/root        5985 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-crlf.html
--rw-r--r-- root/root        4655 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-enriched.html
--rw-r--r-- root/root        5740 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-from.html
--rw-r--r-- root/root        5337 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-gzip.html
--rw-r--r-- root/root        8424 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-html.html
--rw-r--r-- root/root        5489 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-md5.html
--rw-r--r-- root/root        4504 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-strip.html
--rw-r--r-- root/root        7367 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-windows.html
--rw-r--r-- root/root       19598 usr/share/gtk-doc/html/gmime/gmime-gmime-filter-yenc.html
--rw-r--r-- root/root       12734 usr/share/gtk-doc/html/gmime/gmime-gmime-filter.html
--rw-r--r-- root/root        7209 usr/share/gtk-doc/html/gmime/gmime-gmime-gpg-context.html
--rw-r--r-- root/root       14150 usr/share/gtk-doc/html/gmime/gmime-gmime-header.html
--rw-r--r-- root/root       10161 usr/share/gtk-doc/html/gmime/gmime-gmime-iconv-utils.html
--rw-r--r-- root/root       10322 usr/share/gtk-doc/html/gmime/gmime-gmime-iconv.html
--rw-r--r-- root/root        8819 usr/share/gtk-doc/html/gmime/gmime-gmime-message-part.html
--rw-r--r-- root/root       12248 usr/share/gtk-doc/html/gmime/gmime-gmime-message-partial.html
--rw-r--r-- root/root       35221 usr/share/gtk-doc/html/gmime/gmime-gmime-message.html
--rw-r--r-- root/root        9634 usr/share/gtk-doc/html/gmime/gmime-gmime-multipart-encrypted.html
--rw-r--r-- root/root        9871 usr/share/gtk-doc/html/gmime/gmime-gmime-multipart-signed.html
--rw-r--r-- root/root       22146 usr/share/gtk-doc/html/gmime/gmime-gmime-multipart.html
--rw-r--r-- root/root       24347 usr/share/gtk-doc/html/gmime/gmime-gmime-object.html
--rw-r--r-- root/root       10552 usr/share/gtk-doc/html/gmime/gmime-gmime-param.html
--rw-r--r-- root/root       24437 usr/share/gtk-doc/html/gmime/gmime-gmime-parser.html
--rw-r--r-- root/root       45309 usr/share/gtk-doc/html/gmime/gmime-gmime-part.html
--rw-r--r-- root/root        8181 usr/share/gtk-doc/html/gmime/gmime-gmime-session-simple.html
--rw-r--r-- root/root        7733 usr/share/gtk-doc/html/gmime/gmime-gmime-session.html
--rw-r--r-- root/root        8199 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-buffer.html
--rw-r--r-- root/root        5663 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-cat.html
--rw-r--r-- root/root        8476 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-file.html
--rw-r--r-- root/root        7241 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-filter.html
--rw-r--r-- root/root        8244 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-fs.html
--rw-r--r-- root/root       10139 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-mem.html
--rw-r--r-- root/root        6931 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-mmap.html
--rw-r--r-- root/root        4509 usr/share/gtk-doc/html/gmime/gmime-gmime-stream-null.html
--rw-r--r-- root/root       25494 usr/share/gtk-doc/html/gmime/gmime-gmime-stream.html
--rw-r--r-- root/root       44119 usr/share/gtk-doc/html/gmime/gmime-gmime-utils.html
--rw-r--r-- root/root        5785 usr/share/gtk-doc/html/gmime/gmime-gmime.html
--rw-r--r-- root/root       25839 usr/share/gtk-doc/html/gmime/gmime-internet-address.html
--rw-r--r-- root/root        7887 usr/share/gtk-doc/html/gmime/gmime-question-index.html
--rw-r--r-- root/root        4530 usr/share/gtk-doc/html/gmime/gmime-resources.html
--rw-r--r-- root/root        6130 usr/share/gtk-doc/html/gmime/gmime-streams.html
--rw-r--r-- root/root       54668 usr/share/gtk-doc/html/gmime/gmime.devhelp
--rw-r--r-- root/root        3492 usr/share/gtk-doc/html/gmime/gmime.html
--rw-r--r-- root/root         654 usr/share/gtk-doc/html/gmime/home.png
--rw-r--r-- root/root        5622 usr/share/gtk-doc/html/gmime/index.html
--rw-r--r-- root/root       54727 usr/share/gtk-doc/html/gmime/index.sgml
--rw-r--r-- root/root         459 usr/share/gtk-doc/html/gmime/left.png
--rw-r--r-- root/root         472 usr/share/gtk-doc/html/gmime/right.png
--rw-r--r-- root/root         820 usr/share/gtk-doc/html/gmime/style.css
--rw-r--r-- root/root         406 usr/share/gtk-doc/html/gmime/up.png
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/root usr/bin/
+-rwxr-xr-x root/root usr/bin/gmime-config
+-rwxr-xr-x root/root usr/bin/uudecode
+-rwxr-xr-x root/root usr/bin/uuencode
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/gmime-2.1.19/
+-rw-r--r-- root/root usr/doc/gmime-2.1.19/AUTHORS
+-rw-r--r-- root/root usr/doc/gmime-2.1.19/COPYING
+-rw-r--r-- root/root usr/doc/gmime-2.1.19/ChangeLog
+-rw-r--r-- root/root usr/doc/gmime-2.1.19/NEWS
+-rw-r--r-- root/root usr/doc/gmime-2.1.19/README
+-rw-r--r-- root/root usr/doc/gmime-2.1.19/TODO
+drwxr-xr-x root/root usr/include/
+drwxr-xr-x root/root usr/include/gmime-2.0/
+drwxr-xr-x root/root usr/include/gmime-2.0/gmime/
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-charset.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-cipher-context.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-content-type.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-data-wrapper.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-disposition.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-error.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-basic.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-best.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-charset.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-crlf.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-enriched.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-from.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-gzip.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-html.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-md5.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-strip.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-windows.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter-yenc.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-filter.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-gpg-context.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-header.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-iconv-utils.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-iconv.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-message-part.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-message-partial.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-message.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-multipart-encrypted.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-multipart-signed.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-multipart.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-object.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-param.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-parser.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-part.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-session-simple.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-session.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-buffer.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-cat.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-file.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-filter.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-fs.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-mem.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-mmap.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream-null.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-stream.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime-utils.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/gmime.h
+-rw-r--r-- root/root usr/include/gmime-2.0/gmime/internet-address.h
+drwxr-xr-x root/root usr/lib/
+-rw-r--r-- root/root usr/lib/gmimeConf.sh
+-rwxr-xr-x root/root usr/lib/libgmime-2.0.la
+-rwxr-xr-x root/root usr/lib/libgmime-2.0.so.2.1.19
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/gmime-2.0.pc
+drwxr-xr-x root/root usr/share/
+drwxr-xr-x root/root usr/share/gtk-doc/
+drwxr-xr-x root/root usr/share/gtk-doc/html/
+drwxr-xr-x root/root usr/share/gtk-doc/html/gmime/
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/CipherContexts.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/DataWrappers.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/Filters.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/Headers.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/InternetAddresses.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/MimeParts.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/Parsers.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/Sessions.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/Streams.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/ch01.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/classes.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/core.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/fundamentals.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-building.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-changes-2-0.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-changes-2-2.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-compiling.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-data-wrappers.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-filters.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-charset.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-cipher-context.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-content-type.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-data-wrapper.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-disposition.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-basic.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-best.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-charset.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-crlf.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-enriched.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-from.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-gzip.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-html.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-md5.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-strip.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-windows.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter-yenc.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-filter.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-gpg-context.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-header.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-iconv-utils.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-iconv.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-message-part.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-message-partial.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-message.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-multipart-encrypted.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-multipart-signed.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-multipart.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-object.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-param.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-parser.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-part.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-session-simple.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-session.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-buffer.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-cat.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-file.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-filter.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-fs.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-mem.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-mmap.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream-null.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-stream.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime-utils.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-gmime.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-internet-address.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-question-index.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-resources.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime-streams.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime.devhelp
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/gmime.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/home.png
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/index.html
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/index.sgml
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/left.png
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/right.png
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/style.css
+-rw-r--r-- root/root usr/share/gtk-doc/html/gmime/up.png
