@@ -43,11 +43,12 @@ to the previous type, but more precisely and bypasses the exclusion of
 restricted ports (see \fBexclude\fP in \fBFILES\fP).
 .TP
 .B direct
-By changing into the directory of the build script. In direct mode,
-dependencies resolution is disabled, missing dependencies stop the
-execution of the build script, but no recursive installation is
-performed. Usable also for build scripts that are outside of the defined
-ports tree.
+By changing into the directory of the build script an leaving
+\fIexpression\fP empty. In direct mode, dependencies resolution is
+disabled, missing dependencies still prevent the execution of the build
+script, but no recursive installation is performed. Usable also for
+build scripts that are outside of the defined ports tree, which would be
+ignored otherwise.
 
 .SH OPTIONS
 
@@ -77,6 +78,9 @@ Don't check for requirements.
 .TP
 \fB-a\fP, \fB--lazy\fP (\fBLAZY_CHECKS=true\fP)
 Don't upgrade dependencies to newest version.
+.TP
+\fB-n\fP, \fB--noask\fP (\fBINTERACTIVE=false\fP)
+Don't ask for confirmation.
 
 .SH ACTIONS
 
@@ -108,8 +112,9 @@ Show information about ports.
 List all (or specified) available ports.
 .TP
 \fB-s\fP, \fB--sync\fP
-Sync the ports tree with the official tree and the package directory with the
-ports tree.
+Sync the ports tree with the official tree and the package directory
+with the ports tree. Depending on your configuration there can be
+more/other/no things be done.
 .TP
 \fB-u\fP, \fB--upgrade\fP
 Upgrade all (!) outdated ports shown by \fB--diff\fP.
