@@ -1,5 +1,58 @@
 2006-04-26  topf  <topf@users.berlios.de>
 
+  * open/libtunepimp/requires, open/libtunepimp/info, open/libtunepimp/ChangeLog, open/libtunepimp/SlackBuild, open/libtunepimp/footprint:
+  Fixed configure options (sjn)
+
+  * open/libtunepimp/ChangeLog, open/libtunepimp/SlackBuild, open/libtunepimp/footprint, open/libtunepimp/info, open/libtunepimp/libtunepimp.taglib-1.4.diff.gz, open/libtunepimp/md5sums, open/libtunepimp/requires, open/libtunepimp/slack-desc, open/libtunepimp/sources:
+  Updated to 0.4.2, added libtunepimp-taglib patch from slackware-current (sjn)
+
+  * open/libidn/SlackBuild, open/libidn/footprint, open/libidn/info, open/libidn/md5sums, open/libidn/requires, open/libidn/slack-desc, open/libidn/sources:
+  New port (sjn)
+
+  * open/k3b-i18n/ChangeLog, open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources:
+  Updated to 0.12.15 (sjn)
+
+  * open/k3b/ChangeLog, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
+  Updated to 0.12.15,Corrected k3b-u64-patch (sjn)
+
+  * open/curl/SlackBuild, open/curl/footprint, open/curl/info, open/curl/md5sums, open/curl/requires, open/curl/slack-desc, open/curl/sources:
+  New port (sjn)
+
+  * open/compface/SlackBuild, open/compface/footprint, open/compface/info, open/compface/md5sums, open/compface/slack-desc, open/compface/sources:
+  New port (sjn)
+
+  * open/cairo/ChangeLog, open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources:
+  Updated to 1.0.4 (sjn)
+
+  * d/portpkg/portpkg: restored return codes for do_add() and do_info()
+
+  * d/portpkg/portpkg:
+  * massive (one could say "aggressive") code cleanup
+  * removed obsolete flags "pseudo" and "slot-in"
+  * use USE_ALPHA_CODE=true for new sorting methods
+  * no more warning in direct mode about dependencies
+  * new dependencies resolution function moved from "ldd" to
+    "/usr/lib/rpm/find-requires" which is much better (yes, again!)
+  especially for perl modules and reduces the code; rpm should be
+  installed anyways on a good system ;-)
+  * fixed reproducing sources in new header code in maintainer_mode() when
+    the source contains a "&"
+  * fixed wrong warning about missing md5sums
+  * packages should be coppied (not moved) from $TMP to $PKG_DIR
+  * check early for skipping if a package is already installed
+  * use term "expression" instead of "list" in help()
+  * added "-n" and "--noask" to help()
+  * check if TMP and TMPDIR are not empty
+
+  * d/portpkg/portpkg.1: Updates.
+
+2006-04-26  hnaz  <hnaz@users.berlios.de>
+
+  * l/gpgme/footprint, l/gpgme/md5sums, l/gpgme/post-install-fix.autoport, l/gpgme/slack-desc, l/gpgme/sources, l/gpgme/SlackBuild:
+  Update from 1.0.2.
+
+2006-04-26  topf  <topf@users.berlios.de>
+
   * xap/video-dvdrip/SlackBuild, xap/video-dvdrip/footprint, xap/video-dvdrip/requires, xap/video-dvdrip/slack-desc, xap/video-dvdrip/sources:
   Version bump.
 
@@ -130,7 +183,7 @@
   * kde/krename/ChangeLog, kde/krename/SlackBuild, kde/krename/doinst.sh, kde/krename/footprint, kde/krename/md5sums, kde/krename/requires, kde/krename/slack-desc, kde/krename/sources:
   New port (sjn)
 
-  * l/libtunepimp/ChangeLog, l/libtunepimp/SlackBuild, l/libtunepimp/footprint, l/libtunepimp/md5sums:
+  * l/libtunepimp/ChangeLog, l/libtunepimp/SlackBuild, l/libtunepimp/footprint, l/libtunepimp/md5sums, open/libtunepimp/ChangeLog, open/libtunepimp/SlackBuild, open/libtunepimp/footprint, open/libtunepimp/info, open/libtunepimp/md5sums, open/libtunepimp/requires, open/libtunepimp/slack-desc, open/libtunepimp/sources:
   Upgraded to 0.4.0 (sjn)
 
   * n/mairix/ChangeLog, n/mairix/SlackBuild, n/mairix/footprint, n/mairix/md5sums, n/mairix/requires, n/mairix/slack-desc, n/mairix/sources:
@@ -826,10 +879,10 @@
   * xap/conky/ChangeLog, xap/conky/SlackBuild, xap/conky/footprint, xap/conky/md5sums, xap/conky/requires, xap/conky/slack-desc, xap/conky/sources:
   conky - a system monitor for X (dan)
 
-  * patches/k3b/ChangeLog, patches/k3b/SlackBuild, patches/k3b/footprint, patches/k3b/k3b-u64.patch.gz, patches/k3b/md5sums, patches/k3b/requires, patches/k3b/slack-desc, patches/k3b/sources:
+  * patches/k3b/ChangeLog, patches/k3b/SlackBuild, patches/k3b/footprint, patches/k3b/k3b-u64.patch.gz, patches/k3b/md5sums, patches/k3b/requires, patches/k3b/slack-desc, patches/k3b/sources, open/k3b/ChangeLog, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
   Updated to 0.12.10 (sjn)
 
-  * patches/k3b-i18n/ChangeLog, patches/k3b-i18n/SlackBuild, patches/k3b-i18n/footprint, patches/k3b-i18n/md5sums, patches/k3b-i18n/slack-desc, patches/k3b-i18n/sources:
+  * patches/k3b-i18n/ChangeLog, patches/k3b-i18n/SlackBuild, patches/k3b-i18n/footprint, patches/k3b-i18n/md5sums, patches/k3b-i18n/slack-desc, patches/k3b-i18n/sources, open/k3b-i18n/ChangeLog, open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources:
   Updated to 0.12.10 (sjn)
 
   * kde/k3bmonkeyaudioplugin/ChangeLog, kde/k3bmonkeyaudioplugin/SlackBuild, kde/k3bmonkeyaudioplugin/footprint, kde/k3bmonkeyaudioplugin/md5sums, kde/k3bmonkeyaudioplugin/sources:
@@ -947,6 +1000,14 @@
   * d/portpkg/portpkg:
   Patched a regular expression that prevented portpkg from being executed in Bash-3.1.
 
+2006-02-04  topf  <topf@users.berlios.de>
+
+  * open/k3b-i18n/ChangeLog, open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums:
+  Updated to 0.12.10 (sjn)
+
+  * open/k3b/ChangeLog, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/md5sums:
+  Updated to 0.12.10 (sjn)
+
 2006-01-06  topf  <topf@users.berlios.de>
 
   * open/fast-user-switch-applet/SlackBuild, open/fast-user-switch-applet/doinst.sh, open/fast-user-switch-applet/footprint, open/fast-user-switch-applet/info, open/fast-user-switch-applet/md5sums, open/fast-user-switch-applet/requires, open/fast-user-switch-applet/slack-desc, open/fast-user-switch-applet/sources:
@@ -993,6 +1054,12 @@
   * open/opera/ChangeLog, open/opera/SlackBuild, open/opera/footprint, open/opera/info, open/opera/md5sums, open/opera/opera.path.patch, open/opera/sources:
   Upgraded to 8.51, replaced opera.path.patch file with perl command line, added LANGVERS= (sjn)
 
+  * open/k3b-i18n/ChangeLog, open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums:
+  Upgraded to 0.12.8 (sjn)
+
+  * open/k3b/info, open/k3b/md5sums, open/k3b/ChangeLog, open/k3b/SlackBuild, open/k3b/footprint:
+  Upgraded to 0.12.8 (sjn)
+
 2005-11-25  topf  <topf@users.berlios.de>
 
   * testing/portpkg/virtual: Added.
@@ -1009,6 +1076,9 @@
   * l/hsfmodem/SlackBuild, l/hsfmodem/footprint, l/hsfmodem/md5sums, l/hsfmodem/requires, l/hsfmodem/slack-desc, l/hsfmodem/sources:
   New entry.
 
+  * open/k3b-i18n/ChangeLog, open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources:
+  Upgraded to v0.12.7 (sjn)
+
   * open/opera/ChangeLog, open/opera/SlackBuild, open/opera/footprint, open/opera/info, open/opera/opera.language:
   Added language support (sjn)
 
@@ -1017,6 +1087,12 @@
 
   * open/links/ChangeLog, open/links/SlackBuild, open/links/footprint, open/links/info, open/links/md5sums, open/links/requires, open/links/slack-desc, open/links/sources:
   Just upgrade previos version (mbr)
+
+  * open/libtunepimp/ChangeLog, open/libtunepimp/SlackBuild, open/libtunepimp/footprint, open/libtunepimp/info, open/libtunepimp/md5sums, open/libtunepimp/requires, open/libtunepimp/slack-desc, open/libtunepimp/sources:
+  Upgraded to 0.4.0 (sjn)
+
+  * open/k3b/ChangeLog, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
+  Upgraded to v0.12.7 (sjn)
 
 2005-11-20  topf  <topf@users.berlios.de>
 
@@ -1441,7 +1517,7 @@
   * l/chmlib/SlackBuild, l/chmlib/footprint, l/chmlib/md5sums:
   Upgraded to version 0.36 (mk)
 
-  * l/cairo/SlackBuild, l/cairo/footprint, l/cairo/md5sums, l/cairo/requires, l/cairo/slack-desc, l/cairo/sources:
+  * open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources, l/cairo/SlackBuild, l/cairo/footprint, l/cairo/md5sums, l/cairo/requires, l/cairo/slack-desc, l/cairo/sources:
   version update (lem)
 
   * extra/aterm/1.patch, extra/aterm/2.patch, extra/aterm/3.patch, extra/aterm/4.patch, extra/aterm/5.patch, extra/aterm/6.patch, extra/aterm/7.patch, extra/aterm/SlackBuild, extra/aterm/aterm-16.xpm, extra/aterm/aterm-32.xpm, extra/aterm/aterm-48.xpm, extra/aterm/footprint, extra/aterm/md5sums, extra/aterm/requires, extra/aterm/slack-desc, extra/aterm/sources:
@@ -1489,6 +1565,9 @@
 2005-09-30  topf  <topf@users.berlios.de>
 
   * xap/mplayer/requires: Restored optional dependencies.
+
+  * open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources, open/cairo/SlackBuild:
+  version update (lem)
 
 2005-09-25  topf  <topf@users.berlios.de>
 
@@ -1674,6 +1753,9 @@
   * testing/dbus/SlackBuild, testing/dbus/footprint, testing/dbus/md5sums, testing/dbus/no-fakeroot, testing/dbus/requires:
   version update, tools added (lem)
 
+  * open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources:
+  version update (lem)
+
 2005-08-11  hnaz  <hnaz@users.berlios.de>
 
   * l/sqlite/SlackBuild, l/sqlite/footprint, l/sqlite/md5sums, l/sqlite/requires:
@@ -1699,6 +1781,9 @@
 2005-08-03  topf  <topf@users.berlios.de>
 
 2005-08-01  topf  <topf@users.berlios.de>
+
+  * open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources:
+  version update (lem)
 
 2005-07-31  topf  <topf@users.berlios.de>
 
@@ -1731,10 +1816,16 @@
   * l/clearlooks/SlackBuild, l/clearlooks/footprint, l/clearlooks/md5sums, l/clearlooks/slack-desc:
   version update (lem)
 
+  * open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources:
+  new entry (lem)
+
   * pasture/fribidi/SlackBuild, pasture/fribidi/footprint, pasture/fribidi/md5sums, pasture/fribidi/requires, pasture/fribidi/slack-desc, pasture/fribidi/sources:
   Moved l/fribidi-0.10.4-i686-1tom to pasture/.
 
 2005-07-29  topf  <topf@users.berlios.de>
+
+  * open/cairo/SlackBuild, open/cairo/footprint, open/cairo/info, open/cairo/md5sums, open/cairo/requires, open/cairo/slack-desc, open/cairo/sources:
+  new entry (lem)
 
   * gnome/epiphany-extensions/SlackBuild, gnome/epiphany-extensions/footprint, gnome/epiphany-extensions/md5sums, gnome/epiphany-extensions/slack-desc, ap/fuse/SlackBuild, ap/fuse/doinst.sh, ap/fuse/footprint, ap/fuse/md5sums, ap/fuse/slack-desc, ap/fuse/sources, gnome/gtk-engines/SlackBuild, gnome/gtk-engines/arbitrary, gnome/gtk-engines/footprint, gnome/gtk-engines/md5sums, gnome/gtk-engines/requires:
   Version update.
@@ -2252,6 +2343,12 @@
   * kde/k3bmonkeyaudioplugin/SlackBuild, kde/k3bmonkeyaudioplugin/footprint, kde/k3bmonkeyaudioplugin/sources:
   Newest sources path for download (sjn)
 
+  * open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources:
+  Updated to newest version (sjn)
+
+  * open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/optional, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
+  *** empty log message ***
+
   * xap/mplayer/md5sums: Disabled wrong entry (MPlayer-1.0pre6.tar.bz2).
 
   * xap/acidrip/SlackBuild, xap/acidrip/acidrip.desktop, xap/acidrip/doinst.sh, xap/acidrip/footprint, xap/acidrip/md5sums, xap/acidrip/slack-desc, xap/acidrip/sources:
@@ -2273,6 +2370,9 @@
 2005-05-13  topf  <topf@users.berlios.de>
 
   * ChangeLog: Updated. (cronjob)
+
+  * open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/optional, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
+  Updated to newest version (cronjob)
 
 2005-05-12  topf  <topf@users.berlios.de>
 
@@ -3080,8 +3180,16 @@
 
 2005-03-27  hnaz  <hnaz@users.berlios.de>
 
+  * open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
+  Integrated into repo.
+
   * xap/wmi/SlackBuild, xap/wmi/footprint, xap/wmi/md5sums, xap/wmi/requires, xap/wmi/slack-desc, xap/wmi/sources:
   New port.
+
+2005-03-27  topf  <topf@users.berlios.de>
+
+  * open/k3b-i18n/SlackBuild, open/k3b-i18n/footprint, open/k3b-i18n/info, open/k3b-i18n/md5sums, open/k3b-i18n/slack-desc, open/k3b-i18n/sources, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
+  *** empty log message ***
 
 2005-03-26  hnaz  <hnaz@users.berlios.de>
 
