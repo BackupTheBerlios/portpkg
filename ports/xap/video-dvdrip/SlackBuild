@@ -1,38 +1,54 @@
-VERSION=0.51.1
-#VERSION=0.50.15
-ARCH=${ARCH:-i486}
-BUILD=1tom
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-0.97.9.tar.gz
+# MD5SUMS: 05553ae8269d9de9db64b23f41553aea  Video-DVDRip-0.97.9.tar.gz
+# REQUIRES: event-execflow gtk2-ex-formfactory gtk2-perl libintl-perl perl transcode
 
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
+PKG=$TMP/package-$NAME
+
+VERSION=0.97.9
+ARCH=noarch
+BUILD=1tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
 rm -rf $PKG
 mkdir -p $PKG/usr
-
-cd /tmp || exit 1
+cd $TMP
 tar xzvf $CWD/Video-DVDRip-$VERSION.tar.gz
-cd Video-DVDRip-$VERSION || exit 1
+cd Video-DVDRip-$VERSION
 chown -R root.root .
-perl Makefile.PL PREFIX=$PKG/usr
-make || exit 1
-make install PREFIX=$PKG/usr || exit 1
-chown -R root.bin $PKG/usr/bin
-mv $PKG/usr/{share/man,}
-rmdir $PKG/usr/share
-gzip -9 $PKG/usr/man/man?/*
+perl Makefile.PL
+make
+make install DESTDIR=$PKG
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
-  $PKG/usr/doc/$NAME-$VERSION
+  COPYRIGHT MANIFEST README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Video-DVDRip-$VERSION
+  rm -rf $PKG
+fi
