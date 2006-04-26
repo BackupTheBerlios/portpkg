@@ -1,0 +1,54 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/J/JR/JRED/Gtk2-Ex-FormFactory-0.63.tar.gz
+# MD5SUMS: 7121fe9e51f17ccb523a3b42978f10c0  Gtk2-Ex-FormFactory-0.63.tar.gz
+# REQUIRES: gtk2-perl perl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.63
+ARCH=noarch
+BUILD=1tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/Gtk2-Ex-FormFactory-$VERSION.tar.gz
+cd Gtk2-Ex-FormFactory-$VERSION
+chown -R root.root .
+perl Makefile.PL
+make
+make install DESTDIR=$PKG
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  LICENSE MANIFEST README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Gtk2-Ex-FormFactory-$VERSION
+  rm -rf $PKG
+fi
