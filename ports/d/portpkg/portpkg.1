@@ -55,22 +55,22 @@ ignored otherwise.
 There can be multiple options at once to customise portpkg's behaviour (some of
 them can also be defined in your configuration file, see below):
 .TP
-\fB-e\fP, \fB--reinstall\fP
+\fB-e\fP, \fB--reinstall\fP (\fBREINSTALL=true\fP)
 Reinstall the package, if already installed.
 .TP
-\fB-b\fP, \fB--rebuild\fP
+\fB-b\fP, \fB--rebuild\fP (\fBREBUILD=true\fP)
 Rebuild the package if already built (implies \fB--reinstall\fP).
 .TP
-\fB-p\fP, \fB--prepare\fP
+\fB-p\fP, \fB--prepare\fP (\fBPREPARE_ONLY=true\fP)
 Build package, but don't install (implies \fB--noreqs\fP).
 .TP
-\fB-o\fP, \fB--download\fP
+\fB-o\fP, \fB--download\fP (\fBDOWNLOAD_ONLY=true\fP)
 Download source code files only.
 .TP
 \fB-g\fP, \fB--verbose\fP (\fBVERBOSE=true\fP)
 Show compile output.
 .TP
-\fB-y\fP, \fB--dryrun\fP
+\fB-y\fP, \fB--dryrun\fP (\fBDRY_RUN=true\fP)
 Simulate install/download/build.
 .TP
 \fB-q\fP, \fB--noreqs\fP (\fBNO_REQS=true\fP)
@@ -81,6 +81,12 @@ Don't upgrade dependencies to newest version.
 .TP
 \fB-n\fP, \fB--noask\fP (\fBINTERACTIVE=false\fP)
 Don't ask for confirmation.
+.TP
+\fB-m\fP, \fB--maintain\fP (\fBMAINTAIN_ALL=true\fP)
+Run maintainer mode everytime.
+.TP
+\fB-r\fP, \fB--remaintain\fP (\fBREMAINTAIN=true\fP)
+Skip package building step if possible.
 
 .SH ACTIONS
 
