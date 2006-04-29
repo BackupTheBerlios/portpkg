@@ -1,20 +1,11 @@
-#!/bin/sh
-
-VERSION=0.5.3
-ARCH=${ARCH:-i486}
-BUILD=1mk
-
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-TMP=/tmp
 PKG=$TMP/package-$NAME
 
-rm -rf $PKG
-
-cd $TMP || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-
-chown -R root:root $NAME-$VERSION
+VERSION=0.6
+ARCH=${ARCH:-i486}
+BUILD=1hnaz
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -26,28 +17,41 @@ elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2"
 fi
 
-cd $NAME-$VERSION || exit 1
-CFLAGS="$SLKCFLAGS" ./configure \
-    --prefix=/usr || exit 1
-make || exit 1
-make DESTDIR=$PKG install || exit 1
-
-gzip -9 $PKG/usr/man/man?/*
-
-chown -R root.bin $PKG{,/usr}/{,s}bin
-find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  $ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
+rm -rf $PKG/usr/info/dir
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-cp AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
-    $PKG/usr/doc/$NAME-$VERSION
-
+cp -a \
+  AUTHORS COPYING ChangeLog NEWS README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man -type f | xargs -r gzip -9
 mkdir -p $PKG/install
-cat $CWD/slack-desc  >$PKG/install/slack-desc
+cat $CWD/slack-desc >$PKG/install/slack-desc
 
-cd $PKG || exit 1
+cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
-# clean up
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/$NAME-$VERSION
   rm -rf $PKG
