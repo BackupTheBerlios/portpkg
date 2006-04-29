@@ -1,35 +1,47 @@
-drwxr-xr-x  root/root  0      ./
-drwxr-xr-x  root/root  0      install/
--rw-r--r--  root/root  178    install/doinst.sh
--rw-r--r--  root/root  189    install/slack-desc
-drwxr-xr-x  root/root  0      lib/
-drwxr-xr-x  root/root  0      lib/modules/
-drwxr-xr-x  root/root  0      lib/modules/2.6.12.2tom/
-drwxr-xr-x  root/root  0      lib/modules/2.6.12.2tom/kernel/
-drwxr-xr-x  root/root  0      lib/modules/2.6.12.2tom/kernel/fs/
-drwxr-xr-x  root/root  0      lib/modules/2.6.12.2tom/kernel/fs/fuse/
--rw-r--r--  root/root  35523  lib/modules/2.6.12.2tom/kernel/fs/fuse/fuse.ko
-drwxr-xr-x  root/root  0      usr/
-drwxr-xr-x  root/bin   0      usr/bin/
--rwsr-xr-x  root/bin   17480  usr/bin/fusermount
-drwxr-xr-x  root/root  0      usr/doc/
-drwxr-xr-x  root/root  0      usr/doc/fuse-2.3.0/
--rw-r--r--  root/root  60     usr/doc/fuse-2.3.0/AUTHORS
--rw-r--r--  root/root  17992  usr/doc/fuse-2.3.0/COPYING
--rw-r--r--  root/root  38549  usr/doc/fuse-2.3.0/ChangeLog
--rw-r--r--  root/root  8232   usr/doc/fuse-2.3.0/FAQ
--rw-r--r--  root/root  9273   usr/doc/fuse-2.3.0/INSTALL
--rw-r--r--  root/root  4129   usr/doc/fuse-2.3.0/NEWS
--rw-r--r--  root/root  5261   usr/doc/fuse-2.3.0/README
--rw-r--r--  root/root  191    usr/doc/fuse-2.3.0/README-2.4
--rw-r--r--  root/root  554    usr/doc/fuse-2.3.0/README.NFS
-drwxr-xr-x  root/root  0      usr/include/
--rw-r--r--  root/root  246    usr/include/fuse.h
-drwxr-xr-x  root/root  0      usr/include/fuse/
--rw-r--r--  root/root  17321  usr/include/fuse/fuse.h
--rw-r--r--  root/root  3571   usr/include/fuse/fuse_compat.h
-drwxr-xr-x  root/root  0      usr/lib/
--rwxr-xr-x  root/root  777    usr/lib/libfuse.la
--rwxr-xr-x  root/root  37420  usr/lib/libfuse.so.2.3.0
-drwxr-xr-x  root/root  0      usr/lib/pkgconfig/
--rw-r--r--  root/root  240    usr/lib/pkgconfig/fuse.pc
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root dev/
+crw-rw-rw- root/root dev/fuse
+drwxr-xr-x root/root etc/
+drwxr-xr-x root/root etc/udev/
+drwxr-xr-x root/root etc/udev/rules.d/
+-rw-r--r-- root/root etc/udev/rules.d/40-fuse.rules
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root lib/
+drwxr-xr-x root/root lib/modules/
+drwxr-xr-x root/root lib/modules/2.6.16.4/
+drwxr-xr-x root/root lib/modules/2.6.16.4/kernel/
+drwxr-xr-x root/root lib/modules/2.6.16.4/kernel/fs/
+drwxr-xr-x root/root lib/modules/2.6.16.4/kernel/fs/fuse/
+-rw-r--r-- root/root lib/modules/2.6.16.4/kernel/fs/fuse/fuse.ko
+drwxr-xr-x root/root sbin/
+-rwxr-xr-x root/root sbin/mount.fuse
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwsr-xr-x root/bin usr/bin/fusermount
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/fuse-2.5.3/
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/AUTHORS
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/COPYING
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/ChangeLog
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/FAQ
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/INSTALL
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/NEWS
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/README
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/README-2.4
+-rw-r--r-- root/root usr/doc/fuse-2.5.3/README.NFS
+drwxr-xr-x root/root usr/include/
+-rw-r--r-- root/root usr/include/fuse.h
+drwxr-xr-x root/root usr/include/fuse/
+-rw-r--r-- root/root usr/include/fuse/fuse.h
+-rw-r--r-- root/root usr/include/fuse/fuse_common.h
+-rw-r--r-- root/root usr/include/fuse/fuse_compat.h
+-rw-r--r-- root/root usr/include/fuse/fuse_lowlevel.h
+-rw-r--r-- root/root usr/include/fuse/fuse_lowlevel_compat.h
+-rw-r--r-- root/root usr/include/fuse/fuse_opt.h
+drwxr-xr-x root/root usr/lib/
+-rwxr-xr-x root/root usr/lib/libfuse.la
+-rwxr-xr-x root/root usr/lib/libfuse.so.2.5.3
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/fuse.pc
