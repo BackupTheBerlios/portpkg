@@ -1,9 +1,15 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://gstreamer.freedesktop.org/src/gstreamer/gstreamer-0.10.5.tar.bz2
+# MD5SUMS: f088c1303f19f0423f35d699deed92e3  gstreamer-0.10.5.tar.bz2
+# REQUIRES: glib2 libxml2 linuxdoc-tools
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.10.3
+VERSION=0.10.5
 ARCH=${ARCH:-i486}
 BUILD=2tom
 
@@ -20,8 +26,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/gstreamer-$VERSION.tar.bz2
+cd gstreamer-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -34,25 +40,25 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/info/dir
 rm -f $PKG/var/lib/cache/gstreamer-*/registry.xml
 mkdir -p $PKG/var/lib/cache/gstreamer-0.{8,10}
 #mkdir -p $PKG/var/log/setup
 #zcat $CWD/setup.07.get-register.gz >$PKG/var/log/setup/setup.07.get-register
 #chmod 755 $PKG/var/log/setup/setup.07.get-register
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-gzip -9 $PKG/usr/man/man?/* || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   ABOUT-NLS AUTHORS COPYING ChangeLog NEWS README RELEASE TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
@@ -61,6 +67,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/gstreamer-$VERSION
   rm -rf $PKG
 fi
