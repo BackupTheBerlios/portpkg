@@ -1,281 +1,283 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
-drwxr-xr-x root/root           0 etc/clamav/
--rw-r--r-- root/root        8143 etc/clamav/clamd.conf.new
--rw-r--r-- root/root        3250 etc/clamav/freshclam.conf.new
-drwxr-xr-x root/root           0 etc/rc.d/
--rw-r--r-- root/root        1263 etc/rc.d/rc.clamd
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         808 install/doinst.sh
--rw-r--r-- root/root        1040 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         1068 usr/bin/clamav-config
--rwxr-xr-x root/bin        27636 usr/bin/clamdscan
--rwxr-xr-x root/bin        44184 usr/bin/clamscan
--rwxr-xr-x root/bin        39740 usr/bin/freshclam
--rwxr-xr-x root/bin        49080 usr/bin/sigtool
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/clamav-0.87/
--rw-r--r-- root/root        6428 usr/doc/clamav-0.87/AUTHORS
--rw-r--r-- root/root         182 usr/doc/clamav-0.87/BUGS
--rw-r--r-- root/root       17992 usr/doc/clamav-0.87/COPYING
--rw-r--r-- root/root      250905 usr/doc/clamav-0.87/ChangeLog
--rw-r--r-- root/root          50 usr/doc/clamav-0.87/FAQ
--rw-r--r-- root/root        9414 usr/doc/clamav-0.87/INSTALL
--rw-r--r-- root/root         372 usr/doc/clamav-0.87/NEWS
--rw-r--r-- root/root       58076 usr/doc/clamav-0.87/README
--rw-r--r-- root/root       78443 usr/doc/clamav-0.87/clamav-mirror-howto.pdf
--rw-r--r-- root/root      269024 usr/doc/clamav-0.87/clamdoc.pdf
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/Windows/
--rwxr-xr-x root/root        2512 usr/doc/clamav-0.87/contrib/Windows/clamadoc.cpp
--rwxr-xr-x root/root        1860 usr/doc/clamav-0.87/contrib/Windows/clamadoc.h
--rwxr-xr-x root/root        7246 usr/doc/clamav-0.87/contrib/Windows/clamav.cpp
--rwxr-xr-x root/root       55296 usr/doc/clamav-0.87/contrib/Windows/clamav.exe
--rwxr-xr-x root/root        1987 usr/doc/clamav-0.87/contrib/Windows/clamav.h
--rwxr-xr-x root/root       11876 usr/doc/clamav-0.87/contrib/Windows/clamav.rc
--rwxr-xr-x root/root        2970 usr/doc/clamav-0.87/contrib/Windows/clamavw.cpp
--rwxr-xr-x root/root        2043 usr/doc/clamav-0.87/contrib/Windows/clamavw.h
--rwxr-xr-x root/root       10712 usr/doc/clamav-0.87/contrib/Windows/clamserver.cpp
--rwxr-xr-x root/root        1908 usr/doc/clamav-0.87/contrib/Windows/clamserver.h
--rwxr-xr-x root/root        4405 usr/doc/clamav-0.87/contrib/Windows/mainfrm.cpp
--rwxr-xr-x root/root        1904 usr/doc/clamav-0.87/contrib/Windows/mainfrm.h
--rwxr-xr-x root/root        1715 usr/doc/clamav-0.87/contrib/Windows/options.cpp
--rwxr-xr-x root/root        1525 usr/doc/clamav-0.87/contrib/Windows/options.h
--rwxr-xr-x root/root        2797 usr/doc/clamav-0.87/contrib/Windows/progress.cpp
--rwxr-xr-x root/root        1755 usr/doc/clamav-0.87/contrib/Windows/progress.h
--rw-r--r-- root/root        2174 usr/doc/clamav-0.87/contrib/Windows/readme.txt
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/Windows/res/
--rwxr-xr-x root/root        2494 usr/doc/clamav-0.87/contrib/Windows/res/clamav.ico
--rwxr-xr-x root/root         398 usr/doc/clamav-0.87/contrib/Windows/res/clamav.rc2
--rwxr-xr-x root/root        1198 usr/doc/clamav-0.87/contrib/Windows/res/toolbar.bmp
--rwxr-xr-x root/root        1837 usr/doc/clamav-0.87/contrib/Windows/resource.h
--rwxr-xr-x root/root        1898 usr/doc/clamav-0.87/contrib/Windows/servername.cpp
--rwxr-xr-x root/root        1641 usr/doc/clamav-0.87/contrib/Windows/servername.h
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/clamavmon/
--rwxr-xr-x root/root        4396 usr/doc/clamav-0.87/contrib/clamavmon/clamavmon
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/clamdmon/
--rw-r--r-- root/root        9728 usr/doc/clamav-0.87/contrib/clamdmon/clamdmon-1.0.tar.gz
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/clamdwatch/
--rw-r--r-- root/root        4162 usr/doc/clamav-0.87/contrib/clamdwatch/clamdwatch.tar.gz
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/init/
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/init/FreeBSD5.2/
--rwxr-xr-x root/root        1493 usr/doc/clamav-0.87/contrib/init/FreeBSD5.2/clamav
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/init/NetBSD2.0/
--rwxr-xr-x root/root        1431 usr/doc/clamav-0.87/contrib/init/NetBSD2.0/clamav
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/init/RedHat/
--rwxr-xr-x root/root        1544 usr/doc/clamav-0.87/contrib/init/RedHat/clamav-milter
--rwxr-xr-x root/root        1290 usr/doc/clamav-0.87/contrib/init/RedHat/clamd
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/init/Solaris10/
--rw-r--r-- root/root         389 usr/doc/clamav-0.87/contrib/init/Solaris10/clamav-milter
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/contrib/init/SuSE/
--rwxr-xr-x root/root        2415 usr/doc/clamav-0.87/contrib/init/SuSE/clamd
-drwxrwxrwx root/root           0 usr/doc/clamav-0.87/html/
--rw-r--r-- root/root         891 usr/doc/clamav-0.87/html/clamdoc.css
--rw-r--r-- root/root       12677 usr/doc/clamav-0.87/html/clamdoc.html
--rw-r--r-- root/root         278 usr/doc/clamav-0.87/html/contents.png
--rw-r--r-- root/root        2497 usr/doc/clamav-0.87/html/footnode.html
--rw-r--r-- root/root         144 usr/doc/clamav-0.87/html/img1.png
--rw-r--r-- root/root      161985 usr/doc/clamav-0.87/html/img2.png
--rw-r--r-- root/root        5170 usr/doc/clamav-0.87/html/img3.png
--rw-r--r-- root/root       22653 usr/doc/clamav-0.87/html/img4.png
--rw-r--r-- root/root         254 usr/doc/clamav-0.87/html/img5.png
--rw-r--r-- root/root       12677 usr/doc/clamav-0.87/html/index.html
--rw-r--r-- root/root         245 usr/doc/clamav-0.87/html/next.png
--rw-r--r-- root/root         272 usr/doc/clamav-0.87/html/next_g.png
--rw-r--r-- root/root        5967 usr/doc/clamav-0.87/html/node1.html
--rw-r--r-- root/root        2530 usr/doc/clamav-0.87/html/node10.html
--rw-r--r-- root/root        2660 usr/doc/clamav-0.87/html/node100.html
--rw-r--r-- root/root        2288 usr/doc/clamav-0.87/html/node101.html
--rw-r--r-- root/root        2270 usr/doc/clamav-0.87/html/node102.html
--rw-r--r-- root/root        2368 usr/doc/clamav-0.87/html/node103.html
--rw-r--r-- root/root        2802 usr/doc/clamav-0.87/html/node104.html
--rw-r--r-- root/root        2283 usr/doc/clamav-0.87/html/node105.html
--rw-r--r-- root/root        2392 usr/doc/clamav-0.87/html/node106.html
--rw-r--r-- root/root        2888 usr/doc/clamav-0.87/html/node107.html
--rw-r--r-- root/root        2322 usr/doc/clamav-0.87/html/node108.html
--rw-r--r-- root/root        2348 usr/doc/clamav-0.87/html/node109.html
--rw-r--r-- root/root        2909 usr/doc/clamav-0.87/html/node11.html
--rw-r--r-- root/root        2445 usr/doc/clamav-0.87/html/node110.html
--rw-r--r-- root/root        2294 usr/doc/clamav-0.87/html/node111.html
--rw-r--r-- root/root        2519 usr/doc/clamav-0.87/html/node112.html
--rw-r--r-- root/root        2473 usr/doc/clamav-0.87/html/node113.html
--rw-r--r-- root/root        2554 usr/doc/clamav-0.87/html/node114.html
--rw-r--r-- root/root        2462 usr/doc/clamav-0.87/html/node115.html
--rw-r--r-- root/root        2428 usr/doc/clamav-0.87/html/node116.html
--rw-r--r-- root/root        2355 usr/doc/clamav-0.87/html/node117.html
--rw-r--r-- root/root        2893 usr/doc/clamav-0.87/html/node118.html
--rw-r--r-- root/root        2488 usr/doc/clamav-0.87/html/node119.html
--rw-r--r-- root/root        2696 usr/doc/clamav-0.87/html/node12.html
--rw-r--r-- root/root        2219 usr/doc/clamav-0.87/html/node120.html
--rw-r--r-- root/root        2341 usr/doc/clamav-0.87/html/node121.html
--rw-r--r-- root/root        2273 usr/doc/clamav-0.87/html/node122.html
--rw-r--r-- root/root        2213 usr/doc/clamav-0.87/html/node123.html
--rw-r--r-- root/root        2245 usr/doc/clamav-0.87/html/node124.html
--rw-r--r-- root/root        2671 usr/doc/clamav-0.87/html/node125.html
--rw-r--r-- root/root        2262 usr/doc/clamav-0.87/html/node126.html
--rw-r--r-- root/root        2438 usr/doc/clamav-0.87/html/node127.html
--rw-r--r-- root/root        2408 usr/doc/clamav-0.87/html/node128.html
--rw-r--r-- root/root        2260 usr/doc/clamav-0.87/html/node129.html
--rw-r--r-- root/root        2524 usr/doc/clamav-0.87/html/node13.html
--rw-r--r-- root/root        2760 usr/doc/clamav-0.87/html/node130.html
--rw-r--r-- root/root        2205 usr/doc/clamav-0.87/html/node131.html
--rw-r--r-- root/root        2270 usr/doc/clamav-0.87/html/node132.html
--rw-r--r-- root/root        2233 usr/doc/clamav-0.87/html/node133.html
--rw-r--r-- root/root        2377 usr/doc/clamav-0.87/html/node134.html
--rw-r--r-- root/root        2342 usr/doc/clamav-0.87/html/node135.html
--rw-r--r-- root/root        2281 usr/doc/clamav-0.87/html/node136.html
--rw-r--r-- root/root        2325 usr/doc/clamav-0.87/html/node137.html
--rw-r--r-- root/root        2224 usr/doc/clamav-0.87/html/node138.html
--rw-r--r-- root/root        2382 usr/doc/clamav-0.87/html/node139.html
--rw-r--r-- root/root        2680 usr/doc/clamav-0.87/html/node14.html
--rw-r--r-- root/root        2860 usr/doc/clamav-0.87/html/node140.html
--rw-r--r-- root/root        2713 usr/doc/clamav-0.87/html/node141.html
--rw-r--r-- root/root        2365 usr/doc/clamav-0.87/html/node142.html
--rw-r--r-- root/root        2412 usr/doc/clamav-0.87/html/node143.html
--rw-r--r-- root/root        2525 usr/doc/clamav-0.87/html/node144.html
--rw-r--r-- root/root        2316 usr/doc/clamav-0.87/html/node145.html
--rw-r--r-- root/root        2338 usr/doc/clamav-0.87/html/node146.html
--rw-r--r-- root/root        2370 usr/doc/clamav-0.87/html/node147.html
--rw-r--r-- root/root        2364 usr/doc/clamav-0.87/html/node148.html
--rw-r--r-- root/root        2353 usr/doc/clamav-0.87/html/node149.html
--rw-r--r-- root/root        2199 usr/doc/clamav-0.87/html/node15.html
--rw-r--r-- root/root        2444 usr/doc/clamav-0.87/html/node150.html
--rw-r--r-- root/root        2266 usr/doc/clamav-0.87/html/node151.html
--rw-r--r-- root/root        2455 usr/doc/clamav-0.87/html/node152.html
--rw-r--r-- root/root       65012 usr/doc/clamav-0.87/html/node153.html
--rw-r--r-- root/root       15924 usr/doc/clamav-0.87/html/node154.html
--rw-r--r-- root/root       12236 usr/doc/clamav-0.87/html/node155.html
--rw-r--r-- root/root        2248 usr/doc/clamav-0.87/html/node156.html
--rw-r--r-- root/root        2134 usr/doc/clamav-0.87/html/node157.html
--rw-r--r-- root/root        3555 usr/doc/clamav-0.87/html/node158.html
--rw-r--r-- root/root        2511 usr/doc/clamav-0.87/html/node159.html
--rw-r--r-- root/root        2553 usr/doc/clamav-0.87/html/node16.html
--rw-r--r-- root/root        2648 usr/doc/clamav-0.87/html/node17.html
--rw-r--r-- root/root        3173 usr/doc/clamav-0.87/html/node18.html
--rw-r--r-- root/root        2885 usr/doc/clamav-0.87/html/node19.html
--rw-r--r-- root/root        2627 usr/doc/clamav-0.87/html/node2.html
--rw-r--r-- root/root        2632 usr/doc/clamav-0.87/html/node20.html
--rw-r--r-- root/root        5141 usr/doc/clamav-0.87/html/node21.html
--rw-r--r-- root/root        3117 usr/doc/clamav-0.87/html/node22.html
--rw-r--r-- root/root        2489 usr/doc/clamav-0.87/html/node23.html
--rw-r--r-- root/root        4592 usr/doc/clamav-0.87/html/node24.html
--rw-r--r-- root/root        2531 usr/doc/clamav-0.87/html/node25.html
--rw-r--r-- root/root        3282 usr/doc/clamav-0.87/html/node26.html
--rw-r--r-- root/root        2195 usr/doc/clamav-0.87/html/node27.html
--rw-r--r-- root/root        3324 usr/doc/clamav-0.87/html/node28.html
--rw-r--r-- root/root        2639 usr/doc/clamav-0.87/html/node29.html
--rw-r--r-- root/root        2931 usr/doc/clamav-0.87/html/node3.html
--rw-r--r-- root/root        3359 usr/doc/clamav-0.87/html/node30.html
--rw-r--r-- root/root        2245 usr/doc/clamav-0.87/html/node31.html
--rw-r--r-- root/root        2268 usr/doc/clamav-0.87/html/node32.html
--rw-r--r-- root/root        3083 usr/doc/clamav-0.87/html/node33.html
--rw-r--r-- root/root        2144 usr/doc/clamav-0.87/html/node34.html
--rw-r--r-- root/root        2362 usr/doc/clamav-0.87/html/node35.html
--rw-r--r-- root/root        2106 usr/doc/clamav-0.87/html/node36.html
--rw-r--r-- root/root        3199 usr/doc/clamav-0.87/html/node37.html
--rw-r--r-- root/root        2252 usr/doc/clamav-0.87/html/node38.html
--rw-r--r-- root/root        2225 usr/doc/clamav-0.87/html/node39.html
--rw-r--r-- root/root        2684 usr/doc/clamav-0.87/html/node4.html
--rw-r--r-- root/root        3228 usr/doc/clamav-0.87/html/node40.html
--rw-r--r-- root/root        7067 usr/doc/clamav-0.87/html/node41.html
--rw-r--r-- root/root        2176 usr/doc/clamav-0.87/html/node42.html
--rw-r--r-- root/root        2246 usr/doc/clamav-0.87/html/node43.html
--rw-r--r-- root/root        2164 usr/doc/clamav-0.87/html/node44.html
--rw-r--r-- root/root        2855 usr/doc/clamav-0.87/html/node45.html
--rw-r--r-- root/root       13955 usr/doc/clamav-0.87/html/node46.html
--rw-r--r-- root/root        9339 usr/doc/clamav-0.87/html/node47.html
--rw-r--r-- root/root        4715 usr/doc/clamav-0.87/html/node48.html
--rw-r--r-- root/root        2496 usr/doc/clamav-0.87/html/node49.html
--rw-r--r-- root/root        2441 usr/doc/clamav-0.87/html/node5.html
--rw-r--r-- root/root        2697 usr/doc/clamav-0.87/html/node50.html
--rw-r--r-- root/root        2215 usr/doc/clamav-0.87/html/node51.html
--rw-r--r-- root/root        2211 usr/doc/clamav-0.87/html/node52.html
--rw-r--r-- root/root        2284 usr/doc/clamav-0.87/html/node53.html
--rw-r--r-- root/root        2315 usr/doc/clamav-0.87/html/node54.html
--rw-r--r-- root/root        2437 usr/doc/clamav-0.87/html/node55.html
--rw-r--r-- root/root        2208 usr/doc/clamav-0.87/html/node56.html
--rw-r--r-- root/root        2392 usr/doc/clamav-0.87/html/node57.html
--rw-r--r-- root/root        2403 usr/doc/clamav-0.87/html/node58.html
--rw-r--r-- root/root        2528 usr/doc/clamav-0.87/html/node59.html
--rw-r--r-- root/root        2339 usr/doc/clamav-0.87/html/node6.html
--rw-r--r-- root/root        2583 usr/doc/clamav-0.87/html/node60.html
--rw-r--r-- root/root        2320 usr/doc/clamav-0.87/html/node61.html
--rw-r--r-- root/root        2517 usr/doc/clamav-0.87/html/node62.html
--rw-r--r-- root/root        2496 usr/doc/clamav-0.87/html/node63.html
--rw-r--r-- root/root        2224 usr/doc/clamav-0.87/html/node64.html
--rw-r--r-- root/root        2429 usr/doc/clamav-0.87/html/node65.html
--rw-r--r-- root/root        2320 usr/doc/clamav-0.87/html/node66.html
--rw-r--r-- root/root        2239 usr/doc/clamav-0.87/html/node67.html
--rw-r--r-- root/root        2348 usr/doc/clamav-0.87/html/node68.html
--rw-r--r-- root/root        2208 usr/doc/clamav-0.87/html/node69.html
--rw-r--r-- root/root        2639 usr/doc/clamav-0.87/html/node7.html
--rw-r--r-- root/root        2504 usr/doc/clamav-0.87/html/node70.html
--rw-r--r-- root/root        2461 usr/doc/clamav-0.87/html/node71.html
--rw-r--r-- root/root        2257 usr/doc/clamav-0.87/html/node72.html
--rw-r--r-- root/root        2580 usr/doc/clamav-0.87/html/node73.html
--rw-r--r-- root/root        2233 usr/doc/clamav-0.87/html/node74.html
--rw-r--r-- root/root        2343 usr/doc/clamav-0.87/html/node75.html
--rw-r--r-- root/root        2400 usr/doc/clamav-0.87/html/node76.html
--rw-r--r-- root/root        2337 usr/doc/clamav-0.87/html/node77.html
--rw-r--r-- root/root        2427 usr/doc/clamav-0.87/html/node78.html
--rw-r--r-- root/root        2435 usr/doc/clamav-0.87/html/node79.html
--rw-r--r-- root/root        9058 usr/doc/clamav-0.87/html/node8.html
--rw-r--r-- root/root        2770 usr/doc/clamav-0.87/html/node80.html
--rw-r--r-- root/root        3061 usr/doc/clamav-0.87/html/node81.html
--rw-r--r-- root/root        2360 usr/doc/clamav-0.87/html/node82.html
--rw-r--r-- root/root        2295 usr/doc/clamav-0.87/html/node83.html
--rw-r--r-- root/root        2347 usr/doc/clamav-0.87/html/node84.html
--rw-r--r-- root/root        2391 usr/doc/clamav-0.87/html/node85.html
--rw-r--r-- root/root        2397 usr/doc/clamav-0.87/html/node86.html
--rw-r--r-- root/root        2190 usr/doc/clamav-0.87/html/node87.html
--rw-r--r-- root/root        2294 usr/doc/clamav-0.87/html/node88.html
--rw-r--r-- root/root        2385 usr/doc/clamav-0.87/html/node89.html
--rw-r--r-- root/root        2557 usr/doc/clamav-0.87/html/node9.html
--rw-r--r-- root/root        2210 usr/doc/clamav-0.87/html/node90.html
--rw-r--r-- root/root        2579 usr/doc/clamav-0.87/html/node91.html
--rw-r--r-- root/root        2748 usr/doc/clamav-0.87/html/node92.html
--rw-r--r-- root/root        2794 usr/doc/clamav-0.87/html/node93.html
--rw-r--r-- root/root        2411 usr/doc/clamav-0.87/html/node94.html
--rw-r--r-- root/root        2525 usr/doc/clamav-0.87/html/node95.html
--rw-r--r-- root/root        2428 usr/doc/clamav-0.87/html/node96.html
--rw-r--r-- root/root        2146 usr/doc/clamav-0.87/html/node97.html
--rw-r--r-- root/root        2292 usr/doc/clamav-0.87/html/node98.html
--rw-r--r-- root/root        2953 usr/doc/clamav-0.87/html/node99.html
--rw-r--r-- root/root         279 usr/doc/clamav-0.87/html/prev.png
--rw-r--r-- root/root         327 usr/doc/clamav-0.87/html/prev_g.png
--rw-r--r-- root/root         211 usr/doc/clamav-0.87/html/up.png
--rw-r--r-- root/root         231 usr/doc/clamav-0.87/html/up_g.png
--rw-r--r-- root/root       26863 usr/doc/clamav-0.87/signatures.pdf
-drwxr-xr-x root/root           0 usr/include/
--rw-r--r-- root/root        6838 usr/include/clamav.h
-drwxr-xr-x root/root           0 usr/lib/
--rwxr-xr-x root/root         750 usr/lib/libclamav.la
--rwxr-xr-x root/root      283472 usr/lib/libclamav.so.1.0.16
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         261 usr/lib/pkgconfig/libclamav.pc
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root         898 usr/man/man1/clamdscan.1.gz
--rw-r--r-- root/root        2658 usr/man/man1/clamscan.1.gz
--rw-r--r-- root/root        1669 usr/man/man1/freshclam.1.gz
--rw-r--r-- root/root         994 usr/man/man1/sigtool.1.gz
-drwxr-xr-x root/root           0 usr/man/man5/
--rw-r--r-- root/root        3089 usr/man/man5/clamd.conf.5.gz
--rw-r--r-- root/root        1783 usr/man/man5/freshclam.conf.5.gz
-drwxr-xr-x root/root           0 usr/man/man8/
--rw-r--r-- root/root        4102 usr/man/man8/clamav-milter.8.gz
--rw-r--r-- root/root         896 usr/man/man8/clamd.8.gz
-drwxr-xr-x root/bin            0 usr/sbin/
--rwxr-xr-x root/bin       104416 usr/sbin/clamav-milter
--rwxr-xr-x root/bin        54664 usr/sbin/clamd
-drwxr-xr-x root/root           0 var/
-drwxr-xr-x root/root           0 var/lib/
-drwxr-xr-x root/root           0 var/lib/clamav/
--rw-r--r-- root/root       59883 var/lib/clamav/daily.cvd
--rw-r--r-- root/root     2560365 var/lib/clamav/main.cvd
-drwxr-xr-x root/root           0 var/spool/
-drwxr-xr-x root/root           0 var/spool/cron/
-drwxr-xr-x root/root           0 var/spool/cron/crontabs/
--rw-r--r-- root/root          84 var/spool/cron/crontabs/clamav
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root etc/
+drwxr-xr-x root/root etc/clamav/
+-rw-r--r-- root/root etc/clamav/clamd.conf.new
+-rw-r--r-- root/root etc/clamav/freshclam.conf.new
+drwxr-xr-x root/root etc/rc.d/
+-rw-r--r-- root/root etc/rc.d/rc.clamd
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/clamav-config
+-rwxr-xr-x root/bin usr/bin/clamdscan
+-rwxr-xr-x root/bin usr/bin/clamscan
+-rwxr-xr-x root/bin usr/bin/freshclam
+-rwxr-xr-x root/bin usr/bin/sigtool
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/AUTHORS
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/BUGS
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/COPYING
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/ChangeLog
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/FAQ
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/INSTALL
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/NEWS
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/README
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/clamav-mirror-howto.pdf
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/clamdoc.pdf
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/Windows/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamadoc.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamadoc.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamav.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamav.exe
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamav.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamav.rc
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamavw.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamavw.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamserver.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/clamserver.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/mainfrm.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/mainfrm.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/options.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/options.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/progress.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/progress.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/readme.txt
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/Windows/res/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/res/clamav.ico
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/res/clamav.rc2
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/res/toolbar.bmp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/resource.h
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/servername.cpp
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/Windows/servername.h
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/clamavmon/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/clamavmon/clamavmon
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/clamdmon/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/clamdmon/clamdmon-1.0.tar.gz
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/clamdwatch/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/clamdwatch/clamdwatch.tar.gz
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/init/
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/init/FreeBSD5.2/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/init/FreeBSD5.2/clamav
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/init/NetBSD2.0/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/init/NetBSD2.0/clamav
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/init/RedHat/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/init/RedHat/clamav-milter
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/init/RedHat/clamd
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/init/Solaris10/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/init/Solaris10/clamav-milter
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/contrib/init/SuSE/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/contrib/init/SuSE/clamd
+drwxr-xr-x root/root usr/doc/clamav-0.88.2/html/
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/clamdoc.css
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/clamdoc.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/contents.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/footnode.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/img1.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/img2.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/img3.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/img4.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/img5.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/index.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/next.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/next_g.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node1.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node10.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node100.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node101.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node102.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node103.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node104.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node105.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node106.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node107.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node108.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node109.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node11.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node110.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node111.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node112.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node113.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node114.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node115.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node116.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node117.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node118.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node119.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node12.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node120.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node121.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node122.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node123.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node124.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node125.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node126.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node127.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node128.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node129.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node13.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node130.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node131.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node132.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node133.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node134.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node135.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node136.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node137.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node138.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node139.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node14.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node140.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node141.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node142.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node143.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node144.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node145.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node146.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node147.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node148.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node149.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node15.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node150.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node151.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node152.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node153.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node154.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node155.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node156.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node157.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node158.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node159.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node16.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node160.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node161.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node162.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node17.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node18.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node19.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node2.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node20.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node21.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node22.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node23.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node24.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node25.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node26.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node27.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node28.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node29.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node3.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node30.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node31.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node32.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node33.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node34.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node35.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node36.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node37.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node38.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node39.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node4.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node40.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node41.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node42.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node43.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node44.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node45.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node46.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node47.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node48.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node49.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node5.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node50.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node51.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node52.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node53.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node54.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node55.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node56.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node57.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node58.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node59.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node6.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node60.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node61.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node62.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node63.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node64.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node65.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node66.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node67.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node68.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node69.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node7.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node70.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node71.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node72.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node73.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node74.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node75.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node76.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node77.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node78.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node79.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node8.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node80.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node81.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node82.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node83.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node84.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node85.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node86.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node87.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node88.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node89.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node9.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node90.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node91.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node92.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node93.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node94.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node95.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node96.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node97.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node98.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/node99.html
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/prev.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/prev_g.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/up.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/html/up_g.png
+-rw-r--r-- root/root usr/doc/clamav-0.88.2/signatures.pdf
+drwxr-xr-x root/root usr/include/
+-rw-r--r-- root/root usr/include/clamav.h
+drwxr-xr-x root/root usr/lib/
+-rwxr-xr-x root/root usr/lib/libclamav.la
+-rwxr-xr-x root/root usr/lib/libclamav.so.1.0.17
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/libclamav.pc
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man1/
+-rw-r--r-- root/root usr/man/man1/clamdscan.1.gz
+-rw-r--r-- root/root usr/man/man1/clamscan.1.gz
+-rw-r--r-- root/root usr/man/man1/freshclam.1.gz
+-rw-r--r-- root/root usr/man/man1/sigtool.1.gz
+drwxr-xr-x root/root usr/man/man5/
+-rw-r--r-- root/root usr/man/man5/clamd.conf.5.gz
+-rw-r--r-- root/root usr/man/man5/freshclam.conf.5.gz
+drwxr-xr-x root/root usr/man/man8/
+-rw-r--r-- root/root usr/man/man8/clamav-milter.8.gz
+-rw-r--r-- root/root usr/man/man8/clamd.8.gz
+drwxr-xr-x root/bin usr/sbin/
+-rwxr-xr-x root/bin usr/sbin/clamd
+drwxr-xr-x root/root var/
+drwxr-xr-x root/root var/lib/
+drwxr-xr-x root/root var/lib/clamav/
+-rw-r--r-- root/root var/lib/clamav/daily.cvd
+-rw-r--r-- root/root var/lib/clamav/main.cvd
+drwxr-xr-x root/root var/spool/
+drwxr-xr-x root/root var/spool/cron/
+drwxr-xr-x root/root var/spool/cron/crontabs/
+-rw-r--r-- root/root var/spool/cron/crontabs/clamav
