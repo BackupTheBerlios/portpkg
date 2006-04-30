@@ -1,4 +1,144 @@
+2006-04-30  topf  <topf@users.berlios.de>
+
+  * gnome/gst-plugins-base/SlackBuild, gnome/gst-plugins-base/doinst.sh, gnome/gst-plugins-base/footprint, gnome/gst-plugins-base/md5sums, gnome/gst-plugins-base/requires, gnome/gst-plugins-base/slack-desc, gnome/gst-plugins-base/sources:
+  Version bump.
+
+  * gnome/gst-plugins-ugly/SlackBuild, gnome/gst-plugins-ugly/doinst.sh, gnome/gst-plugins-ugly/footprint, gnome/gst-plugins-ugly/md5sums, gnome/gst-plugins-ugly/requires, gnome/gst-plugins-ugly/slack-desc, gnome/gst-plugins-ugly/sources:
+  Version bump.
+
+  * gnome/gst-ffmpeg/SlackBuild, gnome/gst-ffmpeg/footprint, gnome/gst-ffmpeg/requires, gnome/gst-ffmpeg/slack-desc, gnome/gst-ffmpeg/sources:
+  Version bump.
+
+  * gnome/gst-python/footprint, gnome/gst-python/md5sums, gnome/gst-python/requires, gnome/gst-python/sources, gnome/gst-python/SlackBuild:
+  Version bump.
+
+  * gnome/gstreamer/SlackBuild, gnome/gstreamer/footprint, gnome/gstreamer/md5sums, gnome/gstreamer/requires, gnome/gstreamer/sources:
+  Version bump.
+
+  * l/gnonlin/requires, l/gnonlin/slack-desc, l/gnonlin/sources, l/gnonlin/SlackBuild, l/gnonlin/footprint, l/gnonlin/md5sums:
+  Version bump.
+
+2006-04-29  hnaz  <hnaz@users.berlios.de>
+
+  * ap/jack/footprint, ap/jack/md5sums, ap/jack/requires, ap/jack/slack-desc, ap/jack/sources, ap/jack/SlackBuild:
+  Update from 0.99.0 to 0.100.0.
+  Cleaned up SlackBuild; set html-dir for doxygen files.
+  Fixed requires.
+  Fixed slack-desc.
+
+  * ap/htop/SlackBuild, ap/htop/footprint, ap/htop/md5sums, ap/htop/slack-desc:
+  Update from 0.5.3 to 0.6.
+  Rewrote slack-desc.
+  Cleaned up SlackBuild.
+
+  * ap/fuse/SlackBuild, ap/fuse/footprint, ap/fuse/md5sums, ap/fuse/requires, ap/fuse/slack-desc:
+  Update from 2.3.0 to 2.5.3.
+  Removed requires.
+  Rewrote slack-desc.
+  SlackBuild cleanups.
+
+  * ap/exifutils/SlackBuild, ap/exifutils/footprint, ap/exifutils/md5sums, ap/exifutils/slack-desc, ap/exifutils/sources:
+  Update from 2.4.9 to 2.7.0.
+  SlackBuild cleanups (heavily).
+  Added footprint, md5sums and slack-desc.
+
+  * ap/exiftags/SlackBuild, ap/exiftags/footprint, ap/exiftags/md5sums, ap/exiftags/requires, ap/exiftags/slack-desc, ap/exiftags/sources:
+  Update from 0.99.1 to 1.00.
+  Make use of SLKCFLAGS.
+  Added footprint, md5sums and slack-desc.
+  Removed requires.
+  General cleanups in SlackBuild.
+
+  * ap/cpudyn/footprint: Whoops, that wasn't there at 1.0.
+
+  * ap/cpudyn/md5sums, ap/cpudyn/requires, ap/cpudyn/sources, ap/cpudyn/SlackBuild:
+  Update from 1.0 to 1.0.1.
+  Added md5sums.
+  Removed requires.
+  Cleaned up SlackBuild and make it use SLKCFLAGS.
+  /etc/rc.d/rc.cpudynd won't be installed executable by default anymore for security reasons.
+
+  * ap/dd_rescue/SlackBuild, ap/dd_rescue/footprint, ap/dd_rescue/md5sums, ap/dd_rescue/requires, ap/dd_rescue/slack-desc, ap/dd_rescue/sources:
+  Update from 1.10 to 1.11.
+  Forced usage of SLKCFLAGS.
+  Removed requires.
+  Cleaned up SlackBuild.
+
+  * ap/cpan2tgz/sources, ap/cpan2tgz/md5sums, ap/cpan2tgz/slack-desc, ap/cpan2tgz/footprint, ap/cpan2tgz/SlackBuild:
+  Update from 0.3 to 0.5.
+  Various SlackBuild cleanups.
+
+  * ap/athcool/SlackBuild, ap/athcool/footprint, ap/athcool/md5sums, ap/athcool/requires:
+  Update from 0.3.10 to 0.3.11.
+  Removed requires.
+  Fixed SlackBuild to use SLKCFLAGS for compilation.
+  General cleanup.
+
+  * ap/antiword/SlackBuild, ap/antiword/footprint, ap/antiword/md5sums, ap/antiword/slack-desc:
+  Update from 0.36.1 to 0.37.
+  Wrote a proper slack-desc.
+  Fixed SlackBuild to install docfiles and the manpage.
+
+  * ap/acpitool/SlackBuild, ap/acpitool/footprint, ap/acpitool/md5sums, ap/acpitool/slack-desc:
+  Update from 0.2.8 to 0.4.4.
+  Wrote a proper slack-desc.
+
+  * ap/abook/SlackBuild, ap/abook/doinst.sh, ap/abook/footprint, ap/abook/md5sums, ap/abook/requires, ap/abook/slack-desc, ap/abook/sources:
+  Update from 0.5.3 to 0.5.5.
+  Removed doinst.sh, it's unneeded.
+  Removed glibc as a default dependency from requires.
+
+  * l/libsndfile/SlackBuild, l/libsndfile/footprint, l/libsndfile/libsndfile-1.0.15-docdir.patch, l/libsndfile/md5sums, l/libsndfile/requires, l/libsndfile/slack-desc, l/libsndfile/sources:
+  Update from 1.0.12 to 1.0.15.
+  Fixed horrible standard docdir with libsndfile-$VERSION.patch.
+  Fixed requires.
+
+2006-04-29  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg.1: Updates.
+
+2006-04-29  hnaz  <hnaz@users.berlios.de>
+
+  * d/psyco/md5sums: Whoops, forgot about that..
+
+  * d/psyco/SlackBuild, d/psyco/footprint: Update from 1.4 to 1.5.1.
+  Psyco source will be rebuilt in every case.
+  Python modules will be byte-compiled before installation.
+
+2006-04-29  topf  <topf@users.berlios.de>
+
+  * open/kiso/ChangeLog: Updated to 0.8.3 (sjn)
+
+  * open/kcheckgmail/footprint, open/kcheckgmail/info, open/kcheckgmail/md5sums, open/kcheckgmail/requires, open/kcheckgmail/slack-desc, open/kcheckgmail/sources, open/kcheckgmail/SlackBuild, open/kcheckgmail/doinst.sh:
+  New port (sjn)
+
+2006-04-28  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  * Remove Bash-specific syntax (brace expansion, "==", "declare", "<()", etc.)
+  * Changed all variables that can be modified with command arguments to
+    global ones; $maintain, $no_fakeroot and $rebuild contain per-port values
+  * TMPDIR doesn't need to be exported
+  * Changed $action to a local variable in parse_options()
+  * Added rebuild flag functionality for ports
+  * Code cleanups
+  * Fixed bug in ls_diff(): make any2base earlier
+  * Removed $size and $u_size; moved code to do_info()
+  * Removed useless use of awk / cat / temp files
+  * Speed-up --find by not following symlinks
+  * Checks against TMPDIR was meant to be TMP in init()
+
+2006-04-27  topf  <topf@users.berlios.de>
+
+  * open/kiso/ChangeLog: Updated to 0.8.3 (sjn)
+
+  * open/kiso/ChangeLog, open/kiso/SlackBuild, open/kiso/doinst.sh, open/kiso/footprint, open/kiso/info, open/kiso/md5sums, open/kiso/requires, open/kiso/slack-desc, open/kiso/sources:
+  Updated to 0.8.3 (sjn)
+
 2006-04-26  topf  <topf@users.berlios.de>
+
+  * d/portpkg/checkpkg, d/portpkg/pp-config, d/portpkg/prepare:
+  Use "bash" in sheebang, not "sh".
 
   * open/libtunepimp/requires, open/libtunepimp/info, open/libtunepimp/ChangeLog, open/libtunepimp/SlackBuild, open/libtunepimp/footprint:
   Fixed configure options (sjn)
@@ -51,6 +191,11 @@
   * l/gpgme/footprint, l/gpgme/md5sums, l/gpgme/post-install-fix.autoport, l/gpgme/slack-desc, l/gpgme/sources, l/gpgme/SlackBuild:
   Update from 1.0.2.
 
+  * testing/gimp/requires: I ain't like blockin myself..
+
+  * testing/gimp/ChangeLog, testing/gimp/SlackBuild, testing/gimp/doinst.sh, testing/gimp/footprint, testing/gimp/md5sums, testing/gimp/requires, testing/gimp/slack-desc, testing/gimp/sources:
+  Hot and unstable :) Initial check-in.
+
 2006-04-26  topf  <topf@users.berlios.de>
 
   * xap/video-dvdrip/SlackBuild, xap/video-dvdrip/footprint, xap/video-dvdrip/requires, xap/video-dvdrip/slack-desc, xap/video-dvdrip/sources:
@@ -91,6 +236,11 @@
   * d/portpkg/export.portpkg:
   * Removed lines in ChangeLogs that are just saying that it has been updated.
   * Fix version check for curl (thanks to sjn).
+
+2006-04-26  hnaz  <hnaz@users.berlios.de>
+
+  * d/tcc/SlackBuild, d/tcc/footprint, d/tcc/md5sums, d/tcc/slack-desc, d/tcc/sources:
+  Initial check-in.
 
 2006-04-25  topf  <topf@users.berlios.de>
 
@@ -177,7 +327,7 @@
   * xap/gtkballs/ChangeLog, xap/gtkballs/SlackBuild, xap/gtkballs/footprint, xap/gtkballs/md5sums, xap/gtkballs/requires, xap/gtkballs/slack-desc, xap/gtkballs/sources:
   Inital: gtkballs 3.1.5 (va)
 
-  * kde/kiso/ChangeLog, kde/kiso/SlackBuild, kde/kiso/doinst.sh, kde/kiso/footprint, kde/kiso/md5sums, kde/kiso/requires, kde/kiso/slack-desc, kde/kiso/sources:
+  * kde/kiso/ChangeLog, kde/kiso/SlackBuild, kde/kiso/doinst.sh, kde/kiso/footprint, kde/kiso/md5sums, kde/kiso/requires, kde/kiso/slack-desc, kde/kiso/sources, open/kiso/ChangeLog, open/kiso/SlackBuild, open/kiso/doinst.sh, open/kiso/footprint, open/kiso/info, open/kiso/md5sums, open/kiso/requires, open/kiso/slack-desc, open/kiso/sources:
   New port (sjn)
 
   * kde/krename/ChangeLog, kde/krename/SlackBuild, kde/krename/doinst.sh, kde/krename/footprint, kde/krename/md5sums, kde/krename/requires, kde/krename/slack-desc, kde/krename/sources:
@@ -1090,6 +1240,9 @@
 
   * open/libtunepimp/ChangeLog, open/libtunepimp/SlackBuild, open/libtunepimp/footprint, open/libtunepimp/info, open/libtunepimp/md5sums, open/libtunepimp/requires, open/libtunepimp/slack-desc, open/libtunepimp/sources:
   Upgraded to 0.4.0 (sjn)
+
+  * open/kiso/doinst.sh, open/kiso/footprint, open/kiso/info, open/kiso/md5sums, open/kiso/requires, open/kiso/slack-desc, open/kiso/sources, open/kiso/SlackBuild:
+  New port (sjn)
 
   * open/k3b/ChangeLog, open/k3b/SlackBuild, open/k3b/footprint, open/k3b/info, open/k3b/k3b-u64.patch.gz, open/k3b/md5sums, open/k3b/requires, open/k3b/slack-desc, open/k3b/sources:
   Upgraded to v0.12.7 (sjn)
@@ -5046,9 +5199,6 @@
   * l/gtk-xfce-engine/SlackBuild, l/gtk-xfce-engine/buildlog, l/gtk-xfce-engine/diff, l/gtk-xfce-engine/doinst.sh, l/gtk-xfce-engine/footprint, l/gtk-xfce-engine/requires, l/gtk-xfce-engine/slack-desc, l/gtk-xfce-engine/sources:
   New port
 
-  * ap/hal/SlackBuild, ap/hal/doinst.sh, ap/hal/hal-BLKGETSIZE64.patch, ap/hal/rc.hald, ap/hal/requires, ap/hal/slack-desc, ap/hal/sources:
-  Moved hal, dbus, gnome-volume-manager to testing/
-
   * testing/dbus/SlackBuild, testing/dbus/doinst.sh, testing/dbus/rc.messagebus, testing/dbus/requires, testing/dbus/slack-desc, testing/dbus/sources, testing/gnome-volume-manager/SlackBuild, testing/gnome-volume-manager/doinst.sh, testing/gnome-volume-manager/requires, testing/gnome-volume-manager/sources, testing/hal/SlackBuild, testing/hal/doinst.sh, testing/hal/hal-BLKGETSIZE64.patch, testing/hal/rc.hald, testing/hal/requires, testing/hal/slack-desc, testing/hal/sources:
   Moved dbus, hal, gnome-volume-manager to testing/
 
@@ -5057,7 +5207,7 @@
 
 2004-11-08  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-  * pasture/gtkhtml30/slack-desc, pasture/libsoup20/slack-desc, xap/amule/slack-desc, xap/bookmarkbridge/PORT_IS_BROKEN, xap/bookmarkbridge/slack-desc, xap/desktop-file-utils/slack-desc, xap/gimp-gap/PORT_IS_BROKEN, xap/gtklp/slack-desc, xap/icon-slicer/slack-desc, xap/mbox/slack-desc, xap/pyne/slack-desc, xap/xmbmon/slack-desc, ap/exiftags/slack-desc, ap/exifutils/slack-desc, ap/hibernate-script/requires, d/portpkg/requires, d/ruby/slack-desc, d/tla/slack-desc, gnome/aegis-virus-scanner/slack-desc, gnome/at-spi/slack-desc, gnome/bmp-extra-plugins/slack-desc, gnome/bug-buddy/slack-desc, gnome/control-center/slack-desc, gnome/dasher/slack-desc, gnome/diacanvas2/slack-desc, gnome/drwright/slack-desc, gnome/eel/slack-desc, gnome/eog/slack-desc, gnome/epiphany-extensions/slack-desc, gnome/epiphany/slack-desc, gnome/evolution-data-server/slack-desc, gnome/evolution-webcal/slack-desc, gnome/file-roller/slack-desc, gnome/gai/slack-desc, gnome/gail/slack-desc, gnome/gal/slack-desc, gnome/galeon/slack-desc, gnome/gcalctool/slack-desc, gnome/gconf-editor/slack-desc, gnome/gconf/slack-desc, gnome/gconfmm/slack-desc, gnome/gcursor/slack-desc, gnome/gdm/slack-desc, gnome/gedit/slack-desc, gnome/ggv/slack-desc, gnome/gnome-applets/slack-desc, gnome/gnome-cpufreq-applet/slack-desc, gnome/gnome-desktop/slack-desc, gnome/gnome-dial/slack-desc, gnome/gnome-games/slack-desc, gnome/gnome-icon-theme/slack-desc, gnome/gnome-keyring/slack-desc, gnome/gnome-media/slack-desc, gnome/gnome-mime-data/requires, gnome/gnome-netstatus/slack-desc, gnome/gnome-nettool/slack-desc, gnome/gnome-panel/slack-desc, gnome/gnome-pkgtool/slack-desc, gnome/gnome-ppx/slack-desc, gnome/gnome-session/slack-desc, gnome/gnome-speech/slack-desc, gnome/gnome-system-monitor/slack-desc, gnome/gnome-system-tools/slack-desc, gnome/gnome-terminal/slack-desc, gnome/gnome-themes/slack-desc, gnome/gnome-utils/slack-desc, gnome/gnome-vfs/slack-desc, gnome/gnome-vfsmm/slack-desc, gnome/gnome2-user-docs/requires, gnome/gnome2-user-docs/slack-desc, gnome/gnopernicus/slack-desc, gnome/gnubiff/slack-desc, gnome/gok/slack-desc, gnome/gpdf/slack-desc, gnome/gphoto2/slack-desc, gnome/gst-ffmpeg/slack-desc, gnome/gthumb/slack-desc, gnome/gtkam/slack-desc, gnome/gtkglext/slack-desc, gnome/gtkhtml/slack-desc, gnome/gtkspell/slack-desc, gnome/gurlchecker/slack-desc, gnome/hardware-monitor/slack-desc, gnome/intltool/requires, gnome/intltool/slack-desc, gnome/jamboree/slack-desc, gnome/libbonobo/slack-desc, gnome/libbonoboui/slack-desc, gnome/libgail-gnome/slack-desc, gnome/libghttp/sources, gnome/libgnome/slack-desc, gnome/libgnomecanvas/slack-desc, gnome/libgnomecanvasmm/slack-desc, gnome/libgnomedb/slack-desc, gnome/libgnomemm/slack-desc, gnome/libgnomeprint/slack-desc, gnome/libgnomeprintui/slack-desc, gnome/libgnomeui/slack-desc, gnome/libgnomeuimm/slack-desc, gnome/libgtop/slack-desc, gnome/libsoup/slack-desc, gnome/libwnck/slack-desc, gnome/libxklavier/PORT_IS_BROKEN, gnome/mail-notification/slack-desc, gnome/metacity/slack-desc, gnome/mihais-memfree/slack-desc, gnome/nautilus-cd-burner/slack-desc, gnome/nautilus-media/slack-desc, gnome/nautilus/slack-desc, gnome/orbit2/slack-desc, gnome/ubuntu-artwork/requires, gnome/vino/slack-desc, gnome/yelp/slack-desc, gnome/zenity/slack-desc, l/archive-tar/slack-desc, l/archive-zip/slack-desc, l/compress-zlib/slack-desc, l/egenix-mx-base/slack-desc, l/exif-browser/slack-desc, l/file-scan/slack-desc, l/gmime/slack-desc, l/gtk-qt-engine/slack-desc, l/libgda/slack-desc, l/libgphoto2/slack-desc, l/pyogg/slack-desc, l/pyvorbis/slack-desc, l/rp9codecs/slack-desc, l/wxgtk/slack-desc, l/wxpython/slack-desc, l/xanimdlls/slack-desc, l/xvidcore/slack-desc, n/pavuk/slack-desc, pasture/db41/slack-desc, pasture/gconfmm20/slack-desc, d/portpkg/SlackBuild, d/portpkg/portpkg, xap/mplayer/MPlayer_mini.xpm, xap/mplayer/SlackBuild, xap/mplayer/gmplayer.desktop, xap/mplayer/requires, xap/mplayer/slack-desc, xap/mplayer/sources, ap/linux-pam/SlackBuild, ap/linux-pam/requires, ap/linux-pam/slack-desc, ap/linux-pam/sources:
+  * pasture/gtkhtml30/slack-desc, pasture/libsoup20/slack-desc, xap/amule/slack-desc, xap/bookmarkbridge/PORT_IS_BROKEN, xap/bookmarkbridge/slack-desc, xap/desktop-file-utils/slack-desc, xap/gimp-gap/PORT_IS_BROKEN, xap/gtklp/slack-desc, xap/icon-slicer/slack-desc, xap/mbox/slack-desc, xap/pyne/slack-desc, xap/xmbmon/slack-desc, ap/exiftags/slack-desc, ap/exifutils/slack-desc, ap/hibernate-script/requires, d/portpkg/requires, d/ruby/slack-desc, d/tla/slack-desc, gnome/aegis-virus-scanner/slack-desc, gnome/at-spi/slack-desc, gnome/bmp-extra-plugins/slack-desc, gnome/bug-buddy/slack-desc, gnome/control-center/slack-desc, gnome/dasher/slack-desc, gnome/diacanvas2/slack-desc, gnome/drwright/slack-desc, gnome/eel/slack-desc, gnome/eog/slack-desc, gnome/epiphany-extensions/slack-desc, gnome/epiphany/slack-desc, gnome/evolution-data-server/slack-desc, gnome/evolution-webcal/slack-desc, gnome/file-roller/slack-desc, gnome/gai/slack-desc, gnome/gail/slack-desc, gnome/gal/slack-desc, gnome/galeon/slack-desc, gnome/gcalctool/slack-desc, gnome/gconf-editor/slack-desc, gnome/gconf/slack-desc, gnome/gconfmm/slack-desc, gnome/gcursor/slack-desc, gnome/gdm/slack-desc, gnome/gedit/slack-desc, gnome/ggv/slack-desc, gnome/gnome-applets/slack-desc, gnome/gnome-cpufreq-applet/slack-desc, gnome/gnome-desktop/slack-desc, gnome/gnome-dial/slack-desc, gnome/gnome-games/slack-desc, gnome/gnome-icon-theme/slack-desc, gnome/gnome-keyring/slack-desc, gnome/gnome-media/slack-desc, gnome/gnome-mime-data/requires, gnome/gnome-netstatus/slack-desc, gnome/gnome-nettool/slack-desc, gnome/gnome-panel/slack-desc, gnome/gnome-pkgtool/slack-desc, gnome/gnome-ppx/slack-desc, gnome/gnome-session/slack-desc, gnome/gnome-speech/slack-desc, gnome/gnome-system-monitor/slack-desc, gnome/gnome-system-tools/slack-desc, gnome/gnome-terminal/slack-desc, gnome/gnome-themes/slack-desc, gnome/gnome-utils/slack-desc, gnome/gnome-vfs/slack-desc, gnome/gnome-vfsmm/slack-desc, gnome/gnome2-user-docs/requires, gnome/gnome2-user-docs/slack-desc, gnome/gnopernicus/slack-desc, gnome/gnubiff/slack-desc, gnome/gok/slack-desc, gnome/gpdf/slack-desc, gnome/gphoto2/slack-desc, gnome/gst-ffmpeg/slack-desc, gnome/gthumb/slack-desc, gnome/gtkam/slack-desc, gnome/gtkglext/slack-desc, gnome/gtkhtml/slack-desc, gnome/gtkspell/slack-desc, gnome/gurlchecker/slack-desc, gnome/hardware-monitor/slack-desc, gnome/intltool/requires, gnome/intltool/slack-desc, gnome/jamboree/slack-desc, gnome/libbonobo/slack-desc, gnome/libbonoboui/slack-desc, gnome/libgail-gnome/slack-desc, gnome/libghttp/sources, gnome/libgnome/slack-desc, gnome/libgnomecanvas/slack-desc, gnome/libgnomecanvasmm/slack-desc, gnome/libgnomedb/slack-desc, gnome/libgnomemm/slack-desc, gnome/libgnomeprint/slack-desc, gnome/libgnomeprintui/slack-desc, gnome/libgnomeui/slack-desc, gnome/libgnomeuimm/slack-desc, gnome/libgtop/slack-desc, gnome/libsoup/slack-desc, gnome/libwnck/slack-desc, gnome/libxklavier/PORT_IS_BROKEN, gnome/mail-notification/slack-desc, gnome/metacity/slack-desc, gnome/mihais-memfree/slack-desc, gnome/nautilus-cd-burner/slack-desc, gnome/nautilus-media/slack-desc, gnome/nautilus/slack-desc, gnome/orbit2/slack-desc, gnome/ubuntu-artwork/requires, gnome/vino/slack-desc, gnome/yelp/slack-desc, gnome/zenity/slack-desc, l/archive-tar/slack-desc, l/archive-zip/slack-desc, l/compress-zlib/slack-desc, l/egenix-mx-base/slack-desc, l/exif-browser/slack-desc, l/file-scan/slack-desc, l/gmime/slack-desc, l/gtk-qt-engine/slack-desc, l/libgda/slack-desc, l/libgphoto2/slack-desc, l/pyogg/slack-desc, l/pyvorbis/slack-desc, l/rp9codecs/slack-desc, l/wxgtk/slack-desc, l/wxpython/slack-desc, l/xanimdlls/slack-desc, l/xvidcore/slack-desc, n/pavuk/slack-desc, pasture/db41/slack-desc, pasture/gconfmm20/slack-desc, d/portpkg/SlackBuild, d/portpkg/portpkg, xap/mplayer/MPlayer_mini.xpm, xap/mplayer/SlackBuild, xap/mplayer/gmplayer.desktop, xap/mplayer/requires, xap/mplayer/slack-desc, xap/mplayer/sources:
   *** empty log message ***
 
   * pasture/linux-pam/SlackBuild, pasture/linux-pam/requires, pasture/linux-pam/sources:
@@ -5126,7 +5276,7 @@
   * ap/abook/SlackBuild, ap/abook/doinst.sh, ap/abook/requires, ap/abook/slack-desc, ap/abook/sources:
   New file.
 
-  * ap/hal/SlackBuild, ap/hal/hal-BLKGETSIZE64.patch, ap/hal/requires, l/bluecurve/SlackBuild, l/bluecurve/slack-desc, l/gtk-qt-engine/requires, l/libcap/SlackBuild:
+  * l/bluecurve/SlackBuild, l/bluecurve/slack-desc, l/gtk-qt-engine/requires, l/libcap/SlackBuild:
   *** empty log message ***
 
   * d/portpkg/portpkg:
@@ -5215,14 +5365,14 @@
   * d/mono/SlackBuild, d/mono/requires, d/mono/slack-desc, d/mono/sources, d/ruby/SlackBuild, d/ruby/requires, d/ruby/slack-desc, d/ruby/sources, l/libavc1394/SlackBuild, l/libavc1394/requires, l/libavc1394/slack-desc, l/libavc1394/sources, l/libdv/SlackBuild, l/libdv/requires, l/libdv/slack-desc, l/libdv/sources, l/libdvdcss/SlackBuild, l/libdvdcss/requires, l/libdvdcss/slack-desc, l/libdvdcss/sources, l/libdvdnav/SlackBuild, l/libdvdnav/requires, l/libdvdnav/slack-desc, l/libdvdnav/sources, l/libdvdread/SlackBuild, l/libdvdread/requires, l/libdvdread/slack-desc, l/libdvdread/sources, l/libesmtp/SlackBuild, l/libesmtp/requires, l/libesmtp/slack-desc, l/libesmtp/sources, l/sqlite/SlackBuild, l/sqlite/requires, l/sqlite/slack-desc, l/sqlite/sources:
   New file.
 
-  * ap/fuse/SlackBuild, ap/fuse/doinst.sh, ap/fuse/requires, ap/fuse/slack-desc, ap/fuse/sources, ap/hal/SlackBuild, ap/hal/doinst.sh, ap/hal/hal-BLKGETSIZE64.patch, ap/hal/rc.hald, ap/hal/requires, ap/hal/slack-desc, ap/hal/sources, ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/requires, ap/hibernate-script/slack-desc, ap/hibernate-script/sources, d/lua/SlackBuild, d/lua/requires, d/lua/slack-desc, d/lua/sources, d/tla/SlackBuild, d/tla/requires, d/tla/slack-desc, d/tla/sources:
+  * ap/fuse/SlackBuild, ap/fuse/doinst.sh, ap/fuse/requires, ap/fuse/slack-desc, ap/fuse/sources, ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/requires, ap/hibernate-script/slack-desc, ap/hibernate-script/sources, d/lua/SlackBuild, d/lua/requires, d/lua/slack-desc, d/lua/sources, d/tla/SlackBuild, d/tla/requires, d/tla/slack-desc, d/tla/sources:
 
-  * ap/fuse/SlackBuild, ap/fuse/doinst.sh, ap/fuse/requires, ap/fuse/slack-desc, ap/fuse/sources, ap/hal/SlackBuild, ap/hal/doinst.sh, ap/hal/hal-BLKGETSIZE64.patch, ap/hal/rc.hald, ap/hal/requires, ap/hal/slack-desc, ap/hal/sources, ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/requires, ap/hibernate-script/slack-desc, ap/hibernate-script/sources, d/lua/SlackBuild, d/lua/requires, d/lua/slack-desc, d/lua/sources, d/tla/SlackBuild, d/tla/requires, d/tla/slack-desc, d/tla/sources:
+  * ap/fuse/SlackBuild, ap/fuse/doinst.sh, ap/fuse/requires, ap/fuse/slack-desc, ap/fuse/sources, ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/requires, ap/hibernate-script/slack-desc, ap/hibernate-script/sources, d/lua/SlackBuild, d/lua/requires, d/lua/slack-desc, d/lua/sources, d/tla/SlackBuild, d/tla/requires, d/tla/slack-desc, d/tla/sources:
   New file.
 
-  * ap/cabextract/SlackBuild, ap/cabextract/requires, ap/cabextract/slack-desc, ap/cabextract/sources, ap/cpudyn/SlackBuild, ap/cpudyn/requires, ap/cpudyn/slack-desc, ap/cpudyn/sources, ap/exifutils/SlackBuild, ap/exifutils/requires, ap/exifutils/slack-desc, ap/exifutils/sources, ap/giftcurs/SlackBuild, ap/giftcurs/requires, ap/giftcurs/slack-desc, ap/giftcurs/sources, ap/linux-pam/SlackBuild, ap/linux-pam/requires, ap/linux-pam/slack-desc, ap/linux-pam/sources, ap/pnm2ppa/requires, ap/pnm2ppa/sources, ap/setcd/SlackBuild, ap/setcd/requires, ap/setcd/slack-desc, ap/setcd/sources, ap/x86cpucaps/SlackBuild, ap/x86cpucaps/requires, ap/x86cpucaps/slack-desc, ap/x86cpucaps/sources:
+  * ap/cabextract/SlackBuild, ap/cabextract/requires, ap/cabextract/slack-desc, ap/cabextract/sources, ap/cpudyn/SlackBuild, ap/cpudyn/requires, ap/cpudyn/slack-desc, ap/cpudyn/sources, ap/exifutils/SlackBuild, ap/exifutils/requires, ap/exifutils/slack-desc, ap/exifutils/sources, ap/giftcurs/SlackBuild, ap/giftcurs/requires, ap/giftcurs/slack-desc, ap/giftcurs/sources, ap/pnm2ppa/requires, ap/pnm2ppa/sources, ap/setcd/SlackBuild, ap/setcd/requires, ap/setcd/slack-desc, ap/setcd/sources, ap/x86cpucaps/SlackBuild, ap/x86cpucaps/requires, ap/x86cpucaps/slack-desc, ap/x86cpucaps/sources:
 
-  * ap/cabextract/SlackBuild, ap/cabextract/requires, ap/cabextract/slack-desc, ap/cabextract/sources, ap/cpudyn/SlackBuild, ap/cpudyn/requires, ap/cpudyn/slack-desc, ap/cpudyn/sources, ap/exifutils/SlackBuild, ap/exifutils/requires, ap/exifutils/slack-desc, ap/exifutils/sources, ap/giftcurs/SlackBuild, ap/giftcurs/requires, ap/giftcurs/slack-desc, ap/giftcurs/sources, ap/linux-pam/SlackBuild, ap/linux-pam/requires, ap/linux-pam/slack-desc, ap/linux-pam/sources, ap/pnm2ppa/requires, ap/pnm2ppa/sources, ap/setcd/SlackBuild, ap/setcd/requires, ap/setcd/slack-desc, ap/setcd/sources, ap/x86cpucaps/SlackBuild, ap/x86cpucaps/requires, ap/x86cpucaps/slack-desc, ap/x86cpucaps/sources:
+  * ap/cabextract/SlackBuild, ap/cabextract/requires, ap/cabextract/slack-desc, ap/cabextract/sources, ap/cpudyn/SlackBuild, ap/cpudyn/requires, ap/cpudyn/slack-desc, ap/cpudyn/sources, ap/exifutils/SlackBuild, ap/exifutils/requires, ap/exifutils/slack-desc, ap/exifutils/sources, ap/giftcurs/SlackBuild, ap/giftcurs/requires, ap/giftcurs/slack-desc, ap/giftcurs/sources, ap/pnm2ppa/requires, ap/pnm2ppa/sources, ap/setcd/SlackBuild, ap/setcd/requires, ap/setcd/slack-desc, ap/setcd/sources, ap/x86cpucaps/SlackBuild, ap/x86cpucaps/requires, ap/x86cpucaps/slack-desc, ap/x86cpucaps/sources:
   New file.
 
   * ap/athcool/SlackBuild, ap/athcool/requires, ap/athcool/slack-desc, ap/athcool/sources, ap/bonnie++/SlackBuild, ap/bonnie++/requires, ap/bonnie++/slack-desc, ap/bonnie++/sources, ap/exiftags/SlackBuild, ap/exiftags/requires, ap/exiftags/slack-desc, ap/exiftags/sources, ap/fvcool/SlackBuild, ap/fvcool/requires, ap/fvcool/slack-desc, ap/fvcool/sources, ap/jhead/SlackBuild, ap/jhead/requires, ap/jhead/slack-desc, ap/jhead/sources, ap/lame/SlackBuild, ap/lame/requires, ap/lame/slack-desc, ap/lame/sources, ap/lsdvd/SlackBuild, ap/lsdvd/requires, ap/lsdvd/slack-desc, ap/lsdvd/sources, ap/lshw/SlackBuild, ap/lshw/requires, ap/lshw/slack-desc, ap/lshw/sources, ap/mjpegtools/SlackBuild, ap/mjpegtools/requires, ap/mjpegtools/slack-desc, ap/mjpegtools/sources, ap/ntfsprogs/SlackBuild, ap/ntfsprogs/requires, ap/ntfsprogs/slack-desc, ap/ntfsprogs/sources, ap/ogmtools/SlackBuild, ap/ogmtools/requires, ap/ogmtools/slack-desc, ap/ogmtools/sources, ap/pnm2ppa/SlackBuild, ap/pnm2ppa/slack-desc:
