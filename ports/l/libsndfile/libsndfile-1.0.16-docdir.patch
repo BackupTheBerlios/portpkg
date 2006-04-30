@@ -1,0 +1,18 @@
+diff -Naur libsndfile-1.0.16.old/configure.ac libsndfile-1.0.16/configure.ac
+--- libsndfile-1.0.16.old/configure.ac	2006-04-30 19:51:05.000000000 +0200
++++ libsndfile-1.0.16/configure.ac	2006-04-30 19:52:03.000000000 +0200
+@@ -383,13 +383,7 @@
+ #====================================================================================
+ # Settings for the HTML documentation.
+ 
+-htmldocdir=$prefix/share/doc/libsndfile1-dev/html
+-
+-if test $prefix = "NONE" ; then
+-	htmldocdir=/usr/local/share/doc/libsndfile1-dev/html
+-else
+-	htmldocdir=$prefix/share/doc/libsndfile1-dev/html
+-	fi
++htmldocdir=$prefix/doc/libsndfile-1.0.16/html
+ 
+ if test x$enable_bow_docs = "xyes" ; then
+ 	HTML_BGCOLOUR="white"
