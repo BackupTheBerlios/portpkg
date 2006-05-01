@@ -141,6 +141,60 @@ remove_inst() # command_to_remove file
   fi
 }
 
+usage()
+{
+  stanza "Usage: autoport [options] [source url]
+
+Options:
+  -a             Run non-interactive (use defaults)
+  -f             Force to re-autobuild a port when non-interactve
+  -n name        Preset name of port
+  -v version     Preset version of port
+  -g group       Preset group of port
+  -u port        (Re-)Use port (use this option first)
+  -b             Execute portpkg after port generation
+  -d             Try to find up-to-date version
+  source url     Preset URL of source code (if not found via -u)
+                 (Use cpan://file::mimeinfo to search for Perl modules)"
+  exit 0
+}
+
+# find recent version
+up2date() # >version
+{
+  local s reg up2date ver
+  [ "$sources" ] || die "-d must be set after -u!"
+  warn "Guessing recent version (this is alpha code)!"
+  s=`decode "$sources" | head -n 1`
+  reg=`echo "[^ ]*/$(basename $s)" | sed "s,$version,\\\\\([0-9].*\\\\\),g"`
+  up2date=`grep "^# UP2DATE:" $script | cut -d " " -f 3-`
+  up2date=${up2date:-`dirname $s`}
+  ver=`lynx -dump $up2date | grep -o "$reg" | sed "s,^$reg$,\1,g" \
+| tr . " " | sort -un -k 2n -k 3n -k 4n | tr " " . | tac`
+  if ! [ "$ver" ]; then
+    die "Couldn't find anything on $up2date!"
+  else
+    echo "Found versions (most recent first): "$ver | fmt -t >&2
+    echo "$ver" | head -n 1
+  fi
+}
+
+# query search.cpan.org
+search_cpan() # query >url
+{
+  local query page
+  has_prog lynx || die
+  query=`echo $@ | sed "s,^cpan://,,;s,::,-,g;s,/,-,g"`
+  page=`lynx -dump "http://search.cpan.org/search?query=$query&mode=module" \
+| grep -i "http://.*/$query-[0-9].*/$" \
+| grep -o "http://.*" | sort -u | head -n 1`
+  lynx -dump $page \
+| egrep -ie "http://.*/$query-[0-9].*\.(tgz|tar\.(gz|bz2))$" \
+| grep -o "http://.*" | sort -u | head -n 1
+}
+
+init_autoport()
+{
 # first: do we have tags?
 [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
@@ -153,14 +207,17 @@ group=""
 arch=$ARCH
 build=""
 build_pkg=false
+}
 
 # parse options
+parse_options()
+{
 shorts="afv:g:n:u:bhd"
 args=`getopt -qo $shorts -- "$@"`
-[ "$?" == "0" ] || die "Bad Arguments! Try: autoport -h"
+[ "$?" = "0" ] || die "Bad Arguments! Try: autoport -h"
 eval set -- "$args"
-if [ "$*" ]; then
-  while [ "$1" ]; do
+#if [ "$*" ]; then
+  while [ "$*" ]; do
     case $1 in
       -a)
         i_act=false;;
@@ -184,52 +241,21 @@ if [ "$*" ]; then
       -b)
         build_pkg=true;;
       -d)
-        [ "$sources" ] || die "-d must be set after -u!"
-	warn "Guessing recent version (this is alpha code)!"
-        s=`decode "$sources" | head -n 1`
-        reg=`echo "[^ ]*/$(basename $s)" | sed "s,$version,\\\\\([0-9].*\\\\\),g"`
-        up2date=`grep "^# UP2DATE:" $script | cut -d " " -f 3-`
-        up2date=${up2date:-`dirname $s`}
-        ver=`lynx -dump $up2date | grep -o "$reg" | sed "s,^$reg$,\1,g" \
-| sort -nr | head -n 1`
-        if ! [ "$ver" ]; then
-	  die "Couldn't find anything on $up2date!"
-	else
-	  echo "Found version $ver."
-        fi
-        version=$ver
-        s="";;
+	version=`up2date` || die;;
       -h)
-        # usage
-        stanza "Usage: autoport [options] [source url]
-
-Options:
-  -a             Run non-interactive (use defaults)
-  -f             Force to re-autobuild a port when non-interactve
-  -n name        Preset name of port
-  -v version     Preset version of port
-  -g group       Preset group of port
-  -u port        (Re-)Use port (use this option first)
-  -b             Execute portpkg after port generation
-  -d             Try to find up-to-date version
-  source url     Preset URL of source code (if not found via -u)
-                 (Use cpan://file::mimeinfo to search for Perl modules)"
-        exit 1;;
+        usage;;
       cpan://*)
-        query=`echo $1 | sed "s,^cpan://,,;s,::,-,g;s,/,-,g"`
-	page=`lynx -dump "http://search.cpan.org/search?query=$query&mode=module" \
-          | grep -i "http://.*/$query-[0-9].*/$" \
-          | grep -o "http://.*" | sort -u | head -n 1`
-	sources=`lynx -dump $page \
-          | egrep -ie "http://.*/$query-[0-9].*\.(tgz|tar\.(gz|bz2))$" \
-          | grep -o "http://.*" | sort -u | head -n 1`;;
+        sources=`search_cpan $@`;;
       *://*)
         sources=$1;;
     esac
     shift
   done
-fi
+#fi
+}
 
+set_info()
+{
 $i_act && stanza "Autoport -- An Automatic SlackBuild Generator
 Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
 Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
@@ -379,7 +405,10 @@ if [ -d $path ]; then
   cp $script $script.new
   script=$script.new
 fi
+}
 
+auto_port()
+{
 stanza "Autoporting $group/$name-$version-$arch-$build:"
 mkdir -p $path
 touch $script
@@ -778,8 +807,11 @@ case $script in *.new)
   script=`echo $script | sed "s,\.new$,,"`
   mv $script.new $script
 esac
+}
 
 # portpkg?
+run_portpkg()
+{
 if $build_pkg; then
   ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   # ok, if this port is new, it has no dependencies, if it's rewritten,
@@ -787,7 +819,13 @@ if $build_pkg; then
   cd $PRT_DIR/$group/$name
   portpkg -b #-q $group/$name
 fi
+}
 
+init_autoport
+parse_options "$@"
+set_info
+auto_port
+run_portpkg
 exit 0
 
 #----------------------------------------
