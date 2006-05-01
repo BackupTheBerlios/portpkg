@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh -u
 #
 # Autoport -- An Automatic SlackBuild Generator
 # Copyright (C) 2004, 2005 Thomas Pfaff <topf@users.berlios.de>
@@ -37,15 +37,6 @@ hier()
     fi
     echo $l
   done
-}
-
-ask()
-{
-  $i_act || return
-  echo
-  echo -n "$@ "
-  s=""
-  read s
 }
 
 check()
@@ -199,7 +190,7 @@ init_autoport()
 [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
 # defaults
-i_act=true
+#i_act=true
 force=false
 sources=""
 name=""
@@ -220,7 +211,7 @@ eval set -- "$args"
   while [ "$*" ]; do
     case $1 in
       -a)
-        i_act=false;;
+        INTERACTIVE=false;;
       -f)
         force=true;;
       -v)
@@ -256,7 +247,7 @@ eval set -- "$args"
 
 set_info()
 {
-$i_act && stanza "Autoport -- An Automatic SlackBuild Generator
+$INTERACTIVE && stanza "Autoport -- An Automatic SlackBuild Generator
 Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
 Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
 are welcome to redistribute it under certain conditions.
@@ -269,10 +260,10 @@ SlackBuild script. If autoport doesn't work as expected, please mail at:
 #[ "$sources" ] || die "No source url specified! Try: autoport --help"
 [ "$group" ] || group=local
 
-ask "* First step: Collect information. Continue? (ctrl-c to quit)"
+pause "* First step: Collect information. Continue? (ctrl-c to quit)"
 
 # sources
-ask "Source file URL [$sources]:"
+s=`pause "Source file URL [$sources]:"`
 sources=${s:-$sources}
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
@@ -282,10 +273,10 @@ src=`echo "$sources" | head -n 1`
 file=`basename $(decode $src)`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
-ask "Name [$name]:"
+s=`pause "Name [$name]:"`
 name=${s:-$name}
 # group
-ask "Group [$group]:"
+s=`pause "Group [$group]:"`
 group=${s:-$group}
 # version
 if ! [ "$version" ]; then
@@ -295,7 +286,7 @@ if ! [ "$version" ]; then
   version=`basename $version .tar.bz2`
   version=`basename $version .tgz`
 fi
-ask "Version [$version]:"
+s=`pause "Version [$version]:"`
 version=${s:-$version}
 srcver=$version
 version=`echo $version | sed "s,-,,g"`
@@ -313,22 +304,22 @@ if [ "$script" ]; then
   esac
 fi
 # arch
-ask "Arch [$arch]:"
+s=`pause "Arch [$arch]:"`
 arch=${s:-$arch}
 # build: check if we need to increase it
 n=1
 gpkg=`ls_loc | loc2gpkg | grep -m 1 "^$group/$name-$version-$arch-[0-9]*$MY_TAG$"`
 if [ $gpkg ]; then
-  $i_act && stanza "There is already $gpkg."
+  $INTERACTIVE && stanza "There is already $gpkg."
   # find it
   while [ "$group/$name-$version-$arch-$n$MY_TAG" != $gpkg ]; do
     ((n++))
-    [ "$n" == "1000" ] && die "Strange: Cannot find build number!"
+    [ "$n" = "1000" ] && die "Strange: Cannot find build number!"
   done
   # now that we found it, we can find a bigger number too!
   ((n++))
 fi
-ask "Build [$n$MY_TAG]:"
+s=`pause "Build [$n$MY_TAG]:"`
 build=${s:-$n$MY_TAG}
 # desc
 if [ "$description" ]; then
@@ -336,13 +327,15 @@ if [ "$description" ]; then
   desc2=`echo "$description" | sed "s,^$name:[ ]*,," | sed "1,2d"`
 else
   desc1=$raw_name
+  desc2=""
 fi
-ask "Description (1-liner) [$desc1]:"
+s=`pause "Description (1-liner) [$desc1]:"`
 desc1=${s:-$desc1}
-if $i_act; then
+if $INTERACTIVE; then
   stanza "Description (details) (Write or paste and finish with a single '.')"
   echo "[$desc2]"
   s=""
+  l=""
   while [ "$l" != "." ]; do
     read l
     s="$s
@@ -353,12 +346,13 @@ fi
 desc2=${s:-$desc2}
 # combine $desc1 and $desc2
 len=${#name}
-desc=`{ echo "$name: $desc1"
-        echo "$name:"
-        echo "$desc2" | fmt -u -w $((75-len)) | sed "s,^,$name: ,"
-        for i in 1 2 3 4 5 6 7 8 9; do
-          echo "$name:"
-        done; } | head -n 11`
+desc=`{ \
+echo "$name: $desc1"
+echo "$name:"
+echo "$desc2" | fmt -u -w $((75-len)) | sed "s,^,$name: ,"
+for i in 1 2 3 4 5 6 7 8 9; do
+  echo "$name:"
+done; } | head -n 11`
 
 if [ "$group" != "local" ] && [ "$script" ]; then
   path=`dirname $script`
@@ -367,7 +361,7 @@ else
   script=$path/SlackBuild
 fi
 
-if $i_act; then
+if $INTERACTIVE; then
   echo
   echo "Creating now a port with this information:"
   echo
@@ -378,7 +372,7 @@ if $i_act; then
   echo "$desc"
 fi
 
-ask "Last chance to quit. Port scripts will now be written.
+pause "Last chance to quit. Port scripts will now be written.
 * Next step: Downloading and checking source code. Continue? (ctrl-c to quit)"
 
 # now we should redecode the actual source name
@@ -394,9 +388,9 @@ if [ -f $path/stop.autoport ]; then
   die
 fi
 if [ -d $path ]; then
-  ask "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
+  pause "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
   # quit if not -f in non-interactive mode
-  if ! $i_act && ! $force && \
+  if ! $INTERACTIVE && ! $force && \
   [ "`grep "^VERSION=" $script | cut -d = -f 2-`" = "$version" ]; then
     error "There's already a build script for that version. Skipping.
 (Use -f to force a re-autoport!)"
@@ -507,9 +501,9 @@ sed -i "s,%tarball%,$tarball," $script
 # source-prefix
 echo -n "  --> Checking source-prefix... "
 srcdir_prefix=`cat $t/footprint | sed "s,^\./,,;s,/.*,," | sort -u`
-if [ `echo "$srcdir_prefix" | wc -l` == 1 ] && [ "$srcdir_prefix" != "." ]; then
+if [ `echo "$srcdir_prefix" | wc -l` = 1 ] && [ "$srcdir_prefix" != "." ]; then
   echo "$srcdir_prefix/"
-  if [ "$format" == "srpm" ]; then
+  if [ "$format" = "srpm" ]; then
 #    snip cd_sdp $script
     :
   else
@@ -813,7 +807,7 @@ esac
 run_portpkg()
 {
 if $build_pkg; then
-  ask "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
+  pause "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
   # ok, if this port is new, it has no dependencies, if it's rewritten,
   # let's assume, the user wants to rebuild only this port
   cd $PRT_DIR/$group/$name
