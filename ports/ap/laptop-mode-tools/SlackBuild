@@ -10,7 +10,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.31
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=5tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -28,13 +28,15 @@ cd $TMP
 tar xzvf $CWD/${NAME}_${VERSION}.tar.gz
 cd $NAME-$VERSION
 chown -R root.root .
-# Let's do it my way!
 cp -av etc $PKG/
 cp -av usr $PKG/
 mkdir -p $PKG/usr/man
 cp -av man $PKG/usr/man/man8
 mv $PKG/etc/init.d $PKG/etc/rc.d
 mv $PKG/etc/rc.d/laptop-mode $PKG/etc/rc.d/rc.laptop-mode
+mv $PKG/etc/laptop-mode/laptop-mode.conf{,.new}
+mv $PKG/etc/laptop-mode/lm-profiler.conf{,.new}
+mv $PKG/etc/rc.d/rc.laptop-mode{,.new}
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rf $PKG/usr/info/dir
 ( cd $PKG
