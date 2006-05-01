@@ -578,12 +578,14 @@ fi
 if grep -sqe "#:config" -e "#:make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
-    snip cfg_autogen $script
-    snip configure $script
+#    snip cfg_autogen $script
+#    snip configure $script
+    sel config perl $script
     arch=noarch
-  else
-    snip perl $script
-    if check "^configure$" $t/footprint; then
+#  else
+#    snip perl $script
+    elif check "^configure$" $t/footprint; then
+      sel config configure $script
       if check "KDEDIRS" $TMP/$srcdir_prefix/configure; then
         sed -i "s,%prefix%,opt/kde,g" $script
         snip ac_sysconfdir $script
@@ -599,67 +601,77 @@ if grep -sqe "#:config" -e "#:make" $script; then
       check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
       snip cfg_autogen $script
     elif check "^autogen.sh$" $t/footprint; then
-      :
-    else
-      snip configure $script
-      snip cfg_autogen $script
-      if check "^setup\.py$" $t/footprint; then
+      sel config configure $script
+#    else
+#      snip configure $script
+#      snip cfg_autogen $script
+     elif check "^setup\.py$" $t/footprint; then
 #        snip cfg_mk_hard $script
+	snip config $script
         snip mk $script
         arch=noarch
       else
         error "Don't know how to build this package."
+	snip config $script
         failed=true
       fi
-    fi
-  fi
+#    fi
+#  fi
 fi
 
 # set the prefix to /usr if this is still undefined
 sed -i "s,%prefix%,usr,g" $script
+sed -i "s,%etc%,etc,g" $script
 
 # installation prefix
 if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
-    snip python $script
+#    snip python $script
+    sel install mk_inst $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
     || check "DESTDIR" $TMP/$srcdir_prefix/Makefile*; then
-      snip inst_PREFIX $script
-      snip inst_prefix $script
-#      snip inst $script
-#      snip cfg_mk_hard $script
-    else
-      snip inst_destdir $script
-      if check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
-        snip inst_prefix $script
-#        snip inst $script
-#        snip cfg_mk_hard $script
-      else
-        snip inst_PREFIX $script
-        if check "prefix" $TMP/$srcdir_prefix/Makefile*; then
+#      snip inst_PREFIX $script
+#      snip inst_prefix $script
+##      snip inst $script
+##      snip cfg_mk_hard $script
+      sel mk_inst_root inst_destdir $script
+#    else
+#      snip inst_destdir $script
+      elif check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
+#        snip inst_prefix $script
+##        snip inst $script
+##        snip cfg_mk_hard $script
+	sel mk_inst_root inst_PREFIX $script
+#      else
+#        snip inst_PREFIX $script
+        elif check "prefix" $TMP/$srcdir_prefix/Makefile*; then
 #          snip inst $script
 #          snip cfg_mk_hard $script
-          :
-        else
-          snip inst_prefix $script
-          if check "/usr/local" $TMP/$srcdir_prefix/{,*/}Makefile*; then
-            :
+          sel mk_inst_root inst_prefix $script
+# todo
+#        else
+#          snip inst_prefix $script
+#          if check "/usr/local" $TMP/$srcdir_prefix/{,*/}Makefile*; then
+#            :
           else
             error "Don't know how to install this package (no install-prefix)."
+	    snip mk_inst_root $script
             failed=true
           fi
-        fi
-      fi
-    fi
+#        fi
+#      fi
+#    fi
   # as always, check setup.py at last! use configure if possible!
   elif check "^setup\.py$" $t/footprint; then
-#    snip cfg_mk_hard $script
-    snip inst_destdir $script
-    snip inst_PREFIX $script
-    snip inst_prefix $script
+##    snip cfg_mk_hard $script
+#    snip inst_destdir $script
+#    snip inst_PREFIX $script
+#    snip inst_prefix $script
+    sel install python $script
   else
     error "Don't know how to install this package (no Makefile)."
+    snip install $script
     failed=true
   fi
 fi
@@ -831,6 +843,8 @@ exit 0
 #----------------------------------------
 
 #:SlackBuild.skel
+#!/bin/sh
+
 #:head
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -886,10 +900,11 @@ chown -R root.root .
 ./autogen.sh ##cfg_autogen
 CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
+PKG_CONFIG_PATH=/%prefix%/lib/pkgconfig \ ##pkgconfig
 ./configure \
 #:configure-opts
   --prefix=/%prefix% \ ##ac_prefix
-  --sysconfdir=/etc \ ##ac_sysconfdir
+  --sysconfdir=/%etc% \ ##ac_sysconfdir
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
@@ -909,13 +924,17 @@ perl Makefile.PL ##perl
 #:config
 #%post-config-fix%
 #:install
+#:mk_inst
 make ##mk
 ##make PREFIX=/usr ##mk_PREFIX
 ##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
+#:mk_inst_root
 make install DESTDIR=$PKG ##inst_destdir
 make install PREFIX=$PKG/%prefix% ##inst_PREFIX
 make install prefix=$PKG/%prefix% ##inst_prefix
+#:mk_inst_root
+#:mk_inst
 ##make install ##inst
 python setup.py build install --root=$PKG ##python
 #:install
