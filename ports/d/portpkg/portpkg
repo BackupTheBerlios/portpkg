@@ -69,7 +69,7 @@ CACHE=`mktemp -d`
 
 # global variables
 package="" name="" group="" path="" script="" description=""
-sources="" md5sums="" pkg_file=""
+sources="" md5sums="" pkg_file="" products=""
 requires="" optional="" blocks="" uses=""
 maintain=$MAINTAIN_ALL
 no_fakeroot=$NO_FAKEROOT
@@ -266,7 +266,7 @@ ls_diff() # >list
 # get information about a port and write it into global variables
 get_info() # pkgex
 {
-  local loc
+  local loc arch build
   debug "get_info() $@"
 
   case $1 in
@@ -337,6 +337,15 @@ ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz," | head -n 1`
   if grep -sq "^TMP=[^$]" $script; then
     tmp=`grep "^TMP=" $script | cut -d = -f 2`
     warn "Assuming script uses TMP=$tmp!"
+  fi
+
+  # check if the script produces multiple packages
+  products="$package"
+  if [ `grep "^[^#]*makepkg " $script | wc -l` -gt 1 ]; then
+    arch=`echo $package | pkg2rel | cut -d - -f 2`
+    build=`echo $package | pkg2rel | cut -d - -f 3`
+    products=`sed -n "s,^[^#]*makepkg .*/\([^ ]*\)\.tgz.*,\1,p" $script \
+| sed "s,[{}],,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
   fi
 
   return 0
@@ -625,9 +634,11 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
   maintainer_mode | tee -a $LOG_DIR/$name.buildlog
 
   # clean up
-  row "Moving $package to $PKG_DIR/$group/"
+#  row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group
-  cp $tmp/$package.tgz $PKG_DIR/$group/
+#  cp $tmp/$package.tgz $PKG_DIR/$group/
+  echo "$products" | xargs -i echo "  --> Moving {} to $PKG_DIR/$group/"
+  echo "$products" | xargs -i cp $tmp/{}.tgz $PKG_DIR/$group/
   row "Cleaning up"
   for src in $sources; do
     srcname=`basename "$src" | cut -d % -f 2`
@@ -863,6 +874,7 @@ do_info() # pkgex-list
     [ "$size" ] && echo "COMPRESSED PACKAGE SIZE:  $size K"
     [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
     [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file" | fmt -t
+    [ "$products" != "$package" ] && echo "SCRIPT PRODUCES:  "$products | fmt -t
     echo "SCRIPT LOCATION:  $script" | fmt -t
     [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
