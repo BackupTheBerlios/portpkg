@@ -74,6 +74,7 @@ requires="" optional="" blocks="" uses=""
 maintain=$MAINTAIN_ALL
 no_fakeroot=$NO_FAKEROOT
 rebuild=$REBUILD
+tmp=$TMP
 
 # internal variables
 repos="" ignore="" mirrors="" exclude="" use="" arch_filter=""
@@ -331,6 +332,13 @@ ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz," | head -n 1`
   grep -sq "^# FLAGS:.* no-fakeroot\( \|$\)" $script && no_fakeroot=true
   grep -sq "^# FLAGS:.* rebuild\( \|$\)" $script && rebuild=true
 
+  # check $TMP
+  tmp=$TMP
+  if grep -sq "^TMP=[^$]" $script; then
+    tmp=`grep "^TMP=" $script | cut -d = -f 2`
+    warn "Assuming script uses TMP=$tmp!"
+  fi
+
   return 0
 }
 
@@ -407,23 +415,23 @@ maintainer_mode()
   row "Rewriting: footprint script-header"
 
   # write a file list of the package (remove creation time and size)
-#  tar tzvf $TMP/$package.tgz | awk '{ print $1,$2,$6 }' | sort -k 3 >footprint
-  tar tzvf $TMP/$package.tgz | xargs -l | cut -d " " -f 1,2,6 | sort -k 3 | column -t >footprint
+#  tar tzvf $tmp/$package.tgz | awk '{ print $1,$2,$6 }' | sort -k 3 >footprint
+  tar tzvf $tmp/$package.tgz | xargs -l | cut -d " " -f 1,2,6 | sort -k 3 | column -t >footprint
 
   # explodepkg package tree?
-  if ! [ -d $TMP/package-$name ]; then
+  if ! [ -d $tmp/package-$name ]; then
     # if *this* is a file we cannot remove, we must fail
-    rm -f $TMP/package-$name || die
-    mkdir $TMP/package-$name
-    tar xzf $TMP/$package.tgz -C $TMP/package-$name/
+    rm -f $tmp/package-$name || die
+    mkdir $tmp/package-$name
+    tar xzf $tmp/$package.tgz -C $tmp/package-$name/
   fi
 
   # generate requires list
   echo "$requires" >$t/old_req
   echo "$optional" >$t/old_opt
-  find $TMP/package-$name/ -type f | xargs file >$t/ftypes
+  find $tmp/package-$name/ -type f | xargs file >$t/ftypes
   deps() { /usr/lib/rpm/find-requires | sed "/^$/d;s,^perl(\(.*\)).*$,\1.3.gz,"; }
-  find $TMP/package-$name/ | deps >$t/deps
+  find $tmp/package-$name/ | deps >$t/deps
   cat $t/deps | grep -wf - $ADM_DIR/packages/* | sed "s,.*:,/," | deps >$t/deps_deps
   { fgrep -vxf $t/deps_deps $t/deps | grep -wlf - $ADM_DIR/packages/* | pkg2name | any2base | grep -v ^$name$
     grep -qie ":.*python" -e "\.py:" $t/ftypes && echo python
@@ -541,8 +549,8 @@ build_pkg()
 
   # build package
   if ! $REMAINTAIN; then
-    [ -d $TMP/package-$name ] && rm -rf $TMP/package-$name
-    rm -f $TMP/$package.tgz
+    [ -d $tmp/package-$name ] && rm -rf $tmp/package-$name
+    rm -f $tmp/$package.tgz
 
     # find CFLAGS substitution (CFLAGS="$SLKCFLAGS")
     flags_var=`grep -o 'CFLAGS=\"\$[^ ]*' $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
@@ -569,7 +577,7 @@ build_pkg()
       row "Executing (fakerooted) $script $script_opt"
       if [ "`whoami`" = "root" ]; then
         row "Dropping privileges, becoming nobody"
-        su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$TMP TMPDIR=$TMP \
+        su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$tmp TMPDIR=$tmp \
 PATH=\$PATH:/sbin fakeroot sh $sh_opt $script $script_opt" 2>&1 \
         | tee $LOG_DIR/$name.buildlog >$output
       else
@@ -595,7 +603,7 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
     fi
 
     # success? (this is the most promising test to ensure it worked)
-    if ! [ -f $TMP/$package.tgz ]; then
+    if ! [ -f $tmp/$package.tgz ]; then
       $VERBOSE || tail $LOG_DIR/$name.buildlog
       error "Compilation failed (see $LOG_DIR/$name.buildlog)!"
       $maintain && ln -sf $LOG_DIR/$name.buildlog PORT_IS_BROKEN
@@ -610,7 +618,7 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
       return 1
     fi
     row "Skipping package building"
-    cp $pkg_file $TMP/
+    cp $pkg_file $tmp/
   fi
 
   # cruft for maintainers of port scripts :)
@@ -619,7 +627,7 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
   # clean up
   row "Moving $package to $PKG_DIR/$group/"
   mkdir -p $PKG_DIR/$group
-  cp $TMP/$package.tgz $PKG_DIR/$group/
+  cp $tmp/$package.tgz $PKG_DIR/$group/
   row "Cleaning up"
   for src in $sources; do
     srcname=`basename "$src" | cut -d % -f 2`
@@ -629,7 +637,7 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
 #    $pseudo && rm -f $SRC_DIR/$srcname
   done
   gzip -f $LOG_DIR/$name.buildlog
-  $maintain || ( [ -d $TMP/package-$name ] && rm -rf $TMP/package-$name )
+  $maintain || ( [ -d $tmp/package-$name ] && rm -rf $tmp/package-$name )
   true
 }
 
