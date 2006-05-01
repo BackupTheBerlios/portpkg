@@ -108,7 +108,7 @@ slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
 # message system
 stanza() { $level_one && echo -e "\n$@"; }
 row()    { echo -e "  --> $@"; }
-warn()   { echo -e "WARNING: $@"; }
+warn()   { echo -e "WARNING: $@" >&2; }
 error()  { [ "$*" ] && echo -e "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && echo "$@" >&2; }
