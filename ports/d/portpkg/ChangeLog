@@ -1,4 +1,96 @@
+2006-05-01  topf  <topf@users.berlios.de>
+
+  * autoport:
+  $group should really be set to the argument. Don't try to correct that.
+
+  * autoport: check(), snip(), add_inst(), remove_inst():
+  * Cleanups.
+
+  * autoport: encode(), decode():
+  * Don't use $NAME anymore.
+  * Cleanups.
+
+  * autoport:
+  * Try to detect pkgconfig .pc files and add them to requires/optional.
+  * snip() slkcflags when ARCH=noarch.
+
+  * autoport: * Don't set verbose before get().
+  * Copy header of old script.
+
+  * autoport: Converted to use sel() instead of snip().
+
+  * autoport: * Update caches after new buildscript is created.
+  * Use internal do_add(), instead of portpkg again.
+  * Don't use -m 1 in grep.
+
+  * autoport:
+  * Removed ask() and $i_act, use portpkg's pause() and $INTERACTIVE now.
+  * Removed Bash-specific syntax.
+
+  * autoport: Code cleanups (split into several functions).
+
+  * autoport: * Added hier() to print a hierarchy list of tags
+  * Added sel() to snip() all subsections but one
+
+  * portpkg: do_find():
+  * Search also for descriptions in *SlackBuilds
+  * Fix "xarg: arglist too long" bug
+
+  * portpkg: do_info(): Cleanups.
+
+  * portpkg: build_pkg(): Add new package to the cache.
+
+  * portpkg: maintainer_mode(): $t/ignore isn't used anymore.
+
+  * portpkg: build_pkg(): Fixed typo in checksum warnings.
+
+  * portpkg:
+  maintainer_mode():
+  * Cleanup generating FLAGS line in header.
+  * Add rebuild flag.
+
+  * portpkg:
+  maintainer_mode(): Exclude own files when examining the list of dependencies of the dependencies.
+
+  * portpkg:
+  get_info(): In direct mode and when is outside of PRT_DIR, set PRT_DIR=PKG_DIR=`pwd`.
+
+  * portpkg: warn(): output should be directed to stderr.
+
+  * portpkg: Precised any2dir(): return empty if the argument is a basename.
+
+  * portpkg: Simplified ls_inst() and ls_pkg().
+
+  * portpkg:
+  Detect if the buildscript makes more than one packages and display this in --info.
+
+  * portpkg: Find and use the buildscript's TMP.
+
+  * portpkg: Unfortunately, exporting TMPDIR was correct.
+
+2006-04-29  topf  <topf@users.berlios.de>
+
+  * portpkg.1: Updates.
+
+2006-04-28  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * Remove Bash-specific syntax (brace expansion, "==", "declare", "<()", etc.)
+  * Changed all variables that can be modified with command arguments to
+    global ones; $maintain, $no_fakeroot and $rebuild contain per-port values
+  * TMPDIR doesn't need to be exported
+  * Changed $action to a local variable in parse_options()
+  * Added rebuild flag functionality for ports
+  * Code cleanups
+  * Fixed bug in ls_diff(): make any2base earlier
+  * Removed $size and $u_size; moved code to do_info()
+  * Removed useless use of awk / cat / temp files
+  * Speed-up --find by not following symlinks
+  * Checks against TMPDIR was meant to be TMP in init()
+
 2006-04-26  topf  <topf@users.berlios.de>
+
+  * checkpkg, pp-config, prepare: Use "bash" in sheebang, not "sh".
 
   * portpkg: restored return codes for do_add() and do_info()
 
