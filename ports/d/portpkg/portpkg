@@ -847,17 +847,18 @@ do_export()
 do_find() # text [..] >list
 {
   local t=`mktemp -d`
-  local arg
+  local arg s
 
   has_args "$@" || die
   has_ports || die
-  find $PRT_DIR/ -name "*slack-desc" >$t/list 2>/dev/null
+  find $PRT_DIR/ -name "*slack-desc" -o -name "*SlackBuild" >$t/list 2>/dev/null
   for arg; do
-    xargs grep -lsi $arg >$t/list.new <$t/list
+    xargs fgrep -lsi "$arg" >$t/list.new <$t/list
     mv $t/list.new $t/list
   done
-#  [ -s $t/list ] && do_list `cat $t/list | slk2gname`
-  [ -s $t/list ] && do_list `sed "s,[\./][^\./]*$,," $t/list | any2base`
+  # limit the characters of each argline, because regex needs some space later
+  sed "s,^$PRT_DIR/,,;s,[./]SlackBuild$,,;s,/[^/]*slack-desc$,," $t/list \
+  | xargs -s 2048 | while read s; do do_list $s; done
 }
 
 # print information about a port
