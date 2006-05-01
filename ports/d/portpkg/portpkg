@@ -497,7 +497,7 @@ maintainer_mode()
   done
 
   # show a few statistics
-  $DEBUG && fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "maintainer_mode(): ignored dependencies:" >&2
+#  $DEBUG && fgrep -xf $t/ignore $t/auto_req_raw | xargs -r echo "maintainer_mode(): ignored dependencies:" >&2
   xargs -r echo "  --> New dependencies:" <$t/new_req
 #  fgrep -xf optional $t/auto_req | xargs -r echo "  --> Dependant options:"
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req \
