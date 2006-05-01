@@ -272,6 +272,11 @@ get_info() # pkgex
 
   case $1 in
     .)   # direct mode: find SlackBuild in current dir
+         case `pwd` in $PRT_DIR/*) ;; * )
+           debug "get_info(): `pwd` is NOT in PRT_DIR, setting PRT_DIR"
+           PRT_DIR=`cd ..; pwd`
+           PKG_DIR=$PRT_DIR
+         esac
          loc=`find $(pwd)/ -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
          TEST_REQS=true
          debug "Direct mode: Dependencies resolution disabled!";;
