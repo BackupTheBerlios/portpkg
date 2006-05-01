@@ -555,7 +555,7 @@ build_pkg()
 #      elif [ "$md5sum" ]; then
 #        is_integer $srcname $md5sum || return 1
 #      else
-      elif ! [ "$md5sums" ]; then
+      elif ! [ "$md5sum" ]; then
         warn "No checksums available for $srcname!"
       fi
     fi
