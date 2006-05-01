@@ -477,8 +477,9 @@ maintainer_mode()
   done
 
   # write header
-#  sed -i "1s,.*,# FLAGS:`$slot_in && echo \ slot-in``$pseudo && echo \ pseudo``$no_fakeroot && echo \ no-fakeroot`\n&," $script
-  sed -i "1s,.*,# FLAGS:`$no_fakeroot && echo \ no-fakeroot`\n&," $script
+  sed -i "1s,.*,# FLAGS:\n&," $script
+  $no_fakeroot && sed -i "s,^# FLAGS:.*,& no-fakeroot," $script
+  $rebuild && sed -i "s,^# FLAGS:.*,& rebuild," $script
   sed -i "1s,.*,# BLOCKS: $blocks\n&," $script
   sed -i "1s,.*,# OPTIONAL: `echo $optional`\n&," $script
   sed -i "1s,.*,# REQUIRES: `echo $requires`\n&," $script
