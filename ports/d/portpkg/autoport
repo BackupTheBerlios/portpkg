@@ -397,6 +397,7 @@ if [ -d $path ]; then
     exit 0
   fi
   cp $script $script.new
+  old_script=$script
   script=$script.new
 fi
 }
@@ -448,14 +449,21 @@ if [ -f $SRC_DIR/$file ]; then
   row "$file found in $SRC_DIR/"
 else
   row "Downloading $file"
-  VERBOSE=true
-  output=/dev/stdout
+#  VERBOSE=true
+#  output=/dev/stdout
   get `decode $src` $SRC_DIR/$file || die
 fi
 
 # write skeletons
 failed=false
 sed '/^#:SlackBuild.skel$/,/^#:SlackBuild.skel$/!d' $0 >$script
+# copy comment header from old script
+case $script in *.new)
+  sed -n "0,/^[^#]/p" $old_script | sed "\$d;/^$/d;s,\&,\&,g" >$t/script.head
+  sed -i "/^#\!\/bin\/sh/d" $script
+  cat $t/script.head $script >$t/script.new
+  cat $t/script.new >$script
+esac
 echo `encode "$sources"` >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
