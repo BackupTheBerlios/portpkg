@@ -1,51 +1,50 @@
-drwxr-xr-x  root/root  0      ./
-drwxr-xr-x  root/root  0      etc/
-drwxr-xr-x  root/root  0      etc/hibernate/
--rw-r--r--  root/root  1703   etc/hibernate/blacklisted-modules.new
--rw-r--r--  root/root  4978   etc/hibernate/hibernate.conf.new
--rw-r--r--  root/root  2986   etc/hibernate/ram.conf.new
-drwxr-xr-x  root/root  0      install/
--rw-r--r--  root/root  458    install/doinst.sh
--rw-r--r--  root/root  479    install/slack-desc
-drwxr-xr-x  root/root  0      usr/
-drwxr-xr-x  root/root  0      usr/doc/
-drwxr-xr-x  root/root  0      usr/doc/hibernate-script-1.10/
--rw-r--r--  root/root  10180  usr/doc/hibernate-script-1.10/CHANGELOG
--rw-r--r--  root/root  17992  usr/doc/hibernate-script-1.10/COPYING
--rw-r--r--  root/root  6359   usr/doc/hibernate-script-1.10/README
--rw-r--r--  root/root  124    usr/doc/hibernate-script-1.10/TODO
-drwxr-xr-x  root/root  0      usr/man/
-drwxr-xr-x  root/root  0      usr/man/man5/
--rw-r--r--  root/root  5971   usr/man/man5/hibernate.conf.5.gz
-drwxr-xr-x  root/root  0      usr/man/man8/
--rw-r--r--  root/root  2384   usr/man/man8/hibernate.8.gz
-drwxr-xr-x  root/bin   0      usr/sbin/
--rwxr-xr-x  root/bin   23826  usr/sbin/hibernate
-drwxr-xr-x  root/root  0      usr/share/
-drwxr-xr-x  root/root  0      usr/share/hibernate/
-drwxr-xr-x  root/root  0      usr/share/hibernate/scriptlets.d/
--rw-r--r--  root/root  1816   usr/share/hibernate/scriptlets.d/acpi_sleep
--rw-r--r--  root/root  3689   usr/share/hibernate/scriptlets.d/bootsplash
--rw-r--r--  root/root  1444   usr/share/hibernate/scriptlets.d/clock
--rw-r--r--  root/root  1768   usr/share/hibernate/scriptlets.d/devices
--rw-r--r--  root/root  1204   usr/share/hibernate/scriptlets.d/diskcache
--rw-r--r--  root/root  4023   usr/share/hibernate/scriptlets.d/fbsplash
--rw-r--r--  root/root  2961   usr/share/hibernate/scriptlets.d/filesystems
--rw-r--r--  root/root  3786   usr/share/hibernate/scriptlets.d/grub
--rw-r--r--  root/root  2273   usr/share/hibernate/scriptlets.d/hardware_tweaks
--rw-r--r--  root/root  902    usr/share/hibernate/scriptlets.d/lilo
--rw-r--r--  root/root  6290   usr/share/hibernate/scriptlets.d/lock
--rw-r--r--  root/root  2227   usr/share/hibernate/scriptlets.d/lockfile
--rw-r--r--  root/root  1995   usr/share/hibernate/scriptlets.d/misclaunch
--rw-r--r--  root/root  9390   usr/share/hibernate/scriptlets.d/modules
--rw-r--r--  root/root  1944   usr/share/hibernate/scriptlets.d/modules_gentoo
--rw-r--r--  root/root  4211   usr/share/hibernate/scriptlets.d/network
--rw-r--r--  root/root  953    usr/share/hibernate/scriptlets.d/newkernel
--rw-r--r--  root/root  1836   usr/share/hibernate/scriptlets.d/programs
--rw-r--r--  root/root  3314   usr/share/hibernate/scriptlets.d/services
--rw-r--r--  root/root  27437  usr/share/hibernate/scriptlets.d/suspend2
--rw-r--r--  root/root  234    usr/share/hibernate/scriptlets.d/swsusp2_15
--rw-r--r--  root/root  3063   usr/share/hibernate/scriptlets.d/sysfs_power_state
--rw-r--r--  root/root  3144   usr/share/hibernate/scriptlets.d/vbetool
--rw-r--r--  root/root  3406   usr/share/hibernate/scriptlets.d/xhacks
--rw-r--r--  root/root  7904   usr/share/hibernate/scriptlets.d/xstatus
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/hibernate/
+-rw-r--r--  root/root  etc/hibernate/blacklisted-modules.new
+-rw-r--r--  root/root  etc/hibernate/hibernate.conf.new
+-rw-r--r--  root/root  etc/hibernate/ram.conf.new
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/hibernate-script-1.12/
+-rw-r--r--  root/root  usr/doc/hibernate-script-1.12/COPYING
+-rw-r--r--  root/root  usr/doc/hibernate-script-1.12/README
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man5/
+-rw-r--r--  root/root  usr/man/man5/hibernate.conf.5.gz
+drwxr-xr-x  root/root  usr/man/man8/
+-rw-r--r--  root/root  usr/man/man8/hibernate.8.gz
+drwxr-xr-x  root/root  usr/sbin/
+-rwxr-xr-x  root/root  usr/sbin/hibernate
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/hibernate/
+drwxr-xr-x  root/root  usr/share/hibernate/scriptlets.d/
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/acpi_sleep
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/bootsplash
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/clock
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/devices
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/diskcache
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/fbsplash
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/filesystems
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/grub
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/hardware_tweaks
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/lilo
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/lock
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/lockfile
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/misclaunch
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/modules
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/modules_gentoo
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/network
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/newkernel
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/pcmcia
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/programs
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/services
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/suspend2
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/swsusp2_15
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/sysfs_power_state
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/vbetool
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/xhacks
+-rw-r--r--  root/root  usr/share/hibernate/scriptlets.d/xstatus
