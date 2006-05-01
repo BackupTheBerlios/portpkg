@@ -74,25 +74,24 @@ sel() # tag sub file
   done
 }
 
-encode()
+# convert the value of $version to "$VERSION"
+encode() # text >text
 {
-  local ver=`echo $version | sed "s,\.,\.,g"`
-  local enc=`echo "$@" | sed -e "s,$name,\\$NAME,g" -e "s,$ver,\\$VERSION,g"`
-#  local test
-#  local NAME=$name
-#  local VERSION=$version
-#  eval test=\"$enc\"
-  # try ${NAME} and ${VERSION}
-  [ "`decode "$enc"`" != "$@" ] && enc=`echo "$@" | sed -e "s,$name,\\${NAME},g" -e "s,$ver,\\${VERSION},g"`
+  local ver enc
+  # prepare dots ("\.")
+  ver=`echo $version | sed "s,\.,\.,g"`
+  enc=`echo "$@" | sed "s,$ver,\\$VERSION,g"`
+  # try ${NAME} and ${VERSION} if it fails
+  [ "`decode "$enc"`" != "$@" ] && enc=`echo "$@" | sed "s,$ver,\\${VERSION},g"`
   echo "$enc"
 }
 
-decode()
+# convert "$VERSION" to its value
+decode() # text >text
 {
-#  local dec=`echo "$@" | sed "s,[{}],,g" -e "s,\\$NAME,$name,g" -e "s,\\$VERSION,$version,g"`
-#  echo "$dec"
-  local NAME=$name
-  local VERSION=$version
+  local NAME VERSION
+  NAME=$name
+  VERSION=$version
   eval echo \"$@\"
 }
 
