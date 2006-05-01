@@ -20,7 +20,24 @@
 source `which portpkg` || exit 1
 t=`mktemp -d`
 
-#sections="config post-config install post-install strip doc post-doc"
+# hierarchy of sections
+hier()
+{
+  local l s t
+  l=""
+  sed -n "/^#:SlackBuild.skel$/,/^#:SlackBuild.skel$/p" $0 \
+  | sed "/^[^#]/s, ##\([^ ]*\),\n#:\1\n#:\1," \
+  | grep -o "^#:[^ ]*" \
+  | while read s; do
+    t=${s#\#:}
+    if echo "$l" | grep -sq " $t$"; then
+      l=${l% $t}
+    else
+      l="$l $t"
+    fi
+    echo $l
+  done
+}
 
 ask()
 {
@@ -51,6 +68,19 @@ snip()
   sed -i "/^#:$1$/,/^#:$1$/d" $2
   # the xxx ##tag method
   sed -i "/ *##$1$/d" $2
+}
+
+# snip() all sub-sections but one
+sel() # tag sub file
+{
+  local tag=$1 sub=$2 file=$3
+  local subs i
+  # find all subsections of $tag
+  subs=`hier | grep -o " $tag .*" | cut -s -d " " -f 3 | sort -u`
+  # snip() all but $sub
+  for i in $subs; do
+    [ "$i" = "$sub" ] || snip $i $file
+  done
 }
 
 encode()
@@ -418,14 +448,14 @@ case $file in
     tar tjf $SRC_DIR/$file >$t/footprint
     echo ".tar.bz2"
     sed -i "s,%tarmode%,j," $script
-    snip rpm $script;;
+    sel unpack tar $script;;
   *tar.gz|*.tgz) # yes, there was one file called "xxxtar.gz"!
     format=targz
     tar xzf $SRC_DIR/$file -C $t/src/ || die "Error while unpacking, maybe wrong URL?"
     tar tzf $SRC_DIR/$file >$t/footprint
     echo ".tar.gz"
     sed -i "s,%tarmode%,z," $script
-    snip rpm $script;;
+    sel unpack tar $script;;
   *.src.rpm)
     format=srpm
     ( cd $t/
@@ -437,7 +467,7 @@ case $file in
       tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t/footprint ) \
     || die "Error while unpacking, maybe wrong URL?"
     echo ".src.rpm"
-    snip tar $script;;
+    sel unpack rpm $script;;
   *)
     echo "unknown!"
     die "Unknown source format, please write SlackBuild by hand!";;
@@ -800,10 +830,12 @@ rm -rf $NAME-$VERSION ##extra_sdp
 mkdir -p $NAME-$VERSION ##extra_sdp
 cd $NAME-$VERSION ##extra_sdp
 ##rm -rf %srcdirprefix% ##cd_sdp
+#:unpack
 rpm2targz $CWD/%tarball% ##rpm
 tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
 tar xzvf $NAME-$VERSION.tar.gz ##rpm
 tar x%tarmode%vf $CWD/%tarball% ##tar
+#:unpack
 cd %srcdirprefix% ##cd_sdp
 cat $CWD/*.patch | patch -p1 --verbose ##patch
 chown -R root.root .
