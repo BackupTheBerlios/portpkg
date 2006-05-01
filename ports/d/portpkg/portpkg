@@ -92,7 +92,8 @@ fi
 ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
 
 # converters
-any2dir()   { sed -r "s,^(.*)/.*$,\1,"; }
+#any2dir()   { sed -r "s,^(.*)/.*$,\1,"; }
+any2dir()   { sed -r "s,/?[^/]*$,,"; }
 any2base()  { sed -r "s,^.*/,,"; }
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
