@@ -39,26 +39,28 @@ hier()
   done
 }
 
-check()
+# test a file for a pattern
+check() # regex files
 {
   local pattern=$1
   shift
-  local desc=`echo $pattern | sed "s,[\^\$],,g"`
   if egrep -qe "$pattern" "$@" 2>/dev/null; then
-    row "Checking for $desc... yes"
+    row "Checking for $pattern... yes"
     return 0
   else
-    row "Checking for $desc... no"
+    row "Checking for $pattern... no"
     return 1
   fi
 }
 
-snip()
+# cut a marked block from a file
+snip() # tag file
 {
+  local tag=$1 file=$2
   # the #:tag ... #:tag method
-  sed -i "/^#:$1$/,/^#:$1$/d" $2
+  sed -i "/^#:$tag$/,/^#:$tag$/d" $file
   # the xxx ##tag method
-  sed -i "/ *##$1$/d" $2
+  sed -i "/ *##$tag$/d" $file
 }
 
 # snip() all sub-sections but one
@@ -95,38 +97,44 @@ decode() # text >text
   eval echo \"$@\"
 }
 
+# add a shell instruction to a shell script file
 add_inst() # rel/path/to/command_to_add file
 {
-  local s1=`basename $(echo $1 | cut -d " " -f 1)`
-  local s2=`basename $2`
+  local command=$1 file=$2
+  local cmd_name file_name
+  cmd_name=`basename $(echo $command | cut -d " " -f 1)`
+  file_name=`basename $file`
   # check for old style ("command bla")
-  if grep -sq "$s1" $2 && ! grep -sq "^if .*/$s1" $2; then
+  if grep -sq "$cmd_name" $file && ! grep -sq "^if .*/$cmd_name" $file; then
     # one-liner: remove it
-    sed -i "\,$s1,d" $2
+    sed -i "\,$cmd_name,d" $file
   fi
   # remove to make sure, it's correct
-  [ -f $2 ] && sed -i "/^if .*\/$s1/,/^fi$/d" $2
+  [ -f $file ] && sed -i "/^if .*\/$cmd_name/,/^fi$/d" $file
   # check for new style ("if [ -x command ]; then...")
-  if ! grep -sq "$s1" $2; then
-    row "Adding $s1 to $s2"
-    echo "if [ -x `echo $1 | cut -d " " -f 1` ]; then" >>$2
-    echo "  $1 >/dev/null 2>&1" >>$2
-    echo "fi" >>$2
+  if ! grep -sq "$cmd_name" $file; then
+    row "Adding $cmd_name to $file_name"
+    echo "if [ -x `echo $command | cut -d " " -f 1` ]; then" >>$file
+    echo "  $command >/dev/null 2>&1" >>$file
+    echo "fi" >>$file
   fi
 }
 
+# remove a shell instruction from a shell script file
 remove_inst() # command_to_remove file
 {
-  local s1=`basename $1`
-  local s2=`basename $2`
-  if grep -sq "$s1" $2; then
-    row "Removing unneeded $s1 from $s2"
+  local command=$1 file=$2
+  local cmd_name file_name
+  cmd_name=`basename $command`
+  file_name=`basename $file`
+  if grep -sq "$cmd_name" $file; then
+    row "Removing unneeded $cmd_name from $file_name"
     # check for new style ("if [ -x command ]; then...")
-    if grep -sq "^if .*/$s1" $2; then
-      sed -i "/^if .*\/$s1/,/^fi$/d" $2
+    if grep -sq "^if .*/$cmd_name" $file; then
+      sed -i "/^if .*\/$cmd_name/,/^fi$/d" $file
     else
       # old style ("command bla")
-      sed -i "\,$s1,d" $2
+      sed -i "\,$cmd_name,d" $file
     fi
   fi
 }
