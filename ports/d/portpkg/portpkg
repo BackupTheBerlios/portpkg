@@ -863,7 +863,7 @@ do_find() # text [..] >list
 # print information about a port
 do_info() # pkgex-list
 {
-  local arg inst ret s size u_size
+  local arg inst ret s
   has_ports || die
 
   for arg in `explicit "$@"`; do
@@ -871,21 +871,14 @@ do_info() # pkgex-list
     get_info $arg || continue
     ret=0
     inst=`ls_inst $(regex $name)`
-    if [ "$pkg_file" ]; then
-      s=`gzip -l $pkg_file 2>/dev/null | tail -n 1 | xargs`
-#      size=`expr $(echo $s | awk '{ print $1 }') / 1024`
-#      u_size=`expr $(echo $s | awk '{ print $2 }') / 1024`
-      size=`expr $(echo $s | cut -d " " -f 1) / 1024`
-      u_size=`expr $(echo $s | cut -d " " -f 2) / 1024`
-    else
-      size=""
-      u_size=""
-    fi
     stanza "PACKAGE NAME:  $package"
     [ "$inst" ] && echo "INSTALLED VERSION:  "$inst | fmt -t
-    [ "$size" ] && echo "COMPRESSED PACKAGE SIZE:  $size K"
-    [ "$u_size" ] && echo "UNCOMPRESSED PACKAGE SIZE:  $u_size K"
-    [ "$pkg_file" ] && echo "PACKAGE LOCATION:  $pkg_file" | fmt -t
+    if [ "$pkg_file" ]; then
+      s=`gzip -l $pkg_file 2>/dev/null | tail -n 1 | xargs`
+      echo "COMPRESSED PACKAGE SIZE:  `expr $(echo $s | cut -d " " -f 1) / 1024` K"
+      echo "UNCOMPRESSED PACKAGE SIZE:  `expr $(echo $s | cut -d " " -f 2) / 1024` K"
+      echo "PACKAGE LOCATION:  $pkg_file" | fmt -t
+    fi
     [ "$products" != "$package" ] && echo "SCRIPT PRODUCES:  "$products | fmt -t
     echo "SCRIPT LOCATION:  $script" | fmt -t
     [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
