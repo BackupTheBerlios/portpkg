@@ -630,6 +630,8 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
     else
       # remove this tag in any case
       rm -f PORT_IS_BROKEN
+      # add package to the cache
+      echo $group/$package >>$CACHE/pkg
     fi
   else
     if ! [ "$pkg_file" ]; then
