@@ -1,62 +1,50 @@
-2005-07-27 09:01  topf
+2006-05-01  topf  <topf@users.berlios.de>
 
-	* SlackBuild, conf.patch, footprint, services.patch: Removed
-	  patches that are not needed anymore.
+  * SlackBuild, footprint, md5sums, sources: Version bump.
 
-2005-07-24 12:29  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* SlackBuild, footprint, md5sums: Version update.
+2005-07-27  topf  <topf@users.berlios.de>
 
-2005-05-01 12:19  topf
+  * SlackBuild, conf.patch, footprint, services.patch:
+  Removed patches that are not needed anymore.
 
-	* SlackBuild, doinst.sh, footprint, md5sums: Updated to 1.07.
+2005-07-24  topf  <topf@users.berlios.de>
 
-2005-04-06 16:00  topf
+  * footprint, md5sums, SlackBuild: Version update.
 
-	* SlackBuild, config-fix.autoport, doinst.sh, footprint,
-	  install-fix.autoport, md5sums, slack-desc, sources: Updated
-	  ap/hibernate-script to 1.06-i686-3tom.
+2005-05-01  topf  <topf@users.berlios.de>
 
-2005-02-21 19:53  topf
+2005-04-06  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint: Updated ap/hibernate-script to
-	  1.05-noarch-2tom.
+  * install-fix.autoport, md5sums, slack-desc, sources, SlackBuild, config-fix.autoport, doinst.sh, footprint:
+  Updated ap/hibernate-script to 1.06-i686-3tom.
 
-2005-02-21 16:19  topf
+2005-02-21  topf  <topf@users.berlios.de>
 
-	* README, SlackBuild, doinst.sh, footprint, install-fix.autoport:
-	  Updated ap/hibernate-script to 1.05-i486-1tom.
+  * SlackBuild, doinst.sh, footprint:
+  Updated ap/hibernate-script to 1.05-noarch-2tom.
 
-2005-02-21 15:31  topf
+  * README, SlackBuild, doinst.sh, footprint, install-fix.autoport:
+  Updated ap/hibernate-script to 1.05-i486-1tom.
 
-	* make-fix.autoport, SlackBuild: [no log message]
+  * SlackBuild, make-fix.autoport, config-fix.autoport:
+  *** empty log message ***
 
-2005-02-21 14:52  topf
+  * SlackBuild, conf.patch, config-fix.autoport, footprint, install-fix.autoport, make-fix.autoport, md5sums, services.patch, slack-desc, sources:
+  Updated ap/hibernate-script to 1.05-i486-5tom.
 
-	* config-fix.autoport, make-fix.autoport: [no log message]
+2004-12-08  topf  <topf@users.berlios.de>
 
-2005-02-21 14:51  topf
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-	* SlackBuild, conf.patch, config-fix.autoport, footprint,
-	  install-fix.autoport, make-fix.autoport, md5sums, services.patch,
-	  slack-desc, sources: Updated ap/hibernate-script to
-	  1.05-i486-5tom.
+2004-11-08  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-12-08 23:12  topf
+  * requires: *** empty log message ***
 
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+2004-10-30  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-2004-11-08 22:04  tomtoastbrot
+  * SlackBuild, doinst.sh, requires, slack-desc, sources:
 
-	* requires: [no log message]
-
-2004-10-30 14:00  tomtoastbrot
-
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: Initial
-	  revision
-
-2004-10-30 14:00  tomtoastbrot
-
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: [no log
-	  message]
+  * SlackBuild, doinst.sh, requires, slack-desc, sources: New file.
 
