@@ -225,7 +225,7 @@ eval set -- "$args"
         version=$2
         shift;;
       -g)
-        group=`echo $2 | any2dir`
+        group=$2 #`echo $2 | any2dir`
         shift;;
       -n)
         name=$2
