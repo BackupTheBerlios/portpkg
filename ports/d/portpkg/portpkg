@@ -82,8 +82,8 @@ output=/dev/null
 level_one=true
 
 # listers
-ls_inst() { cache $CACHE/inst "find $ADM_DIR/packages/ -type f | sed \"s,^.*/,,\"" "$@"; }
-ls_pkg()  { cache $CACHE/pkg "find $PKG_DIR/ -name \"*.tgz\" -follow | sed -r \"s,^$PKG_DIR/(.*)\.tgz$,\1,\"" "$@"; }
+ls_inst() { cache $CACHE/inst "cd $ADM_DIR/packages; find * -type f" "$@"; }
+ls_pkg()  { cache $CACHE/pkg "cd $PKG_DIR; find * -name \"*.tgz\" -follow | sed \"s,\.tgz$,,\"" "$@"; }
 if $USE_ALPHA_CODE; then
 ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" 2>/dev/null" "$@"; }
 else
