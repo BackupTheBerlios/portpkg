@@ -308,7 +308,7 @@ s=`pause "Arch [$arch]:"`
 arch=${s:-$arch}
 # build: check if we need to increase it
 n=1
-gpkg=`ls_loc | loc2gpkg | grep -m 1 "^$group/$name-$version-$arch-[0-9]*$MY_TAG$"`
+gpkg=`ls_loc | loc2gpkg | grep "^$group/$name-$version-$arch-[0-9]*$MY_TAG$" | head -n 1`
 if [ $gpkg ]; then
   $INTERACTIVE && stanza "There is already $gpkg."
   # find it
@@ -801,6 +801,10 @@ case $script in *.new)
   script=`echo $script | sed "s,\.new$,,"`
   mv $script.new $script
 esac
+
+# add new package to the cache
+echo $PRT_DIR/$group/$package >>$CACHE/loc
+echo $script >>$CACHE/slk
 }
 
 # portpkg?
@@ -811,7 +815,9 @@ if $build_pkg; then
   # ok, if this port is new, it has no dependencies, if it's rewritten,
   # let's assume, the user wants to rebuild only this port
   cd $PRT_DIR/$group/$name
-  portpkg -b #-q $group/$name
+#  portpkg -b #-q $group/$name
+  REBUILD=true
+  do_add
 fi
 }
 
