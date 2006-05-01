@@ -64,7 +64,7 @@ UPGRADEPKG=upgradepkg
 # constant values
 ENGINE_VER=cvs
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
-#export TMPDIR
+export TMPDIR
 CACHE=`mktemp -d`
 
 # global variables
