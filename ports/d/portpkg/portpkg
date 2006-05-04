@@ -212,18 +212,14 @@ regex() # >regex_list
   local arg
   for arg; do
     case $arg in
-      .)
-	# local directory
-	echo -n " -e `pwd | sed "s,^$PRT_DIR/,,"`-[^-]*-[^-]*-[^-]*$";;
-      */)
-        # groups
-        echo -n " -e \(^\|/\)$arg";;
-      */*)
-        # explicit expression (group/name and group/package)
-        echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
-      *)
-        # (g_)names and (g_)packages
-        echo -n " -e \(^\|/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
+      .)   # local directory (recursively)
+	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(/\|-[^-]*-[^-]*-[^-]*$\)";;
+      */)  # groups
+           echo -n " -e \(^\|/\)$arg";;
+      */*) # explicit expression (group/name and group/package)
+           echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
+      *)   # (g)names and (g)packages
+           echo -n " -e \(^\|/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
   done
   [ $# = 0 ] && echo "-e ^$" || true
@@ -236,11 +232,10 @@ explicit() # >pkgex-list
   local arg
   for arg; do
     case $arg in
-      */) #ls_slk `regex $arg` | slk2gname | any2base
-	  ls_slk | slk2gname | grep `regex $arg` | any2base
-          # also look through virtual groups list
-#          grep -hs `regex $arg` {$CFG_DIR,$PRT_DIR}/virtual | any2base;;
-          grep -hs `regex $arg` $CFG_DIR/virtual $PRT_DIR/virtual | any2base;;
+      */) # also look through virtual groups list
+	  ( ls_slk | slk2gname
+            cat $CFG_DIR/virtual $PRT_DIR/virtual
+          ) | grep -s `regex $arg` | any2base;;
       *)  echo $arg;;
     esac
   done
