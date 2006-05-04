@@ -593,68 +593,58 @@ fi
 if grep -sqe "#:config" -e "#:make" $script; then
   if check "^Makefile.PL$" $t/footprint; then
     # Makefile.PL is first choice
-#    snip cfg_autogen $script
-#    snip configure $script
     sel config perl $script
     arch=noarch
-#  else
-#    snip perl $script
-    elif check "^configure$" $t/footprint; then
-      sel config configure $script
-      if check "KDEDIRS" $TMP/$srcdir_prefix/configure; then
-        sed -i "s,%prefix%,opt/kde,g" $script
-        snip ac_sysconfdir $script
-        snip ac_localstatedir $script
-      else
-        check "--prefix" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
-        check "--sysconfdir" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
-        check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
-      fi
-      check "--program-prefix" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
-      check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
-      check "--disable-scrollkeeper" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
-      check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
-      snip cfg_autogen $script
-      snip pkgconfig $script
-      # pkgconfig
-      if check "PKG_CONFIG" $TMP/$srcdir_prefix/configure; then
-        # find package strings in configure
-        pc_files=`grep -oe "--exists.*" $TMP/$srcdir_prefix/configure \
+  elif check "^configure$" $t/footprint; then
+    sel config configure $script
+    if check "KDEDIRS" $TMP/$srcdir_prefix/configure; then
+      sed -i "s,%prefix%,opt/kde,g" $script
+      snip ac_sysconfdir $script
+      snip ac_localstatedir $script
+    else
+      check "--prefix" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
+      check "--sysconfdir" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
+      check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
+    fi
+    check "--program-prefix" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
+    check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
+    check "--disable-scrollkeeper" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
+    check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
+    snip cfg_autogen $script
+    snip pkgconfig $script
+    # pkgconfig
+    if check "PKG_CONFIG" $TMP/$srcdir_prefix/configure; then
+      # find package strings in configure
+      pc_files=`grep -oe "--exists.*" $TMP/$srcdir_prefix/configure \
 | sed "s,--[^ ]*,,g;s,\\\\\,,g" | grep -o "[a-z$][a-z0-9A-Z$._+-]*" | grep -vx then | sort -u`
-        # evaluate any variables
-        pc_files=`\
+      # evaluate any variables
+      pc_files=`\
 set +u
 eval $(grep "^[A-Z0-9_]*=[0-9.]*$" $TMP/$srcdir_prefix/configure)
 eval "echo \"$pc_files\"" | grep -o "[a-z][a-z0-9A-Z._+-]*"`
-        for f in $pc_files; do
-	  req=`( cd $ADM_DIR/packages; grep -l /$f\.pc$ * | pkg2name )`
-	  if [ "$req" ]; then
-            row "Checking for $f.pc... found in "$req
-            echo "$req" >>$path/requires
-            sort -uo $path/requires $path/requires
-	  else
-            row "Checking for $f.pc... not found, could be an optional dependency"
-    	    warn "Consider installing package $f and run autoport again!"
-    	  fi
-        done
-      fi
-    elif check "^autogen.sh$" $t/footprint; then
-      sel config configure $script
-#    else
-#      snip configure $script
-#      snip cfg_autogen $script
-     elif check "^setup\.py$" $t/footprint; then
-#        snip cfg_mk_hard $script
-	snip config $script
-        snip mk $script
-        arch=noarch
-      else
-        error "Don't know how to build this package."
-	snip config $script
-        failed=true
-      fi
-#    fi
-#  fi
+      for f in $pc_files; do
+	req=`( cd $ADM_DIR/packages; grep -l /$f\.pc$ * | pkg2name )`
+	if [ "$req" ]; then
+          row "Checking for $f.pc... found in "$req
+          echo "$req" >>$path/requires
+          sort -uo $path/requires $path/requires
+	else
+          row "Checking for $f.pc... not found, could be an optional dependency"
+    	  warn "Consider installing package $f and run autoport again!"
+    	fi
+      done
+    fi
+  elif check "^autogen.sh$" $t/footprint; then
+    sel config configure $script
+  elif check "^setup\.py$" $t/footprint; then
+    snip config $script
+    snip mk $script
+    arch=noarch
+  else
+    error "Don't know how to build this package."
+    snip config $script
+    failed=true
+  fi
 fi
 
 # set the prefix to /usr if this is still undefined
@@ -664,48 +654,22 @@ sed -i "s,%etc%,etc,g" $script
 # installation prefix
 if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
-#    snip python $script
     sel install mk_inst $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
     || check "DESTDIR" $TMP/$srcdir_prefix/Makefile*; then
-#      snip inst_PREFIX $script
-#      snip inst_prefix $script
-##      snip inst $script
-##      snip cfg_mk_hard $script
       sel mk_inst_root inst_destdir $script
-#    else
-#      snip inst_destdir $script
-      elif check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
-#        snip inst_prefix $script
-##        snip inst $script
-##        snip cfg_mk_hard $script
-	sel mk_inst_root inst_PREFIX $script
-#      else
-#        snip inst_PREFIX $script
-        elif check "prefix" $TMP/$srcdir_prefix/Makefile*; then
-#          snip inst $script
-#          snip cfg_mk_hard $script
-          sel mk_inst_root inst_prefix $script
-# todo
-#        else
-#          snip inst_prefix $script
-#          if check "/usr/local" $TMP/$srcdir_prefix/{,*/}Makefile*; then
-#            :
-          else
-            error "Don't know how to install this package (no install-prefix)."
-	    snip mk_inst_root $script
-            failed=true
-          fi
-#        fi
-#      fi
-#    fi
+    elif check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
+      sel mk_inst_root inst_PREFIX $script
+    elif check "prefix" $TMP/$srcdir_prefix/Makefile*; then
+      sel mk_inst_root inst_prefix $script
+    else
+      error "Don't know how to install this package (no install-prefix)."
+      snip mk_inst_root $script
+      failed=true
+    fi
   # as always, check setup.py at last! use configure if possible!
   elif check "^setup\.py$" $t/footprint; then
-##    snip cfg_mk_hard $script
-#    snip inst_destdir $script
-#    snip inst_PREFIX $script
-#    snip inst_prefix $script
     sel install python $script
   else
     error "Don't know how to install this package (no Makefile)."
@@ -1002,12 +966,14 @@ find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #:docfiles
-cp -a \ ##docs
+#:docs
+cp -a \
 #:docfiles2
-  %docs% \ ##docs
+  %docs% \
 #:docfiles2
 #%post-docfiles2-fix%
-  $PKG/usr/doc/$NAME-$VERSION/ ##docs
+  $PKG/usr/doc/$NAME-$VERSION/
+#:docs
 #:docfiles
 #%post-docfiles-fix%
 find $PKG/usr/doc -type f | xargs -r chmod 644
