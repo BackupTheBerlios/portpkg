@@ -856,6 +856,7 @@ do_find() # text [..] >list
     xargs fgrep -lsi "$arg" >$t/list.new <$t/list
     mv $t/list.new $t/list
   done
+  [ -s $t/list ] || die "No search results found."
   # limit the characters of each argline, because regex needs some space later
   sed "s,^$PRT_DIR/,,;s,[./]SlackBuild$,,;s,/[^/]*slack-desc$,," $t/list \
   | xargs -s 2048 | while read s; do do_list $s; done
