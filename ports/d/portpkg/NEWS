@@ -56,6 +56,7 @@ News
   04/27/2005
 
      o Testing release 0.38test in testing/.
+
      o On details see README file
 
   04/26/2005
@@ -63,16 +64,12 @@ News
      o Currently we have the following download methods (note, that portpkg
        --sync only supports the main CVS server)
 
-CVS
-o CVS
-               cvs -d :pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co
-               -P ports (this is our main CVS server)
-               cvs -d :pserver:anonymous@dwarfforge.sytes.net:/portpkg co -P
-               ports (many thanks to Steffen for mirroring)
-
-       HTTPUP
-               httpup sync http://portpkg.berlios.de/ports (this is an
-               experimental repository based on httpup)
+          o cvs -d :pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg co -P
+            ports (this is our main CVS server)
+            cvs -d :pserver:anonymous@dwarfforge.sytes.net:/portpkg co -P
+            ports (many thanks to Steffen for mirroring)
+          o httpup sync http://portpkg.berlios.de/ports (this is an
+            experimental repository based on httpup)
 
   04/04/2005
 
@@ -272,9 +269,5 @@ o CVS
 References
 
    Visible links
-   . http://developer.berlios.de/project/showfiles.php?group_id=2486
-   . http://developer.berlios.de/forum/?group_id=2486
-   . http://developer.berlios.de/projects/portpkg
-   . http://portpkg.berlios.de/people
    . http://www.buetow.org/
    . http://www.slackforum.de/forum/index.php?t=msg&th=1344

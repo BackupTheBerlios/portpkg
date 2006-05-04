@@ -16,19 +16,17 @@ Introduction
   What Is The Portpkg Project And How Does It Work?
 
    Portpkg is a ports system for Slackware Linux. Its purpose is to build and
-   manage a larger set of software for Slackware.
-
-   This is done not by provding binary packages, but by collecting scripts
-   that download, compile and install software on your machine. The
-   implementation is very simple and automated while still gaining a maximum
-   of system integration: It is based on SlackBuilds aslike Slackware's
-   Pkgtools. The information of how to compile what software, what version
-   and where to find is stored in additional files, these are catalogised in
-   a so called ports tree. Portpkg's administration scripts make it possible
-   to browse, search and handle these scripts. Contribution of ports is a one
-   of the main features of this project. Submitted ports will be put into an
-   open directory for public testing, later they will be checked and merged
-   into the ports tree.
+   manage a large set of software for Slackware. This is done not by
+   providing binary packages, but by collecting scripts that download,
+   compile and install software on your machine. The implementation is very
+   simple and automated while still gaining a maximum of system integration:
+   It is based on SlackBuilds aslike Slackware's Pkgtools. The information of
+   how to compile what software, what version and where to find is stored in
+   additional files, these are catalogised in a so called ports tree.
+   Portpkg's administration scripts make it possible to browse, search and
+   handle these scripts. Contribution of ports is one of the main features of
+   this project. Submitted ports will be put into an open directory for
+   public testing, later they will be checked and merged into the ports tree.
 
   Why Should I Use Portpkg?
 
@@ -212,10 +210,9 @@ Using The Ports
  dunnodiz: annoying since you don't know either anything about it. Strange.
  dunnodiz:
 
-
     Finding Ports
 
-   To find ports by keywords use --find:
+   To find ports by keywords use --find (results match all keywords):
 
  $ portpkg --find id3 tag
  l/id3lib-3.8.3-i686-2tom
@@ -343,13 +340,14 @@ Writing Ports
   Ports And Their Parts
 
    A ports is made up of different files (most important the SlackBuild) and
-   its path, where the critical part is only the last two parent directories,
-   which describe the port's group and name:
+   its location:
 
  /usr/ports/local/kde-stuff/audio/l/artsd/SlackBuild
- \________/                      /  \___/ \________/
-     |                          /     |       |
- ports tree                group    name  contains version,
+                        or
+ /usr/ports/local/kde-stuff/audio/l/artsd.SlackBuild
+ \________/ \_____________________/ \___/ \________/
+     |                 |              |       |
+ ports tree          group          name  contains version,
                                           arch and release
 
     SlackBuild
@@ -561,31 +559,6 @@ Writing Ports
              archives rather than .tar.gz archives if possible in terms of
              reducing bandwidth.
 
-    Slot-in^1, 3
-
-   The normal policy is to "install" packages with upgradepkg. That means, if
-   another version of the port is already installed, the new one replaces the
-   old one. E.g.: mplayer-1.0pre4-i486-1tom is already installed,
-   mplayer-1.0pre5-i486-1tom is available in the ports, so the command
-   portpkg mplayer removes the first one to install the last one.
-
-   If this behaviour is not intended, and you want Portpkg not to remove the
-   older package (this is mostly for packages like kernels or
-   kernel-modules), there's the possibility to mark a port as a "slot-in":
-
- $ touch slot-in
-
-    Pseudo^1, 3
-
-   The empty file pseudo marks a "pseudo port", as you can see in the ports
-   tree Pp-sync-bin builds. These pseudo ports list binary Slackware packages
-   as their souce packages, therefore the presents of slot-in instructs
-   Portpkg not to store them in /usr/src/dist when the installation is done.
-
-   Nore: This is more for the sake of completeness, it is subject to be
-   removed if Portpkg implements a way of interacting with Slackware
-   repository tools.
-
     Requires^1
 
    The file requires contains dependend packages and ports that are tracked
@@ -595,33 +568,8 @@ Writing Ports
    these requirements are met. You shouldn't write this file by hand
    normally, but there may be dependencies that cannot be found
    automatically, then add them. Portpkg won't remove any item you write to
-   requires.
-
-    Optional^3
-
-   The file optional contains dependencies, that can occur, but needn't to.
-   Since requires is obligatory at build time and written automatically, this
-   file is a exclude-list for requires. Entries of this file won't be written
-   to it. How to use it: You may have found out, that a certain port has
-   dependencies listed in requires, that are indeed optional. Add this
-   package name to optional and remove it from requires. After all, this file
-   is an advisory information for non-maintainers.
-
-   Note
-           * Maintainers should move as much as possible from requires to
-             optional!
-           * The contents of this file will soon be moved to requires in the
-             form # optional: package
-
-    No-fakeroot^1, ^3
-
-   To make the whole build process more secure Portpkg changes to user nobody
-   while running the SlackBuild and simulates being root without actually
-   having root permissions, but being able to make a package with root-owned
-   files. This is done by fakeroot.
-
-   However, there are few ports that cannot be build with fakeroot, the
-   maintainer must mark them with an empty file no-fakeroot.
+   requires. Dependencies, that can occur, but needn't to should be written
+   in this style: # optional: dependency.
 
     Flags ^2
 
@@ -643,10 +591,8 @@ Writing Ports
    the package making process:
 
    +------------------------------------------------------------------------+
-   |PORT_IS_BROKEN^1|Marks a failure of the last compilation                |
-   |----------------+-------------------------------------------------------|
-   |arbitrary^1, 3  |List of dependencies that couldn't be tracked          |
-   |                |automatically and should be checked                    |
+   |PORT_IS_BROKEN^1|Marks a failure of the last compilation (maintainer    |
+   |                |mode only)                                             |
    |----------------+-------------------------------------------------------|
    |name.buildlog^1 |Detailed log of the SlackBuild-output (in              |
    |                |/var/log/portpkg)                                      |
@@ -659,12 +605,16 @@ Writing Ports
 
   Configuration Of Portpkg
 
-   The configuration files are located in /etc/portpkg.
+   There are several locations to place a configuration file: A system-wide
+   configuration placed in /etc/portpkg/local.conf, a user-specific
+   configuration in ~/.portpkg.conf or a ports-tree-specific configuration
+   file portpkg.conf placed on top of a ports tree. There can be multiple
+   configuration files that are read in that order.
 
-    Local.conf
+    Local.conf and Portpkg.conf
 
-   local.conf is an optional confiiguration file. You can customise portpkg's
-   default values with several variables here:
+   The files local.conf and portpkg.conf are optional configuration files.
+   You can customise portpkg's default values with several variables here:
 
    +------------------------------------------------------------------------+
    |MY_TAG=tag             |Your personal tag                               |
@@ -708,22 +658,20 @@ Writing Ports
     Mirrors
 
    While primary download URLs should be listed in sources, in mirrors
-   there're global mirror sites for common source package locations.
+   there're global mirror sites for common source package locations. To use a
+   certain set of local mirrors, set the variable MIRROR in your
+   configuration file.
 
-    Ignore
+   Example
 
-   Normally, dependencies are tracked automatically by Portpkg in the
-   maintainer mode after compiling and written to the file requires. If you
-   find any dependencies in requires that shouldn't be tracked, write them
-   into ignore:
+ MIRRORS=de
 
-     o Packages or ports, that are optional: mostly newer versions of
-       libraries included in other Slackware packages (e.g. freetype,
-       fontconfig etc. are already included in Slackware's x11 package)
-     o Packages or ports being useless to track, because they're already and
-       for sure installed (e.g. aaa_elflibs)
+   Furthermore, you can write your own mirrors list.
 
-   A global list of common ignored dependencies is in ignore.
+   Example
+
+ http://.*.dl.sourceforge.net/  http://heanet.dl.sourceforge.net/
+ http://dl.sourceforge.net/     http://heanet.dl.sourceforge.net/
 
     Exclude
 
@@ -732,6 +680,10 @@ Writing Ports
    excluded is already in exclude. These ports can be listed as normal via
    portpkg --list, but won't be available, unless it is your intention:
    specify them via portpkg group/name!
+
+    Virtual
+
+   (To be written.)
 
     Summary Of Configurations^2
 
@@ -762,6 +714,21 @@ Writing Ports
    |-------------------+--------------------------+--------------------|
    |MAINTAIN_ALL=true  |--maintain                |(via BUILD variable)|
    +-------------------------------------------------------------------+
+
+    Ignore
+
+   Normally, dependencies are tracked automatically by Portpkg in the
+   maintainer mode after compiling and written to the file requires. If you
+   find any dependencies in requires that shouldn't be tracked, write them
+   into ignore:
+
+     o Packages or ports, that are optional: mostly newer versions of
+       libraries included in other Slackware packages (e.g. freetype,
+       fontconfig etc. are already included in Slackware's x11 package)
+     o Packages or ports being useless to track, because they're already and
+       for sure installed (e.g. aaa_elflibs)
+
+   A global list of common ignored dependencies is in ignore.
 
   Additional Tools
 
@@ -1194,31 +1161,32 @@ Backgrounds
    It must...
 
      o ...be named SlackBuild or *.SlackBuild
-     o ...be a shell script (not necessary to have an executable bit set)
+     o ...be a shell script
      o ...run without parameters
      o ...have all its relating files in the same directory
      o ...not write to anything but /tmp or $TMP
-     o ...contain these lines without spaces or tabs or variables:
+     o ...contain these lines in that order without spaces or tabs or
+       variables:
 
           o VERSION=version
-          o ARCH=arch
+          o ARCH=arch or ARCH=${ARCH:-i486}
           o BUILD=build
-            except this form:
-          o ${ARCH:-i486}
 
-     o ...name its package name-$VERSION-$ARCH-$BUILD.tgz, while name is the
-       directory it's located in
+     o ...match either .../name/SlackBuild or .../name.SlackBuild
+     o ...name its package name-$VERSION-$ARCH-$BUILD.tgz
      o ...leave its package in /tmp or $TMP
 
    It may...
 
+     o ...have an executable bit set
      o ...use a custom $ARCH (see above)
-     o ...remove the build tree invoked by parameter --cleanup
+     o ...remove the build tree and/or package tree invoked by parameter
+       --cleanup
      o ...use TMP=${TMP:-/tmp}
 
    It will fail if it...
 
-     o ...doesn't build packages itself, but just calls other SlackBuilds
+     o ...doesn't build packages itself, but just runs other SlackBuilds
        ("meta" SlackBuilds)
      o ...runs package management commands such as installpkg, removepkg,
        checkinstall
@@ -1236,8 +1204,11 @@ Backgrounds
    --------------------------------------------------------------------------
 
    Notes
-           ^1 This feature is specific to Portpkg, ^2 Planned feature, ^3
-           Obsolete feature, to be removed soon
+
+   ^1 This feature is specific to Portpkg and is not part of the de facto
+   standard SlackBuild style (as far as we can speak of such a standard).
+   ^2 Planned feature, will be included in future versions of Portpkg.
+   ^3 Obsolete feature, to be removed soon.
 
    --------------------------------------------------------------------------
 

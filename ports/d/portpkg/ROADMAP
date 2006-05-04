@@ -1,9 +1,39 @@
 Upcoming Release: Major Changes
 
    This page is meant to inform maintainers and users of the major changes in
-   the upcoming release of portpkg, which will be version 0.38.
+   the upcoming releases of portpkg.
 
-  Reorganization Of Directories / Group Concept
+  Version 0.39:
+
+    One port - one script
+
+   OK, risking to nerve any-one again with this topic, I must say that
+   reducing the amount of files that contain portpkg-specific information is
+   a "good thing". Thus contents of the files sources, md5sums, requires (and
+   therefore obsolete files optional and blocks), flags (and therefore
+   obsolete files no-fakeroot, pseudo and slot-in) move to a comment header
+   within the SlackBuild itself in this form:
+
+ #!/bin/sh
+ # MAINTAINER: I. M. Weasel 'me' <myself@here.org>
+ # SOURCES: http://download.org/pub/file-1.0.tar.gz
+ # MD5SUMS: 12345678901234567890  file-1.0.tar.gz
+ # FLAGS: no-fakeroot slot-in
+ # REQUIRES: x11
+ # OPTIONAL: qt
+
+ (...)
+
+   Of course, older methods still are compatible. portpkg will convert the
+   script headers when run in maintainer mode automatically.
+
+    New version sorting
+
+   --------------------------------------------------------------------------
+
+  Version 0.38.
+
+    Reorganization Of Directories / Group Concept
 
    Right now portkg is bound to a directory structure, where the last two
    directory levels of any build script are fixed to the meanings of group
@@ -28,7 +58,7 @@ Upcoming Release: Major Changes
  portpkg -l you/
  portpkg -l like/
 
-  Better Dryrun Mode
+    Better Dryrun Mode
 
    On popular request I have done some work for the dryrun mode in order to
    give some more meaningful output of what would happen. A screenshot of the
@@ -70,7 +100,7 @@ Upcoming Release: Major Changes
  qt: Qt (a multi-platform C++ graphical user interface toolkit)
  (...)
 
-  Reduction Of Port Controller Files
+    Reduction Of Port Controller Files
 
    Obsolete files
            * arbitrary (there will be only a warning message on the screen
@@ -90,7 +120,7 @@ Upcoming Release: Major Changes
                 o verbose
                 o reinstall
 
-  Virtual Groups (updated)
+    Virtual Groups (updated)
 
    In /etc/portpkg/virtual is a place to define virtual groups. Example:
 
@@ -108,13 +138,13 @@ Upcoming Release: Major Changes
    mplayer/. This can be very interesting in conjunction with the use list,
    when there're more virtual groups defined.
 
-  Multiports
+    Multiports
 
    One script - two packages: For more compatibility with original Slackware
    SlackBuild-scripts (e.g. gcc/glibc build scripts) that produce more than
    one package.
 
-  Direct Mode
+    Direct Mode
 
    In analogy to *BSD portsystems. Example:
 
@@ -124,20 +154,20 @@ Upcoming Release: Major Changes
    This is also a bit faster, because portpkg doesn't need to search the
    ports tree first in this mode.
 
-  Configuration File Conventions
+    Configuration File Conventions
 
    No more .local files in /etc/portpkg! Portpkg now uses the normal
    Slackware style for etc-files (.new files). Please edit your files in
    /etc/portpkg/ to your needs, they won't be overwritten on upgrades.
 
-  Use List
+    Use List
 
    Dependencies that are optional and shall be installed by portpkg when
    needed can be written to this list. Best known example is if you want
    GNOME dependencies for packages you are building, you should add gnome/
    here!
 
-  Furthermore
+    Furthermore
 
      o Add newly found dependencies as optional.
      o Connect arguments in --find with AND not OR.
@@ -148,6 +178,8 @@ Upcoming Release: Major Changes
      o Use unlisted packages in cache for dependencies
      o Make Portpkg work better with user accounts
      o List only packages with relevant architectures and noarch
+
+   --------------------------------------------------------------------------
 
   Delayed/Todo
 

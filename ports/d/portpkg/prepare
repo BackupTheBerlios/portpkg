@@ -9,20 +9,11 @@
 has_prog elinks || die
 
 stanza "Syncing docs:"
-for doc in FrontPage QuickStart PortpkgGuide TodoBugsAbout QuestionsAndAnswers \
-Links UpcomingRelease; do
+for doc in NEWS INSTALL README ABOUT FAQ README.Links ROADMAP; do
   row "$doc"
-  wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc 2>/dev/null
-  elinks -no-numbering -dump $doc.html | grep -v "^[ ]*EditThisPage" >README.$doc
+  rm $doc
+  wget -O $doc.html http://portpkg.berlios.de/doc.php?page=$doc
+  elinks -no-numbering -dump $doc.html | grep -v "^[ ]*EditThisPage" >$doc
   rm $doc.html
+  sed -i "/ file:\/\//d" $doc
 done
-
-row "Finishing"
-sed -i "/ file:\/\//d" README.*
-sed -i "0,/^News$/d" README.FrontPage
-sed -i "1s,.*,News\n," README.FrontPage
-mv README.TodoBugsAbout ABOUT
-mv README.PortpkgGuide README
-mv README.FrontPage NEWS
-mv README.QuestionsAndAnswers FAQ
-mv README.UpcomingRelease ROADMAP
