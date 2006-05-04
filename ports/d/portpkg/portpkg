@@ -18,21 +18,21 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 # default configuration
-MAINTAIN_ALL=false
-VERBOSE=false
-DRY_RUN=false
-INTERACTIVE=true
-NO_REQS=false
-TEST_REQS=false
-LAZY_CHECKS=false
-DEBUG=false
-USE_ALPHA_CODE=false
-DOWNLOAD_ONLY=false
-PREPARE_ONLY=false
-REINSTALL=false
-REBUILD=false
-REMAINTAIN=false
-NO_FAKEROOT=false
+MAINTAIN_ALL=false      # Force maintainer mode
+VERBOSE=false           # Display more output
+DRY_RUN=false           # Simulate downloads/compilations/installations
+INTERACTIVE=true        # Do not ask for comfirmations
+NO_REQS=false           # Disable dependency handling completely
+TEST_REQS=false         # Do not try to install required dependencies
+LAZY_CHECKS=false       # Do not try to upgrade required dependencies
+DEBUG=false             # Display debugging output
+USE_ALPHA_CODE=false    # Use unstable features
+DOWNLOAD_ONLY=false     # Do not compile
+PREPARE_ONLY=false      # Do not install
+REINSTALL=false         # Force installation
+REBUILD=false           # Force compilation
+REMAINTAIN=false        # Try to skip compilation
+NO_FAKEROOT=false       # Do not use compilation sandbox
 ARCH=i486
 CFLAGS=""
 MY_TAG=`whoami`
