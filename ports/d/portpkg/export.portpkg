@@ -71,6 +71,8 @@ for arg in `explicit "$@"`; do
     continue
   fi
 
+  pause "Continue exporting $package? (ctrl-c to abort)"
+
   # if there's $PRT_DIR/CVS/Root which doesn't contain "anonymous" it must be a CVS
   # write account (?)
   if [ -f $PRT_DIR/CVS/Root ] && ! grep -sq "anonymous" $PRT_DIR/CVS/Root; then
@@ -80,8 +82,6 @@ for arg in `explicit "$@"`; do
     has_prog cvs || die
     has_prog rcs2log || die
     has_prog ssh || die
-
-    pause "Continue export $package? (ctrl-c to abort)"
 
     row "Submitting $package to CVS"
 
