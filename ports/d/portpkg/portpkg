@@ -204,6 +204,9 @@ regex() # >regex_list
   local arg
   for arg; do
     case $arg in
+      .)
+	# local directory
+	echo -n " -e `pwd | sed "s,^$PRT_DIR/,,"`-[^-]*-[^-]*-[^-]*$";;
       */)
         # groups
         echo -n " -e \(^\|/\)$arg";;
