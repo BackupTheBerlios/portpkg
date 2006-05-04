@@ -1,6 +1,13 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# REQUIRES: bin coreutils findutils grep gzip pkgtools rpm sed shadow tar util-linux
+# OPTIONAL: cvs fakeroot lynx wget
+
 VERSION=0.38
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
+
+TMP=${TMP:-bla}
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -8,25 +15,19 @@ PKG=/tmp/package-$NAME
 rm -rf $PKG
 
 # directories
-#mkdir -p $PKG/etc/portpkg/importers
 mkdir -p $PKG/etc/portpkg/plugins
 mkdir -p $PKG/usr/bin
 mkdir -p $PKG/usr/man/man1
-#mkdir -p $PKG/var/log/portpkg
-#mkdir -p $PKG/var/log/setup
 
 # configuration
-install -m 644 $CWD/repos $PKG/etc/portpkg/
-install -m 644 $CWD/mirrors.* $PKG/etc/portpkg/
-install -m 644 $CWD/ignore $PKG/etc/portpkg/
-#install -m 644 $CWD/exclude.* $PKG/etc/portpkg/
-install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude #.new
-install -m 644 $CWD/use $PKG/etc/portpkg/
-#install -m 644 $CWD/pp-sync-bin $PKG/etc/portpkg/importers/pp-sync-bin.new
-#install -m 644 $CWD/pp-sync-src $PKG/etc/portpkg/importers/
+install -m 644 $CWD/repos $PKG/etc/portpkg/repos.new
+install -m 644 $CWD/mirrors $PKG/etc/portpkg/mirrors.new
+install -m 644 $CWD/ignore $PKG/etc/portpkg/ignore.new
+install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude.new
+install -m 644 $CWD/use $PKG/etc/portpkg/use.new
 install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
-install -m 644 $CWD/virtual $PKG/etc/portpkg/
+install -m 644 $CWD/virtual $PKG/etc/portpkg/virtual.new
 
 # man page
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
@@ -38,14 +39,11 @@ install -m 755 $CWD/pp-config $PKG/usr/bin/
 install -m 755 $CWD/checkpkg $PKG/usr/bin/
 install -m 755 $CWD/autoport $PKG/usr/bin/
 
-## integrate pp-config into pkgtool
-#ln -s /usr/bin/pp-config $PKG/var/log/setup/setup.portpkg
-
-chown -R root.bin $PKG/usr/bin
+#chown -R root.bin $PKG/usr/bin
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT COPYING CREDITS FAQ NEWS README* ROADMAP \
+  ABOUT COPYING CREDITS FAQ INSTALL NEWS README* ROADMAP \
   $PKG/usr/doc/$NAME-$VERSION/
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
