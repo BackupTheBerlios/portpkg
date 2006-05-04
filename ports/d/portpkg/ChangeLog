@@ -1,3 +1,45 @@
+2006-05-04  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Pause a little earlier.
+
+  * autoport:
+  * Added -z (debug).
+  * Fixes.
+
+  * pp-config: Added dailog for "various settings".
+
+  * portpkg: More comments in code.
+
+  * sync.slackware-bin:
+  * Do not use FILELIST.TXT. Not needed anymore.
+  * Use one-file-ports to reduce tree size.
+
+  * NEWS, doinst.sh, prepare, use, README, ROADMAP: Updates.
+
+  * mirrors.au, mirrors.de, mirrors.jp, mirrors.us: Obsolete.
+
+  * INSTALL, SlackBuild:
+  * Updated documentation.
+  * Use *.new conventions in /etc now.
+  * New header style.
+
+  * mirrors, portpkg, pp-config:
+  * No more mirrors.*. Use /etc/portpkg/mirrors or ~/ports/mirrors.
+  * Smaller fixes.
+
+  * portpkg:
+  * regex(): "." should list ports recursively.
+  * Code cleanups.
+
+  * portpkg:
+  Use ignore(), exclude(), mirrors(), repos(), use() instead of variables.
+
+  * portpkg: Allow "portpkg --list .".
+
+  * autoport: Code cleanups.
+
+  * portpkg: Fixed do_find(): Don't run do_list() if nothing found.
+
 2006-05-01  topf  <topf@users.berlios.de>
 
   * autoport:
