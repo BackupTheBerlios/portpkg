@@ -127,7 +127,7 @@ plugins()
   echo -n "dialog --title \"$heading\" --single-quoted --checklist \
 \"Select which plugins you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
   local plugin
-  for plugin in `find $CFG_DIR/plugins/sync.* 2>/dev/null`; do
+  for plugin in `find $CFG_DIR/plugins/sync.* $PRT_DIR/plugins/sync.*`; do
     echo -n `basename $plugin` \
       `grep ^#BLURB= $plugin | cut -d = -f 2` \
       `echo "$SYNC" | tr " " "\n" | grep -qx $(basename $plugin) && echo on || echo off`" "
@@ -283,9 +283,9 @@ Select what you want to configure:" 0 0 0 \
   plugins "Set which plugins to use" \
   maintain "Set ports tag string" \
   output "Set output level" \
-  mirrors "Set mirrors for downloads" \
   optimise "Set processor optimising" \
   dependencies "Set dependency handling" 2>$t/sub
+#  mirrors "Set mirrors for downloads" \
 #  resources "Set wich resources to use" \
 #  paths "Set paths for sources and binaries" \
   rc=$?

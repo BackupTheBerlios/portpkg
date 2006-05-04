@@ -39,7 +39,6 @@ MY_TAG=`whoami`
 
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 EXPORT="export.portpkg"
-MIRRORS=""
 
 TMP=/tmp
 ADM_DIR=/var/log
@@ -82,7 +81,7 @@ output=/dev/null
 level_one=true
 
 # config files
-mirrors() { cache $CACHE/mirrors "grep -vshe ^# -e ^$ \$CFG_DIR/mirrors.\$MIRRORS \$CFG_DIR/mirrors \$PRT_DIR/mirrors.\$MIRRORS \$PRT_DIR/mirrors"; }
+mirrors() { cache $CACHE/mirrors "grep -vshe ^# -e ^$ \$CFG_DIR/mirrors \$PRT_DIR/mirrors"; }
 ignore()  { cache $CACHE/ignore "regex \$(grep -vshe ^# -e ^$ \$CFG_DIR/ignore \$PRT_DIR/ignore)"; }
 exclude() { cache $CACHE/exclude "regex \$(grep -vshe ^# -e ^$ \$CFG_DIR/exclude \$PRT_DIR/exclude)"; }
 use()     { cache $CACHE/use "regex \$(grep -vshe ^# -e ^$ \$CFG_DIR/use \$PRT_DIR/use)"; }
@@ -207,7 +206,7 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
 }
 
 # generate a regular expression for grep from a pkgex-list
-regex() # >regex_list
+regex() # pkgex_list >regex_list
 {
   local arg
   for arg; do
@@ -227,7 +226,7 @@ regex() # >regex_list
 
 # resolve groups/ to names
 # note: do_list doesn't use explicit()!
-explicit() # >pkgex-list
+explicit() # pkgex_list >pkgex-list
 {
   local arg
   for arg; do
@@ -483,9 +482,9 @@ maintainer_mode()
   done
 
   # write header
-  sed -i "1s,.*,# FLAGS:\n&," $script
-  $no_fakeroot && sed -i "s,^# FLAGS:.*,& no-fakeroot," $script
-  $rebuild && sed -i "s,^# FLAGS:.*,& rebuild," $script
+#  sed -i "1s,.*,# FLAGS:\n&," $script
+#  $no_fakeroot && sed -i "s,^# FLAGS:.*,& no-fakeroot," $script
+#  $rebuild && sed -i "s,^# FLAGS:.*,& rebuild," $script
   sed -i "1s,.*,# BLOCKS: $blocks\n&," $script
   sed -i "1s,.*,# OPTIONAL: `echo $optional`\n&," $script
   sed -i "1s,.*,# REQUIRES: `echo $requires`\n&," $script
