@@ -94,7 +94,7 @@ decode() # text >text
   local NAME VERSION
   NAME=$name
   VERSION=$version
-  eval echo \"$@\"
+  eval "echo \"$@\""
 }
 
 # add a shell instruction to a shell script file
@@ -193,30 +193,31 @@ search_cpan() # query >url
 
 init_autoport()
 {
-# first: do we have tags?
-[ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
+  # first: do we have tags?
+  [ "$MY_TAG" ] || die "No tag set. Please run 'pp-config'!"
 
-# defaults
-#i_act=true
-force=false
-sources=""
-name=""
-group=""
-arch=$ARCH
-build=""
-build_pkg=false
+  force=false
+  build_pkg=false
+  failed=false
+  sources=""
+  name=""
+  version=""
+  group=local
+  arch=$ARCH
+  build=""
 }
 
 # parse options
 parse_options()
 {
-shorts="afv:g:n:u:bhd"
-args=`getopt -qo $shorts -- "$@"`
-[ "$?" = "0" ] || die "Bad Arguments! Try: autoport -h"
-eval set -- "$args"
-#if [ "$*" ]; then
+  shorts="afv:g:n:u:bhdz"
+  args=`getopt -qo $shorts -- "$@"`
+  [ "$?" = "0" ] || die "Bad Arguments! Try: autoport -h"
+  eval set -- "$args"
   while [ "$*" ]; do
     case $1 in
+      -z)
+	DEBUG=true;;
       -a)
         INTERACTIVE=false;;
       -f)
@@ -249,7 +250,6 @@ eval set -- "$args"
     esac
     shift
   done
-#fi
 }
 
 set_info()
@@ -265,13 +265,13 @@ SlackBuild script. If autoport doesn't work as expected, please mail at:
 <topf at users dot berlios dot de>"
 
 #[ "$sources" ] || die "No source url specified! Try: autoport --help"
-[ "$group" ] || group=local
+#[ "$group" ] || group=local
 
 pause "* First step: Collect information. Continue? (ctrl-c to quit)"
 
 # sources
 s=`pause "Source file URL [$sources]:"`
-sources=${s:-$sources}
+sources="${s:-$sources}"
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
 sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
 # we can only handle _one_ source file
@@ -462,16 +462,17 @@ else
 fi
 
 # write skeletons
-failed=false
+#failed=false
 sed '/^#:SlackBuild.skel$/,/^#:SlackBuild.skel$/!d' $0 >$script
 # copy comment header from old script
 case $script in *.new)
   sed -n "0,/^[^#]/p" $old_script | sed "\$d;/^$/d;s,\&,\&,g" >$t/script.head
   sed -i "/^#\!\/bin\/sh/d" $script
-  cat $t/script.head $script >$t/script.new
-  cat $t/script.new >$script
+  sed -i "1r$t/script.head" $script
+#  cat $t/script.head $script >$t/script.new
+#  cat $t/script.new >$script
 esac
-echo `encode "$sources"` >$path/sources
+encode "$sources" >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
@@ -832,6 +833,7 @@ if $build_pkg; then
   cd $PRT_DIR/$group/$name
 #  portpkg -b #-q $group/$name
   REBUILD=true
+  REINSTALL=true
   do_add
 fi
 }
