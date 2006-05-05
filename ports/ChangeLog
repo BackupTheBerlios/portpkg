@@ -1,3 +1,163 @@
+2006-05-04  topf  <topf@users.berlios.de>
+
+  * d/portpkg/export.portpkg: Pause a little earlier.
+
+  * d/portpkg/autoport:
+  * Added -z (debug).
+  * Fixes.
+
+  * d/portpkg/pp-config: Added dailog for "various settings".
+
+  * d/portpkg/portpkg: More comments in code.
+
+  * d/portpkg/sync.slackware-bin:
+  * Do not use FILELIST.TXT. Not needed anymore.
+  * Use one-file-ports to reduce tree size.
+
+  * d/portpkg/NEWS, d/portpkg/doinst.sh, d/portpkg/prepare, d/portpkg/use, d/portpkg/README, d/portpkg/ROADMAP:
+  Updates.
+
+  * d/portpkg/mirrors.au, d/portpkg/mirrors.de, d/portpkg/mirrors.jp, d/portpkg/mirrors.us:
+  Obsolete.
+
+  * d/portpkg/INSTALL, d/portpkg/SlackBuild:
+  * Updated documentation.
+  * Use *.new conventions in /etc now.
+  * New header style.
+
+  * d/portpkg/mirrors, d/portpkg/portpkg, d/portpkg/pp-config:
+  * No more mirrors.*. Use /etc/portpkg/mirrors or ~/ports/mirrors.
+  * Smaller fixes.
+
+  * d/portpkg/portpkg:
+  * regex(): "." should list ports recursively.
+  * Code cleanups.
+
+  * d/portpkg/portpkg:
+  Use ignore(), exclude(), mirrors(), repos(), use() instead of variables.
+
+  * d/portpkg/portpkg: Allow "portpkg --list .".
+
+2006-05-04  hnaz  <hnaz@users.berlios.de>
+
+  * patches/pango/SlackBuild, patches/pango/doinst.sh, patches/pango/footprint, patches/pango/md5sums:
+  Update from 1.12.1 to 1.12.2.
+  Don't overwrite /etc/pango/pangox.aliases by default.
+
+2006-05-04  topf  <topf@users.berlios.de>
+
+  * d/portpkg/autoport: Code cleanups.
+
+  * d/portpkg/portpkg: Fixed do_find(): Don't run do_list() if nothing found.
+
+2006-05-02  hnaz  <hnaz@users.berlios.de>
+
+  * xap/mplayer/sources: Old mirror unreachable.
+
+2006-05-01  topf  <topf@users.berlios.de>
+
+  * d/portpkg/autoport:
+  $group should really be set to the argument. Don't try to correct that.
+
+  * d/portpkg/autoport: check(), snip(), add_inst(), remove_inst():
+  * Cleanups.
+
+  * d/portpkg/autoport: encode(), decode():
+  * Don't use $NAME anymore.
+  * Cleanups.
+
+  * d/portpkg/autoport:
+  * Try to detect pkgconfig .pc files and add them to requires/optional.
+  * snip() slkcflags when ARCH=noarch.
+
+  * d/portpkg/autoport: * Don't set verbose before get().
+  * Copy header of old script.
+
+  * d/portpkg/autoport: Converted to use sel() instead of snip().
+
+  * d/portpkg/autoport: * Update caches after new buildscript is created.
+  * Use internal do_add(), instead of portpkg again.
+  * Don't use -m 1 in grep.
+
+  * d/portpkg/autoport:
+  * Removed ask() and $i_act, use portpkg's pause() and $INTERACTIVE now.
+  * Removed Bash-specific syntax.
+
+  * d/portpkg/autoport: Code cleanups (split into several functions).
+
+  * d/portpkg/autoport: * Added hier() to print a hierarchy list of tags
+  * Added sel() to snip() all subsections but one
+
+  * d/portpkg/portpkg: do_find():
+  * Search also for descriptions in *SlackBuilds
+  * Fix "xarg: arglist too long" bug
+
+  * d/portpkg/portpkg: do_info(): Cleanups.
+
+  * d/portpkg/portpkg: build_pkg(): Add new package to the cache.
+
+  * d/portpkg/portpkg: maintainer_mode(): $t/ignore isn't used anymore.
+
+  * d/portpkg/portpkg: build_pkg(): Fixed typo in checksum warnings.
+
+  * d/portpkg/portpkg:
+  maintainer_mode():
+  * Cleanup generating FLAGS line in header.
+  * Add rebuild flag.
+
+  * d/portpkg/portpkg:
+  maintainer_mode(): Exclude own files when examining the list of dependencies of the dependencies.
+
+  * d/portpkg/portpkg:
+  get_info(): In direct mode and when is outside of PRT_DIR, set PRT_DIR=PKG_DIR=`pwd`.
+
+  * d/portpkg/portpkg: warn(): output should be directed to stderr.
+
+  * d/portpkg/portpkg:
+  Precised any2dir(): return empty if the argument is a basename.
+
+  * d/portpkg/portpkg: Simplified ls_inst() and ls_pkg().
+
+  * d/portpkg/portpkg:
+  Detect if the buildscript makes more than one packages and display this in --info.
+
+  * d/portpkg/portpkg: Find and use the buildscript's TMP.
+
+  * d/portpkg/portpkg: Unfortunately, exporting TMPDIR was correct.
+
+  * ap/lsdvd/md5sums, ap/lsdvd/requires, ap/lsdvd/slack-desc, ap/lsdvd/sources, ap/lsdvd/SlackBuild, ap/lsdvd/footprint:
+  Version bump.
+
+  * xap/grsync/SlackBuild, xap/grsync/doinst.sh, xap/grsync/footprint, xap/grsync/slack-desc:
+  Initial release.
+
+  * xap/amsn/SlackBuild, xap/amsn/doinst.sh, xap/amsn/footprint, xap/amsn/slack-desc:
+  Initial release.
+
+  * l/tls/SlackBuild, l/tls/footprint, l/tls/slack-desc: Initial release.
+
+  * ap/laptop-mode-tools/SlackBuild, ap/laptop-mode-tools/doinst.sh, ap/laptop-mode-tools/footprint:
+  Added config() to install config files.
+
+  * ap/hibernate-script/SlackBuild, ap/hibernate-script/footprint, ap/hibernate-script/md5sums, ap/hibernate-script/sources:
+  Version bump.
+
+2006-04-30  hnaz  <hnaz@users.berlios.de>
+
+  * ap/when/SlackBuild, ap/when/footprint, ap/when/md5sums:
+  Update from 1.0.27 to 1.0.28.
+  SlackBuild cleanup.
+
+  * l/libsndfile/SlackBuild, l/libsndfile/footprint, l/libsndfile/libsndfile-1.0.15-docdir.patch, l/libsndfile/libsndfile-1.0.16-docdir.patch, l/libsndfile/md5sums, l/libsndfile/requires:
+  Update from 1.0.15 to 1.0.16.
+
+  * ap/clamav/SlackBuild, ap/clamav/footprint, ap/clamav/md5sums, ap/clamav/requires, ap/clamav/sources:
+  Update from 0.87 to 0.88.2.
+  Took out milter support from SlackBuild, mail if that doesn't fit your needs!
+  Fixed requires.
+  Added md5sums.
+  General SlackBuild cleanups.
+
 2006-04-30  topf  <topf@users.berlios.de>
 
   * gnome/gst-plugins-base/SlackBuild, gnome/gst-plugins-base/doinst.sh, gnome/gst-plugins-base/footprint, gnome/gst-plugins-base/md5sums, gnome/gst-plugins-base/requires, gnome/gst-plugins-base/slack-desc, gnome/gst-plugins-base/sources:
