@@ -285,6 +285,7 @@ settings()
     echo "$tag \"$item\" $state \\"
   done >>$t/menu
   . $t/menu 2>$t/out
+  test $? != 0 && return
   # variables turned ON
   for i in `cat $t/out`; do
     sed -i "/^$i=/d" $RC
