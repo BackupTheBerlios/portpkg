@@ -21,7 +21,7 @@
 MAINTAIN_ALL=false      # Force maintainer mode
 VERBOSE=false           # Display more output
 DRY_RUN=false           # Simulate downloads/compilations/installations
-INTERACTIVE=true        # Do not ask for comfirmations
+INTERACTIVE=true        # Ask for comfirmations
 NO_REQS=false           # Disable dependency handling completely
 TEST_REQS=false         # Do not try to install required dependencies
 LAZY_CHECKS=false       # Do not try to upgrade required dependencies
@@ -33,10 +33,10 @@ REINSTALL=false         # Force installation
 REBUILD=false           # Force compilation
 REMAINTAIN=false        # Try to skip compilation
 NO_FAKEROOT=false       # Do not use compilation sandbox
+
 ARCH=i486
 CFLAGS=""
 MY_TAG=`whoami`
-
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 EXPORT="export.portpkg"
 
@@ -167,10 +167,8 @@ get() # url dest [md5sum]
   debug "get() $@"
 
   # mirrors
-  if [ "$(mirrors)" ]; then
     urls=`mirrors | while read master mirror; do \
 echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
-  fi
 
   debug "get(): urls="$urls
   mkdir -p `dirname $dest`
@@ -277,7 +275,7 @@ get_info() # pkgex
 
   case $1 in
     .)   # direct mode: find SlackBuild in current dir
-         case `pwd` in $PRT_DIR/*) ;; * )
+         case `pwd` in $PRT_DIR|$PRT_DIR/*) ;; * )
            debug "get_info(): `pwd` is NOT in PRT_DIR, setting PRT_DIR"
            PRT_DIR=`cd ..; pwd`
            PKG_DIR=$PRT_DIR
@@ -318,7 +316,9 @@ grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
   sources=`{ \
 grep -s "^# SOURCES: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/sources; } | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
-  md5sums=`grep -sve ^$ -e ^# $path/md5sums`
+  md5sums=`{ \
+grep -s "^# MD5SUMS: " $script | cut -d " " -f 3-
+grep -sve ^$ -e ^# $path/md5sums; } | sort -u -k 2`
   blocks=`{ \
 grep -s "^# BLOCKS: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/blocks; \
@@ -602,10 +602,10 @@ build_pkg()
       if [ "`whoami`" = "root" ]; then
         row "Dropping privileges, becoming nobody"
         su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$tmp TMPDIR=$tmp \
-PATH=\$PATH:/sbin fakeroot sh $sh_opt $script $script_opt" 2>&1 \
+PATH=\$PATH:/sbin TMP=$tmp fakeroot sh $sh_opt $script $script_opt" 2>&1 \
         | tee $LOG_DIR/$name.buildlog >$output
       else
-        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin \
+        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp \
 fakeroot sh $sh_opt $script $script_opt" 2>&1 \
         | tee $LOG_DIR/$name.buildlog >$output
       fi
@@ -616,10 +616,10 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
       row "Executing $script $script_opt"
       if [ "`whoami`" != "root" ]; then
         row "Gaining root privileges"
-        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
+        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
         | tee $LOG_DIR/$name.buildlog >$output
       else
-        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" sh $sh_opt $script $script_opt" 2>&1 \
+        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
         | tee $LOG_DIR/$name.buildlog >$output
       fi
 #      # this is a hack-around for some faulty install scripts
