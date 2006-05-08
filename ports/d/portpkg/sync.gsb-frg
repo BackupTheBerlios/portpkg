@@ -10,18 +10,17 @@
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
 FRG_VERSION=2.12.1
-SOURCE=http://mirror.datapipe.net/norlug/frg/frg-$FRG_VERSION
+SOURCE=ftp://ftp3.linuxpackages.net/pub/FreeRock-Gnome/frg-$FRG_VERSION
 FILES="ChangeLog FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
 TREE=$PRT_DIR/z/bin/gsb-frg
 
 # check that we're a plug-in
-#if ! [ "$PORTPKG" ]; then
 if  [ "`basename $0`" != "portpkg" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
 
-row "Syncing $TREE/ with $SOURCE"
+row "Syncing $TREE"
 t=`mktemp -d`
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
@@ -41,28 +40,51 @@ for file in $rest; do
 done
 
 # rebuild the tree
+row "Rebuilding pseudo ports"
 rm -rf $TREE
 mkdir -p $TREE
 
 # make a *simple* file list
 grep -v ^d $t/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
 
+# since portpkg's dependency handling is rather simple, we trim version
+# handling and interpret alternatives as optional dependencies
+sed -r "\
+/REQUIRED/s/,/\nPACKAGE REQUIRED:  /g
+/SUGGESTS/s/,/\nPACKAGE SUGGESTS:  /g
+/CONFLICTS/s/,/\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
+sed -ri "/REQUIRED.* \| /{s/REQUIRED/SUGGESTS/;s/ \| /\nPACKAGE SUGGESTS:  /g}" $t/packages
+sed -ri "s/ [<>=]+ .*$//" $t/packages
+
 # find each binary packages
-row "Rebuilding pseudo ports"
 grep "/[^/]*-[^/-]*-[^/-]*-[^/-]*\.tgz$" $t/files | egrep -v "(^|/)source/" \
 | while read s; do
-  pkg=`echo $s | sed -r "s,^.*/(.*)\.tgz$,\1,"`
+  group=`echo $s | sed "s,^\./,,;s,/[^/]*$,,"`
+  pkg=`echo $s | sed "s,.*/,,;s,\.tgz$,,"`
   name=`echo $pkg | pkg2name`
   rel=`echo $pkg | pkg2rel`
   ver=`echo $rel | cut -d - -f 1`
   arch=`echo $rel | cut -d - -f 2`
   build=`echo $rel | cut -d - -f 3`
-  path=$TREE/`dirname $s`/$name
-  mkdir -p $path
+  md5sum=`grep "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
+  info=`sed -n "/ $pkg\($\| \|\.tgz\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
+  desc=`echo "$info" | grep "^$name:"`
+  req=`echo "$info" | grep REQUIRED | cut -d " " -f 4- | xargs`
+  opt=`echo "$info" | grep SUGGESTS | cut -d " " -f 4- | xargs`
+  blk=`echo "$info" | grep CONFLICTS | cut -d " " -f 4- | xargs`
 
   # make the SlackBuild
-  cat >$path/SlackBuild <<EOF
-# This is a pseudo port
+  path=$TREE/$group
+  mkdir -p $path
+  cat >$path/$name.SlackBuild <<EOF
+#!/bin/sh
+# This is a pseudo port--it may look absurd
+# MAINTAINER: Portpkg Project <http://portpkg.berlios.de>
+# SOURCES: $SOURCE/$group/$pkg.tgz
+# MD5SUMS: $md5sum
+# REQUIRES: $req
+# OPTIONAL: $opt
+# BLOCKS: $blk
 
 TMP=\${TMP:-/tmp}
 
@@ -70,26 +92,13 @@ VERSION=$ver
 ARCH=$arch
 BUILD=$build
 
+cat >/dev/null <<eof
+$desc
+eof
+
 CWD=\`pwd\`
 cp \$CWD/$name-\$VERSION-\$ARCH-\$BUILD.tgz \$TMP/
 EOF
-
-  # make the sources file
-  echo "$SOURCE/$s" >$path/sources
-
-  # make the md5sums file
-  grep "/$s$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ," >$path/md5sums
-
-  # make the slack-desc file
-  grep "^$name:" $t/PACKAGES.TXT >$path/slack-desc || true
-
-  # make the slack-* files
-  grep -A 7 "$pkg" $t/PACKAGES.TXT | grep REQUIRED | cut -d " " -f 4- | tr "," "\n" | xargs -r -l >$path/slack-required
-  grep -A 7 "$pkg" $t/PACKAGES.TXT | grep SUGGESTS | cut -d " " -f 4- | tr "," "\n" | xargs -r -l >$path/slack-suggests
-  grep -A 7 "$pkg" $t/PACKAGES.TXT | grep CONFLICTS | cut -d " " -f 4- | tr "," "\n" | xargs -r -l >$path/slack-conflicts
-  [ -s $path/slack-required ] || rm $path/slack-required
-  [ -s $path/slack-suggests ] || rm $path/slack-suggests
-  [ -s $path/slack-conflicts ] || rm $path/slack-conflicts
 done
 
 # done? make the changes valid
