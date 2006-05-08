@@ -153,6 +153,7 @@ cache() # file action regex
   shift 2
   [ "$*" ] && filter="grep $@" || filter="cat"
   if ! [ -f $file ]; then
+    debug "cache(): filling `basename $file`"
     eval "$action" | tee $file | $filter -
   else
     $filter $file
@@ -167,7 +168,7 @@ get() # url dest [md5sum]
   debug "get() $@"
 
   # mirrors
-    urls=`mirrors | while read master mirror; do \
+  urls=`mirrors | while read master mirror; do \
 echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
 
   debug "get(): urls="$urls
@@ -245,7 +246,7 @@ ls_diff() # >list
 {
   local t=`mktemp -d`
   local check
-  debug "ls_diff(): starting"
+  debug "ls_diff()"
 
   # prepare lists
   ( ls_loc -v $(exclude) | any2base; ls_inst ) | sort_ver >$t/avail
@@ -282,10 +283,10 @@ get_info() # pkgex
          esac
          loc=`find $(pwd)/ -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
          TEST_REQS=true
-         debug "Direct mode: Dependencies resolution disabled!";;
+         debug "get_info(): direct mode: dependencies resolution disabled";;
     */*) # explicitly named port: no exclude list
          loc=`ls_loc $(regex $1) | default`
-         [ "$loc" ] && debug "get_info(): Excluded port specified explicitly!";;
+         [ "$loc" ] && debug "get_info(): excluded port specified explicitly!";;
     *)   # find port, take the first if more than one available
          loc=`ls_loc $(regex $1) | grep -v $(exclude) | default`;;
   esac
@@ -345,8 +346,9 @@ ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz," | head -n 1`
 
   # check $TMP
   tmp=$TMP
-  if grep -sq "^TMP=[^$]" $script; then
-    tmp=`grep "^TMP=" $script | cut -d = -f 2`
+  if ! grep -sq "^TMP=\${TMP:-" $script; then
+#    tmp=`grep "^TMP=" $script | cut -d = -f 2`
+    tmp=/tmp
     warn "Assuming script uses TMP=$tmp!"
   fi
 
@@ -378,7 +380,7 @@ check_reqs()
 
     # is any version installed?
     if [ "$inst_pkg" ]; then
-      debug "check_reqs(): $req is installed ($inst_pkg)"
+      debug "check_reqs(): $inst_pkg is installed"
       # is this sufficient?
       $LAZY_CHECKS && continue
     fi
@@ -477,7 +479,8 @@ maintainer_mode()
 
   # remove script header
   sed -i "/^#!\/bin\/sh$/d" $script
-  for i in MAINTAINER FLAGS BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
+#  for i in MAINTAINER FLAGS BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
+  for i in MAINTAINER BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
     sed -i "/^# $i:/d" $script
   done
 
@@ -579,7 +582,7 @@ build_pkg()
     # find CFLAGS substitution (CFLAGS="$SLKCFLAGS")
     flags_var=`grep -o 'CFLAGS=\"\$[^ ]*' $script | cut -d = -f 2 | tail -n 1 | sed "s,[\"\$],,g"`
     if [ "$flags_var" ]; then
-      debug "build_pkg(): use $flags_var for CFLAGS"
+      debug "build_pkg(): using $flags_var for CFLAGS"
     else
       case $package in $name-$version-noarch-*) ;; *)
         $maintain && warn "No CFLAGS variable found! Compiling with default values";;
@@ -674,7 +677,7 @@ check_pkg()
 {
   local t=`mktemp -d`
   local s
-  debug "check_pkg()" "$@"
+  debug "check_pkg() $@"
   $DRY_RUN && return 0
   [ -f $pkg_file ] || return 0
 
@@ -716,7 +719,6 @@ add_pkg()
   # if it is already tracked as "started" (and therefore not "finished"),
   # it is either broken or a circular dependency
   if fgrep -sqx "$group/$package" $t/started; then
-    debug "add_pkg(): broke up $package intentionally"
     error "Circular dependency! Stopping $name."
     return 1
   # otherwise if tracked as "finished" (because of a dependency), skip it
@@ -795,7 +797,6 @@ add_pkg()
 do_add() # pkgex-list
 {
   local arg ret
-  debug "do_add() $@"
 
   # if we have implicit expressions here (groups), tell what they contain
   case "$@" in */|*/\ *)
@@ -823,7 +824,7 @@ do_diff()
 
   stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
   for pkg in $diff_list; do
-    debug "do_diff(): \$pkg=$pkg"
+    debug "do_diff(): pkg=$pkg"
     avail_rel=`echo $pkg | pkg2rel`
     n=`echo $pkg | pkg2name`
     inst_rel=`ls_inst $(regex $n) | pkg2rel | head -n 1`
@@ -1035,12 +1036,12 @@ maintain,export,noask"
   $DRY_RUN && INTERACTIVE=false
   $VERBOSE && output=/dev/stdout
 
-  debug "init(): arch_filter=\"$arch_filter\""
   debug "init(): PRT_DIR=$PRT_DIR"
   debug "init(): SRC_DIR=$SRC_DIR"
   debug "init(): PKG_DIR=$PKG_DIR"
   debug "init(): LOG_DIR=$LOG_DIR"
   debug "parse_options() $start_args"
+  debug "$action() $@"
 
   $NO_REQS && warn "Dependency resolving disabled!"
   $LAZY_CHECKS && warn "Enable lazy dependency checking!"
