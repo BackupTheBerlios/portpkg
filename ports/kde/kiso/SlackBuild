@@ -1,9 +1,9 @@
-TMP=${TMP:-/tmp}
+TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.8.2c
+VERSION=0.8.3
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -20,8 +20,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-cd $NAME-0.8.2 || exit 1
+tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -57,6 +57,6 @@ cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-0.8.2
+  rm -rf $TMP/$NAME-$VERSION
   rm -rf $PKG
 fi
