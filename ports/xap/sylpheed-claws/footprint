@@ -1,438 +1,344 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         101 install/doinst.sh
--rw-r--r-- root/root         597 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin      1991532 usr/bin/sylpheed
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/
--rw-r--r-- root/root       38475 usr/doc/sylpheed-claws-1.0.4/ABOUT-NLS
--rw-r--r-- root/root        4614 usr/doc/sylpheed-claws-1.0.4/AUTHORS
--rw-r--r-- root/root      341314 usr/doc/sylpheed-claws-1.0.4/ChangeLog
--rw-r--r-- root/root       15461 usr/doc/sylpheed-claws-1.0.4/COPYING
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/faq/
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/faq/de/
--rw-r--r-- root/root       10795 usr/doc/sylpheed-claws-1.0.4/faq/de/sylpheed-faq-1.html
--rw-r--r-- root/root        6919 usr/doc/sylpheed-claws-1.0.4/faq/de/sylpheed-faq-2.html
--rw-r--r-- root/root        5402 usr/doc/sylpheed-claws-1.0.4/faq/de/sylpheed-faq-3.html
--rw-r--r-- root/root        7735 usr/doc/sylpheed-claws-1.0.4/faq/de/sylpheed-faq.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/faq/en/
--rw-r--r-- root/root        9930 usr/doc/sylpheed-claws-1.0.4/faq/en/sylpheed-faq-1.html
--rw-r--r-- root/root        7514 usr/doc/sylpheed-claws-1.0.4/faq/en/sylpheed-faq-2.html
--rw-r--r-- root/root        4744 usr/doc/sylpheed-claws-1.0.4/faq/en/sylpheed-faq-3.html
--rw-r--r-- root/root       19143 usr/doc/sylpheed-claws-1.0.4/faq/en/sylpheed-faq-4.html
--rw-r--r-- root/root        8596 usr/doc/sylpheed-claws-1.0.4/faq/en/sylpheed-faq.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/faq/es/
--rw-r--r-- root/root       11540 usr/doc/sylpheed-claws-1.0.4/faq/es/sylpheed-faq-1.html
--rw-r--r-- root/root        8097 usr/doc/sylpheed-claws-1.0.4/faq/es/sylpheed-faq-2.html
--rw-r--r-- root/root        5578 usr/doc/sylpheed-claws-1.0.4/faq/es/sylpheed-faq-3.html
--rw-r--r-- root/root       19171 usr/doc/sylpheed-claws-1.0.4/faq/es/sylpheed-faq-4.html
--rw-r--r-- root/root        9000 usr/doc/sylpheed-claws-1.0.4/faq/es/sylpheed-faq.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/faq/fr/
--rw-r--r-- root/root       12794 usr/doc/sylpheed-claws-1.0.4/faq/fr/sylpheed-faq-1.html
--rw-r--r-- root/root        6788 usr/doc/sylpheed-claws-1.0.4/faq/fr/sylpheed-faq-2.html
--rw-r--r-- root/root        5572 usr/doc/sylpheed-claws-1.0.4/faq/fr/sylpheed-faq-3.html
--rw-r--r-- root/root        7825 usr/doc/sylpheed-claws-1.0.4/faq/fr/sylpheed-faq.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/faq/it/
--rw-r--r-- root/root       11071 usr/doc/sylpheed-claws-1.0.4/faq/it/sylpheed-faq-1.html
--rw-r--r-- root/root        6417 usr/doc/sylpheed-claws-1.0.4/faq/it/sylpheed-faq-2.html
--rw-r--r-- root/root        4858 usr/doc/sylpheed-claws-1.0.4/faq/it/sylpheed-faq-3.html
--rw-r--r-- root/root        7349 usr/doc/sylpheed-claws-1.0.4/faq/it/sylpheed-faq.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/manual/
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/manual/de/
--rw-r--r-- root/root        4655 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-10.html
--rw-r--r-- root/root        2564 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-11.html
--rw-r--r-- root/root       10103 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-12.html
--rw-r--r-- root/root        1797 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-13.html
--rw-r--r-- root/root        2244 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-14.html
--rw-r--r-- root/root        7251 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-15.html
--rw-r--r-- root/root        7159 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-16.html
--rw-r--r-- root/root        6348 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-17.html
--rw-r--r-- root/root        2413 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-18.html
--rw-r--r-- root/root        5118 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-19.html
--rw-r--r-- root/root        6827 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-1.html
--rw-r--r-- root/root        2687 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-20.html
--rw-r--r-- root/root        4152 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-2.html
--rw-r--r-- root/root        2287 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-3.html
--rw-r--r-- root/root        6134 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-4.html
--rw-r--r-- root/root        1612 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-5.html
--rw-r--r-- root/root       10967 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-6.html
--rw-r--r-- root/root        6932 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-7.html
--rw-r--r-- root/root        3419 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-8.html
--rw-r--r-- root/root        1918 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed-9.html
--rw-r--r-- root/root        7248 usr/doc/sylpheed-claws-1.0.4/manual/de/sylpheed.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/manual/en/
--rw-r--r-- root/root        3750 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-10.html
--rw-r--r-- root/root        3753 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-11.html
--rw-r--r-- root/root        6956 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-12.html
--rw-r--r-- root/root       24546 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-13.html
--rw-r--r-- root/root        6300 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-14.html
--rw-r--r-- root/root        2401 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-15.html
--rw-r--r-- root/root        6090 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-16.html
--rw-r--r-- root/root        3722 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-17.html
--rw-r--r-- root/root        2741 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-18.html
--rw-r--r-- root/root        5325 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-19.html
--rw-r--r-- root/root        6166 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-1.html
--rw-r--r-- root/root        2761 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-20.html
--rw-r--r-- root/root        1416 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-21.html
--rw-r--r-- root/root       19840 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-22.html
--rw-r--r-- root/root        4283 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-2.html
--rw-r--r-- root/root        1598 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-3.html
--rw-r--r-- root/root       10300 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-4.html
--rw-r--r-- root/root        1613 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-5.html
--rw-r--r-- root/root       19873 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-6.html
--rw-r--r-- root/root        5758 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-7.html
--rw-r--r-- root/root       20890 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-8.html
--rw-r--r-- root/root        3732 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed-9.html
--rw-r--r-- root/root       11512 usr/doc/sylpheed-claws-1.0.4/manual/en/sylpheed.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/manual/es/
--rw-r--r-- root/root        3892 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-10.html
--rw-r--r-- root/root        2915 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-11.html
--rw-r--r-- root/root       11303 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-12.html
--rw-r--r-- root/root        2011 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-13.html
--rw-r--r-- root/root        2429 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-14.html
--rw-r--r-- root/root        7116 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-15.html
--rw-r--r-- root/root        7923 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-16.html
--rw-r--r-- root/root        4062 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-17.html
--rw-r--r-- root/root        2887 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-18.html
--rw-r--r-- root/root        4665 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-19.html
--rw-r--r-- root/root        6715 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-1.html
--rw-r--r-- root/root        2909 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-20.html
--rw-r--r-- root/root        3238 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-2.html
--rw-r--r-- root/root        1871 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-3.html
--rw-r--r-- root/root        6272 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-4.html
--rw-r--r-- root/root        1694 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-5.html
--rw-r--r-- root/root       14921 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-6.html
--rw-r--r-- root/root        8049 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-7.html
--rw-r--r-- root/root        4379 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-8.html
--rw-r--r-- root/root        2076 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed-9.html
--rw-r--r-- root/root        7871 usr/doc/sylpheed-claws-1.0.4/manual/es/sylpheed.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/manual/fr/
--rw-r--r-- root/root        4626 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-10.html
--rw-r--r-- root/root        3085 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-11.html
--rw-r--r-- root/root       12508 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-12.html
--rw-r--r-- root/root        2123 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-13.html
--rw-r--r-- root/root        2035 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-14.html
--rw-r--r-- root/root        7322 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-15.html
--rw-r--r-- root/root        8975 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-16.html
--rw-r--r-- root/root        5329 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-17.html
--rw-r--r-- root/root        3870 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-18.html
--rw-r--r-- root/root        5535 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-19.html
--rw-r--r-- root/root        7250 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-1.html
--rw-r--r-- root/root        3085 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-20.html
--rw-r--r-- root/root        4711 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-2.html
--rw-r--r-- root/root        2177 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-3.html
--rw-r--r-- root/root        7025 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-4.html
--rw-r--r-- root/root        1737 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-5.html
--rw-r--r-- root/root       15793 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-6.html
--rw-r--r-- root/root        9805 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-7.html
--rw-r--r-- root/root        5303 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-8.html
--rw-r--r-- root/root        2310 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed-9.html
--rw-r--r-- root/root        7886 usr/doc/sylpheed-claws-1.0.4/manual/fr/sylpheed.html
-drwxr-xr-x root/root           0 usr/doc/sylpheed-claws-1.0.4/manual/ja/
--rw-r--r-- root/root        7671 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-10.html
--rw-r--r-- root/root        2644 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-11.html
--rw-r--r-- root/root        4411 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-12.html
--rw-r--r-- root/root        2302 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-13.html
--rw-r--r-- root/root        2908 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-14.html
--rw-r--r-- root/root        9815 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-15.html
--rw-r--r-- root/root        2914 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-16.html
--rw-r--r-- root/root        5126 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-17.html
--rw-r--r-- root/root       19532 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-18.html
--rw-r--r-- root/root         967 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-19.html
--rw-r--r-- root/root        2237 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-1.html
--rw-r--r-- root/root        3232 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-20.html
--rw-r--r-- root/root        3716 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-2.html
--rw-r--r-- root/root        1349 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-3.html
--rw-r--r-- root/root        5739 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-4.html
--rw-r--r-- root/root        1916 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-5.html
--rw-r--r-- root/root        2514 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-6.html
--rw-r--r-- root/root        8714 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-7.html
--rw-r--r-- root/root        8377 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-8.html
--rw-r--r-- root/root        1580 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed-9.html
--rw-r--r-- root/root        9875 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed.html
--rw-r--r-- root/root       79674 usr/doc/sylpheed-claws-1.0.4/manual/ja/sylpheed.sgml
--rw-r--r-- root/root       38442 usr/doc/sylpheed-claws-1.0.4/NEWS
--rw-r--r-- root/root        6763 usr/doc/sylpheed-claws-1.0.4/README
--rw-r--r-- root/root       32000 usr/doc/sylpheed-claws-1.0.4/README.claws
--rw-r--r-- root/root        1096 usr/doc/sylpheed-claws-1.0.4/RELEASE_NOTES.claws
--rw-r--r-- root/root        2254 usr/doc/sylpheed-claws-1.0.4/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/sylpheed-claws/
--rw-r--r-- root/root        2308 usr/include/sylpheed-claws/account.h
--rw-r--r-- root/root        1980 usr/include/sylpheed-claws/action.h
--rw-r--r-- root/root        1363 usr/include/sylpheed-claws/adbookbase.h
--rw-r--r-- root/root        4935 usr/include/sylpheed-claws/addrbook.h
--rw-r--r-- root/root        6836 usr/include/sylpheed-claws/addrcache.h
--rw-r--r-- root/root        2646 usr/include/sylpheed-claws/addrclip.h
--rw-r--r-- root/root        1502 usr/include/sylpheed-claws/addr_compl.h
--rw-r--r-- root/root        1155 usr/include/sylpheed-claws/addrdefs.h
--rw-r--r-- root/root        1100 usr/include/sylpheed-claws/addressadd.h
--rw-r--r-- root/root        1866 usr/include/sylpheed-claws/addressbook.h
--rw-r--r-- root/root        4020 usr/include/sylpheed-claws/addressitem.h
--rw-r--r-- root/root        1134 usr/include/sylpheed-claws/addrgather.h
--rw-r--r-- root/root        2372 usr/include/sylpheed-claws/addrharvest.h
--rw-r--r-- root/root        6293 usr/include/sylpheed-claws/addrindex.h
--rw-r--r-- root/root        7938 usr/include/sylpheed-claws/addritem.h
--rw-r--r-- root/root        3489 usr/include/sylpheed-claws/addrquery.h
--rw-r--r-- root/root        2451 usr/include/sylpheed-claws/addrselect.h
--rw-r--r-- root/root        2263 usr/include/sylpheed-claws/alertpanel.h
--rw-r--r-- root/root        1071 usr/include/sylpheed-claws/browseldap.h
--rw-r--r-- root/root        6457 usr/include/sylpheed-claws/codeconv.h
-drwxr-xr-x root/root           0 usr/include/sylpheed-claws/common/
--rw-r--r-- root/root        1439 usr/include/sylpheed-claws/common/base64.h
--rw-r--r-- root/root        4204 usr/include/sylpheed-claws/common/defs.h
--rw-r--r-- root/root        1276 usr/include/sylpheed-claws/common/hooks.h
--rw-r--r-- root/root         690 usr/include/sylpheed-claws/common/intl.h
--rw-r--r-- root/root        1582 usr/include/sylpheed-claws/common/log.h
--rw-r--r-- root/root        1718 usr/include/sylpheed-claws/common/md5.h
--rw-r--r-- root/root        2210 usr/include/sylpheed-claws/common/mgutils.h
--rw-r--r-- root/root        3002 usr/include/sylpheed-claws/common/nntp.h
--rw-r--r-- root/root        1020 usr/include/sylpheed-claws/common/passcrypt.h
--rw-r--r-- root/root        1535 usr/include/sylpheed-claws/common/plugin.h
--rw-r--r-- root/root        1407 usr/include/sylpheed-claws/common/prefs.h
--rw-r--r-- root/root        1481 usr/include/sylpheed-claws/common/progressindicator.h
--rw-r--r-- root/root        1237 usr/include/sylpheed-claws/common/quoted-printable.h
--rw-r--r-- root/root        4841 usr/include/sylpheed-claws/common/session.h
--rw-r--r-- root/root        2329 usr/include/sylpheed-claws/common/smtp.h
--rw-r--r-- root/root        3565 usr/include/sylpheed-claws/common/socket.h
--rw-r--r-- root/root        1918 usr/include/sylpheed-claws/common/ssl_certificate.h
--rw-r--r-- root/root        1543 usr/include/sylpheed-claws/common/ssl.h
--rw-r--r-- root/root        1464 usr/include/sylpheed-claws/common/string_match.h
--rw-r--r-- root/root        1369 usr/include/sylpheed-claws/common/stringtable.h
--rw-r--r-- root/root        1177 usr/include/sylpheed-claws/common/sylpheed.h
--rw-r--r-- root/root        1295 usr/include/sylpheed-claws/common/template.h
--rw-r--r-- root/root       13241 usr/include/sylpheed-claws/common/utils.h
--rw-r--r-- root/root        1002 usr/include/sylpheed-claws/common/uuencode.h
--rw-r--r-- root/root        1248 usr/include/sylpheed-claws/common/version.h
--rw-r--r-- root/root        2758 usr/include/sylpheed-claws/common/xml.h
--rw-r--r-- root/root        2248 usr/include/sylpheed-claws/common/xmlprops.h
--rw-r--r-- root/root        6244 usr/include/sylpheed-claws/compose.h
--rw-r--r-- root/root       14324 usr/include/sylpheed-claws/config.h
--rw-r--r-- root/root        1035 usr/include/sylpheed-claws/crash.h
--rw-r--r-- root/root        1354 usr/include/sylpheed-claws/customheader.h
--rw-r--r-- root/root        1247 usr/include/sylpheed-claws/displayheader.h
--rw-r--r-- root/root        1073 usr/include/sylpheed-claws/editaddress.h
--rw-r--r-- root/root        1025 usr/include/sylpheed-claws/editbook.h
--rw-r--r-- root/root        1105 usr/include/sylpheed-claws/editgroup.h
--rw-r--r-- root/root        1080 usr/include/sylpheed-claws/editjpilot.h
--rw-r--r-- root/root        1123 usr/include/sylpheed-claws/editldap_basedn.h
--rw-r--r-- root/root        1031 usr/include/sylpheed-claws/editldap.h
--rw-r--r-- root/root        1031 usr/include/sylpheed-claws/editvcard.h
--rw-r--r-- root/root        1484 usr/include/sylpheed-claws/enriched.h
--rw-r--r-- root/root        1058 usr/include/sylpheed-claws/exphtmldlg.h
--rw-r--r-- root/root        1053 usr/include/sylpheed-claws/expldifdlg.h
--rw-r--r-- root/root         988 usr/include/sylpheed-claws/export.h
--rw-r--r-- root/root        2895 usr/include/sylpheed-claws/exporthtml.h
--rw-r--r-- root/root        2527 usr/include/sylpheed-claws/exportldif.h
--rw-r--r-- root/root        2568 usr/include/sylpheed-claws/filtering.h
--rw-r--r-- root/root       27175 usr/include/sylpheed-claws/folder.h
--rw-r--r-- root/root        2308 usr/include/sylpheed-claws/folder_item_prefs.h
--rw-r--r-- root/root        1195 usr/include/sylpheed-claws/foldersel.h
--rw-r--r-- root/root        1188 usr/include/sylpheed-claws/folderutils.h
--rw-r--r-- root/root        3218 usr/include/sylpheed-claws/folderview.h
--rw-r--r-- root/root        1015 usr/include/sylpheed-claws/grouplistdialog.h
-drwxr-xr-x root/root           0 usr/include/sylpheed-claws/gtk/
--rw-r--r-- root/root         925 usr/include/sylpheed-claws/gtk/about.h
--rw-r--r-- root/root        1399 usr/include/sylpheed-claws/gtk/colorlabel.h
--rw-r--r-- root/root         981 usr/include/sylpheed-claws/gtk/colorsel.h
--rw-r--r-- root/root        1302 usr/include/sylpheed-claws/gtk/description_window.h
--rw-r--r-- root/root        1072 usr/include/sylpheed-claws/gtk/filesel.h
--rw-r--r-- root/root         963 usr/include/sylpheed-claws/gtk/foldersort.h
--rw-r--r-- root/root        3116 usr/include/sylpheed-claws/gtk/gtkaspell.h
--rw-r--r-- root/root        2304 usr/include/sylpheed-claws/gtk/gtksctree.h
--rw-r--r-- root/root        1734 usr/include/sylpheed-claws/gtk/gtkshruler.h
--rw-r--r-- root/root       10201 usr/include/sylpheed-claws/gtk/gtkstext.h
--rw-r--r-- root/root        4821 usr/include/sylpheed-claws/gtk/gtkutils.h
--rw-r--r-- root/root        2440 usr/include/sylpheed-claws/gtk/gtkvscrollbutton.h
--rw-r--r-- root/root        1413 usr/include/sylpheed-claws/gtk/inputdialog.h
--rw-r--r-- root/root        1409 usr/include/sylpheed-claws/gtk/logwindow.h
--rw-r--r-- root/root        2108 usr/include/sylpheed-claws/gtk/manage_window.h
--rw-r--r-- root/root        3011 usr/include/sylpheed-claws/gtk/menu.h
--rw-r--r-- root/root         999 usr/include/sylpheed-claws/gtk/pluginwindow.h
--rw-r--r-- root/root        1722 usr/include/sylpheed-claws/gtk/prefswindow.h
--rw-r--r-- root/root        1498 usr/include/sylpheed-claws/gtk/progressdialog.h
--rw-r--r-- root/root        2054 usr/include/sylpheed-claws/gtk/quicksearch.h
--rw-r--r-- root/root        1438 usr/include/sylpheed-claws/gtk/sslcertwindow.h
--rw-r--r-- root/root        1668 usr/include/sylpheed-claws/headerview.h
--rw-r--r-- root/root        1757 usr/include/sylpheed-claws/html.h
--rw-r--r-- root/root         951 usr/include/sylpheed-claws/imap_gtk.h
--rw-r--r-- root/root        1046 usr/include/sylpheed-claws/imap.h
--rw-r--r-- root/root         989 usr/include/sylpheed-claws/import.h
--rw-r--r-- root/root        1058 usr/include/sylpheed-claws/importldif.h
--rw-r--r-- root/root        1054 usr/include/sylpheed-claws/importmutt.h
--rw-r--r-- root/root        1054 usr/include/sylpheed-claws/importpine.h
--rw-r--r-- root/root        2338 usr/include/sylpheed-claws/inc.h
--rw-r--r-- root/root        4173 usr/include/sylpheed-claws/jpilot.h
--rw-r--r-- root/root        3625 usr/include/sylpheed-claws/ldapctrl.h
--rw-r--r-- root/root        1319 usr/include/sylpheed-claws/ldaplocate.h
--rw-r--r-- root/root        3746 usr/include/sylpheed-claws/ldapquery.h
--rw-r--r-- root/root        3139 usr/include/sylpheed-claws/ldapserver.h
--rw-r--r-- root/root        1319 usr/include/sylpheed-claws/ldaputil.h
--rw-r--r-- root/root        4086 usr/include/sylpheed-claws/ldif.h
--rw-r--r-- root/root        1406 usr/include/sylpheed-claws/localfolder.h
--rw-r--r-- root/root        1094 usr/include/sylpheed-claws/main.h
--rw-r--r-- root/root        5392 usr/include/sylpheed-claws/mainwindow.h
--rw-r--r-- root/root        1121 usr/include/sylpheed-claws/manual.h
--rw-r--r-- root/root        4566 usr/include/sylpheed-claws/matcher.h
--rw-r--r-- root/root        1324 usr/include/sylpheed-claws/matcher_parser.h
--rw-r--r-- root/root        1941 usr/include/sylpheed-claws/matcher_parser_lex.h
--rw-r--r-- root/root        6832 usr/include/sylpheed-claws/matcher_parser_parse.h
--rw-r--r-- root/root        1435 usr/include/sylpheed-claws/mbox.h
--rw-r--r-- root/root        1022 usr/include/sylpheed-claws/message_search.h
--rw-r--r-- root/root        3391 usr/include/sylpheed-claws/messageview.h
--rw-r--r-- root/root         943 usr/include/sylpheed-claws/mh_gtk.h
--rw-r--r-- root/root        1116 usr/include/sylpheed-claws/mh.h
--rw-r--r-- root/root        3285 usr/include/sylpheed-claws/mimeview.h
--rw-r--r-- root/root        1959 usr/include/sylpheed-claws/msgcache.h
--rw-r--r-- root/root        2131 usr/include/sylpheed-claws/mutt.h
--rw-r--r-- root/root         951 usr/include/sylpheed-claws/news_gtk.h
--rw-r--r-- root/root        1408 usr/include/sylpheed-claws/news.h
--rw-r--r-- root/root        2283 usr/include/sylpheed-claws/noticeview.h
--rw-r--r-- root/root        1686 usr/include/sylpheed-claws/partial_download.h
--rw-r--r-- root/root        2121 usr/include/sylpheed-claws/pine.h
-drwxr-xr-x root/root           0 usr/include/sylpheed-claws/plugins/
-drwxr-xr-x root/root           0 usr/include/sylpheed-claws/plugins/pgpmime/
--rw-r--r-- root/root        1186 usr/include/sylpheed-claws/plugins/pgpmime/passphrase.h
--rw-r--r-- root/root         974 usr/include/sylpheed-claws/plugins/pgpmime/pgpmime.h
--rw-r--r-- root/root        1665 usr/include/sylpheed-claws/plugins/pgpmime/prefs_gpg.h
--rw-r--r-- root/root        1020 usr/include/sylpheed-claws/plugins/pgpmime/select-keys.h
--rw-r--r-- root/root        1642 usr/include/sylpheed-claws/plugins/pgpmime/sgpgme.h
--rw-r--r-- root/root        3670 usr/include/sylpheed-claws/pop.h
--rw-r--r-- root/root        4673 usr/include/sylpheed-claws/prefs_account.h
--rw-r--r-- root/root        1107 usr/include/sylpheed-claws/prefs_actions.h
--rw-r--r-- root/root        6532 usr/include/sylpheed-claws/prefs_common.h
--rw-r--r-- root/root        1135 usr/include/sylpheed-claws/prefs_customheader.h
--rw-r--r-- root/root        1080 usr/include/sylpheed-claws/prefs_display_header.h
--rw-r--r-- root/root        1005 usr/include/sylpheed-claws/prefs_ext_prog.h
--rw-r--r-- root/root        1169 usr/include/sylpheed-claws/prefs_filtering_action.h
--rw-r--r-- root/root        1447 usr/include/sylpheed-claws/prefs_filtering.h
--rw-r--r-- root/root        1310 usr/include/sylpheed-claws/prefs_folder_item.h
--rw-r--r-- root/root         990 usr/include/sylpheed-claws/prefs_fonts.h
--rw-r--r-- root/root        4881 usr/include/sylpheed-claws/prefs_gtk.h
--rw-r--r-- root/root        1121 usr/include/sylpheed-claws/prefs_matcher.h
--rw-r--r-- root/root        1015 usr/include/sylpheed-claws/prefs_msg_colors.h
--rw-r--r-- root/root         984 usr/include/sylpheed-claws/prefs_spelling.h
--rw-r--r-- root/root        1136 usr/include/sylpheed-claws/prefs_summary_column.h
--rw-r--r-- root/root         927 usr/include/sylpheed-claws/prefs_template.h
--rw-r--r-- root/root         994 usr/include/sylpheed-claws/prefs_themes.h
--rw-r--r-- root/root        1014 usr/include/sylpheed-claws/prefs_toolbar.h
--rw-r--r-- root/root        1005 usr/include/sylpheed-claws/prefs_wrapping.h
--rw-r--r-- root/root        3172 usr/include/sylpheed-claws/privacy.h
--rw-r--r-- root/root        2992 usr/include/sylpheed-claws/procheader.h
--rw-r--r-- root/root        5776 usr/include/sylpheed-claws/procmime.h
--rw-r--r-- root/root        9836 usr/include/sylpheed-claws/procmsg.h
--rw-r--r-- root/root         398 usr/include/sylpheed-claws/quote_fmt.h
--rw-r--r-- root/root        1711 usr/include/sylpheed-claws/quote_fmt_lex.h
--rw-r--r-- root/root        3791 usr/include/sylpheed-claws/quote_fmt_parse.h
--rw-r--r-- root/root        1412 usr/include/sylpheed-claws/recv.h
--rw-r--r-- root/root        1329 usr/include/sylpheed-claws/remotefolder.h
--rw-r--r-- root/root        1332 usr/include/sylpheed-claws/send_message.h
--rw-r--r-- root/root         979 usr/include/sylpheed-claws/setup.h
--rw-r--r-- root/root        1434 usr/include/sylpheed-claws/sourcewindow.h
--rw-r--r-- root/root        1018 usr/include/sylpheed-claws/ssl_manager.h
--rw-r--r-- root/root        1729 usr/include/sylpheed-claws/statusbar.h
--rw-r--r-- root/root        4709 usr/include/sylpheed-claws/stock_pixmap.h
--rw-r--r-- root/root        1022 usr/include/sylpheed-claws/summary_search.h
--rw-r--r-- root/root        8549 usr/include/sylpheed-claws/summaryview.h
--rw-r--r-- root/root        2781 usr/include/sylpheed-claws/textview.h
--rw-r--r-- root/root        5526 usr/include/sylpheed-claws/toolbar.h
--rw-r--r-- root/root        1910 usr/include/sylpheed-claws/undo.h
--rw-r--r-- root/root        1051 usr/include/sylpheed-claws/unmime.h
--rw-r--r-- root/root        3449 usr/include/sylpheed-claws/vcard.h
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         367 usr/lib/pkgconfig/sylpheed-claws.pc
-drwxr-xr-x root/root           0 usr/lib/sylpheed-claws/
-drwxr-xr-x root/root           0 usr/lib/sylpheed-claws/plugins/
--rw-r--r-- root/root        9678 usr/lib/sylpheed-claws/plugins/dillo_viewer.a
--rwxr-xr-x root/root         995 usr/lib/sylpheed-claws/plugins/dillo_viewer.la
--rwxr-xr-x root/root       10996 usr/lib/sylpheed-claws/plugins/dillo_viewer.so
--rw-r--r-- root/root       16166 usr/lib/sylpheed-claws/plugins/image_viewer.a
--rwxr-xr-x root/root        1021 usr/lib/sylpheed-claws/plugins/image_viewer.la
--rwxr-xr-x root/root       15844 usr/lib/sylpheed-claws/plugins/image_viewer.so
--rw-r--r-- root/root       59680 usr/lib/sylpheed-claws/plugins/pgpmime.a
--rwxr-xr-x root/root         812 usr/lib/sylpheed-claws/plugins/pgpmime.la
--rwxr-xr-x root/root       51968 usr/lib/sylpheed-claws/plugins/pgpmime.so
--rw-r--r-- root/root       24386 usr/lib/sylpheed-claws/plugins/spamassassin.a
--rw-r--r-- root/root       15124 usr/lib/sylpheed-claws/plugins/spamassassin_gtk.a
--rwxr-xr-x root/root        1038 usr/lib/sylpheed-claws/plugins/spamassassin_gtk.la
--rwxr-xr-x root/root       17036 usr/lib/sylpheed-claws/plugins/spamassassin_gtk.so
--rwxr-xr-x root/root         995 usr/lib/sylpheed-claws/plugins/spamassassin.la
--rwxr-xr-x root/root       24112 usr/lib/sylpheed-claws/plugins/spamassassin.so
--rw-r--r-- root/root       35044 usr/lib/sylpheed-claws/plugins/trayicon.a
--rwxr-xr-x root/root         967 usr/lib/sylpheed-claws/plugins/trayicon.la
--rwxr-xr-x root/root       28388 usr/lib/sylpheed-claws/plugins/trayicon.so
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root        2410 usr/man/man1/i686-slackware-linux-sylpheed.1.gz
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root         235 usr/share/applications/sylpheed.desktop
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/bg/
-drwxr-xr-x root/root           0 usr/share/locale/bg/LC_MESSAGES/
--rw-r--r-- root/root      110996 usr/share/locale/bg/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/cs/
-drwxr-xr-x root/root           0 usr/share/locale/cs/LC_MESSAGES/
--rw-r--r-- root/root      104544 usr/share/locale/cs/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root      163803 usr/share/locale/de/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/el/
-drwxr-xr-x root/root           0 usr/share/locale/el/LC_MESSAGES/
--rw-r--r-- root/root       36979 usr/share/locale/el/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r-- root/root        3960 usr/share/locale/en_GB/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/es/
-drwxr-xr-x root/root           0 usr/share/locale/es/LC_MESSAGES/
--rw-r--r-- root/root      162061 usr/share/locale/es/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root      165639 usr/share/locale/fr/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/hr/
-drwxr-xr-x root/root           0 usr/share/locale/hr/LC_MESSAGES/
--rw-r--r-- root/root      155087 usr/share/locale/hr/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/hu/
-drwxr-xr-x root/root           0 usr/share/locale/hu/LC_MESSAGES/
--rw-r--r-- root/root       86417 usr/share/locale/hu/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/it/
-drwxr-xr-x root/root           0 usr/share/locale/it/LC_MESSAGES/
--rw-r--r-- root/root      163326 usr/share/locale/it/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/ja/
-drwxr-xr-x root/root           0 usr/share/locale/ja/LC_MESSAGES/
--rw-r--r-- root/root      179254 usr/share/locale/ja/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/ko/
-drwxr-xr-x root/root           0 usr/share/locale/ko/LC_MESSAGES/
--rw-r--r-- root/root      117968 usr/share/locale/ko/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/nl/
-drwxr-xr-x root/root           0 usr/share/locale/nl/LC_MESSAGES/
--rw-r--r-- root/root       84257 usr/share/locale/nl/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/pl/
-drwxr-xr-x root/root           0 usr/share/locale/pl/LC_MESSAGES/
--rw-r--r-- root/root      149607 usr/share/locale/pl/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r-- root/root      165562 usr/share/locale/pt_BR/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root      206496 usr/share/locale/ru/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/sk/
-drwxr-xr-x root/root           0 usr/share/locale/sk/LC_MESSAGES/
--rw-r--r-- root/root      162841 usr/share/locale/sk/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr/
-drwxr-xr-x root/root           0 usr/share/locale/sr/LC_MESSAGES/
--rw-r--r-- root/root      209246 usr/share/locale/sr/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/sv/
-drwxr-xr-x root/root           0 usr/share/locale/sv/LC_MESSAGES/
--rw-r--r-- root/root       46773 usr/share/locale/sv/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r-- root/root      132852 usr/share/locale/zh_CN/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW.Big5/
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW.Big5/LC_MESSAGES/
--rw-r--r-- root/root       70104 usr/share/locale/zh_TW.Big5/LC_MESSAGES/sylpheed-claws.mo
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        3374 usr/share/pixmaps/sylpheed.png
+drwxr-xr-x root/root ./
+drwxr-xr-x root/root install/
+-rw-r--r-- root/root install/doinst.sh
+-rw-r--r-- root/root install/slack-desc
+drwxr-xr-x root/root usr/
+drwxr-xr-x root/bin usr/bin/
+-rwxr-xr-x root/bin usr/bin/sylpheed-claws
+drwxr-xr-x root/root usr/doc/
+drwxr-xr-x root/root usr/doc/sylpheed-claws-2.2.0/
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/ABOUT-NLS
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/AUTHORS
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/ChangeLog
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/COPYING
+drwxr-xr-x root/root usr/doc/sylpheed-claws-2.2.0/manual/
+drwxr-xr-x root/root usr/doc/sylpheed-claws-2.2.0/manual/en/
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/en/sylpheed-claws-manual.html
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/en/sylpheed-claws-manual.pdf
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/en/sylpheed-claws-manual.ps
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/en/sylpheed-claws-manual.txt
+drwxr-xr-x root/root usr/doc/sylpheed-claws-2.2.0/manual/fr/
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/fr/sylpheed-claws-manual.html
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/fr/sylpheed-claws-manual.pdf
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/fr/sylpheed-claws-manual.ps
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/fr/sylpheed-claws-manual.txt
+drwxr-xr-x root/root usr/doc/sylpheed-claws-2.2.0/manual/pl/
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/pl/sylpheed-claws-manual.html
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/pl/sylpheed-claws-manual.pdf
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/pl/sylpheed-claws-manual.ps
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/manual/pl/sylpheed-claws-manual.txt
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/NEWS
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/README
+-rw-r--r-- root/root usr/doc/sylpheed-claws-2.2.0/TODO
+drwxr-xr-x root/root usr/include/
+drwxr-xr-x root/root usr/include/sylpheed-claws/
+-rw-r--r-- root/root usr/include/sylpheed-claws/account.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/action.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/adbookbase.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrbook.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrcache.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrclip.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addr_compl.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrdefs.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addressadd.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addressbook.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addressitem.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrgather.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrharvest.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrindex.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addritem.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrquery.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/addrselect.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/alertpanel.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/browseldap.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/codeconv.h
+drwxr-xr-x root/root usr/include/sylpheed-claws/common/
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/base64.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/defs.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/hooks.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/log.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/md5.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/mgutils.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/nntp.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/passcrypt.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/plugin.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/prefs.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/progressindicator.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/quoted-printable.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/session.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/smtp.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/socket.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/ssl_certificate.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/ssl.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/string_match.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/stringtable.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/sylpheed.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/template.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/timing.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/utils.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/uuencode.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/version.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/xml.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/common/xmlprops.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/compose.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/config.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/crash.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/customheader.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/displayheader.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editaddress.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editbook.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editgroup.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editjpilot.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editldap_basedn.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editldap.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/editvcard.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/enriched.h
+drwxr-xr-x root/root usr/include/sylpheed-claws/etpan/
+-rw-r--r-- root/root usr/include/sylpheed-claws/etpan/etpan-errors.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/etpan/etpan-log.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/etpan/etpan-thread-manager.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/etpan/etpan-thread-manager-types.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/etpan/imap-thread.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/exphtmldlg.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/expldifdlg.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/export.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/exporthtml.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/exportldif.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/filtering.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/folder.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/folder_item_prefs.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/foldersel.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/folderutils.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/folderview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gedit-print.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/grouplistdialog.h
+drwxr-xr-x root/root usr/include/sylpheed-claws/gtk/
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/about.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/colorlabel.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/colorsel.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/description_window.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/filesel.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/foldersort.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/gtkaspell.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/gtksctree.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/gtkshruler.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/gtksourceprintjob.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/gtkutils.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/gtkvscrollbutton.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/icon_legend.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/inputdialog.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/logwindow.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/manage_window.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/menu.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/pluginwindow.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/prefswindow.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/progressdialog.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/quicksearch.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/sslcertwindow.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/gtk/sylpheed-marshal.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/headerview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/html.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/image_viewer.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/imap_gtk.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/imap.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/import.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/importldif.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/importmutt.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/importpine.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/inc.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/jpilot.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ldapctrl.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ldaplocate.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ldapquery.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ldapserver.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ldaputil.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ldif.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/localfolder.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/main.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/mainwindow.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/manual.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/matcher.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/matcher_parser.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/matcher_parser_lex.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/matcher_parser_parse.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/mbox.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/message_search.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/messageview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/mh_gtk.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/mh.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/mimeview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/msgcache.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/mutt.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/news_gtk.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/news.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/noticeview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/partial_download.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/pine.h
+drwxr-xr-x root/root usr/include/sylpheed-claws/plugins/
+drwxr-xr-x root/root usr/include/sylpheed-claws/plugins/pgpcore/
+-rw-r--r-- root/root usr/include/sylpheed-claws/plugins/pgpcore/passphrase.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/plugins/pgpcore/prefs_gpg.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/plugins/pgpcore/select-keys.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/plugins/pgpcore/sgpgme.h
+drwxr-xr-x root/root usr/include/sylpheed-claws/plugins/pgpinline/
+-rw-r--r-- root/root usr/include/sylpheed-claws/plugins/pgpinline/pgpinline.h
+drwxr-xr-x root/root usr/include/sylpheed-claws/plugins/pgpmime/
+-rw-r--r-- root/root usr/include/sylpheed-claws/plugins/pgpmime/pgpmime.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/pop.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_account.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_actions.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_common.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_compose_writing.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_customheader.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_display_header.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_ext_prog.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_filtering_action.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_filtering.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_folder_column.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_folder_item.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_fonts.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_gtk.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_image_viewer.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_matcher.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_message.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_msg_colors.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_other.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_quote.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_receive.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_send.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_spelling.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_summaries.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_summary_column.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_template.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_themes.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_toolbar.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/prefs_wrapping.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/privacy.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/procheader.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/procmime.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/procmsg.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/quote_fmt.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/quote_fmt_lex.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/quote_fmt_parse.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/recv.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/remotefolder.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/send_message.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/setup.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/sourcewindow.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/ssl_manager.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/statusbar.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/stock_pixmap.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/summary_search.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/summaryview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/textview.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/toolbar.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/undo.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/unmime.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/vcard.h
+-rw-r--r-- root/root usr/include/sylpheed-claws/wizard.h
+drwxr-xr-x root/root usr/lib/
+drwxr-xr-x root/root usr/lib/pkgconfig/
+-rw-r--r-- root/root usr/lib/pkgconfig/sylpheed-claws.pc
+drwxr-xr-x root/root usr/lib/sylpheed-claws/
+drwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/dillo_viewer.a
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/dillo_viewer.la
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/dillo_viewer.so
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/pgpcore.a
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/pgpcore.la
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/pgpcore.so
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/pgpinline.a
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/pgpinline.deps
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/pgpinline.la
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/pgpinline.so
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/pgpmime.a
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/pgpmime.deps
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/pgpmime.la
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/pgpmime.so
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/spamassassin.a
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/spamassassin.la
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/spamassassin.so
+-rw-r--r-- root/root usr/lib/sylpheed-claws/plugins/trayicon.a
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/trayicon.la
+-rwxr-xr-x root/root usr/lib/sylpheed-claws/plugins/trayicon.so
+drwxr-xr-x root/root usr/man/
+drwxr-xr-x root/root usr/man/man1/
+-rw-r--r-- root/root usr/man/man1/i686-slackware-linux-sylpheed-claws.1.gz
+drwxr-xr-x root/root usr/share/
+drwxr-xr-x root/root usr/share/applications/
+-rw-r--r-- root/root usr/share/applications/sylpheed-claws.desktop
+drwxr-xr-x root/root usr/share/locale/
+drwxr-xr-x root/root usr/share/locale/bg/
+drwxr-xr-x root/root usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/bg/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/ca/
+drwxr-xr-x root/root usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ca/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/cs/
+drwxr-xr-x root/root usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/cs/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/de/
+drwxr-xr-x root/root usr/share/locale/de/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/de/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/el/
+drwxr-xr-x root/root usr/share/locale/el/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/el/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/en_GB/
+drwxr-xr-x root/root usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/en_GB/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/es/
+drwxr-xr-x root/root usr/share/locale/es/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/es/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/fi/
+drwxr-xr-x root/root usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/fi/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/fr/
+drwxr-xr-x root/root usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/fr/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/hr/
+drwxr-xr-x root/root usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/hr/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/hu/
+drwxr-xr-x root/root usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/hu/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/it/
+drwxr-xr-x root/root usr/share/locale/it/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/it/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/ja/
+drwxr-xr-x root/root usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ja/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/ko/
+drwxr-xr-x root/root usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ko/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/nb/
+drwxr-xr-x root/root usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/nb/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/nl/
+drwxr-xr-x root/root usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/nl/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/pl/
+drwxr-xr-x root/root usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pl/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/pt_BR/
+drwxr-xr-x root/root usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/pt_BR/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/ru/
+drwxr-xr-x root/root usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/ru/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/sk/
+drwxr-xr-x root/root usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/sk/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/sr/
+drwxr-xr-x root/root usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/sr/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/sv/
+drwxr-xr-x root/root usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/sv/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/zh_CN/
+drwxr-xr-x root/root usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/zh_CN/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/locale/zh_TW/
+drwxr-xr-x root/root usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r-- root/root usr/share/locale/zh_TW/LC_MESSAGES/sylpheed-claws.mo
+drwxr-xr-x root/root usr/share/pixmaps/
+-rw-r--r-- root/root usr/share/pixmaps/sylpheed-claws.png
