@@ -1,3 +1,58 @@
+2006-05-17  topf  <topf@users.berlios.de>
+
+  * open/sylpheed-claws-extra-plugins/ChangeLog, open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/footprint, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/md5sums:
+  Updated to 2.2.0 (sjn)
+
+  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/sources:
+  Updated to 2.2.0 (sjn)
+
+  * d/portpkg/export.portpkg, d/portpkg/portpkg:
+  * Write footprint to $LOG_DIR/$name.footprint.
+  * Create footprint after rewriting script header to make sure its
+     newer.
+  * Stop export when footprint is *older* (not when its not newer) than
+    the script.
+  * Minor changes to output messages.
+
+2006-05-08  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  * Check explicitly for TMP=${TMP:-xxx} in the script and set tmp=/tmp
+    is this failes in get_info().
+  * Cleaned up some debugging messages.
+  * Don't remove FLAGS header in maintainer_mode().
+
+  * d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin, d/portpkg/sync.slackyit-bin:
+  Synced with the generic engine in sync.slackware-bin.
+
+  * d/portpkg/sync.slackware-bin:
+  * Actually, we need FILELIST.TXT, because many packages are not
+    listed in PACKAGES.TXT.
+  * Misc updates to the generic engine.
+
+  * d/portpkg/mirrors:
+  * Added mirrors for linuxpackages.net.
+  * Added default mirror for sourceforge.net.
+
+2006-05-06  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  * Fixed typo. Interactive means "_do_ ask".
+  * Fixed $url if no mirros declared in get() (hnaz).
+  * Fixed testing whether `pwd` is in $PRT_DIR in get_info().
+  * Fixed parsing md5sums also from within script in get_info().
+  * Fixed setting TMP enviroment correctly in build_pkg() (hnaz).
+
+  * d/portpkg/pp-config:
+  settings(): Do not evaluate results if dialog is canceled.
+
+2006-05-05  hnaz  <hnaz@users.berlios.de>
+
+  * xap/bmp/SlackBuild, xap/bmp/doinst.sh, xap/bmp/footprint, xap/bmp/md5sums, xap/bmp/requires, xap/bmp/slack-desc, xap/bmp/sources:
+  Update from 0.9.7 to 0.9.7.1.
+
+2006-05-05  topf  <topf@users.berlios.de>
+
 2006-05-04  topf  <topf@users.berlios.de>
 
   * d/portpkg/export.portpkg: Pause a little earlier.
