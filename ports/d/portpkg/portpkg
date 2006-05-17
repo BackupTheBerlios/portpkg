@@ -433,13 +433,6 @@ maintainer_mode()
   $maintain || return 0
   has_prog /usr/lib/rpm/find-requires || die
 
-  # regenerate md5sums and footprint
-  row "Rewriting: footprint script-header"
-
-  # write a file list of the package (remove creation time and size)
-#  tar tzvf $tmp/$package.tgz | awk '{ print $1,$2,$6 }' | sort -k 3 >footprint
-  tar tzvf $tmp/$package.tgz | xargs -l | cut -d " " -f 1,2,6 | sort -k 3 | column -t >footprint
-
   # explodepkg package tree?
   if ! [ -d $tmp/package-$name ]; then
     # if *this* is a file we cannot remove, we must fail
@@ -519,8 +512,8 @@ maintainer_mode()
   # remove obsolete files
   rm -f arbitrary requires blocks optional slot-in pseudo no-fakeroot flags md5sums sources
 
-  # footprint must be newer than the script for export
-  touch $path/footprint
+  # write a file list of the package (remove creation time and size)
+  tar tzvf $tmp/$package.tgz | xargs -l | cut -d " " -f 1,2,6 | sort -k 3 | column -t >$LOG_DIR/$name.footprint
 }
 
 # build package
@@ -532,7 +525,7 @@ build_pkg()
 
   if $maintain; then
 #    script_opt=""
-    warn "Maintainer mode: Modifying files: requires md5sums footprint flags"
+    warn "Maintainer mode: Script header will be modified!"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
 #    md5sums=""
   else

@@ -54,8 +54,8 @@ for arg in `explicit "$@"`; do
   fi
 
   # check if it's already run
-  if ! [ -f $path/footprint ] || ! [ $path/footprint -nt $script ]; then
-    error "Please do a test run before exporting: $group/$name"
+  if ! [ -f $LOG_DIR/$name.footprint ] || [ $LOG_DIR/$name.footprint -ot $script ]; then
+    error "Build script is newer than last package: $group/$name"
     continue
   fi
 
