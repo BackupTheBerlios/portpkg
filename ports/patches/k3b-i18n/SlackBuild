@@ -1,9 +1,9 @@
-TMP=${TMP:-/tmp}
+TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.12.10
+VERSION=0.12.15
 ARCH=noarch
 BUILD=1sjn
 
@@ -50,3 +50,7 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ];then
+tm -rf $PKG $TMP/$NAME-$VERSION
+fi
