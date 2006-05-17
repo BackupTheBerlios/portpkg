@@ -1,9 +1,9 @@
-TMP=${TMP:-/tmp}
+TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.12.10
+VERSION=0.12.15
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -22,7 +22,7 @@ mkdir -p $PKG/usr
 cd $TMP || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
-zcat $CWD/k3b-u64.pw.patch.gz | patch -p1
+zcat $CWD/k3b-u64.patch.gz | patch -p1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -50,3 +50,7 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ];then
+tm -rf $PKG $TMP/$NAME-$VERSION
+fi
