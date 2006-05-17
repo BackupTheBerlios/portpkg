@@ -1,11 +1,11 @@
-TMP=${TMP:-/tmp}
+TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.4.0
+VERSION=0.4.2
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=2sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -22,15 +22,11 @@ mkdir -p $PKG/usr
 cd $TMP
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
+zcat $CWD/libtunepimp.taglib-1.4.diff.gz | patch -p1 --verbose || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-./configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --localstatedir=/var/lib \
-  --program-prefix="" \
-  --disable-static \
+./configure --prefix=/usr --enable-static=no \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
