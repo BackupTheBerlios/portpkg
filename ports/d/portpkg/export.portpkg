@@ -54,7 +54,7 @@ for arg in `explicit "$@"`; do
   fi
 
   # check if it's already run
-  if ! [ -f $LOG_DIR/$name.footprint ] || [ $LOG_DIR/$name.footprint -ot $script ]; then
+  if [ -f $LOG_DIR/$name.footprint ] && [ $LOG_DIR/$name.footprint -ot $script ]; then
     error "Build script is newer than last package: $group/$name"
     continue
   fi
