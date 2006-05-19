@@ -1,9 +1,17 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.linuxant.com/drivers/hsf/full/archive/hsfmodem-7.47.00.01full/hsfmodem-7.47.00.01full.tar.gz
+# MD5SUMS: 450aa6593df71d1b987aeb24788b4be8  hsfmodem-7.47.00.01full.tar.gz
+# MD5SUMS: 4e2b60a7643ce8cf37300ac54b435cd5  hsfmodem-7.18.00.07full.tar.gz
+# REQUIRES: perl
+# OPTIONAL: kernel-source tcl
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=7.18.00.07full
+VERSION=7.47.00.01full
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -19,12 +27,13 @@ fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
-cd $TMP || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
-cd $NAME-$VERSION || exit 1
+cd $TMP
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION
 chown -R root.root .
 #=install
-make install ROOT=$PKG || exit 1
+make install ROOT=$PKG
+find $PKG/ -exec sed -i "s,$PKG/,/,g" {} \;
 #=install
 rm -rf $PKG/usr/info/dir
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
@@ -33,7 +42,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   BUGS CREDITS FAQ LICENSE README \
@@ -44,7 +53,7 @@ find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
-cd $PKG || exit 1
+cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
