@@ -1,9 +1,16 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/totem/1.4/totem-1.4.1.tar.bz2
+# MD5SUMS: 6788b83f7889f61eef5922f4daecd859  totem-1.4.1.tar.bz2
+# REQUIRES: gnome-desktop libglade nautilus x11 xine-lib
+# OPTIONAL: mozilla
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.0
+VERSION=1.4.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -20,8 +27,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/totem-$VERSION.tar.bz2
+cd totem-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -37,7 +44,6 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
 rm -rf $PKG/var/lib/scrollkeeper
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -60,6 +66,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/totem-$VERSION
   rm -rf $PKG
 fi
