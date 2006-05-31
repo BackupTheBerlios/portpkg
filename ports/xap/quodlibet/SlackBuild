@@ -1,9 +1,16 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.sacredchao.net/~piman/software/quodlibet-0.20.1.tar.gz
+# MD5SUMS: 6f49fc7bce802a762ea6cfbc1be6b1b0  quodlibet-0.20.1.tar.gz
+# REQUIRES: gst-python gtk+2 mutagen pygtk pyid3lib python
+# OPTIONAL: pyao pyflac pymad pymodplug pymusepack pyvorbis
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.18
+VERSION=0.20.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -20,15 +27,13 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/quodlibet-$VERSION.tar.gz
+cd quodlibet-$VERSION
 chown -R root.root .
 make extensions
 make install PREFIX=/usr DESTDIR=$PKG
-mv $PKG/usr/share/man $PKG/usr/
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -50,6 +55,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/quodlibet-$VERSION
   rm -rf $PKG
 fi
