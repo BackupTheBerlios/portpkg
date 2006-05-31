@@ -1,11 +1,17 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gdm/2.14/gdm-2.14.4.tar.bz2
+# MD5SUMS: 04cbd92e0c264787328e3373da3ebc11  gdm-2.14.4.tar.bz2
+# REQUIRES: libglade libgnomecanvas librsvg popt x11
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.14.0
+VERSION=2.14.4
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -71,7 +77,6 @@ ln -s /usr/sbin/gdmsetup $PKG/usr/bin/gdmsetup
 
 rm -rf $PKG/var/lib/scrollkeeper
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded

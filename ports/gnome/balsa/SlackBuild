@@ -1,11 +1,17 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://balsa.gnome.org/balsa-2.3.12.tar.bz2
+# MD5SUMS: 3792d22cde7aceeae37108ed09477711  balsa-2.3.12.tar.bz2
+# REQUIRES: aspell gmime gtkhtml libesmtp pcre
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.3.10
+VERSION=2.3.12
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
