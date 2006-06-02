@@ -7,7 +7,18 @@ case "$1" in
 	# disable hotplug helper, udevd listens to netlink
 	echo "" > /proc/sys/kernel/hotplug
 
-	# mount tmpfs on /dev, the SUSE kernel initramfs does this normally
+	# copy the needed disk nodes to the static devices directory
+	RDEV=`sed -ne '/\W\/\W/s#/dev/\(\w*\)[0-9].*#\1#p' /etc/fstab`
+	if ! [ -e /lib/udev/devices/$RDEV ]; then
+		cp -a /dev/`echo $RDEV | cut -f3 -d/` /lib/udev/devices/ 2>/dev/null
+	fi
+	for i in `grep "$RDEV" /etc/fstab | cut -f1 -d\  | cut -f3 -d/`; do
+		if ! [ -e /lib/udev/devices/$i ]; then
+			cp -a /dev/$i /lib/udev/devices/ 2>/dev/null
+		fi
+	done
+
+	# mount tmpfs on /dev
 	if ! grep -E -q "^[^[:space:]]+ /dev tmpfs" /proc/mounts; then
 	    # umount shm if needed
 	    if grep -E -q "^[^[:space:]]+ /dev/shm tmpfs" /proc/mounts; then
@@ -16,67 +27,37 @@ case "$1" in
 
 	    # umount pts if needed, will remount it
 	    if grep -E -q "^[^[:space:]]+ /dev/pts devpts" /proc/mounts; then
-		umount -n -l /dev/pts
+		umount -l /dev/pts
 	    fi
 
 	    # mount tmpfs on /dev
+	    # the -n is because we don't want /dev umounted when
+	    # someone (rc.[06]) calls umount -a
 	    mount -n -o mode=0755 -t tmpfs tmpfs /dev
-
-	    # we are on tmpfs anyway
-	    mkdir /dev/shm
 
 	    # remount pts
 	    mkdir /dev/pts
 	    mount -n -o mode=0620,gid=5 -t devpts devpts /dev/pts
+
+	    if [ -d /proc/bus/usb ]; then
+		mount none -t usbfs /proc/bus/usb -o devgid=10,devmode=0666
+	    fi
 	fi
 
 	# populate initial /dev with the static nodes
 	cp --preserve=all --recursive --remove-destination /lib/udev/devices/* /dev
 
 	# start udevd
-	echo "Starting udevd "
-	/sbin/udevd --daemon	
+	echo "Starting udevd: /sbin/udevd --daemon"
+	/sbin/udevd --daemon
 
 	# generate events with the sysfs trigger
+	echo "Performing Coldplugging: "
+
 	mkdir -p /dev/.udev/queue
-	list=$(echo /sys/bus/*/devices/*/uevent)
-	list="$list $(echo /sys/class/*/*/uevent)"
-	list="$list $(echo /sys/block/*/uevent /sys/block/*/*/uevent)"
-	for i in $list; do
-	    case "$i" in
-		*/device/uevent)
-		    # skip followed device symlinks
-		    continue
-		    ;;
-
-		*/class/mem/*|*/class/tty/*)
-		    first="$first $i"
-		    ;;
-
-		*/block/md*)
-		    last="$last $i"
-		    ;;
-
-		*/*)
-		    default="$default $i"
-		    ;;
-	    esac
-	done
-
-	# trigger the sorted events
-	for i in $first $default $last; do
-	    echo "add" > "$i"
-	done
-
-	udevd_timeout=20
-    	while [ -d /dev/.udev/queue ]; do
-	    sleep 2 
-	    udevd_timeout=$(($udevd_timeout - 1))
-	    if [ $udevd_timeout -eq 0 ]; then
-		break
- 	    fi 
-    	done
-
+	
+	# Much more fast than all old shell script code
+	/sbin/udevtrigger && /sbin/udevsettle
 	;;
     stop)
 	echo "Stopping udevd"
@@ -98,9 +79,9 @@ case "$1" in
 	echo "Updating all available device nodes in /dev"
 	udevcontrol reload_rules
 	rm -rf /dev/.udev /dev/disk
-	export UDEV_RUN=0
-	/sbin/udevstart
+	cp --preserve=all --recursive --update /lib/udev/devices/* /dev
 	;;
+	
     *)
 	echo "Usage: $0 {start|stop|restart|reload|force-reload}"
 	exit 1

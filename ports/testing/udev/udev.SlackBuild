@@ -1,4 +1,7 @@
 #!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-092.tar.bz2
+# MD5SUMS: 5e9ff419ac0132531990a7c5db80ef3e  udev-092.tar.bz2
 #
 # This port was shameless cut'n'pasted from the build scripts for udev 086
 # written by Piter Punk found on http://piterpunk.info02.com.br/extra/.
@@ -9,10 +12,9 @@
 CWD=`pwd`
 PKG=/tmp/package-udev
 
-VERSION=086
+VERSION=092
 ARCH=${ARCH:-i486}
-BUILD=1tom
- ## was 5pk --tom
+BUILD=5pk
 
 rm -rf $PKG
 mkdir -p $PKG/lib/udev
@@ -32,17 +34,33 @@ make EXTRAS="extras/firmware extras/scsi_id extras/volume_id \
 		extras/edd_id extras/cdrom_id"
 make install DESTDIR=$PKG
 # No thanks, we don't use this
-rmdir $PKG/udev 2> /dev/null || true ## changed --tom
+#rmdir $PKG/udev 2> /dev/null				# disabled (tom)
+
+# Copy all helper programs to /lib/udev 
 cp extras/firmware/firmware_helper $PKG/lib/udev
-cp extras/path_id $PKG/lib/udev
+cp extras/path_id/path_id $PKG/lib/udev
 cp extras/scsi_id/scsi_id $PKG/lib/udev
-cp extras/volume_id/vol_id $PKG/lib/udev
 cp extras/ata_id/ata_id $PKG/lib/udev
 cp extras/usb_id/usb_id $PKG/lib/udev
 cp extras/dasd_id/dasd_id $PKG/lib/udev
 cp extras/edd_id/edd_id $PKG/lib/udev
 cp extras/cdrom_id/cdrom_id $PKG/lib/udev
-chown -R root.bin $PKG/sbin $PKG/usr/bin
+
+# libvolume, needed by vol_id (used for persistent links) and by HAL
+mkdir -p $PKG/usr/lib/pkgconfig
+mkdir -p $PKG/usr/include
+cp extras/volume_id/vol_id $PKG/lib/udev
+cp extras/volume_id/lib/libvolume_id.so.0.63.0 $PKG/lib	# was 0.62 (tom)
+cp extras/volume_id/lib/libvolume_id.pc $PKG/usr/lib/pkgconfig/
+cp extras/volume_id/lib/libvolume_id.a $PKG/usr/lib/
+cp extras/volume_id/lib/libvolume_id.h $PKG/usr/include/
+( cd $PKG/lib
+  ln -s libvolume_id.so.0.63.0 libvolume_id.so.0.63	# was 0.62 (tom)
+  ln -s libvolume_id.so.0.63.0 libvolume_id.so.0	# was 0.62 (tom)
+  ln -s libvolume_id.so.0.63.0 libvolume_id.so		# was 0.62 (tom)
+)
+
+chown -R root.root $PKG/sbin $PKG/usr/bin
 mv $PKG/usr/share/man $PKG/usr
 rmdir $PKG/usr/share
 ( cd $PKG
@@ -52,11 +70,13 @@ rmdir $PKG/usr/share
 rm -r $PKG/etc/udev
 mkdir -p $PKG/etc/udev/rules.d \
 	 $PKG/lib/firmware \
+	 $PKG/etc/modprobe.d \
          $PKG/etc/rc.d
 # Yes, this will clobber an existing config file.
-cat $CWD/config/udev.conf > $PKG/etc/udev/udev.conf
-cat $CWD/config/rules.d/udev.rules > $PKG/etc/udev/rules.d/udev.rules
-cat $CWD/config/rc.d/rc.udev > $PKG/etc/rc.d/rc.udev.new
+cat $CWD/config/udev.conf >  $PKG/etc/udev/udev.conf
+cat $CWD/config/rules.d/udev.rules >  $PKG/etc/udev/rules.d/udev.rules
+cat $CWD/config/rc.d/rc.udev.new > $PKG/etc/rc.d/rc.udev.new
+cat $CWD/config/modprobe.d/blacklist.new > $PKG/etc/modprobe.d/blacklist.new
 tar -xvzf $CWD/udev-script-devices.tar.gz -C $PKG/
 chmod 755 $PKG/etc/rc.d/rc.udev.new
 mkdir -p $PKG/usr/doc/udev-$VERSION
@@ -64,10 +84,14 @@ cp -a \
   COPYING FAQ README TODO RELEASE-NOTES \
   docs \
   $PKG/usr/doc/udev-$VERSION
-gzip -9 $PKG/usr/man/man?/*.? || true ## changed --tom
+# Copy manpages of helper applications in /extra
+find extras/ -name "*\.8" -exec cp {} $PKG/usr/man/man8 \;
+( cd $PKG/usr/man/man8 ; rm udevcontrol.8 ; ln -sf udevd.8.gz udevcontrol.8.gz )
+							# added (tom)
+gzip -9 $PKG/usr/man/man?/*.?
 ( cd $PKG/usr/man/man8 ; rm udevsend.8 ; ln -sf udevd.8.gz udevsend.8.gz )
 mkdir -p $PKG/install
-zcat $CWD/doinst.sh > $PKG/install/doinst.sh
+cat $CWD/doinst.sh > $PKG/install/doinst.sh		# was zcat (tom)
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
