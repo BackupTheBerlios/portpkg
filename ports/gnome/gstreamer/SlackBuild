@@ -1,17 +1,17 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://gstreamer.freedesktop.org/src/gstreamer/gstreamer-0.10.5.tar.bz2
-# MD5SUMS: f088c1303f19f0423f35d699deed92e3  gstreamer-0.10.5.tar.bz2
-# REQUIRES: glib2 libxml2 linuxdoc-tools
+# SOURCES: http://gstreamer.freedesktop.org/src/gstreamer/gstreamer-0.10.6.tar.bz2
+# MD5SUMS: 3b0ba3698bfdb0a59918563ca285cefd  gstreamer-0.10.6.tar.bz2
+# REQUIRES: glib2 libxml2
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.10.5
+VERSION=0.10.6
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
