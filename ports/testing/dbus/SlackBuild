@@ -1,11 +1,18 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://dbus.freedesktop.org/releases/dbus-0.61.tar.gz
+# MD5SUMS: cfd4f26004e4304e0dace4d82894e50b  dbus-0.61.tar.gz
+# REQUIRES: glib2 gtk+2 libxml2 python x11
+# FLAGS: no-fakeroot
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.50
+VERSION=0.61
 ARCH=${ARCH:-i486}
-BUILD=5tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -20,8 +27,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/dbus-$VERSION.tar.gz
+cd dbus-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -30,6 +37,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var \
   --program-prefix="" \
+  --disable-static \
   --enable-x \
   --enable-gtk \
   --disable-mono \
@@ -49,7 +57,6 @@ make install DESTDIR=$PKG
 mv $PKG/etc/rc.d/rc.messagebus{,.new}
 mkdir -p $PKG/var/lib/dbus
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -71,6 +78,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/dbus-$VERSION
   rm -rf $PKG
 fi
