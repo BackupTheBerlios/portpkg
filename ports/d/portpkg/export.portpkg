@@ -54,7 +54,7 @@ for arg in `explicit "$@"`; do
   fi
 
   # check if it's already run
-  if [ -f $LOG_DIR/$name.footprint ] && [ $LOG_DIR/$name.footprint -ot $script ]; then
+  if ! [ -f $pkg_file ] || [ $pkg_file -ot $script ]; then
     error "Build script is newer than last package: $group/$name"
     continue
   fi
@@ -138,6 +138,7 @@ for arg in `explicit "$@"`; do
     $pre sed -i "/: Updated./{N;d}" ChangeLog
     $pre cvs -qz3 ci -m "Updated." ChangeLog
   else
+    # use upload backend
     has_prog curl || die
 
     # hm, use at least 7.12.2 (Slackware 10.1)
@@ -159,7 +160,7 @@ for arg in `explicit "$@"`; do
     ( cd `dirname $script`
       cp -a . $t/$package/$name
       cd $t/$package/$name
-      rm -rf .CVS CVS arbitrary *.autoport
+      rm -rf .CVS CVS arbitrary *.autoport *~
       echo "Package:  $package" >info
       echo "Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>" >>info
 #      echo "Intended group:  $group/" >>info
