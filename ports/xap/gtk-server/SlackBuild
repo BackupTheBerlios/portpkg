@@ -1,9 +1,15 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://dl.sourceforge.net/gtk-server/gtk-server-2.0.10.tar.gz
+# MD5SUMS: a2eb70df3f0f00b69e9cf89b7d6b3482  gtk-server-2.0.10.tar.gz
+# REQUIRES: gtk+2 libffi libglade
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.0.1
+VERSION=2.0.10
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -29,14 +35,16 @@ CFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
+  --enable-glade \
   $ARCH-slackware-linux
 #+post-config-fix
-sed -i "s,/usr/local/etc,$PKG/etc/," Makefile
-sed -i "s,/usr/local/,$PKG/usr/," Makefile
+#sed -i "s,/usr/local/etc,$PKG/etc/," Makefile
+#sed -i "s,/usr/local/,$PKG/usr/," Makefile
 #+post-config-fix
 #+install-fix
+mkdir -p $PKG/usr/bin
 make
-make install
+make install PREFIX=$PKG/usr
 #+install-fix
 rm -rfv $PKG/usr/info/dir
 find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true

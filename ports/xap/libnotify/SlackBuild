@@ -1,11 +1,18 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.galago-project.org/files/releases/source/libnotify/libnotify-0.4.0.tar.gz
+# MD5SUMS: c9b5b51578742908bb1d3201a2da8f00  libnotify-0.4.0.tar.gz
+# REQUIRES: glib2 popt
+# OPTIONAL: gtk+2
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.2.1
+VERSION=0.4.0
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -20,8 +27,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/libnotify-$VERSION.tar.gz
+cd libnotify-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -34,21 +41,20 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS README \
+  AUTHORS COPYING ChangeLog NEWS README \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
@@ -56,6 +62,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/libnotify-$VERSION
   rm -rf $PKG
 fi
