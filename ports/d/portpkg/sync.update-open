@@ -14,7 +14,7 @@ if [ "`basename $0`" != "portpkg" ]; then
   exit 1
 fi
 
-row "Syncing $TREE/ with $SOURCE"
+row "Syncing $TREE"
 
 cd $PRT_DIR || die
 
@@ -32,14 +32,23 @@ grep -sq "^$pp_login@$pp_cvs:" CVS/Root || die "No valid CVS root found!"
 
 # check out new ports
 has_prog lynx || die
-new_ports=`lynx -dump $SOURCE | sed "0,/^Refer/d"| grep -o "http://.*-.*-.*-.*\.tar\.bz2$"`
+files=`lynx -dump $SOURCE | sed "0,/^Refer/d" | grep -o "http://.*-.*-.*-.*\.tar\.bz2\(\|\.asc\)$"`
+ports=`echo "$files" | grep "\.tar\.bz2$"`
 
 # quit if there are none
-if [ "$new_ports" ]; then
-  for src in $new_ports; do
+if [ "$ports" ]; then
+  for src in $ports; do
     pkg=`basename $src`
-    row "Downloading `basename $src`"
+    row "Downloading $pkg"
     get $src $TREE/$pkg || continue
+    if echo "$files" | grep -xsq "$src.asc"; then
+      row "Downloading $pkg.asc"
+      get $src.asc $TREE/$pkg.asc || continue
+      if has_prog gpg; then
+	row "Verifying signature"
+	gpg --verify $TREE/$pkg.asc || continue
+      fi
+    fi
   
     row "Mergeing $pkg"
     name=`basename $pkg .tar.bz2 | pkg2name`
