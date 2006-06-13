@@ -1,3 +1,9 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.jakemsr.com/transcode/transcode-1.0.2.tar.gz
+# MD5SUMS: e353c0ab7e927a8672528e05a9ae960b transcode-1.0.2.tar.gz
+# REQUIRES: ffmpeg lame libdvdread libjpeg mjpegtools x11
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -31,6 +37,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --enable-mjpegtools \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
