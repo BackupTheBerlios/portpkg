@@ -129,12 +129,16 @@ has_ports()  { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports 
 is_integer() { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: `basename $1`!"; }
 
 # sort a pkg-list by version
+# TODO: correctly sort "pre", "rc", "alpha", "beta"
 sort_ver() # <pkg_list >pkg_list
 {
-  sed -r "s,-([^-]*)-([^-]*)-([^-]*)$, \1 \2 \3,;\
-s,( [^-]*)\.,\1 ,;s,( [^-]*)\.,\1 ,;s,( [^-]*)\.,\1 ,;s,( [^-]*)\.,\1 ," \
-| sort -k 2n -k 3n -k 4n -k 5n -k 6n | tac \
-| sed -r "s, ,-,;s, ([^ ]*) ([^ ]*)$,-\1-\2,;s, ,.,g"
+  # separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
+  # (but *only* within version-arch-build parts!)
+  sed -r "\
+s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
+:split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
+| sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
+| sed "s, ,,g"
 }
 
 if $USE_ALPHA_CODE; then
