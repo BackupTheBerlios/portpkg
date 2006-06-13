@@ -342,9 +342,10 @@ grep -sve ^$ -e ^# $path/blocks; \
 grep -sve ^$ -e ^# $path/slack-conflicts | cut -d " " -f 1; \
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
   uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $(use) | pkg2name | any2base | sort -u`
-  pkg_file=`{ \
-ls_pkg "^$group/$package$"
-ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz," | head -n 1`
+  pkg_file=`{ { \
+ls_pkg "^$group/$package$"; \
+ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz,"; \
+find $SRC_DIR/ -name $package.tgz; } | head -n 1`
 #  [ "$pkg_file" ] && pkg_file=$PKG_DIR/$pkg_file.tgz
 
   # flags
