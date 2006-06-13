@@ -183,14 +183,26 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
     debug "get(): trying $try"
     case $try in
       cvs://*)
-        # example: cvs://:pserver:anonymous@anoncvs.gnome.org:/cvs/gnome/rhythmbox
+        # cvs://login@host:/cvsroot/module
 	has_prog cvs || die
         if [ -d $dest/CVS ]; then
           ( cd $dest
           cvs -qz3 up -dP . )
         else
           ( cd `dirname $dest`
-          cvs -qz3 -d `echo $try | sed "s,^cvs://,,;s,/[^/]*$,,"` co -P `basename $try` )
+          cvs -qz3 -d `dirname ${try#cvs://}` co -P `basename $try` )
+        fi
+        return 0;;
+      svn://*)
+        # svn://[http://]repo
+	case $try in svn://*://*) try=${try#svn://};; esac
+        has_prog svn || die
+        if [ -d $dest/.svn ]; then
+          ( cd $dest
+          svn up )
+        else
+          ( cd `dirname $dest`
+          svn co $try `basename $dest` )
         fi
         return 0;;
       *)
