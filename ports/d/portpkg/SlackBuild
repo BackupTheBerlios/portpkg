@@ -1,11 +1,11 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
-# OPTIONAL: cvs fakeroot gcc glibc lynx rpm wget
+# OPTIONAL: cvs fakeroot gcc glibc gnupg lynx svn wget
 
 VERSION=0.38
 ARCH=noarch
-BUILD=3tom
+BUILD=4tom
 
 TMP=${TMP:-bla}
 
