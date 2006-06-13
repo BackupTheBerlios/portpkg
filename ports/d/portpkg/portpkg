@@ -366,7 +366,7 @@ find $SRC_DIR/ -name $package.tgz; } | head -n 1`
   if ! grep -sq "^TMP=\${TMP:-" $script; then
 #    tmp=`grep "^TMP=" $script | cut -d = -f 2`
     tmp=/tmp
-    warn "Assuming script uses TMP=$tmp!"
+    $DOWNLOAD_ONLY || warn "Assuming script uses TMP=$tmp!"
   fi
 
   # check if the script produces multiple packages
@@ -412,7 +412,7 @@ check_reqs()
       ( $DRY_RUN && level_one=false
       get_info $avail_pkg || exit 1
       add_pkg || die "$avail_pkg is broken! Stopping $prev." ) || return 1
-      $DRY_RUN && row "Installing dependency $avail_pkg"
+      $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency $avail_pkg"
     elif ! [ "$inst_pkg" ]; then
       error "Cannot find required package $req! Stopping."
       return 1
@@ -540,7 +540,7 @@ build_pkg()
   local src srcname md5sum script_opt flags_var sh_opt
   stanza "Building $package:"
 
-  if $maintain; then
+  if $maintain && ! $DOWNLOAD_ONLY; then
 #    script_opt=""
     warn "Maintainer mode: Script header will be modified!"
     $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
@@ -814,6 +814,11 @@ do_add() # pkgex-list
     pause "Continue? (ctrl-c to abort)";;
   esac
 
+  if $DOWNLOAD_ONLY; then
+    stanza "Downloading files:"
+    level_one=false
+  fi
+
   for arg in `explicit "$@"`; do
     ret=1
     get_info $arg || continue
@@ -954,6 +959,11 @@ do_upgrade() # [pkgex-list]
   stanza "Targets: "$diff_list | fmt -t
   pause "Continue? (ctrl-c to abort)"
 
+  # download files first
+  if ! $DOWNLOAD_ONLY; then
+    ( DOWNLOAD_ONLY=true
+    do_add $diff_list )
+  fi
   do_add $diff_list
 }
 
