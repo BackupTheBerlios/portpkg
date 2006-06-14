@@ -1,3 +1,70 @@
+2006-06-14  topf  <topf@users.berlios.de>
+
+  * ap/mjpegtools/SlackBuild, ap/mjpegtools/footprint, ap/mjpegtools/requires, ap/mjpegtools/slack-desc, ap/mjpegtools/sources:
+  Version bump. Regenerated. Added --without-libquicktime.
+
+  * gnome/serpentine/SlackBuild, gnome/serpentine/footprint, gnome/serpentine/md5sums, gnome/serpentine/requires, gnome/serpentine/sources:
+  Version bump.
+
+  * ap/ffmpeg/SlackBuild.new: Removed (mistake).
+
+  * ap/ffmpeg/SlackBuild, ap/ffmpeg/SlackBuild.new, ap/ffmpeg/footprint, ap/ffmpeg/md5sums, ap/ffmpeg/requires, ap/ffmpeg/sources:
+  Changed to SVN source.
+
+2006-06-13  topf  <topf@users.berlios.de>
+
+  * d/portpkg/SlackBuild: Reverted the move to RPM tools.
+
+  * d/portpkg/portpkg: maintainer_mode():
+  * Went back to ldd to resolve dependencies instead of RPM tools.
+  * Added python modules detection.
+  * Completely generate a new header instead of fiddling the SlackBuild.
+  build_pkg():
+  * Minor cleanups.
+
+  * d/portpkg/portpkg:
+  * Avoid messages when they are unsuitable in DOWNLOAD_ONLY or PREPARE_ONLY mode.
+  * do_upgrade(): Download all needed files before starting to build.
+
+  * d/portpkg/portpkg: get_info(): Search package files also in $SRC_DIR.
+
+  * d/portpkg/portpkg:
+  get(): Added support for SVN sources via svn://[http://]repo.
+
+  * d/portpkg/portpkg: sort_ver(): Slightly improved algorithm.
+
+  * ap/transcode/SlackBuild, ap/transcode/footprint, ap/transcode/md5sums, ap/transcode/requires, ap/transcode/sources:
+  Added --enable-mjpegtools which is required to produces VCDs with dvd::rip etc.
+
+2006-06-11  topf  <topf@users.berlios.de>
+
+  * d/portpkg/sync.update-open:
+  Added support for testing tarball authentity via GnuPG.
+
+  * d/portpkg/export.portpkg: Fixed testing of package age (again).
+  Test CVS write acces in the port's directory, not in the ports root.
+  Rewrote HTTP submit sub and added support for signing the submission with GnuPG.
+
+  * GPG-KEYS: Added GPG-KEYS to collect public keys of authors.
+
+2006-06-07  topf  <topf@users.berlios.de>
+
+  * xap/gtk-server/SlackBuild, xap/gtk-server/footprint, xap/gtk-server/md5sums, xap/gtk-server/requires, xap/gtk-server/sources:
+  Version bump.
+
+  * xap/libnotify/SlackBuild: *** empty log message ***
+
+  * xap/libnotify/SlackBuild, xap/libnotify/footprint, xap/libnotify/md5sums, xap/libnotify/requires, xap/libnotify/sources:
+  Version bump.
+
+2006-06-03  topf  <topf@users.berlios.de>
+
+  * d/portpkg/export.portpkg: Test mtime of $pkg_file, rather than footprint.
+  Remove *~ backup files before exporting (thanks to Sajmon).
+
+  * xap/xf86-corefonts/SlackBuild, xap/xf86-corefonts/footprint, xap/xf86-corefonts/md5sums, xap/xf86-corefonts/sources:
+  Rewrote script. Added dependency cabextract.
+
 2006-06-02  topf  <topf@users.berlios.de>
 
   * testing/sysvinit/_sysvinit.tar.gz, testing/sysvinit/footprint, testing/sysvinit/slack-desc, testing/sysvinit/sysvinit.SlackBuild, testing/sysvinit/sysvinit.diff.gz:
