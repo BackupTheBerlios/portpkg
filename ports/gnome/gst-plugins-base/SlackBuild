@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-0.10.7.tar.bz2
-# MD5SUMS: 21ec9c7ac4b02de019a6d8e8c2aaa2a3  gst-plugins-base-0.10.7.tar.bz2
+# SOURCES: http://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-0.10.8.tar.bz2
+# MD5SUMS: 7c7acfdc7d2f7fddf12132b4b86abddb gst-plugins-base-0.10.8.tar.bz2
 # REQUIRES: cdparanoia gnome-vfs gstreamer liboil libtheora libvisual libvorbis pango perl x11
 
 TMP=${TMP:-/tmp}
@@ -9,7 +9,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.10.7
+VERSION=0.10.8
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
