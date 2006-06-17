@@ -1,4 +1,53 @@
+2006-06-17  topf  <topf@users.berlios.de>
+
+  * d/portpkg/webstats: Make complete list added.
+
+  * d/portpkg/portpkg: * Added ls_virt().
+  * explicit(), do_list(): Use ls_virt().
+
+  * d/portpkg/portpkg:
+  get_info(): Also interpret $NAME for secondary packages produced by the script.
+
+  * d/portpkg/portpkg: regex(): Fixed regular expression for explicit naming.
+
+  * l/gtkmm-docs/SlackBuild, l/gtkmm-docs/footprint, l/gtkmm-docs/requires:
+  Version bump.
+
+  * l/gtkmm/md5sums, l/gtkmm/requires, l/gtkmm/sources, l/gtkmm/SlackBuild, l/gtkmm/footprint:
+  Version bump.
+
+  * l/glibmm/requires, l/glibmm/sources, l/glibmm/SlackBuild, l/glibmm/footprint, l/glibmm/md5sums:
+  Version bump.
+
+2006-06-16  topf  <topf@users.berlios.de>
+
+  * gnome/gst-plugins-base/SlackBuild, gnome/gst-plugins-base/footprint:
+  Version bump.
+
+  * gnome/gstreamer/SlackBuild, gnome/gstreamer/footprint: Version bump.
+
+2006-06-15  topf  <topf@users.berlios.de>
+
+  * gnome/liferea/SlackBuild, gnome/liferea/footprint, gnome/liferea/md5sums, gnome/liferea/requires, gnome/liferea/sources:
+  Version bump.
+
 2006-06-14  topf  <topf@users.berlios.de>
+
+  * d/portpkg/export.portpkg:
+  * Test mtime of footprint and build script (returned to old behaviour).
+  * Test $PRT_DIR/CVS/Root for CVS write account indications (old behaviour).
+
+  * d/portpkg/SlackBuild: Fixed typo. "svn" should be "subversion".
+
+  * d/portpkg/checkpkg: * Auto-size windows.
+  * Patch to find descriptions with recent sync.slackware-bin.
+
+  * gnome/mail-notification/SlackBuild, gnome/mail-notification/footprint, gnome/mail-notification/mail-notification-2.0-buildfix.diff, gnome/mail-notification/mail-notification-2.0-evolution-2.4.diff, gnome/mail-notification/mail-notification-2.0-gmail-properties-fix.diff, gnome/mail-notification/mail-notification-2.0-imapauth.diff, gnome/mail-notification/md5sums, gnome/mail-notification/requires, gnome/mail-notification/sources:
+  Version bump. Patches are obsolete now.
+
+  * ap/transcode/footprint, ap/transcode/SlackBuild: Fixed URL. Regenerated.
+
+  * open/ChangeLog: Removed (should not have been here).
 
   * ap/mjpegtools/SlackBuild, ap/mjpegtools/footprint, ap/mjpegtools/requires, ap/mjpegtools/slack-desc, ap/mjpegtools/sources:
   Version bump. Regenerated. Added --without-libquicktime.
