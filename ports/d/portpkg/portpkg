@@ -375,7 +375,7 @@ find $SRC_DIR/ -name $package.tgz; } | head -n 1`
     arch=`echo $package | pkg2rel | cut -d - -f 2`
     build=`echo $package | pkg2rel | cut -d - -f 3`
     products=`sed -n "s,^[^#]*makepkg .*/\([^ ]*\)\.tgz.*,\1,p" $script \
-| sed "s,[{}],,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
+| sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
   fi
 
   return 0
