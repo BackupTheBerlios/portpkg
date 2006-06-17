@@ -231,7 +231,7 @@ regex() # pkgex_list >regex_list
       */)  # groups
            echo -n " -e \(^\|/\)$arg";;
       */*) # explicit expression (group/name and group/package)
-           echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg#*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
+           echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg##*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
       *)   # (g)names and (g)packages
            echo -n " -e \(^\|/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
