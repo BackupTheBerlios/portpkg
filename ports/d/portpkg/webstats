@@ -42,6 +42,17 @@ row "Ports count"
 #find $PRT_DIR/ -name "Entries" -exec grep SlackBuild {} \; | wc -l >ports.amount
 find $PRT_DIR/ -name "Entries" -exec grep SlackBuild {} \; | wc -l >$t/ports.amount
 
+row "Complete list"
+cd $PRT_DIR
+find * -name "Entries" -exec grep -H SlackBuild {} \; \
+| sed "s,/CVS/Entries:,,;s,SlackBuild.*,SlackBuild," \
+| while read s; do
+  p=`echo $s | slk2loc`
+  n=`echo $p | pkg2name | any2base`
+  d=`grep -m1 -sh "^$n:" $s $(echo $s | sed "s,SlackBuild,slack-desc,")`
+  echo "$p|$d"
+done | column -t -s \| >$t/ports.complete
+
 row "Committing changes"
 #cvs ci -m "Updated." ports.recent ports.amount
 scp $t/ports.* $login@$shell:$htdocs/
