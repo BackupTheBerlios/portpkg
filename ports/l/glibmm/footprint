@@ -1,681 +1,765 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         552 install/doinst.sh
--rw-r--r-- root/root         120 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/docs/
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/docs/images/
--rw-r--r-- root/root        4416 usr/doc/glibmm-2.4/docs/images/gtkmm_logo.gif
--rw-r--r-- root/root         260 usr/doc/glibmm-2.4/docs/images/top.gif
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/docs/reference/
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/docs/reference/html/
--rw-r--r-- root/root       24308 usr/doc/glibmm-2.4/docs/reference/html/annotated.html
--rw-r--r-- root/root        2495 usr/doc/glibmm-2.4/docs/reference/html/arrayhandle_8h.html
--rw-r--r-- root/root        1765 usr/doc/glibmm-2.4/docs/reference/html/classGTimeVal.html
--rw-r--r-- root/root         581 usr/doc/glibmm-2.4/docs/reference/html/classGTimeVal__inherit__graph.png
--rw-r--r-- root/root        6610 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ArrayHandle-members.html
--rw-r--r-- root/root       32035 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ArrayHandle.html
--rw-r--r-- root/root        2605 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Cond-members.html
--rw-r--r-- root/root       15267 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Cond.html
--rw-r--r-- root/root       36364 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ArrayHandleIterator.html
--rw-r--r-- root/root        5535 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ListHandleIterator-members.html
--rw-r--r-- root/root       19546 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ListHandleIterator.html
--rw-r--r-- root/root       19648 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1SListHandleIterator.html
--rw-r--r-- root/root        6116 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError-members.html
--rw-r--r-- root/root        9067 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError.html
--rw-r--r-- root/root         853 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError__inherit__graph.png
--rw-r--r-- root/root       17834 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Date-members.html
--rw-r--r-- root/root       93485 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Date.html
--rw-r--r-- root/root        2896 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dir-members.html
--rw-r--r-- root/root       13994 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dir.html
--rw-r--r-- root/root        3614 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1DirIterator-members.html
--rw-r--r-- root/root       12863 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1DirIterator.html
--rw-r--r-- root/root        2598 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dispatcher-members.html
--rw-r--r-- root/root       10877 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dispatcher.html
--rw-r--r-- root/root        4096 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Error-members.html
--rw-r--r-- root/root       17435 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Error.html
--rw-r--r-- root/root        3417 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Error__inherit__graph.png
--rw-r--r-- root/root        1770 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Exception-members.html
--rw-r--r-- root/root        4374 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Exception.html
--rw-r--r-- root/root         571 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Exception__inherit__graph.png
--rw-r--r-- root/root        9943 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1FileError-members.html
--rw-r--r-- root/root       17728 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1FileError.html
--rw-r--r-- root/root         761 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1FileError__inherit__graph.png
--rw-r--r-- root/root       11447 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1HelperList-members.html
--rw-r--r-- root/root       52054 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1HelperList.html
--rw-r--r-- root/root        2761 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IConv-members.html
--rw-r--r-- root/root       13579 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IConv.html
--rw-r--r-- root/root       10853 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannel-members.html
--rw-r--r-- root/root       81869 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannel.html
--rw-r--r-- root/root        6836 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannelError-members.html
--rw-r--r-- root/root        9417 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannelError.html
--rw-r--r-- root/root         908 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannelError__inherit__graph.png
--rw-r--r-- root/root        1076 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannel__inherit__graph.png
--rw-r--r-- root/root        8650 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOSource-members.html
--rw-r--r-- root/root       15613 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOSource.html
--rw-r--r-- root/root         632 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOSource__inherit__graph.png
--rw-r--r-- root/root        7869 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IdleSource-members.html
--rw-r--r-- root/root       11187 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IdleSource.html
--rw-r--r-- root/root         642 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IdleSource__inherit__graph.png
--rw-r--r-- root/root        7267 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Interface-members.html
--rw-r--r-- root/root        7854 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Interface.html
--rw-r--r-- root/root         946 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Interface__inherit__graph.png
--rw-r--r-- root/root        6231 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ListHandle-members.html
--rw-r--r-- root/root       29188 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ListHandle.html
--rw-r--r-- root/root        7219 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainContext-members.html
--rw-r--r-- root/root       43303 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainContext.html
--rw-r--r-- root/root        4366 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainLoop-members.html
--rw-r--r-- root/root       19190 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainLoop.html
--rw-r--r-- root/root        6014 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MarkupError-members.html
--rw-r--r-- root/root        9086 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MarkupError.html
--rw-r--r-- root/root         865 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MarkupError__inherit__graph.png
--rw-r--r-- root/root        2437 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1AttributeKeyLess-members.html
--rw-r--r-- root/root        7089 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1AttributeKeyLess.html
--rw-r--r-- root/root        3889 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1ParseContext-members.html
--rw-r--r-- root/root       19593 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1ParseContext.html
--rw-r--r-- root/root         900 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1ParseContext__inherit__graph.png
--rw-r--r-- root/root        3602 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1Parser-members.html
--rw-r--r-- root/root       22715 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1Parser.html
--rw-r--r-- root/root         780 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1Parser__inherit__graph.png
--rw-r--r-- root/root        3887 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Module-members.html
--rw-r--r-- root/root       20065 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Module.html
--rw-r--r-- root/root        2383 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex-members.html
--rw-r--r-- root/root       10063 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex.html
--rw-r--r-- root/root        3170 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex_1_1Lock-members.html
--rw-r--r-- root/root       11645 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex_1_1Lock.html
--rw-r--r-- root/root        8962 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Object-members.html
--rw-r--r-- root/root       15733 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Object.html
--rw-r--r-- root/root        6569 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ObjectBase-members.html
--rw-r--r-- root/root       28578 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ObjectBase.html
--rw-r--r-- root/root        1427 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ObjectBase__inherit__graph.png
--rw-r--r-- root/root         949 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Object__inherit__graph.png
--rw-r--r-- root/root        4636 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionContext-members.html
--rw-r--r-- root/root       23497 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionContext.html
--rw-r--r-- root/root        6059 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionEntry-members.html
--rw-r--r-- root/root       23363 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionEntry.html
--rw-r--r-- root/root        5444 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionError-members.html
--rw-r--r-- root/root        7869 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionError.html
--rw-r--r-- root/root         842 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionError__inherit__graph.png
--rw-r--r-- root/root        7129 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup-members.html
--rw-r--r-- root/root       34034 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup.html
--rw-r--r-- root/root        3372 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup_1_1CppOptionEntry-members.html
--rw-r--r-- root/root        9426 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup_1_1CppOptionEntry.html
--rw-r--r-- root/root        3415 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PatternSpec-members.html
--rw-r--r-- root/root       12285 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PatternSpec.html
--rw-r--r-- root/root        3594 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PollFD-members.html
--rw-r--r-- root/root       13232 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PollFD.html
--rw-r--r-- root/root        2692 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Private-members.html
--rw-r--r-- root/root        9163 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Private.html
--rw-r--r-- root/root        5772 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Property-members.html
--rw-r--r-- root/root       14721 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Property.html
--rw-r--r-- root/root        3648 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyBase-members.html
--rw-r--r-- root/root       12688 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyBase.html
--rw-r--r-- root/root         804 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyBase__inherit__graph.png
--rw-r--r-- root/root        5600 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy-members.html
--rw-r--r-- root/root       13659 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy.html
--rw-r--r-- root/root        3903 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__Base-members.html
--rw-r--r-- root/root       13940 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__Base.html
--rw-r--r-- root/root        2097 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__Base__inherit__graph.png
--rw-r--r-- root/root        5046 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__ReadOnly-members.html
--rw-r--r-- root/root        8386 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__ReadOnly.html
--rw-r--r-- root/root        1128 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__ReadOnly__inherit__graph.png
--rw-r--r-- root/root        5353 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__WriteOnly-members.html
--rw-r--r-- root/root       10380 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__WriteOnly.html
--rw-r--r-- root/root        1156 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__WriteOnly__inherit__graph.png
--rw-r--r-- root/root         953 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__inherit__graph.png
--rw-r--r-- root/root         800 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Property__inherit__graph.png
--rw-r--r-- root/root        4118 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Quark-members.html
--rw-r--r-- root/root        5097 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Quark.html
--rw-r--r-- root/root         704 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Quark__inherit__graph.png
--rw-r--r-- root/root        3577 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1QueryQuark-members.html
--rw-r--r-- root/root       14725 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1QueryQuark.html
--rw-r--r-- root/root         706 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1QueryQuark__inherit__graph.png
--rw-r--r-- root/root        3572 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock-members.html
--rw-r--r-- root/root        4897 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock.html
--rw-r--r-- root/root        3389 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1ReaderLock-members.html
--rw-r--r-- root/root       11211 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1ReaderLock.html
--rw-r--r-- root/root        3389 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1WriterLock-members.html
--rw-r--r-- root/root       11211 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1WriterLock.html
--rw-r--r-- root/root         776 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock__inherit__graph.png
--rw-r--r-- root/root        3369 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Rand-members.html
--rw-r--r-- root/root       13465 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Rand.html
--rw-r--r-- root/root        3433 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex-members.html
--rw-r--r-- root/root        4517 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex.html
--rw-r--r-- root/root        3260 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex_1_1Lock-members.html
--rw-r--r-- root/root       11041 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex_1_1Lock.html
--rw-r--r-- root/root         822 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex__inherit__graph.png
--rw-r--r-- root/root        5398 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RefPtr-members.html
--rw-r--r-- root/root       29983 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RefPtr.html
--rw-r--r-- root/root        6303 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SListHandle-members.html
--rw-r--r-- root/root       29325 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SListHandle.html
--rw-r--r-- root/root        2291 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Sequence-members.html
--rw-r--r-- root/root        7422 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Sequence.html
--rw-r--r-- root/root        5418 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ShellError-members.html
--rw-r--r-- root/root        7938 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ShellError.html
--rw-r--r-- root/root         800 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ShellError__inherit__graph.png
--rw-r--r-- root/root        1962 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIO-members.html
--rw-r--r-- root/root        9743 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIO.html
--rw-r--r-- root/root        1595 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIdle-members.html
--rw-r--r-- root/root        4433 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIdle.html
--rw-r--r-- root/root        4379 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy0-members.html
--rw-r--r-- root/root       12758 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy0.html
--rw-r--r-- root/root        1199 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy0__inherit__graph.png
--rw-r--r-- root/root        4407 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy1-members.html
--rw-r--r-- root/root       12885 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy1.html
--rw-r--r-- root/root        1236 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy1__inherit__graph.png
--rw-r--r-- root/root        4435 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy2-members.html
--rw-r--r-- root/root       13025 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy2.html
--rw-r--r-- root/root        1305 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy2__inherit__graph.png
--rw-r--r-- root/root        4463 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy3-members.html
--rw-r--r-- root/root       13151 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy3.html
--rw-r--r-- root/root        1361 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy3__inherit__graph.png
--rw-r--r-- root/root        4491 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy4-members.html
--rw-r--r-- root/root       13277 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy4.html
--rw-r--r-- root/root        1434 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy4__inherit__graph.png
--rw-r--r-- root/root        4519 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy5-members.html
--rw-r--r-- root/root       13403 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy5.html
--rw-r--r-- root/root        1557 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy5__inherit__graph.png
--rw-r--r-- root/root        4547 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy6-members.html
--rw-r--r-- root/root       13529 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy6.html
--rw-r--r-- root/root        1620 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy6__inherit__graph.png
--rw-r--r-- root/root        1806 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyBase-members.html
--rw-r--r-- root/root        4485 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyBase.html
--rw-r--r-- root/root        1768 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyBase__inherit__graph.png
--rw-r--r-- root/root        2982 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyConnectionNode-members.html
--rw-r--r-- root/root       10868 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyConnectionNode.html
--rw-r--r-- root/root        3119 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyNormal-members.html
--rw-r--r-- root/root       13054 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyNormal.html
--rw-r--r-- root/root        4218 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyNormal__inherit__graph.png
--rw-r--r-- root/root        3597 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyProperty-members.html
--rw-r--r-- root/root       11885 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyProperty.html
--rw-r--r-- root/root        1002 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyProperty__inherit__graph.png
--rw-r--r-- root/root        1631 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalTimeout-members.html
--rw-r--r-- root/root        4855 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalTimeout.html
--rw-r--r-- root/root        7136 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Source-members.html
--rw-r--r-- root/root       40393 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Source.html
--rw-r--r-- root/root        1471 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Source__inherit__graph.png
--rw-r--r-- root/root        8638 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SpawnError-members.html
--rw-r--r-- root/root       11139 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SpawnError.html
--rw-r--r-- root/root         858 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SpawnError__inherit__graph.png
--rw-r--r-- root/root       12742 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1StreamIOChannel-members.html
--rw-r--r-- root/root       24422 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1StreamIOChannel.html
--rw-r--r-- root/root        1081 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1StreamIOChannel__inherit__graph.png
--rw-r--r-- root/root        3659 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Thread-members.html
--rw-r--r-- root/root       23082 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Thread.html
--rw-r--r-- root/root        5024 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadError-members.html
--rw-r--r-- root/root        7501 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadError.html
--rw-r--r-- root/root         815 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadError__inherit__graph.png
--rw-r--r-- root/root        4630 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadPool-members.html
--rw-r--r-- root/root       25584 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadPool.html
--rw-r--r-- root/root        2372 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Thread_1_1Exit.html
--rw-r--r-- root/root        8217 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1TimeoutSource-members.html
--rw-r--r-- root/root       11461 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1TimeoutSource.html
--rw-r--r-- root/root         709 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1TimeoutSource__inherit__graph.png
--rw-r--r-- root/root        2582 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Timer-members.html
--rw-r--r-- root/root        9176 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Timer.html
--rw-r--r-- root/root        4692 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value-members.html
--rw-r--r-- root/root        8918 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value.html
--rw-r--r-- root/root        3154 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase-members.html
--rw-r--r-- root/root       13926 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase.html
--rw-r--r-- root/root        3912 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Boxed-members.html
--rw-r--r-- root/root        5721 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Boxed.html
--rw-r--r-- root/root        1661 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Boxed__inherit__graph.png
--rw-r--r-- root/root        4099 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Enum-members.html
--rw-r--r-- root/root        6290 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Enum.html
--rw-r--r-- root/root        1049 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Enum__inherit__graph.png
--rw-r--r-- root/root        4125 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Flags-members.html
--rw-r--r-- root/root        6357 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Flags.html
--rw-r--r-- root/root        1077 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Flags__inherit__graph.png
--rw-r--r-- root/root        4183 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Object-members.html
--rw-r--r-- root/root        7702 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Object.html
--rw-r--r-- root/root        3331 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Object__inherit__graph.png
--rw-r--r-- root/root        4143 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__String-members.html
--rw-r--r-- root/root        6526 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__String.html
--rw-r--r-- root/root        1975 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__String__inherit__graph.png
--rw-r--r-- root/root        7630 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__inherit__graph.png
--rw-r--r-- root/root        4973 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01Glib_1_1ustring_01_4-members.html
--rw-r--r-- root/root        6352 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01Glib_1_1ustring_01_4.html
--rw-r--r-- root/root        1106 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01Glib_1_1ustring_01_4__inherit__graph.png
--rw-r--r-- root/root        5122 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01T_01_5_01_4-members.html
--rw-r--r-- root/root        2804 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01T_01_5_01_4.html
--rw-r--r-- root/root        1267 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01T_01_5_01_4__inherit__graph.png
--rw-r--r-- root/root        4316 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01bool_01_4-members.html
--rw-r--r-- root/root        7349 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01bool_01_4.html
--rw-r--r-- root/root         756 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01bool_01_4__inherit__graph.png
--rw-r--r-- root/root        4316 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01char_01_4-members.html
--rw-r--r-- root/root        7343 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01char_01_4.html
--rw-r--r-- root/root         761 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01char_01_4__inherit__graph.png
--rw-r--r-- root/root        5172 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01const_01T_01_5_01_4-members.html
--rw-r--r-- root/root        2886 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01const_01T_01_5_01_4.html
--rw-r--r-- root/root        1653 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01const_01T_01_5_01_4__inherit__graph.png
--rw-r--r-- root/root        4354 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01double_01_4-members.html
--rw-r--r-- root/root        7413 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01double_01_4.html
--rw-r--r-- root/root         775 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01double_01_4__inherit__graph.png
--rw-r--r-- root/root        4335 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01float_01_4-members.html
--rw-r--r-- root/root        7378 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01float_01_4.html
--rw-r--r-- root/root         774 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01float_01_4__inherit__graph.png
--rw-r--r-- root/root        4297 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01int_01_4-members.html
--rw-r--r-- root/root        7308 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01int_01_4.html
--rw-r--r-- root/root         728 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01int_01_4__inherit__graph.png
--rw-r--r-- root/root        4316 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01_4-members.html
--rw-r--r-- root/root        7343 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01_4.html
--rw-r--r-- root/root         771 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01_4__inherit__graph.png
--rw-r--r-- root/root        4433 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01long_01_4-members.html
--rw-r--r-- root/root        7534 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01long_01_4.html
--rw-r--r-- root/root         801 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01long_01_4__inherit__graph.png
--rw-r--r-- root/root        4947 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01std_1_1string_01_4-members.html
--rw-r--r-- root/root        5855 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01std_1_1string_01_4.html
--rw-r--r-- root/root        1055 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01std_1_1string_01_4__inherit__graph.png
--rw-r--r-- root/root        4509 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01char_01_4-members.html
--rw-r--r-- root/root        7666 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01char_01_4.html
--rw-r--r-- root/root         897 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01char_01_4__inherit__graph.png
--rw-r--r-- root/root        4490 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01int_01_4-members.html
--rw-r--r-- root/root        7631 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01int_01_4.html
--rw-r--r-- root/root         875 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01int_01_4__inherit__graph.png
--rw-r--r-- root/root        4509 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01_4-members.html
--rw-r--r-- root/root        7666 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01_4.html
--rw-r--r-- root/root         901 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01_4__inherit__graph.png
--rw-r--r-- root/root        4626 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01long_01_4-members.html
--rw-r--r-- root/root        7857 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01long_01_4.html
--rw-r--r-- root/root        4379 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01void_01_5_01_4-members.html
--rw-r--r-- root/root        7439 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01void_01_5_01_4.html
--rw-r--r-- root/root         778 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01void_01_5_01_4__inherit__graph.png
--rw-r--r-- root/root        4806 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Boxed-members.html
--rw-r--r-- root/root        8351 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Boxed.html
--rw-r--r-- root/root        1037 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Boxed__inherit__graph.png
--rw-r--r-- root/root        4772 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Enum-members.html
--rw-r--r-- root/root        6248 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Enum.html
--rw-r--r-- root/root         963 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Enum__inherit__graph.png
--rw-r--r-- root/root        4807 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Flags-members.html
--rw-r--r-- root/root        6278 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Flags.html
--rw-r--r-- root/root         995 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Flags__inherit__graph.png
--rw-r--r-- root/root        5151 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Pointer-members.html
--rw-r--r-- root/root        8559 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Pointer.html
--rw-r--r-- root/root        1124 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Pointer__inherit__graph.png
--rw-r--r-- root/root         925 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__inherit__graph.png
--rw-r--r-- root/root       39070 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring-members.html
--rw-r--r-- root/root      263303 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring.html
--rw-r--r-- root/root        6811 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring__Iterator-members.html
--rw-r--r-- root/root       30437 usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring__Iterator.html
--rw-r--r-- root/root        1380 usr/doc/glibmm-2.4/docs/reference/html/class_8h.html
--rw-r--r-- root/root       24437 usr/doc/glibmm-2.4/docs/reference/html/classes.html
--rw-r--r-- root/root        1993 usr/doc/glibmm-2.4/docs/reference/html/classsigc_1_1trackable.html
--rw-r--r-- root/root         837 usr/doc/glibmm-2.4/docs/reference/html/classsigc_1_1trackable__inherit__graph.png
--rw-r--r-- root/root        1892 usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1basic__filebuf.html
--rw-r--r-- root/root        1241 usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1basic__filebuf__inherit__graph.png
--rw-r--r-- root/root        1886 usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1char__traits.html
--rw-r--r-- root/root         846 usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1char__traits__inherit__graph.png
--rw-r--r-- root/root        3052 usr/doc/glibmm-2.4/docs/reference/html/containerhandle__shared_8h.html
--rw-r--r-- root/root        1390 usr/doc/glibmm-2.4/docs/reference/html/containers_8h.html
--rw-r--r-- root/root        9155 usr/doc/glibmm-2.4/docs/reference/html/convert_8h.html
--rw-r--r-- root/root        1616 usr/doc/glibmm-2.4/docs/reference/html/date_8h.html
--rw-r--r-- root/root        3971 usr/doc/glibmm-2.4/docs/reference/html/debug_8h.html
--rw-r--r-- root/root        1922 usr/doc/glibmm-2.4/docs/reference/html/dir_000000.html
--rw-r--r-- root/root         518 usr/doc/glibmm-2.4/docs/reference/html/dir_000000_dep.png
--rw-r--r-- root/root       11796 usr/doc/glibmm-2.4/docs/reference/html/dir_000001.html
--rw-r--r-- root/root         460 usr/doc/glibmm-2.4/docs/reference/html/dir_000001_dep.png
--rw-r--r-- root/root        1371 usr/doc/glibmm-2.4/docs/reference/html/dirs.html
--rw-r--r-- root/root        1628 usr/doc/glibmm-2.4/docs/reference/html/dispatcher_8h.html
--rw-r--r-- root/root        6959 usr/doc/glibmm-2.4/docs/reference/html/doxygen.css
--rw-r--r-- root/root        1281 usr/doc/glibmm-2.4/docs/reference/html/doxygen.png
--rw-r--r-- root/root        1618 usr/doc/glibmm-2.4/docs/reference/html/error_8h.html
--rw-r--r-- root/root        1360 usr/doc/glibmm-2.4/docs/reference/html/examples.html
--rw-r--r-- root/root        1626 usr/doc/glibmm-2.4/docs/reference/html/exception_8h.html
--rw-r--r-- root/root        3085 usr/doc/glibmm-2.4/docs/reference/html/exceptionhandler_8h.html
--rw-r--r-- root/root        7703 usr/doc/glibmm-2.4/docs/reference/html/files.html
--rw-r--r-- root/root        7487 usr/doc/glibmm-2.4/docs/reference/html/fileutils_8h.html
--rw-r--r-- root/root      106408 usr/doc/glibmm-2.4/docs/reference/html/functions.html
--rw-r--r-- root/root        2575 usr/doc/glibmm-2.4/docs/reference/html/functions_enum.html
--rw-r--r-- root/root       12414 usr/doc/glibmm-2.4/docs/reference/html/functions_eval.html
--rw-r--r-- root/root       78950 usr/doc/glibmm-2.4/docs/reference/html/functions_func.html
--rw-r--r-- root/root        7598 usr/doc/glibmm-2.4/docs/reference/html/functions_rela.html
--rw-r--r-- root/root       21043 usr/doc/glibmm-2.4/docs/reference/html/functions_type.html
--rw-r--r-- root/root        4940 usr/doc/glibmm-2.4/docs/reference/html/functions_vars.html
--rw-r--r-- root/root       29581 usr/doc/glibmm-2.4/docs/reference/html/globals.html
--rw-r--r-- root/root        2225 usr/doc/glibmm-2.4/docs/reference/html/globals_defs.html
--rw-r--r-- root/root        2826 usr/doc/glibmm-2.4/docs/reference/html/globals_enum.html
--rw-r--r-- root/root       14737 usr/doc/glibmm-2.4/docs/reference/html/globals_eval.html
--rw-r--r-- root/root       14533 usr/doc/glibmm-2.4/docs/reference/html/globals_func.html
--rw-r--r-- root/root        2429 usr/doc/glibmm-2.4/docs/reference/html/globals_type.html
--rw-r--r-- root/root        2181 usr/doc/glibmm-2.4/docs/reference/html/graph_legend.dot
--rw-r--r-- root/root        4686 usr/doc/glibmm-2.4/docs/reference/html/graph_legend.html
--rw-r--r-- root/root        3722 usr/doc/glibmm-2.4/docs/reference/html/graph_legend.png
--rw-r--r-- root/root       35968 usr/doc/glibmm-2.4/docs/reference/html/group__CharsetConv.html
--rw-r--r-- root/root         526 usr/doc/glibmm-2.4/docs/reference/html/group__ContHandles.dot
--rw-r--r-- root/root        8206 usr/doc/glibmm-2.4/docs/reference/html/group__ContHandles.html
--rw-r--r-- root/root         526 usr/doc/glibmm-2.4/docs/reference/html/group__ContHelpers.dot
--rw-r--r-- root/root        2767 usr/doc/glibmm-2.4/docs/reference/html/group__ContHelpers.html
--rw-r--r-- root/root       15158 usr/doc/glibmm-2.4/docs/reference/html/group__FileUtils.html
--rw-r--r-- root/root       28155 usr/doc/glibmm-2.4/docs/reference/html/group__MainLoop.html
--rw-r--r-- root/root        7871 usr/doc/glibmm-2.4/docs/reference/html/group__Markup.html
--rw-r--r-- root/root       40929 usr/doc/glibmm-2.4/docs/reference/html/group__MiscUtils.html
--rw-r--r-- root/root        1758 usr/doc/glibmm-2.4/docs/reference/html/group__PatternMatching.html
--rw-r--r-- root/root        1634 usr/doc/glibmm-2.4/docs/reference/html/group__Random.html
--rw-r--r-- root/root        9569 usr/doc/glibmm-2.4/docs/reference/html/group__ShellUtils.html
--rw-r--r-- root/root       26165 usr/doc/glibmm-2.4/docs/reference/html/group__Spawn.html
--rw-r--r-- root/root       24252 usr/doc/glibmm-2.4/docs/reference/html/group__StringUtils.html
--rw-r--r-- root/root        1855 usr/doc/glibmm-2.4/docs/reference/html/group__ThreadPools.html
--rw-r--r-- root/root       16037 usr/doc/glibmm-2.4/docs/reference/html/group__Threads.html
--rw-r--r-- root/root        1921 usr/doc/glibmm-2.4/docs/reference/html/group__Unicode.html
--rw-r--r-- root/root      120456 usr/doc/glibmm-2.4/docs/reference/html/group__glibmmEnums.html
--rw-r--r-- root/root        9715 usr/doc/glibmm-2.4/docs/reference/html/group__glibmmValue.html
--rw-r--r-- root/root        1628 usr/doc/glibmm-2.4/docs/reference/html/helperlist_8h.html
--rw-r--r-- root/root       25035 usr/doc/glibmm-2.4/docs/reference/html/hierarchy.html
--rw-r--r-- root/root        1386 usr/doc/glibmm-2.4/docs/reference/html/i18n-lib_8h.html
--rw-r--r-- root/root        1378 usr/doc/glibmm-2.4/docs/reference/html/i18n_8h.html
--rw-r--r-- root/root        1921 usr/doc/glibmm-2.4/docs/reference/html/index.html
--rw-r--r-- root/root         333 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__0.png
--rw-r--r-- root/root         749 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__1.png
--rw-r--r-- root/root         852 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__10.png
--rw-r--r-- root/root         538 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__11.png
--rw-r--r-- root/root         571 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__12.png
--rw-r--r-- root/root         859 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__13.png
--rw-r--r-- root/root         837 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__14.png
--rw-r--r-- root/root         669 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__15.png
--rw-r--r-- root/root         630 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__16.png
--rw-r--r-- root/root         915 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__17.png
--rw-r--r-- root/root         957 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__18.png
--rw-r--r-- root/root         970 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__19.png
--rw-r--r-- root/root         727 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__2.png
--rw-r--r-- root/root         938 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__20.png
--rw-r--r-- root/root         359 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__21.png
--rw-r--r-- root/root         538 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__22.png
--rw-r--r-- root/root         567 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__23.png
--rw-r--r-- root/root         643 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__24.png
--rw-r--r-- root/root         669 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__25.png
--rw-r--r-- root/root         766 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__26.png
--rw-r--r-- root/root         749 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__27.png
--rw-r--r-- root/root        4614 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__28.png
--rw-r--r-- root/root         377 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__29.png
--rw-r--r-- root/root         904 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__3.png
--rw-r--r-- root/root         522 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__30.png
--rw-r--r-- root/root         327 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__31.png
--rw-r--r-- root/root         808 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__32.png
--rw-r--r-- root/root         751 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__33.png
--rw-r--r-- root/root         787 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__34.png
--rw-r--r-- root/root         683 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__35.png
--rw-r--r-- root/root         318 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__36.png
--rw-r--r-- root/root         273 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__37.png
--rw-r--r-- root/root         378 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__38.png
--rw-r--r-- root/root         413 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__39.png
--rw-r--r-- root/root         823 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__4.png
--rw-r--r-- root/root        3381 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__40.png
--rw-r--r-- root/root         797 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__41.png
--rw-r--r-- root/root         330 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__42.png
--rw-r--r-- root/root         460 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__43.png
--rw-r--r-- root/root         454 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__44.png
--rw-r--r-- root/root         390 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__45.png
--rw-r--r-- root/root         644 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__46.png
--rw-r--r-- root/root         350 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__47.png
--rw-r--r-- root/root         350 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__48.png
--rw-r--r-- root/root         419 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__49.png
--rw-r--r-- root/root         775 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__5.png
--rw-r--r-- root/root         473 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__50.png
--rw-r--r-- root/root         420 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__51.png
--rw-r--r-- root/root         432 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__52.png
--rw-r--r-- root/root         579 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__53.png
--rw-r--r-- root/root         443 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__54.png
--rw-r--r-- root/root         315 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__55.png
--rw-r--r-- root/root         404 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__56.png
--rw-r--r-- root/root         651 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__57.png
--rw-r--r-- root/root        1785 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__58.png
--rw-r--r-- root/root         641 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__59.png
--rw-r--r-- root/root         877 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__6.png
--rw-r--r-- root/root         325 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__60.png
--rw-r--r-- root/root         476 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__61.png
--rw-r--r-- root/root         570 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__62.png
--rw-r--r-- root/root         548 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__63.png
--rw-r--r-- root/root         549 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__64.png
--rw-r--r-- root/root         523 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__65.png
--rw-r--r-- root/root         405 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__66.png
--rw-r--r-- root/root         401 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__67.png
--rw-r--r-- root/root        4306 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__68.png
--rw-r--r-- root/root         650 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__69.png
--rw-r--r-- root/root        1095 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__7.png
--rw-r--r-- root/root         452 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__70.png
--rw-r--r-- root/root         499 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__71.png
--rw-r--r-- root/root        1261 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__72.png
--rw-r--r-- root/root         460 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__73.png
--rw-r--r-- root/root         487 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__74.png
--rw-r--r-- root/root         660 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__75.png
--rw-r--r-- root/root         630 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__76.png
--rw-r--r-- root/root         338 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__77.png
--rw-r--r-- root/root         397 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__78.png
--rw-r--r-- root/root         396 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__79.png
--rw-r--r-- root/root         618 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__8.png
--rw-r--r-- root/root         308 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__80.png
--rw-r--r-- root/root         346 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__81.png
--rw-r--r-- root/root         497 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__82.png
--rw-r--r-- root/root       12652 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__83.png
--rw-r--r-- root/root         559 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__84.png
--rw-r--r-- root/root        1114 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__85.png
--rw-r--r-- root/root         952 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__86.png
--rw-r--r-- root/root         684 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__87.png
--rw-r--r-- root/root         798 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__88.png
--rw-r--r-- root/root        1159 usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__9.png
--rw-r--r-- root/root       39006 usr/doc/glibmm-2.4/docs/reference/html/inherits.html
--rw-r--r-- root/root        2908 usr/doc/glibmm-2.4/docs/reference/html/init_8h.html
--rw-r--r-- root/root        3170 usr/doc/glibmm-2.4/docs/reference/html/interface_8h.html
--rw-r--r-- root/root        7859 usr/doc/glibmm-2.4/docs/reference/html/iochannel_8h.html
--rw-r--r-- root/root        1853 usr/doc/glibmm-2.4/docs/reference/html/listhandle_8h.html
--rw-r--r-- root/root        6934 usr/doc/glibmm-2.4/docs/reference/html/main_8h.html
--rw-r--r-- root/root        5943 usr/doc/glibmm-2.4/docs/reference/html/markup_8h.html
--rw-r--r-- root/root       10723 usr/doc/glibmm-2.4/docs/reference/html/miscutils_8h.html
--rw-r--r-- root/root        4896 usr/doc/glibmm-2.4/docs/reference/html/module_8h.html
--rw-r--r-- root/root        6351 usr/doc/glibmm-2.4/docs/reference/html/modules.html
--rw-r--r-- root/root      126674 usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib.html
--rw-r--r-- root/root       17683 usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Ascii.html
--rw-r--r-- root/root        2702 usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Container__Helpers.html
--rw-r--r-- root/root        6858 usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Markup.html
--rw-r--r-- root/root       23950 usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Unicode.html
--rw-r--r-- root/root       26561 usr/doc/glibmm-2.4/docs/reference/html/namespacemembers.html
--rw-r--r-- root/root        2734 usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_enum.html
--rw-r--r-- root/root       14066 usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_eval.html
--rw-r--r-- root/root       13458 usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_func.html
--rw-r--r-- root/root        1888 usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_type.html
--rw-r--r-- root/root        1906 usr/doc/glibmm-2.4/docs/reference/html/namespaces.html
--rw-r--r-- root/root        1620 usr/doc/glibmm-2.4/docs/reference/html/object_8h.html
--rw-r--r-- root/root        2917 usr/doc/glibmm-2.4/docs/reference/html/objectbase_8h.html
--rw-r--r-- root/root        1634 usr/doc/glibmm-2.4/docs/reference/html/optioncontext_8h.html
--rw-r--r-- root/root        1630 usr/doc/glibmm-2.4/docs/reference/html/optionentry_8h.html
--rw-r--r-- root/root        1630 usr/doc/glibmm-2.4/docs/reference/html/optiongroup_8h.html
--rw-r--r-- root/root        2471 usr/doc/glibmm-2.4/docs/reference/html/pattern_8h.html
--rw-r--r-- root/root        1624 usr/doc/glibmm-2.4/docs/reference/html/property_8h.html
--rw-r--r-- root/root        1634 usr/doc/glibmm-2.4/docs/reference/html/propertyproxy_8h.html
--rw-r--r-- root/root        1644 usr/doc/glibmm-2.4/docs/reference/html/propertyproxy__base_8h.html
--rw-r--r-- root/root        1618 usr/doc/glibmm-2.4/docs/reference/html/quark_8h.html
--rw-r--r-- root/root        2431 usr/doc/glibmm-2.4/docs/reference/html/random_8h.html
--rw-r--r-- root/root        1620 usr/doc/glibmm-2.4/docs/reference/html/refptr_8h.html
--rw-r--r-- root/root        2739 usr/doc/glibmm-2.4/docs/reference/html/sarray_8h.html
--rw-r--r-- root/root        3214 usr/doc/glibmm-2.4/docs/reference/html/shell_8h.html
--rw-r--r-- root/root        3241 usr/doc/glibmm-2.4/docs/reference/html/signalproxy_8h.html
--rw-r--r-- root/root        2543 usr/doc/glibmm-2.4/docs/reference/html/signalproxy__connectionnode_8h.html
--rw-r--r-- root/root        1855 usr/doc/glibmm-2.4/docs/reference/html/slisthandle_8h.html
--rw-r--r-- root/root       11339 usr/doc/glibmm-2.4/docs/reference/html/spawn_8h.html
--rw-r--r-- root/root        1638 usr/doc/glibmm-2.4/docs/reference/html/streamiochannel_8h.html
--rw-r--r-- root/root        6216 usr/doc/glibmm-2.4/docs/reference/html/stringutils_8h.html
--rw-r--r-- root/root        3184 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1Container__Helpers_1_1TypeTraits-members.html
--rw-r--r-- root/root       10698 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1Container__Helpers_1_1TypeTraits.html
--rw-r--r-- root/root        2575 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticMutex-members.html
--rw-r--r-- root/root        8764 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticMutex.html
--rw-r--r-- root/root        2849 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticPrivate-members.html
--rw-r--r-- root/root        9618 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticPrivate.html
--rw-r--r-- root/root        3234 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRWLock-members.html
--rw-r--r-- root/root       12205 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRWLock.html
--rw-r--r-- root/root         782 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRWLock__inherit__graph.png
--rw-r--r-- root/root        3079 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRecMutex-members.html
--rw-r--r-- root/root       11335 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRecMutex.html
--rw-r--r-- root/root         825 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRecMutex__inherit__graph.png
--rw-r--r-- root/root        8205 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1TimeVal-members.html
--rw-r--r-- root/root       40845 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1TimeVal.html
--rw-r--r-- root/root         578 usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1TimeVal__inherit__graph.png
--rw-r--r-- root/root       10193 usr/doc/glibmm-2.4/docs/reference/html/thread_2dispatcher_8cc-example.html
--rw-r--r-- root/root        5771 usr/doc/glibmm-2.4/docs/reference/html/thread_2thread_8cc-example.html
--rw-r--r-- root/root        7997 usr/doc/glibmm-2.4/docs/reference/html/thread_8h.html
--rw-r--r-- root/root        2481 usr/doc/glibmm-2.4/docs/reference/html/threadpool_8h.html
--rw-r--r-- root/root        3733 usr/doc/glibmm-2.4/docs/reference/html/timer_8h.html
--rw-r--r-- root/root        1622 usr/doc/glibmm-2.4/docs/reference/html/timeval_8h.html
--rw-r--r-- root/root       51153 usr/doc/glibmm-2.4/docs/reference/html/unicode_8h.html
--rw-r--r-- root/root        3496 usr/doc/glibmm-2.4/docs/reference/html/ustring_8h.html
--rw-r--r-- root/root        1384 usr/doc/glibmm-2.4/docs/reference/html/utility_8h.html
--rw-r--r-- root/root        3229 usr/doc/glibmm-2.4/docs/reference/html/value_8h.html
--rw-r--r-- root/root        1640 usr/doc/glibmm-2.4/docs/reference/html/value__basictypes_8h.html
--rw-r--r-- root/root        1632 usr/doc/glibmm-2.4/docs/reference/html/value__custom_8h.html
--rw-r--r-- root/root       17353 usr/doc/glibmm-2.4/docs/reference/html/wrap_8h.html
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/examples/
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/examples/iochannel_stream/
--rw-r--r-- root/root        7748 usr/doc/glibmm-2.4/examples/iochannel_stream/fdstream.cc
--rw-r--r-- root/root        4160 usr/doc/glibmm-2.4/examples/iochannel_stream/fdstream.h
--rw-r--r-- root/root        2548 usr/doc/glibmm-2.4/examples/iochannel_stream/main.cc
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/examples/markup/
--rw-r--r-- root/root        3685 usr/doc/glibmm-2.4/examples/markup/parser.cc
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/examples/options/
--rw-r--r-- root/root        4173 usr/doc/glibmm-2.4/examples/options/main.cc
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.4/examples/thread/
--rw-r--r-- root/root        4004 usr/doc/glibmm-2.4/examples/thread/dispatcher.cc
--rw-r--r-- root/root        5768 usr/doc/glibmm-2.4/examples/thread/dispatcher2.cc
--rw-r--r-- root/root        1694 usr/doc/glibmm-2.4/examples/thread/thread.cc
--rw-r--r-- root/root         713 usr/doc/glibmm-2.4/examples/thread/threadpool.cc
-drwxr-xr-x root/root           0 usr/doc/glibmm-2.6.1/
--rw-r--r-- root/root         667 usr/doc/glibmm-2.6.1/AUTHORS
--rw-r--r-- root/root       26532 usr/doc/glibmm-2.6.1/COPYING
--rw-r--r-- root/root       37188 usr/doc/glibmm-2.6.1/ChangeLog
--rw-r--r-- root/root        8079 usr/doc/glibmm-2.6.1/NEWS
--rw-r--r-- root/root        1403 usr/doc/glibmm-2.6.1/README
--rw-r--r-- root/root        3055 usr/doc/glibmm-2.6.1/README.win32
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/glibmm-2.4/
--rw-r--r-- root/root        2373 usr/include/glibmm-2.4/glibmm.h
-drwxr-xr-x root/root           0 usr/include/glibmm-2.4/glibmm/
--rw-r--r-- root/root       14666 usr/include/glibmm-2.4/glibmm/arrayhandle.h
--rw-r--r-- root/root        2099 usr/include/glibmm-2.4/glibmm/class.h
--rw-r--r-- root/root       11218 usr/include/glibmm-2.4/glibmm/containerhandle_shared.h
--rw-r--r-- root/root        9348 usr/include/glibmm-2.4/glibmm/containers.h
--rw-r--r-- root/root       10847 usr/include/glibmm-2.4/glibmm/convert.h
--rw-r--r-- root/root       13078 usr/include/glibmm-2.4/glibmm/date.h
--rw-r--r-- root/root        4299 usr/include/glibmm-2.4/glibmm/debug.h
--rw-r--r-- root/root        3351 usr/include/glibmm-2.4/glibmm/dispatcher.h
--rw-r--r-- root/root        1959 usr/include/glibmm-2.4/glibmm/error.h
--rw-r--r-- root/root        1143 usr/include/glibmm-2.4/glibmm/exception.h
--rw-r--r-- root/root        1317 usr/include/glibmm-2.4/glibmm/exceptionhandler.h
--rw-r--r-- root/root       16385 usr/include/glibmm-2.4/glibmm/fileutils.h
--rw-r--r-- root/root        4013 usr/include/glibmm-2.4/glibmm/helperlist.h
--rw-r--r-- root/root        1113 usr/include/glibmm-2.4/glibmm/i18n.h
--rw-r--r-- root/root        1159 usr/include/glibmm-2.4/glibmm/init.h
--rw-r--r-- root/root        2124 usr/include/glibmm-2.4/glibmm/interface.h
--rw-r--r-- root/root       26196 usr/include/glibmm-2.4/glibmm/iochannel.h
--rw-r--r-- root/root       10798 usr/include/glibmm-2.4/glibmm/listhandle.h
--rw-r--r-- root/root       25145 usr/include/glibmm-2.4/glibmm/main.h
--rw-r--r-- root/root       15683 usr/include/glibmm-2.4/glibmm/markup.h
--rw-r--r-- root/root       11353 usr/include/glibmm-2.4/glibmm/miscutils.h
--rw-r--r-- root/root        7233 usr/include/glibmm-2.4/glibmm/module.h
--rw-r--r-- root/root        9307 usr/include/glibmm-2.4/glibmm/object.h
--rw-r--r-- root/root        5858 usr/include/glibmm-2.4/glibmm/objectbase.h
--rw-r--r-- root/root        6708 usr/include/glibmm-2.4/glibmm/optioncontext.h
--rw-r--r-- root/root        3035 usr/include/glibmm-2.4/glibmm/optionentry.h
--rw-r--r-- root/root        4153 usr/include/glibmm-2.4/glibmm/optiongroup.h
--rw-r--r-- root/root        1894 usr/include/glibmm-2.4/glibmm/pattern.h
-drwxr-xr-x root/root           0 usr/include/glibmm-2.4/glibmm/private/
--rw-r--r-- root/root         149 usr/include/glibmm-2.4/glibmm/private/convert_p.h
--rw-r--r-- root/root         140 usr/include/glibmm-2.4/glibmm/private/date_p.h
--rw-r--r-- root/root         155 usr/include/glibmm-2.4/glibmm/private/fileutils_p.h
--rw-r--r-- root/root         369 usr/include/glibmm-2.4/glibmm/private/interface_p.h
--rw-r--r-- root/root         155 usr/include/glibmm-2.4/glibmm/private/iochannel_p.h
--rw-r--r-- root/root         146 usr/include/glibmm-2.4/glibmm/private/markup_p.h
--rw-r--r-- root/root         146 usr/include/glibmm-2.4/glibmm/private/module_p.h
--rw-r--r-- root/root         482 usr/include/glibmm-2.4/glibmm/private/object_p.h
--rw-r--r-- root/root         167 usr/include/glibmm-2.4/glibmm/private/optioncontext_p.h
--rw-r--r-- root/root         161 usr/include/glibmm-2.4/glibmm/private/optionentry_p.h
--rw-r--r-- root/root         161 usr/include/glibmm-2.4/glibmm/private/optiongroup_p.h
--rw-r--r-- root/root         143 usr/include/glibmm-2.4/glibmm/private/shell_p.h
--rw-r--r-- root/root         143 usr/include/glibmm-2.4/glibmm/private/spawn_p.h
--rw-r--r-- root/root         146 usr/include/glibmm-2.4/glibmm/private/thread_p.h
--rw-r--r-- root/root         149 usr/include/glibmm-2.4/glibmm/private/unicode_p.h
--rw-r--r-- root/root        4841 usr/include/glibmm-2.4/glibmm/property.h
--rw-r--r-- root/root        4586 usr/include/glibmm-2.4/glibmm/propertyproxy.h
--rw-r--r-- root/root        2606 usr/include/glibmm-2.4/glibmm/propertyproxy_base.h
--rw-r--r-- root/root        2440 usr/include/glibmm-2.4/glibmm/quark.h
--rw-r--r-- root/root        1651 usr/include/glibmm-2.4/glibmm/random.h
--rw-r--r-- root/root        9244 usr/include/glibmm-2.4/glibmm/refptr.h
--rw-r--r-- root/root        2666 usr/include/glibmm-2.4/glibmm/sarray.h
--rw-r--r-- root/root        4340 usr/include/glibmm-2.4/glibmm/shell.h
--rw-r--r-- root/root       15836 usr/include/glibmm-2.4/glibmm/signalproxy.h
--rw-r--r-- root/root        2165 usr/include/glibmm-2.4/glibmm/signalproxy_connectionnode.h
--rw-r--r-- root/root       10905 usr/include/glibmm-2.4/glibmm/slisthandle.h
--rw-r--r-- root/root        6900 usr/include/glibmm-2.4/glibmm/spawn.h
--rw-r--r-- root/root        2146 usr/include/glibmm-2.4/glibmm/streamiochannel.h
--rw-r--r-- root/root        7539 usr/include/glibmm-2.4/glibmm/stringutils.h
--rw-r--r-- root/root       28206 usr/include/glibmm-2.4/glibmm/thread.h
--rw-r--r-- root/root        6927 usr/include/glibmm-2.4/glibmm/threadpool.h
--rw-r--r-- root/root        1941 usr/include/glibmm-2.4/glibmm/timer.h
--rw-r--r-- root/root        5510 usr/include/glibmm-2.4/glibmm/timeval.h
--rw-r--r-- root/root        8545 usr/include/glibmm-2.4/glibmm/unicode.h
--rw-r--r-- root/root       31955 usr/include/glibmm-2.4/glibmm/ustring.h
--rw-r--r-- root/root        3585 usr/include/glibmm-2.4/glibmm/utility.h
--rw-r--r-- root/root        7869 usr/include/glibmm-2.4/glibmm/value.h
--rw-r--r-- root/root        4716 usr/include/glibmm-2.4/glibmm/value_basictypes.h
--rw-r--r-- root/root        7843 usr/include/glibmm-2.4/glibmm/value_custom.h
--rw-r--r-- root/root        3700 usr/include/glibmm-2.4/glibmm/wrap.h
--rw-r--r-- root/root        1053 usr/include/glibmm-2.4/glibmm/wrap_init.h
-drwxr-xr-x root/root           0 usr/include/glibmm-2.4/glibmm_generate_extra_defs/
--rw-r--r-- root/root        1203 usr/include/glibmm-2.4/glibmm_generate_extra_defs/generate_extra_defs.h
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/glibmm-2.4/
-drwxr-xr-x root/root           0 usr/lib/glibmm-2.4/include/
--rw-r--r-- root/root        2801 usr/lib/glibmm-2.4/include/glibmmconfig.h
-drwxr-xr-x root/root           0 usr/lib/glibmm-2.4/proc/
--rwxr-xr-x root/root        1451 usr/lib/glibmm-2.4/proc/beautify_docs.pl
--rwxr-xr-x root/root        7728 usr/lib/glibmm-2.4/proc/generate_wrap_init.pl
--rwxr-xr-x root/root        5799 usr/lib/glibmm-2.4/proc/gmmproc
-drwxr-xr-x root/root           0 usr/lib/glibmm-2.4/proc/m4/
--rw-r--r-- root/root       10539 usr/lib/glibmm-2.4/proc/m4/base.m4
--rw-r--r-- root/root        4844 usr/lib/glibmm-2.4/proc/m4/class_boxedtype.m4
--rw-r--r-- root/root        3574 usr/lib/glibmm-2.4/proc/m4/class_boxedtype_static.m4
--rw-r--r-- root/root         853 usr/lib/glibmm-2.4/proc/m4/class_generic.m4
--rw-r--r-- root/root        5636 usr/lib/glibmm-2.4/proc/m4/class_gobject.m4
--rw-r--r-- root/root        5121 usr/lib/glibmm-2.4/proc/m4/class_gtkobject.m4
--rw-r--r-- root/root        5958 usr/lib/glibmm-2.4/proc/m4/class_interface.m4
--rw-r--r-- root/root        3963 usr/lib/glibmm-2.4/proc/m4/class_opaque_copyable.m4
--rw-r--r-- root/root        4709 usr/lib/glibmm-2.4/proc/m4/class_opaque_refcounted.m4
--rw-r--r-- root/root        4805 usr/lib/glibmm-2.4/proc/m4/class_shared.m4
--rw-r--r-- root/root        2625 usr/lib/glibmm-2.4/proc/m4/compare.m4
--rw-r--r-- root/root         229 usr/lib/glibmm-2.4/proc/m4/convert.m4
--rw-r--r-- root/root        1639 usr/lib/glibmm-2.4/proc/m4/convert_atk.m4
--rw-r--r-- root/root        2240 usr/lib/glibmm-2.4/proc/m4/convert_base.m4
--rw-r--r-- root/root       11974 usr/lib/glibmm-2.4/proc/m4/convert_gdk.m4
--rw-r--r-- root/root        2731 usr/lib/glibmm-2.4/proc/m4/convert_glib.m4
--rw-r--r-- root/root       18537 usr/lib/glibmm-2.4/proc/m4/convert_gtk.m4
--rw-r--r-- root/root         219 usr/lib/glibmm-2.4/proc/m4/convert_gtkmm.m4
--rw-r--r-- root/root        6903 usr/lib/glibmm-2.4/proc/m4/convert_pango.m4
--rw-r--r-- root/root        1884 usr/lib/glibmm-2.4/proc/m4/ctor.m4
--rw-r--r-- root/root          72 usr/lib/glibmm-2.4/proc/m4/doc.m4
--rw-r--r-- root/root        3426 usr/lib/glibmm-2.4/proc/m4/enum.m4
--rw-r--r-- root/root        1857 usr/lib/glibmm-2.4/proc/m4/gerror.m4
--rw-r--r-- root/root        5576 usr/lib/glibmm-2.4/proc/m4/list.m4
--rw-r--r-- root/root        2358 usr/lib/glibmm-2.4/proc/m4/member.m4
--rw-r--r-- root/root        1674 usr/lib/glibmm-2.4/proc/m4/method.m4
--rw-r--r-- root/root        1078 usr/lib/glibmm-2.4/proc/m4/property.m4
--rw-r--r-- root/root        6206 usr/lib/glibmm-2.4/proc/m4/signal.m4
--rw-r--r-- root/root        3664 usr/lib/glibmm-2.4/proc/m4/vfunc.m4
-drwxr-xr-x root/root           0 usr/lib/glibmm-2.4/proc/pm/
--rw-r--r-- root/root       13001 usr/lib/glibmm-2.4/proc/pm/DocsParser.pm
--rw-r--r-- root/root        4602 usr/lib/glibmm-2.4/proc/pm/Enum.pm
--rw-r--r-- root/root        7838 usr/lib/glibmm-2.4/proc/pm/Function.pm
--rw-r--r-- root/root        4247 usr/lib/glibmm-2.4/proc/pm/FunctionBase.pm
--rw-r--r-- root/root       14322 usr/lib/glibmm-2.4/proc/pm/GtkDefs.pm
--rw-r--r-- root/root        1320 usr/lib/glibmm-2.4/proc/pm/Object.pm
--rw-r--r-- root/root       23228 usr/lib/glibmm-2.4/proc/pm/Output.pm
--rw-r--r-- root/root        2445 usr/lib/glibmm-2.4/proc/pm/Property.pm
--rw-r--r-- root/root        2651 usr/lib/glibmm-2.4/proc/pm/Util.pm
--rw-r--r-- root/root       31337 usr/lib/glibmm-2.4/proc/pm/WrapParser.pm
--rwxr-xr-x root/root        1093 usr/lib/libglibmm-2.4.la
--rwxr-xr-x root/root      277620 usr/lib/libglibmm-2.4.so.1.0.13
--rwxr-xr-x root/root        1213 usr/lib/libglibmm_generate_extra_defs-2.4.la
--rwxr-xr-x root/root       16588 usr/lib/libglibmm_generate_extra_defs-2.4.so.1.0.13
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         282 usr/lib/pkgconfig/glibmm-2.4.pc
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/aclocal/
--rw-r--r-- root/root        1374 usr/share/aclocal/glibmm_check_perl.m4
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/images/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/images/gtkmm_logo.gif
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/images/top.gif
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/reference/
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/reference/html/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/annotated.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/arrayhandle_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGTimeVal.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGTimeVal__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ArrayHandle-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ArrayHandle.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Cond-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Cond.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ArrayHandleIterator.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ListHandleIterator-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ListHandleIterator.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1SListHandleIterator.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Date-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Date.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dir-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dir.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1DirIterator-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1DirIterator.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dispatcher-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Dispatcher.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Error-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Error.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Error__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Exception-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Exception.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Exception__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1FileError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1FileError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1FileError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1HelperList-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1HelperList.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IConv-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IConv.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannel-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannel.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannelError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannelError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannelError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOChannel__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOSource-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOSource.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IOSource__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IdleSource-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IdleSource.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1IdleSource__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Interface-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Interface.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Interface__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ListHandle-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ListHandle.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainContext-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainContext.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainLoop-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MainLoop.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MarkupError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MarkupError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1MarkupError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1AttributeKeyLess-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1AttributeKeyLess.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1ParseContext-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1ParseContext.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1ParseContext__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1Parser-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1Parser.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Markup_1_1Parser__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Module-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Module.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex_1_1Lock-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Mutex_1_1Lock.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Object-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Object.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ObjectBase-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ObjectBase.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ObjectBase__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Object__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionContext-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionContext.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionEntry-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionEntry.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup_1_1CppOptionEntry-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1OptionGroup_1_1CppOptionEntry.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PatternSpec-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PatternSpec.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PollFD-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PollFD.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Private-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Private.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Property-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Property.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyBase-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyBase.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyBase__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__Base-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__Base.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__Base__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__ReadOnly-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__ReadOnly.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__ReadOnly__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__WriteOnly-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__WriteOnly.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__WriteOnly__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1PropertyProxy__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Property__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Quark-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Quark.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Quark__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1QueryQuark-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1QueryQuark.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1QueryQuark__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1ReaderLock-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1ReaderLock.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1WriterLock-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock_1_1WriterLock.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RWLock__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Rand-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Rand.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex_1_1Lock-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex_1_1Lock.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RecMutex__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RefPtr-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1RefPtr.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SListHandle-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SListHandle.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Sequence-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Sequence.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ShellError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ShellError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ShellError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalChildWatch-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalChildWatch.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIO-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIO.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIdle-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalIdle.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy0-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy0.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy0__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy1-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy1.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy1__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy2-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy2.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy2__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy3-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy3.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy3__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy5-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy5.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy5__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy6-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy6.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxy6__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyBase-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyBase.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyBase__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyConnectionNode-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyConnectionNode.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyNormal-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyNormal.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyNormal__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyProperty-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyProperty.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalProxyProperty__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalTimeout-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SignalTimeout.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Source-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Source.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Source__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SpawnError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SpawnError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1SpawnError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1StreamIOChannel-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1StreamIOChannel.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1StreamIOChannel__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Thread-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Thread.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadError-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadError.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadError__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadPool-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ThreadPool.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Thread_1_1Exit.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1TimeoutSource-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1TimeoutSource.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1TimeoutSource__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Timer-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Timer.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Boxed-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Boxed.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Boxed__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Enum-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Enum.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Enum__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Flags-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Flags.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Flags__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Object-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Object.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__Object__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__String-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__String.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__String__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ValueBase__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01Glib_1_1ustring_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01Glib_1_1ustring_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01Glib_1_1ustring_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01T_01_5_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01T_01_5_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01T_01_5_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01bool_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01bool_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01bool_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01char_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01char_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01char_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01const_01T_01_5_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01const_01T_01_5_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01const_01T_01_5_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01double_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01double_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01double_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01float_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01float_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01float_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01int_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01int_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01int_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01long_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01long_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01long_01long_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01std_1_1string_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01std_1_1string_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01std_1_1string_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01char_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01char_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01char_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01int_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01int_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01int_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01long_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01unsigned_01long_01long_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01void_01_5_01_4-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01void_01_5_01_4.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value_3_01void_01_5_01_4__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Boxed-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Boxed.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Boxed__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Enum-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Enum.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Enum__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Flags-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Flags.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Flags__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Pointer-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Pointer.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__Pointer__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Value__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring__Iterator-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ustring__Iterator.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/class_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classes.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classsigc_1_1trackable.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classsigc_1_1trackable__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1basic__filebuf.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1basic__filebuf__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1char__traits.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classstd_1_1char__traits__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/containerhandle__shared_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/containers_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/convert_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/date_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/debug_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/dispatcher_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/doxygen.css
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/doxygen.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/error_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/examples.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/exception_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/exceptionhandler_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/files.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/fileutils_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x62.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x63.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x64.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x65.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x66.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x67.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x68.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x69.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x6a.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x6c.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x6d.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x6e.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x6f.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x70.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x71.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x72.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x73.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x74.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x75.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x76.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x77.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x79.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_0x7e.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_enum.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_eval.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x62.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x63.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x64.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x65.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x66.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x67.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x68.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x69.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x6a.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x6c.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x6d.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x6e.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x6f.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x70.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x71.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x72.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x73.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x74.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x75.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x76.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x77.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x79.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_func_0x7e.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_rela.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_type.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/functions_vars.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x61.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x62.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x63.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x64.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x65.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x66.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x67.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x69.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x6c.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x6d.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x6e.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x6f.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x70.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x73.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x74.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x75.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x76.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x77.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_0x78.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_defs.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_enum.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_eval.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_func.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/globals_type.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/graph_legend.dot
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/graph_legend.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/graph_legend.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__CharsetConv.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__ContHandles.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__ContHandles.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__ContHelpers.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__ContHelpers.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__FileUtils.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__MainLoop.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__Markup.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__MiscUtils.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__PatternMatching.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__Random.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__ShellUtils.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__Spawn.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__StringUtils.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__ThreadPools.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__Threads.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__Unicode.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__glibmmEnums.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/group__glibmmValue.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/helperlist_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/hierarchy.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/i18n-lib_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/i18n_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/index.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__0.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__1.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__10.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__11.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__12.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__13.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__14.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__15.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__16.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__17.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__18.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__19.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__2.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__20.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__21.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__22.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__23.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__24.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__25.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__26.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__27.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__28.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__29.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__3.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__30.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__31.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__32.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__33.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__34.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__35.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__36.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__37.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__38.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__39.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__4.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__40.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__41.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__42.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__43.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__44.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__45.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__46.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__47.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__48.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__49.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__5.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__50.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__51.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__52.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__53.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__54.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__55.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__56.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__57.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__58.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__59.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__6.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__60.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__61.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__62.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__63.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__64.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__65.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__66.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__67.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__68.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__69.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__7.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__70.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__71.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__72.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__73.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__74.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__75.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__76.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__77.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__78.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__79.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__8.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__80.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__81.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__82.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__83.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__84.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__85.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__86.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherit__graph__9.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/inherits.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/init_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/interface_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/iochannel_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/listhandle_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/main_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/markup_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/miscutils_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/module_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/modules.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Ascii.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Container__Helpers.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Markup.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespaceGlib_1_1Unicode.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x61.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x62.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x63.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x64.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x65.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x66.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x67.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x69.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x6c.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x6d.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x6e.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x6f.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x70.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x73.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x74.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x75.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x76.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x77.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_0x78.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_enum.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_eval.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_func.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespacemembers_type.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/namespaces.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/newin2p6s.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/object_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/objectbase_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/optioncontext_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/optionentry_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/optiongroup_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/pages.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/pattern_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/property_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/propertyproxy_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/propertyproxy__base_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/quark_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/random_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/refptr_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/sarray_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/shell_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/signalproxy_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/signalproxy__connectionnode_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/slisthandle_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/spawn_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/streamiochannel_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/stringutils_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1Container__Helpers_1_1TypeTraits-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1Container__Helpers_1_1TypeTraits.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticMutex-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticMutex.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticPrivate-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticPrivate.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRWLock-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRWLock.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRWLock__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRecMutex-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRecMutex.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1StaticRecMutex__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1TimeVal-members.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1TimeVal.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/structGlib_1_1TimeVal__inherit__graph.png
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/tabs.css
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/thread_2dispatcher_8cc-example.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/thread_2thread_8cc-example.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/thread_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/threadpool_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/timer_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/timeval_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/unicode_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/ustring_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/utility_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/value_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/value__basictypes_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/value__custom_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/wrap_8h.html
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/child_watch/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/child_watch/main.cc
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/iochannel_stream/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/iochannel_stream/fdstream.cc
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/iochannel_stream/fdstream.h
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/iochannel_stream/main.cc
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/markup/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/markup/parser.cc
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/options/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/options/main.cc
+drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/thread/
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/dispatcher.cc
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/dispatcher2.cc
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/thread.cc
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/threadpool.cc
+drwxr-xr-x  root/root  usr/doc/glibmm-2.8.9/
+-rw-r--r--  root/root  usr/doc/glibmm-2.8.9/AUTHORS
+-rw-r--r--  root/root  usr/doc/glibmm-2.8.9/COPYING
+-rw-r--r--  root/root  usr/doc/glibmm-2.8.9/ChangeLog
+-rw-r--r--  root/root  usr/doc/glibmm-2.8.9/NEWS
+-rw-r--r--  root/root  usr/doc/glibmm-2.8.9/README
+-rw-r--r--  root/root  usr/doc/glibmm-2.8.9/README.win32
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/glibmm-2.4/
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm.h
+drwxr-xr-x  root/root  usr/include/glibmm-2.4/glibmm/
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/arrayhandle.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/class.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/containerhandle_shared.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/containers.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/convert.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/date.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/debug.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/dispatcher.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/error.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/exception.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/exceptionhandler.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/fileutils.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/helperlist.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/i18n.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/init.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/interface.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/iochannel.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/listhandle.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/main.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/markup.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/miscutils.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/module.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/object.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/objectbase.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/optioncontext.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/optionentry.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/optiongroup.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/pattern.h
+drwxr-xr-x  root/root  usr/include/glibmm-2.4/glibmm/private/
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/convert_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/date_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/fileutils_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/interface_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/iochannel_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/markup_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/module_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/object_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/optioncontext_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/optionentry_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/optiongroup_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/shell_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/spawn_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/thread_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/private/unicode_p.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/property.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/propertyproxy.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/propertyproxy_base.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/quark.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/random.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/refptr.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/sarray.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/shell.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/signalproxy.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/signalproxy_connectionnode.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/slisthandle.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/spawn.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/streamiochannel.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/stringutils.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/thread.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/threadpool.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/timer.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/timeval.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/unicode.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/ustring.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/utility.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/value.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/value_basictypes.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/value_custom.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/wrap.h
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm/wrap_init.h
+drwxr-xr-x  root/root  usr/include/glibmm-2.4/glibmm_generate_extra_defs/
+-rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm_generate_extra_defs/generate_extra_defs.h
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/glibmm-2.4/
+drwxr-xr-x  root/root  usr/lib/glibmm-2.4/include/
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/include/glibmmconfig.h
+drwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/
+-rwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/beautify_docs.pl
+-rwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/generate_wrap_init.pl
+-rwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/gmmproc
+drwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/m4/
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/base.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_boxedtype.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_boxedtype_static.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_generic.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_gobject.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_gtkobject.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_interface.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_opaque_copyable.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_opaque_refcounted.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/class_shared.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/compare.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_atk.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_base.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_gdk.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_glib.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_gtk.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_gtkmm.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/convert_pango.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/ctor.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/doc.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/enum.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/gerror.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/list.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/member.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/method.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/property.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/signal.m4
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/m4/vfunc.m4
+drwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/pm/
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/DocsParser.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Enum.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Function.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/FunctionBase.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/GtkDefs.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Object.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Output.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Property.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Util.pm
+-rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/WrapParser.pm
+-rwxr-xr-x  root/root  usr/lib/libglibmm-2.4.la
+-rwxr-xr-x  root/root  usr/lib/libglibmm-2.4.so.1.0.23
+-rwxr-xr-x  root/root  usr/lib/libglibmm_generate_extra_defs-2.4.la
+-rwxr-xr-x  root/root  usr/lib/libglibmm_generate_extra_defs-2.4.so.1.0.23
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/glibmm-2.4.pc
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/aclocal/
+-rw-r--r--  root/root  usr/share/aclocal/glibmm_check_perl.m4

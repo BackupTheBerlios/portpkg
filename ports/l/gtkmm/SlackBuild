@@ -1,12 +1,18 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: ftp://ftp.gnome.org/pub/gnome/sources/gtkmm/2.8/gtkmm-2.8.8.tar.bz2
+# MD5SUMS: 319a7847f67c5099a78afb495e148143 gtkmm-2.8.8.tar.bz2
+# REQUIRES: glibmm gtk+2
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
-DOCPKG=$TMP/package-$NAME-docs #+head
 
-VERSION=2.8.0
+DOCPKG=$TMP/package-$NAME-docs
+VERSION=2.8.8
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -35,7 +41,6 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-#+install
 
 # ok, since /usr/doc/gtkmm-2.4 is about 80 % of the required space for this
 # package, I quickly decided to move all this to a seperate one:
@@ -43,34 +48,30 @@ make install DESTDIR=$PKG
 mkdir -p $DOCPKG/usr/doc
 mv $PKG/usr/share/doc/gtkmm-2.4 $DOCPKG/usr/doc/
 
-#+install
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS CHANGES COPYING ChangeLog INSTALL NEWS README README.SUN README.win32 \
+  AUTHORS COPYING ChangeLog NEWS README README.SUN README.win32 \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
-cd $DOCPKG #+package
-makepkg -p -l y -c n $TMP/$NAME-docs-$VERSION-noarch-$BUILD.tgz #+package
 
-#=cleanup
+cd $DOCPKG
+makepkg -p -l y -c n $TMP/$NAME-docs-$VERSION-noarch-$BUILD.tgz
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/gtkmm-$VERSION
   rm -rf $PKG
   rm -rf $DOCPKG
 fi
-#=cleanup

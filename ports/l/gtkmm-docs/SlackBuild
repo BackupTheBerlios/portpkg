@@ -1,6 +1,10 @@
-VERSION=2.8.0
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# REQUIRES: gtkmm
+
+VERSION=2.8.8
 ARCH=noarch
-BUILD=2tom
+BUILD=3tom
 
 # of course, this package is built by the script in ../gtkmm/, so we just
 # have to list gtkmm  in our requirements and the package is done :)
