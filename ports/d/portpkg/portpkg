@@ -89,6 +89,7 @@ repos()   { cache $CACHE/repos "grep -vshe ^# -e ^$ \$CFG_DIR/repos \$PRT_DIR/re
             test -s $CACHE/repos || echo $PRT_DIR; }
 
 # listers
+ls_virt() { cache $CACHE/virt "grep -vshe ^# -e ^$ \$CFG_DIR/virtual \$PRT_DIR/virtual" "$@"; }
 ls_inst() { cache $CACHE/inst "cd $ADM_DIR/packages; find * -type f" "$@"; }
 ls_pkg()  { cache $CACHE/pkg "cd $PKG_DIR; find * -name \"*.tgz\" -follow | sed \"s,\.tgz$,,\"" "$@"; }
 if $USE_ALPHA_CODE; then
@@ -247,9 +248,8 @@ explicit() # pkgex_list >pkgex-list
   for arg; do
     case $arg in
       */) # also look through virtual groups list
-	  ( ls_slk | slk2gname
-            cat $CFG_DIR/virtual $PRT_DIR/virtual
-          ) | grep -s `regex $arg` | any2base;;
+	  ls_slk | slk2gname | grep `regex $arg`
+	  ls_virt `regex $arg` | any2base;;
       *)  echo $arg;;
     esac
   done
@@ -927,14 +927,13 @@ do_info() # pkgex-list
 # list available ports
 do_list() # [pkgex-list] >glist
 {
+  local virt
   has_ports || die
   case $* in
     "") ls_loc;;
-    *)  # grep arguments
-        ls_loc `regex "$@"`
-        # in order to see virtual groups we list them here also
-#        grep -hs `regex "$@"` {$CFG_DIR,$PRT_DIR}/virtual;;
-        grep -hs `regex "$@"` $CFG_DIR/virtual $PRT_DIR/virtual;;
+    *)  # grep arguments (in order to see virtual groups we list them here also)
+        virt=`ls_virt $(regex "$@") | any2base`
+        ls_loc `regex "$@" $virt`;;
   esac | loc2gpkg
 }
 
