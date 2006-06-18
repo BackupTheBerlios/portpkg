@@ -1,3 +1,16 @@
+2006-06-18  topf  <topf@users.berlios.de>
+
+  * xap/kino/SlackBuild, xap/kino/doinst.sh, xap/kino/footprint, xap/kino/md5sums, xap/kino/requires, xap/kino/slack-desc, xap/kino/sources:
+  Version bump.
+
+  * xap/video-dvdrip/SlackBuild, xap/video-dvdrip/doinst.sh, xap/video-dvdrip/dvdrip.desktop, xap/video-dvdrip/footprint, xap/video-dvdrip/slack-desc:
+  Version bump. Added .desktop file.
+
+  * gnome/rhythmbox/SlackBuild.cp: Removed.
+
+  * gnome/rhythmbox/SlackBuild, gnome/rhythmbox/footprint, gnome/rhythmbox/md5sums, gnome/rhythmbox/requires, gnome/rhythmbox/sources:
+  Version bump. Removed --with-player=xine, uses GStreamer now. Added --enable-tag-editing.
+
 2006-06-17  topf  <topf@users.berlios.de>
 
   * d/portpkg/webstats: Make complete list added.
