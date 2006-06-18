@@ -19,8 +19,8 @@ pause "Continue updating web stats according to $PRT_DIR/ChangeLog?"
 row "Recent changes"
 { echo "<dl>"
   cat $PRT_DIR/ChangeLog \
-| grep -oe "^[0-9][^ ]*" -e "[^ ]*[./]*SlackBuild" \
-| sed "s,[./]SlackBuild,," \
+| grep -oe "^[0-9][^ ]*" -e "[^ ]*[./]*SlackBuild[,:]" \
+| sed "s,[./]SlackBuild.,," \
 | head -n 40 \
 | ( d=""
     while read s; do
