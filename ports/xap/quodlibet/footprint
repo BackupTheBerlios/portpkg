@@ -5,11 +5,11 @@ drwxr-xr-x  root/root  install/
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/quodlibet-0.20.1/
--rw-r--r--  root/root  usr/doc/quodlibet-0.20.1/COPYING
--rw-r--r--  root/root  usr/doc/quodlibet-0.20.1/HACKING
--rw-r--r--  root/root  usr/doc/quodlibet-0.20.1/NEWS
--rw-r--r--  root/root  usr/doc/quodlibet-0.20.1/README
+drwxr-xr-x  root/root  usr/doc/quodlibet-0.21.1/
+-rw-r--r--  root/root  usr/doc/quodlibet-0.21.1/COPYING
+-rw-r--r--  root/root  usr/doc/quodlibet-0.21.1/HACKING
+-rw-r--r--  root/root  usr/doc/quodlibet-0.21.1/NEWS
+-rw-r--r--  root/root  usr/doc/quodlibet-0.21.1/README
 drwxr-xr-x  root/root  usr/lib/
 drwxr-xr-x  root/root  usr/lib/quodlibet/
 -rwxr-xr-x  root/root  usr/lib/quodlibet/_mmkeys.so
@@ -20,6 +20,7 @@ drwxr-xr-x  root/root  usr/man/man1/
 -rw-r--r--  root/root  usr/man/man1/quodlibet.1.gz
 drwxr-xr-x  root/root  usr/share/
 drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/quodlibet.desktop
 drwxr-xr-x  root/root  usr/share/pixmaps/
 -rw-r--r--  root/root  usr/share/pixmaps/exfalso.png
 -rw-r--r--  root/root  usr/share/pixmaps/quodlibet.png
@@ -62,8 +63,8 @@ drwxr-xr-x  root/root  usr/share/quodlibet/parse/
 -rw-r--r--  root/root  usr/share/quodlibet/player.py
 drwxr-xr-x  root/root  usr/share/quodlibet/plugins/
 -rw-r--r--  root/root  usr/share/quodlibet/plugins/__init__.py
--rw-r--r--  root/root  usr/share/quodlibet/plugins/_manager.py
 -rw-r--r--  root/root  usr/share/quodlibet/plugins/editing.py
+-rw-r--r--  root/root  usr/share/quodlibet/plugins/events.py
 -rw-r--r--  root/root  usr/share/quodlibet/plugins/songsmenu.py
 drwxr-xr-x  root/root  usr/share/quodlibet/qltk/
 -rw-r--r--  root/root  usr/share/quodlibet/qltk/__init__.py
@@ -121,6 +122,7 @@ drwxr-xr-x  root/root  usr/share/quodlibet/qltk/
 -rw-r--r--  root/root  usr/share/quodlibet/stock.py
 drwxr-xr-x  root/root  usr/share/quodlibet/util/
 -rw-r--r--  root/root  usr/share/quodlibet/util/__init__.py
+-rw-r--r--  root/root  usr/share/quodlibet/util/i18n.py
 -rw-r--r--  root/root  usr/share/quodlibet/util/massagers.py
 -rw-r--r--  root/root  usr/share/quodlibet/util/uri.py
 -rw-r--r--  root/root  usr/share/quodlibet/widgets.py
