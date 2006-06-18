@@ -1,27 +1,18 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-0.97.9.tar.gz
-# MD5SUMS: 05553ae8269d9de9db64b23f41553aea  Video-DVDRip-0.97.9.tar.gz
+# SOURCES: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-0.97.11.tar.gz
+# MD5SUMS: cba0735a4170a095d833784989eae730 Video-DVDRip-0.97.11.tar.gz
 # REQUIRES: event-execflow gtk2-ex-formfactory gtk2-perl libintl-perl perl transcode
+# OPTIONAL: cdrdao cdrecord lsdvd mjpegtools mplayer ogmtools vcdimager video-dvdrip xine-ui
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.97.9
+VERSION=0.97.11
 ARCH=noarch
-BUILD=1tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -32,6 +23,9 @@ chown -R root.root .
 perl Makefile.PL
 make
 make install DESTDIR=$PKG
+mkdir -p $PKG/usr/share/applications
+install -m 644 $CWD/dvdrip.desktop $PKG/usr/share/applications/
+sed -i "s,^Icon=.*$,Icon=/`cd $PKG; find * -name icon.xpm`," $PKG/usr/share/applications/dvdrip.desktop
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
@@ -44,6 +38,7 @@ find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
