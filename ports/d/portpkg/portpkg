@@ -541,7 +541,7 @@ maintainer_mode()
   [ -s $t/arb_req ] && row "Arbitrary dependencies (KEEP THIS LIST SHORT):" `cat $t/arb_req` | fmt
   grep -e "-upgraded$" $t/auto_req >$t/check_req
   ls_loc -v $(exclude) | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
-  [ -s $t/check_req ] && warn "Check these dependencies:" `cat $t/excl_req` | fmt -t
+  [ -s $t/check_req ] && warn "Check these dependencies:" `cat $t/check_req` | fmt -t
 
   # remove obsolete files
   rm -f arbitrary requires blocks optional slot-in pseudo no-fakeroot flags md5sums sources
