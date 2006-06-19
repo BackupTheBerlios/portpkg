@@ -249,7 +249,7 @@ explicit() # pkgex_list >pkgex-list
   for arg; do
     case $arg in
       */) # also look through virtual groups list
-	  ls_slk | slk2gname | grep `regex $arg`
+	  ls_slk | slk2gname | grep `regex $arg` | grep -v `exclude`
 	  ls_virt `regex $arg` | any2base;;
       *)  echo $arg;;
     esac
@@ -301,11 +301,13 @@ get_info() # pkgex
          loc=`find $(pwd)/ -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
          TEST_REQS=true
          debug "get_info(): direct mode: dependencies resolution disabled";;
-    */*) # explicitly named port: no exclude list
-         loc=`ls_loc $(regex $1) | default`
-         [ "$loc" ] && debug "get_info(): excluded port specified explicitly!";;
+#    */*) # explicitly named port: no exclude list
+#         loc=`ls_loc $(regex $1) | default`
+#         [ "$loc" ] && debug "get_info(): excluded port specified explicitly!";;
     *)   # find port, take the first if more than one available
-         loc=`ls_loc $(regex $1) | grep -v $(exclude) | default`;;
+         loc=`{ \
+ls_loc $(regex $1) | grep -v $(exclude) | default
+ls_loc $(regex $1) | default; } | head -n 1`;;
   esac
 
   if ! [ "$loc" ]; then
