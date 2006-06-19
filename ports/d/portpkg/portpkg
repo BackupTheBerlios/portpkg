@@ -578,7 +578,7 @@ build_pkg()
       ln -sf $SRC_DIR/$srcname .
       # check md5sums when non-maintainer-mode
       if $maintain && [ -f $SRC_DIR/$srcname ]; then
-        md5sums=`( echo "$md5sums"; md5sum $srcname ) | sort -u -k 2`
+        md5sums=`( echo "$md5sums"; md5sum $srcname ) | xargs -l | sort -u -k 2`
 #      elif [ "$md5sum" ]; then
 #        is_integer $srcname $md5sum || return 1
 #      else
