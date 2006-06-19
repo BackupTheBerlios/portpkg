@@ -69,7 +69,7 @@ CACHE=`mktemp -d`
 # global variables
 package="" name="" group="" path="" script="" description=""
 sources="" md5sums="" pkg_file="" products=""
-requires="" optional="" blocks="" uses=""
+requires="" optional="" blocks="" #uses=""
 maintain=$MAINTAIN_ALL
 no_fakeroot=$NO_FAKEROOT
 rebuild=$REBUILD
@@ -345,7 +345,7 @@ grep -s "^# BLOCKS: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/blocks; \
 grep -sve ^$ -e ^# $path/slack-conflicts | cut -d " " -f 1; \
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
-  uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $(use) | pkg2name | any2base | sort -u`
+#  uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $(use) | pkg2name | any2base | sort -u`
   pkg_file=`{ { \
 ls_pkg "^$group/$package$"; \
 ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz,"; \
@@ -388,13 +388,18 @@ find $SRC_DIR/ -name $package.tgz; } | head -n 1`
 # check if all required packages are installed
 check_reqs()
 {
-  local prev req inst_pkg avail_pkg
+  local prev req inst_pkg avail_pkg list
   debug "check_reqs(): starting for $package"
   $NO_REQS && return 0
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   $TEST_REQS && debug "check_reqs(): testing only"
-  debug "check_reqs(): $name requires: "$requires
-  for req in $requires $uses; do
+#  debug "check_reqs(): $name requires: "$requires
+  list=`{ \
+ls_loc $(regex $requires) | grep -v $(ignore); \
+ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u`
+  debug "check_reqs(): $name requires: "$list
+#  for req in $requires $uses; do
+  for req in $list; do
     debug "check_reqs(): testing $req"
     inst_pkg=`ls_inst $(regex $req) | head -n 1`
     avail_pkg=`$TEST_REQS || ls_loc $(regex $req) | grep -v $(exclude) | any2base | default`
@@ -918,7 +923,7 @@ do_info() # pkgex-list
     echo "SCRIPT LOCATION:  $script" | fmt -t
     [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
-    [ "$uses" ] && echo "PACKAGE USES:  "$uses | fmt -t
+#    [ "$uses" ] && echo "PACKAGE USES:  "$uses | fmt -t
     [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
@@ -1004,6 +1009,8 @@ Options:
   -a, --lazy        Don't upgrade dependencies to newest version
   -m, --maintain    Force maintainer mode
   -n, --noask       Do not ask for confirmations
+  -w, --ignore expr Ignore these required dependencies (comma separated list)
+  -t, --use expr    Use these optional dependencies (comma separated list)
 Expressions:
   group/ or [group/]name[-version-arch-build]
 EOF
@@ -1024,10 +1031,10 @@ parse_options()
 {
   local shorts longs args start_args action
   action=do_add
-  shorts="diflsuvhebogyqxzarpmn"
+  shorts="diflsuvhebogyqxzarpmnw:t:"
   longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
 rebuild,download,verbose,dryrun,noreqs,debug,lazy,remaintain,prepare,\
-maintain,export,noask"
+maintain,export,noask,ignore:,use:"
   args=`getopt -qo $shorts -l $longs -- "$@"`
   [ "$?" = "0" ] || die "Bad Arguments! Try: portpkg --help"
   start_args="$@"
@@ -1055,6 +1062,12 @@ maintain,export,noask"
       -p|--prepare)     PREPARE_ONLY=true;;
       -m|--maintain)    MAINTAIN_ALL=true;;
       -n|--noask)       INTERACTIVE=false;;
+      -w|--ignore)	ignore >/dev/null
+			regex `echo "$2" | tr , " "` >>$CACHE/ignore
+			shift;;
+      -t|--use)		use >/dev/null
+			regex `echo "$2" | tr , " "` >>$CACHE/use
+			shift;;
       --)               shift
                         break;;
     esac
