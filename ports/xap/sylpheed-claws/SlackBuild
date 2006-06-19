@@ -1,9 +1,20 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-2.3.0.tar.bz2
+# MD5SUMS: a59b1f1736e89918c648794c94120a8e  sylpheed-claws-2.3.0.tar.bz2
+# MD5SUMS: 870eb4de8dc242f16171145d8af725b9  sylpheed-claws-2.2.3.tar.bz2
+# MD5SUMS: 4a047d028327c0e7b3ef0b058bd62d91  sylpheed-claws-2.2.0.tar.bz2
+# MD5SUMS: 8d7b1d01c4f236a5e7d3e139bf43cd5a  sylpheed-claws-2.1.1.tar.bz2
+# MD5SUMS: 6e26f8e36772b71361d0c463b9a6c7a1  sylpheed-claws-2.0.0.tar.bz2
+# MD5SUMS: ac473de7189a4a9baecf16b72c34dff4  sylpheed-claws-1.0.4.tar.bz2
+# REQUIRES: aspell cxxlibs gdk-pixbuf glib gpgme gtk+ openssl startup-notification x11 x11-devel
+# OPTIONAL: cyrus-sasl db4 expat glib2 glibc gtk+2 libetpan libgpg-error libpng openldap-client zlib
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.2.0
+VERSION=2.3.0
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
