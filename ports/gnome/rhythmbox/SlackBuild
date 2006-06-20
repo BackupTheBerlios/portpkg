@@ -3,7 +3,7 @@
 # SOURCES: http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/0.9/rhythmbox-0.9.5.tar.bz2
 # MD5SUMS: ff55e1db114321b7bdd6e21df1879367 rhythmbox-0.9.5.tar.bz2
 # REQUIRES: gnome-media gstreamer libmusicbrainz libnotify nautilus-cd-burner python totem
-# OPTIONAL: avahi howl libgda libgpod libsexy totem-gst
+# OPTIONAL: avahi howl libgda libgpod libsexy libsoup totem-gst
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.9.5
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
