@@ -470,8 +470,8 @@ maintainer_mode()
   fi
 
   # generate requires list
-  echo "$requires" >$t/old_req
-  echo "$optional" >$t/old_opt
+  echo -n "$requires" >$t/old_req
+  echo -n "$optional" >$t/old_opt
   ( cd $tmp/package-$name/; find * -type f ) | sed "s,\.so\..*,.so," >$t/flist
   find $tmp/package-$name/ -type f | xargs file >$t/ftypes
 
@@ -522,9 +522,9 @@ maintainer_mode()
     } | sort -u
     echo "$sources" | xargs -l echo "# SOURCES:"
     echo "$md5sums" | xargs -l echo "# MD5SUMS:"
-    echo "# REQUIRES: "$requires
-    echo "# OPTIONAL: "$optional
-    echo "# BLOCKS: "$blocks
+    echo "# REQUIRES:" $requires
+    echo "# OPTIONAL:" $optional
+    echo "# BLOCKS:" $blocks
   } | sed "/^# .*: *$/d" >$t/header
 
   # remove script header
