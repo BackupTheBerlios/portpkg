@@ -1,46 +1,41 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-SHA1-2.11.tar.gz
+# MD5SUMS: 2449bfe21d6589c96eebf94dae24df6b Digest-SHA1-2.11.tar.gz
+# REQUIRES: perl
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.10
+VERSION=2.11
 ARCH=noarch
-BUILD=2tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
+BUILD=1tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
-cd $TMP || exit 1
-tar xzvf $CWD/Digest-SHA1-$VERSION.tar.gz || exit 1
-cd Digest-SHA1-$VERSION || exit 1
+cd $TMP
+tar xzvf $CWD/Digest-SHA1-$VERSION.tar.gz
+cd Digest-SHA1-$VERSION
 chown -R root.root .
-perl Makefile.PL || exit 1
-make || exit 1
-make install DESTDIR=$PKG || exit 1
+perl Makefile.PL
+make
+make install DESTDIR=$PKG
 rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rf $PKG/usr/info/dir
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin}
-mv $PKG/usr/share/{man,doc} $PKG/usr/
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   MANIFEST README \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/*
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
-cd $PKG || exit 1
+cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
