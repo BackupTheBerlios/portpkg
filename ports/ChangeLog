@@ -1,7 +1,82 @@
+2006-06-23  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  build_pkg(): Don't lose buildlog when package build process is skipped.
+
+  * d/portpkg/portpkg: maintainer_mode(): Fix some improper string operations.
+
+  * n/mail-spamassassin/SlackBuild, n/mail-spamassassin/doinst.sh, n/mail-spamassassin/footprint, n/mail-spamassassin/md5sums, n/mail-spamassassin/requires, n/mail-spamassassin/sources:
+  Version bump.
+
+  * l/digest-sha1/requires, l/digest-sha1/sources, l/digest-sha1/SlackBuild, l/digest-sha1/footprint, l/digest-sha1/md5sums:
+  Version bump.
+
+2006-06-20  topf  <topf@users.berlios.de>
+
+  * gnome/rhythmbox/SlackBuild, gnome/rhythmbox/footprint:
+  Added optional dependency libsoup for Audioscrobbler support.
+
+  * gnome/libsoup/SlackBuild, gnome/libsoup/footprint, gnome/libsoup/md5sums, gnome/libsoup/requires, gnome/libsoup/slack-desc, gnome/libsoup/sources:
+  Version bump.
+
+2006-06-19  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg: maintainer_mode(): Fixed typo.
+
+  * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/sources:
+  Updated to 2.3.0 (sjn)
+
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources:
+  Updated to 2.3.0 (sjn)
+
+  * d/portpkg/portpkg: check_reqs():
+  * Use default to determine $inst_pkg.
+  * Add $inst_pkg as an option of available packages.
+
+  * d/portpkg/portpkg: * Removed $uses.
+  * check_reqs(): Determine list of (un)wanted dependencies.
+  * get_info(), do_info(): Removed use of $uses.
+  * help(), parse_options(): Added command line arguments for ignore and
+    use: -w, --ignore and -t, --use.
+
+  * d/portpkg/portpkg:
+  Internally equated exclude() and ignore() which seemed to result in the same anyway.
+
+  * d/portpkg/portpkg: build_pkg(): Fixed updating of $md5sums.
+
+  * d/portpkg/portpkg:
+  Discarded the concept of "explicit expressions". They were meant to
+  protect the user from installing unwanted ports, but seemed to impose
+  the user's will:
+  * explicit(): Strip exclude list from "implicit expressions".
+  * get_info(): Always search also in excluded ports, but as a last resort.
+
+  * d/portpkg/portpkg:
+  * Added log() as an element of the message system. Log anything to $LOG_DIR/portpkg.log.
+  * init(): Added log entries.
+  * maintainer_mode(), build_pkg(): Cleaned up to use row() instead of echo.
+
+  * xap/hardinfo/doinst.sh, xap/hardinfo/footprint, xap/hardinfo/slack-desc, xap/hardinfo/SlackBuild:
+  Initial release.
+
+  * l/mutagen/SlackBuild, l/mutagen/footprint, l/mutagen/slack-desc:
+  Version bump.
+
 2006-06-18  topf  <topf@users.berlios.de>
+
+  * xap/quodlibet/SlackBuild, xap/quodlibet/footprint:
+  Version bump. Patched to install .desktop file.
+
+  * d/portpkg/webstats: Precise regular expressions.
 
   * xap/kino/SlackBuild, xap/kino/doinst.sh, xap/kino/footprint, xap/kino/md5sums, xap/kino/requires, xap/kino/slack-desc, xap/kino/sources:
   Version bump.
+
+  * xap/devede/SlackBuild, xap/devede/doinst.sh, xap/devede/footprint, xap/devede/slack-desc:
+  Initial release.
+
+  * ap/fatback/SlackBuild, ap/fatback/footprint, ap/fatback/slack-desc:
+  Initial release.
 
   * xap/video-dvdrip/SlackBuild, xap/video-dvdrip/doinst.sh, xap/video-dvdrip/dvdrip.desktop, xap/video-dvdrip/footprint, xap/video-dvdrip/slack-desc:
   Version bump. Added .desktop file.
