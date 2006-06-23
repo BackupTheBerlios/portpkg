@@ -675,6 +675,8 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
     fi
     row "Skipping package building"
     cp $pkg_file $tmp/
+    # save old buildlog
+    [ -f $LOG_DIR/$name.buildlog.gz ] && gunzip $LOG_DIR/$name.buildlog.gz
   fi
 
   # cruft for maintainers of port scripts :)
