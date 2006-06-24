@@ -3,10 +3,17 @@
 # Uncomment as many as you want.
 #
 
-# master server				mirror
+# master server	(regex mask)		mirror (replacement)
 
 # defaults
 http://.*.sourceforge.net/		http://kent.dl.sourceforge.net/
+
+# miscellaneous
+http://.*.mplayerhq.hu/ 		http://www1.mplayerhq.hu/
+http://.*.mplayerhq.hu/ 		http://www2.mplayerhq.hu/
+http://.*.mplayerhq.hu/ 		http://www4.mplayerhq.hu/
+ftp://.*.mplayerhq.hu/ 			ftp://ftp1.mplayerhq.hu/
+ftp://.*.mplayerhq.hu/ 			ftp://ftp2.mplayerhq.hu/
 
 # Australia
 #
@@ -31,9 +38,9 @@ http://.*.sourceforge.net/		http://kent.dl.sourceforge.net/
 #ftp://ftp.kernel.org/			ftp://ftp.de.kernel.org/
 #http://.*.sourceforge.net/		http://mesh.dl.sourceforge.net/
 #ftp://ftp.slackware.com/pub/slackware/	ftp://ftp.gwdg.de/pub/linux/slackware/
-#ftp://ftp3.linuxpackages.net/pub/	ftp://ftp.scarlet.be/pub/linuxpackages/
+#ftp://.*.linuxpackages.net/pub/	ftp://ftp.scarlet.be/pub/linuxpackages/
 
-# Japany/Asia
+# Japan/Asia
 #
 #http://ftp.gnome.org/pub/GNOME/	ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
 #http://ftp.gnome.org/pub/gnome/	ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
@@ -44,7 +51,7 @@ http://.*.sourceforge.net/		http://kent.dl.sourceforge.net/
 #ftp://ftp.kernel.org/			ftp://ftp.jp.kernel.org/
 #http://.*.sourceforge.net/		http://jaist.dl.sourceforge.net/
 #ftp://ftp.slackware.com/pub/slackware/	ftp://ftp.nara.wide.ad.jp/1/Linux/Slackware/
-#ftp://ftp3.linuxpackages.net/pub/	ftp://ftp.nara.wide.ad.jp/pub/Linux/linuxpackages/
+#ftp://.*.linuxpackages.net/pub/	ftp://ftp.nara.wide.ad.jp/pub/Linux/linuxpackages/
 
 # USA/Northamerica
 #
@@ -57,3 +64,4 @@ http://.*.sourceforge.net/		http://kent.dl.sourceforge.net/
 #ftp://ftp.kernel.org/			ftp://ftp.us.kernel.org/
 #http://.*.sourceforge.net/		http://voxel.dl.sourceforge.net/
 #ftp://ftp.slackware.com/pub/slackware/	ftp://slackware.mirrors.tds.net/pub/slackware/
+#ftp://.*.linuxpackages.net/pub/	ftp://mirror.cs.utah.edu/pub/linuxpackages/
