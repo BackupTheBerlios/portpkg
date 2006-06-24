@@ -4,6 +4,7 @@
 #
 
 # master server	(regex mask)		mirror (replacement)
+# ------------------------------	------------------------------	
 
 # defaults
 http://.*.sourceforge.net/		http://kent.dl.sourceforge.net/
@@ -16,11 +17,10 @@ ftp://.*.mplayerhq.hu/ 			ftp://ftp1.mplayerhq.hu/
 ftp://.*.mplayerhq.hu/ 			ftp://ftp2.mplayerhq.hu/
 
 # Australia
-#
-#http://ftp.gnome.org/pub/GNOME/	ftp://mirror.pacific.net.au/linux/GNOME
-#http://ftp.gnome.org/pub/gnome/	ftp://mirror.pacific.net.au/linux/GNOME
-#ftp://ftp.gnome.org/pub/GNOME/		ftp://mirror.pacific.net.au/linux/GNOME
-#ftp://ftp.gnome.org/pub/gnome/		ftp://mirror.pacific.net.au/linux/GNOME
+#http://ftp.gnome.org/pub/GNOME/	ftp://mirror.pacific.net.au/linux/GNOME/
+#http://ftp.gnome.org/pub/gnome/	ftp://mirror.pacific.net.au/linux/GNOME/
+#ftp://ftp.gnome.org/pub/GNOME/		ftp://mirror.pacific.net.au/linux/GNOME/
+#ftp://ftp.gnome.org/pub/gnome/		ftp://mirror.pacific.net.au/linux/GNOME/
 #ftp://ftp.gimp.org/pub/gimp/		ftp://ftp.planetmirror.com/pub/gimp/
 #ftp://ftp.gtk.org/pub/gtk/		ftp://ftp.planetmirror.com/pub/gtk/
 #ftp://ftp.kernel.org/			ftp://ftp.au.kernel.org/
@@ -28,7 +28,6 @@ ftp://.*.mplayerhq.hu/ 			ftp://ftp2.mplayerhq.hu/
 #ftp://ftp.slackware.com/pub/slackware/	ftp://mirror.pacific.net.au/linux/slackware/
 
 # Europe
-#
 #http://ftp.gnome.org/pub/GNOME/	ftp://ftp.gwdg.de/pub/misc/gnome/
 #http://ftp.gnome.org/pub/gnome/	ftp://ftp.gwdg.de/pub/misc/gnome/
 #ftp://ftp.gnome.org/pub/GNOME/		ftp://ftp.gwdg.de/pub/misc/gnome/
@@ -41,7 +40,6 @@ ftp://.*.mplayerhq.hu/ 			ftp://ftp2.mplayerhq.hu/
 #ftp://.*.linuxpackages.net/pub/	ftp://ftp.scarlet.be/pub/linuxpackages/
 
 # Japan/Asia
-#
 #http://ftp.gnome.org/pub/GNOME/	ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
 #http://ftp.gnome.org/pub/gnome/	ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
 #ftp://ftp.gnome.org/pub/GNOME/		ftp://ftp.isu.edu.tw/pub/Unix/Desktop/GNOME/
@@ -54,11 +52,10 @@ ftp://.*.mplayerhq.hu/ 			ftp://ftp2.mplayerhq.hu/
 #ftp://.*.linuxpackages.net/pub/	ftp://ftp.nara.wide.ad.jp/pub/Linux/linuxpackages/
 
 # USA/Northamerica
-#
-#http://ftp.gnome.org/pub/GNOME/	ftp://ftp.cse.buffalo.edu/pub/Gnome
-#http://ftp.gnome.org/pub/gnome/	ftp://ftp.cse.buffalo.edu/pub/Gnome
-#ftp://ftp.gnome.org/pub/GNOME/		ftp://ftp.cse.buffalo.edu/pub/Gnome
-#ftp://ftp.gnome.org/pub/gnome/		ftp://ftp.cse.buffalo.edu/pub/Gnome
+#http://ftp.gnome.org/pub/GNOME/	ftp://ftp.cse.buffalo.edu/pub/Gnome/
+#http://ftp.gnome.org/pub/gnome/	ftp://ftp.cse.buffalo.edu/pub/Gnome/
+#ftp://ftp.gnome.org/pub/GNOME/		ftp://ftp.cse.buffalo.edu/pub/Gnome/
+#ftp://ftp.gnome.org/pub/gnome/		ftp://ftp.cse.buffalo.edu/pub/Gnome/
 #ftp://ftp.gimp.org/pub/gimp/		ftp://ftp.cs.umn.edu/pub/gimp/
 #ftp://ftp.gtk.org/pub/gtk/		ftp://ftp.cs.umn.edu/pub/gtk/
 #ftp://ftp.kernel.org/			ftp://ftp.us.kernel.org/
