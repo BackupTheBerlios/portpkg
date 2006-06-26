@@ -773,6 +773,7 @@ if grep -sq "\.new" $script; then
     sed '/^#:doinst.sh_config$/,/^#:doinst.sh_config$/!d' $0 >>$path/doinst.sh
   fi
 else
+  snip etc_config $script
   if grep -sq "^config()" $path/doinst.sh; then
     row "Removing unneeded config() from doinst.sh"
     sed -i "/^config()/,/^}$/d" $path/doinst.sh
@@ -996,7 +997,8 @@ find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
-find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh ##schemas
+( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh ##etc_config
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -l echo gconf >>$PKG/install/doinst.sh ##schemas
 ( cd $PKG; find -name index.theme ) | xargs -l echo icons >>$PKG/install/doinst.sh ##icons
 
 #:tail
