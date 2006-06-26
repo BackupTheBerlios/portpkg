@@ -1,46 +1,49 @@
 #
-# IGNORE these ports for dependencies (when making the "requires" file)
-# Maintainers should add these dependencies manually if really needed.
-# The purpose of this file is to trim the automatically found requirements
-# for earch "requires" files in order to get some meaningful dependencies.
-# Intentionally (manually) added dependencies that are listed here won't
-# be removed, but give a warning at build time for the maintainer to
-# re-check the relevance.
+# IGNORE ports matching expressions listed here in IMPLICIT DECLARATIONS
+# ("--upgrade", "groups/"), REQUIRED DEPENDENCIES and AUTOMATIC DEPENDENCY
+# TRACKING in maintainer mode. (Maintainers should add those dependencies
+# manually to the build script if really needed.)
+#
+# (This configuration file was formerly splitted in "exclude" and "ignore"
+# and has been joined from version 0.39 on.)
 #
 
-# Slackware packages that are either installed anyway or just optional
-# (use complete packages instead of -solibs)
+# exclude packages from special groups
+pasture/
+testing/
+extra/
+open/
+
+# packages not meant for upgrades (kernel/glibc related packages)
 aaa_base
 aaa_elflibs
-gcc
-gcc-g++
-gcc-g77
-gcc-gnat
-gcc-java
-gcc-objc
-cxxlibs
+kernel-ide
+kernel-generic
+kernel-modules
+kernel-source
+alsa-driver
 glibc
 glibc-solibs
 glibc-zoneinfo
 glibc-i18n
 glibc-profile
-openssl-solibs
 
-# obsolete and optional packages or ports (also Dropline packages, X-drivers)
+# stripped package versions ("-solibs"), obsolete and optional packages/ports
+openssl-solibs
 gpm
 elflibs
 freetype
 freetype2
 fontconfig
 libxft
-savage
+
+# packages that should be handled manually
 linux-pam
 pam
-
-# requirements maintainers should better add manually (alternative backends etc.)
 hal
 dbus
 howl
+avahi
 gamin
 fam
 esound
@@ -49,10 +52,3 @@ polypaudio
 audiofile
 alsa-lib
 jack
-
-## gtk+2 dependencies (we don't need to repeat them all the time)
-#atk
-#cairo
-#glib2
-#glitz
-#pango
