@@ -478,21 +478,23 @@ sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
 
 # format
-echo -n "  --> Checking format... "
+#echo -n "  --> Checking format... "
 mkdir -p $t/src
 case $file in
   *.tar.bz2)
     format=tarbz2
     tar xjf $SRC_DIR/$file -C $t/src/ || die "Error while unpacking, maybe wrong URL?"
     tar tjf $SRC_DIR/$file >$t/footprint
-    echo ".tar.bz2"
+#    echo ".tar.bz2"
+    row "Checking format... .tar.bz2"
     sed -i "s,%tarmode%,j," $script
     sel unpack tar $script;;
   *tar.gz|*.tgz) # yes, there was one file called "xxxtar.gz"!
     format=targz
     tar xzf $SRC_DIR/$file -C $t/src/ || die "Error while unpacking, maybe wrong URL?"
     tar tzf $SRC_DIR/$file >$t/footprint
-    echo ".tar.gz"
+#    echo ".tar.gz"
+    row "Checking format... .tar.gz"
     sed -i "s,%tarmode%,z," $script
     sel unpack tar $script;;
   *.src.rpm)
@@ -505,20 +507,23 @@ case $file in
       tar xzf `basename $file .src.rpm`/$name-$version.tar.gz -C $t/src/
       tar tzf `basename $file .src.rpm`/$name-$version.tar.gz >$t/footprint ) \
     || die "Error while unpacking, maybe wrong URL?"
-    echo ".src.rpm"
+#    echo ".src.rpm"
+    row "Checking format... .src.rpm"
     sel unpack rpm $script;;
   *)
-    echo "unknown!"
+#    echo "unknown!"
+    row "Checking format... unknown!"
     die "Unknown source format, please write SlackBuild by hand!";;
 esac
 tarball=`encode "$file"`
 sed -i "s,%tarball%,$tarball," $script
 
 # source-prefix
-echo -n "  --> Checking source-prefix... "
+#echo -n "  --> Checking source-prefix... "
 srcdir_prefix=`cat $t/footprint | sed "s,^\./,,;s,/.*,," | sort -u`
 if [ `echo "$srcdir_prefix" | wc -l` = 1 ] && [ "$srcdir_prefix" != "." ]; then
-  echo "$srcdir_prefix/"
+#  echo "$srcdir_prefix/"
+  row "Checking source-prefix... $srcdir_prefix/"
   if [ "$format" = "srpm" ]; then
 #    snip cd_sdp $script
     :
@@ -528,7 +533,8 @@ if [ `echo "$srcdir_prefix" | wc -l` = 1 ] && [ "$srcdir_prefix" != "." ]; then
   srcdir_prefix_out=`encode "$srcdir_prefix"`
   sed -i "s,%srcdirprefix%,$srcdir_prefix_out," $script
 else
-  echo "no prefix"
+#  echo "no prefix"
+  row "Checking source-prefix... no prefix"
   snip cd_sdp $script
   srcdir_prefix="."
   mkdir $t/src/$name-$version

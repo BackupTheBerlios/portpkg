@@ -21,9 +21,9 @@ row "Syncing $TREE/ with `echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`"
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
 get $SOURCE $TREE | sed -r "\
-s,^.*$,  --> &,;\
 s, U , Updating ,;\
 s, C , Conflict with ,;\
 s, P , Patching ,;\
 s, M , Locally modified ,;\
-s, \\? , Unknown entry ,"
+s, \\? , Unknown entry ," \
+| while read s; do row "$s"; done
