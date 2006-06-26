@@ -153,7 +153,8 @@ Options:
   -b             Execute portpkg after port generation
   -d             Try to find up-to-date version
   source url     Preset URL of source code (if not found via -u)
-                 (Use cpan://file::mimeinfo to search for Perl modules)"
+                 (Use cpan://file::mimeinfo to search for Perl modules
+                   or gnome://tarball-1.0.tar.bz2 to shorten GNOME urls)"
   exit 0
 }
 
@@ -249,6 +250,11 @@ parse_options()
         usage;;
       cpan://*)
         sources=`search_cpan $@`;;
+      gnome://*)
+       tarball=${1#*://}
+       name=`echo $tarball | rev | cut -d - -f 2- | rev`
+       major_minor=`echo $tarball | rev | cut -d - -f 1 | rev | cut -d . -f 1-2`
+       sources=http://ftp.gnome.org/pub/gnome/sources/$name/$major_minor/$tarball;;
       *://*)
         sources=$1;;
     esac
