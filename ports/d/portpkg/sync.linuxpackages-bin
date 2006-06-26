@@ -79,7 +79,7 @@ grep "/[^/]*-[^/-]*-[^/-]*-[^/-]*\.tgz$" $t/files | egrep -v "(^|/)source/" \
   cat >$path/$name.SlackBuild <<EOF
 #!/bin/sh
 # This is a pseudo port--it may look absurd
-# MAINTAINER: Portpkg Project <http://portpkg.berlios.de>
+# MAINTAINER: Portpkg Project <portpkg-devel@lists.berlios.de>
 # SOURCES: $SOURCE/$group/$pkg.tgz
 # MD5SUMS: $md5sum
 # REQUIRES: $req
