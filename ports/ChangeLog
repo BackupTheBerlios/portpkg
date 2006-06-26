@@ -1,5 +1,39 @@
 2006-06-26  topf  <topf@users.berlios.de>
 
+  * d/portpkg/prepare: Removed (obsolete).
+
+  * d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin, d/portpkg/sync.slackware-bin, d/portpkg/sync.slackyit-bin:
+  Changed <http://portpkg.berlios.de> to <portpkg-devel@lists.berlios.de>.
+
+  * d/portpkg/use: Added kde/.
+
+  * d/portpkg/portpkg.1:
+  Updated due to changed explicit declarations and added documentation and examples for --ignore and --use options.
+
+  * d/portpkg/autoport: Parse 'gnome://foo' shortcuts.
+
+  * d/portpkg/autoport:
+  Use explicit() in '-u' and simply warn in case of modifying a script of another maintainer.
+
+  * d/portpkg/autoport:
+  Let the build script find *.new file and add them to doinst.sh
+
+  * d/portpkg/autoport: Don't add pkgconfig results to requires.
+
+  * d/portpkg/autoport, d/portpkg/sync.portpkg:
+  Consistently use row(), not echo.
+
+  * d/portpkg/virtual:
+  * Disabled glitz since it's in testing/.
+  * Added bootstrap/ for essential packages.
+
+  * d/portpkg/SlackBuild, d/portpkg/doinst.sh, d/portpkg/footprint:
+  Merged exclude with ignore. Version bump to 0.38.1.
+
+  * d/portpkg/exclude: Joined with ignore.
+
+  * d/portpkg/ignore: Merged exclude with ignore.
+
   * d/portpkg/autoport: Check if mcs is used and add MONO_SHARED_DIR=/tmp.
 
   * l/gtk-sharp/md5sums, l/gtk-sharp/requires, l/gtk-sharp/sources: Removed.
