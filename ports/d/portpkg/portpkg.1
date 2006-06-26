@@ -29,18 +29,14 @@ portpkg allows four different types to express a port or a range of ports:
 .TP
 \fBimplicit\fP
 By using the form \fIgroup/\fP. Resulting in a range of ports.
+Ports matching expressions in \fBignore\fP are excluded.
 .TP
-.B basic
-By using the form \fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP].
+.B explicit
+By using the form
+[\fIgroup\fP/]\fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP].
 Resulting in the default version only. (Up to version 0.38: this is the
 first listed non-restricted port, from version 0.39 on: the most recent
 non-restricted version.)
-.TP
-\fBexplicit\fP
-By using the form
-\fIgroup\fP/\fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP]. Similiar
-to the previous type, but more precisely and bypasses the exclusion of
-restricted ports (see \fBexclude\fP in \fBFILES\fP).
 .TP
 .B direct
 By changing into the directory of the build script an leaving
@@ -87,6 +83,12 @@ Run maintainer mode everytime.
 .TP
 \fB-r\fP, \fB--remaintain\fP (\fBREMAINTAIN=true\fP)
 Skip package building step if possible.
+.TP
+\fB-w\fP, \fB--ignore\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBignore\fP)
+Exclude \fIexpression\fP from implicit expressions.
+.TP
+\fB-t\fP, \fB--use\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBuse\fP)
+Use \fIexpression\fP as a required dependency when it's actually optional.
 
 .SH ACTIONS
 
@@ -172,12 +174,20 @@ List all upgradeable packages first and then simulate a system upgrade:
     $ \fBportpkg -d\fP
     $ \fBportpkg --dryrun -u\fP
 
+Install amarok and recursively any optional dependencies that are listed in
+\fBl/\fP and \fBkde/\fP:
+    $ \fBportpkg -use l/,kde/ amarok\fP
+
 .SH DIRECTORIES
 
 .TP
 \fB~/ports\fP
 The ports tree. Customise this path with \fBPRT_DIR=\fP\fIpath\fP in
 the configuration file.
+.TP
+\fB~/ports/log\fP
+Directory of different log files. Custimise this path with
+\fBLOG_DIR=\fP\fIpath\fP in the configuration file.
 .TP
 \fB~/ports/dist\fP
 The source code files archive. Files that were downloaded before compiling.
@@ -206,10 +216,9 @@ only be expanded:
 List of mirrors to be used when downloading files. 
 .TP
 \fB~/ports/ignore\fP
-List of ports to ignore when generating the \fBrequires\fP file.
-.TP
-\fB~/ports/exclude\fP
-List of ports to exclude when doing upgrades or diffs.
+List of ports to exclude from implicit declarations, upgrades or when
+generating the \fBrequires\fP file. (Formerly splitted into \fBignore\fP and
+\fBexclude\fP.)
 .TP
 \fB~/ports/use\fP
 List of ports to be required dependencies when they are actually listed as
@@ -219,6 +228,9 @@ optional dependencies. Usefull in conjunction with \fBvirtual\fP.
 List of ports and their virtual groups. Usefull to cross-link ports.
 .LP
 Log files:
+.TP
+\fB~/ports/log/portpkg.log\fP
+Debugging output.
 .TP
 \fB~/ports/log/\fP\fIname\fP\fB.buildlog.gz\fP
 The detailed output when a SlackBuild was executed.
@@ -239,12 +251,6 @@ Expressions that \fBmatch\fP the port \fBlocal/new/l/port-1.0-i486-1me\fP:
 Expressions that \fBdo not match\fP:
     \fBlocal/l/\fP
     \fBl/new/port\fP
-
-Explicit expressions tend to be greedy.
-Bypassing the exclusion of restricted ports does not check what part of a
-group restricted a port before.
-For example, the expression \fBl/port\fP will unblock \fBlocal/new/l/port\fP
-although \fBnew/\fP is restricted.
 
 .SH SECURITY
 
