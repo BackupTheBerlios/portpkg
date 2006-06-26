@@ -656,6 +656,7 @@ sed -i "s,%etc%,etc,g" $script
 if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
     sel install mk_inst $script
+    check "CSC" $TMP/$srcdir_prefix/Makefile* || snip mono $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
     || check "DESTDIR" $TMP/$srcdir_prefix/Makefile*; then
@@ -930,10 +931,12 @@ perl Makefile.PL ##perl
 #%post-config-fix%
 #:install
 #:mk_inst
+MONO_SHARED_DIR=/tmp \ ##mono
 make ##mk
 ##make PREFIX=/usr ##mk_PREFIX
 ##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
+MONO_SHARED_DIR=/tmp \ ##mono
 #:mk_inst_root
 make install DESTDIR=$PKG ##inst_destdir
 make install PREFIX=$PKG/%prefix% ##inst_PREFIX
