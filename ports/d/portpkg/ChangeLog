@@ -1,3 +1,22 @@
+2006-06-26  topf  <topf@users.berlios.de>
+
+  * SlackBuild, doinst.sh, footprint:
+  Merged exclude with ignore. Version bump to 0.38.1.
+
+  * exclude: Joined with ignore.
+
+  * ignore: Merged exclude with ignore.
+
+  * autoport: Check if mcs is used and add MONO_SHARED_DIR=/tmp.
+
+2006-06-24  topf  <topf@users.berlios.de>
+
+  * mirrors: More fixes.
+
+  * mirrors:
+  * Added MPlayer mirrors.
+  * Fixed Linuxpackages.net masks.
+
 2006-06-23  topf  <topf@users.berlios.de>
 
   * portpkg:
@@ -86,8 +105,6 @@
 
 2006-06-11  topf  <topf@users.berlios.de>
 
-  * NEWS: Updated.
-
   * sync.update-open: Added support for testing tarball authentity via GnuPG.
 
   * export.portpkg: Fixed testing of package age (again).
@@ -150,8 +167,6 @@
 
 2006-05-04  topf  <topf@users.berlios.de>
 
-  * ChangeLog: Updated.
-
   * export.portpkg: Pause a little earlier.
 
   * autoport:
@@ -193,8 +208,6 @@
   * portpkg: Fixed do_find(): Don't run do_list() if nothing found.
 
 2006-05-01  topf  <topf@users.berlios.de>
-
-  * ChangeLog: Updated.
 
   * autoport:
   $group should really be set to the argument. Don't try to correct that.
@@ -287,8 +300,6 @@
 2006-04-26  topf  <topf@users.berlios.de>
 
   * checkpkg, pp-config, prepare: Use "bash" in sheebang, not "sh".
-
-  * ChangeLog: Updated.
 
   * portpkg: restored return codes for do_add() and do_info()
 
@@ -515,8 +526,6 @@
 
 2006-03-18  topf  <topf@users.berlios.de>
 
-  * ChangeLog: Updated.
-
   * README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, ROADMAP, SlackBuild, footprint, ABOUT, FAQ, NEWS, README, README.Links:
   Version bump.
 
@@ -688,8 +697,6 @@
 
 2005-11-19  topf  <topf@users.berlios.de>
 
-  * ignore, ChangeLog: Updated.
-
   * portpkg:
   Added flags file and functionality. Backported new features in maintainer_mode() from the testing version.
 
@@ -730,8 +737,6 @@
 
   * portpkg: Fallback to repos=$PRT_DIR if /etc/portpkg/repos isn't present.
 
-  * ChangeLog: Updated.
-
   * sync.slackware-bin: Added sync.slackware-bin. pp-sync-bin is now obsolete.
 
   * autoport, checkpkg, portpkg, sync.zz.cleanup:
@@ -758,8 +763,6 @@
   * portpkg: Fixed return code in build_pkg().
 
   * portpkg: Avoid 'grep -m' options, so we won't get any broken pipes.
-
-  * ChangeLog: Updated.
 
   * portpkg: Fixed a typo (?) in maintainer_mode() dependencies pipe.
 
@@ -810,8 +813,6 @@
 
 2005-10-08  topf  <topf@users.berlios.de>
 
-  * ChangeLog: Updated.
-
 2005-10-07  topf  <topf@users.berlios.de>
 
   * SlackBuild, footprint, portpkg: Fixed md5sums checking again.
@@ -842,11 +843,7 @@
 
 2005-06-09  topf  <topf@users.berlios.de>
 
-  * ChangeLog: Updated.
-
 2005-04-27  topf  <topf@users.berlios.de>
-
-  * ChangeLog: Updated. (cronjob)
 
 2005-04-23  topf  <topf@users.berlios.de>
 
@@ -879,8 +876,6 @@
 2005-04-17  topf  <topf@users.berlios.de>
 
   * pp-config: Fixed resources menu to work with more than one importer script.
-
-  * ChangeLog: Updated.
 
   * ChangeLog: *** empty log message ***
 
@@ -960,8 +955,6 @@
 
   * portpkg: Make PORT_IS_BROKEN a symlink to its buildlog.
 
-  * pp-sync-src: Updated.
-
   * portpkg:
   Changed summary log from /var/log/portpkg.log to /var/log/portpkg/log.
 
@@ -1005,8 +998,6 @@
 2005-03-20  topf  <topf@users.berlios.de>
 
   * autoport: Corrected "update-mime-database usr/share/mime".
-
-  * SlackBuild, footprint: Updated d/portpkg to 0.36-noarch-2tom.
 
   * portpkg: Adjusted messages in maintainer mode.
 
@@ -1164,8 +1155,6 @@
 
 2004-12-01  topf  <topf@users.berlios.de>
 
-  * SlackBuild, autoport, portpkg: Updated d/portpkg to 0.30-noarch-2tom.
-
 2004-11-30  topf  <topf@users.berlios.de>
 
   * SlackBuild, autoport, portpkg, pseudo, requires, slack-desc, sources:
@@ -1196,8 +1185,6 @@
   * SlackBuild, portpkg: Added options --noreqs and --dryrun.
 
 2004-11-17  topf  <topf@users.berlios.de>
-
-  * checkpkg: Updated to gnome-python-2.6.1
 
 2004-11-15  topf  <topf@users.berlios.de>
 
