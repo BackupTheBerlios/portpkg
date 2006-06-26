@@ -12,6 +12,6 @@ config() {
 config etc/portpkg/repos.new
 config etc/portpkg/mirrors.new
 config etc/portpkg/ignore.new
-config etc/portpkg/exclude.new
+#config etc/portpkg/exclude.new
 config etc/portpkg/use.new
 config etc/portpkg/virtual.new

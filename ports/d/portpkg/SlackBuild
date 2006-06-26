@@ -3,9 +3,9 @@
 # REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
 # OPTIONAL: cvs fakeroot gcc glibc gnupg lynx subversion wget
 
-VERSION=0.38
+VERSION=0.38.1
 ARCH=noarch
-BUILD=4tom
+BUILD=1tom
 
 TMP=${TMP:-bla}
 
@@ -23,7 +23,7 @@ mkdir -p $PKG/usr/man/man1
 install -m 644 $CWD/repos $PKG/etc/portpkg/repos.new
 install -m 644 $CWD/mirrors $PKG/etc/portpkg/mirrors.new
 install -m 644 $CWD/ignore $PKG/etc/portpkg/ignore.new
-install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude.new
+#install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude.new
 install -m 644 $CWD/use $PKG/etc/portpkg/use.new
 install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
