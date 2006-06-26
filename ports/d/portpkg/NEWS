@@ -1,5 +1,9 @@
 NEWS
 
+06/26/2006
+
+Intermediate release 0.38.1.
+
 06/11/2006
 
 I have now added support for signing contributed ports when submitting
@@ -8,9 +12,10 @@ every-one who is regularly committing ports in order to ensure
 authentity.
 You will need to install the Slackware package n/gnupg ("portpkg
 n/gnupg"), to generate a key pair for the mail address given by MY_MAIL
-("gpg --gen-key") and to export the public key. Do this either by
-sending an email to me <topf@users.berlios.de> ("gpg --armor --export
-MY_MAIL") or by exporting it to a key server ("gpg --send-key MY_MAIL").
+("gpg --gen-key") and to export the public key ("gpg --armor --export
+YOUR_MAIL"). Do this either by sending an email to me <topf at users dot
+berlios dot de> or by exporting it to a key server ("gpg --send-key
+YOUR_MAIL").
 
 Once, this system is mature enough, GPG-signign will be required to       
 contribute ports.

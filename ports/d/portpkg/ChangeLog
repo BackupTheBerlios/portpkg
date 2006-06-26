@@ -1,5 +1,30 @@
 2006-06-26  topf  <topf@users.berlios.de>
 
+  * prepare: Removed (obsolete).
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Changed <http://portpkg.berlios.de> to <portpkg-devel@lists.berlios.de>.
+
+  * use: Added kde/.
+
+  * portpkg.1:
+  Updated due to changed explicit declarations and added documentation and examples for --ignore and --use options.
+
+  * autoport: Parse 'gnome://foo' shortcuts.
+
+  * autoport:
+  Use explicit() in '-u' and simply warn in case of modifying a script of another maintainer.
+
+  * autoport: Let the build script find *.new file and add them to doinst.sh
+
+  * autoport: Don't add pkgconfig results to requires.
+
+  * autoport, sync.portpkg: Consistently use row(), not echo.
+
+  * virtual:
+  * Disabled glitz since it's in testing/.
+  * Added bootstrap/ for essential packages.
+
   * SlackBuild, doinst.sh, footprint:
   Merged exclude with ignore. Version bump to 0.38.1.
 
