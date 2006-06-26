@@ -633,8 +633,8 @@ eval "echo \"$pc_files\"" | grep -o "[a-z][a-z0-9A-Z._+-]*"`
 	req=`( cd $ADM_DIR/packages; grep -l /$f\.pc$ * | pkg2name )`
 	if [ "$req" ]; then
           row "Checking for $f.pc... found in "$req
-          echo "$req" >>$path/requires
-          sort -uo $path/requires $path/requires
+#          echo "$req" >>$path/requires
+#          sort -uo $path/requires $path/requires
 	else
           row "Checking for $f.pc... not found, could be an optional dependency"
     	  warn "Consider installing package $f and run autoport again!"
