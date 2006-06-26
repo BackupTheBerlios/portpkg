@@ -232,7 +232,11 @@ parse_options()
         name=$2
         shift;;
       -u)
-        get_info $2 || die
+#        get_info $2 || die
+	get_info `explicit $2` || die
+	case $package in *[0-9]$MY_TAG) ;; *)
+	  warn "You're about to overwrite a port that is not yours!";;
+	esac
         # use abstract url
         sources=`encode "$sources"`
         arch=`echo $package | rev | cut -d - -f 2 | rev`
