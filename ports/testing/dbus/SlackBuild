@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://dbus.freedesktop.org/releases/dbus-0.61.tar.gz
-# MD5SUMS: cfd4f26004e4304e0dace4d82894e50b  dbus-0.61.tar.gz
-# REQUIRES: glib2 gtk+2 libxml2 python x11
+# SOURCES: http://dbus.freedesktop.org/releases/dbus-0.62.tar.gz
+# MD5SUMS: ba7692f63d0e9f1ef06703dff56cb650 dbus-0.62.tar.gz
+# REQUIRES: libxml2 pkgconfig x11
+# OPTIONAL: cxxlibs gcc-g++ glib2 gtk+2 gtk-sharp mono python
 # FLAGS: no-fakeroot
 
 TMP=${TMP:-/tmp}
@@ -10,9 +11,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.61
+VERSION=0.62
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -39,20 +40,22 @@ CXXFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --disable-static \
   --enable-x \
-  --enable-gtk \
-  --disable-mono \
+  --`pkg-config gtk+-2.0 && echo "enable" || echo "disable"`-gtk \
+  --`which mcs >/dev/null && echo "enable" || echo "disable"`-mono \
   --disable-mono-docs \
-  --enable-python \
+  --`which python >/dev/null && echo "enable" || echo "disable"`-python \
   --disable-static \
   --disable-qt \
   --disable-tests \
   --enable-checks \
   --enable-asserts \
-  --enable-glib \
+  --`pkg-config glib-2.0 && echo "enable" || echo "disable"`-glib \
   --with-system-pid-file=/var/run/dbus.pid \
   --with-session-socket-dir=/tmp \
   $ARCH-slackware-linux
+MONO_SHARED_DIR=/tmp \
 make
+MONO_SHARED_DIR=/tmp \
 make install DESTDIR=$PKG
 mv $PKG/etc/rc.d/rc.messagebus{,.new}
 mkdir -p $PKG/var/lib/dbus
