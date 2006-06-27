@@ -19,9 +19,6 @@ QuickStart
    ports tree and fetch the complete current ports collection from our CVS
    repository:
 
- $ mkdir -p ~/ports
- $ touch ~/ports/.ports_root
- $ cd ~/ports
  $ portpkg --sync
 
  Syncing your ports tree with cvs.portpkg.berlios.de:
