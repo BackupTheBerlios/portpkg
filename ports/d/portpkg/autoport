@@ -169,7 +169,7 @@ up2date() # >version
   up2date=`grep "^# UP2DATE:" $script | cut -d " " -f 3-`
   up2date=${up2date:-`dirname $s`}
   ver=`lynx -dump $up2date | grep -o "$reg" | sed "s,^$reg$,\1,g" \
-| tr . " " | sort -un -k 2n -k 3n -k 4n | tr " " . | tac`
+| tr . " " | sort -nrk 1 -k 2 -k 3 -k 4 -k 5 -k 6 | tr " " .`
   if ! [ "$ver" ]; then
     die "Couldn't find anything on $up2date!"
   else
