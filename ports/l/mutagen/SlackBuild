@@ -1,16 +1,15 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.sacredchao.net/~piman/software/mutagen-1.4.tar.gz
-# MD5SUMS: 4a5f656d803ea371e06eaff3fbc1dfbb mutagen-1.4.tar.gz
+# SOURCES: http://www.sacredchao.net/~piman/software/mutagen-1.5.1.tar.gz
+# MD5SUMS: 9ce5d5f14e02f2eabd919d6bdaebadbc mutagen-1.5.1.tar.gz
 # REQUIRES: python
-# OPTIONAL: quodlibet
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4
+VERSION=1.5.1
 ARCH=noarch
 BUILD=1tom
 
