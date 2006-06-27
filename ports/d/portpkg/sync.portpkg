@@ -24,7 +24,7 @@ shell=shell.berlios.de
 htdocs=/home/groups/portpkg/htdocs
 upload=$htdocs/upload
 merged=$upload/merged
-login=`cat $TREE/CVS/Root | cut -d @ -f 1`
+login=`cat $TREE/CVS/Root 2>/dev/null | cut -d @ -f 1`
 
 has_prog cvs || die
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
@@ -32,16 +32,19 @@ mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 # sync port dir
 row "Syncing $TREE/"
 
+# avoid error message about missing ~/.cvspass
+touch ~/.cvspass
+
 get $SOURCE $TREE | sed -r "\
-s, U , Updating ,;\
-s, C , Conflict with ,;\
-s, P , Patching ,;\
-s, M , Locally modified ,;\
-s, \\? , Unknown entry ," \
+s,^ ?U , Updating ,;\
+s,^ ?C , Conflict with ,;\
+s,^ ?P , Patching ,;\
+s,^ ?M , Locally modified ,;\
+s,^ ?\\? , Unknown entry ," \
 | while read s; do row "$s"; done
 
 # do a simple test to avoid a chunk of "permission denied" errors
-case $login in *anonymous*|*pserver*) exit 0;; esac
+case $login in *anonymous*|*pserver*|"") exit 0;; esac
 
 # looks like we have CVS write access
 debug "sync.portpkg: convinced by $login to do CVS admin tasks"
