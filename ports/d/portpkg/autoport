@@ -777,7 +777,8 @@ fi
 #fi
 
 # config() subroutine?
-if grep -sq "\.new" $script; then
+#if grep -sq "\.new" $script; then
+if grep -sq "^[^#].*[^*]\.new" $script; then
   if ! grep -sq "^config()" $path/doinst.sh; then
     row "Adding config() to doinst.sh"
     sed '/^#:doinst.sh_config$/,/^#:doinst.sh_config$/!d' $0 >>$path/doinst.sh
