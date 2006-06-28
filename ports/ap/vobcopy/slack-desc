@@ -1,0 +1,11 @@
+vobcopy: vobcopy (copy (rip) files from a dvd to the harddisk)
+vobcopy:
+vobcopy: vobcopy copies DVD .vob files to harddisk (thanks to libdvdread)
+vobcopy: and merges them into file(s) with the name extracted from the DVD.
+vobcopy: It checks for enough free space on the destination drive and
+vobcopy: compares the copied size to the size on DVD (in case the size is
+vobcopy: wrong the files keep the .partial ending ). It should definitely
+vobcopy: work on linux and now on FreeBSD, OpenBSD, NetBSD, Solaris and
+vobcopy: MacOSX too!
+vobcopy:
+vobcopy:
