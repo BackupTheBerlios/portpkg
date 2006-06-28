@@ -1,0 +1,43 @@
+#!/bin/sh
+# MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
+# SOURCES: http://download.berlios.de/mirageiv/mirage-0.7.tar.bz2
+# MD5SUMS: 00436656b130f24490520c5e60a8b9ec mirage-0.7.tar.bz2
+# REQUIRES: pygtk python
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.7
+ARCH=noarch
+BUILD=1ldv
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/mirage-$VERSION.tar.bz2
+cd mirage-$VERSION
+chown -R root.root .
+python setup.py build install --root=$PKG
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  COPYING README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/mirage-$VERSION
+  rm -rf $PKG
+fi
