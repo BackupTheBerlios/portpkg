@@ -3,6 +3,7 @@
 # SOURCES: http://www.winki-the-ripper.de/share/dist/winki-0.4.1.tar.gz
 # MD5SUMS: 3a1e177622d7002cb4cb1e92c677d754 winki-0.4.1.tar.gz
 # REQUIRES: pygtk python
+# OPTIONAL: dvdauthor ffmpeg lame libdvdcss lsdvd mjpegtools mplayer vcdimager vorbis-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -11,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.4.1
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -26,7 +27,7 @@ rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  PKG-INFO \
+  $PKG/usr/share/winkirip/doc/* \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
