@@ -1,17 +1,18 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.opbyte.it/release/grsync-0.4.tar.gz
-# MD5SUMS: 0e48dfe91ae4a93edcb9066348ee1019  grsync-0.4.tar.gz
-# REQUIRES: gtk+2
+# SOURCES: http://www.opbyte.it/release/grsync-0.4.3.tar.gz
+# MD5SUMS: d06f3da8d9b1d0930473c94b79c36d31 grsync-0.4.3.tar.gz
+# REQUIRES: gtk+2 rsync
+# UP2DATE: http://www.opbyte.it/grsync
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.4
+VERSION=0.4.3
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -38,8 +39,6 @@ CFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-cp -av $PKG$PKG/* $PKG/
-rm -rf $PKG/tmp
 rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
