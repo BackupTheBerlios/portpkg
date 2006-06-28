@@ -1,11 +1,17 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://graveman.tuxfamily.org/sources/graveman-0.3.12-5.tar.gz
+# MD5SUMS: 94183b71f345e405badcdf92ea04dfac graveman-0.3.12-5.tar.gz
+# REQUIRES: flac libglade libid3tag libmad libmng libvorbis
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.3.9
+VERSION=0.3.12_5
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -19,10 +25,9 @@ fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
-cd $TMP || exit 1
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-cd $NAME-$VERSION || exit 1
-cat $CWD/*.patch | patch -p1 --verbose
+cd $TMP
+tar xzvf $CWD/graveman-0.3.12-5.tar.gz
+cd graveman-0.3.12-5
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -30,17 +35,16 @@ CFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  $ARCH-slackware-linux || exit 1
-make || exit 1
-make install DESTDIR=$PKG || exit 1
+  $ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog NEWS README README.fr THANKS \
@@ -52,10 +56,10 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
-cd $PKG || exit 1
+cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/graveman-0.3.12-5
   rm -rf $PKG
 fi
