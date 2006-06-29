@@ -306,7 +306,8 @@ fi
 s=`pause "Version [$version]:"`
 version=${s:-$version}
 srcver=$version
-version=`echo $version | sed "s,-,,g"`
+# "-" is not allowed in $version, change it to "_"
+version=`echo $version | tr - _`
 # correct GNOME urls when updating an existing build script
 if [ "$script" ]; then
   sver=`echo $version | cut -d . -f 1-2`
