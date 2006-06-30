@@ -1,4 +1,59 @@
+2006-06-29  topf  <topf@users.berlios.de>
+
+  * d/portpkg/sync.update-open: Merged with sync.portpkg.
+
+  * d/portpkg/autoport: Convert '-' in version strings to '_'.
+
+  * open/qwtplot3d/SlackBuild, open/qwtplot3d/footprint, open/qwtplot3d/info, open/qwtplot3d/md5sums, open/qwtplot3d/requires, open/qwtplot3d/slack-desc, open/qwtplot3d/sources:
+  QwtPlot3D - a feature-rich Qt/OpenGL-based C++ programming library (dan)
+
+  * open/qtiplot/SlackBuild, open/qtiplot/footprint, open/qtiplot/info, open/qtiplot/md5sums, open/qtiplot/requires, open/qtiplot/slack-desc, open/qtiplot/sources:
+  QtiPlot - Data analysis and scientific plotting (dan)
+
+2006-06-28  topf  <topf@users.berlios.de>
+
+  * AUTHORS: Added ldv.
+
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/doinst.sh, xap/mirage/footprint, xap/mirage/slack-desc:
+  Added mirage-0.7 (ldv)
+
+  * ap/vobcopy/SlackBuild, ap/vobcopy/footprint, ap/vobcopy/slack-desc:
+  Added vobcopy-1.0.0.
+
+  * xap/winki/SlackBuild, xap/winki/footprint:
+  Added list of optional dependencies and fixed documentation installation.
+
+  * xap/winki/SlackBuild, xap/winki/doinst.sh, xap/winki/footprint, xap/winki/slack-desc:
+  Added winki-0.4.1.
+
+  * xap/graveman/SlackBuild, xap/graveman/footprint, xap/graveman/graveman.desktop.fixediconpath.patch, xap/graveman/md5sums, xap/graveman/optional, xap/graveman/requires, xap/graveman/sources:
+  Upgraded to graveman-0.3.12-5.
+
+  * xap/grsync/SlackBuild, xap/grsync/footprint: Upgraded to grsync-0.4.3.
+
 2006-06-27  topf  <topf@users.berlios.de>
+
+  * d/portpkg/autoport: Fix version sorting with -d.
+
+  * gnome/balsa/SlackBuild, gnome/balsa/footprint: Upgraded to balsa-2.3.13.
+
+  * l/libesmtp/SlackBuild, l/libesmtp/footprint, l/libesmtp/md5sums, l/libesmtp/requires, l/libesmtp/slack-desc, l/libesmtp/sources:
+  Upgraded to libesmtp-1.0.4.
+
+  * ap/encode2mpeg/SlackBuild, ap/encode2mpeg/footprint, ap/encode2mpeg/slack-desc:
+  Added encode2mpeg-0.5.7.
+
+  * d/portpkg/portpkg: Fixed another minor issues.
+
+  * d/portpkg/portpkg, d/portpkg/sync.portpkg: Fixed minor issues.
+
+  * d/portpkg/mirrors: Use slackware.at as default mirror.
+
+  * d/portpkg/INSTALL, d/portpkg/README:
+  Issue with ~/ports/.ports_root is fixed.
+
+  * d/portpkg/changelogs, d/portpkg/sync.portpkg, d/portpkg/webstats:
+  Merged changelogs and webstats administration scripts into sync.portpkg.
 
   * d/portpkg/autoport: Fixed testing for *.new files.
 
