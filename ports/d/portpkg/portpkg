@@ -1101,6 +1101,16 @@ maintain,export,noask,ignore:,use:"
 
 init()
 {
+  # reset locales
+  export LANG=C
+  export LANGUAGE=C
+  export LC_ALL=C
+  export LC_COLLATE=C
+  export LC_CTYPE=C
+  export LC_MESSAGES=C
+  export LC_NUMERIC=C
+  export LC_TIME=C
+
   # make/check temporary directory
   [ "$TMP" ] || die "TMP is emtpy!"
   [ "$TMP" = "/" ] && die "TMP cannot be /"
