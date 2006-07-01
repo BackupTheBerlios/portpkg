@@ -18,6 +18,7 @@ if [ "`basename $0`" != "portpkg" ]; then
 fi
 
 t=`mktemp -d`
+tree_is_clean=true
 viewcvs=http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports
 mailhost=users.berlios.de
 shell=shell.berlios.de
@@ -36,12 +37,14 @@ row "Syncing $TREE/"
 touch ~/.cvspass
 
 get $SOURCE $TREE | sed -r "\
-s,^ ?U , Updating ,;\
-s,^ ?C , Conflict with ,;\
-s,^ ?P , Patching ,;\
-s,^ ?M , Locally modified ,;\
-s,^ ?\\? , Unknown entry ," \
-| while read s; do row "$s"; done
+s,^U ,Updating ,;\
+s,^C ,Conflict with ,;\
+s,^P ,Patching ,;\
+s,^M ,Locally modified ,;\
+s,^\\? ,Unknown entry ," \
+| while read s; do row "$s"; done | tee $t/tree.log
+
+grep -sqe "Conflict with" -e "Locally modified" $t/tree.log && tree_is_clean=false
 
 # do a simple test to avoid a chunk of "permission denied" errors
 case $login in *anonymous*|*pserver*|"") exit 0;; esac
@@ -111,7 +114,7 @@ if [ "$uploads" ]; then
 fi
 
 # ChangeLog
-if ! [ "`find $TREE/ChangeLog -mtime +2`" ]; then
+if [ "`find $TREE/ChangeLog -mtime -2`" ]; then
   debug "sync.portpkg: ChangeLog is newer than 48 hours, exiting"
   exit 0
 fi
@@ -128,6 +131,8 @@ $t/rcs2log -i 2 -h $mailhost >ChangeLog
 # "Updated." lines are unnecessary
 sed -i "/: Updated.$/{N;d}" ChangeLog
 cvs ci -m "Updated." ChangeLog
+
+$tree_is_clean || die "Would like to do more admin tasks but CVS is NOT in sync!"
 
 # web stats
 #row "Syncing $TREE/d/portpkg/ports.recent"
