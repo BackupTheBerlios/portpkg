@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-0.97.11.tar.gz
-# MD5SUMS: cba0735a4170a095d833784989eae730 Video-DVDRip-0.97.11.tar.gz
+# SOURCES: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-0.97.12.tar.gz
+# MD5SUMS: fc98605c3c08a02b3992565e3fe5f057 Video-DVDRip-0.97.12.tar.gz
 # REQUIRES: event-execflow gtk2-ex-formfactory gtk2-perl libintl-perl perl transcode
 # OPTIONAL: cdrdao cdrecord lsdvd mjpegtools mplayer ogmtools vcdimager video-dvdrip xine-ui
 
@@ -10,9 +10,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.97.11
+VERSION=0.97.12
 ARCH=noarch
-BUILD=2tom
+BUILD=1tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
