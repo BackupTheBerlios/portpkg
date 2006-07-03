@@ -1,3 +1,25 @@
+2006-07-03  topf  <topf@users.berlios.de>
+
+  * xap/video-dvdrip/SlackBuild, xap/video-dvdrip/footprint:
+  Upgraded to Video-DVDRip-0.97.12.
+
+  * l/gtk2-ex-formfactory/SlackBuild, l/gtk2-ex-formfactory/footprint:
+  Upgraded to Gtk2-Ex-FormFactory-0.65.
+
+2006-07-01  topf  <topf@users.berlios.de>
+
+  * d/portpkg/sync.portpkg:
+  * Test mtime of ChangeLog more precise.
+  * Prevent webstats from being updated if CVS has version conflicts.
+
+  * d/portpkg/sync.zz.cleanup:
+  * Sort packages found in $SRC_DIR into $PKG_DIR.
+  * Minor changes to the message output.
+
+  * d/portpkg/portpkg: init(): reset LC variables.
+
+2006-06-30  topf  <topf@users.berlios.de>
+
 2006-06-29  topf  <topf@users.berlios.de>
 
   * d/portpkg/sync.update-open: Merged with sync.portpkg.
