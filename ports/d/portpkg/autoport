@@ -950,12 +950,12 @@ perl Makefile.PL ##perl
 #%post-config-fix%
 #:install
 #:mk_inst
-MONO_SHARED_DIR=/tmp \ ##mono
+MONO_SHARED_DIR=$TMP \ ##mono
 make ##mk
 ##make PREFIX=/usr ##mk_PREFIX
 ##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
-MONO_SHARED_DIR=/tmp \ ##mono
+MONO_SHARED_DIR=$TMP \ ##mono
 #:mk_inst_root
 make install DESTDIR=$PKG ##inst_destdir
 make install PREFIX=$PKG/%prefix% ##inst_PREFIX
