@@ -250,7 +250,7 @@ explicit() # pkgex_list >pkgex-list
   for arg; do
     case $arg in
       */) # also look through virtual groups list
-	  ls_slk | slk2gname | grep `regex $arg` | grep -v `exclude`
+	  ls_slk | slk2gname | grep `regex $arg` | grep -v `exclude` | any2base
 	  ls_virt `regex $arg` | any2base;;
       *)  echo $arg;;
     esac
