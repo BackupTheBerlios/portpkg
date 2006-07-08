@@ -418,7 +418,7 @@ echo $inst_pkg; } | default`
       debug "check_reqs(): $req available as $avail_pkg"
       # is it up-to-date?
       ls_inst -qx $avail_pkg && continue
-      $DRY_RUN && ! [ "$prev" ] && stanza "Preparing dependencies of $package:"
+      $DRY_RUN && ! [ "${prev:-}" ] && stanza "Preparing dependencies of $package:"
       prev=$name
       ( $DRY_RUN && level_one=false
       get_info $avail_pkg || exit 1
@@ -687,7 +687,7 @@ fakeroot sh $sh_opt $script $script_opt" 2>&1 \
   mkdir -p $PKG_DIR/$group
 #  cp $tmp/$package.tgz $PKG_DIR/$group/
   for prod in $products; do
-    row "Moving $prod to $PKG_DIR/$group/"
+    row "Moving $prod.tgz to $PKG_DIR/$group/"
     cp $tmp/$prod.tgz $PKG_DIR/$group/
   done
   row "Cleaning up"
