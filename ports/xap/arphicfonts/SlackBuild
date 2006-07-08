@@ -1,33 +1,42 @@
-VERSION=0
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: ftp://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/LICENSE
+# SOURCES: ftp://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/README
+# SOURCES: ftp://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/gkai00mp.ttf.gz
+# SOURCES: ftp://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/bkai00mp.ttf.gz
+# SOURCES: ftp://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/bsmi00lp.ttf.gz
+# SOURCES: ftp://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/gbsn00lp.ttf.gz
+# MD5SUMS: 9f59ac64a519cce82ae9da5f0a1d6d4c LICENSE
+# MD5SUMS: eb2df2adccbe25d32fd13cd23f8bdc62 README
+# MD5SUMS: 9abc1efeaf08df5554629b10eb79b1b2 bkai00mp.ttf.gz
+# MD5SUMS: 42b13b73c5572d886824ee249d1ad500 bsmi00lp.ttf.gz
+# MD5SUMS: 757ca4959ed2325d49a64730766140ee gbsn00lp.ttf.gz
+# MD5SUMS: 5ee11417a8b42d08a33421dd6c64bed2 gkai00mp.ttf.gz
+
+VERSION=nover
 ARCH=noarch
-BUILD=5tom
+BUILD=6tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
+TMP=${TMP:-/tmp}
+PKG=$TMP/package-$NAME
 rm -rf $PKG
-mkdir -p $PKG/usr/X11R6/lib/X11/fonts/TTF
+mkdir -p $PKG/usr/share/fonts
 
-cd $PKG/usr/X11R6/lib/X11/fonts/TTF || exit 1
-cp -v $CWD/gkai00mp.ttf.gz .
-cp -v $CWD/bkai00mp.ttf.gz .
-cp -v $CWD/bsmi00lp.ttf.gz .
-cp -v $CWD/gbsn00lp.ttf.gz .
-gunzip *.gz
-chmod 644 *
+( cd $PKG/usr/share/fonts
+  install -m 644 $CWD/gkai00mp.ttf.gz .
+  install -m 644 $CWD/bkai00mp.ttf.gz .
+  install -m 644 $CWD/bsmi00lp.ttf.gz .
+  install -m 644 $CWD/gbsn00lp.ttf.gz .
+  gunzip *.gz
+)
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
-cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
+cp \
+  $CWD/README $CWD/LICENSE \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
