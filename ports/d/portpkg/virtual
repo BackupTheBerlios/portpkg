@@ -4,16 +4,15 @@
 
 # Example: Using the expression "gtk+2/" equals to "gtk+2 cairo glib2 pango atk".
 
+# packages that are essential to compile sources
 bootstrap/gcc
 bootstrap/gcc-g++
 bootstrap/glibc
-bootstrap/cxxlibs
 bootstrap/kernel-headers
 bootstrap/x11-devel
 bootstrap/autoconf
 bootstrap/automake
 bootstrap/binutils
-bootstrap/cvs
 bootstrap/gettext-tools
 bootstrap/libtool
 bootstrap/m4
