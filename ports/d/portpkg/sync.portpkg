@@ -137,6 +137,7 @@ $tree_is_clean || die "Would like to do more admin tasks but CVS is NOT in sync!
 # web stats
 #row "Syncing $TREE/d/portpkg/ports.recent"
 row "Syncing http://portpkg.berlios.de/ports.recent"
+ARCH=i486
 { echo "<dl>"
   cat $TREE/ChangeLog \
 | grep -oe "^[0-9][^ ]*" -e "[^ ]*[./]*SlackBuild" \
