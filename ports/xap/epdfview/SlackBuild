@@ -2,7 +2,8 @@
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
 # SOURCES: http://www.emma-soft.com/projects/epdfview/chrome/site/releases/epdfview-0.1.5.tar.bz2
 # MD5SUMS: 70b4c5c36781b6e1d5d2ed30a79db9c5 epdfview-0.1.5.tar.bz2
-# REQUIRES: cups glib2 gtk+2 poppler
+# REQUIRES: glib2 gtk+2 poppler
+# OPTIONAL: cups
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -11,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.1.5
 ARCH=${ARCH:-i486}
-BUILD=1ldv
+BUILD=2ldv
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
