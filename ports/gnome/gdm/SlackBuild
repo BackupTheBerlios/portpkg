@@ -1,15 +1,16 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gdm/2.14/gdm-2.14.4.tar.bz2
-# MD5SUMS: 04cbd92e0c264787328e3373da3ebc11  gdm-2.14.4.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gdm/2.14/gdm-2.14.9.tar.bz2
+# MD5SUMS: 7e46bc3b0a5b08e79f1f2f1b869caf40 gdm-2.14.9.tar.bz2
 # REQUIRES: libglade libgnomecanvas librsvg popt x11
+# OPTIONAL: gksu libgnomesu
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.14.4
+VERSION=2.14.9
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -26,8 +27,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/gdm-$VERSION.tar.bz2
+cd gdm-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -65,10 +66,11 @@ rm -rf $PKG/var/lib/log/gdm
 )
 (
 cd $PKG/usr/share/applications
-for i in gdmsetup
-do
- sed -i '/^Exec=/s/=/=gnomesu /' $i.desktop
-done
+if which gnomesu; then
+  sed -i '/^Exec=/s/=/=gnomesu /' gdmsetup.desktop
+elif which gksu; then
+  sed -i '/^Exec=/s/=/=gksu /' gdmsetup.desktop
+fi
 )
 
 # make it work with rc.4:
@@ -93,11 +95,12 @@ find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/gdm-$VERSION
   rm -rf $PKG
 fi
