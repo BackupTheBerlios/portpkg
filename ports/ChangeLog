@@ -1,13 +1,44 @@
+2006-07-10  topf  <topf@users.berlios.de>
+
+  * open/epdfview/ChangeLog, open/epdfview/SlackBuild, open/epdfview/info:
+  cups dependency as optional (ldv)
+
+  * open/epdfview/doinst.sh, open/epdfview/footprint, open/epdfview/info, open/epdfview/slack-desc, open/epdfview/SlackBuild:
+  cups dependency as optional (ldv)
+
+2006-07-09  topf  <topf@users.berlios.de>
+
+  * d/portpkg/README.QuickStart: Renamed to INSTALL.
+
 2006-07-08  topf  <topf@users.berlios.de>
 
-  * open/rox-filer/SlackBuild, open/rox-filer/footprint, open/rox-filer/info, open/rox-filer/slack-desc:
+  * xap/qtiplot/ChangeLog, xap/qtiplot/SlackBuild, xap/qtiplot/footprint, xap/qtiplot/md5sums, xap/qtiplot/requires, xap/qtiplot/slack-desc, xap/qtiplot/sources:
+  QtiPlot - Data analysis and scientific plotting (dan)
+
+  * l/gsl/ChangeLog, l/gsl/SlackBuild, l/gsl/footprint, l/gsl/md5sums, l/gsl/slack-desc, l/gsl/sources:
+  gsl - GNU Scientific Library or C and C++ programmers (dan)
+
+  * d/portpkg/virtual: cxxlibs, cvs are not essential; removed from bootstrap/.
+
+  * l/libmusicbrainz/sources, l/libmusicbrainz/SlackBuild, l/libmusicbrainz/footprint, l/libmusicbrainz/md5sums, l/libmusicbrainz/requires, l/libmusicbrainz/slack-desc:
+  Added installation of python module. Regenerated script.
+
+  * xap/rox-filer/ChangeLog, xap/rox-filer/SlackBuild, xap/rox-filer/doinst.sh, xap/rox-filer/footprint, xap/rox-filer/md5sums, xap/rox-filer/mirrors, xap/rox-filer/optional, xap/rox-filer/requires, xap/rox-filer/rox-choices_options.patch, xap/rox-filer/sources:
   Upgraded to rox-filer-2.4.1 (ldv)
+
+  * l/qwtplot3d/ChangeLog, l/qwtplot3d/SlackBuild, l/qwtplot3d/footprint, l/qwtplot3d/md5sums, l/qwtplot3d/requires, l/qwtplot3d/slack-desc, l/qwtplot3d/sources:
+  QwtPlot3D - a feature-rich Qt/OpenGL-based C++ programming library (dan)
+
+  * xap/epdfview/ChangeLog, xap/epdfview/SlackBuild, xap/epdfview/doinst.sh, xap/epdfview/footprint, xap/epdfview/slack-desc, open/epdfview/ChangeLog, open/epdfview/SlackBuild, open/epdfview/doinst.sh, open/epdfview/footprint, open/epdfview/info, open/epdfview/slack-desc:
+  Added epdfview-0.1.5 (ldv)
+
+  * ap/cups-pdf/ChangeLog, ap/cups-pdf/SlackBuild, ap/cups-pdf/footprint, ap/cups-pdf/slack-desc:
+  Added cups-pdf-2.4.1 (ldv)
+
+  * d/portpkg/sync.portpkg: Reset ARCH to print 'i486' for the recent-list.
 
   * open/epdfview/SlackBuild, open/epdfview/doinst.sh, open/epdfview/footprint, open/epdfview/info, open/epdfview/slack-desc:
   Added epdfview-0.1.5 (ldv)
-
-  * open/cups-pdf/SlackBuild, open/cups-pdf/footprint, open/cups-pdf/info, open/cups-pdf/slack-desc:
-  Added cups-pdf-2.4.1 (ldv)
 
   * d/portpkg/portpkg:
   check_reqs(): $prev is unitialised.
@@ -82,12 +113,6 @@
   * d/portpkg/sync.update-open: Merged with sync.portpkg.
 
   * d/portpkg/autoport: Convert '-' in version strings to '_'.
-
-  * open/qwtplot3d/SlackBuild, open/qwtplot3d/footprint, open/qwtplot3d/info, open/qwtplot3d/md5sums, open/qwtplot3d/requires, open/qwtplot3d/slack-desc, open/qwtplot3d/sources:
-  QwtPlot3D - a feature-rich Qt/OpenGL-based C++ programming library (dan)
-
-  * open/qtiplot/SlackBuild, open/qtiplot/footprint, open/qtiplot/info, open/qtiplot/md5sums, open/qtiplot/requires, open/qtiplot/slack-desc, open/qtiplot/sources:
-  QtiPlot - Data analysis and scientific plotting (dan)
 
 2006-06-28  topf  <topf@users.berlios.de>
 
@@ -1953,7 +1978,7 @@
   * xap/xmame/ChangeLog, xap/xmame/SlackBuild, xap/xmame/footprint, xap/xmame/md5sums, xap/xmame/requires, xap/xmame/sources:
   Upgraded to 0.100 (stb)
 
-  * xap/rox-filer/SlackBuild, xap/rox-filer/doinst.sh, xap/rox-filer/footprint, xap/rox-filer/md5sums, xap/rox-filer/mirrors, xap/rox-filer/optional, xap/rox-filer/requires, xap/rox-filer/rox-choices_options.patch, xap/rox-filer/slack-desc, xap/rox-filer/sources, open/rox-filer/doinst.sh, open/rox-filer/footprint, open/rox-filer/info, open/rox-filer/md5sums, open/rox-filer/mirrors, open/rox-filer/optional, open/rox-filer/requires, open/rox-filer/rox-choices_options.patch, open/rox-filer/slack-desc, open/rox-filer/sources, open/rox-filer/SlackBuild:
+  * xap/rox-filer/SlackBuild, xap/rox-filer/doinst.sh, xap/rox-filer/footprint, xap/rox-filer/md5sums, xap/rox-filer/mirrors, xap/rox-filer/optional, xap/rox-filer/requires, xap/rox-filer/rox-choices_options.patch, xap/rox-filer/slack-desc, xap/rox-filer/sources:
   ROX-Filer - a fast and simple GTK+2 file manager for X. (dan)
 
   * xap/opera/ChangeLog, xap/opera/SlackBuild, xap/opera/footprint, xap/opera/md5sums, xap/opera/opera.desktop, xap/opera/opera.path.patch, xap/opera/requires, xap/opera/slack-desc, xap/opera/sources:
@@ -2087,9 +2112,6 @@
 
   * d/portpkg/export.portpkg, d/portpkg/portpkg:
   Handle $export_opt in do_export(), not in parse_options().
-
-  * open/rox-filer/mirrors, open/rox-filer/optional, open/rox-filer/requires, open/rox-filer/rox-choices_options.patch, open/rox-filer/slack-desc, open/rox-filer/sources, open/rox-filer/SlackBuild, open/rox-filer/doinst.sh, open/rox-filer/footprint, open/rox-filer/info, open/rox-filer/md5sums:
-  ROX-Filer - a fast and simple GTK+2 file manager for X. (dan)
 
   * d/portpkg/export.portpkg:
   Remove CVS dirs recursiv in export tarball (Thanks to Piotr Simon).
