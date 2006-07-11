@@ -1,15 +1,16 @@
 #!/bin/sh
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
-# SOURCES: http://download.berlios.de/mirageiv/mirage-0.7.tar.bz2
-# MD5SUMS: 00436656b130f24490520c5e60a8b9ec mirage-0.7.tar.bz2
+# SOURCES: http://download.berlios.de/mirageiv/mirage-0.7.1.tar.bz2
+# MD5SUMS: 160176787bcacc71696e9635e34931f6 mirage-0.7.1.tar.bz2
 # REQUIRES: pygtk python
+# OPTIONAL: gnome-python
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.7
+VERSION=0.7.1
 ARCH=noarch
 BUILD=1ldv
 
