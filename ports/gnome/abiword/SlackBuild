@@ -1,15 +1,16 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.abisource.com/downloads/abiword/2.4.4/source/abiword-2.4.4.tar.bz2
-# MD5SUMS: 69dd69179b861a41613291afd10af9ab  abiword-2.4.4.tar.bz2
+# SOURCES: http://www.abisource.com/downloads/abiword/2.4.5/source/abiword-2.4.5.tar.gz
+# MD5SUMS: e05f15936535c4b737deaa721adf8d09 abiword-2.4.5.tar.gz
 # REQUIRES: aiksaurus enchant fribidi gucharmap libglade libgnomeprintui librsvg libtermcap libwmf libwpd pango readline
+# UP2DATE: http://www.abisource.com/download
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.4.4
+VERSION=2.4.5
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -26,7 +27,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/abiword-$VERSION.tar.bz2
+tar xzvf $CWD/abiword-$VERSION.tar.gz
 cd abiword-$VERSION
 chown -R root.root .
 for i in abi abiword-plugins; do
