@@ -1,17 +1,22 @@
 #!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/krusader/krusader-1.70.0.tar.gz
+# MD5SUMS: 3c2d73637c72e1042fef52ad1a336a64 krusader-1.70.0.tar.gz
+# REQUIRES: kdebase kdelibs
+#
 # Heavily based on the Slackware 10.2 SlackBuild
 # http://krusader.sourceforge.net
 
 CWD=`pwd`
-if ["$TMP" = ""]; then
+if [ "$TMP" = "" ]; then
  TMP=/tmp
 fi
 PKG=$TMP/package-krusader
 NAME=krusader
-VERSION=1.60.1
+VERSION=1.70.0
 TARGET=i486
 ARCH=${ARCH:-i486}
-BUILD=1stb
+BUILD=1tom
 
 if [ "$ARCH" = "i486" ]; then
   SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
