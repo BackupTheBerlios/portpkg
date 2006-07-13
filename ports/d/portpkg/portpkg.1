@@ -73,16 +73,20 @@ Simulate install/download/build.
 Don't check for requirements.
 .TP
 \fB-a\fP, \fB--lazy\fP (\fBLAZY_CHECKS=true\fP)
-Don't upgrade dependencies to newest version.
+Lazy version checking:
+When checking dependencies, be satisfied when any version is installed.
+When upgrading or listing differences, be satisfied when the installed version is newer than the version in the ports.
 .TP
 \fB-n\fP, \fB--noask\fP (\fBINTERACTIVE=false\fP)
 Don't ask for confirmation.
 .TP
 \fB-m\fP, \fB--maintain\fP (\fBMAINTAIN_ALL=true\fP)
-Run maintainer mode everytime.
+Force to run maintainer mode.
+Maintainer mode is different from user mode:
+E.g. md5sums of sources won't be checked, instead the actual value will be written into the build script header.
 .TP
 \fB-r\fP, \fB--remaintain\fP (\fBREMAINTAIN=true\fP)
-Skip package building step if possible.
+Skip package building step if possible (implies \fB--prepare --rebuild\fP).
 .TP
 \fB-w\fP, \fB--ignore\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBignore\fP)
 Exclude \fIexpression\fP from implicit expressions.
