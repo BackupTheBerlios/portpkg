@@ -12,3 +12,4 @@ config() {
 }
 config etc/rc.d/rc.udev.new
 config etc/modprobe.d/blacklist.new
+config etc/modprobe.d/isapnp.new

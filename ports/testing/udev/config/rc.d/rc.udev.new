@@ -54,10 +54,14 @@ case "$1" in
 	# generate events with the sysfs trigger
 	echo "Performing Coldplugging: "
 
+	# the lock file prevents network devices to be configured in this
+	# first steps 
+	touch /var/lock/subsys/coldplug
 	mkdir -p /dev/.udev/queue
 	
 	# Much more fast than all old shell script code
 	/sbin/udevtrigger && /sbin/udevsettle
+
 	;;
     stop)
 	echo "Stopping udevd"
