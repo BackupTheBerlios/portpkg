@@ -86,6 +86,7 @@ if [ "$uploads" ]; then
     find $TREE/open/$name/ -type f ! -path "*CVS*" -exec rm -v {} \; 2>/dev/null
     tar xjvf $TREE/open/$pkg --exclude "*CVS*" -C $TREE/open/
     rm $TREE/open/$pkg
+    rm -f $TREE/open/$pkg.asc
   
     # remove SlackBuilds that are not in ./*/*SlackBuild
     find $TREE/open/$name/ -name "*SlackBuild" -mindepth 2 -exec mv {} {}.renamed \;
@@ -110,6 +111,8 @@ if [ "$uploads" ]; then
     # move it away
     row "Moving into merged/"
     ssh $login@shell.berlios.de "mv -f $upload/$pkg $merged/"
+    echo "$files" | grep -xsq "$src.asc" \
+    && ssh $login@shell.berlios.de "mv -f $upload/$pkg.asc $merged/"
   done
 fi
 
@@ -137,7 +140,6 @@ $tree_is_clean || die "Would like to do more admin tasks but CVS is NOT in sync!
 # web stats
 #row "Syncing $TREE/d/portpkg/ports.recent"
 row "Syncing http://portpkg.berlios.de/ports.recent"
-ARCH=i486
 { echo "<dl>"
   cat $TREE/ChangeLog \
 | grep -oe "^[0-9][^ ]*" -e "[^ ]*[./]*SlackBuild" \
@@ -158,6 +160,7 @@ ARCH=i486
   echo "</dl>"
 #} >$TREE/d/portpkg/ports.recent
 } >$t/ports.recent
+ARCH=i486
 
 #row "Syncing $TREE/d/portpkg/ports.amount"
 row "Syncing http://portpkg.berlios.de/ports.amount"
