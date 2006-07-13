@@ -94,7 +94,7 @@ ls_virt() { cache $CACHE/virt "grep -vshe ^# -e ^$ \$CFG_DIR/virtual \$PRT_DIR/v
 ls_inst() { cache $CACHE/inst "cd $ADM_DIR/packages; find * -type f" "$@"; }
 ls_pkg()  { cache $CACHE/pkg "cd $PKG_DIR; find * -name \"*.tgz\" -follow 2>/dev/null | sed \"s,\.tgz$,,\"" "$@"; }
 if $USE_ALPHA_CODE; then
-ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" 2>/dev/null" "$@"; }
+ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
 else
 ls_slk()  { cache $CACHE/slk "find \$(repos) -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
 fi
@@ -138,10 +138,11 @@ sort_ver() # <pkg_list >pkg_list
   # separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
   # (but *only* within version-arch-build parts!)
   sed -r "\
+\,(^|/)local/,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;
 s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 :split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
 | sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
-| sed "s, ,,g"
+| sed -r "s, ,,g;\,(^|/)local/,s,-999_,-,"
 }
 
 if $USE_ALPHA_CODE; then
@@ -267,7 +268,9 @@ ls_diff() # >list
   debug "ls_diff()"
 
   # prepare lists
-  ( ls_loc -v $(exclude) | any2base; ls_inst ) | sort_ver >$t/avail
+  ( ls_loc -v $(exclude)
+    $LAZY_CHECKS && ls_inst
+  ) | sort_ver | any2base >$t/avail
   ls_inst >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -403,8 +406,8 @@ ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u`
     debug "check_reqs(): testing $req"
     inst_pkg=`ls_inst $(regex $req) | default`
     avail_pkg=`$TEST_REQS || { \
-ls_loc $(regex $req) | grep -v $(exclude) | any2base; \
-echo $inst_pkg; } | default`
+ls_loc $(regex $req) | grep -v $(exclude); \
+echo $inst_pkg; } | default | any2base`
 
     # is any version installed?
     if [ "$inst_pkg" ]; then
@@ -454,10 +457,38 @@ check_blocks()
   done
 }
 
+# update a SlackBuilds header to current variables
+update_header()
+{
+  local t=`mktemp -d`
+  local i
+
+  # generate new header
+  { echo "#!/bin/sh"
+    { grep "^# MAINTAINER:" $script
+      echo "# MAINTAINER: $MY_REALNAME '$MY_TAG' <$MY_EMAIL>"
+    } | sort -u
+    echo "$sources" | xargs -l echo "# SOURCES:"
+    echo "$md5sums" | xargs -l echo "# MD5SUMS:"
+    echo "# REQUIRES:" $requires
+    echo "# OPTIONAL:" $optional
+    echo "# BLOCKS:" $blocks
+  } | sed "/^# .*: *$/d" >$t/header
+
+  # clear old script header
+  sed "/^#!\/bin\/sh/d" $script >$t/script
+#  for i in MAINTAINER FLAGS BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
+  for i in MAINTAINER BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
+    sed -i "/^# $i:/d" $t/script
+  done
+  cat $t/header $t/script >$script
+}
+
+# update header, footprint, dependencies
 maintainer_mode()
 {
   local t=`mktemp -d`
-  local md5 s i
+  local md5 s
   $maintain || return 0
 #  has_prog /usr/lib/rpm/find-requires || die
 
@@ -479,7 +510,6 @@ maintainer_mode()
   deps() { xargs ldd 2>/dev/null | sed -nr "s,.* => /(.+\.so)\..*$,\1,p"; }
   find $tmp/package-$name/ | deps | fgrep -vf $t/flist >$t/deps
   grep -whf - $ADM_DIR/packages/* <$t/deps | ( cd /; deps ) >$t/deps_deps
-
   fgrep -vxf $t/deps_deps $t/deps >$t/depfiles
 
   # find perl dependencies (modules are identified by their man pages)
@@ -515,25 +545,7 @@ maintainer_mode()
     requires=`( echo "$requires"; cat $t/new_req ) | sort -u`
   fi
 
-  # write header
-  { echo "#!/bin/sh"
-    { grep "^# MAINTAINER:" $script
-      echo "# MAINTAINER: $MY_REALNAME '$MY_TAG' <$MY_EMAIL>"
-    } | sort -u
-    echo "$sources" | xargs -l echo "# SOURCES:"
-    echo "$md5sums" | xargs -l echo "# MD5SUMS:"
-    echo "# REQUIRES:" $requires
-    echo "# OPTIONAL:" $optional
-    echo "# BLOCKS:" $blocks
-  } | sed "/^# .*: *$/d" >$t/header
-
-  # remove script header
-  sed "/^#!\/bin\/sh/d" $script >$t/script
-#  for i in MAINTAINER FLAGS BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
-  for i in MAINTAINER BLOCKS OPTIONAL REQUIRES MD5SUMS SOURCES; do
-    sed -i "/^# $i:/d" $t/script
-  done
-  cat $t/header $t/script >$script
+  update_header
 
   # show a few statistics and check for common mistakes
   [ -s $t/new_req ] && row "New dependencies:" `cat $t/new_req` | fmt
@@ -1078,9 +1090,9 @@ maintain,export,noask,ignore:,use:"
     shift
   done
 
+  $REMAINTAIN && PREPARE_ONLY=true && REBUILD=true
   $PREPARE_ONLY && TEST_REQS=true
   $REBUILD && REINSTALL=true
-  $REMAINTAIN && REBUILD=true
   $DRY_RUN && INTERACTIVE=false
   $VERBOSE && output=/dev/stdout
 
@@ -1092,7 +1104,7 @@ maintain,export,noask,ignore:,use:"
   debug "$action() $@"
 
   $NO_REQS && warn "Dependency resolving disabled!"
-  $LAZY_CHECKS && warn "Enable lazy dependency checking!"
+  $LAZY_CHECKS && warn "Enable lazy version checking!"
   $DRY_RUN && warn "Up-/downloading, packaging and installing simulated!"
 
   $action "$@"
