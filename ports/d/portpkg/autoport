@@ -168,6 +168,7 @@ up2date() # >version
   reg=`echo "[^ ]*/$(basename $s)" | sed "s,$version,\\\\\([0-9].*\\\\\),g"`
   up2date=`grep "^# UP2DATE:" $script | cut -d " " -f 3-`
   up2date=${up2date:-`dirname $s`}
+  debug "up2date(): trying to find $reg on $up2date"
   ver=`lynx -dump $up2date | grep -o "$reg" | sed "s,^$reg$,\1,g" \
 | tr . " " | sort -nrk 1 -k 2 -k 3 -k 4 -k 5 -k 6 | tr " " .`
   if ! [ "$ver" ]; then
@@ -483,7 +484,7 @@ case $script in *.new)
 #  cat $t/script.head $script >$t/script.new
 #  cat $t/script.new >$script
 esac
-encode "$sources" >$path/sources
+#encode "$sources" >$path/sources
 echo "$desc" >$path/slack-desc
 sed -i "s,%version%,$version," $script
 sed -i "s,%build%,$build," $script
@@ -522,9 +523,17 @@ case $file in
     row "Checking format... .src.rpm"
     sel unpack rpm $script;;
   *)
+    if [ -d $SRC_DIR/$file ]; then
+      row "Checking format... directory"
+      format=dir
+      cp -a $SRC_DIR/$file $t/src/
+      ( cd $t/src; find * ) >$t/footprint
+      sel unpack dir $script
+    else
 #    echo "unknown!"
-    row "Checking format... unknown!"
-    die "Unknown source format, please write SlackBuild by hand!";;
+      row "Checking format... unknown!"
+      die "Unknown source format, please write SlackBuild by hand!"
+    fi;;
 esac
 tarball=`encode "$file"`
 sed -i "s,%tarball%,$tarball," $script
@@ -713,6 +722,7 @@ grep -sqe "CFLAGS" -e "CXXFLAGS" $script || snip slkcflags $script
 
 # gconf schemas
 if check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
+#  requires=`( echo "$requires"; echo "gconf" ) | sort -u`
   if ! grep -sq "^gconf()" $path/doinst.sh; then
     row "Adding gconf() to doinst.sh"
     sed '/^#:doinst.sh_gconf$/,/^#:doinst.sh_gconf$/!d' $0 >>$path/doinst.sh
@@ -829,12 +839,14 @@ if [ -f $path/readme.autoport ]; then
   echo "==========================================="
 fi
 
+update_header
+
 # any errors?
 $failed && die "There's been an error. Please write SlackBuild by hand."
 
 # rename the new script
 case $script in *.new)
-  script=`echo $script | sed "s,\.new$,,"`
+  script=${script%.new}
   mv $script.new $script
 esac
 
@@ -912,6 +924,7 @@ rpm2targz $CWD/%tarball% ##rpm
 tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
 tar xzvf $NAME-$VERSION.tar.gz ##rpm
 tar x%tarmode%vf $CWD/%tarball% ##tar
+cp -r $CWD/%tarball% . || true ##dir
 #:unpack
 cd %srcdirprefix% ##cd_sdp
 cat $CWD/*.patch | patch -p1 --verbose ##patch
