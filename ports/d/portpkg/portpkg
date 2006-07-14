@@ -79,6 +79,7 @@ tmp=$TMP
 arch_filter=""
 output=/dev/null
 level_one=true
+temp=`mktemp -d`
 
 # config files
 mirrors() { cache $CACHE/mirrors "grep -vshe ^# -e ^$ \$CFG_DIR/mirrors \$PRT_DIR/mirrors"; }
@@ -399,7 +400,7 @@ check_reqs()
 #  debug "check_reqs(): $name requires: "$requires
   list=`{ \
 ls_loc $(regex $requires) | grep -v $(ignore); \
-ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u`
+ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u | grep -vx $name`
   debug "check_reqs(): $name requires: "$list
 #  for req in $requires $uses; do
   for req in $list; do
@@ -441,7 +442,7 @@ check_opts()
   for opt in $optional; do
     ls_inst -q `regex $opt` || all_opts="$all_opts $opt"
   done
-  [ "$all_opts" ] && warn "Optional dependencies to consider:"$all_opts
+  [ "$all_opts" ] && ! $DOWNLOAD_ONLY && warn "Optional dependencies to consider:"$all_opts
   return 0
 }
 
@@ -761,15 +762,15 @@ add_pkg()
 
   # if it is already tracked as "started" (and therefore not "finished"),
   # it is either broken or a circular dependency
-  if fgrep -sqx "$group/$package" $t/started; then
+  if fgrep -sqx "$group/$package" $temp/started; then
     error "Circular dependency! Stopping $name."
     return 1
   # otherwise if tracked as "finished" (because of a dependency), skip it
-  elif fgrep -sqx "$group/$package" $t/finished; then
+  elif fgrep -sqx "$group/$package" $temp/finished; then
     return 0
   else
   # else track it as "started"
-    echo $group/$package >>$t/started
+    echo $group/$package >>$temp/started
   fi
 
   if ls_inst -Fqx $package && ! $REINSTALL; then
@@ -793,8 +794,8 @@ add_pkg()
   fi
 
   # track as "finished", remove from "started" list
-  echo $group/$package >>$t/finished
-  sed -i "\,^$group/$package$,d" $t/started
+  echo $group/$package >>$temp/finished
+  sed -i "\,^$group/$package$,d" $temp/started
 
   # break-points
   $DOWNLOAD_ONLY && return 0
@@ -994,7 +995,8 @@ do_upgrade() # [pkgex-list]
   # download files first
   if ! $DOWNLOAD_ONLY; then
     ( DOWNLOAD_ONLY=true
-    do_add $diff_list )
+    do_add $diff_list
+    >$temp/finished )
   fi
   do_add $diff_list
 }
