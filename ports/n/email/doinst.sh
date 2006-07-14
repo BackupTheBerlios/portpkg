@@ -9,6 +9,3 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-
-config etc/email/email.conf.new
-config etc/email/email.sig.new
