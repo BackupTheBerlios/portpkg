@@ -82,24 +82,25 @@ level_one=true
 temp=`mktemp -d`
 
 # config files
-mirrors() { cache $CACHE/mirrors "grep -vshe ^# -e ^$ \$CFG_DIR/mirrors \$PRT_DIR/mirrors"; }
-ignore()  { cache $CACHE/ignore "regex \$(grep -vshe ^# -e ^$ \$CFG_DIR/ignore \$PRT_DIR/ignore \$CFG_DIR/exclude \$PRT_DIR/exclude)"; }
-#exclude() { cache $CACHE/exclude "regex \$(grep -vshe ^# -e ^$ \$CFG_DIR/exclude \$PRT_DIR/exclude)"; }
+mirrors() { cache $CACHE/mirrors 'grep -vshe ^# -e ^$ $CFG_DIR/mirrors $PRT_DIR/mirrors'; }
+ignore()  { cache $CACHE/ignore 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)'; }
+#exclude() { cache $CACHE/exclude 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude $PRT_DIR/exclude)'; }
 exclude() { ignore; }
-use()     { cache $CACHE/use "regex \$(grep -vshe ^# -e ^$ \$CFG_DIR/use \$PRT_DIR/use)"; }
-repos()   { cache $CACHE/repos "grep -vshe ^# -e ^$ \$CFG_DIR/repos \$PRT_DIR/repos | sed s,^,\$PRT_DIR/,"
+use()     { cache $CACHE/use 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)'; }
+repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repos | sed s,^,$PRT_DIR/,'
             test -s $CACHE/repos || echo $PRT_DIR; }
 
 # listers
-ls_virt() { cache $CACHE/virt "grep -vshe ^# -e ^$ \$CFG_DIR/virtual \$PRT_DIR/virtual" "$@"; }
-ls_inst() { cache $CACHE/inst "cd $ADM_DIR/packages; find * -type f" "$@"; }
-ls_pkg()  { cache $CACHE/pkg "cd $PKG_DIR; find * -name \"*.tgz\" -follow 2>/dev/null | sed \"s,\.tgz$,,\"" "$@"; }
+ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual' "$@"; }
+#ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; find * -type f' "$@"; }
+ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
+ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR; find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
 if $USE_ALPHA_CODE; then
-ls_slk()  { cache $CACHE/slk "find $PRT_DIR/ -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
+ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
 else
-ls_slk()  { cache $CACHE/slk "find \$(repos) -name \"*SlackBuild\" -follow 2>/dev/null" "$@"; }
+ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
 fi
-ls_loc()  { cache $CACHE/loc "ls_slk | slk2loc" "$@"; }
+ls_loc()  { cache $CACHE/loc 'ls_slk | slk2loc' "$@"; }
 
 # converters
 #any2dir()   { sed -r "s,^(.*)/.*$,\1,"; }
