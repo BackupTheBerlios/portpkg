@@ -527,6 +527,16 @@ maintainer_mode()
     ( cd $ADM_DIR/packages/; grep -h "/$s\.py$" * | grep -v "/site-packages/..*/$s\.py$" )
   done | sort -u >>$t/depfiles
 
+  # fix misc dependencies
+  { grep -sq "^etc/gconf/" $t/flist && which gconftool-2
+    grep -sq "^var/lib/scrollkeeper/" $t/flist && which scrollkeeper
+    grep -sq "/pkgconfig/.*\.pc$" $t/flist && which pkg-config
+    grep -sq "\.desktop$" $t/flist && which update-desktop-database
+    grep -sq "^etc/dbus-1/" $t/flist && which dbus-daemon
+    grep -sq "\.omf$" $t/flist && which scrollkeeper-config
+    grep -sq "/gtk-doc/" $t/flist && which gtkdoc-scan
+  } | sed "s,^/,," >>$t/depfiles
+
   # resolve dependent files to package names
   sed "s,^,^," $t/depfiles | ( cd $ADM_DIR/packages/; grep -lf - * ) \
 | pkg2name | grep -v "^$name$" | sort -u >$t/auto_req_raw
