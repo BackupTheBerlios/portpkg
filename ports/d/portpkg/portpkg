@@ -291,30 +291,50 @@ ls_diff() # >list
   fgrep -vxf $t/inst.check $t/avail.check | grep -xf - $t/avail | sort -u
 }
 
+# adjust PRT_DIR in case the pkgex "." is used
+fix_ports_root() # pkgex
+{
+  [ "${1:-}" = "." ] || return
+  # yes, all relative to current dir, thus no pkgex resolution
+  debug "fix_ports_root(): direct mode: disabling dependencies resolution"
+  TEST_REQS=true
+  case `pwd` in $PRT_DIR|$PRT_DIR/*) ;; * )
+    # pkgex "." is used but the current dir is not inside the tree
+    debug "fix_ports_root(): `pwd` is NOT in PRT_DIR, setting it now"
+    PRT_DIR=`pwd`
+    PKG_DIR=$PRT_DIR
+    SRC_DIR=$PRT_DIR
+    LOG_DIR=$PRT_DIR
+  esac
+}
+
 # get information about a port and write it into global variables
 get_info() # pkgex
 {
   local loc arch build
   debug "get_info() $@"
 
-  case $1 in
-    .)   # direct mode: find SlackBuild in current dir
-         case `pwd` in $PRT_DIR|$PRT_DIR/*) ;; * )
-           debug "get_info(): `pwd` is NOT in PRT_DIR, setting PRT_DIR"
-           PRT_DIR=`cd ..; pwd`
-           PKG_DIR=$PRT_DIR
-         esac
-         loc=`find $(pwd)/ -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
-         TEST_REQS=true
-         debug "get_info(): direct mode: dependencies resolution disabled";;
-#    */*) # explicitly named port: no exclude list
-#         loc=`ls_loc $(regex $1) | default`
-#         [ "$loc" ] && debug "get_info(): excluded port specified explicitly!";;
-    *)   # find port, take the first if more than one available
-         loc=`{ \
+#  case $1 in
+#    .)   # direct mode: find SlackBuild in current dir
+#         case `pwd` in $PRT_DIR|$PRT_DIR/*) ;; * )
+#           debug "get_info(): `pwd` is NOT in PRT_DIR, setting PRT_DIR"
+#           PRT_DIR=`cd ..; pwd`
+#           PKG_DIR=$PRT_DIR
+#         esac
+#         loc=`find $(pwd)/ -maxdepth 1 -name "*SlackBuild" | slk2loc | default`
+#         TEST_REQS=true
+#         debug "get_info(): direct mode: dependencies resolution disabled";;
+##    */*) # explicitly named port: no exclude list
+##         loc=`ls_loc $(regex $1) | default`
+##         [ "$loc" ] && debug "get_info(): excluded port specified explicitly!";;
+#    *)   
+  # find port, take the first if more than one available
+  fix_ports_root "$@"
+  loc=`{ \
 ls_loc $(regex $1) | grep -v $(exclude) | default
-ls_loc $(regex $1) | default; } | head -n 1`;;
-  esac
+ls_loc $(regex $1) | default; } | head -n 1`
+#;;
+#  esac
 
   if ! [ "$loc" ]; then
     error "No such port: $1"
@@ -579,6 +599,8 @@ build_pkg()
 {
   local t=`mktemp -d`
   local src srcname md5sum script_opt flags_var sh_opt prod
+
+  $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
   stanza "Building $package:"
 
   if $maintain && ! $DOWNLOAD_ONLY; then
@@ -963,6 +985,7 @@ do_info() # pkgex-list
 do_list() # [pkgex-list] >glist
 {
   local virt
+  fix_ports_root "$@"
   has_ports || die
   case $* in
     "") ls_loc;;
@@ -1103,6 +1126,7 @@ maintain,export,noask,ignore:,use:"
     shift
   done
 
+  $DOWNLOAD_ONLY && REBUILD=true
   $REMAINTAIN && PREPARE_ONLY=true && REBUILD=true
   $PREPARE_ONLY && TEST_REQS=true
   $REBUILD && REINSTALL=true
