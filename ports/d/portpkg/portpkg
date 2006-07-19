@@ -94,7 +94,7 @@ repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repo
 ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; find * -type f' "$@"; }
 ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
-ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR; find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
+ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
 if $USE_ALPHA_CODE; then
 ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
 else
