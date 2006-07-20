@@ -760,7 +760,8 @@ else
 fi
 
 # mime-update
-if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint; then
+if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint \
+|| check "SHARED_MIME_INFO" $TMP/$srcdir_prefix/configure; then
   add_inst "usr/bin/update-mime-database usr/share/mime" $path/doinst.sh
 else
   remove_inst "update-mime-database" $path/doinst.sh
@@ -851,8 +852,10 @@ case $script in *.new)
 esac
 
 # add new package to the cache
-echo $PRT_DIR/$group/$package >>$CACHE/loc
-echo $script >>$CACHE/slk
+#echo $PRT_DIR/$group/$package >>$CACHE/loc
+#echo $script >>$CACHE/slk
+rm $CACHE/loc
+rm $CACHE/slk
 }
 
 # portpkg?
@@ -984,10 +987,11 @@ python setup.py build install --root=$PKG ##python
 ##GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 ##gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
 ##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod ##perl
+find $PKG/ -name perllocal.pod | xargs -r rm -fv ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
-rm -rf $PKG/%prefix%/info/dir
-find $PKG -name mimeinfo.cache -exec rm -fv {} \; ##mime-database
+rm -fv $PKG/%prefix%/info/dir
+rm -fv $PKG/%prefix%/share/mime/* || true ##mime-database
+find $PKG/ -name mimeinfo.cache | xargs -r rm -fv ##mime-database
 ##find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 #:refine
 #%post-refine-fix%
