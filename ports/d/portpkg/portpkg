@@ -555,6 +555,7 @@ maintainer_mode()
     grep -sq "^etc/dbus-1/" $t/flist && which dbus-daemon
     grep -sq "\.omf$" $t/flist && which scrollkeeper-config
     grep -sq "/gtk-doc/" $t/flist && which gtkdoc-scan
+    grep -sq "/share/mime/.*\.xml$" $t/flist && which update-mime-database
   } | sed "s,^/,," >>$t/depfiles
 
   # resolve dependent files to package names
