@@ -1,737 +1,745 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 etc/
-drwxr-xr-x root/root           0 etc/gconf/
-drwxr-xr-x root/root           0 etc/gconf/schemas/
--rw-r--r-- root/root        1005 etc/gconf/schemas/gdesklets-display-thumbnail.schemas
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         581 install/doinst.sh
--rw-r--r-- root/root         307 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         4920 usr/bin/gdesklets-display-thumbnailer
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/gdesklets-0.35/
--rw-r--r-- root/root         729 usr/doc/gdesklets-0.35/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/gdesklets-0.35/COPYING
--rw-r--r-- root/root       62644 usr/doc/gdesklets-0.35/ChangeLog
--rw-r--r-- root/root        9240 usr/doc/gdesklets-0.35/INSTALL
--rw-r--r-- root/root        8361 usr/doc/gdesklets-0.35/NEWS
--rw-r--r-- root/root       14496 usr/doc/gdesklets-0.35/README
--rw-r--r-- root/root         128 usr/doc/gdesklets-0.35/TODO
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/gdesklets/
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/ArrayBuffer/
--rw-r--r-- root/root        1677 usr/lib/gdesklets/Controls/ArrayBuffer/IArrayBuffer.py
--rw-r--r-- root/root        5945 usr/lib/gdesklets/Controls/ArrayBuffer/__init__.py
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/Calendar/
--rw-r--r-- root/root         224 usr/lib/gdesklets/Controls/Calendar/ICalendar.py
--rw-r--r-- root/root         545 usr/lib/gdesklets/Controls/Calendar/ICalendar.pyc
--rw-r--r-- root/root         545 usr/lib/gdesklets/Controls/Calendar/ICalendar.pyo
--rw-r--r-- root/root        1287 usr/lib/gdesklets/Controls/Calendar/__init__.py
--rw-r--r-- root/root        2316 usr/lib/gdesklets/Controls/Calendar/__init__.pyc
--rw-r--r-- root/root        2213 usr/lib/gdesklets/Controls/Calendar/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/EventPipe/
--rw-r--r-- root/root         160 usr/lib/gdesklets/Controls/EventPipe/IEventPipe.py
--rw-r--r-- root/root        2664 usr/lib/gdesklets/Controls/EventPipe/__init__.py
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/HDDTemp/
--rw-r--r-- root/root         267 usr/lib/gdesklets/Controls/HDDTemp/IHDDTemp.py
--rw-r--r-- root/root         543 usr/lib/gdesklets/Controls/HDDTemp/IHDDTemp.pyc
--rw-r--r-- root/root         543 usr/lib/gdesklets/Controls/HDDTemp/IHDDTemp.pyo
--rw-r--r-- root/root          58 usr/lib/gdesklets/Controls/HDDTemp/__init__.py
--rw-r--r-- root/root         290 usr/lib/gdesklets/Controls/HDDTemp/__init__.pyc
--rw-r--r-- root/root         290 usr/lib/gdesklets/Controls/HDDTemp/__init__.pyo
--rw-r--r-- root/root        1023 usr/lib/gdesklets/Controls/HDDTemp/impl.py
--rw-r--r-- root/root        1747 usr/lib/gdesklets/Controls/HDDTemp/impl.pyc
--rw-r--r-- root/root        1607 usr/lib/gdesklets/Controls/HDDTemp/impl.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/Sensors/
--rw-r--r-- root/root         310 usr/lib/gdesklets/Controls/Sensors/ISensor.py
--rw-r--r-- root/root         618 usr/lib/gdesklets/Controls/Sensors/ISensor.pyc
--rw-r--r-- root/root         618 usr/lib/gdesklets/Controls/Sensors/ISensor.pyo
--rw-r--r-- root/root        2382 usr/lib/gdesklets/Controls/Sensors/__init__.py
--rw-r--r-- root/root        3105 usr/lib/gdesklets/Controls/Sensors/__init__.pyc
--rw-r--r-- root/root        3105 usr/lib/gdesklets/Controls/Sensors/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/System/
--rw-r--r-- root/root        1525 usr/lib/gdesklets/Controls/System/ISystem.py
--rw-r--r-- root/root        1310 usr/lib/gdesklets/Controls/System/ISystem.pyc
--rw-r--r-- root/root        1310 usr/lib/gdesklets/Controls/System/ISystem.pyo
--rw-r--r-- root/root        5799 usr/lib/gdesklets/Controls/System/__init__.py
--rw-r--r-- root/root        7102 usr/lib/gdesklets/Controls/System/__init__.pyc
--rw-r--r-- root/root        7102 usr/lib/gdesklets/Controls/System/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/Time/
--rw-r--r-- root/root         217 usr/lib/gdesklets/Controls/Time/ITime.py
--rw-r--r-- root/root         499 usr/lib/gdesklets/Controls/Time/ITime.pyc
--rw-r--r-- root/root         499 usr/lib/gdesklets/Controls/Time/ITime.pyo
--rw-r--r-- root/root        2519 usr/lib/gdesklets/Controls/Time/__init__.py
--rw-r--r-- root/root        2811 usr/lib/gdesklets/Controls/Time/__init__.pyc
--rw-r--r-- root/root        2811 usr/lib/gdesklets/Controls/Time/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Controls/URI/
--rw-r--r-- root/root         213 usr/lib/gdesklets/Controls/URI/IURI.py
--rw-r--r-- root/root         519 usr/lib/gdesklets/Controls/URI/IURI.pyc
--rw-r--r-- root/root         519 usr/lib/gdesklets/Controls/URI/IURI.pyo
--rw-r--r-- root/root        1522 usr/lib/gdesklets/Controls/URI/__init__.py
--rw-r--r-- root/root        2403 usr/lib/gdesklets/Controls/URI/__init__.pyc
--rw-r--r-- root/root        2403 usr/lib/gdesklets/Controls/URI/__init__.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/Controls/__init__.py
--rw-r--r-- root/root         141 usr/lib/gdesklets/Controls/__init__.pyc
--rw-r--r-- root/root         141 usr/lib/gdesklets/Controls/__init__.pyo
--rwxr-xr-x root/root         529 usr/lib/gdesklets/NullObject.py
--rw-r--r-- root/root        1298 usr/lib/gdesklets/NullObject.pyc
--rw-r--r-- root/root        1298 usr/lib/gdesklets/NullObject.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Sensors/
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Sensors/External/
--rw-r--r-- root/root        1128 usr/lib/gdesklets/Sensors/External/__init__.py
--rw-r--r-- root/root        1683 usr/lib/gdesklets/Sensors/External/__init__.pyc
--rw-r--r-- root/root        1683 usr/lib/gdesklets/Sensors/External/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/Sensors/FontSelector/
--rw-r--r-- root/root        2977 usr/lib/gdesklets/Sensors/FontSelector/__init__.py
--rw-r--r-- root/root        3077 usr/lib/gdesklets/Sensors/FontSelector/__init__.pyc
--rw-r--r-- root/root        3077 usr/lib/gdesklets/Sensors/FontSelector/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/config/
--rw-r--r-- root/root        1178 usr/lib/gdesklets/config/ConfigBoolean.py
--rw-r--r-- root/root        1919 usr/lib/gdesklets/config/ConfigBoolean.pyc
--rw-r--r-- root/root        1919 usr/lib/gdesklets/config/ConfigBoolean.pyo
--rw-r--r-- root/root         787 usr/lib/gdesklets/config/ConfigButton.py
--rw-r--r-- root/root        1614 usr/lib/gdesklets/config/ConfigButton.pyc
--rw-r--r-- root/root        1614 usr/lib/gdesklets/config/ConfigButton.pyo
--rw-r--r-- root/root        1564 usr/lib/gdesklets/config/ConfigColor.py
--rw-r--r-- root/root        2361 usr/lib/gdesklets/config/ConfigColor.pyc
--rw-r--r-- root/root        2361 usr/lib/gdesklets/config/ConfigColor.pyo
--rw-r--r-- root/root        1912 usr/lib/gdesklets/config/ConfigDPI.py
--rw-r--r-- root/root        2860 usr/lib/gdesklets/config/ConfigDPI.pyc
--rw-r--r-- root/root        2860 usr/lib/gdesklets/config/ConfigDPI.pyo
--rw-r--r-- root/root        9508 usr/lib/gdesklets/config/ConfigDialog.py
--rw-r--r-- root/root        8538 usr/lib/gdesklets/config/ConfigDialog.pyc
--rw-r--r-- root/root        8538 usr/lib/gdesklets/config/ConfigDialog.pyo
--rw-r--r-- root/root        2368 usr/lib/gdesklets/config/ConfigEnum.py
--rw-r--r-- root/root        2924 usr/lib/gdesklets/config/ConfigEnum.pyc
--rw-r--r-- root/root        2924 usr/lib/gdesklets/config/ConfigEnum.pyo
--rw-r--r-- root/root        2799 usr/lib/gdesklets/config/ConfigFloat.py
--rw-r--r-- root/root        3292 usr/lib/gdesklets/config/ConfigFloat.pyc
--rw-r--r-- root/root        3292 usr/lib/gdesklets/config/ConfigFloat.pyo
--rw-r--r-- root/root        1333 usr/lib/gdesklets/config/ConfigFont.py
--rw-r--r-- root/root        2114 usr/lib/gdesklets/config/ConfigFont.pyc
--rw-r--r-- root/root        2114 usr/lib/gdesklets/config/ConfigFont.pyo
--rw-r--r-- root/root         239 usr/lib/gdesklets/config/ConfigInteger.py
--rw-r--r-- root/root         592 usr/lib/gdesklets/config/ConfigInteger.pyc
--rw-r--r-- root/root         592 usr/lib/gdesklets/config/ConfigInteger.pyo
--rw-r--r-- root/root        1836 usr/lib/gdesklets/config/ConfigManager.py
--rw-r--r-- root/root        2607 usr/lib/gdesklets/config/ConfigManager.pyc
--rw-r--r-- root/root        2607 usr/lib/gdesklets/config/ConfigManager.pyo
--rw-r--r-- root/root        1536 usr/lib/gdesklets/config/ConfigString.py
--rw-r--r-- root/root        2346 usr/lib/gdesklets/config/ConfigString.pyc
--rw-r--r-- root/root        2346 usr/lib/gdesklets/config/ConfigString.pyo
--rw-r--r-- root/root         512 usr/lib/gdesklets/config/ConfigTitle.py
--rw-r--r-- root/root        1071 usr/lib/gdesklets/config/ConfigTitle.pyc
--rw-r--r-- root/root        1071 usr/lib/gdesklets/config/ConfigTitle.pyo
--rw-r--r-- root/root        4412 usr/lib/gdesklets/config/ConfigURI.py
--rw-r--r-- root/root        5146 usr/lib/gdesklets/config/ConfigURI.pyc
--rw-r--r-- root/root        5146 usr/lib/gdesklets/config/ConfigURI.pyo
--rw-r--r-- root/root        4447 usr/lib/gdesklets/config/ConfigUnit.py
--rw-r--r-- root/root        4984 usr/lib/gdesklets/config/ConfigUnit.pyc
--rw-r--r-- root/root        4984 usr/lib/gdesklets/config/ConfigUnit.pyo
--rw-r--r-- root/root        3235 usr/lib/gdesklets/config/ConfigWidget.py
--rw-r--r-- root/root        3764 usr/lib/gdesklets/config/ConfigWidget.pyc
--rw-r--r-- root/root        3728 usr/lib/gdesklets/config/ConfigWidget.pyo
--rw-r--r-- root/root        3148 usr/lib/gdesklets/config/DaemonConfigger.py
--rw-r--r-- root/root        3754 usr/lib/gdesklets/config/DaemonConfigger.pyc
--rw-r--r-- root/root        3754 usr/lib/gdesklets/config/DaemonConfigger.pyo
--rw-r--r-- root/root        2668 usr/lib/gdesklets/config/DisplayConfigger.py
--rw-r--r-- root/root        2903 usr/lib/gdesklets/config/DisplayConfigger.pyc
--rw-r--r-- root/root        2870 usr/lib/gdesklets/config/DisplayConfigger.pyo
--rw-r--r-- root/root        2958 usr/lib/gdesklets/config/StateSaver.py
--rw-r--r-- root/root        4595 usr/lib/gdesklets/config/StateSaver.pyc
--rw-r--r-- root/root        4452 usr/lib/gdesklets/config/StateSaver.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/config/__init__.py
--rw-r--r-- root/root         139 usr/lib/gdesklets/config/__init__.pyc
--rw-r--r-- root/root         139 usr/lib/gdesklets/config/__init__.pyo
--rw-r--r-- root/root         125 usr/lib/gdesklets/config/settings.py
--rw-r--r-- root/root         289 usr/lib/gdesklets/config/settings.pyc
--rw-r--r-- root/root         289 usr/lib/gdesklets/config/settings.pyo
--rwxr-xr-x root/root        1054 usr/lib/gdesklets/ctrlinfo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/data/
--rw-r--r-- root/root       84580 usr/lib/gdesklets/data/about.png
-drwxr-xr-x root/root           0 usr/lib/gdesklets/display/
--rw-r--r-- root/root        3617 usr/lib/gdesklets/display/ContainerTarget.py
--rw-r--r-- root/root        4232 usr/lib/gdesklets/display/ContainerTarget.pyc
--rw-r--r-- root/root        4232 usr/lib/gdesklets/display/ContainerTarget.pyo
--rw-r--r-- root/root        5234 usr/lib/gdesklets/display/DataTarget.py
--rw-r--r-- root/root        4762 usr/lib/gdesklets/display/DataTarget.pyc
--rw-r--r-- root/root        4762 usr/lib/gdesklets/display/DataTarget.pyo
--rw-r--r-- root/root       26991 usr/lib/gdesklets/display/Display.py
--rw-r--r-- root/root       22150 usr/lib/gdesklets/display/Display.pyc
--rw-r--r-- root/root       22054 usr/lib/gdesklets/display/Display.pyo
--rw-r--r-- root/root        1457 usr/lib/gdesklets/display/DisplayConfigurator.py
--rw-r--r-- root/root        1661 usr/lib/gdesklets/display/DisplayConfigurator.pyc
--rw-r--r-- root/root        1661 usr/lib/gdesklets/display/DisplayConfigurator.pyo
--rw-r--r-- root/root       15946 usr/lib/gdesklets/display/DisplayTarget.py
--rw-r--r-- root/root       12919 usr/lib/gdesklets/display/DisplayTarget.pyc
--rw-r--r-- root/root       12544 usr/lib/gdesklets/display/DisplayTarget.pyo
--rw-r--r-- root/root        7428 usr/lib/gdesklets/display/GlassWindow.py
--rw-r--r-- root/root        6825 usr/lib/gdesklets/display/GlassWindow.pyc
--rw-r--r-- root/root        6825 usr/lib/gdesklets/display/GlassWindow.pyo
--rw-r--r-- root/root        1360 usr/lib/gdesklets/display/Layouter.py
--rw-r--r-- root/root        1597 usr/lib/gdesklets/display/Layouter.pyc
--rw-r--r-- root/root        1597 usr/lib/gdesklets/display/Layouter.pyo
--rw-r--r-- root/root         443 usr/lib/gdesklets/display/MenuItem.py
--rw-r--r-- root/root         716 usr/lib/gdesklets/display/MenuItem.pyc
--rw-r--r-- root/root         716 usr/lib/gdesklets/display/MenuItem.pyo
--rw-r--r-- root/root        1173 usr/lib/gdesklets/display/Plug.py
--rw-r--r-- root/root        1700 usr/lib/gdesklets/display/Plug.pyc
--rw-r--r-- root/root        1700 usr/lib/gdesklets/display/Plug.pyo
--rw-r--r-- root/root        1653 usr/lib/gdesklets/display/TargetAlignment.py
--rw-r--r-- root/root        2134 usr/lib/gdesklets/display/TargetAlignment.pyc
--rw-r--r-- root/root        2134 usr/lib/gdesklets/display/TargetAlignment.pyo
--rw-r--r-- root/root        5281 usr/lib/gdesklets/display/TargetArray.py
--rw-r--r-- root/root        5356 usr/lib/gdesklets/display/TargetArray.pyc
--rw-r--r-- root/root        5320 usr/lib/gdesklets/display/TargetArray.pyo
--rw-r--r-- root/root        1348 usr/lib/gdesklets/display/TargetBonoboControl.py
--rw-r--r-- root/root        1704 usr/lib/gdesklets/display/TargetBonoboControl.pyc
--rw-r--r-- root/root        1704 usr/lib/gdesklets/display/TargetBonoboControl.pyo
--rw-r--r-- root/root        6730 usr/lib/gdesklets/display/TargetCanvas.py
--rw-r--r-- root/root        6282 usr/lib/gdesklets/display/TargetCanvas.pyc
--rw-r--r-- root/root        6282 usr/lib/gdesklets/display/TargetCanvas.pyo
--rw-r--r-- root/root        1222 usr/lib/gdesklets/display/TargetDisplay.py
--rw-r--r-- root/root        1254 usr/lib/gdesklets/display/TargetDisplay.pyc
--rw-r--r-- root/root        1254 usr/lib/gdesklets/display/TargetDisplay.pyo
--rw-r--r-- root/root        2623 usr/lib/gdesklets/display/TargetEntry.py
--rw-r--r-- root/root        3185 usr/lib/gdesklets/display/TargetEntry.pyc
--rw-r--r-- root/root        3185 usr/lib/gdesklets/display/TargetEntry.pyo
--rw-r--r-- root/root        4250 usr/lib/gdesklets/display/TargetExpander.py
--rw-r--r-- root/root        4930 usr/lib/gdesklets/display/TargetExpander.pyc
--rw-r--r-- root/root        4930 usr/lib/gdesklets/display/TargetExpander.pyo
--rw-r--r-- root/root        4503 usr/lib/gdesklets/display/TargetFrame.py
--rw-r--r-- root/root        5689 usr/lib/gdesklets/display/TargetFrame.pyc
--rw-r--r-- root/root        5689 usr/lib/gdesklets/display/TargetFrame.pyo
--rw-r--r-- root/root        1812 usr/lib/gdesklets/display/TargetGauge.py
--rw-r--r-- root/root        2275 usr/lib/gdesklets/display/TargetGauge.pyc
--rw-r--r-- root/root        2275 usr/lib/gdesklets/display/TargetGauge.pyo
--rw-r--r-- root/root        3280 usr/lib/gdesklets/display/TargetGroup.py
--rw-r--r-- root/root        4042 usr/lib/gdesklets/display/TargetGroup.pyc
--rw-r--r-- root/root        4042 usr/lib/gdesklets/display/TargetGroup.pyo
--rw-r--r-- root/root        6514 usr/lib/gdesklets/display/TargetImage.py
--rw-r--r-- root/root        5902 usr/lib/gdesklets/display/TargetImage.pyc
--rw-r--r-- root/root        5837 usr/lib/gdesklets/display/TargetImage.pyo
--rw-r--r-- root/root        7729 usr/lib/gdesklets/display/TargetLabel.py
--rw-r--r-- root/root        7424 usr/lib/gdesklets/display/TargetLabel.pyc
--rw-r--r-- root/root        7424 usr/lib/gdesklets/display/TargetLabel.pyo
--rw-r--r-- root/root        5050 usr/lib/gdesklets/display/TargetPlotter.py
--rw-r--r-- root/root        4209 usr/lib/gdesklets/display/TargetPlotter.pyc
--rw-r--r-- root/root        4209 usr/lib/gdesklets/display/TargetPlotter.pyo
--rw-r--r-- root/root       15534 usr/lib/gdesklets/display/Window.py
--rw-r--r-- root/root       13120 usr/lib/gdesklets/display/Window.pyc
--rw-r--r-- root/root       13062 usr/lib/gdesklets/display/Window.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/display/__init__.py
--rw-r--r-- root/root         140 usr/lib/gdesklets/display/__init__.pyc
--rw-r--r-- root/root         140 usr/lib/gdesklets/display/__init__.pyo
--rw-r--r-- root/root        1762 usr/lib/gdesklets/display/targetregistry.py
--rw-r--r-- root/root        1842 usr/lib/gdesklets/display/targetregistry.pyc
--rw-r--r-- root/root        1842 usr/lib/gdesklets/display/targetregistry.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/factory/
--rw-r--r-- root/root        1091 usr/lib/gdesklets/factory/ControlFactory.py
--rw-r--r-- root/root        1543 usr/lib/gdesklets/factory/ControlFactory.pyc
--rw-r--r-- root/root        1543 usr/lib/gdesklets/factory/ControlFactory.pyo
--rw-r--r-- root/root        9886 usr/lib/gdesklets/factory/DisplayFactory.py
--rw-r--r-- root/root        7639 usr/lib/gdesklets/factory/DisplayFactory.pyc
--rw-r--r-- root/root        7639 usr/lib/gdesklets/factory/DisplayFactory.pyo
--rw-r--r-- root/root        3480 usr/lib/gdesklets/factory/SensorFactory.py
--rw-r--r-- root/root        2578 usr/lib/gdesklets/factory/SensorFactory.pyc
--rw-r--r-- root/root        2578 usr/lib/gdesklets/factory/SensorFactory.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/factory/__init__.py
--rw-r--r-- root/root         140 usr/lib/gdesklets/factory/__init__.pyc
--rw-r--r-- root/root         140 usr/lib/gdesklets/factory/__init__.pyo
--rwxr-xr-x root/root       11952 usr/lib/gdesklets/gdesklets
--rwxr-xr-x root/root        2590 usr/lib/gdesklets/gdesklets-daemon
--rwxr-xr-x root/root        1764 usr/lib/gdesklets/gdesklets-logview
--rwxr-xr-x root/root        5450 usr/lib/gdesklets/gdesklets-migration-tool
--rwxr-xr-x root/root         207 usr/lib/gdesklets/gdesklets-shell
-drwxr-xr-x root/root           0 usr/lib/gdesklets/layout/
--rw-r--r-- root/root        6568 usr/lib/gdesklets/layout/HashPQueue.py
--rw-r--r-- root/root        5596 usr/lib/gdesklets/layout/HashPQueue.pyc
--rw-r--r-- root/root        5596 usr/lib/gdesklets/layout/HashPQueue.pyo
--rw-r--r-- root/root       17057 usr/lib/gdesklets/layout/LayoutObject.py
--rw-r--r-- root/root       15367 usr/lib/gdesklets/layout/LayoutObject.pyc
--rw-r--r-- root/root       15367 usr/lib/gdesklets/layout/LayoutObject.pyo
--rw-r--r-- root/root        7254 usr/lib/gdesklets/layout/Unit.py
--rw-r--r-- root/root        7549 usr/lib/gdesklets/layout/Unit.pyc
--rw-r--r-- root/root        7436 usr/lib/gdesklets/layout/Unit.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/layout/__init__.py
--rw-r--r-- root/root         139 usr/lib/gdesklets/layout/__init__.pyc
--rw-r--r-- root/root         139 usr/lib/gdesklets/layout/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/
--rw-r--r-- root/root         627 usr/lib/gdesklets/libdesklets/__init__.py
--rw-r--r-- root/root         238 usr/lib/gdesklets/libdesklets/__init__.pyc
--rw-r--r-- root/root         238 usr/lib/gdesklets/libdesklets/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/controls/
--rw-r--r-- root/root         136 usr/lib/gdesklets/libdesklets/controls/__init__.py
--rw-r--r-- root/root         447 usr/lib/gdesklets/libdesklets/controls/__init__.pyc
--rw-r--r-- root/root         447 usr/lib/gdesklets/libdesklets/controls/__init__.pyo
--rw-r--r-- root/root        2122 usr/lib/gdesklets/libdesklets/convert.py
--rw-r--r-- root/root        3068 usr/lib/gdesklets/libdesklets/convert.pyc
--rw-r--r-- root/root        3068 usr/lib/gdesklets/libdesklets/convert.pyo
--rw-r--r-- root/root        1904 usr/lib/gdesklets/libdesklets/hddtemp.py
--rw-r--r-- root/root        2438 usr/lib/gdesklets/libdesklets/hddtemp.pyc
--rw-r--r-- root/root        2384 usr/lib/gdesklets/libdesklets/hddtemp.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/system/
--rw-r--r-- root/root        2818 usr/lib/gdesklets/libdesklets/system/Arch.py
--rw-r--r-- root/root        4253 usr/lib/gdesklets/libdesklets/system/Arch.pyc
--rw-r--r-- root/root        4253 usr/lib/gdesklets/libdesklets/system/Arch.pyo
--rw-r--r-- root/root         933 usr/lib/gdesklets/libdesklets/system/ArchFactory.py
--rw-r--r-- root/root        1213 usr/lib/gdesklets/libdesklets/system/ArchFactory.pyc
--rw-r--r-- root/root        1213 usr/lib/gdesklets/libdesklets/system/ArchFactory.pyo
--rw-r--r-- root/root        1258 usr/lib/gdesklets/libdesklets/system/CPU.py
--rw-r--r-- root/root        1865 usr/lib/gdesklets/libdesklets/system/CPU.pyc
--rw-r--r-- root/root        1865 usr/lib/gdesklets/libdesklets/system/CPU.pyo
--rw-r--r-- root/root          70 usr/lib/gdesklets/libdesklets/system/Device.py
--rw-r--r-- root/root         492 usr/lib/gdesklets/libdesklets/system/Device.pyc
--rw-r--r-- root/root         492 usr/lib/gdesklets/libdesklets/system/Device.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/system/FreeBSD/
--rw-r--r-- root/root         995 usr/lib/gdesklets/libdesklets/system/FreeBSD/Generic.py
--rw-r--r-- root/root        1444 usr/lib/gdesklets/libdesklets/system/FreeBSD/Generic.pyc
--rw-r--r-- root/root        1444 usr/lib/gdesklets/libdesklets/system/FreeBSD/Generic.pyo
--rw-r--r-- root/root          28 usr/lib/gdesklets/libdesklets/system/FreeBSD/__init__.py
--rw-r--r-- root/root         206 usr/lib/gdesklets/libdesklets/system/FreeBSD/__init__.pyc
--rw-r--r-- root/root         206 usr/lib/gdesklets/libdesklets/system/FreeBSD/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/system/Linux/
--rw-r--r-- root/root        1498 usr/lib/gdesklets/libdesklets/system/Linux/Generic.py
--rw-r--r-- root/root        2038 usr/lib/gdesklets/libdesklets/system/Linux/Generic.pyc
--rw-r--r-- root/root        2038 usr/lib/gdesklets/libdesklets/system/Linux/Generic.pyo
--rw-r--r-- root/root        1256 usr/lib/gdesklets/libdesklets/system/Linux/PPC.py
--rw-r--r-- root/root        1911 usr/lib/gdesklets/libdesklets/system/Linux/PPC.pyc
--rw-r--r-- root/root        1911 usr/lib/gdesklets/libdesklets/system/Linux/PPC.pyo
--rw-r--r-- root/root        1226 usr/lib/gdesklets/libdesklets/system/Linux/Sparc.py
--rw-r--r-- root/root        1844 usr/lib/gdesklets/libdesklets/system/Linux/Sparc.pyc
--rw-r--r-- root/root        1844 usr/lib/gdesklets/libdesklets/system/Linux/Sparc.pyo
--rw-r--r-- root/root        1843 usr/lib/gdesklets/libdesklets/system/Linux/X86.py
--rw-r--r-- root/root        2360 usr/lib/gdesklets/libdesklets/system/Linux/X86.pyc
--rw-r--r-- root/root        2360 usr/lib/gdesklets/libdesklets/system/Linux/X86.pyo
--rw-r--r-- root/root          92 usr/lib/gdesklets/libdesklets/system/Linux/__init__.py
--rw-r--r-- root/root         331 usr/lib/gdesklets/libdesklets/system/Linux/__init__.pyc
--rw-r--r-- root/root         331 usr/lib/gdesklets/libdesklets/system/Linux/__init__.pyo
--rw-r--r-- root/root        1134 usr/lib/gdesklets/libdesklets/system/Net.py
--rw-r--r-- root/root        1505 usr/lib/gdesklets/libdesklets/system/Net.pyc
--rw-r--r-- root/root        1505 usr/lib/gdesklets/libdesklets/system/Net.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/system/NetBSD/
--rw-r--r-- root/root        1556 usr/lib/gdesklets/libdesklets/system/NetBSD/Generic.py
--rw-r--r-- root/root        1810 usr/lib/gdesklets/libdesklets/system/NetBSD/Generic.pyc
--rw-r--r-- root/root        1810 usr/lib/gdesklets/libdesklets/system/NetBSD/Generic.pyo
--rw-r--r-- root/root          28 usr/lib/gdesklets/libdesklets/system/NetBSD/__init__.py
--rw-r--r-- root/root         205 usr/lib/gdesklets/libdesklets/system/NetBSD/__init__.pyc
--rw-r--r-- root/root         205 usr/lib/gdesklets/libdesklets/system/NetBSD/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/libdesklets/system/OpenBSD/
--rw-r--r-- root/root        1783 usr/lib/gdesklets/libdesklets/system/OpenBSD/Generic.py
--rw-r--r-- root/root        2100 usr/lib/gdesklets/libdesklets/system/OpenBSD/Generic.pyc
--rw-r--r-- root/root        2100 usr/lib/gdesklets/libdesklets/system/OpenBSD/Generic.pyo
--rw-r--r-- root/root          28 usr/lib/gdesklets/libdesklets/system/OpenBSD/__init__.py
--rw-r--r-- root/root         206 usr/lib/gdesklets/libdesklets/system/OpenBSD/__init__.pyc
--rw-r--r-- root/root         206 usr/lib/gdesklets/libdesklets/system/OpenBSD/__init__.pyo
--rw-r--r-- root/root         915 usr/lib/gdesklets/libdesklets/system/Swap.py
--rw-r--r-- root/root        1237 usr/lib/gdesklets/libdesklets/system/Swap.pyc
--rw-r--r-- root/root        1237 usr/lib/gdesklets/libdesklets/system/Swap.pyo
--rw-r--r-- root/root         572 usr/lib/gdesklets/libdesklets/system/__init__.py
--rw-r--r-- root/root         732 usr/lib/gdesklets/libdesklets/system/__init__.pyc
--rw-r--r-- root/root         732 usr/lib/gdesklets/libdesklets/system/__init__.pyo
--rwxr-xr-x root/root         898 usr/lib/gdesklets/libdesklets/system/gtop.la
--rwxr-xr-x root/root       31852 usr/lib/gdesklets/libdesklets/system/gtop.so
-drwxr-xr-x root/root           0 usr/lib/gdesklets/main/
--rw-r--r-- root/root        2382 usr/lib/gdesklets/main/AboutDialog.py
--rw-r--r-- root/root        2976 usr/lib/gdesklets/main/AboutDialog.pyc
--rw-r--r-- root/root        2976 usr/lib/gdesklets/main/AboutDialog.pyo
--rw-r--r-- root/root        2113 usr/lib/gdesklets/main/Control.py
--rw-r--r-- root/root        2824 usr/lib/gdesklets/main/Control.pyc
--rw-r--r-- root/root        2824 usr/lib/gdesklets/main/Control.pyo
--rw-r--r-- root/root        5474 usr/lib/gdesklets/main/DisplayList.py
--rw-r--r-- root/root        4828 usr/lib/gdesklets/main/DisplayList.pyc
--rw-r--r-- root/root        4828 usr/lib/gdesklets/main/DisplayList.pyo
--rw-r--r-- root/root        4738 usr/lib/gdesklets/main/MetaData.py
--rw-r--r-- root/root        4168 usr/lib/gdesklets/main/MetaData.pyc
--rw-r--r-- root/root        4168 usr/lib/gdesklets/main/MetaData.pyo
--rw-r--r-- root/root        5939 usr/lib/gdesklets/main/RemoteSocket.py
--rw-r--r-- root/root        5021 usr/lib/gdesklets/main/RemoteSocket.pyc
--rw-r--r-- root/root        5021 usr/lib/gdesklets/main/RemoteSocket.pyo
--rw-r--r-- root/root       13688 usr/lib/gdesklets/main/Starter.py
--rw-r--r-- root/root       12882 usr/lib/gdesklets/main/Starter.pyc
--rw-r--r-- root/root       12882 usr/lib/gdesklets/main/Starter.pyo
--rw-r--r-- root/root        1419 usr/lib/gdesklets/main/TrayIcon.py
--rw-r--r-- root/root        2027 usr/lib/gdesklets/main/TrayIcon.pyc
--rw-r--r-- root/root        2027 usr/lib/gdesklets/main/TrayIcon.pyo
--rw-r--r-- root/root        3752 usr/lib/gdesklets/main/__init__.py
--rw-r--r-- root/root        3999 usr/lib/gdesklets/main/__init__.pyc
--rw-r--r-- root/root        3999 usr/lib/gdesklets/main/__init__.pyo
--rw-r--r-- root/root        6785 usr/lib/gdesklets/main/client.py
--rw-r--r-- root/root        7972 usr/lib/gdesklets/main/client.pyc
--rw-r--r-- root/root        7972 usr/lib/gdesklets/main/client.pyo
--rw-r--r-- root/root         426 usr/lib/gdesklets/main/remotecommands.py
--rw-r--r-- root/root         771 usr/lib/gdesklets/main/remotecommands.pyc
--rw-r--r-- root/root         771 usr/lib/gdesklets/main/remotecommands.pyo
--rw-r--r-- root/root        2801 usr/lib/gdesklets/main/transition.py
--rw-r--r-- root/root        2162 usr/lib/gdesklets/main/transition.pyc
--rw-r--r-- root/root        2162 usr/lib/gdesklets/main/transition.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/plugin/
--rw-r--r-- root/root        3707 usr/lib/gdesklets/plugin/ControlRegistry.py
--rw-r--r-- root/root        3550 usr/lib/gdesklets/plugin/ControlRegistry.pyc
--rw-r--r-- root/root        3550 usr/lib/gdesklets/plugin/ControlRegistry.pyo
--rw-r--r-- root/root        6328 usr/lib/gdesklets/plugin/Interface.py
--rw-r--r-- root/root        5808 usr/lib/gdesklets/plugin/Interface.pyc
--rw-r--r-- root/root        5732 usr/lib/gdesklets/plugin/Interface.pyo
--rw-r--r-- root/root        1326 usr/lib/gdesklets/plugin/Permission.py
--rw-r--r-- root/root        2146 usr/lib/gdesklets/plugin/Permission.pyc
--rw-r--r-- root/root        2146 usr/lib/gdesklets/plugin/Permission.pyo
--rw-r--r-- root/root        2535 usr/lib/gdesklets/plugin/PluginRegistry.py
--rw-r--r-- root/root        2881 usr/lib/gdesklets/plugin/PluginRegistry.pyc
--rw-r--r-- root/root        2881 usr/lib/gdesklets/plugin/PluginRegistry.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/plugin/__init__.py
--rw-r--r-- root/root         139 usr/lib/gdesklets/plugin/__init__.pyc
--rw-r--r-- root/root         139 usr/lib/gdesklets/plugin/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/scripting/
--rw-r--r-- root/root        1585 usr/lib/gdesklets/scripting/ControlWrapper.py
--rw-r--r-- root/root        2069 usr/lib/gdesklets/scripting/ControlWrapper.pyc
--rw-r--r-- root/root        2069 usr/lib/gdesklets/scripting/ControlWrapper.pyo
--rw-r--r-- root/root         883 usr/lib/gdesklets/scripting/ElementWrapper.py
--rw-r--r-- root/root        1391 usr/lib/gdesklets/scripting/ElementWrapper.pyc
--rw-r--r-- root/root        1391 usr/lib/gdesklets/scripting/ElementWrapper.pyo
--rw-r--r-- root/root       15504 usr/lib/gdesklets/scripting/Script.py
--rw-r--r-- root/root       10943 usr/lib/gdesklets/scripting/Script.pyc
--rw-r--r-- root/root       10943 usr/lib/gdesklets/scripting/Script.pyo
--rw-r--r-- root/root         875 usr/lib/gdesklets/scripting/Scriptlet.py
--rw-r--r-- root/root        1062 usr/lib/gdesklets/scripting/Scriptlet.pyc
--rw-r--r-- root/root        1062 usr/lib/gdesklets/scripting/Scriptlet.pyo
--rw-r--r-- root/root         197 usr/lib/gdesklets/scripting/Vault.py
--rw-r--r-- root/root         489 usr/lib/gdesklets/scripting/Vault.pyc
--rw-r--r-- root/root         489 usr/lib/gdesklets/scripting/Vault.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/scripting/__init__.py
--rw-r--r-- root/root         142 usr/lib/gdesklets/scripting/__init__.pyc
--rw-r--r-- root/root         142 usr/lib/gdesklets/scripting/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/sensor/
--rw-r--r-- root/root        2246 usr/lib/gdesklets/sensor/MetaSensor.py
--rw-r--r-- root/root        3248 usr/lib/gdesklets/sensor/MetaSensor.pyc
--rw-r--r-- root/root        3248 usr/lib/gdesklets/sensor/MetaSensor.pyo
--rw-r--r-- root/root       11153 usr/lib/gdesklets/sensor/Sensor.py
--rw-r--r-- root/root        7326 usr/lib/gdesklets/sensor/Sensor.pyc
--rw-r--r-- root/root        7176 usr/lib/gdesklets/sensor/Sensor.pyo
--rw-r--r-- root/root        7946 usr/lib/gdesklets/sensor/SensorConfigurator.py
--rw-r--r-- root/root        8371 usr/lib/gdesklets/sensor/SensorConfigurator.pyc
--rw-r--r-- root/root        8371 usr/lib/gdesklets/sensor/SensorConfigurator.pyo
--rw-r--r-- root/root         110 usr/lib/gdesklets/sensor/__init__.py
--rw-r--r-- root/root         310 usr/lib/gdesklets/sensor/__init__.pyc
--rw-r--r-- root/root         310 usr/lib/gdesklets/sensor/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/
--rw-r--r-- root/root        2256 usr/lib/gdesklets/shell/BookmarkList.py
--rw-r--r-- root/root        3118 usr/lib/gdesklets/shell/BookmarkList.pyc
--rw-r--r-- root/root        3048 usr/lib/gdesklets/shell/BookmarkList.pyo
--rw-r--r-- root/root        2645 usr/lib/gdesklets/shell/ItemBrowser.py
--rw-r--r-- root/root        3280 usr/lib/gdesklets/shell/ItemBrowser.pyc
--rw-r--r-- root/root        3244 usr/lib/gdesklets/shell/ItemBrowser.pyo
--rw-r--r-- root/root        1820 usr/lib/gdesklets/shell/ListView.py
--rw-r--r-- root/root        2215 usr/lib/gdesklets/shell/ListView.pyc
--rw-r--r-- root/root        2215 usr/lib/gdesklets/shell/ListView.pyo
--rw-r--r-- root/root         815 usr/lib/gdesklets/shell/Plugin.py
--rw-r--r-- root/root        1508 usr/lib/gdesklets/shell/Plugin.pyc
--rw-r--r-- root/root        1508 usr/lib/gdesklets/shell/Plugin.pyo
--rw-r--r-- root/root        1244 usr/lib/gdesklets/shell/PluginRegistry.py
--rw-r--r-- root/root        1553 usr/lib/gdesklets/shell/PluginRegistry.pyc
--rw-r--r-- root/root        1553 usr/lib/gdesklets/shell/PluginRegistry.pyo
--rw-r--r-- root/root         971 usr/lib/gdesklets/shell/SearchBar.py
--rw-r--r-- root/root        1669 usr/lib/gdesklets/shell/SearchBar.pyc
--rw-r--r-- root/root        1669 usr/lib/gdesklets/shell/SearchBar.pyo
--rw-r--r-- root/root           0 usr/lib/gdesklets/shell/__init__.py
--rw-r--r-- root/root         138 usr/lib/gdesklets/shell/__init__.pyc
--rw-r--r-- root/root         138 usr/lib/gdesklets/shell/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/ControlBrowser/
--rw-r--r-- root/root        2891 usr/lib/gdesklets/shell/plugins/ControlBrowser/ControlInspector.py
--rw-r--r-- root/root        3083 usr/lib/gdesklets/shell/plugins/ControlBrowser/ControlInspector.pyc
--rw-r--r-- root/root        3083 usr/lib/gdesklets/shell/plugins/ControlBrowser/ControlInspector.pyo
--rw-r--r-- root/root        3181 usr/lib/gdesklets/shell/plugins/ControlBrowser/__init__.py
--rw-r--r-- root/root        4478 usr/lib/gdesklets/shell/plugins/ControlBrowser/__init__.pyc
--rw-r--r-- root/root        4478 usr/lib/gdesklets/shell/plugins/ControlBrowser/__init__.pyo
--rw-r--r-- root/root        1499 usr/lib/gdesklets/shell/plugins/ControlBrowser/author.png
--rw-r--r-- root/root        2441 usr/lib/gdesklets/shell/plugins/ControlBrowser/control.png
--rw-r--r-- root/root         794 usr/lib/gdesklets/shell/plugins/ControlBrowser/folder.png
--rw-r--r-- root/root        1761 usr/lib/gdesklets/shell/plugins/ControlBrowser/interface.png
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/ControlCollection/
--rw-r--r-- root/root         439 usr/lib/gdesklets/shell/plugins/ControlCollection/__init__.py
--rw-r--r-- root/root         995 usr/lib/gdesklets/shell/plugins/ControlCollection/__init__.pyc
--rw-r--r-- root/root         995 usr/lib/gdesklets/shell/plugins/ControlCollection/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/ControlsView/
--rw-r--r-- root/root         581 usr/lib/gdesklets/shell/plugins/ControlsView/__init__.py
--rw-r--r-- root/root        1304 usr/lib/gdesklets/shell/plugins/ControlsView/__init__.pyc
--rw-r--r-- root/root        1304 usr/lib/gdesklets/shell/plugins/ControlsView/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/DisplayBrowser/
--rw-r--r-- root/root        8288 usr/lib/gdesklets/shell/plugins/DisplayBrowser/__init__.py
--rw-r--r-- root/root        9593 usr/lib/gdesklets/shell/plugins/DisplayBrowser/__init__.pyc
--rw-r--r-- root/root        9593 usr/lib/gdesklets/shell/plugins/DisplayBrowser/__init__.pyo
--rw-r--r-- root/root        1499 usr/lib/gdesklets/shell/plugins/DisplayBrowser/author.png
--rw-r--r-- root/root         794 usr/lib/gdesklets/shell/plugins/DisplayBrowser/folder.png
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/DisplayCollection/
--rw-r--r-- root/root        2665 usr/lib/gdesklets/shell/plugins/DisplayCollection/__init__.py
--rw-r--r-- root/root        3531 usr/lib/gdesklets/shell/plugins/DisplayCollection/__init__.pyc
--rw-r--r-- root/root        3531 usr/lib/gdesklets/shell/plugins/DisplayCollection/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/DisplayView/
--rw-r--r-- root/root         690 usr/lib/gdesklets/shell/plugins/DisplayView/__init__.py
--rw-r--r-- root/root        1299 usr/lib/gdesklets/shell/plugins/DisplayView/__init__.pyc
--rw-r--r-- root/root        1299 usr/lib/gdesklets/shell/plugins/DisplayView/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/Help/
--rw-r--r-- root/root        2439 usr/lib/gdesklets/shell/plugins/Help/TipOfTheDay.py
--rw-r--r-- root/root        2969 usr/lib/gdesklets/shell/plugins/Help/TipOfTheDay.pyc
--rw-r--r-- root/root        2969 usr/lib/gdesklets/shell/plugins/Help/TipOfTheDay.pyo
--rw-r--r-- root/root        1554 usr/lib/gdesklets/shell/plugins/Help/__init__.py
--rw-r--r-- root/root        2327 usr/lib/gdesklets/shell/plugins/Help/__init__.pyc
--rw-r--r-- root/root        2327 usr/lib/gdesklets/shell/plugins/Help/__init__.pyo
--rw-r--r-- root/root        1203 usr/lib/gdesklets/shell/plugins/Help/tips.py
--rw-r--r-- root/root        1165 usr/lib/gdesklets/shell/plugins/Help/tips.pyc
--rw-r--r-- root/root        1165 usr/lib/gdesklets/shell/plugins/Help/tips.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/Menu/
--rw-r--r-- root/root        4931 usr/lib/gdesklets/shell/plugins/Menu/__init__.py
--rw-r--r-- root/root        4913 usr/lib/gdesklets/shell/plugins/Menu/__init__.pyc
--rw-r--r-- root/root        4913 usr/lib/gdesklets/shell/plugins/Menu/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/PackageInstaller/
--rw-r--r-- root/root        2320 usr/lib/gdesklets/shell/plugins/PackageInstaller/Downloader.py
--rw-r--r-- root/root        2762 usr/lib/gdesklets/shell/plugins/PackageInstaller/Downloader.pyc
--rw-r--r-- root/root        2762 usr/lib/gdesklets/shell/plugins/PackageInstaller/Downloader.pyo
--rw-r--r-- root/root        1891 usr/lib/gdesklets/shell/plugins/PackageInstaller/Package.py
--rw-r--r-- root/root        3040 usr/lib/gdesklets/shell/plugins/PackageInstaller/Package.pyc
--rw-r--r-- root/root        3040 usr/lib/gdesklets/shell/plugins/PackageInstaller/Package.pyo
--rw-r--r-- root/root        4639 usr/lib/gdesklets/shell/plugins/PackageInstaller/__init__.py
--rw-r--r-- root/root        5391 usr/lib/gdesklets/shell/plugins/PackageInstaller/__init__.pyc
--rw-r--r-- root/root        5391 usr/lib/gdesklets/shell/plugins/PackageInstaller/__init__.pyo
--rw-r--r-- root/root        4118 usr/lib/gdesklets/shell/plugins/PackageInstaller/download.png
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/Profiles/
--rw-r--r-- root/root        2614 usr/lib/gdesklets/shell/plugins/Profiles/__init__.py
--rw-r--r-- root/root        3543 usr/lib/gdesklets/shell/plugins/Profiles/__init__.pyc
--rw-r--r-- root/root        3543 usr/lib/gdesklets/shell/plugins/Profiles/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/Shell/
--rw-r--r-- root/root        3420 usr/lib/gdesklets/shell/plugins/Shell/__init__.py
--rw-r--r-- root/root        4598 usr/lib/gdesklets/shell/plugins/Shell/__init__.pyc
--rw-r--r-- root/root        4598 usr/lib/gdesklets/shell/plugins/Shell/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/StatusBar/
--rw-r--r-- root/root         424 usr/lib/gdesklets/shell/plugins/StatusBar/__init__.py
--rw-r--r-- root/root        1013 usr/lib/gdesklets/shell/plugins/StatusBar/__init__.pyc
--rw-r--r-- root/root        1013 usr/lib/gdesklets/shell/plugins/StatusBar/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/ViewSwitch/
--rw-r--r-- root/root        1751 usr/lib/gdesklets/shell/plugins/ViewSwitch/__init__.py
--rw-r--r-- root/root        2202 usr/lib/gdesklets/shell/plugins/ViewSwitch/__init__.pyc
--rw-r--r-- root/root        2202 usr/lib/gdesklets/shell/plugins/ViewSwitch/__init__.pyo
-drwxr-xr-x root/root           0 usr/lib/gdesklets/shell/plugins/gDeskletsClient/
--rw-r--r-- root/root        3055 usr/lib/gdesklets/shell/plugins/gDeskletsClient/__init__.py
--rw-r--r-- root/root        3364 usr/lib/gdesklets/shell/plugins/gDeskletsClient/__init__.pyc
--rw-r--r-- root/root        3364 usr/lib/gdesklets/shell/plugins/gDeskletsClient/__init__.pyo
--rwxr-xr-x root/root         881 usr/lib/gdesklets/test-control.py
-drwxr-xr-x root/root           0 usr/lib/gdesklets/utils/
--rw-r--r-- root/root        1162 usr/lib/gdesklets/utils/BGWatcher.py
--rw-r--r-- root/root        1417 usr/lib/gdesklets/utils/BGWatcher.pyc
--rw-r--r-- root/root        1417 usr/lib/gdesklets/utils/BGWatcher.pyo
--rw-r--r-- root/root        2363 usr/lib/gdesklets/utils/BinTree.py
--rw-r--r-- root/root        2156 usr/lib/gdesklets/utils/BinTree.pyc
--rw-r--r-- root/root        2156 usr/lib/gdesklets/utils/BinTree.pyo
--rw-r--r-- root/root        5859 usr/lib/gdesklets/utils/DOM.py
--rw-r--r-- root/root        5939 usr/lib/gdesklets/utils/DOM.pyc
--rw-r--r-- root/root        5939 usr/lib/gdesklets/utils/DOM.pyo
--rw-r--r-- root/root        4826 usr/lib/gdesklets/utils/Element.py
--rw-r--r-- root/root        4512 usr/lib/gdesklets/utils/Element.pyc
--rw-r--r-- root/root        4512 usr/lib/gdesklets/utils/Element.pyo
--rw-r--r-- root/root        3927 usr/lib/gdesklets/utils/ErrorFormatter.py
--rw-r--r-- root/root        2611 usr/lib/gdesklets/utils/ErrorFormatter.pyc
--rw-r--r-- root/root        2611 usr/lib/gdesklets/utils/ErrorFormatter.pyo
--rw-r--r-- root/root        1991 usr/lib/gdesklets/utils/HIGDialog.py
--rw-r--r-- root/root        1842 usr/lib/gdesklets/utils/HIGDialog.pyc
--rw-r--r-- root/root        1842 usr/lib/gdesklets/utils/HIGDialog.pyo
--rw-r--r-- root/root        3114 usr/lib/gdesklets/utils/LogView.py
--rw-r--r-- root/root        2679 usr/lib/gdesklets/utils/LogView.pyc
--rw-r--r-- root/root        2679 usr/lib/gdesklets/utils/LogView.pyo
--rw-r--r-- root/root        3318 usr/lib/gdesklets/utils/MetaDataRegistry.py
--rw-r--r-- root/root        3804 usr/lib/gdesklets/utils/MetaDataRegistry.pyc
--rw-r--r-- root/root        3804 usr/lib/gdesklets/utils/MetaDataRegistry.pyo
--rw-r--r-- root/root         769 usr/lib/gdesklets/utils/Observable.py
--rw-r--r-- root/root        1197 usr/lib/gdesklets/utils/Observable.pyc
--rw-r--r-- root/root        1197 usr/lib/gdesklets/utils/Observable.pyo
--rw-r--r-- root/root        2540 usr/lib/gdesklets/utils/QueryParser.py
--rw-r--r-- root/root        2496 usr/lib/gdesklets/utils/QueryParser.pyc
--rw-r--r-- root/root        2496 usr/lib/gdesklets/utils/QueryParser.pyo
--rw-r--r-- root/root         945 usr/lib/gdesklets/utils/Struct.py
--rw-r--r-- root/root        1230 usr/lib/gdesklets/utils/Struct.pyc
--rw-r--r-- root/root        1230 usr/lib/gdesklets/utils/Struct.pyo
--rw-r--r-- root/root         150 usr/lib/gdesklets/utils/TargetSettings.py
--rw-r--r-- root/root         406 usr/lib/gdesklets/utils/TargetSettings.pyc
--rw-r--r-- root/root         406 usr/lib/gdesklets/utils/TargetSettings.pyo
--rw-r--r-- root/root        8853 usr/lib/gdesklets/utils/Trie.py
--rw-r--r-- root/root        6619 usr/lib/gdesklets/utils/Trie.pyc
--rw-r--r-- root/root        6619 usr/lib/gdesklets/utils/Trie.pyo
--rw-r--r-- root/root        2225 usr/lib/gdesklets/utils/WindowSnapper.py
--rw-r--r-- root/root        2858 usr/lib/gdesklets/utils/WindowSnapper.pyc
--rw-r--r-- root/root        2858 usr/lib/gdesklets/utils/WindowSnapper.pyo
--rw-r--r-- root/root        7814 usr/lib/gdesklets/utils/__init__.py
--rw-r--r-- root/root        7037 usr/lib/gdesklets/utils/__init__.pyc
--rw-r--r-- root/root        7037 usr/lib/gdesklets/utils/__init__.pyo
--rw-r--r-- root/root        2334 usr/lib/gdesklets/utils/actionparser.py
--rw-r--r-- root/root        2278 usr/lib/gdesklets/utils/actionparser.pyc
--rw-r--r-- root/root        2278 usr/lib/gdesklets/utils/actionparser.pyo
--rw-r--r-- root/root        2841 usr/lib/gdesklets/utils/datatypes.py
--rw-r--r-- root/root        5422 usr/lib/gdesklets/utils/datatypes.pyc
--rw-r--r-- root/root        5377 usr/lib/gdesklets/utils/datatypes.pyo
--rw-r--r-- root/root        4509 usr/lib/gdesklets/utils/dialog.py
--rw-r--r-- root/root        4699 usr/lib/gdesklets/utils/dialog.pyc
--rw-r--r-- root/root        4699 usr/lib/gdesklets/utils/dialog.pyo
--rwxr-xr-x root/root        1079 usr/lib/gdesklets/utils/ewmh.la
--rwxr-xr-x root/root        7704 usr/lib/gdesklets/utils/ewmh.so
--rw-r--r-- root/root         632 usr/lib/gdesklets/utils/i18n.py
--rw-r--r-- root/root        1088 usr/lib/gdesklets/utils/i18n.pyc
--rw-r--r-- root/root        1088 usr/lib/gdesklets/utils/i18n.pyo
--rw-r--r-- root/root         650 usr/lib/gdesklets/utils/logger.py
--rw-r--r-- root/root        1233 usr/lib/gdesklets/utils/logger.pyc
--rw-r--r-- root/root        1233 usr/lib/gdesklets/utils/logger.pyo
--rw-r--r-- root/root        2414 usr/lib/gdesklets/utils/pwstore.py
--rw-r--r-- root/root        2477 usr/lib/gdesklets/utils/pwstore.pyc
--rw-r--r-- root/root        2477 usr/lib/gdesklets/utils/pwstore.pyo
--rwxr-xr-x root/root        1577 usr/lib/gdesklets/utils/svg.la
--rwxr-xr-x root/root        7804 usr/lib/gdesklets/utils/svg.so
--rwxr-xr-x root/root        2234 usr/lib/gdesklets/utils/systray.la
--rwxr-xr-x root/root       15312 usr/lib/gdesklets/utils/systray.so
--rwxr-xr-x root/root        1141 usr/lib/gdesklets/utils/tiling.la
--rwxr-xr-x root/root       16196 usr/lib/gdesklets/utils/tiling.so
--rw-r--r-- root/root        1413 usr/lib/gdesklets/utils/typeconverter.py
--rw-r--r-- root/root        1684 usr/lib/gdesklets/utils/typeconverter.pyc
--rw-r--r-- root/root        1684 usr/lib/gdesklets/utils/typeconverter.pyo
--rw-r--r-- root/root        2212 usr/lib/gdesklets/utils/vfs.py
--rw-r--r-- root/root        2532 usr/lib/gdesklets/utils/vfs.pyc
--rw-r--r-- root/root        2532 usr/lib/gdesklets/utils/vfs.pyo
--rw-r--r-- root/root        1159 usr/lib/gdesklets/utils/wallpaper.py
--rw-r--r-- root/root        1353 usr/lib/gdesklets/utils/wallpaper.pyc
--rw-r--r-- root/root        1353 usr/lib/gdesklets/utils/wallpaper.pyo
--rw-r--r-- root/root        1899 usr/lib/gdesklets/utils/xdr.py
--rw-r--r-- root/root        2529 usr/lib/gdesklets/utils/xdr.pyc
--rw-r--r-- root/root        2529 usr/lib/gdesklets/utils/xdr.pyo
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root        3136 usr/man/man1/gdesklets.1.gz
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root        2410 usr/share/applications/gdesklets.desktop
--rw-r--r-- root/root          63 usr/share/applications/mimeinfo.cache
-drwxr-xr-x root/root           0 usr/share/icons/
-drwxr-xr-x root/root           0 usr/share/icons/gnome/
-drwxr-xr-x root/root           0 usr/share/icons/gnome/48x48/
-drwxr-xr-x root/root           0 usr/share/icons/gnome/48x48/mimetypes/
--rw-r--r-- root/root        4562 usr/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gdesklets-display.png
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/ar/
-drwxr-xr-x root/root           0 usr/share/locale/ar/LC_MESSAGES/
--rw-r--r-- root/root        2646 usr/share/locale/ar/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/az/
-drwxr-xr-x root/root           0 usr/share/locale/az/LC_MESSAGES/
--rw-r--r-- root/root        2659 usr/share/locale/az/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/bg/
-drwxr-xr-x root/root           0 usr/share/locale/bg/LC_MESSAGES/
--rw-r--r-- root/root       16468 usr/share/locale/bg/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/ca/
-drwxr-xr-x root/root           0 usr/share/locale/ca/LC_MESSAGES/
--rw-r--r-- root/root       19786 usr/share/locale/ca/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/cs/
-drwxr-xr-x root/root           0 usr/share/locale/cs/LC_MESSAGES/
--rw-r--r-- root/root       19304 usr/share/locale/cs/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root       23229 usr/share/locale/de/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/el/
-drwxr-xr-x root/root           0 usr/share/locale/el/LC_MESSAGES/
--rw-r--r-- root/root        4430 usr/share/locale/el/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/
-drwxr-xr-x root/root           0 usr/share/locale/en_CA/LC_MESSAGES/
--rw-r--r-- root/root       21694 usr/share/locale/en_CA/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/
-drwxr-xr-x root/root           0 usr/share/locale/en_GB/LC_MESSAGES/
--rw-r--r-- root/root       18627 usr/share/locale/en_GB/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/es/
-drwxr-xr-x root/root           0 usr/share/locale/es/LC_MESSAGES/
--rw-r--r-- root/root       20023 usr/share/locale/es/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/eu/
-drwxr-xr-x root/root           0 usr/share/locale/eu/LC_MESSAGES/
--rw-r--r-- root/root        4171 usr/share/locale/eu/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       14715 usr/share/locale/fr/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/he/
-drwxr-xr-x root/root           0 usr/share/locale/he/LC_MESSAGES/
--rw-r--r-- root/root        2649 usr/share/locale/he/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/hr/
-drwxr-xr-x root/root           0 usr/share/locale/hr/LC_MESSAGES/
--rw-r--r-- root/root        3208 usr/share/locale/hr/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/hu/
-drwxr-xr-x root/root           0 usr/share/locale/hu/LC_MESSAGES/
--rw-r--r-- root/root       20314 usr/share/locale/hu/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/is/
-drwxr-xr-x root/root           0 usr/share/locale/is/LC_MESSAGES/
--rw-r--r-- root/root        3128 usr/share/locale/is/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/it/
-drwxr-xr-x root/root           0 usr/share/locale/it/LC_MESSAGES/
--rw-r--r-- root/root       12736 usr/share/locale/it/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/ja/
-drwxr-xr-x root/root           0 usr/share/locale/ja/LC_MESSAGES/
--rw-r--r-- root/root       22646 usr/share/locale/ja/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/ko/
-drwxr-xr-x root/root           0 usr/share/locale/ko/LC_MESSAGES/
--rw-r--r-- root/root        2797 usr/share/locale/ko/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/lt/
-drwxr-xr-x root/root           0 usr/share/locale/lt/LC_MESSAGES/
--rw-r--r-- root/root       14049 usr/share/locale/lt/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/ms/
-drwxr-xr-x root/root           0 usr/share/locale/ms/LC_MESSAGES/
--rw-r--r-- root/root        3199 usr/share/locale/ms/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/nl/
-drwxr-xr-x root/root           0 usr/share/locale/nl/LC_MESSAGES/
--rw-r--r-- root/root       15414 usr/share/locale/nl/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/no/
-drwxr-xr-x root/root           0 usr/share/locale/no/LC_MESSAGES/
--rw-r--r-- root/root        3241 usr/share/locale/no/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/pa/
-drwxr-xr-x root/root           0 usr/share/locale/pa/LC_MESSAGES/
--rw-r--r-- root/root        8330 usr/share/locale/pa/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/pl/
-drwxr-xr-x root/root           0 usr/share/locale/pl/LC_MESSAGES/
--rw-r--r-- root/root        3370 usr/share/locale/pl/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt/
-drwxr-xr-x root/root           0 usr/share/locale/pt/LC_MESSAGES/
--rw-r--r-- root/root       13193 usr/share/locale/pt/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r-- root/root       13134 usr/share/locale/pt_BR/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root       23273 usr/share/locale/ru/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/rw/
-drwxr-xr-x root/root           0 usr/share/locale/rw/LC_MESSAGES/
--rw-r--r-- root/root         616 usr/share/locale/rw/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/sq/
-drwxr-xr-x root/root           0 usr/share/locale/sq/LC_MESSAGES/
--rw-r--r-- root/root       12933 usr/share/locale/sq/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr/
-drwxr-xr-x root/root           0 usr/share/locale/sr/LC_MESSAGES/
--rw-r--r-- root/root        5858 usr/share/locale/sr/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/
-drwxr-xr-x root/root           0 usr/share/locale/sr@Latn/LC_MESSAGES/
--rw-r--r-- root/root        4749 usr/share/locale/sr@Latn/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/sv/
-drwxr-xr-x root/root           0 usr/share/locale/sv/LC_MESSAGES/
--rw-r--r-- root/root        3627 usr/share/locale/sv/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/tr/
-drwxr-xr-x root/root           0 usr/share/locale/tr/LC_MESSAGES/
--rw-r--r-- root/root        3790 usr/share/locale/tr/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/uk/
-drwxr-xr-x root/root           0 usr/share/locale/uk/LC_MESSAGES/
--rw-r--r-- root/root       10385 usr/share/locale/uk/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r-- root/root        8623 usr/share/locale/zh_CN/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW/
-drwxr-xr-x root/root           0 usr/share/locale/zh_TW/LC_MESSAGES/
--rw-r--r-- root/root       18651 usr/share/locale/zh_TW/LC_MESSAGES/gdesklets.mo
-drwxr-xr-x root/root           0 usr/share/mime/
-drwxr-xr-x root/root           0 usr/share/mime/application/
--rw-r--r-- root/root        1637 usr/share/mime/application/x-gdesklets-display.xml
--rw-r--r-- root/root         134 usr/share/mime/globs
--rw-r--r-- root/root          67 usr/share/mime/magic
-drwxr-xr-x root/root           0 usr/share/mime/packages/
--rw-r--r-- root/root        1783 usr/share/mime/packages/gdesklets.xml
--rw-r--r-- root/root          41 usr/share/mime/subclasses
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        4218 usr/share/pixmaps/gdesklets.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/bin/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/gdesklets-0.35.3/
+-rw-r--r--  root/root  usr/doc/gdesklets-0.35.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/gdesklets-0.35.3/COPYING
+-rw-r--r--  root/root  usr/doc/gdesklets-0.35.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/gdesklets-0.35.3/NEWS
+-rw-r--r--  root/root  usr/doc/gdesklets-0.35.3/README
+-rw-r--r--  root/root  usr/doc/gdesklets-0.35.3/TODO
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/gdesklets/
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/ArrayBuffer/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/ArrayBuffer/IArrayBuffer.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/ArrayBuffer/__init__.py
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/Calendar/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Calendar/ICalendar.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Calendar/ICalendar.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Calendar/ICalendar.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Calendar/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Calendar/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Calendar/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/EventPipe/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/EventPipe/IEventPipe.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/EventPipe/__init__.py
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/HDDTemp/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/IHDDTemp.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/IHDDTemp.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/IHDDTemp.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/impl.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/impl.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/HDDTemp/impl.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/Sensors/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Sensors/ISensor.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Sensors/ISensor.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Sensors/ISensor.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Sensors/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Sensors/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Sensors/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/System/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/System/ISystem.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/System/ISystem.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/System/ISystem.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/System/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/System/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/System/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/Time/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Time/ITime.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Time/ITime.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Time/ITime.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Time/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Time/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/Time/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Controls/URI/
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/URI/IURI.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/URI/IURI.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/URI/IURI.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/URI/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/URI/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/URI/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Controls/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Sensors/
+drwxr-xr-x  root/root  usr/lib/gdesklets/Sensors/External/
+-rw-r--r--  root/root  usr/lib/gdesklets/Sensors/External/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Sensors/External/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Sensors/External/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/Sensors/FontSelector/
+-rw-r--r--  root/root  usr/lib/gdesklets/Sensors/FontSelector/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/Sensors/FontSelector/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/Sensors/FontSelector/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/config/
+-rw-r--r--  root/root  usr/lib/gdesklets/config/Backend.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/Backend.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/Backend.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigBoolean.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigBoolean.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigBoolean.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigButton.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigButton.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigButton.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigColor.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigColor.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigColor.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigDPI.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigDPI.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigDPI.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigDialog.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigDialog.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigDialog.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigEnum.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigEnum.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigEnum.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigFloat.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigFloat.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigFloat.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigFont.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigFont.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigFont.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigInteger.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigInteger.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigInteger.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigKeyBinding.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigKeyBinding.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigKeyBinding.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigManager.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigManager.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigManager.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigString.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigString.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigString.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigTitle.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigTitle.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigTitle.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigURI.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigURI.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigURI.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigUnit.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigUnit.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigUnit.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigWidget.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigWidget.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/ConfigWidget.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/DaemonConfigger.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/DaemonConfigger.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/DaemonConfigger.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/DisplayConfigger.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/DisplayConfigger.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/DisplayConfigger.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/StateSaver.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/StateSaver.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/StateSaver.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/config/settings.py
+-rw-r--r--  root/root  usr/lib/gdesklets/config/settings.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/config/settings.pyo
+-rwxr-xr-x  root/root  usr/lib/gdesklets/ctrlinfo
+drwxr-xr-x  root/root  usr/lib/gdesklets/data/
+-rw-r--r--  root/root  usr/lib/gdesklets/data/about.png
+drwxr-xr-x  root/root  usr/lib/gdesklets/display/
+-rw-r--r--  root/root  usr/lib/gdesklets/display/ContainerTarget.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/ContainerTarget.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/ContainerTarget.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DataTarget.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DataTarget.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DataTarget.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Display.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Display.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Display.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DisplayConfigurator.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DisplayConfigurator.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DisplayConfigurator.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DisplayTarget.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DisplayTarget.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/DisplayTarget.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/GlassWindow.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/GlassWindow.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/GlassWindow.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Layouter.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Layouter.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Layouter.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/MenuItem.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/MenuItem.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/MenuItem.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Plug.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Plug.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Plug.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetAlignment.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetAlignment.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetAlignment.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetArray.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetArray.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetArray.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetBonoboControl.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetBonoboControl.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetBonoboControl.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetCanvas.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetCanvas.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetCanvas.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetDisplay.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetDisplay.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetDisplay.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetEntry.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetEntry.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetEntry.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetExpander.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetExpander.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetExpander.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetFrame.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetFrame.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetFrame.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGauge.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGauge.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGauge.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGroup.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGroup.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGroup.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGroup2.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGroup2.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetGroup2.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetImage.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetImage.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetImage.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetLabel.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetLabel.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetLabel.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetPlotter.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetPlotter.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/TargetPlotter.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Window.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Window.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/Window.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/display/targetregistry.py
+-rw-r--r--  root/root  usr/lib/gdesklets/display/targetregistry.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/display/targetregistry.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/factory/
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/ControlFactory.py
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/ControlFactory.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/ControlFactory.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/DisplayFactory.py
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/DisplayFactory.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/DisplayFactory.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/SensorFactory.py
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/SensorFactory.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/SensorFactory.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/factory/__init__.pyo
+-rwxr-xr-x  root/root  usr/lib/gdesklets/gdesklets
+-rwxr-xr-x  root/root  usr/lib/gdesklets/gdesklets-daemon
+-rwxr-xr-x  root/root  usr/lib/gdesklets/gdesklets-logview
+-rwxr-xr-x  root/root  usr/lib/gdesklets/gdesklets-migration-tool
+-rwxr-xr-x  root/root  usr/lib/gdesklets/gdesklets-shell
+drwxr-xr-x  root/root  usr/lib/gdesklets/layout/
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/HashPQueue.py
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/HashPQueue.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/HashPQueue.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/LayoutObject.py
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/LayoutObject.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/LayoutObject.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/Unit.py
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/Unit.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/Unit.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/layout/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/controls/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/controls/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/controls/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/controls/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/convert.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/convert.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/convert.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/hddtemp.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/hddtemp.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/hddtemp.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Arch.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Arch.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Arch.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/ArchFactory.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/ArchFactory.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/ArchFactory.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/CPU.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/CPU.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/CPU.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Device.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Device.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Device.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/Generic.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/Generic.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/Generic.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/FreeBSD/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/Linux/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/Generic.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/Generic.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/Generic.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/PPC.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/PPC.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/PPC.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/Sparc.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/Sparc.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/Sparc.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/X86.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/X86.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/X86.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Linux/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Net.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Net.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Net.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/Generic.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/Generic.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/Generic.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/NetBSD/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/Generic.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/Generic.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/Generic.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/OpenBSD/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Swap.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Swap.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/Swap.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/libdesklets/system/__init__.pyo
+-rwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/gtop.la
+-rwxr-xr-x  root/root  usr/lib/gdesklets/libdesklets/system/gtop.so
+drwxr-xr-x  root/root  usr/lib/gdesklets/main/
+-rw-r--r--  root/root  usr/lib/gdesklets/main/AboutDialog.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/AboutDialog.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/AboutDialog.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/Control.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/Control.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/Control.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/DisplayList.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/DisplayList.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/DisplayList.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/MetaData.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/MetaData.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/MetaData.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/RemoteSocket.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/RemoteSocket.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/RemoteSocket.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/Starter.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/Starter.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/Starter.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/TrayIcon.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/TrayIcon.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/TrayIcon.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/client.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/client.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/client.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/remotecommands.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/remotecommands.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/remotecommands.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/main/transition.py
+-rw-r--r--  root/root  usr/lib/gdesklets/main/transition.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/main/transition.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/plugin/
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/ControlRegistry.py
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/ControlRegistry.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/ControlRegistry.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/Interface.py
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/Interface.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/Interface.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/Permission.py
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/Permission.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/Permission.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/PluginRegistry.py
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/PluginRegistry.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/PluginRegistry.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/plugin/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/scripting/
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/ControlWrapper.py
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/ControlWrapper.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/ControlWrapper.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/ElementWrapper.py
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/ElementWrapper.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/ElementWrapper.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Script.py
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Script.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Script.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Scriptlet.py
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Scriptlet.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Scriptlet.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Vault.py
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Vault.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/Vault.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/scripting/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/sensor/
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/MetaSensor.py
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/MetaSensor.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/MetaSensor.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/Sensor.py
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/Sensor.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/Sensor.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/SensorConfigurator.py
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/SensorConfigurator.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/SensorConfigurator.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/sensor/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/BookmarkList.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/BookmarkList.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/BookmarkList.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/ItemBrowser.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/ItemBrowser.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/ItemBrowser.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/ListView.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/ListView.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/ListView.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/Plugin.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/Plugin.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/Plugin.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/PluginRegistry.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/PluginRegistry.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/PluginRegistry.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/SearchBar.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/SearchBar.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/SearchBar.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/ControlInspector.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/ControlInspector.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/ControlInspector.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/author.png
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/control.png
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/folder.png
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlBrowser/interface.png
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/ControlCollection/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlCollection/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlCollection/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlCollection/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/ControlsView/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlsView/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlsView/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ControlsView/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/DisplayBrowser/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayBrowser/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayBrowser/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayBrowser/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayBrowser/author.png
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayBrowser/folder.png
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/DisplayCollection/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayCollection/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayCollection/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayCollection/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/DisplayView/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayView/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayView/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/DisplayView/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/Help/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/TipOfTheDay.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/TipOfTheDay.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/TipOfTheDay.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/tips.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/tips.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Help/tips.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/Menu/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Menu/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Menu/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Menu/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/Downloader.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/Downloader.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/Downloader.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/Package.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/Package.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/Package.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/PackageInstaller/download.png
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/Profiles/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Profiles/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Profiles/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Profiles/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/Shell/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Shell/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Shell/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/Shell/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/StatusBar/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/StatusBar/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/StatusBar/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/StatusBar/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/ViewSwitch/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ViewSwitch/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ViewSwitch/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/ViewSwitch/__init__.pyo
+drwxr-xr-x  root/root  usr/lib/gdesklets/shell/plugins/gDeskletsClient/
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/gDeskletsClient/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/gDeskletsClient/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/shell/plugins/gDeskletsClient/__init__.pyo
+-rwxr-xr-x  root/root  usr/lib/gdesklets/test-control.py
+drwxr-xr-x  root/root  usr/lib/gdesklets/utils/
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/BGWatcher.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/BGWatcher.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/BGWatcher.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/BinTree.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/BinTree.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/BinTree.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/DOM.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/DOM.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/DOM.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Element.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Element.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Element.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/ErrorFormatter.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/ErrorFormatter.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/ErrorFormatter.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/HIGDialog.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/HIGDialog.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/HIGDialog.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/KeyBinding.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/KeyBinding.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/KeyBinding.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/LogView.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/LogView.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/LogView.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/MetaDataRegistry.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/MetaDataRegistry.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/MetaDataRegistry.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Observable.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Observable.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Observable.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/QueryParser.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/QueryParser.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/QueryParser.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Struct.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Struct.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Struct.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/TargetSettings.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/TargetSettings.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/TargetSettings.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Trie.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Trie.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/Trie.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/WindowSnapper.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/WindowSnapper.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/WindowSnapper.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/__init__.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/__init__.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/__init__.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/actionparser.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/actionparser.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/actionparser.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/datatypes.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/datatypes.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/datatypes.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/dialog.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/dialog.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/dialog.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/error.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/error.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/error.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/i18n.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/i18n.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/i18n.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/logger.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/logger.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/logger.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/pwstore.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/pwstore.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/pwstore.pyo
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/svg.la
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/svg.so
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/systray.la
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/systray.so
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/tiling.la
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/tiling.so
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/typeconverter.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/typeconverter.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/typeconverter.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/vfs.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/vfs.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/vfs.pyo
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/wallpaper.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/wallpaper.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/wallpaper.pyo
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/x11.la
+-rwxr-xr-x  root/root  usr/lib/gdesklets/utils/x11.so
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/xdr.py
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/xdr.pyc
+-rw-r--r--  root/root  usr/lib/gdesklets/utils/xdr.pyo
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/gdesklets.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/gdesklets.desktop
+drwxr-xr-x  root/root  usr/share/icons/
+drwxr-xr-x  root/root  usr/share/icons/gnome/
+drwxr-xr-x  root/root  usr/share/icons/gnome/48x48/
+drwxr-xr-x  root/root  usr/share/icons/gnome/48x48/mimetypes/
+-rw-r--r--  root/root  usr/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gdesklets-display.png
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/is/
+drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/no/
+drwxr-xr-x  root/root  usr/share/locale/no/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/no/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/gdesklets.mo
+drwxr-xr-x  root/root  usr/share/mime/
+drwxr-xr-x  root/root  usr/share/mime/application/
+-rw-r--r--  root/root  usr/share/mime/application/x-gdesklets-display.xml
+drwxr-xr-x  root/root  usr/share/mime/packages/
+-rw-r--r--  root/root  usr/share/mime/packages/gdesklets.xml
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/gdesklets.png

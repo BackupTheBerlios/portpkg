@@ -1,11 +1,18 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# MAINTAINER: Tomas Stefano 'lem' <stefano at cedo dot cz>
+# SOURCES: http://www.gdesklets.org/downloads/gDesklets-0.35.3.tar.bz2
+# MD5SUMS: 3f9ce7f2ca4522bc96cb9bc4a4b91774 gDesklets-0.35.3.tar.bz2
+# REQUIRES: desktop-file-utils libgnomeui libgtop librsvg pygtk python shared-mime-info
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.35
+VERSION=0.35.3
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -33,28 +40,26 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   $ARCH-slackware-linux
 make
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/info/dir
-find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+rm -fv $PKG/usr/info/dir
+rm -fv $PKG/usr/share/mime/* || true
+find $PKG/ -name mimeinfo.cache | xargs rm -fv
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
+  AUTHORS COPYING ChangeLog NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.schemas" | sed "s,^$PKG/,gconf ,g" >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
