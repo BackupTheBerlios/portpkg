@@ -1,12 +1,18 @@
-VERSION=0.11.16
-ARCH=${ARCH:-i486}
-BUILD=1tom
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gok/1.0/gok-1.0.10.tar.bz2
+# MD5SUMS: de6cceaca780e7ad0702c4b3c0fd8d1f gok-1.0.10.tar.bz2
+# REQUIRES: at-spi desktop-file-utils gconf gnome-speech libglade libgnomeui libwnck linuxdoc-tools pkgconfig scrollkeeper x11
+# OPTIONAL: glitz
 
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
-rm -rf $PKG
-mkdir -p $PKG/usr
+PKG=$TMP/package-$NAME
+
+VERSION=1.0.10
+ARCH=${ARCH:-i486}
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -18,9 +24,11 @@ elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2"
 fi
 
-cd /tmp || exit 1
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-cd $NAME-$VERSION || exit 1
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/gok-$VERSION.tar.bz2
+cd gok-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -30,26 +38,34 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
-  $ARCH-slackware-linux || exit 1
-make || exit 1
-make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
+  $ARCH-slackware-linux
+make
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
+make install DESTDIR=$PKG
+rm -rf $PKG/var/lib/scrollkeeper
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
-  find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
-  find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ 2>/dev/null
-rmdir $PKG/usr/share 2>/dev/null
-gzip -9 $PKG/usr/man/man?/*
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS README \
-  $PKG/usr/doc/$NAME-$VERSION
+  AUTHORS COPYING ChangeLog NEWS README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.schemas" -o -name "*.omf" \
-| sed -r "s,^$PKG/(.*)$,inst \1," >>$PKG/install/doinst.sh
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -l echo gconf >>$PKG/install/doinst.sh
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/gok-$VERSION
+  rm -rf $PKG
+fi
