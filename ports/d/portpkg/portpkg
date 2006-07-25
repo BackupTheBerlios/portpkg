@@ -110,7 +110,8 @@ pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
 loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
-slk2gname() { sed -r "s,^$PRT_DIR/(.*)[\./]SlackBuild$,\1,"; }
+slk2gname() { sed -r "s,^$PRT_DIR/(.*)[./]SlackBuild$,\1,"; }
+slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
   | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
@@ -256,7 +257,7 @@ explicit() # pkgex_list >pkgex-list
   for arg; do
     case $arg in
       */) # also look through virtual groups list
-	  ls_slk | slk2gname | grep `regex $arg` | grep -v `exclude` | any2base
+	  ls_slk `regex $arg` | grep -v `exclude` | slk2name
 	  ls_virt `regex $arg` | any2base;;
       *)  echo $arg;;
     esac
@@ -422,17 +423,23 @@ check_reqs()
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   $TEST_REQS && debug "check_reqs(): testing only"
 #  debug "check_reqs(): $name requires: "$requires
+  ls_slk $(ignore) | slk2name >$t/ignore
+  ls_slk $(use) | slk2name >$t/use
   list=`{ \
-ls_loc $(regex $requires) | grep -v $(ignore); \
-ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u | grep -vx $name`
+echo "$requires" | grep -xvf $t/ignore; \
+echo "$optional" | grep -xf $t/use; } | sort -u | grep -vx $name`
+#  list=`{ \
+#ls_loc $(regex $requires) | grep -v $(ignore); \
+#ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u | grep -vx $name`
   debug "check_reqs(): $name requires: "$list
 #  for req in $requires $uses; do
   for req in $list; do
     debug "check_reqs(): testing $req"
     inst_pkg=`ls_inst $(regex $req) | default`
     avail_pkg=`$TEST_REQS || { \
-ls_loc $(regex $req) | grep -v $(exclude); \
-echo $inst_pkg; } | default | any2base`
+ls_slk $(regex $req) | grep -v $(exclude); \
+echo $inst_pkg; } | default | slk2name`
+#ls_loc $(regex $req) | grep -v $(exclude); \
 
     # is any version installed?
     if [ "$inst_pkg" ]; then
@@ -588,7 +595,8 @@ maintainer_mode()
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req >$t/arb_req
   [ -s $t/arb_req ] && row "Arbitrary dependencies (KEEP THIS LIST SHORT):" `cat $t/arb_req` | fmt
   grep -e "-upgraded$" $t/auto_req >$t/check_req
-  ls_loc -v $(exclude) | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
+#  ls_loc -v $(exclude) | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
+  ls_slk -v $(exclude) | slk2name | fgrep -vxf - $t/auto_req >>$t/check_req
   [ -s $t/check_req ] && warn "Check these dependencies:" `cat $t/check_req` | fmt -t
 
   # remove obsolete files
