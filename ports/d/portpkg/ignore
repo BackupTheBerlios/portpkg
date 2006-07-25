@@ -29,6 +29,7 @@ glibc-i18n
 glibc-profile
 
 # stripped package versions ("-solibs"), obsolete and optional packages/ports
+cxxlibs
 openssl-solibs
 gpm
 elflibs
@@ -37,18 +38,18 @@ freetype2
 fontconfig
 libxft
 
-# packages that should be handled manually
-linux-pam
-pam
-hal
-dbus
-howl
-avahi
-gamin
-fam
-esound
-arts
-polypaudio
-audiofile
-alsa-lib
-jack
+## packages that should be handled manually
+#linux-pam
+#pam
+#hal
+#dbus
+#howl
+#avahi
+#gamin
+#fam
+#esound
+#arts
+#polypaudio
+#audiofile
+#alsa-lib
+#jack
