@@ -165,7 +165,9 @@ cache() # file action regex
   [ "$*" ] && filter="grep $@" || filter="cat"
   if ! [ -f $file ]; then
     debug "cache(): filling `basename $file`"
-    eval "$action" | tee $file | $filter -
+#    eval "$action" | tee $file | $filter -
+    eval "$action" >$file
+    $filter $file
   else
     $filter $file
   fi
