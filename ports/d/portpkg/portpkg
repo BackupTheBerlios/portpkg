@@ -237,13 +237,13 @@ regex() # pkgex_list >regex_list
       @)   # anything
 	   echo " -e .";;
       .)   # local directory (recursively)
-	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(/\|-[^-]*-[^-]*-[^-]*$\)";;
+	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
       */)  # groups
            echo -n " -e \(^\|/\)$arg";;
       */*) # explicit expression (group/name and group/package)
-           echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg##*/}\(\|-[^-]*-[^-]*-[^-]*\)$";;
+           echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg##*/}\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$";;
       *)   # (g)names and (g)packages
-           echo -n " -e \(^\|/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
+           echo -n " -e \(^\|/\)$arg\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
   done
 }
