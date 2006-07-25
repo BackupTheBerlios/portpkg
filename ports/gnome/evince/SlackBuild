@@ -1,15 +1,16 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/evince/0.5/evince-0.5.3.tar.bz2
-# MD5SUMS: 94be73485eeb8584b4aeaa8ac87699f0  evince-0.5.3.tar.bz2
-# REQUIRES: libglade libgnomeprintui libgnomeui libtiff nautilus poppler
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/evince/0.5/evince-0.5.4.tar.bz2
+# MD5SUMS: 82ea2cc4ae080aa5cbc2b1c7739ccb96 evince-0.5.4.tar.bz2
+# REQUIRES: desktop-file-utils gconf libglade libgnomeprintui libgnomeui libtiff poppler scrollkeeper
+# OPTIONAL: dbus nautilus
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.5.3
+VERSION=0.5.4
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
