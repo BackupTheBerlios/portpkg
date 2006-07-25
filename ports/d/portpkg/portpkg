@@ -240,7 +240,8 @@ regex() # pkgex_list >regex_list
       @)   # anything
 	   echo " -e .";;
       .)   # local directory (recursively)
-	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
+#	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
+	   echo -n " -e ^\(`pwd`\|`pwd | sed "s,^$PRT_DIR/,,"`\)";;
       */)  # groups
            echo -n " -e \(^\|/\)$arg";;
       */*) # explicit expression (group/name and group/package)
