@@ -230,8 +230,12 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
 regex() # pkgex_list >regex_list
 {
   local arg
-  for arg; do
+  for arg in ${@:-0}; do
     case $arg in
+      0)   # nothing
+	   echo " -e ^$";;
+      @)   # anything
+	   echo " -e .";;
       .)   # local directory (recursively)
 	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(/\|-[^-]*-[^-]*-[^-]*$\)";;
       */)  # groups
@@ -242,7 +246,6 @@ regex() # pkgex_list >regex_list
            echo -n " -e \(^\|/\)$arg\(\|-[^-]*-[^-]*-[^-]*\)$";;
     esac
   done
-  [ $# = 0 ] && echo "-e ^$" || true
 }
 
 # resolve groups/ to names
@@ -270,7 +273,7 @@ ls_diff() # >list
   debug "ls_diff()"
 
   # prepare lists
-  ( ls_loc -v $(exclude)
+  ( ls_loc `regex ${@:-@}` | grep -v $(exclude)
     $LAZY_CHECKS && ls_inst
   ) | sort_ver | any2base >$t/avail
   ls_inst >$t/inst
@@ -902,7 +905,7 @@ do_diff()
   local diff_list pkg avail_rel n inst_rel avail
 
   has_ports || die
-  diff_list=`ls_diff`
+  diff_list=`ls_diff "$@"`
   [ "$diff_list" ] || die "No differences found."
 
   stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
