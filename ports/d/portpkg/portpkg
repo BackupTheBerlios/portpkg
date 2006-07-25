@@ -52,8 +52,11 @@ SRC_DIR=${PRT_ROOT:-/usr/src}/dist
 PKG_DIR=${PRT_ROOT:-/usr/obj}/pkg
 PRT_DIR=${PRT_ROOT:-/usr/ports}
 
-INSTALLPKG=installpkg
-UPGRADEPKG=upgradepkg
+# commands used
+ADD_CMD='su -c "upgradepkg --install-new --reinstall $pkg_file"'
+ROOT_BUILD_CMD='su -c "$build_cmd"'
+NOBODY_BUILD_CMD='su nobody -c "$build_cmd"'
+WGET_CMD='wget -c -O $dest.part $try'
 
 # include configuration overlay
 [ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
@@ -78,7 +81,7 @@ tmp=$TMP
 # internal variables
 arch_filter=""
 output=/dev/null
-level_one=true
+#level_one=true
 temp=`mktemp -d`
 
 # config files
@@ -119,7 +122,8 @@ slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
 
 # message system
 log()    { echo -e "$@" | tee -a $LOG_DIR/portpkg.log; }
-stanza() { $level_one && log "\n$@"; }
+#stanza() { $level_one && log "\n$@"; }
+stanza() { log "\n$@"; }
 row()    { log "  --> $@"; }
 warn()   { log "WARNING: $@" >&2; }
 error()  { [ "$*" ] && log "$@" >&2; return 1; }
@@ -216,7 +220,8 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
         return 0;;
       *)
         has_prog wget || die
-        wget -c -O $dest.part $try || continue
+#        wget -c -O $dest.part $try || continue
+	eval $WGET_CMD || continue
         if [ "$md5sum" ] && ! is_integer $dest.part $md5sum; then
           mv $dest.part $dest.invalid
           continue
@@ -241,7 +246,7 @@ regex() # pkgex_list >regex_list
 	   echo " -e .";;
       .)   # local directory (recursively)
 #	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
-	   echo -n " -e ^\(`pwd`\|`pwd | sed "s,^$PRT_DIR/,,"`\)";;
+	   echo -n " -e ^\(`pwd`\|`pwd | sed "s,^$PRT_DIR/,,"`\)\(/\|\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)\)$";;
       */)  # groups
            echo -n " -e \(^\|/\)$arg";;
       */*) # explicit expression (group/name and group/package)
@@ -458,7 +463,8 @@ echo $inst_pkg; } | default | slk2name`
       ls_inst -qx $avail_pkg && continue
       $DRY_RUN && ! [ "${prev:-}" ] && stanza "Preparing dependencies of $package:"
       prev=$name
-      ( $DRY_RUN && level_one=false
+#      ( $DRY_RUN && level_one=false
+      ( $DRY_RUN && stanza() { :; }
       get_info $avail_pkg || exit 1
       add_pkg || die "$avail_pkg is broken! Stopping $prev." ) || return 1
       $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency $avail_pkg"
@@ -613,7 +619,7 @@ maintainer_mode()
 build_pkg()
 {
   local t=`mktemp -d`
-  local src srcname md5sum script_opt flags_var sh_opt prod
+  local src srcname md5sum script_opt flags_var sh_opt prod build_cmd
 
   $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
   stanza "Building $package:"
@@ -687,35 +693,43 @@ build_pkg()
 
     # execute SlackBuild
     mkdir -p $LOG_DIR
+    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp"
     if ! $no_fakeroot && has_prog fakeroot; then
       # run fakerooted SlackBuild
       row "Executing (fakerooted) $script $script_opt"
+      build_cmd="$build_cmd fakeroot sh $sh_opt $script $script_opt"
       if [ "`whoami`" = "root" ]; then
         row "Dropping privileges, becoming nobody"
-        su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$tmp TMPDIR=$tmp \
-PATH=\$PATH:/sbin TMP=$tmp fakeroot sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $LOG_DIR/$name.buildlog >$output
+#        su nobody -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" HOME=$tmp TMPDIR=$tmp \
+#PATH=\$PATH:/sbin TMP=$tmp fakeroot sh $sh_opt $script $script_opt" 2>&1 \
+#        | tee $LOG_DIR/$name.buildlog >$output
+	build_cmd="HOME=$tmp TMPDIR=$tmp $build_cmd"
+	eval $NOBODY_BUILD_CMD
       else
-        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp \
-fakeroot sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $LOG_DIR/$name.buildlog >$output
+#        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp \
+#fakeroot sh $sh_opt $script $script_opt" 2>&1 \
+#        | tee $LOG_DIR/$name.buildlog >$output
+	eval $build_cmd
       fi
     else
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
       $PREPARE_ONLY && warn "Preparing without fakeroot is not a good idea!"
       row "Executing $script $script_opt"
+      build_cmd="$build_cmd sh $sh_opt $script $script_opt"
       if [ "`whoami`" != "root" ]; then
         row "Gaining root privileges"
-        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $LOG_DIR/$name.buildlog >$output
+#        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
+#        | tee $LOG_DIR/$name.buildlog >$output
+	eval $ROOT_BUILD_CMD
       else
-        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
-        | tee $LOG_DIR/$name.buildlog >$output
+#        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
+#        | tee $LOG_DIR/$name.buildlog >$output
+	eval $build_cmd
       fi
 #      # this is a hack-around for some faulty install scripts
 #      chmod 1777 /tmp
-    fi
+    fi 2>&1 | tee $LOG_DIR/$name.buildlog >$output
 
     # success? (this is the most promising test to ensure it worked)
     if ! [ -f $tmp/$package.tgz ]; then
@@ -806,7 +820,7 @@ check_pkg()
 add_pkg()
 {
   local t=`mktemp -d`
-  local add
+#  local add
 
   # if it is already tracked as "started" (and therefore not "finished"),
   # it is either broken or a circular dependency
@@ -855,32 +869,34 @@ add_pkg()
 #  if ! $slot_in && ls_inst -Fqx $package; then
   if ls_inst -Fqx $package; then
     case `pause "Continue reinstall $package? (s to skip)"` in s|S) continue;; esac
-    stanza "Reinstalling $package..."
-    add="$UPGRADEPKG --reinstall"
+#    stanza "Reinstalling $package..."
+#    add="$UPGRADEPKG --reinstall"
 #  elif ! $slot_in && ls_inst -q $(regex $name); then
   elif ls_inst -q $(regex $name); then
     case `pause "Continue upgrade $(ls_inst $(regex $name)) with $package? (s to skip)"` in s|S) continue;; esac
-    stanza "Upgrading $name to `echo $package | pkg2rel`..."
-    add="$UPGRADEPKG"
+#    stanza "Upgrading $name to `echo $package | pkg2rel`..."
+#    add="$UPGRADEPKG"
   else
     case `pause "Continue install $package? (s to skip)"` in s|S) continue;; esac
-    stanza "Installing $package..."
-    add="$INSTALLPKG"
+#    stanza "Installing $package..."
+#    add="$INSTALLPKG"
   fi
 
   # update install list cache
   echo $package >>$CACHE/inst
 
-  $DRY_RUN && $level_one && echo -e "PACKAGE DESCRIPTION:\n$description"
+#  $DRY_RUN && $level_one && echo -e "PACKAGE DESCRIPTION:\n$description"
+  $DRY_RUN && stanza "Installing package $package...\nPACKAGE DESCRIPTION:\n$description"
   $DRY_RUN && return 0
 
   # call the install-command
-  if ! su -c "$add $pkg_file | tee $t/install_log | grep -e ^PACKAGE -e ^$name: -e ^Executing"; then
-    cat $t/install_log
-    error "Installation failed!"
-#    return 1
-  fi
-#  return 0
+#  if ! su -c "$add $pkg_file | tee $t/install_log | grep -e ^PACKAGE -e ^$name: -e ^Executing"; then
+#    cat $t/install_log
+#    error "Installation failed!"
+##    return 1
+#  fi
+##  return 0
+  eval $ADD_CMD || error "Installation failed!"
 }
 
 # prepare and install ports
@@ -896,7 +912,8 @@ do_add() # pkgex-list
 
   if $DOWNLOAD_ONLY; then
     stanza "Downloading files:"
-    level_one=false
+    stanza() { :; }
+#    level_one=false
   fi
 
   for arg in `explicit "$@"`; do
@@ -1183,12 +1200,12 @@ init()
   [ -d "$LOG_DIR" ] || mkdir -p $LOG_DIR
 
   # start log entry
-  debug "+------------------------+"
-  debug "`date`"
-  debug "`whoami`@`hostname`:`pwd`$ $0 $@"
+  log "+------------------------+" >/dev/null
+  log "`date`" >/dev/null
+  log "`whoami`@`hostname`:`pwd`$ $0 $@" >/dev/null
 
   # clean up on exit
-  trap "rm -rf $TMPDIR; debug \"\`date\`\"" EXIT
+  trap "rm -rf $TMPDIR; log \"\`date\`\" >/dev/null" EXIT
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
   case $BASH_VERSION in 3.1.*) ;; *) trap "" PIPE;; esac
 
