@@ -1,8 +1,8 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/libsoup/2.2/libsoup-2.2.94.tar.bz2
-# MD5SUMS: a242a7c4b874e080f049c8fdf90ea836 libsoup-2.2.94.tar.bz2
-# REQUIRES: glib2 libxml2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/libsoup/2.2/libsoup-2.2.95.1.tar.bz2
+# MD5SUMS: 60963fc61299baaa88072297ca7f23c6 libsoup-2.2.95.1.tar.bz2
+# REQUIRES: glib2 libxml2 linuxdoc-tools pkgconfig
 # OPTIONAL: gnutls libgcrypt libgpg-error
 
 TMP=${TMP:-/tmp}
@@ -10,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.2.94
+VERSION=2.2.95.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -41,7 +41,7 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
