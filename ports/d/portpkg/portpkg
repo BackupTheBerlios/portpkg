@@ -140,7 +140,7 @@ sort_ver() # <pkg_list >pkg_list
   # separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
   # (but *only* within version-arch-build parts!)
   sed -r "\
-\,(^|/)local/,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;
+`$LAZY_CHECKS || echo '\,(^|/)local/,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;'`\
 s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 :split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
 | sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
@@ -992,7 +992,7 @@ do_list() # [pkgex-list] >glist
     "") ls_loc;;
     *)  # grep arguments (in order to see virtual groups we list them here also)
         virt=`ls_virt $(regex "$@") | any2base`
-        ls_loc `regex "$@" $virt`;;
+        ls_loc `regex "$@" $virt` | sort_ver;;
   esac | loc2gpkg
 }
 
