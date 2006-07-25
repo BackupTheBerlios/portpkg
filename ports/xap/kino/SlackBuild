@@ -2,8 +2,9 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://dl.sourceforge.net/kino/kino-0.9.0.tar.gz
 # MD5SUMS: 95c6a550f1f3462efac639132ab6f990 kino-0.9.0.tar.gz
-# REQUIRES: libavc1394 libdv
-# OPTIONAL: dvtitler glib2 libglade libraw1394 libsamplerate perl x11
+# REQUIRES: alsa-lib desktop-file-utils gcc-g++ glib2 libavc1394 libdv libglade libiec61883 libsamplerate shared-mime-info x11
+# OPTIONAL: dvtitler libraw1394
+# UP2DATE: http://www.kinodv.org/article/static/1
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
