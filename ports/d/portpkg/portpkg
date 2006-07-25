@@ -920,10 +920,13 @@ do_diff()
   for pkg in $diff_list; do
     debug "do_diff(): pkg=$pkg"
     avail_rel=`echo $pkg | pkg2rel`
+    avail_ver=${avail_rel%%-*}
     n=`echo $pkg | pkg2name`
     inst_rel=`ls_inst $(regex $n) | pkg2rel | head -n 1`
     avail=${avail:-$n}
     avail_rel=${avail_rel:-(n/a)}
+    inst_ver=${inst_rel%%-*}
+    $LAZY_CHECKS && [ "$avail_ver" = "$inst_ver" ] && continue
     echo -e "$n\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
   done
 }
