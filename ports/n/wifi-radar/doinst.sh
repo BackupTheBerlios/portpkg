@@ -9,11 +9,6 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-
-if [ -x usr/bin/update-desktop-database ]; then                                 
-  usr/bin/update-desktop-database >/dev/null 2>&1                               
-fi 
-
-echo "*** Don't forget to modify /etc/wifi_radar.conf ***"
-config etc/wifi-radar.conf.new
-
+if [ -x usr/bin/update-desktop-database ]; then
+  usr/bin/update-desktop-database >/dev/null 2>&1
+fi

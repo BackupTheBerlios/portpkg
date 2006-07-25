@@ -1,57 +1,73 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://wifi-radar.systemimager.org/pub/wifi-radar-1.9.6.tar.bz2
+# MD5SUMS: 4ab4cc22d68dd0655ab28b75c7aa6248 wifi-radar-1.9.6.tar.bz2
+# REQUIRES: desktop-file-utils python
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.9.4
+VERSION=1.9.6
 ARCH=${ARCH:-i486}
 BUILD=1tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/wifi-radar-$VERSION.tar.gz
+tar xjvf $CWD/wifi-radar-$VERSION.tar.bz2
 cd wifi-radar-$VERSION
 chown -R root.root .
-#=install
 mkdir -p $PKG/usr/bin 
-cp -a \
+install -m 755 \
     wifi-radar \
     $PKG/usr/bin
 mkdir -p $PKG/usr/share/{pixmaps,applications}
-cp -a \
-    wifi-radar.png wifi-radar.svg \
+install -m 644 \
+    pixmaps/* \
     $PKG/usr/share/pixmaps
-cp -a \
+install -m 644 \
     $CWD/wifi-radar.desktop \
     $PKG/usr/share/applications
-mkdir -p $PKG/etc 
-cp -a \
+mkdir -p $PKG/etc/wifi-radar
+install -m 644 \
     wifi-radar.conf \
-    $PKG/etc/wifi-radar.conf.new
-#=install
-#+install
- sed -i "s/etc\/conf.d\//etc\//" $PKG/usr/bin/wifi-radar
- chmod 755 $PKG/usr/bin/wifi-radar    
-#+install
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+    $PKG/etc/wifi-radar/wifi-radar.conf.new
+if which gnomesu; then
+  sed -i "s,^Exec=,Exec=gnomesu ," $PKG/usr/share/applications/wifi-radar.desktop
+else
+  sed -i "s,^Exec=,Exec=gksu -u root ," $PKG/usr/share/applications/wifi-radar.desktop
+fi
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog INSTALL README TODO \
+  AUTHORS COPYING ChangeLog README TODO VERSION \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
