@@ -815,14 +815,12 @@ add_pkg()
   # otherwise if tracked as "finished" (because of a dependency), skip it
   elif fgrep -sqx "$group/$package" $temp/finished; then
     return 0
+  elif ls_inst -Fqx $package && ! $REINSTALL; then
+    stanza "$package is already installed. Skipping."
+    return 0
   else
   # else track it as "started"
     echo $group/$package >>$temp/started
-  fi
-
-  if ls_inst -Fqx $package && ! $REINSTALL; then
-    stanza "$package is already installed. Skipping."
-    return 0
   fi
 
   # requirements check
