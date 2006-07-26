@@ -97,7 +97,8 @@ repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repo
 ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; find * -type f' "$@"; }
 ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
-ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
+#ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
+ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null | sed "s,\.tgz$,,"' "$@"; }
 if $USE_ALPHA_CODE; then
 ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
 else
@@ -112,7 +113,8 @@ any2base()  { sed -r "s,^.*/,,"; }
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
-loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
+#loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
+any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$ADM_DIR/[^/]*)/,,"; }
 slk2gname() { sed -r "s,^$PRT_DIR/(.*)[./]SlackBuild$,\1,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
@@ -357,7 +359,7 @@ ls_loc $(regex $1) | default; } | head -n 1`
   fi
 
   # set global variables
-  group=`echo $loc | loc2gpkg | any2dir`
+  group=`echo $loc | any2gany | any2dir`
   package=`echo $loc | any2base`
   name=`echo $package | pkg2name`
   version=`echo $package | pkg2ver`
@@ -387,8 +389,8 @@ grep -sve ^$ -e ^# $path/slack-conflicts | cut -d " " -f 1; \
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
 #  uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $(use) | pkg2name | any2base | sort -u`
   pkg_file=`{ { \
-ls_pkg "^$group/$package$"; \
-ls_pkg "/$package$"; } | sed "s,..*,$PKG_DIR/&.tgz,"; \
+ls_pkg "^$PKG_DIR/$group/$package$"; \
+ls_pkg "/$package$"; } | sed "s,$,.tgz,"; \
 find $SRC_DIR/ -name $package.tgz 2>/dev/null; } | head -n 1`
 #  [ "$pkg_file" ] && pkg_file=$PKG_DIR/$pkg_file.tgz
 
@@ -1029,7 +1031,7 @@ do_list() # [pkgex-list] >glist
     *)  # grep arguments (in order to see virtual groups we list them here also)
         virt=`ls_virt $(regex "$@") | any2base`
         ls_loc `regex "$@" $virt` | sort_ver;;
-  esac | loc2gpkg
+  esac | any2gany
 }
 
 do_sync()

@@ -327,7 +327,7 @@ s=`pause "Arch [$arch]:"`
 arch=${s:-$arch}
 # build: check if we need to increase it
 n=1
-gpkg=`ls_loc | loc2gpkg | grep "^$group/$name-$version-$arch-[0-9]*$MY_TAG$" | head -n 1`
+gpkg=`ls_loc | any2gany | grep "^$group/$name-$version-$arch-[0-9]*$MY_TAG$" | head -n 1`
 if [ $gpkg ]; then
   $INTERACTIVE && stanza "There is already $gpkg."
   # find it

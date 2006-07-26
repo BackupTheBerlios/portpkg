@@ -153,7 +153,7 @@ row "Syncing http://portpkg.berlios.de/ports.recent"
         *)
           [ "$d" ] && echo "<dt>$d</dt>"
           d=""
-          ls_loc `regex $s` | grep -ve local/ -e z/ | loc2gpkg \
+          ls_loc `regex $s` | grep -ve local/ -e z/ | any2gany \
 | sed "s,-$ARCH-,-i486-,;s,\(.*\)-\([^-]*-[^-]*-[^-]*\)$,<a href=\"$viewcvs/\1\">\1</a> \2<br>,"
       esac
     done )
