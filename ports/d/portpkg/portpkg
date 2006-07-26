@@ -107,6 +107,7 @@ else
 ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
 fi
 ls_loc()  { cache $CACHE/loc 'ls_slk | slk2loc' "$@"; }
+ls_src()  { cache $CACHE/src 'find $SRC_DIR/ -maxdepth 1 2>/dev/null' "$@"; }
 
 # converters
 #any2dir()   { sed -r "s,^(.*)/.*$,\1,"; }
@@ -193,6 +194,7 @@ get() # url dest [md5sum]
 echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
 
   debug "get(): urls="$urls
+  $DRY_RUN && return 0
   mkdir -p `dirname $dest`
 
   # try primary url if mirror fails
@@ -393,7 +395,8 @@ grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
   pkg_file=`{ { \
 ls_pkg "^$PKG_DIR/$group/$package$"; \
 ls_pkg "/$package$"; } | sed "s,$,.tgz,"; \
-find $SRC_DIR/ -name $package.tgz 2>/dev/null; } | head -n 1`
+ls_src "/$package.tgz$"; } | head -n 1`
+#find $SRC_DIR/ -name $package.tgz 2>/dev/null; } | head -n 1`
 #  [ "$pkg_file" ] && pkg_file=$PKG_DIR/$pkg_file.tgz
 
   # flags
@@ -452,8 +455,8 @@ echo "$optional" | grep -xf $t/use; } | sort -u | grep -vx $name`
     debug "check_reqs(): testing $req"
     inst_pkg=`ls_inst $(regex $req) | default | any2base`
     avail_pkg=`$TEST_REQS || { \
-ls_slk $(regex $req) | grep -v $(exclude); \
-echo $inst_pkg; } | default | slk2name`
+ls_loc $(regex $req) | grep -v $(exclude); \
+echo $inst_pkg; } | default | any2base`
 #ls_loc $(regex $req) | grep -v $(exclude); \
 
     # is any version installed?
@@ -650,16 +653,18 @@ build_pkg()
     src="${src%\%*}"
     md5sum=`echo "$md5sums" | grep -s " $srcname$" | cut -d " " -f 1`
     # if $srcname is an existing file (!) it is not CVS and can be skipped
-    if [ -f $SRC_DIR/$srcname ]; then
+#    if [ -f $SRC_DIR/$srcname ]; then
+    if ls_src -q "/$srcname$"; then
       row "$srcname found in $SRC_DIR/"
     else
       row "Downloading $srcname"
-      $DRY_RUN || get $src $SRC_DIR/$srcname $md5sum || return 1
+      get $src $SRC_DIR/$srcname $md5sum || return 1
+      echo $SRC_DIR/$srcname >>$CACHE/src
     fi
     if ! $DRY_RUN; then
       ln -sf $SRC_DIR/$srcname .
       # check md5sums when non-maintainer-mode
-      if $maintain && [ -f $SRC_DIR/$srcname ]; then
+      if $maintain && ls_src -q "/$srcname$"; then
         md5sums=`( echo "$md5sums"; md5sum $srcname ) | xargs -l | sort -u -k 2`
 #      elif [ "$md5sum" ]; then
 #        is_integer $srcname $md5sum || return 1
