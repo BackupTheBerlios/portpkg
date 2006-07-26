@@ -94,7 +94,8 @@ repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repo
             test -s $CACHE/repos || echo $PRT_DIR; }
 
 # listers
-ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual' "$@"; }
+#ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual' "$@"; }
+ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual | sed s,^,$PRT_DIR/,' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; find * -type f' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
 ls_inst() { cache $CACHE/inst 'find $ADM_DIR/packages/' "$@"; }
@@ -265,16 +266,16 @@ regex() # pkgex_list >regex_list
 explicit() # pkgex_list >pkgex-list
 {
   local arg
-  for arg; do
+  for arg in ${@:-.}; do
     case $arg in
       */) # also look through virtual groups list
 	  ls_slk `regex $arg` | grep -v `exclude` | slk2name
 	  ls_virt `regex $arg` | any2base;;
       *)  echo $arg;;
     esac
-  done
-  # direct mode: use current dir
-  [ $# = 0 ] && echo "." || true
+  done | sort -u
+#  # direct mode: use current dir
+#  [ $# = 0 ] && echo "." || true
 }
 
 # print non-available, but installed ports
