@@ -141,7 +141,7 @@ has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
 is_root()    { [ "$UID" = "0" ] || error "You must be root to run this action!"; }
 has_prog()   { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
 has_ports()  { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
-is_integer() { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: `basename $1`!"; }
+is_integer() { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: ${1##*/}!"; }
 
 # sort a pkg-list by version
 # TODO: correctly sort "pre", "rc", "alpha", "beta"
@@ -173,7 +173,7 @@ cache() # file action regex
   shift 2
   [ "$*" ] && filter="grep $@" || filter="cat"
   if ! [ -f $file ]; then
-    debug "cache(): filling `basename $file`"
+    debug "cache(): filling ${file##*/}"
 #    eval "$action" | tee $file | $filter -
     eval "$action" >$file
     $filter $file
@@ -195,7 +195,7 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
 
   debug "get(): urls="$urls
   $DRY_RUN && return 0
-  mkdir -p `dirname $dest`
+  mkdir -p ${dest%/*}
 
   # try primary url if mirror fails
   for try in $urls; do
@@ -208,8 +208,8 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
           ( cd $dest
           cvs -qz3 up -dP . )
         else
-          ( cd `dirname $dest`
-          cvs -qz3 -d `dirname ${try#cvs://}` co -P `basename $try` )
+          ( cd ${dest%/*}
+          cvs -qz3 -d `dirname ${try#cvs://}` co -P ${try##*/} )
         fi
         return 0;;
       svn://*)
@@ -220,8 +220,8 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
           ( cd $dest
           svn up )
         else
-          ( cd `dirname $dest`
-          svn co $try `basename $dest` )
+          ( cd ${dest%/*}
+          svn co $try ${dest##*/} )
         fi
         return 0;;
       *)
@@ -252,7 +252,7 @@ regex() # pkgex_list >regex_list
 	   echo " -e .";;
       .)   # local directory (recursively)
 #	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
-	   echo -n " -e ^\(`pwd`\|`pwd | sed "s,^$PRT_DIR/,,"`\)\(/\|\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)\)$";;
+	   echo -n " -e ^\(`pwd`\|`pwd | any2gany`\)\(/\|\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)\)$";;
       */)  # groups
            echo -n " -e \(^\|/\)$arg";;
       */*) # explicit expression (group/name and group/package)
@@ -363,12 +363,12 @@ ls_loc $(regex $1) | default; } | head -n 1`
   fi
 
   # set global variables
-  group=`echo $loc | any2gany | any2dir`
-  package=`echo $loc | any2base`
-  name=`echo $package | pkg2name`
+  group=`echo ${loc%/*} | any2gany`
+  package=${loc##*/}
+  name=${package%-*-*-*}
   version=`echo $package | pkg2ver`
   script=`find $(echo $loc | pkg2name).SlackBuild $(echo $loc | pkg2name)/SlackBuild 2>/dev/null | head -n 1`
-  path=`dirname $script`
+  path=${script%/*}
   description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script \
 | sed "s,\\$NAME,$name,"`
   requires=`{ \
@@ -643,7 +643,7 @@ build_pkg()
     script_opt="--cleanup"
   fi
 
-  cd `dirname $script` || return 1
+  cd ${script%/*} || return 1
 
   # download the source files
   for src in $sources; do
@@ -781,7 +781,7 @@ build_pkg()
   for src in $sources; do
     srcname=`basename "$src" | cut -d % -f 2`
     # remove symlinks to sources
-    rm -f `dirname $script`/$srcname
+    rm -f ${script%/*}/$srcname
 #    # pseudo ports: don't cache sources
 #    $pseudo && rm -f $SRC_DIR/$srcname
   done
@@ -1233,7 +1233,7 @@ init()
   [ "`whoami`" = "root" ] && warn "You are root! Please run portpkg as unprivileged user!"
 
   # if not used as include file then start me
-  [ "`basename $0 2>/dev/null`" = "portpkg" ] && parse_options "$@"
+  [ "${0##*/}" = "portpkg" ] && parse_options "$@"
 
   return 0
 }
