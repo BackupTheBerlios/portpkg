@@ -96,7 +96,8 @@ repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repo
 # listers
 ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; find * -type f' "$@"; }
-ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
+#ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
+ls_inst() { cache $CACHE/inst 'find $ADM_DIR/packages/' "$@"; }
 #ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
 ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null | sed "s,\.tgz$,,"' "$@"; }
 if $USE_ALPHA_CODE; then
@@ -287,7 +288,7 @@ ls_diff() # [pkgex] >list
   ( ls_loc `regex ${@:-@}` | grep -v $(exclude)
     $LAZY_CHECKS && ls_inst
   ) | sort_ver | any2base >$t/avail
-  ls_inst >$t/inst
+  ls_inst | any2base >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
 
@@ -448,7 +449,7 @@ echo "$optional" | grep -xf $t/use; } | sort -u | grep -vx $name`
 #  for req in $requires $uses; do
   for req in $list; do
     debug "check_reqs(): testing $req"
-    inst_pkg=`ls_inst $(regex $req) | default`
+    inst_pkg=`ls_inst $(regex $req) | default | any2base`
     avail_pkg=`$TEST_REQS || { \
 ls_slk $(regex $req) | grep -v $(exclude); \
 echo $inst_pkg; } | default | slk2name`
@@ -465,7 +466,7 @@ echo $inst_pkg; } | default | slk2name`
     if [ "$avail_pkg" ]; then
       debug "check_reqs(): $req available as $avail_pkg"
       # is it up-to-date?
-      ls_inst -qx $avail_pkg && continue
+      ls_inst -q "/$avail_pkg$" && continue
       $DRY_RUN && ! [ "${prev:-}" ] && stanza "Preparing dependencies of $package:"
       prev=$name
 #      ( $DRY_RUN && level_one=false
@@ -590,7 +591,7 @@ maintainer_mode()
   # find and strip ignore list
 #  ls_inst $(ignore) | pkg2name >$t/ignore
 #  fgrep -vxf $t/ignore $t/auto_req_raw >$t/auto_req
-  ls_inst $(ignore) | pkg2name | fgrep -vxf - $t/auto_req_raw >$t/auto_req
+  ls_inst $(ignore) | any2base | pkg2name | fgrep -vxf - $t/auto_req_raw >$t/auto_req
 
   # strip old lists to see what's new
   fgrep -vxf $t/old_req -f $t/old_opt $t/auto_req >$t/new_req
@@ -746,7 +747,7 @@ build_pkg()
       # remove this tag in any case
       rm -f PORT_IS_BROKEN
       # add package to the cache
-      echo $group/$package >>$CACHE/pkg
+      echo $PKG_DIR/$group/$package >>$CACHE/pkg
     fi
   else
     if ! [ "$pkg_file" ]; then
@@ -835,7 +836,7 @@ add_pkg()
   # otherwise if tracked as "finished" (because of a dependency), skip it
   elif fgrep -sqx "$group/$package" $temp/finished; then
     return 0
-  elif ls_inst -Fqx $package && ! $REINSTALL; then
+  elif ls_inst -Fq "/$package$" && ! $REINSTALL; then
     stanza "$package is already installed. Skipping."
     return 0
   else
@@ -872,13 +873,13 @@ add_pkg()
 
   # what to display?
 #  if ! $slot_in && ls_inst -Fqx $package; then
-  if ls_inst -Fqx $package; then
+  if ls_inst -Fq "/$package$"; then
     case `pause "Continue reinstall $package? (s to skip)"` in s|S) continue;; esac
 #    stanza "Reinstalling $package..."
 #    add="$UPGRADEPKG --reinstall"
 #  elif ! $slot_in && ls_inst -q $(regex $name); then
   elif ls_inst -q $(regex $name); then
-    case `pause "Continue upgrade $(ls_inst $(regex $name)) with $package? (s to skip)"` in s|S) continue;; esac
+    case `pause "Continue upgrade $(ls_inst $(regex $name) | any2base) with $package? (s to skip)"` in s|S) continue;; esac
 #    stanza "Upgrading $name to `echo $package | pkg2rel`..."
 #    add="$UPGRADEPKG"
   else
@@ -888,7 +889,7 @@ add_pkg()
   fi
 
   # update install list cache
-  echo $package >>$CACHE/inst
+  echo $ADM_DIR/packages/$package >>$CACHE/inst
 
 #  $DRY_RUN && $level_one && echo -e "PACKAGE DESCRIPTION:\n$description"
   $DRY_RUN && stanza "Installing package $package...\nPACKAGE DESCRIPTION:\n$description"
@@ -999,7 +1000,7 @@ do_info() # pkgex-list
     ret=1
     get_info $arg || continue
     ret=0
-    inst=`ls_inst $(regex $name)`
+    inst=`ls_inst $(regex $name) | any2base`
     stanza "PACKAGE NAME:  $package"
     [ "$inst" ] && echo "INSTALLED VERSION:  "$inst | fmt -t
     if [ "$pkg_file" ]; then
