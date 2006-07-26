@@ -275,10 +275,10 @@ explicit() # pkgex_list >pkgex-list
 }
 
 # print non-available, but installed ports
-ls_diff() # >list
+ls_diff() # [pkgex] >list
 {
   local t=`mktemp -d`
-  local check
+  local check avail inst
   debug "ls_diff()"
 
   # prepare lists
@@ -292,8 +292,11 @@ ls_diff() # >list
   # find package names that installed and in the ports
   fgrep -xf $t/avail.names $t/inst.names \
   | sed "s,.*,&-[^-]*-[^-]*-[^-]*," | while read check; do
-    grep -xm 1 "$check" $t/avail >>$t/avail.check
-    grep -xm 1 "$check" $t/inst >>$t/inst.check
+    avail=`grep -xm 1 "$check" $t/avail`
+    inst=`grep -xm 1 "$check" $t/inst`
+    $LAZY_CHECKS && [ "`echo $avail | pkg2ver`" = "`echo $inst | pkg2ver`" ] && continue
+    echo $avail >>$t/avail.check
+    echo $inst >>$t/inst.check
   done
 
   # neglect architecture differences for ix86
@@ -482,7 +485,7 @@ check_opts()
   for opt in $optional; do
     ls_inst -q `regex $opt` || all_opts="$all_opts $opt"
   done
-  [ "$all_opts" ] && ! $DOWNLOAD_ONLY && warn "Optional dependencies to consider:"$all_opts
+  [ "$all_opts" ] && ! $DOWNLOAD_ONLY && warn "Optional dependencies to consider:" $all_opts
   return 0
 }
 
@@ -568,7 +571,7 @@ maintainer_mode()
 
   # fix misc dependencies
   { grep -sq "^etc/gconf/" $t/flist && which gconftool-2
-    grep -sq "^var/lib/scrollkeeper/" $t/flist && which scrollkeeper
+#    grep -sq "^var/lib/scrollkeeper/" $t/flist && which scrollkeeper
     grep -sq "/pkgconfig/.*\.pc$" $t/flist && which pkg-config
     grep -sq "\.desktop$" $t/flist && which update-desktop-database
     grep -sq "^etc/dbus-1/" $t/flist && which dbus-daemon
@@ -774,7 +777,7 @@ build_pkg()
 #    $pseudo && rm -f $SRC_DIR/$srcname
   done
   gzip -f $LOG_DIR/$name.buildlog
-  $maintain || ( [ -d $tmp/package-$name ] && rm -rf $tmp/package-$name )
+  ! $maintain && [ -d $tmp/package-$name ] && rm -rf $tmp/package-$name
   true
 }
 
@@ -926,9 +929,9 @@ do_add() # pkgex-list
   return $ret
 }
 
-do_diff()
+do_diff() # [pkgex]
 {
-  local diff_list pkg avail_rel n inst_rel avail
+  local diff_list pkg avail_rel n inst_rel #avail
 
   has_ports || die
   diff_list=`ls_diff "$@"`
@@ -938,13 +941,14 @@ do_diff()
   for pkg in $diff_list; do
     debug "do_diff(): pkg=$pkg"
     avail_rel=`echo $pkg | pkg2rel`
-    avail_ver=${avail_rel%%-*}
-    n=`echo $pkg | pkg2name`
+#    avail_ver=${avail_rel%%-*}
+#    n=`echo $pkg | pkg2name`
+    n=${pkg%-*-*-*}
     inst_rel=`ls_inst $(regex $n) | pkg2rel | head -n 1`
-    avail=${avail:-$n}
+#    avail=${avail:-$n}
     avail_rel=${avail_rel:-(n/a)}
-    inst_ver=${inst_rel%%-*}
-    $LAZY_CHECKS && [ "$avail_ver" = "$inst_ver" ] && continue
+#    inst_ver=${inst_rel%%-*}
+#    $LAZY_CHECKS && [ "$avail_ver" = "$inst_ver" ] && continue
     echo -e "$n\r\t\t\t\t$avail_rel\r\t\t\t\t\t\t\t$inst_rel"
   done
 }
@@ -1052,7 +1056,7 @@ do_upgrade() # [pkgex-list]
 {
   local diff_list
   has_ports || die
-  diff_list=`ls_diff | pkg2name`
+  diff_list=`ls_diff "$@" | pkg2name`
   [ "$diff_list" ] || die "No upgrades available."
 
   # interactive part
