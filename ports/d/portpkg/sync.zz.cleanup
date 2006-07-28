@@ -16,7 +16,7 @@ t=`mktemp -d`
 # sync package dir
 row "Syncing $TREE/"
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
-ls_loc | any2gany >$t/avail
+ls_loc | any2gany | sed "s,.*,$PKG_DIR/&.tgz," >$t/avail
 
 # move packages found in $SRC_DIR to $PKG_DIR (pseudo ports do that)
 #find $SRC_DIR/ -regex ".*-[^-]*-[^-]*-[^-]*\.tgz$" -exec mv {} $PKG_DIR/ \; 2>/dev/null
@@ -24,12 +24,13 @@ ls_src ".*-[^-]*-[^-]*-[^-]*\.tgz$" | xargs -i mv {} $PKG_DIR/
 
 # check groups
 ls_pkg -Fvxf $t/avail | any2gany | while read gpkg; do
-  group=`grep -m 1 /$(echo $gpkg | any2base)$ $t/avail | grep / | any2dir`
+  file=${gpkg##*/}
+  group=`grep -m 1 /$file$ $t/avail | any2gany | any2dir`
   group=${group:-outdated}
-  case $gpkg in $group/*) continue;; esac
-  row "Moving $gpkg.tgz to $group/"
+  case $gpkg in $group/$file) continue;; esac
+  row "Moving $gpkg to $group/"
   mkdir -p $TREE/$group
-  mv $TREE/$gpkg.tgz $TREE/$group/
+  mv $TREE/$gpkg $TREE/$group/
 done
 
 # check for empty dirs
