@@ -86,10 +86,12 @@ temp=`mktemp -d`
 
 # config files
 mirrors() { cache $CACHE/mirrors 'grep -vshe ^# -e ^$ $CFG_DIR/mirrors $PRT_DIR/mirrors'; }
-ignore()  { cache $CACHE/ignore 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)'; }
+#ignore()  { cache $CACHE/ignore 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)'; }
+ignore()  { regex `cache $CACHE/ignore 'grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude'`; }
 #exclude() { cache $CACHE/exclude 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude $PRT_DIR/exclude)'; }
 exclude() { ignore; }
-use()     { cache $CACHE/use 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)'; }
+#use()     { cache $CACHE/use 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)'; }
+use()     { regex `cache $CACHE/use 'grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use'`; }
 repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repos | sed s,^,$PRT_DIR/,'
             test -s $CACHE/repos || echo $PRT_DIR; }
 
@@ -100,7 +102,7 @@ ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/vir
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
 ls_inst() { cache $CACHE/inst 'find $ADM_DIR/packages/' "$@"; }
 #ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
-ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null | sed "s,\.tgz$,,"' "$@"; }
+ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null' "$@"; }
 if $USE_ALPHA_CODE; then
 ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
 else
@@ -150,11 +152,11 @@ sort_ver() # <pkg_list >pkg_list
   # separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
   # (but *only* within version-arch-build parts!)
   sed -r "\
-`$LAZY_CHECKS || echo '\,(^|/)local/,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;'`\
+`$LAZY_CHECKS || echo '\,(^|/)patches/,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;'`\
 s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 :split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
 | sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
-| sed -r "s, ,,g;\,(^|/)local/,s,-999_,-,"
+| sed -r "s, ,,g;\,(^|/)patches/,s,-999_,-,"
 }
 
 if $USE_ALPHA_CODE; then
@@ -247,18 +249,20 @@ regex() # pkgex_list >regex_list
   for arg in ${@:-0}; do
     case $arg in
       0)   # nothing
-	   echo " -e ^$";;
+	   echo "-e ^$";;
       @)   # anything
-	   echo " -e .";;
+	   echo "-e .";;
+      /*/) # arbitrary regex
+	   echo "-e `echo ${arg%/} | cut -c 2-`";;
       .)   # local directory (recursively)
 #	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
-	   echo -n " -e ^\(`pwd`\|`pwd | any2gany`\)\(/\|\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)\)$";;
+	   echo "-Ee ^(`pwd`|`pwd | any2gany`)(/|(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$)";;
       */)  # groups
-           echo -n " -e \(^\|/\)$arg";;
+           echo "-Ee (^|/)$arg";;
       */*) # explicit expression (group/name and group/package)
-           echo -n " -e \(^\|/\)${arg%/*}\(/.*/\|/\)${arg##*/}\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$";;
+           echo "-Ee (^|/)${arg%/*}/(.*/)?${arg##*/}(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
       *)   # (g)names and (g)packages
-           echo -n " -e \(^\|/\)$arg\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$";;
+           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
     esac
   done
 }
@@ -285,11 +289,12 @@ ls_diff() # [pkgex] >list
 {
   local t=`mktemp -d`
   local check avail inst
-  debug "ls_diff()"
+  debug "ls_diff() $@"
 
   # prepare lists
   ( ls_loc `regex ${@:-@}` | grep -v $(exclude)
-    $LAZY_CHECKS && ls_inst
+#    $LAZY_CHECKS && ls_inst
+    $REINSTALL || ls_inst
   ) | sort_ver | any2base >$t/avail
   ls_inst | any2base >$t/inst
   pkg2name <$t/avail >$t/avail.names
@@ -300,10 +305,12 @@ ls_diff() # [pkgex] >list
   | sed "s,.*,&-[^-]*-[^-]*-[^-]*," | while read check; do
     avail=`grep -xm 1 "$check" $t/avail`
     inst=`grep -xm 1 "$check" $t/inst`
-    $LAZY_CHECKS && [ "`echo $avail | pkg2ver`" = "`echo $inst | pkg2ver`" ] && continue
+    $LAZY_CHECKS && [ "${avail%-*-*}" = "${inst%-*-*}" ] && continue
     echo $avail >>$t/avail.check
     echo $inst >>$t/inst.check
   done
+
+  touch $t/avail.check $t/inst.check
 
   # neglect architecture differences for ix86
   sed -i "s,-i.86-,-i.86-," $t/avail.check $t/inst.check
@@ -333,6 +340,7 @@ fix_ports_root() # pkgex
 get_info() # pkgex
 {
   local loc arch build
+  local decode='sed "s,[{}],,g;s,\$NAME,$name,g;s,\$VERSION,$version,g;s,\$ARCH,$arch,g;s,\$BUILD,$build,g"'
   debug "get_info() $@"
 
 #  case $1 in
@@ -367,10 +375,12 @@ ls_loc $(regex $1) | default; } | head -n 1`
   package=${loc##*/}
   name=${package%-*-*-*}
   version=`echo $package | pkg2ver`
-  script=`find $(echo $loc | pkg2name).SlackBuild $(echo $loc | pkg2name)/SlackBuild 2>/dev/null | head -n 1`
+  arch=`echo $package | sed -r "s,^.*-.*-(.*)-.*$,\1,"`
+  build=`echo $package | sed -r "s,^.*-.*-.*-(.*)$,\1,"`
+#  script=`find $(echo $loc | pkg2name).SlackBuild $(echo $loc | pkg2name)/SlackBuild 2>/dev/null | head -n 1`
+  script=`find ${loc%-*-*-*}.SlackBuild ${loc%-*-*-*}/SlackBuild 2>/dev/null | head -n 1`
   path=${script%/*}
-  description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script \
-| sed "s,\\$NAME,$name,"`
+  description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script | eval $decode`
   requires=`{ \
 grep -s "^# REQUIRES: " $script | cut -d " " -f 3- | tr " " "\n"; \
 grep -sve ^$ -e ^# $path/requires; \
@@ -382,7 +392,7 @@ grep -sve ^$ -e ^# $path/slack-suggests | cut -d " " -f 1; \
 grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
   sources=`{ \
 grep -s "^# SOURCES: " $script | cut -d " " -f 3- | tr " " "\n"; \
-grep -sve ^$ -e ^# $path/sources; } | sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g"`
+grep -sve ^$ -e ^# $path/sources; } | eval $decode`
   md5sums=`{ \
 grep -s "^# MD5SUMS: " $script | cut -d " " -f 3-
 grep -sve ^$ -e ^# $path/md5sums; } | sort -u -k 2`
@@ -392,9 +402,9 @@ grep -sve ^$ -e ^# $path/blocks; \
 grep -sve ^$ -e ^# $path/slack-conflicts | cut -d " " -f 1; \
 grep -s "^# block" $path/requires | sed "s,.* ,,"; } | sort -u`
 #  uses=`( $NO_REQS || $TEST_REQS ) || ls_loc $(regex $optional) | grep $(use) | pkg2name | any2base | sort -u`
-  pkg_file=`{ { \
-ls_pkg "^$PKG_DIR/$group/$package$"; \
-ls_pkg "/$package$"; } | sed "s,$,.tgz,"; \
+  pkg_file=`{ \
+ls_pkg "^$PKG_DIR/$group/$package.tgz$"; \
+ls_pkg "/$package.tgz$"; \
 ls_src "/$package.tgz$"; } | head -n 1`
 #find $SRC_DIR/ -name $package.tgz 2>/dev/null; } | head -n 1`
 #  [ "$pkg_file" ] && pkg_file=$PKG_DIR/$pkg_file.tgz
@@ -421,13 +431,14 @@ ls_src "/$package.tgz$"; } | head -n 1`
   fi
 
   # check if the script produces multiple packages
-  products="$package"
-  if [ `grep "^[^#]*makepkg " $script | wc -l` -gt 1 ]; then
-    arch=`echo $package | pkg2rel | cut -d - -f 2`
-    build=`echo $package | pkg2rel | cut -d - -f 3`
-    products=`sed -n "s,^[^#]*makepkg .*/\([^ ]*\)\.tgz.*,\1,p" $script \
-| sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
-  fi
+#  products="$package"
+#  if [ `grep "^[^#]*makepkg " $script | wc -l` -gt 1 ]; then
+#    arch=`echo $package | pkg2rel | cut -d - -f 2`
+#    build=`echo $package | pkg2rel | cut -d - -f 3`
+    products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script | eval $decode`
+#    products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script \
+#| sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
+#  fi
 
   return 0
 }
@@ -1161,10 +1172,14 @@ maintain,export,noask,ignore:,use:"
       -m|--maintain)    MAINTAIN_ALL=true;;
       -n|--noask)       INTERACTIVE=false;;
       -w|--ignore)	ignore >/dev/null
-			regex `echo "$2" | tr , " "` >>$CACHE/ignore
+			use >/dev/null
+			echo "$2" | tr , "\n" >>$CACHE/ignore
+			echo "$2" | tr , "\n" | xargs -i sed -i "\,^{}$,d" $CACHE/use
 			shift;;
       -t|--use)		use >/dev/null
-			regex `echo "$2" | tr , " "` >>$CACHE/use
+			ignore >/dev/null
+			echo "$2" | tr , "\n" >>$CACHE/use
+			echo "$2" | tr , "\n" | xargs -i sed -i "\,^{}$,d" $CACHE/ignore
 			shift;;
       --)               shift
                         break;;
