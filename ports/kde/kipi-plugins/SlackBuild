@@ -1,6 +1,12 @@
+#!/bin/sh
+# MAINTAINER: Daniel Kmieæ 'dan' <danielos@narsil.asua.org.pl>
+# SOURCES: ftp://ftp.kde.org/pub/kde/unstable/apps/KDE3.x/graphics/kipi-plugins-0.1.0-beta2.tar.bz2
+# MD5SUMS: 1dd0cb05e0c7da43861d2bf0affaa4b3 kipi-plugins-0.1.0-beta2.tar.bz2
+# REQUIRES: kdelibs libkipi
+# OPTIONAL: imlib2 libgphoto2 libkexif libtiff
 VERSION=0.1.0beta2
 ARCH=${ARCH:-i486}
-BUILD=1andreas
+BUILD=2dan
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -10,8 +16,12 @@ rm -rf $PKG
 mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
 
 cd $TMP || exit 1
+rm -rf $NAME-$VERSION
 tar xjvf $CWD/$NAME-0.1.0-beta2.tar.bz2 || exit 1
 cd $NAME-0.1.0-beta2 || exit 1
+# apply patch for bad include of cropframe.h 
+# in file kipi-plugins/printwizard/frmprintwizardbase.ui
+patch -p1 < $CWD/frmprintwizard-cropframe.patch
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
