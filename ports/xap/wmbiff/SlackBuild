@@ -1,0 +1,70 @@
+#!/bin/sh
+# MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/wmbiff/wmbiff-0.4.27.tar.gz
+# MD5SUMS: 50466b6e4a143cf4e55546b34d5792e6 wmbiff-0.4.27.tar.gz
+# REQUIRES: x11
+# OPTIONAL: gnutls
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.4.27
+ARCH=${ARCH:-i486}
+BUILD=1ldv
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/wmbiff-$VERSION.tar.gz
+cd wmbiff-$VERSION
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  $ARCH-slackware-linux
+make
+make install prefix=$PKG/usr
+rm -rf $PKG/usr/info/dir
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  AUTHORS COPYING ChangeLog FAQ NEWS README README.licq TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+#+doc
+cp -a \
+  wmbiff/sample.wmbiffrc \
+  $PKG/usr/doc/$NAME-$VERSION/
+#+doc
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/wmbiff-$VERSION
+  rm -rf $PKG
+fi
