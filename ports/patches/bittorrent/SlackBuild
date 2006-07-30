@@ -1,0 +1,45 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: ftp://ftp.heanet.ie/pub/sourceforge/b/bi/bittorrent/BitTorrent-4.4.0.tar.gz
+# MD5SUMS: 74d4b48202c28f0b27e989b6d5f5b214 BitTorrent-4.4.0.tar.gz
+# REQUIRES: desktop-file-utils python
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=4.4.0
+ARCH=noarch
+BUILD=3tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/BitTorrent-$VERSION.tar.gz
+cd BitTorrent-$VERSION
+chown -R root.root .
+python setup.py build install --root=$PKG
+mkdir -p $PKG/usr/share/applications
+install -m 644 $CWD/*.desktop $PKG/usr/share/applications/
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  README.txt \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/BitTorrent-$VERSION
+  rm -rf $PKG
+fi
