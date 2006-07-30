@@ -2,7 +2,7 @@
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
 # SOURCES: http://heanet.dl.sourceforge.net/sourceforge/wmbiff/wmbiff-0.4.27.tar.gz
 # MD5SUMS: 50466b6e4a143cf4e55546b34d5792e6 wmbiff-0.4.27.tar.gz
-# REQUIRES: x11
+# REQUIRES: x11 zlib
 # OPTIONAL: gnutls
 
 TMP=${TMP:-/tmp}
@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.4.27
 ARCH=${ARCH:-i486}
-BUILD=1ldv
+BUILD=2ldv
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -30,13 +30,16 @@ cd $TMP
 tar xzvf $CWD/wmbiff-$VERSION.tar.gz
 cd wmbiff-$VERSION
 chown -R root.root .
+#=config
 CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
+  --$(pkg-config gnutls && echo enable || echo disable)-crypto \
   $ARCH-slackware-linux
+#=config
 make
 make install prefix=$PKG/usr
 rm -rf $PKG/usr/info/dir
