@@ -45,7 +45,7 @@ ADM_DIR=/var/log
 CFG_DIR=/etc/portpkg
 
 # find the ports root and some other locations
-PRT_ROOT=`until [ -f .ports_root ] || [ "$(pwd)" = "/" ]; do cd ..; done; [ -f .ports_root ] && pwd`
+PRT_ROOT=`until [ "$(pwd)" = "/" ]; do [ -f .ports_root ] && pwd && break; cd ..; done`
 PRT_ROOT=${PRT_ROOT:-`[ "$(whoami)" = "root" ] || echo ~/ports`}
 LOG_DIR=${PRT_ROOT:-/var/portpkg}/log
 SRC_DIR=${PRT_ROOT:-/usr/src}/dist
@@ -120,7 +120,7 @@ pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
 pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
 #loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
 any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$ADM_DIR/[^/]*)/,,"; }
-slk2gname() { sed -r "s,^$PRT_DIR/(.*)[./]SlackBuild$,\1,"; }
+slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
   | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
@@ -264,7 +264,7 @@ regex() # pkgex_list >regex_list
       *)   # (g)names and (g)packages
            echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
     esac
-  done
+  done | sed -r "s,\+,\\\+,g"
 }
 
 # resolve groups/ to names
@@ -326,6 +326,8 @@ fix_ports_root() # pkgex
   # yes, all relative to current dir, thus no pkgex resolution
   debug "fix_ports_root(): direct mode: disabling dependencies resolution"
   TEST_REQS=true
+  debug "fix_ports_root(): restricting slk cache to `pwd`"
+  PRT_DIR=`pwd` ls_slk >/dev/null
   case `pwd` in $PRT_DIR|$PRT_DIR/*) ;; * )
     # pkgex "." is used but the current dir is not inside the tree
     debug "fix_ports_root(): `pwd` is NOT in PRT_DIR, setting it now"
@@ -359,9 +361,15 @@ get_info() # pkgex
 #    *)   
   # find port, take the first if more than one available
   fix_ports_root "$@"
+if $USE_ALPHA_CODE; then
+  loc=`{ \
+ls_slk $(regex $1) | grep -v $(exclude) | slk2loc | default
+ls_slk $(regex $1) | slk2loc | default; } | head -n 1`
+else
   loc=`{ \
 ls_loc $(regex $1) | grep -v $(exclude) | default
 ls_loc $(regex $1) | default; } | head -n 1`
+fi
 #;;
 #  esac
 
@@ -435,7 +443,8 @@ ls_src "/$package.tgz$"; } | head -n 1`
 #  if [ `grep "^[^#]*makepkg " $script | wc -l` -gt 1 ]; then
 #    arch=`echo $package | pkg2rel | cut -d - -f 2`
 #    build=`echo $package | pkg2rel | cut -d - -f 3`
-    products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script | eval $decode`
+  products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script | eval $decode`
+  products=${products:-$package}
 #    products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script \
 #| sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
 #  fi
@@ -466,27 +475,27 @@ echo "$optional" | grep -xf $t/use; } | sort -u | grep -vx $name`
     debug "check_reqs(): testing $req"
     inst_pkg=`ls_inst $(regex $req) | default | any2base`
     avail_pkg=`$TEST_REQS || { \
-ls_loc $(regex $req) | grep -v $(exclude); \
+ls_slk $(regex $req) | grep -v $(exclude) | slk2loc; \
 echo $inst_pkg; } | default | any2base`
 #ls_loc $(regex $req) | grep -v $(exclude); \
 
     # is any version installed?
-    if [ "$inst_pkg" ]; then
+    if [ "$inst_pkg" ] && $LAZY_CHECKS; then
       debug "check_reqs(): $inst_pkg is installed"
       # is this sufficient?
       $LAZY_CHECKS && continue
-    fi
-
     # anyway, is there an available port?
-    if [ "$avail_pkg" ]; then
+    elif [ "$avail_pkg" ]; then
       debug "check_reqs(): $req available as $avail_pkg"
       # is it up-to-date?
-      ls_inst -q "/$avail_pkg$" && continue
+#      ls_inst -q "/$avail_pkg$" && continue
+      [ "$inst_pkg" = "$avail_pkg" ] && continue
       $DRY_RUN && ! [ "${prev:-}" ] && stanza "Preparing dependencies of $package:"
       prev=$name
 #      ( $DRY_RUN && level_one=false
       ( $DRY_RUN && stanza() { :; }
-      get_info $avail_pkg || exit 1
+#      get_info $avail_pkg || exit 1
+      get_info $req || exit 1
       add_pkg || die "$avail_pkg is broken! Stopping $prev." ) || return 1
       $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency $avail_pkg"
     elif ! [ "$inst_pkg" ]; then
@@ -590,7 +599,7 @@ maintainer_mode()
   # fix misc dependencies
   { grep -sq "^etc/gconf/" $t/flist && which gconftool-2
 #    grep -sq "^var/lib/scrollkeeper/" $t/flist && which scrollkeeper
-    grep -sq "/pkgconfig/.*\.pc$" $t/flist && which pkg-config
+#    grep -sq "/pkgconfig/.*\.pc$" $t/flist && which pkg-config
     grep -sq "\.desktop$" $t/flist && which update-desktop-database
     grep -sq "^etc/dbus-1/" $t/flist && which dbus-daemon
     grep -sq "\.omf$" $t/flist && which scrollkeeper-config
@@ -665,7 +674,7 @@ build_pkg()
     md5sum=`echo "$md5sums" | grep -s " $srcname$" | cut -d " " -f 1`
     # if $srcname is an existing file (!) it is not CVS and can be skipped
 #    if [ -f $SRC_DIR/$srcname ]; then
-    if ls_src -q "/$srcname$"; then
+    if ls_src -q "/$srcname$" && ! [ -d $SRC_DIR/$srcname ]; then
       row "$srcname found in $SRC_DIR/"
     else
       row "Downloading $srcname"
@@ -727,12 +736,12 @@ build_pkg()
 #PATH=\$PATH:/sbin TMP=$tmp fakeroot sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
 	build_cmd="HOME=$tmp TMPDIR=$tmp $build_cmd"
-	eval $NOBODY_BUILD_CMD
+	eval $NOBODY_BUILD_CMD 2>&1 | tee $LOG_DIR/$name.buildlog >$output
       else
 #        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp \
 #fakeroot sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
-	eval $build_cmd
+	eval $build_cmd 2>&1 | tee $LOG_DIR/$name.buildlog >$output
       fi
     else
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
@@ -744,15 +753,15 @@ build_pkg()
         row "Gaining root privileges"
 #        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
-	eval $ROOT_BUILD_CMD
+	eval $ROOT_BUILD_CMD 2>&1 | tee $LOG_DIR/$name.buildlog >$output
       else
 #        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
-	eval $build_cmd
+	eval $build_cmd 2>&1 | tee $LOG_DIR/$name.buildlog >$output
       fi
 #      # this is a hack-around for some faulty install scripts
 #      chmod 1777 /tmp
-    fi 2>&1 | tee $LOG_DIR/$name.buildlog >$output
+    fi #2>&1 | tee $LOG_DIR/$name.buildlog >$output
 
     # success? (this is the most promising test to ensure it worked)
     if ! [ -f $tmp/$package.tgz ]; then
