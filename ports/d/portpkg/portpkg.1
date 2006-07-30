@@ -48,11 +48,12 @@ ignored otherwise.
 
 .SH OPTIONS
 
-There can be multiple options at once to customise portpkg's behaviour (some of
+There can be multiple options at once to customise portpkg's behaviour (some of 
 them can also be defined in your configuration file, see below):
 .TP
 \fB-e\fP, \fB--reinstall\fP (\fBREINSTALL=true\fP)
-Reinstall the package, if already installed.
+Reinstall a package, if already installed.
+Diff to packages that are not available anymore.
 .TP
 \fB-b\fP, \fB--rebuild\fP (\fBREBUILD=true\fP)
 Rebuild the package if already built (implies \fB--reinstall\fP).
@@ -74,8 +75,8 @@ Don't check for requirements.
 .TP
 \fB-a\fP, \fB--lazy\fP (\fBLAZY_CHECKS=true\fP)
 Lazy version checking:
-When checking dependencies, be satisfied when any version is installed.
-When upgrading or listing differences, be satisfied when the installed version is newer than the version in the ports.
+Any installed version of a package satisfies a dependency.
+Skip upgrades that only differ in architecture or build number.
 .TP
 \fB-n\fP, \fB--noask\fP (\fBINTERACTIVE=false\fP)
 Don't ask for confirmation.
@@ -89,19 +90,19 @@ E.g. md5sums of sources won't be checked, instead the actual value will be writt
 Skip package building step if possible (implies \fB--prepare --rebuild\fP).
 .TP
 \fB-w\fP, \fB--ignore\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBignore\fP)
-Exclude \fIexpression\fP from implicit expressions.
+Exclude \fIexpression\fP from implicit expressions and remove from \fBuse\fP list.
 .TP
 \fB-t\fP, \fB--use\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBuse\fP)
-Use \fIexpression\fP as a required dependency when it's actually optional.
+Add \fIexpression\fP to arbitrary dependencies and remove from \fBignore\fP list.
 
 .SH ACTIONS
 
 portpkg has several \fBactions\fP to act on and one \fBdefault\fP action
 if none is specified. The default action is to \fBadd\fP, which includes
-    \(bu checking recursively for any dependencies to be run initally,
-    \(bu downloading the source code,
-    \(bu running the build script and
-    \(bu installing the package.
+    * checking recursively for any dependencies to be run initally,
+    * downloading the source code,
+    * running the build script and
+    * installing the package.
 
 Some of these steps will be skipped automatically if they seem to be
 unnecessary. There are options (see below) to force or to skip some of
@@ -109,7 +110,8 @@ these steps. There can be only one \fBalternative\fP action, with
 completely different behaviour:
 .TP
 \fB-d\fP, \fB--diff\fP
-List the difference between installed and available port versions.
+List difference between installed and available port versions.
+See also \fB--lazy\fP and \fB--reinstall\fP.
 .TP
 \fB-f\fP, \fB--find\fP \fItext\fP [\fI...\fP]
 Find ports by search patterns.
@@ -129,8 +131,9 @@ with the ports tree. Depending on your configuration there can be
 more/other/no things be done.
 .TP
 \fB-u\fP, \fB--upgrade\fP
-Upgrade all (!) outdated ports shown by \fB--diff\fP.
+Upgrade all (!) outdated packages.
 Use with caution!
+See also \fB--diff\fP.
 .TP
 \fB-v\fP, \fB--version\fP
 Show version information about portpkg.
