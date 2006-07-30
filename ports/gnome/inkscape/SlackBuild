@@ -1,11 +1,19 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# MAINTAINER: Tomas Stefano 'lem' <stefano at cedo dot cz>
+# SOURCES: http://dl.sourceforge.net/inkscape/inkscape-0.44.tar.bz2
+# MD5SUMS: f0bf316e15ddc6009976d97388522f85 inkscape-0.44.tar.bz2
+# REQUIRES: desktop-file-utils gc gnome-vfs gtkmm gtkspell lcms libpng libxslt perl python
+# UP2DATE: http://prdownloads.sourceforge.net/inkscape/
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.42.2
+VERSION=0.44
 ARCH=${ARCH:-i486}
-BUILD=1lem
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -34,21 +42,20 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README \
+  AUTHORS COPYING ChangeLog NEWS README README.ca.txt README.de.txt README.es.txt README.fr.txt README.it.txt \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
