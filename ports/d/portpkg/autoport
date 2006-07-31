@@ -471,6 +471,7 @@ else
 #  VERBOSE=true
 #  output=/dev/stdout
   get `decode $src` $SRC_DIR/$file || die
+  echo $SRC_DIR/$file >>$CACHE/src
 fi
 
 # write skeletons
