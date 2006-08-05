@@ -284,7 +284,7 @@ pause "* First step: Collect information. Continue? (ctrl-c to quit)"
 s=`pause "Source file URL [$sources]:"`
 sources="${s:-$sources}"
 [ "$sources" ] || die "Nothing entered. Eh? I can't help you this way!"
-sources=`echo "$sources" | sed -e "s,://prdownloads\.,://dl.," -e "s,\?download$,,"`
+sources=`echo "$sources" | sed -e "s,://prdownloads\.,://heanet.dl.," -e "s,\?download$,,"`
 # we can only handle _one_ source file
 src=`echo "$sources" | head -n 1`
 # name: guess it, if we haven't yet it
