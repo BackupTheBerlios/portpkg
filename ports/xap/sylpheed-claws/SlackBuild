@@ -1,6 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-2.3.1.tar.bz2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-2.4.0.tar.bz2
+# MD5SUMS: 8e8e2b847d6466b1384e3a5a15b9f2e7  sylpheed-claws-2.4.0.tar.bz2
 # MD5SUMS: 08e8fe1f3466d146b499d128f1445ba6  sylpheed-claws-2.3.1.tar.bz2
 # MD5SUMS: a59b1f1736e89918c648794c94120a8e  sylpheed-claws-2.3.0.tar.bz2
 # MD5SUMS: 870eb4de8dc242f16171145d8af725b9  sylpheed-claws-2.2.3.tar.bz2
@@ -15,7 +16,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.3.1
+VERSION=2.4.0
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 

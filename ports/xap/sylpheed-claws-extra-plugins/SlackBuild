@@ -1,14 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-extra-plugins-2.3.0.tar.bz2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-extra-plugins-2.4.0.tar.bz2
+# MD5SUMS: f0a7c85c033dba930706f18b73274213  sylpheed-claws-extra-plugins-2.4.0.tar.bz2
 # MD5SUMS: 06b53d69913ea1c96fb154fa2686606a  sylpheed-claws-extra-plugins-2.3.0.tar.bz2
 # REQUIRES: curl db44 gpgme libetpan libgtkhtml
+# OPTIONAL: google-earth
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.3.0
+VERSION=2.4.0
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
