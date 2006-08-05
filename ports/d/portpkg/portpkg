@@ -100,7 +100,7 @@ repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repo
 ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/virtual | sed s,^,$PRT_DIR/,' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; find * -type f' "$@"; }
 #ls_inst() { cache $CACHE/inst 'cd $ADM_DIR/packages; ls' "$@"; }
-ls_inst() { cache $CACHE/inst 'find $ADM_DIR/packages/' "$@"; }
+ls_inst() { cache $CACHE/inst 'find $ADM_DIR/packages/ -type f' "$@"; }
 #ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
 ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null' "$@"; }
 if $USE_ALPHA_CODE; then
@@ -178,10 +178,11 @@ cache() # file action regex
     debug "cache(): filling ${file##*/}"
 #    eval "$action" | tee $file | $filter -
     eval "$action" >$file
-    $filter $file
-  else
-    $filter $file
+#    $filter $file
   fi
+#  else
+  $filter $file
+#  fi
 }
 
 # download a file and make use of mirrors
@@ -275,11 +276,12 @@ explicit() # pkgex_list >pkgex-list
   for arg in ${@:-.}; do
     case $arg in
       */) # also look through virtual groups list
-	  ls_slk `regex $arg` | grep -v `exclude` | slk2name
-	  ls_virt `regex $arg` | any2base;;
+	  { ls_slk `regex $arg` | grep -v `exclude` | slk2name
+	    ls_virt `regex $arg` | any2base
+	  } | sort -u;;
       *)  echo $arg;;
     esac
-  done | sort -u
+  done
 #  # direct mode: use current dir
 #  [ $# = 0 ] && echo "." || true
 }
@@ -292,10 +294,10 @@ ls_diff() # [pkgex] >list
   debug "ls_diff() $@"
 
   # prepare lists
-  ( ls_loc `regex ${@:-@}` | grep -v $(exclude)
+  { ls_loc `regex ${@:-@}` | grep -v $(exclude)
 #    $LAZY_CHECKS && ls_inst
     $REINSTALL || ls_inst
-  ) | sort_ver | any2base >$t/avail
+  } | sort_ver | any2base >$t/avail
   ls_inst | any2base >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -596,6 +598,11 @@ maintainer_mode()
     ( cd $ADM_DIR/packages/; grep -h "/$s\.py$" * | grep -v "/site-packages/..*/$s\.py$" )
   done | sort -u >>$t/depfiles
 
+  # find mono dependencies
+  grep -e ":.*MS Windows" -e "\.exe:" $t/ftypes | cut -d : -f 1 \
+| mono-find-requires \
+| sed -nr "s,^mono\((.*)\) = (.*)$,.*/lib/mono/.*/\1/\2__,p" >>$t/depfiles
+
   # fix misc dependencies
   { grep -sq "^etc/gconf/" $t/flist && which gconftool-2
 #    grep -sq "^var/lib/scrollkeeper/" $t/flist && which scrollkeeper
@@ -622,9 +629,9 @@ maintainer_mode()
 
   # if there's alread a "requires" file, add new dependencies as optional
   if [ "$requires" ]; then
-    optional=`( echo "$optional"; cat $t/new_req ) | sort -u`
+    optional=`{ echo "$optional"; cat $t/new_req; } | sort -u`
   else
-    requires=`( echo "$requires"; cat $t/new_req ) | sort -u`
+    requires=`{ echo "$requires"; cat $t/new_req; } | sort -u`
   fi
 
   update_header
@@ -651,9 +658,6 @@ build_pkg()
   local t=`mktemp -d`
   local src srcname md5sum script_opt flags_var sh_opt prod build_cmd
 
-  $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
-  stanza "Building $package:"
-
   if $maintain && ! $DOWNLOAD_ONLY; then
 #    script_opt=""
     warn "Maintainer mode: Script header will be modified!"
@@ -662,6 +666,16 @@ build_pkg()
   else
     script_opt="--cleanup"
   fi
+
+  # warnings concerning fakeroot
+  if [ "$name" != "fakeroot" ] && ( $no_fakeroot || ! has_prog fakeroot); then
+    $no_fakeroot && warn "Fakeroot disabled for this port!" \
+    || warn "Please install fakeroot as soon as possible!"
+    $PREPARE_ONLY && warn "Preparing without fakeroot is not a good idea!"
+  fi
+
+  $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
+  stanza "Building $package:"
 
   cd ${script%/*} || return 1
 
@@ -685,7 +699,7 @@ build_pkg()
       ln -sf $SRC_DIR/$srcname .
       # check md5sums when non-maintainer-mode
       if $maintain && ls_src -q "/$srcname$"; then
-        md5sums=`( echo "$md5sums"; md5sum $srcname ) | xargs -l | sort -u -k 2`
+        md5sums=`{ echo "$md5sums"; md5sum $srcname; } | xargs -l | sort -u -k 2`
 #      elif [ "$md5sum" ]; then
 #        is_integer $srcname $md5sum || return 1
 #      else
@@ -744,9 +758,9 @@ build_pkg()
 	eval $build_cmd 2>&1 | tee $LOG_DIR/$name.buildlog >$output
       fi
     else
-      $no_fakeroot && warn "Fakeroot disabled for this port!" \
-      || warn "Please install fakeroot as soon as possible!"
-      $PREPARE_ONLY && warn "Preparing without fakeroot is not a good idea!"
+#      $no_fakeroot && warn "Fakeroot disabled for this port!" \
+#      || warn "Please install fakeroot as soon as possible!"
+#      $PREPARE_ONLY && warn "Preparing without fakeroot is not a good idea!"
       row "Executing $script $script_opt"
       build_cmd="$build_cmd sh $sh_opt $script $script_opt"
       if [ "`whoami`" != "root" ]; then
@@ -1242,9 +1256,9 @@ init()
   log "`whoami`@`hostname`:`pwd`$ $0 $@" >/dev/null
 
   # clean up on exit
-  trap "rm -rf $TMPDIR; log \"\`date\`\" >/dev/null" EXIT
+  trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
-  case $BASH_VERSION in 3.1.*) ;; *) trap "" PIPE;; esac
+  case $BASH_VERSION in 3.1.*) ;; *) trap '' PIPE;; esac
 
   # check
 #  has_prog sed || die
