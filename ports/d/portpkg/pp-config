@@ -134,7 +134,7 @@ plugins()
   done >>$t/menu
   . $t/menu 2>$t/plugins
   sed -i "/^SYNC=/d" $RC
-  echo "SYNC=\"`cat $t/plugins`\"" >>$RC
+  echo "SYNC=\"`tr " " "\n" <$t/plugins | sort -u | tr "\n" " "`\"" >>$RC
   . $RC
 }
 
