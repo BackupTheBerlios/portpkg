@@ -427,8 +427,8 @@ ls_src "/$package.tgz$"; } | head -n 1`
   rebuild=$REBUILD
   [ -f $path/no-fakeroot ] && no_fakeroot=true #|| no_fakeroot=false
   [ -f $path/rebuild ] && rebuild=true #|| no_fakeroot=false
-  grep -sqx no-fakeroot $path/flags && no_fakeroot=true
-  grep -sqx rebuild $path/flags && rebuild=true
+  fgrep -sqx no-fakeroot $path/flags && no_fakeroot=true
+  fgrep -sqx rebuild $path/flags && rebuild=true
   grep -sq "^# FLAGS:.* no-fakeroot\( \|$\)" $script && no_fakeroot=true
   grep -sq "^# FLAGS:.* rebuild\( \|$\)" $script && rebuild=true
 
@@ -466,8 +466,8 @@ check_reqs()
   ls_slk $(ignore) | slk2name >$t/ignore
   ls_slk $(use) | slk2name >$t/use
   list=`{ \
-echo "$requires" | grep -xvf $t/ignore; \
-echo "$optional" | grep -xf $t/use; } | sort -u | grep -vx $name`
+echo "$requires" | fgrep -xvf $t/ignore; \
+echo "$optional" | fgrep -xf $t/use; } | sort -u | fgrep -vx $name`
 #  list=`{ \
 #ls_loc $(regex $requires) | grep -v $(ignore); \
 #ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u | grep -vx $name`
@@ -582,7 +582,8 @@ maintainer_mode()
   # find depdendencies, but exclude dependencies of them
   deps() { xargs ldd 2>/dev/null | sed -nr "s,.* => /(.+\.so)\..*$,\1,p"; }
   find $tmp/package-$name/ | deps | fgrep -vf $t/flist >$t/deps
-  grep -whf - $ADM_DIR/packages/* <$t/deps | ( cd /; deps ) >$t/deps_deps
+#  grep -whf - $ADM_DIR/packages/* <$t/deps | ( cd /; deps ) >$t/deps_deps
+  fgrep -whf $t/deps $ADM_DIR/packages/* | ( cd /; deps ) >$t/deps_deps
   fgrep -vxf $t/deps_deps $t/deps >$t/depfiles
 
   # find perl dependencies (modules are identified by their man pages)
@@ -592,7 +593,7 @@ maintainer_mode()
 
   # find python dependencies
   grep -e ":.*python" -e "\.py:" $t/ftypes | cut -d : -f 1 \
-| xargs grep -h "import " \
+| xargs fgrep -h "import " \
 | sed -r "s,^ *,,;s,from (.*) import .*$,\1,g;s, as .*$,,;s,\"[^\"]*\",,g;s,.*import ,,g" \
 | sort -u | while read s; do
     ( cd $ADM_DIR/packages/; grep -h "/$s\.py$" * | grep -v "/site-packages/..*/$s\.py$" )
@@ -616,7 +617,7 @@ maintainer_mode()
 
   # resolve dependent files to package names
   sed "s,^,^," $t/depfiles | ( cd $ADM_DIR/packages/; grep -lf - * ) \
-| pkg2name | grep -v "^$name$" | sort -u >$t/auto_req_raw
+| pkg2name | fgrep -vx "$name" | sort -u >$t/auto_req_raw
   debug "maintainer_mode(): auto reqs: "`cat $t/auto_req_raw`
 
   # find and strip ignore list
