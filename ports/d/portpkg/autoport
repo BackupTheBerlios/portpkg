@@ -683,7 +683,8 @@ sed -i "s,%etc%,etc,g" $script
 if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
     sel install mk_inst $script
-    check "CSC" $TMP/$srcdir_prefix/Makefile* || snip mono $script
+    check "MCS" $TMP/$srcdir_prefix/Makefile* \
+    || check "CSC" $TMP/$srcdir_prefix/Makefile* || snip mono $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
     || check "DESTDIR" $TMP/$srcdir_prefix/Makefile*; then
@@ -852,11 +853,13 @@ case $script in *.new)
   mv $script.new $script
 esac
 
-# add new package to the cache
-#echo $PRT_DIR/$group/$package >>$CACHE/loc
-#echo $script >>$CACHE/slk
-rm $CACHE/loc
-rm $CACHE/slk
+# remove old package and add the new one to the cache
+sed -ir "\,^$PRT_DIR/$group/$name(-[^-]*){3}$,d" $CACHE/loc
+sed -ir "\,^$script$,d" $CACHE/slk
+echo $PRT_DIR/$group/$package >>$CACHE/loc
+echo $script >>$CACHE/slk
+#rm $CACHE/prt
+#rm $CACHE/slk
 }
 
 # portpkg?
