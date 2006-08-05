@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
-# SOURCES: http://dl.sourceforge.net/sourceforge/rox/rox-2.4.1.tgz
-# MD5SUMS: 0d43b7fcd0325936fdf036230837f21b rox-2.4.1.tgz
+# SOURCES: http://dl.sourceforge.net/sourceforge/rox/rox-filer-2.5.tar.bz2
+# MD5SUMS: 56e6a29f2dbdf11d6f4b74a3f03ff959 rox-filer-2.5.tar.bz2
 # REQUIRES: gtk+2 libxml2 shared-mime-info x11
 
 TMP=${TMP:-/tmp}
@@ -9,7 +9,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.4.1
+VERSION=2.5
 ARCH=${ARCH:-i486}
 BUILD=1ldv
 
@@ -26,15 +26,14 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/rox-$VERSION.tgz
-cd rox-$VERSION
+tar xjvf $CWD/rox-filer-$VERSION.tar.bz2
+cd rox-filer-$VERSION
 chown -R root.root .
 
 #-config
 
 #=install
 ROXAPPDIR="/usr/lib/rox"
-
 MIMEINFODIR="/usr/share/mime/packages"
 CHOICESDIR="/etc/xdg/rox.sourceforge.net"
 
@@ -42,9 +41,6 @@ CHOICESDIR="/etc/xdg/rox.sourceforge.net"
 
 install -d "$PKG$ROXAPPDIR"
 cp -ra ROX-Filer "$PKG$ROXAPPDIR"
-( cd ROX-Filer/src
-    make clean
-)
 rm -r $PKG$ROXAPPDIR/ROX-Filer/{build,src,*.dbg}
 
 cat > "rox" << EOF
@@ -73,16 +69,17 @@ mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   README README-es \
   $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 #+doc
 cp -a \
   ROX-Filer/Help/* \
   $PKG/usr/doc/$NAME-$VERSION/
 #+doc
-find $PKG/usr/doc -type f | xargs -r chmod 644
-find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+
 #+tail
 cat > $PKG/install/doinst.sh <<EOF
 if [ -x usr/bin/update-mime-database ]; then
@@ -95,6 +92,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/rox-$VERSION
+  rm -rf $TMP/rox-filer-$VERSION
   rm -rf $PKG
 fi
