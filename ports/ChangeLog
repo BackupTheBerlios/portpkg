@@ -1,13 +1,49 @@
-2006-08-03  topf  <topf@users.berlios.de>
+2006-08-06  topf  <topf@users.berlios.de>
 
-  * open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/slack-desc:
+  * xap/acidrip/SlackBuild, xap/acidrip/footprint, xap/acidrip/md5sums, xap/acidrip/mplayer-1.0pre8.patch, xap/acidrip/requires, xap/acidrip/sources:
+  Patched crop detection and encoding progress with mplayer-1.0pre8.
+
+2006-08-05  topf  <topf@users.berlios.de>
+
+  * d/portpkg/autoport:
+  When fixing sourceforge.net URLs, set them to a default mirror, instead of
+    generating an unusable pseudo URL.
+
+  * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild:
+  Updated to 2.4.0 (sjn)
+
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild:
+  Updated to 2.4.0 (sjn)
+
+  * xap/rox-filer/ChangeLog, xap/rox-filer/SlackBuild, xap/rox-filer/footprint:
+  Upgraded to 2.5 (ldv)
+
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint:
+  Upgraded to 0.7.3 (ldv)
+
+  * l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/md5sums, l/libetpan/requires, l/libetpan/sources:
   Updated to 0.46 (sjn)
 
-  * open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/slack-desc:
-  Updated to 2.4.0 (sjn)
+  * d/portpkg/portpkg: Use fgrep where appropriate.
 
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to 2.4.0 (sjn)
+  * d/portpkg/pp-config: Sort SYNC.
+
+  * d/portpkg/autoport:
+  * Test configure also for MCS.
+  * Fix cache updatings.
+
+  * d/portpkg/portpkg:
+  ls_inst(): Ignore directories.
+  exlicit(): Sort per expression only, not in total to preserve command line
+    order.
+  maintainer_mode(): Added instructions to resolve mono dependencies.
+  build_pkg(): Warn about fakeroot before confirmation dialog. Don't complain
+    about missing fakeroot when it's fakeroot which is to be built.
+  init(): Fixed strings.
+  cache(): Minor changes.
+  general: Use {}-blocks, not ()-blocks.
+
+2006-08-03  topf  <topf@users.berlios.de>
 
 2006-08-02  topf  <topf@users.berlios.de>
 
@@ -678,10 +714,7 @@
   * gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-monitor/footprint, gnome/gnome-system-monitor/md5sums, gnome/gnome-system-monitor/requires, gnome/gnome-system-monitor/sources:
   Version bump.
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Upgraded to 2.3.1 (sjn)
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint:
   Upgraded to 2.3.1 (sjn)
 
   * l/event-execflow/SlackBuild, l/event-execflow/footprint: Version bump.
@@ -725,10 +758,10 @@
 
   * d/portpkg/portpkg: maintainer_mode(): Fixed typo.
 
-  * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/sources, open/sylpheed-claws-extra-plugins/ChangeLog, open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/slack-desc:
+  * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/sources:
   Updated to 2.3.0 (sjn)
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources:
   Updated to 2.3.0 (sjn)
 
   * d/portpkg/portpkg: check_reqs():
@@ -839,12 +872,6 @@
 
   * open/ChangeLog: Removed (should not have been here).
 
-  * open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/slack-desc:
-  Updated to 2.3.0 (sjn)
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/info:
-  Updated to 2.3.0 (sjn)
-
   * ap/mjpegtools/SlackBuild, ap/mjpegtools/footprint, ap/mjpegtools/requires, ap/mjpegtools/slack-desc, ap/mjpegtools/sources:
   Version bump. Regenerated. Added --without-libquicktime.
 
@@ -891,11 +918,6 @@
   Rewrote HTTP submit sub and added support for signing the submission with GnuPG.
 
   * GPG-KEYS: Added GPG-KEYS to collect public keys of authors.
-
-2006-06-10  topf  <topf@users.berlios.de>
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to v2.2.3 (sjn)
 
 2006-06-07  topf  <topf@users.berlios.de>
 
@@ -1049,7 +1071,7 @@
   * ap/compface/slack-desc, ap/compface/sources, ap/compface/ChangeLog, ap/compface/SlackBuild, ap/compface/footprint, ap/compface/md5sums:
   New port (sjn)
 
-  * l/libetpan/md5sums, l/libetpan/requires, l/libetpan/slack-desc, l/libetpan/sources, l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/footprint, open/libetpan/ChangeLog, open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/md5sums, open/libetpan/requires, open/libetpan/slack-desc, open/libetpan/sources:
+  * l/libetpan/md5sums, l/libetpan/requires, l/libetpan/slack-desc, l/libetpan/sources, l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/footprint:
   New port (sjn)
 
   * l/cairo/ChangeLog, l/cairo/SlackBuild, l/cairo/footprint, l/cairo/md5sums, l/cairo/requires, l/cairo/slack-desc, l/cairo/sources:
@@ -1061,19 +1083,13 @@
   * xap/sylpheed-claws-themes/ChangeLog, xap/sylpheed-claws-themes/SlackBuild, xap/sylpheed-claws-themes/doinst.sh, xap/sylpheed-claws-themes/footprint, xap/sylpheed-claws-themes/md5sums, xap/sylpheed-claws-themes/sources, xap/sylpheed-claws-themes/sylpheed-claws-themes-1.0.tar.bz2, xap/sylpheed-claws-themes/sylpheed-claws-themes-1.1.tar.bz2:
   Updated to 1.1 (sjn)
 
-  * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/slack-desc, xap/sylpheed-claws-extra-plugins/sources, open/sylpheed-claws-extra-plugins/ChangeLog, open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/footprint, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/md5sums, open/sylpheed-claws-extra-plugins/requires, open/sylpheed-claws-extra-plugins/slack-desc, open/sylpheed-claws-extra-plugins/sources:
+  * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/slack-desc, xap/sylpheed-claws-extra-plugins/sources:
   Updated to 2.2.0 (sjn)
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
   Updated to 2.2.0 (sjn)
 
   * d/portpkg/changelogs, d/portpkg/webstats: Added for administration.
-
-  * open/sylpheed-claws-extra-plugins/ChangeLog, open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/footprint, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/md5sums:
-  Updated to 2.2.0 (sjn)
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/sources:
-  Updated to 2.2.0 (sjn)
 
   * d/portpkg/export.portpkg, d/portpkg/portpkg:
   * Write footprint to $LOG_DIR/$name.footprint.
@@ -1504,15 +1520,6 @@
 
   * ap/colordiff/SlackBuild, ap/colordiff/footprint, ap/colordiff/slack-desc:
   Initial import.
-
-  * open/sylpheed-claws-extra-plugins/SlackBuild, open/sylpheed-claws-extra-plugins/footprint, open/sylpheed-claws-extra-plugins/info, open/sylpheed-claws-extra-plugins/md5sums, open/sylpheed-claws-extra-plugins/requires, open/sylpheed-claws-extra-plugins/slack-desc, open/sylpheed-claws-extra-plugins/sources:
-  New port (sjn)
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to 2.1.1 (sjn)
-
-  * open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/md5sums, open/libetpan/requires, open/libetpan/slack-desc, open/libetpan/sources:
-  New port (sjn)
 
 2006-04-25  hnaz  <hnaz@users.berlios.de>
 
@@ -4351,7 +4358,7 @@
   * xap/sylpheed-claws-themes/SlackBuild, xap/sylpheed-claws-themes/doinst.sh, xap/sylpheed-claws-themes/footprint, xap/sylpheed-claws-themes/md5sums, xap/sylpheed-claws-themes/slack-desc, xap/sylpheed-claws-themes/sources, xap/sylpheed-claws-themes/sylpheed-claws-themes-1.0.tar.bz2:
   Moved open/sylpheed-claws-themes-1.0-noarch-1sjn to xap/.
 
-  * xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums, open/sylpheed-claws/Readme, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums:
   Moved open/sylpheed-claws-1.0.4-i686-1sjn to xap/.
 
   * n/renattach/SlackBuild, n/renattach/footprint, n/renattach/md5sums, n/renattach/slack-desc, n/renattach/sources:
@@ -4391,9 +4398,6 @@
 
   * d/portpkg/portpkg: Make PORT_IS_BROKEN a symlink to its buildlog.
 
-  * open/sylpheed-claws/Readme, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-   (cronjob)
-
   * AUTHORS: *** empty log message ***
 
   * d/portpkg/portpkg:
@@ -4417,7 +4421,7 @@
   * gnome/yelp/SlackBuild, gnome/yelp/requires, gnome/yelp/slack-desc, gnome/yelp/sources:
   Version bump.
 
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/readme, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz, xap/sylpheed-claws/slack-desc, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/doinst.sh, xap/sylpheed-claws/footprint, xap/sylpheed-claws/info, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires:
+  * xap/sylpheed-claws/slack-desc, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/doinst.sh, xap/sylpheed-claws/footprint, xap/sylpheed-claws/info, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires:
   Integrated. -> xap/
 
   * l/libdnet/SlackBuild, l/libdnet/footprint, l/libdnet/info, l/libdnet/md5sums, l/libdnet/slack-desc, l/libdnet/sources:
@@ -4529,9 +4533,6 @@
   In do_export(), check if "footprint" is present not older than its SlackBuild.
 
 2005-03-21  topf  <topf@users.berlios.de>
-
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/readme, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  *** empty log message ***
 
   * d/portpkg/autoport:
   Correct $PKG/usr/share/{man,doc} before mkdir $PKG/usr/doc.
