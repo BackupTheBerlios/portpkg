@@ -1,4 +1,18 @@
+2006-08-08  topf  <topf@users.berlios.de>
+
+  * kde/psi/ChangeLog, kde/psi/SlackBuild, kde/psi/doinst.sh, kde/psi/footprint, kde/psi/slack-desc:
+  psi - the truly open messaging application (dan)
+
+  * xap/opera/md5sums, xap/opera/requires, xap/opera/sources, xap/opera/SlackBuild, xap/opera/ChangeLog:
+  Updated to 9.01, updated line opera.path.patch in SlackBuild (sjn)
+
+  * xap/opera/opera.language, xap/opera/opera.path.patch, xap/opera/sources, xap/opera/ChangeLog, xap/opera/SlackBuild, xap/opera/footprint, xap/opera/md5sums:
+  Moved to xap/.
+
 2006-08-06  topf  <topf@users.berlios.de>
+
+  * l/libffi/SlackBuild, l/libffi/footprint, l/libffi/slack-desc:
+  Added libffi-2.00-beta.
 
   * xap/acidrip/SlackBuild, xap/acidrip/footprint, xap/acidrip/md5sums, xap/acidrip/mplayer-1.0pre8.patch, xap/acidrip/requires, xap/acidrip/sources:
   Patched crop detection and encoding progress with mplayer-1.0pre8.
@@ -1028,9 +1042,6 @@
   Version bump.
 
 2006-05-17  topf  <topf@users.berlios.de>
-
-  * extra/opera/ChangeLog, extra/opera/SlackBuild, extra/opera/footprint, extra/opera/md5sums, extra/opera/opera.desktop, extra/opera/opera.language, extra/opera/requires, extra/opera/slack-desc, extra/opera/sources:
-  Upgraded to 8.51, replaced opera.path.patch file with perl command line, added LANGVERS= (sjn)
 
   * patches/links/SlackBuild, patches/links/footprint, patches/links/md5sums, patches/links/requires, patches/links/slack-desc, patches/links/sources, patches/links/ChangeLog:
   Just upgrade previos version (mbr)
