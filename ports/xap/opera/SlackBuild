@@ -3,10 +3,17 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=8.50
-BUILDVERS=20050916.5
+VERSION=8.51
+BUILDVERS=20051114.5
 ARCH=${ARCH:-i486}
-BUILD=2sjn
+BUILD=1sjn
+
+#
+## choose your language (pl, pt, see opera.language file (en included opera tarball))
+#
+LANGUAGE=
+#LANGVERS=851
+LANGVERS=850
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -15,11 +22,17 @@ rm -rf $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en
 tar xzvf $CWD/$NAME-$VERSION-$BUILDVERS-shared-qt.i386-en.tar.gz || exit 1
 cd $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en || exit 1
 chown -R root.root .
-echo y | ./install.sh --prefix=$PKG/usr || exit 1
+echo y | ./install.sh --prefix=${PKG}/usr || exit 1
 
 ( cd $PKG
-  patch -p1 < $CWD/opera.path.patch
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin 
+##
+## download
+##
+if [ ! -z $LANGUAGE ];then
+cd usr/share/opera/locale
+wget http://www.opera.com/download/lng/${LANGVERS}/ouw${LANGVERS}_${LANGUAGE}.lng
+fi
 )
 mv $PKG/usr/share/{man,doc} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
@@ -38,6 +51,10 @@ mkdir $PKG/usr/share/applications
 cat $CWD/opera.desktop >$PKG/usr/share/applications/opera.desktop
 
 cd $PKG || exit 1
+#
+## opera.path.patch
+#
+find . -type f -name '*' -exec perl -pi -e "s/\/tmp\/package-opera//" {} \;
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
