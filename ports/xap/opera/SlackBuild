@@ -1,10 +1,19 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: ftp://opera.nsc.no/pub/nsc.no/mirrors/operasoftware/linux/901/final/en/i386/shared/opera-9.01-20060728.6-shared-qt.i386-en.tar.bz2
+# MD5SUMS: ddb25c6a50d7900556edf8785797f5a7  opera-9.01-20060728.6-shared-qt.i386-en.tar.bz2
+# MD5SUMS: 2e08c3529c9d27b6fe82f4b71f2d62dc  opera-8.51-20051114.6-shared-qt.i386-en.tar.gz
+# MD5SUMS: 5e60bc787e4c80cb4c5d890dacf01c1f  opera-8.51-20051114.5-shared-qt.i386-en.tar.gz
+# MD5SUMS: a75e23eadc636dc8936499ac96ea1734  opera-8.50-20050916.5-shared-qt.i386-en.tar.gz
+# REQUIRES: cxxlibs expat lesstif libjpeg libmng libpng x11 x11-devel zlib
+# OPTIONAL: qt
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=8.51
-BUILDVERS=20051114.5
+VERSION=9.01
+BUILDVERS=20060728.6
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -12,15 +21,14 @@ BUILD=1sjn
 ## choose your language (pl, pt, see opera.language file (en included opera tarball))
 #
 LANGUAGE=
-#LANGVERS=851
-LANGVERS=850
+LANGVERS=900
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
-rm -rf $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en
-tar xzvf $CWD/$NAME-$VERSION-$BUILDVERS-shared-qt.i386-en.tar.gz || exit 1
-cd $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en || exit 1
+rm -rf $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en-400
+tar xjvf $CWD/$NAME-$VERSION-$BUILDVERS-shared-qt.i386-en.tar.bz2 || exit 1
+cd $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en-400 || exit 1
 chown -R root.root .
 echo y | ./install.sh --prefix=${PKG}/usr || exit 1
 
@@ -54,7 +62,7 @@ cd $PKG || exit 1
 #
 ## opera.path.patch
 #
-find . -type f -name '*' -exec perl -pi -e "s/\/tmp\/package-opera//" {} \;
+find . -type f -name '*' -exec perl -pi -e "s/$PKG//" {} \;
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
