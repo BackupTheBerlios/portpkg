@@ -1,8 +1,8 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://dl.sourceforge.net/scim/scim-1.4.4.tar.gz
-# MD5SUMS: 6805403b2151e89f17f5686e7ebcd515  scim-1.4.4.tar.gz
-# REQUIRES: glib2 gtk+2 pango
+# MD5SUMS: 6805403b2151e89f17f5686e7ebcd515 scim-1.4.4.tar.gz
+# REQUIRES: desktop-file-utils gcc-g++ glib2 gtk+2
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -11,7 +11,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.4.4
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
