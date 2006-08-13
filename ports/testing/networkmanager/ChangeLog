@@ -1,3 +1,8 @@
+2006-08-13  topf  <topf@users.berlios.de>
+
+  * SlackBuild, doinst.sh, footprint, slack-desc:
+  Removed unintentionally added CC and CXX variables. Fixed broken pids in rc.networkmanager. Added 'rc.networkmanager stop' to this shiny new rc.local_shutdown script to avoid all these messages.
+
 2006-07-30  topf  <topf@users.berlios.de>
 
   * SlackBuild, doinst.sh, footprint, slack-desc: Added NetworkManager-0.6.4.
