@@ -254,18 +254,22 @@ regex() # pkgex_list >regex_list
       @)   # anything
 	   echo "-e .";;
       /*/) # arbitrary regex
-	   echo "-e `echo ${arg%/} | cut -c 2-`";;
+#	   echo "-e `echo ${arg%/} | cut -c 2-`";;
+	   echo "-e ${arg%/}" | cut -c 1-3,5-;;
       .)   # local directory (recursively)
 #	   echo -n " -e \(^\|/\)`pwd | sed "s,^$PRT_DIR/,,"`\(\([./]SlackBuild\|\|-[^-]*-[^-]*-[^-]*\)$\|/\)";;
-	   echo "-Ee ^(`pwd`|`pwd | any2gany`)(/|(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$)";;
+#	   echo "-Ee ^(`pwd`|`pwd | any2gany`)(/|(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$)";;
+	   echo "-Ee ^(`pwd`|`pwd | any2gany`)/";;
       */)  # groups
            echo "-Ee (^|/)$arg";;
-      */*) # explicit expression (group/name and group/package)
-           echo "-Ee (^|/)${arg%/*}/(.*/)?${arg##*/}(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
+#      */*) # explicit expression (group/name and group/package)
+#           echo "-Ee (^|/)${arg%/*}/(.*/)?${arg##*/}(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
       *)   # (g)names and (g)packages
-           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
+#           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
+           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3})$";;
     esac
-  done | sed -r "s,\+,\\\+,g"
+  # now protect pluses and replace slashes with '/(.*/)?' (except `pwd` expressions)
+  done | sed -r "s,\+,\\\+,g;\,`pwd`,!s,/([^])]),/(.*/)?\1,g"
 }
 
 # resolve groups/ to names
@@ -463,43 +467,52 @@ check_reqs()
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
   $TEST_REQS && debug "check_reqs(): testing only"
 #  debug "check_reqs(): $name requires: "$requires
-  ls_slk $(ignore) | slk2name >$t/ignore
-  ls_slk $(use) | slk2name >$t/use
-  list=`{ \
-echo "$requires" | fgrep -xvf $t/ignore; \
-echo "$optional" | fgrep -xf $t/use; } | sort -u | fgrep -vx $name`
+#  ls_slk $(ignore) | slk2name >$t/ignore
+#  ls_slk $(use) | slk2name >$t/use
+#  list=`{ \
+#echo "$requires" | fgrep -xvf $t/ignore; \
+#echo "$optional" | fgrep -xf $t/use; } | sort -u | fgrep -vx $name`
 #  list=`{ \
 #ls_loc $(regex $requires) | grep -v $(ignore); \
 #ls_loc $(regex $optional) | grep $(use); } | any2base | pkg2name | sort -u | grep -vx $name`
-  debug "check_reqs(): $name requires: "$list
+  debug "check_reqs(): $name: dependencies:" $requires $optional
 #  for req in $requires $uses; do
-  for req in $list; do
-    debug "check_reqs(): testing $req"
+#  for req in $list; do
+  for req in $requires $optional; do
+    debug "check_reqs(): $name: testing $req"
     inst_pkg=`ls_inst $(regex $req) | default | any2base`
     avail_pkg=`$TEST_REQS || { \
-ls_slk $(regex $req) | grep -v $(exclude) | slk2loc; \
-echo $inst_pkg; } | default | any2base`
+ls_slk $(regex $req) | slk2loc; \
+echo $inst_pkg; } | default`
+#ls_slk $(regex $req) | grep -v $(exclude) | slk2loc; \
+#echo $inst_pkg; } | default | any2base`
 #ls_loc $(regex $req) | grep -v $(exclude); \
 
     # is any version installed?
-    if [ "$inst_pkg" ] && $LAZY_CHECKS; then
-      debug "check_reqs(): $inst_pkg is installed"
-      # is this sufficient?
-      $LAZY_CHECKS && continue
+    if [ "$inst_pkg" ] && ( $LAZY_CHECKS || $TEST_REQS ); then
+      debug "check_reqs(): $name: installed $inst_pkg is sufficient"
+#      # is this sufficient?
+#      $LAZY_CHECKS && continue
+    # is it blacklistet?
+    elif echo -e "$req\n$avail_pkg" | grep -sq $(ignore); then
+      debug "check_reqs(): $name: $req is blacklisted"
+    # is it optional but not listed in the use scope?
+    elif echo "$optional" | fgrep -sqx "$req" && ! echo "$avail_pkg" | grep -sq ^$ $(use); then
+      debug "check_reqs(): $name: $req is optional but not selected"
     # anyway, is there an available port?
     elif [ "$avail_pkg" ]; then
-      debug "check_reqs(): $req available as $avail_pkg"
+      debug "check_reqs(): $name: $req available as ${avail_pkg##*/}"
       # is it up-to-date?
-#      ls_inst -q "/$avail_pkg$" && continue
-      [ "$inst_pkg" = "$avail_pkg" ] && continue
+      ls_inst -q "/${avail_pkg##*/}$" && continue
+#      [ "$inst_pkg" = "$avail_pkg" ] && continue
       $DRY_RUN && ! [ "${prev:-}" ] && stanza "Preparing dependencies of $package:"
       prev=$name
 #      ( $DRY_RUN && level_one=false
       ( $DRY_RUN && stanza() { :; }
 #      get_info $avail_pkg || exit 1
       get_info $req || exit 1
-      add_pkg || die "$avail_pkg is broken! Stopping $prev." ) || return 1
-      $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency $avail_pkg"
+      add_pkg || die "${avail_pkg##*/} is broken! Stopping $prev." ) || return 1
+      $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency ${avail_pkg##*/}"
     elif ! [ "$inst_pkg" ]; then
       error "Cannot find required package $req! Stopping."
       return 1
@@ -830,7 +843,7 @@ check_pkg()
 {
   local t=`mktemp -d`
   local s
-  debug "check_pkg() $@"
+  debug "check_pkg(): $package"
   $DRY_RUN && return 0
   [ -f $pkg_file ] || return 0
 
@@ -930,6 +943,7 @@ add_pkg()
   fi
 
   # update install list cache
+  sed -ir "\,^$ADM_DIR/packages/$name(-[^-]*){3}$,d" $CACHE/inst
   echo $ADM_DIR/packages/$package >>$CACHE/inst
 
 #  $DRY_RUN && $level_one && echo -e "PACKAGE DESCRIPTION:\n$description"
@@ -1072,7 +1086,11 @@ do_list() # [pkgex-list] >glist
     "") ls_loc;;
     *)  # grep arguments (in order to see virtual groups we list them here also)
         virt=`ls_virt $(regex "$@") | any2base`
-        ls_loc `regex "$@" $virt` | sort_ver;;
+        if $USE_ALPHA_CODE; then
+	  ls_slk `regex "$@" $virt` | slk2loc | sort_ver
+	else
+	  ls_loc `regex "$@" $virt` | sort_ver
+	fi;;
   esac | any2gany
 }
 
@@ -1085,9 +1103,9 @@ do_sync()
 
   for importer in $SYNC; do
     if [ -f $PRT_DIR/plugins/$importer ]; then
-      ( . $PRT_DIR/plugins/$importer )
+      ( . $PRT_DIR/plugins/$importer "$@" )
     elif [ -f $CFG_DIR/plugins/$importer ]; then
-      ( . $CFG_DIR/plugins/$importer )
+      ( . $CFG_DIR/plugins/$importer "$@" )
     else
       error "$importer not found!"
       continue
@@ -1107,12 +1125,19 @@ do_upgrade() # [pkgex-list]
   stanza "Targets: "$diff_list | fmt -t
   pause "Continue? (ctrl-c to abort)"
 
+  # make sure we use only selected packages
+  ls_slk "$@" >$CACHE/slk.new
+  ls_loc "$@" >$CACHE/loc.new
+  mv $CACHE/slk.new $CACHE/slk
+  mv $CACHE/loc.new $CACHE/loc
+
   # download files first
   if ! $DOWNLOAD_ONLY; then
     ( DOWNLOAD_ONLY=true
     do_add $diff_list
     >$temp/finished )
   fi
+
   do_add $diff_list
 }
 
@@ -1163,15 +1188,18 @@ EOF
 parse_options()
 {
   local shorts longs args start_args action
+
   action=do_add
   shorts="diflsuvhebogyqxzarpmnw:t:"
   longs="diff,info,find,list,sync,upgrade,version,help,reinstall,\
 rebuild,download,verbose,dryrun,noreqs,debug,lazy,remaintain,prepare,\
 maintain,export,noask,ignore:,use:"
+
   args=`getopt -qo $shorts -l $longs -- "$@"`
   [ "$?" = "0" ] || die "Bad Arguments! Try: portpkg --help"
   start_args="$@"
   eval set -- "$args"
+
   while [ "$1" ]; do
     case $1 in
       -d|--diff)        action=do_diff;;
