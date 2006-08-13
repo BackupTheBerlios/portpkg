@@ -18,6 +18,14 @@ if [ -x /etc/rc.d/rc.networkmanager ]; then
 fi
 EOF
 fi
+if ! grep -sq "/etc/rc.d/rc.networkmanager stop" etc/rc.d/rc.local_shutdown; then
+  cat <<EOF >>etc/rc.d/rc.local_shutdown
+
+if [ -x /etc/rc.d/rc.networkmanager ]; then
+  /etc/rc.d/rc.networkmanager stop
+fi
+EOF
+fi
 if [ -x usr/bin/update-desktop-database ]; then
   usr/bin/update-desktop-database >/dev/null 2>&1
 fi

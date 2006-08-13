@@ -2,8 +2,8 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.6/NetworkManager-0.6.4.tar.bz2
 # MD5SUMS: 7d22b8df56d65d7c966cb28e0772d305 NetworkManager-0.6.4.tar.bz2
-# REQUIRES: dbus dhcdbd dhcp desktop-file-utils gnome-panel hal iproute2 libgcrypt libnl libnotify pkgconfig wpa_supplicant
-# OPTIONAL: libglade libgnomeui
+# REQUIRES: dbus desktop-file-utils dhcdbd dhcp gnome-panel hal iproute2 libgcrypt libnl libnotify pkgconfig wpa_supplicant
+# OPTIONAL: glitz libglade libgnomeui
 #
 # Make sure you use the modfied dhcp found in testing/!
 
@@ -14,7 +14,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.6.4
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -32,8 +32,6 @@ cd $TMP
 tar xjvf $CWD/NetworkManager-$VERSION.tar.bz2
 cd NetworkManager-$VERSION
 chown -R root.root .
-CC=apgcc \
-CXX=apg++ \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -51,9 +49,11 @@ make install DESTDIR=$PKG
 ( cd $PKG/etc/rc.d
   mv rc.networkmanager rc.networkmanager.new
 )
+sed -i "s,local pidlist=.*,local pidlist=\`pgrep -x NetworkManager\`," \
+  $PKG/etc/rc.d/rc.networkmanager.new
 sed -i "s,<policy at_console=\"true\">,<policy group=\"users\">," \
   $PKG/etc/dbus-1/system.d/*
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -62,7 +62,7 @@ rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -70,7 +70,7 @@ find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-( cd $PKG; find etc/ -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
