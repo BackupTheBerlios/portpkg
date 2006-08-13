@@ -1,7 +1,8 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://tango-project.org/releases/icon-naming-utils-0.7.4.tar.gz
+# SOURCES: http://tango-project.org/releases/icon-naming-utils-0.8.0.tar.gz
 # MD5SUMS: db6a1dbe508a3062601de8c9f7d05011 icon-naming-utils-0.7.4.tar.gz
+# MD5SUMS: 4cdb3ad449abe8b55e4559b85d0ac4e0 icon-naming-utils-0.8.0.tar.gz
 # REQUIRES: perl pkgconfig xml-simple
 
 TMP=${TMP:-/tmp}
@@ -9,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.7.4
+VERSION=0.8.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -47,7 +48,7 @@ rm -fv $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
