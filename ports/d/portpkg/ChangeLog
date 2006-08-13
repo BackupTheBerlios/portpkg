@@ -1,3 +1,277 @@
+2006-08-13  topf  <topf@users.berlios.de>
+
+  * sync.portpkg: Force regeneration of ChangeLog if argument is 'force'.
+
+  * autoport:
+  * Use ls_slk() to find existing ports.
+  * Fixed docs detection.
+  * Intentionally placed an unimposing '2>/dev/null'.
+
+  * portpkg:
+  * regex(): Reworked.
+  * check_reqs(): Reworked: Go through _all_ dependencies known and decide
+    for each one what to do.
+  * check_pkg(): Changed debug message.
+  * add_pkg(): Remove replaced packages from inst cache.
+  * do_list(): Use ls_slk() as a base for USE_ALPHA_CODE.
+  * do_sync(): Pass arguments to plugins.
+  * do_upgrade(): Fix selection scope into loc/slk cache.
+
+2006-08-05  topf  <topf@users.berlios.de>
+
+  * autoport:
+  When fixing sourceforge.net URLs, set them to a default mirror, instead of
+    generating an unusable pseudo URL.
+
+  * portpkg: Use fgrep where appropriate.
+
+  * pp-config: Sort SYNC.
+
+  * autoport:
+  * Test configure also for MCS.
+  * Fix cache updatings.
+
+  * portpkg:
+  ls_inst(): Ignore directories.
+  exlicit(): Sort per expression only, not in total to preserve command line
+    order.
+  maintainer_mode(): Added instructions to resolve mono dependencies.
+  build_pkg(): Warn about fakeroot before confirmation dialog. Don't complain
+    about missing fakeroot when it's fakeroot which is to be built.
+  init(): Fixed strings.
+  cache(): Minor changes.
+  general: Use {}-blocks, not ()-blocks.
+
+2006-07-31  topf  <topf@users.berlios.de>
+
+  * autoport: Fix src cache after downloads.
+
+2006-07-30  topf  <topf@users.berlios.de>
+
+  * sync.slackware-bin: Minor speed improvements.
+
+  * portpkg.1:
+  Updated to new meanings of --lazy, --reinstall, --use and --ignore.
+
+  * portpkg:
+  * Improved finding PRT_ROOT.
+  * slk2gname(): Fixed expression.
+  * regex(): As we use now extended regex, we need to protect the +'s.
+  * fix_ports_root(): restrict slk cache to `pwd`.
+  * get_info(): Use ls_slk() to find the port, this will break
+    name-ver-arch-build expressions, it's only for USE_ALPHA_CODE.
+  * get_info(): \$products should fall back to \$package.
+  * check_reqs(): Use ls_slk() rather than ls_loc(); minor changes.
+  * maintainer_mode(): Disabled looking for pkg-config as a dependency.
+  * build_pkg(): Don't skip updating CVS sources; fixed logging.
+
+  * autoport: Use -f with gtk-update-icon-cache.
+
+2006-07-28  topf  <topf@users.berlios.de>
+
+  * ignore:
+  Removed gpm from list as it's not known as a package that overlaps with others, and also freetype and fontconfig as they are now separate packages at least in -current.
+
+  * sync.zz.cleanup: Adapt new ls_pkg() output.
+
+  * portpkg:
+  * ignore(), use(): Don't cache regexs.
+  * ls_pkg(): Keep .tgz.
+  * sort_ver(): Prefer patches/, not local/.
+  * regex(): Use -E and extended regexs.
+  * regex(): Allow '/regexp/'.
+  * ls_diff(): REINSTALL disables ls_inst() for available packages now.
+  * ls_diff(): Don't comlain about non-existent *.check files.
+  * get_info(): Reduced code.
+  * parse_options(): --use also removes expressions from ignore and vice versa.
+
+2006-07-26  topf  <topf@users.berlios.de>
+
+  * portpkg: add_pkg(): Don't use ls_inst -F.
+
+  * portpkg:
+  Replaced a bunch of basenames and dirnames to ${##*/} and ${%/*} instructions.
+
+  * portpkg, sync.zz.cleanup:
+  * Added ls_src().
+  * get(): Return when DRY_RUN is set.
+  * check_reqs(): Request full package name of available package.
+
+  * portpkg:
+  * Fixed to use absolute paths in ls_virt() now.
+  * explicit(): Remove duplicate entries.
+
+  * checkpkg, portpkg: Fixed to use absolute paths in ls_inst() now.
+
+  * autoport, checkpkg, portpkg, sync.portpkg, sync.zz.cleanup:
+  * Added any2gany(), replaced loc2gpkg.
+  * Fixed to use absolute paths in ls_pkg()'s output.
+
+  * portpkg:
+  * ls_diff(), do_diff() Moved code from do_diff() to ls_diff(), so do_upgrade() profits.
+  * maintainer_mode(): Removed 'which scrollkeeper', small fixes.
+  * do_upgrade(): Support pkgex to diff from.
+
+2006-07-25  topf  <topf@users.berlios.de>
+
+  * ignore:
+  Disabled all those various packages that should be revised by maintainers.
+
+  * virtual:
+  Updated gnome-platform/, gnome-desktop/ and gnome-bindings/ groups.
+
+  * portpkg:
+  * Added ADD_CMD, ROOT_BUILD_CMD, NOBODY_BUILD_CMD and WGET_CMD.
+  * Removed INSTALLPKG AND UPGRADEPKG.
+  * Removed level_one.
+  * build_pkg(): Added build_cmd and reduced code excess.
+  * regex(): Fixed . expression again.
+  * add_pkg(): Removed add and replaced su with ADD_CMD.
+  * init(): Use log >/dev/null instead of debug here.
+
+  * portpkg: regex(): Fix regex for ..
+
+  * portpkg: do_diff(): Skip equal versions when LAZY_CHECKS is set.
+
+  * portpkg:
+  add_pkg(): Check if $package is installed *before* it is added to $temp/started.
+
+  * portpkg:
+  cache(): Fix bug when $filter quits before $action finished and $file is incomplete.
+
+  * portpkg:
+  * Added slk2name().
+  * Use new regex() and slk2name() to reduce some complex pipes.
+  * check_reqs(): Don't ignore dependencies that are not in ls_loc().
+
+  * portpkg: regex(): Expressions match also output of ls_slk().
+
+  * portpkg:
+  * regex(): Use '@' for anything, '0' or empty for nothing.
+  * ls_diff(), do_diff(): Compare all ports or only on base of the arguments.
+
+  * portpkg:
+  * sort_ver(): Prefer local/ only when LAZY_CHECKS is not set.
+  * do_list(): Use sort_ver() if we have arguments.
+
+2006-07-20  topf  <topf@users.berlios.de>
+
+  * portpkg: maintainer_mode(): Find also update-mime-database dependency.
+
+  * autoport:
+  * Check also for SHARED_MIME_INFO.
+  * Clean cache files completely after port creation.
+  * Fixed SlackBuild skeleton to remove any perllocal.pod files
+  * Remove /usr/share/mime/* files, they are updated by update-mime-database.
+
+2006-07-19  topf  <topf@users.berlios.de>
+
+  * portpkg, sync.zz.cleanup: Don't complain about missing PKG_DIR or SRC_DIR.
+
+2006-07-18  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  get_info(): Moving code to seperate function fix_ports_root().
+  fix_ports_root(): Separated from get_info().
+  build_pkg(): Ask for confirmation before starting to build.
+  do_list(): Use fix_ports_root().
+  parse_options(): Force REBUILD=true when DOWNLOAD_ONLY=true.
+
+2006-07-17  topf  <topf@users.berlios.de>
+
+  * portpkg: build_pkg(): Don't complain about ovwerwriting old buildlog.
+
+  * portpkg: maintainer_mode(): Find misc dependencies.
+
+  * portpkg: Fixed string arguments for cache(). Minor speed-ups.
+
+2006-07-14  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * add_pkg(): Fixed a bug that avoided circular dependencies to be tracked.
+  * check_reqs(): Prevent a common mistake: exclude $name from $requires.
+  * do_upgrade(): Fixed bug that avoided actual upgrade after files are downloaded.
+  * check_reqs(): Don't complain about optional dependencies to be installed when $DOWNLOAD_ONLY is set.
+
+2006-07-13  topf  <topf@users.berlios.de>
+
+  * portpkg.1: Updates.
+
+  * sync.portpkg:
+  * Clean up *.asc files.
+  * Do ARCH=i486 a little later to work correctly.
+
+  * autoport:
+  * Use update_header().
+  * Support source format 'dir'.
+
+  * portpkg:
+  ls_slk(): Use -follow also for USE_NEW_CODE.
+  sort_ver(): Sort local/ also on top.
+  ls_diff():
+    * Include installed versions only for LAZY_CHECKS
+    * Fix sorting of local/.
+  check_reqs(): Fix sorting of local/.
+  maintainer_mode(): Split out function update_header().
+  parse_options():
+    * Recursively set REMAINTAIN=PREPARE_ONLY=REBUILD=REINSTALL=true.
+    * Changed warning about LAZY_CHECKS.
+
+2006-07-09  topf  <topf@users.berlios.de>
+
+  * README.QuickStart: Renamed to INSTALL.
+
+2006-07-08  topf  <topf@users.berlios.de>
+
+  * virtual: cxxlibs, cvs are not essential; removed from bootstrap/.
+
+  * sync.portpkg: Reset ARCH to print 'i486' for the recent-list.
+
+  * portpkg:
+  check_reqs(): $prev is unitialised.
+  build_pkg(): Say 'Moving *.tgz...' to clarify it's the package file.
+
+2006-07-04  topf  <topf@users.berlios.de>
+
+  * portpkg: explicit(): Use any2base() for implicit expressions.
+
+  * autoport: Set MONO_SHARED_DIR to $TMP, not to /tmp.
+
+2006-07-01  topf  <topf@users.berlios.de>
+
+  * sync.portpkg:
+  * Test mtime of ChangeLog more precise.
+  * Prevent webstats from being updated if CVS has version conflicts.
+
+  * sync.zz.cleanup:
+  * Sort packages found in $SRC_DIR into $PKG_DIR.
+  * Minor changes to the message output.
+
+  * portpkg: init(): reset LC variables.
+
+2006-06-29  topf  <topf@users.berlios.de>
+
+  * sync.update-open: Merged with sync.portpkg.
+
+  * autoport: Convert '-' in version strings to '_'.
+
+2006-06-27  topf  <topf@users.berlios.de>
+
+  * autoport: Fix version sorting with -d.
+
+  * portpkg: Fixed another minor issues.
+
+  * portpkg, sync.portpkg: Fixed minor issues.
+
+  * mirrors: Use slackware.at as default mirror.
+
+  * INSTALL, README: Issue with ~/ports/.ports_root is fixed.
+
+  * changelogs, sync.portpkg, webstats:
+  Merged changelogs and webstats administration scripts into sync.portpkg.
+
+  * autoport: Fixed testing for *.new files.
+
 2006-06-26  topf  <topf@users.berlios.de>
 
   * prepare: Removed (obsolete).
@@ -870,6 +1144,8 @@
 
 2005-04-27  topf  <topf@users.berlios.de>
 
+  * ChangeLog: Updated. (cronjob)
+
 2005-04-23  topf  <topf@users.berlios.de>
 
   * autoport: Fixed new old gconf installation.
@@ -1023,6 +1299,8 @@
 2005-03-20  topf  <topf@users.berlios.de>
 
   * autoport: Corrected "update-mime-database usr/share/mime".
+
+  * SlackBuild, footprint: Updated d/portpkg to 0.36-noarch-2tom.
 
   * portpkg: Adjusted messages in maintainer mode.
 
@@ -1180,6 +1458,8 @@
 
 2004-12-01  topf  <topf@users.berlios.de>
 
+  * SlackBuild, autoport, portpkg: Updated d/portpkg to 0.30-noarch-2tom.
+
 2004-11-30  topf  <topf@users.berlios.de>
 
   * SlackBuild, autoport, portpkg, pseudo, requires, slack-desc, sources:
@@ -1210,6 +1490,8 @@
   * SlackBuild, portpkg: Added options --noreqs and --dryrun.
 
 2004-11-17  topf  <topf@users.berlios.de>
+
+  * checkpkg: Updated to gnome-python-2.6.1
 
 2004-11-15  topf  <topf@users.berlios.de>
 
