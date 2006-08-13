@@ -327,7 +327,8 @@ s=`pause "Arch [$arch]:"`
 arch=${s:-$arch}
 # build: check if we need to increase it
 n=1
-gpkg=`ls_loc | any2gany | grep "^$group/$name-$version-$arch-[0-9]*$MY_TAG$" | head -n 1`
+#gpkg=`ls_loc | any2gany | grep "^$group/$name-$version-$arch-[0-9]*$MY_TAG$" | head -n 1`
+gpkg=`ls_slk $(regex $name) | slk2loc | any2gany | grep -x "$group/$name-$version-$arch-[0-9]*$MY_TAG" | head -n 1`
 if [ $gpkg ]; then
   $INTERACTIVE && stanza "There is already $gpkg."
   # find it
@@ -602,11 +603,11 @@ fi
 # docs
 if grep -sq "#:doc" $script; then
   docs=`egrep "^ABOUT$|^ABOUT-NLS$|^ANNOUNCE$|^AUTHORS$|^CONFIGURATION$|^CHANGES$\
-  |^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
-  |^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
-  |^LICENSE$|^LSM$|^MANIFEST$|^NEWS$|README|Readme|^SITES$|RELEASE|^RELNOTES$\
-  |^THANKS$|^TIPS$|^TODO$|^VERSION$|^CONFIGURATION|^GPL$|^License$|^Doc$|^doc$\
-  |^Docs|^docs|^Roadmap$|^ROADMAP$|BUGS|^index.ht|INDEX" $t/footprint \
+|^COPYING$|^COPYRIGHT$|^CREDITS$|^ChangeLog$|^Changelog$|^CHANGELOG$\
+|^CONTRIBUTORS$|FAQ|^FEATURES$|^FILES$|^HACKING$|^History$|^HISTORY$|^INSTALL\
+|^LICENSE$|^LSM$|^MANIFEST$|^NEWS$|README|Readme|^SITES$|RELEASE|^RELNOTES$\
+|^THANKS$|^TIPS$|^TODO$|^VERSION$|^CONFIGURATION|^GPL$|^License$|^Doc$|^doc$\
+|^Docs|^docs|^Roadmap$|^ROADMAP$|BUGS|^index.ht|INDEX" $t/footprint \
   | grep -v / | sort -u | xargs`
   if [ "$docs" ]; then
     row "Checking docs... $docs."
@@ -854,7 +855,7 @@ case $script in *.new)
 esac
 
 # remove old package and add the new one to the cache
-sed -ir "\,^$PRT_DIR/$group/$name(-[^-]*){3}$,d" $CACHE/loc
+sed -ir "\,^$PRT_DIR/$group/$name(-[^-]*){3}$,d" $CACHE/loc 2>/dev/null
 sed -ir "\,^$script$,d" $CACHE/slk
 echo $PRT_DIR/$group/$package >>$CACHE/loc
 echo $script >>$CACHE/slk
