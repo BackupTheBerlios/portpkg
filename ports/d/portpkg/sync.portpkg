@@ -117,7 +117,7 @@ if [ "$uploads" ]; then
 fi
 
 # ChangeLog
-if [ "`find $TREE/ChangeLog -mtime -2`" ]; then
+if ! [ "$1" = "force" ] && [ "`find $TREE/ChangeLog -mtime -2`" ]; then
   debug "sync.portpkg: ChangeLog is newer than 48 hours, exiting"
   exit 0
 fi
