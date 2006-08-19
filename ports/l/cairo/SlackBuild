@@ -1,9 +1,17 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://cairographics.org/releases/cairo-1.2.2.tar.gz
+# MD5SUMS: 2460487b1257a5583c889b1b9d2033ec  cairo-1.2.2.tar.gz
+# MD5SUMS: 9002b0e69b3f94831a22d3f2a7735ce2  cairo-1.0.4.tar.gz
+# MD5SUMS: d0b7111a14f90ec3afa777ec40c44984  cairo-1.0.2.tar.gz
+# MD5SUMS: f0ff35c91983b7bf226154e68b280be3  cairo-1.0.0.tar.gz
+# REQUIRES: expat libpng x11 x11-devel zlib
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.0.4
+VERSION=1.2.2
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
