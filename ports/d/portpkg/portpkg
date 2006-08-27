@@ -39,6 +39,7 @@ CFLAGS=""
 MY_TAG=`whoami`
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 EXPORT="export.portpkg"
+REPORT="report.portpkg"
 
 TMP=/tmp
 ADM_DIR=/var/log
@@ -104,9 +105,11 @@ ls_inst() { cache $CACHE/inst 'find $ADM_DIR/packages/ -type f' "$@"; }
 #ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
 ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null' "$@"; }
 if $USE_ALPHA_CODE; then
-ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
+#ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
+ls_slk()  { cache $CACHE/slk 'find $PRT_DIR/ -follow -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
 else
-ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
+#ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
+ls_slk()  { cache $CACHE/slk 'find $(repos) -follow -name "*SlackBuild" 2>/dev/null' "$@"; }
 fi
 ls_loc()  { cache $CACHE/loc 'ls_slk | slk2loc' "$@"; }
 ls_src()  { cache $CACHE/src 'find $SRC_DIR/ -maxdepth 1 2>/dev/null' "$@"; }
@@ -241,6 +244,25 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
   done
 
   error "Download failed!"
+}
+
+# run a plugin either from PRT_DIR/plugins or CFG_DIR/plugins
+plugin() # plugin [args]
+{
+  local plugin=${1:-}
+  shift
+  if ! [ "$plugin" ]; then
+    # not set, skip quietly
+    return 0
+  elif [ -f $PRT_DIR/plugins/$plugin ]; then
+    ( . $PRT_DIR/plugins/$plugin "$@" )
+  elif [ -f $CFG_DIR/plugins/$plugin ]; then
+    ( . $CFG_DIR/plugins/$plugin "$@" )
+  else
+    # not found exit with error
+    error "Plugin $plugin not found!"
+    return 1
+  fi
 }
 
 # generate a regular expression for grep from a pkgex-list
@@ -795,6 +817,8 @@ build_pkg()
     if ! [ -f $tmp/$package.tgz ]; then
       $VERBOSE || tail $LOG_DIR/$name.buildlog
       error "Compilation failed (see $LOG_DIR/$name.buildlog)!"
+      # query the reporting plugin
+      plugin $REPORT $LOG_DIR/$name.buildlog
       $maintain && ln -sf $LOG_DIR/$name.buildlog PORT_IS_BROKEN
       return 1
     else
@@ -1017,13 +1041,14 @@ do_export()
 
   stanza "Exporting:"
   
-  if  [ -f $PRT_DIR/plugins/$EXPORT ]; then
-    ( . $PRT_DIR/plugins/$EXPORT )
-  elif  [ -f $CFG_DIR/plugins/$EXPORT ]; then
-    ( . $CFG_DIR/plugins/$EXPORT )
-  else
-    die "$EXPORT not found!"
-  fi
+#  if  [ -f $PRT_DIR/plugins/$EXPORT ]; then
+#    ( . $PRT_DIR/plugins/$EXPORT )
+#  elif  [ -f $CFG_DIR/plugins/$EXPORT ]; then
+#    ( . $CFG_DIR/plugins/$EXPORT )
+#  else
+#    die "$EXPORT not found!"
+#  fi
+  plugin $EXPORT "$@"
 }
 
 # find ports by pattern
@@ -1102,14 +1127,15 @@ do_sync()
   stanza "Syncing your data base:"
 
   for importer in $SYNC; do
-    if [ -f $PRT_DIR/plugins/$importer ]; then
-      ( . $PRT_DIR/plugins/$importer "$@" )
-    elif [ -f $CFG_DIR/plugins/$importer ]; then
-      ( . $CFG_DIR/plugins/$importer "$@" )
-    else
-      error "$importer not found!"
-      continue
-    fi
+#    if [ -f $PRT_DIR/plugins/$importer ]; then
+#      ( . $PRT_DIR/plugins/$importer "$@" )
+#    elif [ -f $CFG_DIR/plugins/$importer ]; then
+#      ( . $CFG_DIR/plugins/$importer "$@" )
+#    else
+#      error "$importer not found!"
+#      continue
+#    fi
+    plugin $importer "$@"
   done
 }
 
