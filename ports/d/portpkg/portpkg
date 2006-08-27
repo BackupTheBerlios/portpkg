@@ -88,7 +88,7 @@ rebuild=$REBUILD
 tmp=$TMP
 
 # internal variables
-arch_filter=""
+#arch_filter=""
 output=/dev/null
 #level_one=true
 temp=`mktemp -d`
@@ -144,7 +144,8 @@ any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$ADM_DIR/[^/]*)/,,"; }
 slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
+  | sed "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
+#  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 # TODO: slk2loc should strip ^$PRT_DIR/
 
@@ -1347,10 +1348,13 @@ init()
     *\ *) die "PREFER must be one simple group expression ('patches/')!";;
   esac
   case $ARCH in
-    i?86) arch_filter="-\(i.86\|noarch\)-[^-]*$";;
+#    i?86) arch_filter="-\(i.86\|noarch\)-[^-]*$";;
+    i?86) EXCLUDE="/-x86_64-[^-]*$/ /-s390-[^-]*$/ $EXCLUDE";;
+    x86_64) EXCLUDE="/-i.86-[^-]*$/ /-s390-[^-]*$/ $EXCLUDE";;
+    s390) EXCLUDE="/-i.86-[^-]*$/ /-x86_64-[^-]*$/ $EXCLUDE";;
     *-*)  die "ARCH value not allowed: $ARCH";;
     "")   die "ARCH is empty";;
-    *)    arch_filter="-\($ARCH\|noarch\)-[^-]*$";;
+#    *)    arch_filter="-\($ARCH\|noarch\)-[^-]*$";;
   esac
   [ "`whoami`" = "root" ] && warn "You are root! Please run portpkg as unprivileged user!"
 
