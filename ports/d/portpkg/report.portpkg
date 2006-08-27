@@ -1,0 +1,38 @@
+#!/bin/sh
+#BLURB="Report bugs to portpkg.berlios.de"
+
+DEST=http://portpkg.berlios.de/upload.php
+
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+has_args "$@" || die
+has_prog curl || die
+
+# hm, use at least 7.12.2 (Slackware 10.1)
+if has_prog pkg-config; then
+  pkg-config --atleast-version=7.12.2 libcurl || die "You need curl >= 7.12.2"
+else
+  case `curl -V | head -n 1 | cut -d " " -f 2` in
+    7.12.0|7.12.1)   die "You need curl >= 7.12.2";;
+    7.1[23456789].*) ;;
+    *)               die "You need curl >= 7.12.2";;
+  esac
+fi
+
+case `pause "Do you want to send $1 to portpkg.berlios.de? (y for yes)"` in
+  y|Y) :;;
+  *) exit 0;;
+esac
+
+row "Uploading $1"
+
+# stop here when $DRY_RUN
+$DRY_RUN && exit 0
+
+# upload $1 to $DEST
+curl -F filetoupload=@$1 $DEST >/dev/null 2>&1 || error "Upload failed!"
