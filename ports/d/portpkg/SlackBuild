@@ -5,7 +5,7 @@
 
 VERSION=0.38.1
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 TMP=${TMP:-bla}
 
@@ -27,6 +27,7 @@ install -m 644 $CWD/ignore $PKG/etc/portpkg/ignore.new
 install -m 644 $CWD/use $PKG/etc/portpkg/use.new
 install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
+install -m 644 $CWD/report.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/virtual $PKG/etc/portpkg/virtual.new
 
 # man page
