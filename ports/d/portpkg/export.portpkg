@@ -142,11 +142,15 @@ for arg in `explicit "$@"`; do
     has_prog curl || die
 
     # hm, use at least 7.12.2 (Slackware 10.1)
+    if has_prog pkg-config; then
+      pkg-config --atleast-version=7.12.2 libcurl || die "You need curl >= 7.12.2"
+    else
     case `curl -V | head -n 1 | cut -d " " -f 2` in
       7.12.0|7.12.1)   die "You need curl >= 7.12.2";;
       7.1[23456789].*) ;;
       *)               die "You need curl >= 7.12.2";;
     esac
+    fi
 
     [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
     [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
