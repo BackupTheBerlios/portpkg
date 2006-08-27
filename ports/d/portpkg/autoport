@@ -278,7 +278,7 @@ SlackBuild script. If autoport doesn't work as expected, please mail at:
 #[ "$sources" ] || die "No source url specified! Try: autoport --help"
 #[ "$group" ] || group=local
 
-pause "* First step: Collect information. Continue? (ctrl-c to quit)"
+pause "First step: Collect information. Continue? (ctrl-c to quit)"
 
 # sources
 s=`pause "Source file URL [$sources]:"`
@@ -408,7 +408,7 @@ if [ -f $path/stop.autoport ]; then
   die
 fi
 if [ -d $path ]; then
-  pause "* This port ($path) already exists. Really go on? (ctrl-c to quit)"
+  pause "This port ($path) already exists. Really go on? (ctrl-c to quit)"
   # quit if not -f in non-interactive mode
   if ! $INTERACTIVE && ! $force && \
   [ "`grep "^VERSION=" $script | cut -d = -f 2-`" = "$version" ]; then
@@ -867,7 +867,7 @@ echo $script >>$CACHE/slk
 run_portpkg()
 {
 if $build_pkg; then
-  pause "* Next step: Call portpkg. Continue? (ctrl-c to quit)"
+  pause "Next step: Call portpkg. Continue? (ctrl-c to quit)"
   # ok, if this port is new, it has no dependencies, if it's rewritten,
   # let's assume, the user wants to rebuild only this port
   cd $PRT_DIR/$group/$name
