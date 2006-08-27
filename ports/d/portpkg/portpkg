@@ -42,6 +42,7 @@ MY_EMAIL=$MY_TAG@$HOSTNAME
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 EXPORT="export.portpkg"
 REPORT="report.portpkg"
+PREFER="patches/"
 
 TMP=/tmp
 ADM_DIR=/var/log
@@ -141,7 +142,7 @@ warn()   { log "WARNING: $@" >&2; }
 error()  { [ "$*" ] && log "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && log "$@" >&2 || log "$@" >/dev/null; }
-pause()  { $INTERACTIVE || return 0; log -n "\n$@ " >&2; local s; read s; log -n $s; }
+pause()  { $INTERACTIVE || return 0; log -n "\n* $@ " >&2; local s; read s; log -n $s; }
 
 # checks
 has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
@@ -157,11 +158,11 @@ sort_ver() # <pkg_list >pkg_list
   # separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
   # (but *only* within version-arch-build parts!)
   sed -r "\
-`$LAZY_CHECKS || echo '\,(^|/)patches/,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;'`\
+`$LAZY_CHECKS || echo '\,(^|/)$PREFER,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;'`\
 s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 :split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
 | sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
-| sed -r "s, ,,g;\,(^|/)patches/,s,-999_,-,"
+| sed -r "s, ,,g;\,(^|/)$PREFER,s,-999_,-,"
 }
 
 if $USE_ALPHA_CODE; then
@@ -392,13 +393,15 @@ get_info() # pkgex
   # find port, take the first if more than one available
   fix_ports_root "$@"
 if $USE_ALPHA_CODE; then
-  loc=`{ \
-ls_slk $(regex $1) | grep -v $(exclude) | slk2loc | default
-ls_slk $(regex $1) | slk2loc | default; } | head -n 1`
+  loc=`\
+ls_slk $(regex $1) | grep -v $(exclude) | slk2loc | sort_ver
+ls_slk $(regex $1) | slk2loc | sort_ver`
+  loc=`echo "$loc" | head -n 1`
 else
-  loc=`{ \
+  loc=`\
 ls_loc $(regex $1) | grep -v $(exclude) | default
-ls_loc $(regex $1) | default; } | head -n 1`
+ls_loc $(regex $1) | default`
+  loc=`echo "$loc" | head -n 1`
 fi
 #;;
 #  esac
@@ -518,7 +521,7 @@ echo $inst_pkg; } | default`
 #      # is this sufficient?
 #      $LAZY_CHECKS && continue
     # is it blacklistet?
-    elif echo -e "$req\n$avail_pkg" | grep -sq $(ignore); then
+    elif echo -e "$req\n$avail_pkg" | grep -sq $(exclude); then
       debug "check_reqs(): $name: $req is blacklisted"
     # is it optional but not listed in the use scope?
     elif echo "$optional" | fgrep -sqx "$req" && ! echo "$avail_pkg" | grep -sq ^$ $(use); then
@@ -637,9 +640,11 @@ maintainer_mode()
   done | sort -u >>$t/depfiles
 
   # find mono dependencies
-  grep -e ":.*MS Windows" -e "\.exe:" $t/ftypes | cut -d : -f 1 \
+  if which mono-find-requires >/dev/null 2>&1; then
+    grep -e ":.*MS Windows" -e "\.exe:" $t/ftypes | cut -d : -f 1 \
 | mono-find-requires \
 | sed -nr "s,^mono\((.*)\) = (.*)$,.*/lib/mono/.*/\1/\2__,p" >>$t/depfiles
+  fi
 
   # fix misc dependencies
   { grep -sq "^etc/gconf/" $t/flist && which gconftool-2
@@ -1319,6 +1324,9 @@ init()
 
   # check
 #  has_prog sed || die
+  case "$PREFER" in
+    *\ *) die "PREFER must be one simple group expression ('patches/')!";;
+  esac
   case $ARCH in
     i?86) arch_filter="-\(i.86\|noarch\)-[^-]*$";;
     *-*)  die "ARCH value not allowed: $ARCH";;
