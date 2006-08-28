@@ -1,9 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://ftp.gnome.org/pub/GNOME/sources/epiphany/2.14/epiphany-2.14.2.1.tar.bz2
-# MD5SUMS: 872ef8d5e95cdc359f93b5ded501d98d  epiphany-2.14.2.1.tar.bz2
-# REQUIRES: gnome-desktop libglade libgnomeprintui libxslt
-# OPTIONAL: mozilla seamonkey
+# MD5SUMS: 872ef8d5e95cdc359f93b5ded501d98d epiphany-2.14.2.1.tar.bz2
+# REQUIRES: gnome-desktop iso-codes libglade libgnomeprintui libxslt
+# OPTIONAL: dbus desktop-file-utils gcc-g++ gconf mozilla pango python scrollkeeper seamonkey sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
