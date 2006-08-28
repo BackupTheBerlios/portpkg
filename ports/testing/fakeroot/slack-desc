@@ -1,0 +1,11 @@
+fakeroot: fakeroot (Gives a fake root environment)
+fakeroot:
+fakeroot: This package is intended to enable something like:
+fakeroot: 
+fakeroot: dpkg-buildpackage -rfakeroot
+fakeroot: 
+fakeroot: i.e. to remove the need to become root for a package build. This
+fakeroot: is done by setting LD_PRELOAD to libfakeroot.so, which provides
+fakeroot: wrappers around getuid, chown, chmod, mknod, stat, and so on,
+fakeroot: thereby creating a fake root environment.
+fakeroot:
