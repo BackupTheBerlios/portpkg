@@ -1,34 +1,40 @@
-VERSION=0.9.3
-ARCH=noarch
-BUILD=2tom
+#!/bin/sh
+# SOURCES: http://www.cosc.canterbury.ac.nz/~greg/python/Pyrex/Pyrex-0.9.4.1.tar.gz
+# MD5SUMS: 425f0543c634bc7a86fe4fce02e0e882 Pyrex-0.9.4.1.tar.gz
+# REQUIRES: python
 
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
+PKG=$TMP/package-$NAME
+
+VERSION=0.9.4.1
+ARCH=noarch
+BUILD=1tom
+
 rm -rf $PKG
 mkdir -p $PKG/usr
-
-cd /tmp || exit 1
+cd $TMP
 tar xzvf $CWD/Pyrex-$VERSION.tar.gz
-cd Pyrex-$VERSION || exit 1
+cd Pyrex-$VERSION
 chown -R root.root .
-python setup.py install --root=$PKG
-chown -R root.bin $PKG{,/usr}/{,s}bin
-find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-gzip -9 $PKG/usr/man/man?/*
+python setup.py install --root=$PKG 
+rm -fv $PKG/usr/info/dir
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
-  $PKG/usr/doc/$NAME-$VERSION
+  INSTALL.txt README.txt \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Pyrex-$VERSION
+  rm -rf $PKG
+fi

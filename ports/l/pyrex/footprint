@@ -1,115 +1,105 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root           0 install/doinst.sh
--rw-r--r-- root/root           0 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin          116 usr/bin/pyrexc
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/pyrex-0.9.3/
-drwxr-xr-x root/root           0 usr/doc/pyrex-0.9.3/Doc/
--rw-r--r-- root/root        8810 usr/doc/pyrex-0.9.3/Doc/About.html
--rw-r--r-- root/root        4125 usr/doc/pyrex-0.9.3/Doc/FAQ.html
--rw-r--r-- root/root       23671 usr/doc/pyrex-0.9.3/Doc/extension_types.html
--rw-r--r-- root/root        2994 usr/doc/pyrex-0.9.3/Doc/index.html
--rw-r--r-- root/root       36421 usr/doc/pyrex-0.9.3/Doc/overview.html
--rw-r--r-- root/root        4061 usr/doc/pyrex-0.9.3/Doc/primes.c
--rw-r--r-- root/root       10648 usr/doc/pyrex-0.9.3/Doc/sharing.html
--rw-r--r-- root/root       18649 usr/doc/pyrex-0.9.3/Doc/special_methods.html
--rw-r--r-- root/root         541 usr/doc/pyrex-0.9.3/INSTALL.txt
--rw-r--r-- root/root         909 usr/doc/pyrex-0.9.3/README.txt
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/python2.4/
-drwxr-xr-x root/root           0 usr/lib/python2.4/site-packages/
-drwxr-xr-x root/root           0 usr/lib/python2.4/site-packages/Pyrex/
-drwxr-xr-x root/root           0 usr/lib/python2.4/site-packages/Pyrex/Compiler/
--rw-r--r-- root/root        1965 usr/lib/python2.4/site-packages/Pyrex/Compiler/CmdLine.py
--rw-r--r-- root/root        2293 usr/lib/python2.4/site-packages/Pyrex/Compiler/CmdLine.pyc
--rw-r--r-- root/root        8664 usr/lib/python2.4/site-packages/Pyrex/Compiler/Code.py
--rw-r--r-- root/root       10253 usr/lib/python2.4/site-packages/Pyrex/Compiler/Code.pyc
--rw-r--r-- root/root          65 usr/lib/python2.4/site-packages/Pyrex/Compiler/DebugFlags.py
--rw-r--r-- root/root         247 usr/lib/python2.4/site-packages/Pyrex/Compiler/DebugFlags.pyc
--rw-r--r-- root/root        1593 usr/lib/python2.4/site-packages/Pyrex/Compiler/Errors.py
--rw-r--r-- root/root        1953 usr/lib/python2.4/site-packages/Pyrex/Compiler/Errors.pyc
--rw-r--r-- root/root      106553 usr/lib/python2.4/site-packages/Pyrex/Compiler/ExprNodes.py
--rw-r--r-- root/root       80393 usr/lib/python2.4/site-packages/Pyrex/Compiler/ExprNodes.pyc
--rw-r--r-- root/root       18341 usr/lib/python2.4/site-packages/Pyrex/Compiler/Lexicon.pickle
--rw-r--r-- root/root        4449 usr/lib/python2.4/site-packages/Pyrex/Compiler/Lexicon.py
--rw-r--r-- root/root        3614 usr/lib/python2.4/site-packages/Pyrex/Compiler/Lexicon.pyc
--rw-r--r-- root/root       10977 usr/lib/python2.4/site-packages/Pyrex/Compiler/Main.py
--rw-r--r-- root/root        8877 usr/lib/python2.4/site-packages/Pyrex/Compiler/Main.pyc
--rw-r--r-- root/root        1861 usr/lib/python2.4/site-packages/Pyrex/Compiler/Naming.py
--rw-r--r-- root/root        1980 usr/lib/python2.4/site-packages/Pyrex/Compiler/Naming.pyc
--rw-r--r-- root/root      144801 usr/lib/python2.4/site-packages/Pyrex/Compiler/Nodes.py
--rw-r--r-- root/root      107309 usr/lib/python2.4/site-packages/Pyrex/Compiler/Nodes.pyc
--rw-r--r-- root/root         106 usr/lib/python2.4/site-packages/Pyrex/Compiler/Options.py
--rw-r--r-- root/root         171 usr/lib/python2.4/site-packages/Pyrex/Compiler/Options.pyc
--rw-r--r-- root/root       54497 usr/lib/python2.4/site-packages/Pyrex/Compiler/Parsing.py
--rw-r--r-- root/root       50520 usr/lib/python2.4/site-packages/Pyrex/Compiler/Parsing.pyc
--rw-r--r-- root/root       24306 usr/lib/python2.4/site-packages/Pyrex/Compiler/PyrexTypes.py
--rw-r--r-- root/root       21693 usr/lib/python2.4/site-packages/Pyrex/Compiler/PyrexTypes.pyc
--rw-r--r-- root/root       10222 usr/lib/python2.4/site-packages/Pyrex/Compiler/Scanning.py
--rw-r--r-- root/root       10182 usr/lib/python2.4/site-packages/Pyrex/Compiler/Scanning.pyc
--rw-r--r-- root/root       43114 usr/lib/python2.4/site-packages/Pyrex/Compiler/Symtab.py
--rw-r--r-- root/root       28882 usr/lib/python2.4/site-packages/Pyrex/Compiler/Symtab.pyc
--rw-r--r-- root/root       22402 usr/lib/python2.4/site-packages/Pyrex/Compiler/TypeSlots.py
--rw-r--r-- root/root       14920 usr/lib/python2.4/site-packages/Pyrex/Compiler/TypeSlots.pyc
--rw-r--r-- root/root          18 usr/lib/python2.4/site-packages/Pyrex/Compiler/Version.py
--rw-r--r-- root/root         171 usr/lib/python2.4/site-packages/Pyrex/Compiler/Version.pyc
--rw-r--r-- root/root           0 usr/lib/python2.4/site-packages/Pyrex/Compiler/__init__.py
--rw-r--r-- root/root         139 usr/lib/python2.4/site-packages/Pyrex/Compiler/__init__.pyc
--rw-r--r-- root/root         540 usr/lib/python2.4/site-packages/Pyrex/Debugging.py
--rw-r--r-- root/root         740 usr/lib/python2.4/site-packages/Pyrex/Debugging.pyc
-drwxr-xr-x root/root           0 usr/lib/python2.4/site-packages/Pyrex/Distutils/
--rw-r--r-- root/root         337 usr/lib/python2.4/site-packages/Pyrex/Distutils/__init__.py
--rw-r--r-- root/root         191 usr/lib/python2.4/site-packages/Pyrex/Distutils/__init__.pyc
--rw-r--r-- root/root        2823 usr/lib/python2.4/site-packages/Pyrex/Distutils/build_ext.py
--rw-r--r-- root/root        2780 usr/lib/python2.4/site-packages/Pyrex/Distutils/build_ext.pyc
-drwxr-xr-x root/root           0 usr/lib/python2.4/site-packages/Pyrex/Mac/
--rw-r--r-- root/root        1797 usr/lib/python2.4/site-packages/Pyrex/Mac/DarwinSystem.py
--rw-r--r-- root/root        2071 usr/lib/python2.4/site-packages/Pyrex/Mac/DarwinSystem.pyc
--rw-r--r-- root/root       28293 usr/lib/python2.4/site-packages/Pyrex/Mac/Finder_Std_Suite.py
--rw-r--r-- root/root       25529 usr/lib/python2.4/site-packages/Pyrex/Mac/Finder_Std_Suite.pyc
--rw-r--r-- root/root        1210 usr/lib/python2.4/site-packages/Pyrex/Mac/MPW_Misc_Suite.py
--rw-r--r-- root/root        1477 usr/lib/python2.4/site-packages/Pyrex/Mac/MPW_Misc_Suite.pyc
--rw-r--r-- root/root        3841 usr/lib/python2.4/site-packages/Pyrex/Mac/MacSystem.py
--rw-r--r-- root/root        3810 usr/lib/python2.4/site-packages/Pyrex/Mac/MacSystem.pyc
--rw-r--r-- root/root        1071 usr/lib/python2.4/site-packages/Pyrex/Mac/MacUtils.py
--rw-r--r-- root/root         804 usr/lib/python2.4/site-packages/Pyrex/Mac/MacUtils.pyc
--rw-r--r-- root/root        1030 usr/lib/python2.4/site-packages/Pyrex/Mac/PS_Misc_Suite.py
--rw-r--r-- root/root        1300 usr/lib/python2.4/site-packages/Pyrex/Mac/PS_Misc_Suite.pyc
--rw-r--r-- root/root        2424 usr/lib/python2.4/site-packages/Pyrex/Mac/PyServerMain.py
--rw-r--r-- root/root        2280 usr/lib/python2.4/site-packages/Pyrex/Mac/PyServerMain.pyc
--rw-r--r-- root/root        1755 usr/lib/python2.4/site-packages/Pyrex/Mac/TS_Misc_Suite.py
--rw-r--r-- root/root        1722 usr/lib/python2.4/site-packages/Pyrex/Mac/TS_Misc_Suite.pyc
--rw-r--r-- root/root           0 usr/lib/python2.4/site-packages/Pyrex/Mac/__init__.py
--rw-r--r-- root/root         134 usr/lib/python2.4/site-packages/Pyrex/Mac/__init__.pyc
-drwxr-xr-x root/root           0 usr/lib/python2.4/site-packages/Pyrex/Plex/
--rw-r--r-- root/root        2348 usr/lib/python2.4/site-packages/Pyrex/Plex/Actions.py
--rw-r--r-- root/root        4010 usr/lib/python2.4/site-packages/Pyrex/Plex/Actions.pyc
--rw-r--r-- root/root        5515 usr/lib/python2.4/site-packages/Pyrex/Plex/DFA.py
--rw-r--r-- root/root        4779 usr/lib/python2.4/site-packages/Pyrex/Plex/DFA.pyc
--rw-r--r-- root/root        1147 usr/lib/python2.4/site-packages/Pyrex/Plex/Errors.py
--rw-r--r-- root/root        2180 usr/lib/python2.4/site-packages/Pyrex/Plex/Errors.pyc
--rw-r--r-- root/root        6217 usr/lib/python2.4/site-packages/Pyrex/Plex/Lexicons.py
--rw-r--r-- root/root        6337 usr/lib/python2.4/site-packages/Pyrex/Plex/Lexicons.pyc
--rw-r--r-- root/root        9692 usr/lib/python2.4/site-packages/Pyrex/Plex/Machines.py
--rw-r--r-- root/root        8842 usr/lib/python2.4/site-packages/Pyrex/Plex/Machines.pyc
--rw-r--r-- root/root       16114 usr/lib/python2.4/site-packages/Pyrex/Plex/Regexps.py
--rw-r--r-- root/root       16796 usr/lib/python2.4/site-packages/Pyrex/Plex/Regexps.pyc
--rw-r--r-- root/root       11656 usr/lib/python2.4/site-packages/Pyrex/Plex/Scanners.py
--rw-r--r-- root/root        7816 usr/lib/python2.4/site-packages/Pyrex/Plex/Scanners.pyc
--rw-r--r-- root/root         403 usr/lib/python2.4/site-packages/Pyrex/Plex/Timing.py
--rw-r--r-- root/root         804 usr/lib/python2.4/site-packages/Pyrex/Plex/Timing.pyc
--rw-r--r-- root/root        3508 usr/lib/python2.4/site-packages/Pyrex/Plex/Traditional.py
--rw-r--r-- root/root        4783 usr/lib/python2.4/site-packages/Pyrex/Plex/Traditional.pyc
--rw-r--r-- root/root        6303 usr/lib/python2.4/site-packages/Pyrex/Plex/Transitions.py
--rw-r--r-- root/root        6899 usr/lib/python2.4/site-packages/Pyrex/Plex/Transitions.pyc
--rw-r--r-- root/root        1240 usr/lib/python2.4/site-packages/Pyrex/Plex/__init__.py
--rw-r--r-- root/root        1768 usr/lib/python2.4/site-packages/Pyrex/Plex/__init__.pyc
--rw-r--r-- root/root         342 usr/lib/python2.4/site-packages/Pyrex/Plex/test_tm.py
--rw-r--r-- root/root         743 usr/lib/python2.4/site-packages/Pyrex/Plex/test_tm.pyc
--rw-r--r-- root/root         386 usr/lib/python2.4/site-packages/Pyrex/Utils.py
--rw-r--r-- root/root         665 usr/lib/python2.4/site-packages/Pyrex/Utils.pyc
--rw-r--r-- root/root           0 usr/lib/python2.4/site-packages/Pyrex/__init__.py
--rw-r--r-- root/root         130 usr/lib/python2.4/site-packages/Pyrex/__init__.pyc
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/bin/
+-rwxr-xr-x  root/root  usr/bin/pyrexc
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/pyrex-0.9.4.1/
+-rw-r--r--  root/root  usr/doc/pyrex-0.9.4.1/INSTALL.txt
+-rw-r--r--  root/root  usr/doc/pyrex-0.9.4.1/README.txt
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/python2.4/
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/Pyrex/
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/CmdLine.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/CmdLine.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Code.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Code.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/DebugFlags.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/DebugFlags.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Errors.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Errors.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/ExprNodes.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/ExprNodes.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Lexicon.pickle
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Lexicon.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Lexicon.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Main.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Main.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Naming.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Naming.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Nodes.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Nodes.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Options.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Options.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Parsing.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Parsing.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/PyrexTypes.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/PyrexTypes.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Scanning.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Scanning.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Symtab.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Symtab.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/TypeSlots.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/TypeSlots.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Version.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/Version.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Compiler/__init__.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Debugging.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Debugging.pyc
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/Pyrex/Distutils/
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Distutils/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Distutils/__init__.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Distutils/build_ext.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Distutils/build_ext.pyc
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/DarwinSystem.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/DarwinSystem.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/Finder_Std_Suite.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/Finder_Std_Suite.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/MPW_Misc_Suite.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/MPW_Misc_Suite.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/MacSystem.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/MacSystem.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/MacUtils.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/MacUtils.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/PS_Misc_Suite.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/PS_Misc_Suite.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/PyServerMain.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/PyServerMain.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/TS_Misc_Suite.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/TS_Misc_Suite.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Mac/__init__.pyc
+drwxr-xr-x  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Actions.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Actions.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/DFA.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/DFA.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Errors.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Errors.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Lexicons.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Lexicons.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Machines.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Machines.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Regexps.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Regexps.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Scanners.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Scanners.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Timing.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Timing.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Traditional.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Traditional.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Transitions.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/Transitions.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/__init__.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/test_tm.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Plex/test_tm.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Utils.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/Utils.pyc
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/__init__.py
+-rw-r--r--  root/root  usr/lib/python2.4/site-packages/Pyrex/__init__.pyc
