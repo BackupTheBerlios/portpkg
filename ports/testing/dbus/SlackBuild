@@ -3,7 +3,7 @@
 # SOURCES: http://dbus.freedesktop.org/releases/dbus-0.62.tar.gz
 # MD5SUMS: ba7692f63d0e9f1ef06703dff56cb650 dbus-0.62.tar.gz
 # REQUIRES: libxml2 pkgconfig x11
-# OPTIONAL: cxxlibs gcc-g++ glib2 gtk+2 gtk-sharp mono python
+# OPTIONAL: cxxlibs gcc-g++ glib2 gtk+2 gtk-sharp mono pyrex python
 # FLAGS: no-fakeroot
 
 TMP=${TMP:-/tmp}
@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.62
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=4tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -43,7 +43,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --`pkg-config gtk+-2.0 && echo "enable" || echo "disable"`-gtk \
   --`which mcs >/dev/null && echo "enable" || echo "disable"`-mono \
   --disable-mono-docs \
-  --`which python >/dev/null && echo "enable" || echo "disable"`-python \
+  --`which pyrexc >/dev/null && echo "enable" || echo "disable"`-python \
   --disable-static \
   --disable-qt \
   --disable-tests \
