@@ -1,9 +1,10 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://ftp.gnome.org/pub/gnome/sources/epiphany-extensions/2.14/epiphany-extensions-2.14.1.1.tar.bz2
-# MD5SUMS: 1b8ec450167010b25bba48295b5808cf epiphany-extensions-2.14.1.1.tar.bz2
-# REQUIRES: epiphany linuxdoc-tools pcre
-# OPTIONAL: gcc-g++ scrollkeeper
+# MD5SUMS: 3e807a83f068e41ce34c3c653a3353b6 epiphany-extensions-2.14.1.1.tar.bz2
+# REQUIRES: epiphany pcre
+# OPTIONAL: deskbar-applet gcc-g++ linuxdoc-tools scrollkeeper
+## MD5SUMS: 1b8ec450167010b25bba48295b5808cf epiphany-extensions-2.14.1.1.tar.bz2
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
