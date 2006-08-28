@@ -1,3 +1,11 @@
+#!/bin/sh
+# MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.2.10.tar.gz
+# MD5SUMS: cf18e2fc54f406324623a570fc4e6c20 fakeroot_1.2.10.tar.gz
+# MD5SUMS: bf177f1e2d71a1e6c11782106e157bef fakeroot_1.5.5.tar.gz
+# MD5SUMS: 02a410fade33f08d2556fdb60edaaf62 fakeroot_1.5.8.tar.gz
+# REQUIRES: glibc
 # fakeroot
 #
 # Fri Sep 16 2005: Johannes Weiner
@@ -8,9 +16,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.5.8
+VERSION=1.2.10
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
