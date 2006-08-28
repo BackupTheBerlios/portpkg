@@ -540,7 +540,7 @@ echo $inst_pkg; } | default`
     elif echo -e "$req\n$avail_pkg" | grep -sq $(exclude); then
       debug "check_reqs(): $name: $req is blacklisted"
     # is it optional but not listed in the use scope?
-    elif echo "$optional" | fgrep -sqx "$req" && ! echo "$avail_pkg" | grep -sq ^$ $(use); then
+    elif echo "$optional" | fgrep -sqx "$req" && ! echo "${avail_pkg:-0}" | grep -sq $(use); then
       debug "check_reqs(): $name: $req is optional but not selected"
     # anyway, is there an available port?
     elif [ "$avail_pkg" ]; then
