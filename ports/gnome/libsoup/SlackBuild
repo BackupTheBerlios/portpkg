@@ -2,8 +2,8 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://ftp.gnome.org/pub/GNOME/sources/libsoup/2.2/libsoup-2.2.95.1.tar.bz2
 # MD5SUMS: 60963fc61299baaa88072297ca7f23c6 libsoup-2.2.95.1.tar.bz2
-# REQUIRES: glib2 libxml2 linuxdoc-tools pkgconfig
-# OPTIONAL: gnutls libgcrypt libgpg-error
+# REQUIRES: glib2 libxml2 pkgconfig
+# OPTIONAL: gnutls libgcrypt libgpg-error linuxdoc-tools sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
