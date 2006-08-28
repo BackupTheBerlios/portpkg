@@ -2,8 +2,8 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: ftp://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.14/gnome-vfs-2.14.2.tar.bz2
 # MD5SUMS: b657e31974d6981adf9b2c4db981f62c gnome-vfs-2.14.2.tar.bz2
-# REQUIRES: bzip2 gconf libbonobo linuxdoc-tools libxml2 openssl
-# OPTIONAL: avahi dbus gamin krb5
+# REQUIRES: bzip2 gconf gnome-mime-data libbonobo libxml2 openssl
+# OPTIONAL: avahi dbus gamin krb5 linuxdoc-tools sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
