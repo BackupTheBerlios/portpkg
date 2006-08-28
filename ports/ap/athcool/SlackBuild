@@ -1,3 +1,10 @@
+#!/bin/sh
+# MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://members.jcom.home.ne.jp/jacobi/linux/files/athcool-0.3.11.tar.gz
+# MD5SUMS: cc860594ea740acb5efc380e411ca05e athcool-0.3.10.tar.gz
+# MD5SUMS: 4f550f9aaaa68a01d1e8ae31491e5406 athcool-0.3.11.tar.gz
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -5,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.3.11
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -34,6 +41,7 @@ find $PKG/usr/doc -type d -exec chmod 755 {} \;
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
