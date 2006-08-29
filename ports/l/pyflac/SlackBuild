@@ -1,40 +1,37 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.sacredchao.net/~piman/software/pyflac-0.0.4.tar.gz
+# MD5SUMS: 70b03c45ac0884d0832983212672cb10 pyflac-0.0.3.tar.gz
+# MD5SUMS: 521bd01bf737030381d5c8aa7de62733 pyflac-0.0.4.tar.gz
+# REQUIRES: flac python swig
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.0.3
+VERSION=0.0.4
 ARCH=noarch
-BUILD=2tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
+BUILD=1tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/pyflac-$VERSION.tar.gz
+cd pyflac-$VERSION
 chown -R root.root .
-python setup.py build install --root=$PKG
-rm -rfv $PKG/usr/info/dir
-find $PKG/usr/share/mime/ -empty -exec rm -v {} \; || true
-chown -R root.bin $PKG/{usr/X11R6/bin,{,usr/}{,s}bin} || true
+# we use the Makefile (which requires swig) to build
+make
+python setup.py install --root=$PKG
+rm -fv $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-gzip -9 $PKG/usr/{info,man/{,*/}man?}/* || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  COPYING README \
+  COPYING MANIFEST README \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
@@ -42,6 +39,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/pyflac-$VERSION
   rm -rf $PKG
 fi
