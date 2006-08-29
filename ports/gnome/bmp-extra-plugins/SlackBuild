@@ -1,3 +1,11 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://wrzask.pl/files/bmp-extra-plugins-0.2.2.tar.bz2
+# MD5SUMS: 612ce39533900610fcd9840284a88012 bmp-extra-plugins-0.2.2.tar.bz2
+# REQUIRES: bmp curl libmusicbrainz libvorbis x11
+## REQUIRES: atk bmp curl cxxlibs expat glib2 glibc gtk+2 libmusicbrainz libogg libvorbis openssl pango x11 x11-devel zlib
+## OPTIONAL: arts
+
 VERSION=0.2.2
 ARCH=${ARCH:-i486}
 BUILD=1tom
