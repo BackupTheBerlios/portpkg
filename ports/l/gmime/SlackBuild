@@ -1,15 +1,16 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://dl.sourceforge.net/gmime/sources/v2.1/gmime-2.1.19.tar.gz
-# MD5SUMS: 81475ea1a2074a3c402e31651ea357df  gmime-2.1.19.tar.gz
+# SOURCES: http://spruce.sf.net/gmime/sources/v2.2/gmime-2.2.3.tar.gz
+# MD5SUMS: 0c48ece8b65955db8e7d89c171de974b gmime-2.2.3.tar.gz
 # REQUIRES: glib2
+# OPTIONAL: mono sgml-tools zlib
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.1.19
+VERSION=2.2.3
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -26,8 +27,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/gmime-$VERSION.tar.gz
+cd gmime-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -38,9 +39,11 @@ CXXFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --disable-static \
   $ARCH-slackware-linux
+MONO_SHARED_DIR=$TMP \
 make
+MONO_SHARED_DIR=$TMP \
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -49,7 +52,7 @@ rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -61,6 +64,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/gmime-$VERSION
   rm -rf $PKG
 fi
