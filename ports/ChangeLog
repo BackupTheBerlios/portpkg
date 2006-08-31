@@ -1,4 +1,31 @@
+2006-08-31  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  Fixed initialisation of exclude-variables, moved into init().
+
+2006-08-29  topf  <topf@users.berlios.de>
+
+  * l/libmpcdec/SlackBuild, l/libmpcdec/footprint, l/libmpcdec/md5sums, l/libmpcdec/sources:
+  Upgraded to libmpcdec-1.2.2. Fixed URL.
+
+  * l/pyflac/SlackBuild, l/pyflac/footprint, l/pyflac/md5sums, l/pyflac/requires, l/pyflac/sources:
+  Upgraded to pyflac-0.0.4. Fixed compilation. Added swig to dependencies.
+
+  * patches/librsvg/SlackBuild, patches/librsvg/doinst.sh, patches/librsvg/footprint, patches/librsvg/md5sums, patches/librsvg/requires, patches/librsvg/sources:
+  Upgraded to librsvg-2.14.4. Added doinst.sh and gdk-pixbuf-query-loaders update.
+
+  * gnome/bmp-extra-plugins/SlackBuild, gnome/bmp-extra-plugins/footprint, gnome/bmp-extra-plugins/optional, gnome/bmp-extra-plugins/requires, gnome/bmp-extra-plugins/sources:
+  Fixed URL. Renewed script.
+
+  * l/gmime/SlackBuild, l/gmime/footprint: Upgraded to gmime-2.2.3. Fixed URL.
+
+  * gnome/gnome-doc-utils/footprint, gnome/gnome-doc-utils/md5sums, gnome/gnome-doc-utils/requires, gnome/gnome-doc-utils/sources, gnome/gnome-doc-utils/SlackBuild:
+  Upgraded to gnome-doc-utils-0.7.2.
+
 2006-08-28  topf  <topf@users.berlios.de>
+
+  * pasture/gst-plugins/ChangeLog, pasture/gst-plugins/SlackBuild, pasture/gst-plugins/doinst.sh, pasture/gst-plugins/footprint, pasture/gst-plugins/md5sums, pasture/gst-plugins/requires, pasture/gst-plugins/slack-desc, pasture/gst-plugins/sources, gnome/gst-plugins/footprint, gnome/gst-plugins/md5sums, gnome/gst-plugins/requires, gnome/gst-plugins/slack-desc, gnome/gst-plugins/sources, gnome/gst-plugins/ChangeLog, gnome/gst-plugins/SlackBuild, gnome/gst-plugins/doinst.sh:
+  Moved to pasture/.
 
   * d/portpkg/sync.portpkg: Fixed uninitialised arg $1.
 
@@ -5961,6 +5988,12 @@
   * gnome/gst-plugins/SlackBuild, gnome/gst-plugins/readme.autoport:
   Updated gnome/gst-plugins to 0.8.6-i486-2tom.
 
+  * gnome/gstreamer/readme.autoport:
+  Updated gnome/gstreamer to 0.8.7-i486-2tom.
+
+  * pasture/gst-plugins/slack-desc, pasture/gst-plugins/sources, pasture/gst-plugins/SlackBuild, pasture/gst-plugins/doinst.sh.gz, pasture/gst-plugins/gst-plugins.build:
+  Moved to gnome/.
+
   * gnome/gstreamer/readme.autoport, gnome/gstreamer/setup.07.get-register.gz, gnome/gstreamer/SlackBuild:
   Updated gnome/gstreamer to 0.8.7-i486-2tom.
 
@@ -6237,7 +6270,7 @@
 
 2004-12-08  topf  <topf@users.berlios.de>
 
-  * n/httpup/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvdial/SlackBuild, n/wvstreams/SlackBuild, pasture/db41/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/gnome-volume-manager/SlackBuild, testing/gtk-webcore/SlackBuild, testing/hal/SlackBuild, testing/libeina/SlackBuild, testing/mplayer-gtk2/SlackBuild, testing/xfmedia/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/freedoom/SlackBuild, xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/gtk-server/SlackBuild, xap/gtklp/SlackBuild, xap/icon-slicer/SlackBuild, xap/kino/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mbox/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/redhat-artwork/SlackBuild, xap/straw/SlackBuild, xap/tagtool/SlackBuild, xap/video-dvdrip/SlackBuild, xap/xdaf/SlackBuild, xap/xmbmon/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, gnome/gthumb/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/leafpad/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libgail-gnome/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libgtop/SlackBuild, gnome/libsoup/SlackBuild, gnome/libwnck/SlackBuild, gnome/libxklavier/SlackBuild, gnome/mail-notification/SlackBuild, gnome/metacity/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/nautilus/SlackBuild, gnome/orbit2/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/seahorse/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/totem/SlackBuild, gnome/ubuntu-artwork/SlackBuild, gnome/vino/SlackBuild, gnome/ximian-artwork/SlackBuild, gnome/yelp/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/compress-zlib/SlackBuild, l/event/SlackBuild, l/exif-browser/SlackBuild, l/freetype/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-perl/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-xfce-engine/SlackBuild, l/html-parser/SlackBuild, l/id3lib/SlackBuild, l/libavc1394/SlackBuild, l/libcap/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libintl-perl/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, ap/abook/SlackBuild, ap/athcool/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/cpudyn/SlackBuild, ap/exiftags/SlackBuild, ap/fuse/SlackBuild, ap/fvcool/SlackBuild, ap/giftcurs/SlackBuild, ap/hibernate-script/SlackBuild, ap/jhead/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/lshw/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/pnm2ppa/SlackBuild, ap/setcd/SlackBuild, ap/x86cpucaps/SlackBuild, d/lua/SlackBuild, d/mono/SlackBuild, d/portpkg/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/aegis-virus-scanner/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bluefish/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/bug-buddy/SlackBuild, gnome/cog/SlackBuild, gnome/control-center/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eel/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-data-server/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/evolution/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/gai/SlackBuild, gnome/gail/SlackBuild, gnome/gal/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf-editor/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gedit/SlackBuild, gnome/ggv/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-applets/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-clipboard-daemon/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-mag/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-netstatus/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-tools/SlackBuild, gnome/gnome-terminal/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnome2-user-docs/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/goobox/SlackBuild, gnome/gpass/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild:
+  * n/httpup/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvdial/SlackBuild, n/wvstreams/SlackBuild, pasture/db41/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gst-plugins/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/gnome-volume-manager/SlackBuild, testing/gtk-webcore/SlackBuild, testing/hal/SlackBuild, testing/libeina/SlackBuild, testing/mplayer-gtk2/SlackBuild, testing/xfmedia/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/freedoom/SlackBuild, xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/gtk-server/SlackBuild, xap/gtklp/SlackBuild, xap/icon-slicer/SlackBuild, xap/kino/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mbox/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/redhat-artwork/SlackBuild, xap/straw/SlackBuild, xap/tagtool/SlackBuild, xap/video-dvdrip/SlackBuild, xap/xdaf/SlackBuild, xap/xmbmon/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, gnome/gthumb/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/leafpad/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libgail-gnome/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libgtop/SlackBuild, gnome/libsoup/SlackBuild, gnome/libwnck/SlackBuild, gnome/libxklavier/SlackBuild, gnome/mail-notification/SlackBuild, gnome/metacity/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/nautilus/SlackBuild, gnome/orbit2/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/seahorse/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/totem/SlackBuild, gnome/ubuntu-artwork/SlackBuild, gnome/vino/SlackBuild, gnome/ximian-artwork/SlackBuild, gnome/yelp/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/compress-zlib/SlackBuild, l/event/SlackBuild, l/exif-browser/SlackBuild, l/freetype/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-perl/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-xfce-engine/SlackBuild, l/html-parser/SlackBuild, l/id3lib/SlackBuild, l/libavc1394/SlackBuild, l/libcap/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libintl-perl/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, ap/abook/SlackBuild, ap/athcool/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/cpudyn/SlackBuild, ap/exiftags/SlackBuild, ap/fuse/SlackBuild, ap/fvcool/SlackBuild, ap/giftcurs/SlackBuild, ap/hibernate-script/SlackBuild, ap/jhead/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/lshw/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/pnm2ppa/SlackBuild, ap/setcd/SlackBuild, ap/x86cpucaps/SlackBuild, d/lua/SlackBuild, d/mono/SlackBuild, d/portpkg/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/aegis-virus-scanner/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bluefish/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/bug-buddy/SlackBuild, gnome/cog/SlackBuild, gnome/control-center/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eel/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-data-server/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/evolution/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/gai/SlackBuild, gnome/gail/SlackBuild, gnome/gal/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf-editor/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gedit/SlackBuild, gnome/ggv/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-applets/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-clipboard-daemon/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-mag/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-netstatus/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-tools/SlackBuild, gnome/gnome-terminal/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnome2-user-docs/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/goobox/SlackBuild, gnome/gpass/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild:
   Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
   * ap/convmv/SlackBuild.old, ap/convmv/doinst.old: *** empty log message ***
@@ -6259,6 +6292,9 @@
   Updated gnome/gparted to 0.0.7-i486-1tom.
 
 2004-12-04  topf  <topf@users.berlios.de>
+
+  * pasture/gst-plugins/SlackBuild:
+  Updated pasture/gst-plugins to 0.8.5-i486-1.
 
   * testing/polypaudio/SlackBuild, testing/polypaudio/requires, testing/polypaudio/slack-desc, testing/polypaudio/sources:
   Added testing/polypaudio-0.7-i486-1tom.
@@ -6389,7 +6425,8 @@
 
   * d/fakeroot/fakeroot.SlackBuild, d/fakeroot/sources: Added fakeroot
 
-  * d/portpkg/SlackBuild, d/portpkg/portpkg: *** empty log message ***
+  * d/portpkg/SlackBuild, d/portpkg/portpkg, pasture/gst-plugins/SlackBuild:
+  *** empty log message ***
 
   * d/portpkg/SlackBuild, d/portpkg/portpkg, d/portpkg/slack-desc, d/portpkg/sync-dist:
   Minor bug fixes.
@@ -6425,7 +6462,11 @@
 
 2004-11-13  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
+  * pasture/gst-plugins/SlackBuild: Again: bug fixes
+
   * d/portpkg/sync-slack: Fixed creation of .build-wrappers
+
+  * pasture/gst-plugins/SlackBuild: Fixed package naming
 
   * d/portpkg/SlackBuild, d/portpkg/portpkg:
   Find also packages in wrong places in /usr/obj/pkg
@@ -6442,7 +6483,7 @@
 
 2004-11-11  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-  * gnome/gst-plugins/SlackBuild, gnome/gst-plugins/doinst.sh.gz, gnome/gst-plugins/gst-plugins.build, gnome/gst-plugins/slack-desc, gnome/gst-plugins/sources, gnome/gstreamer/SlackBuild, gnome/gstreamer/doinst.sh.gz, gnome/gstreamer/gstreamer.build, gnome/gstreamer/setup.07.get-register.gz, gnome/gstreamer/slack-desc, gnome/gstreamer/sources, pasture/pango/pango.SlackBuild, pasture/pango/slack-desc, pasture/pango/sources:
+  * gnome/gst-plugins/SlackBuild, gnome/gst-plugins/doinst.sh.gz, gnome/gst-plugins/gst-plugins.build, gnome/gst-plugins/slack-desc, gnome/gst-plugins/sources, gnome/gstreamer/SlackBuild, gnome/gstreamer/doinst.sh.gz, gnome/gstreamer/gstreamer.build, gnome/gstreamer/setup.07.get-register.gz, gnome/gstreamer/slack-desc, gnome/gstreamer/sources, pasture/gst-plugins/SlackBuild, pasture/gst-plugins/doinst.sh.gz, pasture/gst-plugins/gst-plugins.build, pasture/gst-plugins/slack-desc, pasture/gst-plugins/sources, pasture/pango/pango.SlackBuild, pasture/pango/slack-desc, pasture/pango/sources:
   Moved to pasture/
 
   * d/portpkg/portpkg, d/portpkg/sync-slack, gnome/gst-plugins/SlackBuild, gnome/gst-plugins/sources, gnome/gstreamer/SlackBuild, gnome/gstreamer/sources:
