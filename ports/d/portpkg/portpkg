@@ -96,18 +96,15 @@ temp=`mktemp -d`
 # config files
 mirrors() { cache $CACHE/mirrors 'grep -vshe ^# -e ^$ $CFG_DIR/mirrors $PRT_DIR/mirrors'; }
 if ! $USE_ALPHA_CODE; then
-#ignore()  { cache $CACHE/ignore 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)'; }
-ignore()  { regex `cache $CACHE/ignore 'grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude'`; }
-#exclude() { cache $CACHE/exclude 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude $PRT_DIR/exclude)'; }
-exclude() { ignore; }
-#use()     { cache $CACHE/use 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)'; }
-use()     { regex `cache $CACHE/use 'grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use'`; }
-IGNORE=`ignore >/dev/null; cat $CACHE/ignore`
-EXCLUDE=`exclude >/dev/null; cat $CACHE/exclude`
-USE=`use >/dev/null; cat $CACHE/use`
-fi
+##ignore()  { cache $CACHE/ignore 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)'; }
+#ignore()  { regex `cache $CACHE/ignore 'grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude'`; }
+##exclude() { cache $CACHE/exclude 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude $PRT_DIR/exclude)'; }
+#exclude() { ignore; }
+##use()     { cache $CACHE/use 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)'; }
+#use()     { regex `cache $CACHE/use 'grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use'`; }
 repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repos | sed s,^,$PRT_DIR/,'
             test -s $CACHE/repos || echo $PRT_DIR; }
+fi
 
 prefer()  { regex "$PREFER"; }
 ignore()  { regex "$IGNORE"; }
@@ -1341,6 +1338,12 @@ init()
   trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
   case $BASH_VERSION in 3.1.*) ;; *) trap '' PIPE;; esac
+
+  if ! $USE_ALPHA_CODE; then
+    IGNORE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)`
+    EXCLUDE="$IGNORE"
+    USE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)`
+  fi
 
   # check
 #  has_prog sed || die
