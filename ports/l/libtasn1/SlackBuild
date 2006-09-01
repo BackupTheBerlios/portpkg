@@ -1,16 +1,16 @@
 #!/bin/sh
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
-# SOURCES: http://josefsson.org/gnutls/releases/libtasn1/libtasn1-0.3.5.tar.gz
-# MD5SUMS: 6315b320944e3a4e4c4e73d98cb6123e libtasn1-0.3.5.tar.gz
+# SOURCES: http://josefsson.org/gnutls/releases/libtasn1/libtasn1-0.3.6.tar.gz
+# MD5SUMS: 1a373457a4e6ad3c1641a847e7c70cf4 libtasn1-0.3.6.tar.gz
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.3.5
+VERSION=0.3.6
 ARCH=${ARCH:-i486}
-BUILD=1ldv
+BUILD=2ldv
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -38,6 +38,9 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
+#+install
+mv $PKG/usr/share/info $PKG/usr/ || true
+#+install
 rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -45,9 +48,6 @@ rm -rf $PKG/usr/info/dir
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
-#+doc
-rm -r $PKG/usr/share/info
-#+doc
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog NEWS README THANKS \
