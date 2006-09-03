@@ -9,6 +9,10 @@
 ##################################
 #
 
+# 2006/09/03 topf@user.berlios.de:
+# Added this shiny little line here, to turn off errexit that is forced by portpkg:
+set +e
+
 CWD=`pwd`
 if [ "$TMP" = "" ]; then
   TMP=/tmp
