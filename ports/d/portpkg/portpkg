@@ -314,12 +314,13 @@ regex() # pkgex_list >regex_list
 # note: do_list doesn't use explicit()!
 explicit() # pkgex_list >pkgex-list
 {
-  local arg
+  local arg re
   for arg in ${@:-.}; do
     case $arg in
-      */) # also look through virtual groups list
-	  { ls_slk `regex $arg` | grep -v `exclude` | slk2name
-	    ls_virt `regex $arg` | any2base
+      */) re=`regex $arg`
+	  # also look through virtual groups list
+	  { ls_slk $re | grep -v `exclude` | slk2name
+	    ls_virt $re | any2base
 	  } | sort -u;;
       *)  echo $arg;;
     esac
@@ -385,7 +386,7 @@ fix_ports_root() # pkgex
 # get information about a port and write it into global variables
 get_info() # pkgex
 {
-  local loc arch build
+  local loc arch build re
   local decode='sed "s,[{}],,g;s,\$NAME,$name,g;s,\$VERSION,$version,g;s,\$ARCH,$arch,g;s,\$BUILD,$build,g"'
   debug "get_info() $@"
 
@@ -405,15 +406,16 @@ get_info() # pkgex
 #    *)   
   # find port, take the first if more than one available
   fix_ports_root "$@"
+  re=`regex $1`
 if $USE_ALPHA_CODE; then
   loc=`\
-ls_slk $(regex $1) | grep -v $(exclude) | slk2loc | sort_ver
-ls_slk $(regex $1) | slk2loc | sort_ver`
+ls_slk $re | grep -v $(exclude) | slk2loc | sort_ver
+ls_slk $re | slk2loc | sort_ver`
   loc=`echo "$loc" | head -n 1`
 else
   loc=`\
-ls_loc $(regex $1) | grep -v $(exclude) | default
-ls_loc $(regex $1) | default`
+ls_loc $re | grep -v $(exclude) | default
+ls_loc $re | default`
   loc=`echo "$loc" | head -n 1`
 fi
 #;;
@@ -501,7 +503,7 @@ ls_src "/$package.tgz$"; } | head -n 1`
 # check if all required packages are installed
 check_reqs()
 {
-  local prev req inst_pkg avail_pkg list
+  local prev req inst_pkg avail_pkg list re
   debug "check_reqs(): starting for $package"
   $NO_REQS && return 0
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
@@ -520,9 +522,10 @@ check_reqs()
 #  for req in $list; do
   for req in $requires $optional; do
     debug "check_reqs(): $name: testing $req"
-    inst_pkg=`ls_inst $(regex $req) | default | any2base`
+    re=`regex $req`
+    inst_pkg=`ls_inst $re | default | any2base`
     avail_pkg=`$TEST_REQS || { \
-ls_slk $(regex $req) | slk2loc; \
+ls_slk $re | slk2loc; \
 echo $inst_pkg; } | default`
 #ls_slk $(regex $req) | grep -v $(exclude) | slk2loc; \
 #echo $inst_pkg; } | default | any2base`
@@ -971,7 +974,7 @@ add_pkg()
 
   # what to display?
 #  if ! $slot_in && ls_inst -Fqx $package; then
-  if ls_inst -Fq "/$package$"; then
+  if ls_inst -q "/$package$"; then
     case `pause "Continue reinstall $package? (s to skip)"` in s|S) continue;; esac
 #    stanza "Reinstalling $package..."
 #    add="$UPGRADEPKG --reinstall"
