@@ -170,7 +170,7 @@ Package:  $package
 Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>
 Intended group:  $group/
 ChangeLog entry:  $export_opt
-Timestamp:  `date`
+Timestamp:  `date -u`
 EOF
 
     # remove private and backup files
