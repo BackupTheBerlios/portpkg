@@ -1,9 +1,21 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.16/libbonobo-2.16.0.tar.bz2
+# MD5SUMS: 34046c6880f4c90e47a1acae34b74d26 libbonobo-2.13.0.tar.bz2
+# MD5SUMS: e418c385ff2010323233a90fda318ffb libbonobo-2.13.1.tar.bz2
+# MD5SUMS: f1f0255f94e3354250d142b688013fad libbonobo-2.14.0.tar.bz2
+# MD5SUMS: ceadce5e7d70b586d9f5648b3218676b libbonobo-2.15.3.tar.bz2
+# MD5SUMS: 30cdcf2b5316888f10fea6362b38499c libbonobo-2.16.0.tar.bz2
+# MD5SUMS: 54f863c20016cf8a2cf25056f6c7cda7 libbonobo-2.8.1.tar.bz2
+# REQUIRES: libxml2 orbit2
+# OPTIONAL: gtk-doc sgml-tools
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.14.0
+VERSION=2.16.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -20,8 +32,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/libbonobo-$VERSION.tar.bz2
+cd libbonobo-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -34,28 +46,27 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/libbonobo-$VERSION
   rm -rf $PKG
 fi
