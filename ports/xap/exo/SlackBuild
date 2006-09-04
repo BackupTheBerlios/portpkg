@@ -1,15 +1,18 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://thunar.xfce.org/download/releases/beta2/exo-0.3.1.8beta2.tar.bz2
+# SOURCES: http://thunar.xfce.org/download/releases/rc1/exo-0.3.1.10rc1.tar.bz2
+# MD5SUMS: 98d5493c898ab54b82b0835fc0e6df87 exo-0.3.1.10rc1.tar.bz2
 # MD5SUMS: b8465faab19e233d5edda12bdd4940b4 exo-0.3.1.8beta2.tar.bz2
-# REQUIRES: glib2 python xfce uri
+# REQUIRES: glib2 python uri xfce
+# OPTIONAL: desktop-file-utils
+# UP2DATE: http://thunar.xfce.org/download.html
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.3.1.8beta2
+VERSION=0.3.1.10rc1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -40,20 +43,20 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING NEWS README THANKS TODO docs \
+  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README THANKS TODO docs \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
