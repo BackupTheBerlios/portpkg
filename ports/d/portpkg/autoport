@@ -307,8 +307,8 @@ fi
 s=`pause "Version [$version]:"`
 version=${s:-$version}
 srcver=$version
-# "-" is not allowed in $version, change it to "_"
-version=`echo $version | tr - _`
+## "-" is not allowed in $version, change it to "_"
+#version=`echo $version | tr - _`
 # correct GNOME urls when updating an existing build script
 if [ "$script" ]; then
   sver=`echo $version | cut -d . -f 1-2`
@@ -1039,7 +1039,7 @@ cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 #%post-tail-fix%
 #:package
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 #:package
 #%post-package-fix%
