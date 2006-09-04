@@ -888,7 +888,7 @@ exit 0
 #----------------------------------------
 
 #:SlackBuild.skel
-#!/bin/sh
+#!/bin/sh -e
 
 #:head
 TMP=${TMP:-/tmp}
@@ -1009,7 +1009,7 @@ find $PKG/ -name mimeinfo.cache | xargs -r rm -fv ##mime-database
 #:strip
 #%post-strip-fix%
 #:doc
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #:docfiles
 #:docs
@@ -1024,7 +1024,7 @@ cp -a \
 #%post-docfiles-fix%
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 #:doc
 #%post-doc-fix%
 #:tail
