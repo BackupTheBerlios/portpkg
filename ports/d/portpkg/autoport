@@ -626,23 +626,23 @@ if grep -sqe "#:config" -e "#:make" $script; then
     arch=noarch
   elif check "^configure$" $t/footprint; then
     sel config configure $script
-    if check "KDEDIRS" $TMP/$srcdir_prefix/configure; then
+    if check "\<KDEDIRS\>" $TMP/$srcdir_prefix/configure; then
       sed -i "s,%prefix%,opt/kde,g" $script
       snip ac_sysconfdir $script
       snip ac_localstatedir $script
     else
-      check "--prefix" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
-      check "--sysconfdir" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
-      check "--localstatedir" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
+      check "--prefix\>" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
+      check "--sysconfdir\>" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
+      check "--localstatedir\>" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
     fi
-    check "--program-prefix" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
-    check "--disable-static" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
-    check "--disable-scrollkeeper" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
-    check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
+    check "--program-prefix\>" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
+    check "--disable-static\>" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
+    check "--disable-scrollkeeper\>" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
+    check "--disable-update-mimedb\>" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
     snip cfg_autogen $script
     snip pkgconfig $script
     # pkgconfig
-    if check "PKG_CONFIG" $TMP/$srcdir_prefix/configure; then
+    if check "\<PKG_CONFIG\>" $TMP/$srcdir_prefix/configure; then
       # find package strings in configure
       pc_files=`grep -oe "--exists.*" $TMP/$srcdir_prefix/configure \
 | sed "s,--[^ ]*,,g;s,\\\\\,,g" | grep -o "[a-z$][a-z0-9A-Z$._+-]*" | grep -vx then | sort -u`
@@ -684,15 +684,15 @@ sed -i "s,%etc%,etc,g" $script
 if grep -sq "#:install" $script; then
   if check "^Makefile" $t/footprint; then
     sel install mk_inst $script
-    check "MCS" $TMP/$srcdir_prefix/Makefile* \
-    || check "CSC" $TMP/$srcdir_prefix/Makefile* || snip mono $script
+    check "\<MCS\>" $TMP/$srcdir_prefix/Makefile* \
+    || check "\<CSC\>" $TMP/$srcdir_prefix/Makefile* || snip mono $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
-    || check "DESTDIR" $TMP/$srcdir_prefix/Makefile*; then
+    || check "\<DESTDIR\>" $TMP/$srcdir_prefix/Makefile*; then
       sel mk_inst_root inst_destdir $script
-    elif check "PREFIX" $TMP/$srcdir_prefix/Makefile*; then
+    elif check "\<PREFIX\>" $TMP/$srcdir_prefix/Makefile*; then
       sel mk_inst_root inst_PREFIX $script
-    elif check "prefix" $TMP/$srcdir_prefix/Makefile*; then
+    elif check "\<prefix\>" $TMP/$srcdir_prefix/Makefile*; then
       sel mk_inst_root inst_prefix $script
     else
       error "Don't know how to install this package (no install-prefix)."
@@ -710,18 +710,18 @@ if grep -sq "#:install" $script; then
 fi
 
 # cflags
-if ! check "CFLAGS" $TMP/$srcdir_prefix/*; then
+if ! check "\<CFLAGS\>" $TMP/$srcdir_prefix/*; then
   snip cflags $script
 fi
 
 # cxxflags
 use_cxxflags=true
-if ! check "CXXFLAGS" $TMP/$srcdir_prefix/*; then
+if ! check "\<CXXFLAGS\>" $TMP/$srcdir_prefix/*; then
   snip cxxflags $script
 fi
 
 # slkcflags
-grep -sqe "CFLAGS" -e "CXXFLAGS" $script || snip slkcflags $script
+grep -sqe "\<CFLAGS\>" -e "\<CXXFLAGS\>" $script || snip slkcflags $script
 
 # gconf schemas
 if check "\.schemas(|\.in|\.in\.in)$" $t/footprint; then
