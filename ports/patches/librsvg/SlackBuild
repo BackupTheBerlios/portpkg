@@ -1,18 +1,19 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.14/librsvg-2.14.4.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/librsvg/2.16/librsvg-2.16.0.tar.bz2
 # MD5SUMS: 3080f9a9cfc9ad7505f869df6cd917f8 librsvg-2.14.0.tar.bz2
 # MD5SUMS: 6e149ebcbc70471b74f9ceaa9fab16c5 librsvg-2.14.2.tar.bz2
 # MD5SUMS: 945617bb094975d7353a3852302297c1 librsvg-2.14.4.tar.bz2
+# MD5SUMS: dc6385e62ed278732146bca5aab74568 librsvg-2.16.0.tar.bz2
 # REQUIRES: gnome-vfs libgnomeprintui libgsf
-# OPTIONAL: sgml-tools
+# OPTIONAL: gtk-doc sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.14.4
+VERSION=2.16.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -49,14 +50,14 @@ rm -fv $PKG/usr/info/dir
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
