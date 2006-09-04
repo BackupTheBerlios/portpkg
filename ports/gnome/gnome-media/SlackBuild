@@ -1,9 +1,20 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.16/gnome-media-2.16.0.tar.bz2
+# MD5SUMS: 3d73cd40cfa52c5eef882302f92c60d6 gnome-media-2.10.2.tar.bz2
+# MD5SUMS: 74d9a78f7269602e033ab1a4a144afdf gnome-media-2.12.0.tar.bz2
+# MD5SUMS: faa1f6e68b49b37e2b8b075bd74f03c7 gnome-media-2.13.92.tar.bz2
+# MD5SUMS: e1304b3fb5e069025bb2c1ea3f9f8b62 gnome-media-2.14.0.tar.bz2
+# MD5SUMS: abb57b11214cd245fc5e47f6db87e767 gnome-media-2.16.0.tar.bz2
+# REQUIRES: desktop-file-utils gail gconf gst-plugins-base libglade libgnomeui nautilus-cd-burner scrollkeeper
+# OPTIONAL: gst-plugins
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.14.0
+VERSION=2.16.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -20,8 +31,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/gnome-media-$VERSION.tar.bz2
+cd gnome-media-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -36,30 +47,29 @@ make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
 rm -rf $PKG/var/lib/scrollkeeper
-rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -l echo gconf >>$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/gnome-media-$VERSION
   rm -rf $PKG
 fi
