@@ -141,7 +141,7 @@ any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$ADM_DIR/[^/]*)/,,"; }
 slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-  | sed "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
+  | sed "\,:VERSION=,{s,-,_,g;s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
 #  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 # TODO: slk2loc should strip ^$PRT_DIR/
@@ -386,8 +386,8 @@ fix_ports_root() # pkgex
 # get information about a port and write it into global variables
 get_info() # pkgex
 {
-  local loc arch build re
-  local decode='sed "s,[{}],,g;s,\$NAME,$name,g;s,\$VERSION,$version,g;s,\$ARCH,$arch,g;s,\$BUILD,$build,g"'
+  local loc arch build re srcver
+  local decode='sed "s,[{}],,g;s,\$NAME,$name,g;s,\$VERSION,$srcver,g;s,\$ARCH,$arch,g;s,\$BUILD,$build,g"'
   debug "get_info() $@"
 
 #  case $1 in
@@ -435,6 +435,7 @@ fi
   build=`echo $package | sed -r "s,^.*-.*-.*-(.*)$,\1,"`
 #  script=`find $(echo $loc | pkg2name).SlackBuild $(echo $loc | pkg2name)/SlackBuild 2>/dev/null | head -n 1`
   script=`find ${loc%-*-*-*}.SlackBuild ${loc%-*-*-*}/SlackBuild 2>/dev/null | head -n 1`
+  srcver=`sed -n "/^VERSION=/s,^.*=,,p" $script`
   path=${script%/*}
   description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc $script | eval $decode`
   requires=`{ \
