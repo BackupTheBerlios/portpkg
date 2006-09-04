@@ -141,7 +141,7 @@ any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$ADM_DIR/[^/]*)/,,"; }
 slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-  | sed "\,:VERSION=,{s,-,_,g;s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
+  | sed "\,:VERSION=,{s,\(=.*\)-,\1_,g;s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
 #  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 # TODO: slk2loc should strip ^$PRT_DIR/
@@ -841,9 +841,9 @@ build_pkg()
     if ! [ -f $tmp/$package.tgz ]; then
       $VERBOSE || tail $LOG_DIR/$name.buildlog
       error "Compilation failed (see $LOG_DIR/$name.buildlog)!"
+      $maintain && ln -sf $LOG_DIR/$name.buildlog PORT_IS_BROKEN
       # query the reporting plugin
       plugin $REPORT $LOG_DIR/$name.buildlog
-      $maintain && ln -sf $LOG_DIR/$name.buildlog PORT_IS_BROKEN
       return 1
     else
       # remove this tag in any case
@@ -1085,13 +1085,17 @@ do_find() # text [..] >list
   has_ports || die
   find $PRT_DIR/ -name "*slack-desc" -o -name "*SlackBuild" >$t/list 2>/dev/null
   for arg; do
-    xargs fgrep -lsi "$arg" >$t/list.new <$t/list
+    xargs grep -lsi "^[^ ]*: .*$arg" >$t/list.new <$t/list
     mv $t/list.new $t/list
   done
   [ -s $t/list ] || die "No search results found."
-  # limit the characters of each argline, because regex needs some space later
-  sed "s,^$PRT_DIR/,,;s,[./]SlackBuild$,,;s,/[^/]*slack-desc$,," $t/list \
-  | xargs -s 2048 | while read s; do do_list $s; done
+  if $USE_ALPHA_CODE; then
+    xargs grep -m 1 "^[^ ]*: " <$t/list | cut -d : -f 2- | sort -u
+  else
+    # limit the characters of each argline, because regex needs some space later
+    sed "s,^$PRT_DIR/,,;s,[./]SlackBuild$,,;s,/[^/]*slack-desc$,," $t/list \
+    | xargs -s 2048 | while read s; do do_list $s; done
+  fi
 }
 
 # print information about a port
