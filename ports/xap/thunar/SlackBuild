@@ -1,15 +1,18 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://thunar.xfce.org/download/releases/beta2/Thunar-0.3.2beta2.tar.bz2
+# SOURCES: http://thunar.xfce.org/download/releases/rc1/Thunar-0.4.0rc1.tar.bz2
 # MD5SUMS: 53087545a5bf6bdac0174a4628722c21 Thunar-0.3.2beta2.tar.bz2
+# MD5SUMS: b07ae97a69964112e0af84ba2f63585d Thunar-0.4.0rc1.tar.bz2
 # REQUIRES: exo gconf libexif libjpeg pcre startup-notification
+# OPTIONAL: dbus desktop-file-utils gamin hal
+# UP2DATE: http://thunar.xfce.org/download.html
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.3.2beta2
+VERSION=0.4.0rc1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -40,7 +43,7 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -49,7 +52,7 @@ rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog FAQ HACKING NEWS README THANKS TODO docs \
+  AUTHORS COPYING ChangeLog FAQ HACKING INSTALL NEWS README THANKS TODO docs \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
