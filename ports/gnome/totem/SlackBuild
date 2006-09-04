@@ -1,16 +1,17 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/totem/1.4/totem-1.4.1.tar.bz2
-# MD5SUMS: 6788b83f7889f61eef5922f4daecd859  totem-1.4.1.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/totem/2.16/totem-2.16.0.tar.bz2
+# MD5SUMS: 6788b83f7889f61eef5922f4daecd859 totem-1.4.1.tar.bz2
+# MD5SUMS: d6485fc83d1d19149de455ef0e71265c totem-2.16.0.tar.bz2
 # REQUIRES: gnome-desktop libglade nautilus x11 xine-lib
-# OPTIONAL: mozilla
+# OPTIONAL: dbus desktop-file-utils gcc-g++ gconf hal mozilla scrollkeeper
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.1
+VERSION=2.16.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -43,24 +44,24 @@ make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
 rm -rf $PKG/var/lib/scrollkeeper
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -l echo gconf >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
