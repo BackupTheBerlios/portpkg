@@ -3,9 +3,9 @@
 # REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
 # OPTIONAL: cvs fakeroot gcc glibc gnupg lynx subversion wget
 
-VERSION=0.38.1
+VERSION=0.38.1cvs
 ARCH=noarch
-BUILD=2tom
+BUILD=1tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
