@@ -1,17 +1,18 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: ftp://ftp.gtk.org/pub/gtk/v2.8/gtk+-2.8.19.tar.bz2
+# SOURCES: ftp://ftp.gtk.org/pub/gtk/v2.10/gtk+-2.10.2.tar.bz2
+# MD5SUMS: 9039804dfd115e40a70a6ba096f418a2 gtk+-2.10.2.tar.bz2
 # MD5SUMS: bdd3b950e4a3c65d61bceed9149888a9 gtk+-2.8.12.tar.bz2
 # MD5SUMS: 1a03dbed4b794194a610e9d7eb175b06 gtk+-2.8.19.tar.bz2
 # REQUIRES: atk cairo expat glib2 libjpeg libpixman libpng libtiff pango x11 x11-devel zlib
-# OPTIONAL: gtk-doc perl python sgml-tools
+# OPTIONAL: cups gtk-doc perl python sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.19
+VERSION=2.10.2
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -66,7 +67,7 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/gtk+-$VERSION
