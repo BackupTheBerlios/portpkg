@@ -1,11 +1,21 @@
+#!/bin/sh
+# MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/pygtk/2.10/pygtk-2.10.1.tar.bz2
+# MD5SUMS: ddf27329c38f1be822c1606c6aa1fb0b pygtk-2.10.1.tar.bz2
+# MD5SUMS: fa1ec27360232cd318051f5196851f3e pygtk-2.8.0.tar.bz2
+# MD5SUMS: c69c2e5e86a8f21a5773df20e265fc3a pygtk-2.8.6.tar.bz2
+# REQUIRES: gtk-doc libglade pygobject python
+# OPTIONAL: sgml-tools
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.6
+VERSION=2.10.1
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -19,9 +29,9 @@ fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
-cd $TMP || exit 1
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-cd $NAME-$VERSION || exit 1
+cd $TMP
+tar xjvf $CWD/pygtk-$VERSION.tar.bz2
+cd pygtk-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -29,24 +39,33 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --program-prefix="" \
   --disable-static \
   --enable-thread \
-  $ARCH-slackware-linux || exit 1
-make || exit 1
-make install DESTDIR=$PKG || exit 1
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+  $ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
-cd $PKG || exit 1
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/pygtk-$VERSION
+  rm -rf $PKG
+fi
