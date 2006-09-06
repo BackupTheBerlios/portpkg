@@ -1,15 +1,52 @@
 2006-09-06  topf  <topf@users.berlios.de>
 
-  * SlackBuild, footprint, info, libsndfile-1.0.17-docdir.patch, slack-desc:
+  * ChangeLog, SlackBuild, libsndfile-1.0.16-docdir.patch, libsndfile-1.0.17-docdir.patch, md5sums, requires, sources:
   Updated to 1.0.17 (sjn)
+
+2006-04-30  hnaz  <hnaz@users.berlios.de>
+
+  * SlackBuild, footprint, libsndfile-1.0.15-docdir.patch, libsndfile-1.0.16-docdir.patch, md5sums, requires:
+  Update from 1.0.15 to 1.0.16.
+
+2006-04-29  hnaz  <hnaz@users.berlios.de>
+
+  * SlackBuild, footprint, libsndfile-1.0.15-docdir.patch, md5sums, requires, slack-desc, sources:
+  Update from 1.0.12 to 1.0.15.
+  Fixed horrible standard docdir with libsndfile-$VERSION.patch.
+  Fixed requires.
 
 2005-11-20  topf  <topf@users.berlios.de>
 
-  * slack-desc, sources, ChangeLog, SlackBuild, footprint, info, md5sums, requires:
-  Upgraded to 1.0.12 (sjn)
+  * SlackBuild, footprint, md5sums, requires: Upgraded to 1.0.12 (sjn)
 
-2005-11-17  topf  <topf@users.berlios.de>
+2005-10-15  topf  <topf@users.berlios.de>
 
-  * ChangeLog, SlackBuild, footprint, info, md5sums, requires, slack-desc, sources:
-  Upgraded to 1.0.12 (sjn)
+2005-03-16  topf  <topf@users.berlios.de>
+
+  * requires: Removed obsolete dependencies according to updated "ignore" file.
+
+  * footprint: *** empty log message ***
+
+2005-02-20  topf  <topf@users.berlios.de>
+
+  * footprint, md5sums: *** empty log message ***
+
+2005-02-08  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Patched to use $SLKCFLAGS.
+
+2004-12-18  topf  <topf@users.berlios.de>
+
+  * slack-desc: *** empty log message ***
+
+2004-12-01  topf  <topf@users.berlios.de>
+
+  * requires: Misc updates.
+
+  * SlackBuild:
+  Fixed a SlackBuild typo ("SLKFLAGS") coming from the SlackBuild-skeleton.
+
+2004-11-27  topf  <topf@users.berlios.de>
+
+  * SlackBuild, requires, slack-desc, sources: *** empty log message ***
 
