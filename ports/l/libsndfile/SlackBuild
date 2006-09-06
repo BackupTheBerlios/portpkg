@@ -1,11 +1,19 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://www.mega-nerd.com/libsndfile/libsndfile-1.0.17.tar.gz
+# MD5SUMS: 2d126c35448503f6dbe33934d9581f6b  libsndfile-1.0.17.tar.gz
+# MD5SUMS: 773b6639672d39b6342030c7fd1e9719  libsndfile-1.0.16.tar.gz
+# MD5SUMS: 4171faabfad0ce550cbe9bf1b065e976  libsndfile-1.0.15.tar.gz
+# REQUIRES: autoconf automake libtool
+# OPTIONAL: alsa-lib flac sqlite
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.0.16
+VERSION=1.0.17
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
