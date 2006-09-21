@@ -309,7 +309,7 @@ regex() # pkgex_list >regex_list
 #           echo "-Ee (^|/)${arg%/*}/(.*/)?${arg##*/}(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
       *)   # (g)names and (g)packages
 #           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
-	   syn=`synonyms "[(|]${arg##*/}[|)]"`
+	   syn=`synonyms -m 1 "[(|]${arg##*/}[|)]"`
            [ "$syn" ] && case $arg in */*) arg="${arg%/*}/$syn";; *) arg=$syn;; esac
            echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3})$";;
     esac
@@ -358,8 +358,8 @@ ls_diff() # [pkgex] >list
 #  | sed "s,.*,&-[^-]*-[^-]*-[^-]*," | while read check; do
   fgrep -xf $t/avail.names $t/inst.names | while read check; do
     check=`regex $check`
-    avail=`grep -xm 1 $check $t/avail`
-    inst=`grep -xm 1 $check $t/inst`
+    avail=`grep -m 1 $check $t/avail`
+    inst=`grep -m 1 $check $t/inst`
     $LAZY_CHECKS && [ "${avail%-*-*}" = "${inst%-*-*}" ] && continue
     echo $avail >>$t/avail.check
     echo $inst >>$t/inst.check
@@ -606,7 +606,7 @@ echo $inst_pkg; } | default`
       [ "$tar" ] && debug "check_reqs(): $name: $req is in targets scope, requesting $tar"
 #      case `pause "Continue requesting dependency $req? (s to skip)"` in s|S) continue;; esac
       get_info ${tar:-$req} || exit 1
-      add_pkg || die "${avail_pkg##*/} is broken! Stopping $prev." ) || return 1
+      add_pkg || die "${avail_pkg##*/} failed! Stopping $prev." ) || return 1
       $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency ${avail_pkg##*/}"
     # is it blacklistet?
     elif echo "$avail_pkg" | grep -sqv $(exclude); then

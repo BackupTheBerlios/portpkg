@@ -53,25 +53,19 @@ sed -r "\
 /REQUIRED/s/ *, */\nPACKAGE REQUIRED:  /g
 /SUGGESTS/s/ *, */\nPACKAGE SUGGESTS:  /g
 /CONFLICTS/s/ *, */\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
-sed -ri "/REQUIRED.* \| /{s/REQUIRED/SUGGESTS/;s/ \| /\nPACKAGE SUGGESTS:  /g}" $t/packages
+sed -ri "/REQUIRED.* \|+ /{s/REQUIRED/SUGGESTS/;s/ \|+ /\nPACKAGE SUGGESTS:  /g}" $t/packages
 sed -ri "s/ [<>=]+ .*$//" $t/packages
 
 # find each binary packages
-#grep "/[^/]*-[^/-]*-[^/-]*-[^/-]*\.tgz$" $t/files | egrep -v "(^|/)source/" \
-#| while read s; do
 sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
 | egrep -v "(^|/)source/" | while read s; do
   group=${s%/*}
   pkg=${s##*/}
   name=${pkg%-*-*-*}
-#  group=`echo $s | sed "s,^\./,,;s,/[^/]*$,,"`
-#  pkg=`echo $s | sed "s,.*/,,;s,\.tgz$,,"`
-#  name=`echo $pkg | pkg2name`
-  rel=`echo $pkg | pkg2rel`
-#  ver=`echo $rel | cut -d - -f 1`
+  rel=${pkg#$name-}
   ver=${rel%%-*}
-  arch=`echo $rel | cut -d - -f 2`
-#  build=`echo $rel | cut -d - -f 3`
+  arch=${rel%-*}
+  arch=${arch#*-}
   build=${rel##*-}
   md5sum=`grep "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
   info=`sed -n "/ $pkg\($\| \|\.tgz\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
