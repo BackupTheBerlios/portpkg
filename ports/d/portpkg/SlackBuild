@@ -5,7 +5,7 @@
 
 VERSION=0.38.1cvs
 ARCH=noarch
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -27,6 +27,7 @@ install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/report.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/virtual $PKG/etc/portpkg/virtual.new
+install -m 644 $CWD/synonyms $PKG/etc/portpkg/synonyms.new
 
 # man page
 install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/

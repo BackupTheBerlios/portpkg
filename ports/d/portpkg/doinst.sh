@@ -15,3 +15,4 @@ config etc/portpkg/ignore.new
 #config etc/portpkg/exclude.new
 config etc/portpkg/use.new
 config etc/portpkg/virtual.new
+config etc/portpkg/synonyms.new
