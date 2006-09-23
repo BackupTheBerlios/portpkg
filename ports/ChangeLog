@@ -1,3 +1,34 @@
+2006-09-23  topf  <topf@users.berlios.de>
+
+  * open/mirage/SlackBuild, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
+  Upgraded to 0.8 (ldv)
+
+  * open/gsl/SlackBuild, open/gsl/footprint, open/gsl/info, open/gsl/slack-desc:
+  Upgraded to version 1.8 (dan)
+
+  * open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc:
+  Upgraded to 1.4.4 (ldv)
+
+2006-09-21  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg, d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin, d/portpkg/sync.slackware-bin, d/portpkg/sync.slackyit-bin:
+  Minor bug fixes.
+
+  * d/portpkg/SlackBuild, d/portpkg/doinst.sh: Install synonyms config file.
+
+  * d/portpkg/portpkg:
+  * Chunk of bug fixes, and improvements.
+  * Added compatibility layer for package synonyms.
+  * Removed tautologous code.
+
+  * d/portpkg/synonyms:
+  Added synonyms database for packages with ambiguous names.
+
+  * d/portpkg/sync.gsb-frg:
+  Changed default version of FRG to current, which seems to be stable enough. Added comment for the x86_64 URL.
+
+2006-09-11  topf  <topf@users.berlios.de>
+
 2006-09-07  topf  <topf@users.berlios.de>
 
 2006-09-06  topf  <topf@users.berlios.de>
@@ -311,7 +342,7 @@
 
 2006-08-19  topf  <topf@users.berlios.de>
 
-  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint:
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc, open/gnutls/ChangeLog, open/gnutls/SlackBuild:
   Upgraded to 1.4.2 (ldv)
 
   * xap/epdfview/ChangeLog, xap/epdfview/SlackBuild, xap/epdfview/patch-cache.gz, xap/epdfview/patch-desktop.gz, xap/epdfview/patch-popplercheck.gz, xap/epdfview/patch-savebutton.gz:
@@ -319,6 +350,9 @@
 
   * l/cairo/ChangeLog, l/cairo/SlackBuild, l/cairo/md5sums, l/cairo/requires, l/cairo/sources:
   Updated to 1.2.2 (sjn)
+
+  * open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc:
+  Upgraded to 1.4.2 (ldv)
 
 2006-08-13  topf  <topf@users.berlios.de>
 
@@ -397,7 +431,7 @@
   * xap/rox-filer/ChangeLog, xap/rox-filer/SlackBuild, xap/rox-filer/footprint:
   Upgraded to 2.5 (ldv)
 
-  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint, open/mirage/ChangeLog, open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
   Upgraded to 0.7.3 (ldv)
 
   * l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/md5sums, l/libetpan/requires, l/libetpan/sources:
@@ -421,6 +455,9 @@
   init(): Fixed strings.
   cache(): Minor changes.
   general: Use {}-blocks, not ()-blocks.
+
+  * open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc, open/mirage/SlackBuild:
+  Upgraded to 0.7.3 (ldv)
 
 2006-08-03  topf  <topf@users.berlios.de>
 
@@ -500,7 +537,7 @@
   * kde/kipi-plugins/ChangeLog, kde/kipi-plugins/SlackBuild, kde/kipi-plugins/footprint, kde/kipi-plugins/frmprintwizard-cropframe.patch, kde/kipi-plugins/md5sums, kde/kipi-plugins/requires, kde/kipi-plugins/sources:
   Applied patch for cropframe.h in frmprintwizard.ui (dan)
 
-  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/sources:
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/sources, open/gnutls/ChangeLog, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc:
   Upgraded to 1.4.1 (ldv)
 
   * xap/thunar/SlackBuild, xap/thunar/doinst.sh, xap/thunar/footprint, xap/thunar/slack-desc:
@@ -685,6 +722,9 @@
   * Fixed SlackBuild skeleton to remove any perllocal.pod files
   * Remove /usr/share/mime/* files, they are updated by update-mime-database.
 
+  * open/gnutls/slack-desc, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info:
+  Upgraded to 1.4.1 (ldv)
+
 2006-07-19  topf  <topf@users.berlios.de>
 
   * d/portpkg/portpkg, d/portpkg/sync.zz.cleanup:
@@ -806,7 +846,10 @@
   * xap/galculator/ChangeLog, xap/galculator/SlackBuild, xap/galculator/doinst.sh, xap/galculator/footprint, xap/galculator/slack-desc:
   Added galculator-1.2.5.2 (ldv)
 
-  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint, open/mirage/ChangeLog, open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
+  Updated to 0.7.1 (ldv)
+
+  * open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
   Updated to 0.7.1 (ldv)
 
 2006-07-10  topf  <topf@users.berlios.de>
@@ -871,10 +914,13 @@
   * xap/qtiplot/ChangeLog, xap/qtiplot/SlackBuild, xap/qtiplot/footprint, xap/qtiplot/md5sums, xap/qtiplot/requires, xap/qtiplot/slack-desc, xap/qtiplot/sources:
   QtiPlot - Data analysis and scientific plotting (dan)
 
-  * l/gsl/ChangeLog, l/gsl/SlackBuild, l/gsl/footprint, l/gsl/md5sums, l/gsl/slack-desc, l/gsl/sources:
+  * l/gsl/ChangeLog, l/gsl/SlackBuild, l/gsl/footprint, l/gsl/md5sums, l/gsl/slack-desc, l/gsl/sources, open/gsl/ChangeLog, open/gsl/SlackBuild, open/gsl/footprint, open/gsl/info, open/gsl/md5sums, open/gsl/slack-desc, open/gsl/sources:
   gsl - GNU Scientific Library or C and C++ programmers (dan)
 
   * d/portpkg/virtual: cxxlibs, cvs are not essential; removed from bootstrap/.
+
+  * open/gsl/SlackBuild, open/gsl/footprint, open/gsl/info, open/gsl/md5sums, open/gsl/slack-desc, open/gsl/sources:
+  gsl - GNU Scientific Library or C and C++ programmers (dan)
 
   * l/libmusicbrainz/sources, l/libmusicbrainz/SlackBuild, l/libmusicbrainz/footprint, l/libmusicbrainz/md5sums, l/libmusicbrainz/requires, l/libmusicbrainz/slack-desc:
   Added installation of python module. Regenerated script.
@@ -971,7 +1017,7 @@
 
   * AUTHORS: Added ldv.
 
-  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/doinst.sh, xap/mirage/footprint, xap/mirage/slack-desc:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/doinst.sh, xap/mirage/footprint, xap/mirage/slack-desc, open/mirage/ChangeLog, open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
   Added mirage-0.7 (ldv)
 
   * ap/vobcopy/SlackBuild, ap/vobcopy/footprint, ap/vobcopy/slack-desc:
@@ -989,6 +1035,9 @@
   * xap/grsync/SlackBuild, xap/grsync/footprint: Upgraded to grsync-0.4.3.
 
 2006-06-27  topf  <topf@users.berlios.de>
+
+  * open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc, open/mirage/SlackBuild:
+  Added mirage-0.7 (ldv)
 
   * d/portpkg/autoport: Fix version sorting with -d.
 
@@ -2858,7 +2907,7 @@
   * ap/gtypist/ChangeLog, ap/gtypist/SlackBuild, ap/gtypist/footprint, ap/gtypist/gtypist.slack-desc, ap/gtypist/md5sums, ap/gtypist/mirrors, ap/gtypist/requires, ap/gtypist/slack-desc, ap/gtypist/sources:
   GNU Typist (also called gtypist) - an universal typing tutor. (dan)
 
-  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires:
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources, open/gnutls/ChangeLog, open/gnutls/SlackBuild:
   Upgraded to v.1.2.8 (sjn)
 
   * xap/flphoto/ChangeLog, xap/flphoto/SlackBuild, xap/flphoto/doinst.sh, xap/flphoto/footprint, xap/flphoto/md5sums, xap/flphoto/mirrors, xap/flphoto/requires, xap/flphoto/slack-desc, xap/flphoto/sources:
@@ -3040,6 +3089,9 @@
 
   * xap/ardour/ChangeLog, xap/ardour/SlackBuild, xap/ardour/footprint, xap/ardour/md5sums, xap/ardour/requires:
   version update (lem)
+
+  * open/gnutls/ChangeLog, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources:
+  Upgraded to v.1.2.8
 
 2005-11-01  topf  <topf@users.berlios.de>
 
@@ -4688,7 +4740,7 @@
   * xap/gtk-gnutella/SlackBuild, xap/gtk-gnutella/requires:
   Added byacc to requires. [needed to build]
 
-  * l/libgcrypt/SlackBuild, l/libgcrypt/footprint, l/libgcrypt/info, l/libgcrypt/md5sums, l/libgcrypt/requires, l/libgcrypt/slack-desc, l/libgcrypt/sources, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/info, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/slack-desc, l/gnutls/sources:
+  * l/libgcrypt/SlackBuild, l/libgcrypt/footprint, l/libgcrypt/info, l/libgcrypt/md5sums, l/libgcrypt/requires, l/libgcrypt/slack-desc, l/libgcrypt/sources, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/info, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/slack-desc, l/gnutls/sources, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources:
   Integrated. -> l/
 
 2005-04-03  topf  <topf@users.berlios.de>
@@ -4702,6 +4754,9 @@
   Updated xap/graveman to 0.3.9-i686-1tom.
 
 2005-04-01  topf  <topf@users.berlios.de>
+
+  * open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources:
+  new entry (cronjob)
 
   * testing/portpkg/COPYING, testing/portpkg/CREDITS, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/README.QuickStart, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/doinst.sh, testing/portpkg/exclude, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/mirrors.de, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/pp-sync-bin, testing/portpkg/pp-sync-src, testing/portpkg/prepare, testing/portpkg/slack-desc:
   Outdated.
