@@ -1,16 +1,18 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/libetpan/libetpan-0.46.tar.gz
-# MD5SUMS: afa4abd73665e1a46b0510c4f4efa9a9  libetpan-0.46.tar.gz
-# MD5SUMS: 0135cf6a9d97afb1f75001f514448836  libetpan-0.45.tar.gz
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/libetpan/libetpan-0.48.tar.gz
+# MD5SUMS: 0135cf6a9d97afb1f75001f514448836 libetpan-0.45.tar.gz
+# MD5SUMS: afa4abd73665e1a46b0510c4f4efa9a9 libetpan-0.46.tar.gz
+# MD5SUMS: bdbe010dcd70fa358d7184b998c3228a libetpan-0.47.tar.gz
+# MD5SUMS: 493de1bfc84c1e0f82fd865795e48ffb libetpan-0.48.tar.gz
 # REQUIRES: cyrus-sasl db42 openssl
-# OPTIONAL: db44 google-earth
+# OPTIONAL: db44 google-earth openssl-solibs
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.46
+VERSION=0.48
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
