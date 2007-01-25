@@ -1,15 +1,14 @@
 #!/bin/sh
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
-# SOURCES: http://www.physik.uni-wuerzburg.de/~vrbehr/cups-pdf/src/cups-pdf_2.4.1.tar.gz
-# MD5SUMS: 4cef6dd76d09dc2f7f3df133ef339b52 cups-pdf_2.4.1.tar.gz
-# REQUIRES: cups
+# SOURCES: http://www.physik.uni-wuerzburg.de/~vrbehr/cups-pdf/src/cups-pdf_2.4.3.tar.gz
+# MD5SUMS: cc87f9b70313c4aaf1165b5fc555b505 cups-pdf_2.4.3.tar.gz
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.4.1
+VERSION=2.4.3
 ARCH=${ARCH:-i486}
 BUILD=1ldv
 
@@ -30,25 +29,15 @@ tar xzvf $CWD/cups-pdf_$VERSION.tar.gz
 cd cups-pdf-$VERSION
 chown -R root.root .
 #-config
-
 #=install
 CFLAGS=$SLKCFLAGS
 gcc $CFLAGS -o cups-pdf -Isrc src/cups-pdf.c
 install -D -m 0755 cups-pdf $PKG/usr/lib/cups/backend/cups-pdf
-
-# ppd files
-mkdir -p $PKG/usr/share/cups/model
-gunzip -f extra/*.ppd.gz
-install -m 0644 extra/*.ppd $PKG/usr/share/cups/model
-# default : rev4
-( cd $PKG/usr/share/cups/model
-    ln -sf PostscriptColor_rev4.ppd PostscriptColor.ppd
-)
-
-# config file
+install -D -m 0644 extra/PostscriptColor.ppd $PKG/usr/share/cups/model/PostscriptColor.ppd
 install -D -m 0644 extra/cups-pdf.conf $PKG/etc/cups/cups-pdf.conf.new
 #=install
-
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -64,20 +53,8 @@ find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-#+tail
-cat > $PKG/install/doinst.sh << EOF
-config() {
-    NEW="\$1"
-    OLD="\`dirname \$NEW\`/\`basename \$NEW .new\`"
-    if test ! -r \$OLD ; then
-        mv \$NEW \$OLD
-    elif cmp -s \$NEW \$OLD ; then
-        rm \$NEW
-    fi
-}
-config etc/cups/cups-pdf.conf.new
-EOF
-#+tail
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
