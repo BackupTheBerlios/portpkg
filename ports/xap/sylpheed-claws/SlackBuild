@@ -1,22 +1,23 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-2.4.0.tar.bz2
-# MD5SUMS: 8e8e2b847d6466b1384e3a5a15b9f2e7  sylpheed-claws-2.4.0.tar.bz2
-# MD5SUMS: 08e8fe1f3466d146b499d128f1445ba6  sylpheed-claws-2.3.1.tar.bz2
-# MD5SUMS: a59b1f1736e89918c648794c94120a8e  sylpheed-claws-2.3.0.tar.bz2
-# MD5SUMS: 870eb4de8dc242f16171145d8af725b9  sylpheed-claws-2.2.3.tar.bz2
-# MD5SUMS: 4a047d028327c0e7b3ef0b058bd62d91  sylpheed-claws-2.2.0.tar.bz2
-# MD5SUMS: 8d7b1d01c4f236a5e7d3e139bf43cd5a  sylpheed-claws-2.1.1.tar.bz2
-# MD5SUMS: 6e26f8e36772b71361d0c463b9a6c7a1  sylpheed-claws-2.0.0.tar.bz2
-# MD5SUMS: ac473de7189a4a9baecf16b72c34dff4  sylpheed-claws-1.0.4.tar.bz2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/sylpheed-claws/sylpheed-claws-2.5.6.tar.bz2
+# MD5SUMS: ac473de7189a4a9baecf16b72c34dff4 sylpheed-claws-1.0.4.tar.bz2
+# MD5SUMS: 6e26f8e36772b71361d0c463b9a6c7a1 sylpheed-claws-2.0.0.tar.bz2
+# MD5SUMS: 8d7b1d01c4f236a5e7d3e139bf43cd5a sylpheed-claws-2.1.1.tar.bz2
+# MD5SUMS: 4a047d028327c0e7b3ef0b058bd62d91 sylpheed-claws-2.2.0.tar.bz2
+# MD5SUMS: 870eb4de8dc242f16171145d8af725b9 sylpheed-claws-2.2.3.tar.bz2
+# MD5SUMS: a59b1f1736e89918c648794c94120a8e sylpheed-claws-2.3.0.tar.bz2
+# MD5SUMS: 08e8fe1f3466d146b499d128f1445ba6 sylpheed-claws-2.3.1.tar.bz2
+# MD5SUMS: 8e8e2b847d6466b1384e3a5a15b9f2e7 sylpheed-claws-2.4.0.tar.bz2
+# MD5SUMS: f342f7be46a3d2771f6aaad44838e513 sylpheed-claws-2.5.6.tar.bz2
 # REQUIRES: aspell cxxlibs gdk-pixbuf glib gpgme gtk+ openssl startup-notification x11 x11-devel
-# OPTIONAL: cyrus-sasl db4 expat glib2 glibc gtk+2 libetpan libgpg-error libpng openldap-client zlib
+# OPTIONAL: aaa_elflibs cyrus-sasl db4 expat glib2 glibc gtk+2 libetpan libgpg-error libpng openldap-client pilot-link zlib
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.4.0
+VERSION=2.5.6
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -35,7 +36,7 @@ mkdir -p $PKG/usr
 cd $TMP || exit 1
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
-zcat $CWD/sylpheed-claws-gettext.patch.gz | patch -p1 || exit 1
+#zcat $CWD/sylpheed-claws-gettext.patch.gz | patch -p1 || exit 1
 
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
@@ -52,7 +53,7 @@ make || exit 1
 make install DESTDIR=$PKG \
 faqdir=$DESTDIR/usr/doc/$NAME-$VERSION/faq \
 manualdir=$DESTDIR/usr/doc/$NAME-$VERSION/manual || exit 1
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+#find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded 
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
