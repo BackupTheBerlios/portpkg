@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
-# SOURCES: http://download.berlios.de/mirageiv/mirage-0.7.3.tar.bz2
-# MD5SUMS: f0556f95154e66e9e607d5d402f478d2 mirage-0.7.3.tar.bz2
+# SOURCES: http://download.berlios.de/mirageiv/mirage-0.8.tar.bz2
+# MD5SUMS: 99e1a3bc316dafb2c458425668291503 mirage-0.8.tar.bz2
 # REQUIRES: pygtk python
 # OPTIONAL: gnome-python
 
@@ -10,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.7.3
+VERSION=0.8
 ARCH=noarch
 BUILD=1ldv
 
@@ -21,8 +21,8 @@ tar xjvf $CWD/mirage-$VERSION.tar.bz2
 cd mirage-$VERSION
 chown -R root.root .
 python setup.py build install --root=$PKG
-find $PKG/ -name perllocal.pod | xargs -r rm -fv
-rm -fv $PKG/usr/info/dir
+rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
+rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
@@ -33,7 +33,6 @@ find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
