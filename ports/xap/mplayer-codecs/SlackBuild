@@ -1,9 +1,10 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://www4.mplayerhq.hu/MPlayer/releases/codecs/essential-20060611.tar.bz2
-# MD5SUMS: 26ec3f9feed5f89814b2ec5f436e937b  essential-20060611.tar.bz2
-# MD5SUMS: 93f14fc57bc3bdd3ed047bfab39943fc  essential-20060501.tar.bz2
-# MD5SUMS: 5fe89bb095bdf9b4f9cda5479dbde906  essential-20050412.tar.bz2
+# SOURCES: http://www4.mplayerhq.hu/MPlayer/releases/codecs/essential-20061022.tar.bz2
+# MD5SUMS: 5fe89bb095bdf9b4f9cda5479dbde906 essential-20050412.tar.bz2
+# MD5SUMS: 93f14fc57bc3bdd3ed047bfab39943fc essential-20060501.tar.bz2
+# MD5SUMS: 26ec3f9feed5f89814b2ec5f436e937b essential-20060611.tar.bz2
+# MD5SUMS: abcf4a3abc16cf88c9df7e0a77e9b941 essential-20061022.tar.bz2
 # REQUIRES: glibc
 # OPTIONAL: cxxlibs
 TMP=${TMP:-/tmp}
@@ -11,8 +12,8 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=20060611
-ARCH=i386
+VERSION=20061022
+ARCH=i486
 BUILD=1sjn
 
 rm -rf $PKG
