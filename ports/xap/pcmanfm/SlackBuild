@@ -1,11 +1,18 @@
+#!/bin/sh
+# MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/pcmanfm/pcmanfm-0.3.2.2.tar.gz
+# MD5SUMS: e735c8effc941912b5253a31d4136417 pcmanfm-0.3.2.2.tar.gz
+# REQUIRES: gamin glib2 gtk+2 startup-notification
+# OPTIONAL: dbus hal
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.2.2
+VERSION=0.3.2.2
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1ldv
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -20,8 +27,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/pcmanfm-$VERSION.tar.gz
+cd pcmanfm-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -32,8 +39,7 @@ CFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -42,7 +48,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -55,6 +61,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/pcmanfm-$VERSION
   rm -rf $PKG
 fi
