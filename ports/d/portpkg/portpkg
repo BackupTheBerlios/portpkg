@@ -26,7 +26,7 @@ NO_REQS=false           # Disable dependency handling completely
 TEST_REQS=false         # Do not try to install required dependencies
 LAZY_CHECKS=false       # Do not try to upgrade required dependencies
 DEBUG=false             # Display debugging output
-USE_ALPHA_CODE=false    # Use unstable features
+USE_ALPHA_CODE=true     # Use unstable features
 DOWNLOAD_ONLY=false     # Do not compile
 PREPARE_ONLY=false      # Do not install
 REINSTALL=false         # Force installation
@@ -448,6 +448,10 @@ fi
   group=${group#$PRT_DIR/}
   package=${loc##*/}
   name=${package%-*-*-*}
+
+  # clear group if PRT_DIR is the script dir, as group is expected to be inside PRT_DIR
+  [ "$group/$name" = "$PRT_DIR" ] && group=""
+
   rel=${package#$name-}
 #  version=`echo $package | pkg2ver`
   version=${rel%%-*}
@@ -788,10 +792,15 @@ build_pkg()
   fi
 
   # warnings concerning fakeroot
-  if [ "$name" != "fakeroot" ] && ( $no_fakeroot || ! has_prog fakeroot); then
-    $no_fakeroot && warn "Fakeroot disabled for this port!" \
-    || warn "Please install fakeroot as soon as possible!"
-    $PREPARE_ONLY && warn "Preparing without fakeroot is not a good idea!"
+  if ( $no_fakeroot || ! has_prog fakeroot); then
+    if [ "$name" != "fakeroot" ]; then
+      $no_fakeroot && warn "Fakeroot disabled for this port!" \
+      || warn "Please install fakeroot as soon as possible!"
+      $PREPARE_ONLY && warn "Preparing without fakeroot is not a good idea!"
+    fi
+    # must be verbose for 'su'
+    VERBOSE=true
+    output=/dev/stdout
   fi
 
   $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
