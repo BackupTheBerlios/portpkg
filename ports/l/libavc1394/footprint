@@ -1,29 +1,35 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         393 install/doinst.sh
--rw-r--r-- root/root          53 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin        10836 usr/bin/dvcont
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/libavc1394-0.4.1/
--rw-r--r-- root/root         195 usr/doc/libavc1394-0.4.1/AUTHORS
--rw-r--r-- root/root       26428 usr/doc/libavc1394-0.4.1/COPYING
--rw-r--r-- root/root        3201 usr/doc/libavc1394-0.4.1/ChangeLog
--rw-r--r-- root/root        7831 usr/doc/libavc1394-0.4.1/INSTALL
--rw-r--r-- root/root         161 usr/doc/libavc1394-0.4.1/NEWS
--rw-r--r-- root/root        2030 usr/doc/libavc1394-0.4.1/README
--rw-r--r-- root/root         193 usr/doc/libavc1394-0.4.1/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/libavc1394/
--rw-r--r-- root/root       12083 usr/include/libavc1394/avc1394.h
--rw-r--r-- root/root        3544 usr/include/libavc1394/avc1394_vcr.h
--rw-r--r-- root/root        2723 usr/include/libavc1394/rom1394.h
-drwxr-xr-x root/root           0 usr/lib/
--rwxr-xr-x root/root         710 usr/lib/libavc1394.la
--rwxr-xr-x root/root       11500 usr/lib/libavc1394.so.0.1.1
--rwxr-xr-x root/root         714 usr/lib/librom1394.la
--rwxr-xr-x root/root        9268 usr/lib/librom1394.so.0.1.1
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root        1551 usr/man/man1/dvcont.1.gz
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/bin/
+-rwxr-xr-x  root/root  usr/bin/dvcont
+-rwxr-xr-x  root/root  usr/bin/mkrfc2734
+-rwxr-xr-x  root/root  usr/bin/panelctl
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/libavc1394-0.5.3/
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/COPYING
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/INSTALL
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/NEWS
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/README
+-rw-r--r--  root/root  usr/doc/libavc1394-0.5.3/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/libavc1394/
+-rw-r--r--  root/root  usr/include/libavc1394/avc1394.h
+-rw-r--r--  root/root  usr/include/libavc1394/avc1394_vcr.h
+-rw-r--r--  root/root  usr/include/libavc1394/rom1394.h
+drwxr-xr-x  root/root  usr/lib/
+-rwxr-xr-x  root/root  usr/lib/libavc1394.la
+-rwxr-xr-x  root/root  usr/lib/libavc1394.so.0.3.0
+-rwxr-xr-x  root/root  usr/lib/librom1394.la
+-rwxr-xr-x  root/root  usr/lib/librom1394.so.0.3.0
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/libavc1394.pc
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/dvcont.1.gz
+-rw-r--r--  root/root  usr/man/man1/mkrfc2734.1.gz
+-rw-r--r--  root/root  usr/man/man1/panelctl.1.gz

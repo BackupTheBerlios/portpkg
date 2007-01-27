@@ -1,49 +1,33 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         197 install/doinst.sh
--rw-r--r-- root/root          60 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin         7032 usr/bin/dumpiso
--rwxr-xr-x root/bin         7184 usr/bin/sendiso
--rwxr-xr-x root/bin         7896 usr/bin/testlibraw
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/libraw1394-0.10.1/
--rw-r--r-- root/root         320 usr/doc/libraw1394-0.10.1/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/libraw1394-0.10.1/COPYING
--rw-r--r-- root/root        7831 usr/doc/libraw1394-0.10.1/INSTALL
--rw-r--r-- root/root        2228 usr/doc/libraw1394-0.10.1/NEWS
--rw-r--r-- root/root        2635 usr/doc/libraw1394-0.10.1/README
-drwxr-xr-x root/root           0 usr/doc/libraw1394-0.10.1/doc/
--rw-r--r-- root/root        8857 usr/doc/libraw1394-0.10.1/doc/Makefile
--rw-r--r-- root/root         702 usr/doc/libraw1394-0.10.1/doc/Makefile.am
--rw-r--r-- root/root        8826 usr/doc/libraw1394-0.10.1/doc/Makefile.in
--rw-r--r-- root/root        1368 usr/doc/libraw1394-0.10.1/doc/dumpiso.1
--rw-r--r-- root/root        1372 usr/doc/libraw1394-0.10.1/doc/dumpiso.1.in
--rw-r--r-- root/root        1638 usr/doc/libraw1394-0.10.1/doc/isodump.5
--rw-r--r-- root/root        1642 usr/doc/libraw1394-0.10.1/doc/isodump.5.in
--rw-r--r-- root/root       45447 usr/doc/libraw1394-0.10.1/doc/libraw1394.sgml
--rw-r--r-- root/root        1395 usr/doc/libraw1394-0.10.1/doc/sendiso.1
--rw-r--r-- root/root        1399 usr/doc/libraw1394-0.10.1/doc/sendiso.1.in
--rw-r--r-- root/root         988 usr/doc/libraw1394-0.10.1/doc/testlibraw.1
--rw-r--r-- root/root         992 usr/doc/libraw1394-0.10.1/doc/testlibraw.1.in
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/libraw1394/
--rw-r--r-- root/root        1058 usr/include/libraw1394/csr.h
--rw-r--r-- root/root        1270 usr/include/libraw1394/ieee1394.h
--rw-r--r-- root/root       20869 usr/include/libraw1394/raw1394.h
-drwxr-xr-x root/root           0 usr/lib/
--rwxr-xr-x root/root         807 usr/lib/libraw1394.la
--rwxr-xr-x root/root       18380 usr/lib/libraw1394.so.5.2.0
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         248 usr/lib/pkgconfig/libraw1394.pc
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man1/
--rw-r--r-- root/root         754 usr/man/man1/dumpiso.1.gz
--rw-r--r-- root/root         800 usr/man/man1/sendiso.1.gz
--rw-r--r-- root/root         572 usr/man/man1/testlibraw.1.gz
-drwxr-xr-x root/root           0 usr/man/man5/
--rw-r--r-- root/root         850 usr/man/man5/isodump.5.gz
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/aclocal/
--rw-r--r-- root/root        4094 usr/share/aclocal/libraw1394.m4
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/bin/
+-rwxr-xr-x  root/root  usr/bin/dumpiso
+-rwxr-xr-x  root/root  usr/bin/sendiso
+-rwxr-xr-x  root/root  usr/bin/testlibraw
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/libraw1394-1.2.1/
+-rw-r--r--  root/root  usr/doc/libraw1394-1.2.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/libraw1394-1.2.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/libraw1394-1.2.1/INSTALL
+-rw-r--r--  root/root  usr/doc/libraw1394-1.2.1/NEWS
+-rw-r--r--  root/root  usr/doc/libraw1394-1.2.1/README
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/libraw1394/
+-rw-r--r--  root/root  usr/include/libraw1394/csr.h
+-rw-r--r--  root/root  usr/include/libraw1394/ieee1394.h
+-rw-r--r--  root/root  usr/include/libraw1394/raw1394.h
+drwxr-xr-x  root/root  usr/lib/
+-rwxr-xr-x  root/root  usr/lib/libraw1394.la
+-rwxr-xr-x  root/root  usr/lib/libraw1394.so.8.1.1
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/libraw1394.pc
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/dumpiso.1.gz
+-rw-r--r--  root/root  usr/man/man1/sendiso.1.gz
+-rw-r--r--  root/root  usr/man/man1/testlibraw.1.gz
+drwxr-xr-x  root/root  usr/man/man5/
+-rw-r--r--  root/root  usr/man/man5/isodump.5.gz

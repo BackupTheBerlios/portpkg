@@ -1,9 +1,16 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/T/TS/TSCH/Gtk2-1.142.tar.gz
+# MD5SUMS: 6a36c224d0a8f4792c206458c2845a8e Gtk2-1.082.tar.gz
+# MD5SUMS: b95595aff84b25d2fa6bb851e17ad203 Gtk2-1.142.tar.gz
+# REQUIRES: glib-perl gtk+2 perl
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.082
+VERSION=1.142
 ARCH=noarch
 BUILD=1tom
 
@@ -16,22 +23,21 @@ chown -R root.root .
 perl Makefile.PL
 make
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS ChangeLog LICENSE MANIFEST NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/Gtk2-$VERSION

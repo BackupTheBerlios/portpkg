@@ -1,524 +1,586 @@
-drwxr-xr-x  root/root  0        ./
-drwxr-xr-x  root/root  0        install/
--rw-r--r--  root/root  459      install/slack-desc
-drwxr-xr-x  root/root  0        usr/
-drwxr-xr-x  root/root  0        usr/doc/
-drwxr-xr-x  root/root  0        usr/doc/gtk2-perl-1.082/
--rw-r--r--  root/root  1624     usr/doc/gtk2-perl-1.082/AUTHORS
--rw-r--r--  root/root  197732   usr/doc/gtk2-perl-1.082/ChangeLog
--rw-r--r--  root/root  26421    usr/doc/gtk2-perl-1.082/LICENSE
--rw-r--r--  root/root  8385     usr/doc/gtk2-perl-1.082/MANIFEST
--rw-r--r--  root/root  23076    usr/doc/gtk2-perl-1.082/NEWS
--rw-r--r--  root/root  2981     usr/doc/gtk2-perl-1.082/README
--rw-r--r--  root/root  634      usr/doc/gtk2-perl-1.082/TODO
-drwxr-xr-x  root/root  0        usr/lib/
-drwxr-xr-x  root/root  0        usr/lib/perl5/
-drwxr-xr-x  root/root  0        usr/lib/perl5/5.8.7/
-drwxr-xr-x  root/root  0        usr/lib/perl5/5.8.7/i486-linux/
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/
--r--r--r--  root/root  7174     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2.pm
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/
--r--r--r--  root/root  5404     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/AboutDialog.pod
--r--r--r--  root/root  2951     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/AccelGroup.pod
--r--r--r--  root/root  1246     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/AccelLabel.pod
--r--r--r--  root/root  2911     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/AccelMap.pod
--r--r--r--  root/root  2017     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Accelerator.pod
--r--r--r--  root/root  4018     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Action.pod
--r--r--r--  root/root  3511     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ActionGroup.pod
--r--r--r--  root/root  2398     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Adjustment.pod
--r--r--r--  root/root  2483     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Alignment.pod
--r--r--r--  root/root  1519     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Arrow.pod
--r--r--r--  root/root  1490     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/AspectFrame.pod
--r--r--r--  root/root  593      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Bin.pod
--r--r--r--  root/root  2380     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Box.pod
--r--r--r--  root/root  4861     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Button.pod
--r--r--r--  root/root  1522     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ButtonBox.pod
--r--r--r--  root/root  3436     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Calendar.pod
--r--r--r--  root/root  597      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellEditable.pod
--r--r--r--  root/root  1380     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellLayout.pod
--r--r--r--  root/root  9879     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellRenderer.pod
--r--r--r--  root/root  944      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellRendererCombo.pod
--r--r--r--  root/root  1117     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellRendererPixbuf.pod
--r--r--r--  root/root  678      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellRendererProgress.pod
--r--r--r--  root/root  6002     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellRendererText.pod
--r--r--r--  root/root  1281     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellRendererToggle.pod
--r--r--r--  root/root  1794     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CellView.pod
--r--r--r--  root/root  1083     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CheckButton.pod
--r--r--r--  root/root  2223     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CheckMenuItem.pod
--r--r--r--  root/root  3123     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Clipboard.pod
--r--r--r--  root/root  17158    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/CodeGen.pm
--r--r--r--  root/root  2075     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ColorButton.pod
--r--r--r--  root/root  2783     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ColorSelection.pod
--r--r--r--  root/root  1072     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ColorSelectionDialog.pod
--r--r--r--  root/root  2097     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Combo.pod
--r--r--r--  root/root  6601     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ComboBox.pod
--r--r--r--  root/root  2586     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ComboBoxEntry.pod
--r--r--r--  root/root  4739     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Container.pod
--r--r--r--  root/root  2028     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Curve.pod
--r--r--r--  root/root  9862     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Dialog.pod
--r--r--r--  root/root  819      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Drag.pod
--r--r--r--  root/root  633      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/DrawingArea.pod
--r--r--r--  root/root  1684     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Editable.pod
--r--r--r--  root/root  6064     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Entry.pod
--r--r--r--  root/root  2935     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/EntryCompletion.pod
--r--r--r--  root/root  1344     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/EventBox.pod
--r--r--r--  root/root  2702     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Expander.pod
--r--r--r--  root/root  6352     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FileChooser.pod
--r--r--r--  root/root  2146     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FileChooserButton.pod
--r--r--r--  root/root  1662     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FileChooserDialog.pod
--r--r--r--  root/root  1305     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FileChooserWidget.pod
--r--r--r--  root/root  1468     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FileFilter.pod
--r--r--r--  root/root  2905     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FileSelection.pod
--r--r--r--  root/root  1027     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Fixed.pod
--r--r--r--  root/root  2640     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FontButton.pod
--r--r--r--  root/root  1418     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FontSelection.pod
--r--r--r--  root/root  1390     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/FontSelectionDialog.pod
--r--r--r--  root/root  2286     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Frame.pod
--r--r--r--  root/root  1070     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/GC.pod
--r--r--r--  root/root  732      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/GammaCurve.pod
--r--r--r--  root/root  8737     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk.pod
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/
--r--r--r--  root/root  622      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Atom.pod
--r--r--r--  root/root  479      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Bitmap.pod
--r--r--r--  root/root  1297     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Color.pod
--r--r--r--  root/root  2117     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Colormap.pod
--r--r--r--  root/root  4453     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Cursor.pod
--r--r--r--  root/root  3649     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Device.pod
--r--r--r--  root/root  3146     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Display.pod
--r--r--r--  root/root  949      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/DisplayManager.pod
--r--r--r--  root/root  4952     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/DragContext.pod
--r--r--r--  root/root  8157     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Drawable.pod
--r--r--r--  root/root  7148     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event.pod
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/
--r--r--r--  root/root  820      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Button.pod
--r--r--r--  root/root  1385     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Client.pod
--r--r--r--  root/root  798      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Configure.pod
--r--r--r--  root/root  1627     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Crossing.pod
--r--r--r--  root/root  490      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/DND.pod
--r--r--r--  root/root  740      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Expose.pod
--r--r--r--  root/root  450      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Focus.pod
--r--r--r--  root/root  691      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Key.pod
--r--r--r--  root/root  821      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Motion.pod
--r--r--r--  root/root  326      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/NoExpose.pod
--r--r--r--  root/root  1074     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/OwnerChange.pod
--r--r--r--  root/root  585      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Property.pod
--r--r--r--  root/root  497      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Proximity.pod
--r--r--r--  root/root  1072     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Scroll.pod
--r--r--r--  root/root  873      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Selection.pod
--r--r--r--  root/root  840      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Setting.pod
--r--r--r--  root/root  733      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/Visibility.pod
--r--r--r--  root/root  1070     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Event/WindowState.pod
--r--r--r--  root/root  5595     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/GC.pod
--r--r--r--  root/root  2624     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Geometry.pod
--r--r--r--  root/root  1943     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Input.pod
--r--r--r--  root/root  3207     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Keymap.pod
--r--r--r--  root/root  37868    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Keysyms.pm
--r--r--r--  root/root  16068    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Pixbuf.pod
--r--r--r--  root/root  1186     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/PixbufAnimation.pod
--r--r--r--  root/root  732      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/PixbufAnimationIter.pod
--r--r--r--  root/root  1440     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/PixbufLoader.pod
--r--r--r--  root/root  3705     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Pixmap.pod
--r--r--r--  root/root  1406     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Rectangle.pod
--r--r--r--  root/root  2679     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Region.pod
--r--r--r--  root/root  765      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Rgb.pod
--r--r--r--  root/root  2313     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Screen.pod
--r--r--r--  root/root  2294     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Selection.pod
--r--r--r--  root/root  392      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Threads.pod
--r--r--r--  root/root  2476     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Visual.pod
--r--r--r--  root/root  16589    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Gdk/Window.pod
--r--r--r--  root/root  703      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HBox.pod
--r--r--r--  root/root  1395     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HButtonBox.pod
--r--r--r--  root/root  609      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HPaned.pod
--r--r--r--  root/root  542      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HRuler.pod
--r--r--r--  root/root  858      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HScale.pod
--r--r--r--  root/root  1215     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HScrollbar.pod
--r--r--r--  root/root  562      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HSeparator.pod
--r--r--r--  root/root  2535     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/HandleBox.pod
--r--r--r--  root/root  5464     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Helper.pm
--r--r--r--  root/root  858      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconFactory.pod
--r--r--r--  root/root  1020     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconInfo.pod
--r--r--r--  root/root  1847     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconSet.pod
--r--r--r--  root/root  1367     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconSize.pod
--r--r--r--  root/root  2782     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconSource.pod
--r--r--r--  root/root  2827     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconTheme.pod
--r--r--r--  root/root  5487     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/IconView.pod
--r--r--r--  root/root  5608     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Image.pod
--r--r--r--  root/root  1592     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ImageMenuItem.pod
--r--r--r--  root/root  918      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/InputDialog.pod
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/
--r--r--r--  root/root  1100     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/Files.pm
--r--r--r--  root/root  815      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/doctypes
--r--r--r--  root/root  1546     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/gdk.typemap
--r--r--r--  root/root  1091     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/gtk.typemap
--r--r--r--  root/root  190404   usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/gtk2perl-autogen.h
--r--r--r--  root/root  359      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/gtk2perl-versions.h
--r--r--r--  root/root  7160     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/gtk2perl.h
--r--r--r--  root/root  39411    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/gtk2perl.typemap
--r--r--r--  root/root  315      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Install/pango.typemap
--r--r--r--  root/root  946      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Invisible.pod
--r--r--r--  root/root  801      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Item.pod
--r--r--r--  root/root  2654     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ItemFactory.pod
--r--r--r--  root/root  7376     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Label.pod
--r--r--r--  root/root  2226     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Layout.pod
--r--r--r--  root/root  4660     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/List.pod
--r--r--r--  root/root  2687     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ListItem.pod
--r--r--r--  root/root  3235     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ListStore.pod
--r--r--r--  root/root  4060     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Menu.pod
--r--r--r--  root/root  620      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/MenuBar.pod
--r--r--r--  root/root  2109     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/MenuItem.pod
--r--r--r--  root/root  2267     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/MenuShell.pod
--r--r--r--  root/root  1589     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/MenuToolButton.pod
--r--r--r--  root/root  5008     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/MessageDialog.pod
--r--r--r--  root/root  1341     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Misc.pod
--r--r--r--  root/root  7771     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Notebook.pod
--r--r--r--  root/root  1208     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Object.pod
--r--r--r--  root/root  1250     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/OptionMenu.pod
--r--r--r--  root/root  5371     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Paned.pod
--r--r--r--  root/root  3515     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango.pm
--r--r--r--  root/root  726      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango.pod
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/
--r--r--r--  root/root  1127     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/AttrList.pod
--r--r--r--  root/root  2128     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Context.pod
--r--r--r--  root/root  607      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Font.pod
--r--r--r--  root/root  5179     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/FontDescription.pod
--r--r--r--  root/root  585      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/FontFace.pod
--r--r--r--  root/root  681      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/FontFamily.pod
--r--r--r--  root/root  800      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/FontMap.pod
--r--r--r--  root/root  892      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/FontMetrics.pod
--r--r--r--  root/root  603      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Fontset.pod
--r--r--r--  root/root  3232     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Language.pod
--r--r--r--  root/root  4992     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Layout.pod
--r--r--r--  root/root  1103     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/LayoutIter.pod
--r--r--r--  root/root  1607     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Matrix.pod
--r--r--r--  root/root  2986     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/Script.pod
--r--r--r--  root/root  610      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/ScriptIter.pod
--r--r--r--  root/root  2048     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/TabArray.pod
--r--r--r--  root/root  634      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Pango/version.pod
--r--r--r--  root/root  1301     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Plug.pod
--r--r--r--  root/root  3302     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ProgressBar.pod
--r--r--r--  root/root  1483     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/RadioAction.pod
--r--r--r--  root/root  4811     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/RadioButton.pod
--r--r--r--  root/root  2246     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/RadioMenuItem.pod
--r--r--r--  root/root  1822     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/RadioToolButton.pod
--r--r--r--  root/root  2989     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Range.pod
--r--r--r--  root/root  1939     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Rc.pod
--r--r--r--  root/root  2232     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/RcStyle.pod
--r--r--r--  root/root  688      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Requisition.pod
--r--r--r--  root/root  1497     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Ruler.pod
--r--r--r--  root/root  1792     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Scale.pod
--r--r--r--  root/root  510      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Scrollbar.pod
--r--r--r--  root/root  4658     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ScrolledWindow.pod
--r--r--r--  root/root  722      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Selection.pod
--r--r--r--  root/root  2206     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SelectionData.pod
--r--r--r--  root/root  457      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Separator.pod
--r--r--r--  root/root  778      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SeparatorMenuItem.pod
--r--r--r--  root/root  992      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SeparatorToolItem.pod
--r--r--r--  root/root  24352    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SimpleList.pm
--r--r--r--  root/root  8365     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SimpleMenu.pm
--r--r--r--  root/root  1260     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SizeGroup.pod
--r--r--r--  root/root  951      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Socket.pod
--r--r--r--  root/root  5572     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/SpinButton.pod
--r--r--r--  root/root  1715     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Statusbar.pod
--r--r--r--  root/root  1007     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Stock.pod
--r--r--r--  root/root  16869    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Style.pod
--r--r--r--  root/root  3357     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Table.pod
--r--r--r--  root/root  1303     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TargetEntry.pod
--r--r--r--  root/root  1211     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TargetList.pod
--r--r--r--  root/root  772      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TearoffMenuItem.pod
--r--r--r--  root/root  4580     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TestHelper.pm
--r--r--r--  root/root  484      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextAttributes.pod
--r--r--r--  root/root  9817     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextBuffer.pod
--r--r--r--  root/root  536      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextChildAnchor.pod
--r--r--r--  root/root  9225     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextIter.pod
--r--r--r--  root/root  694      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextMark.pod
--r--r--r--  root/root  9285     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextTag.pod
--r--r--r--  root/root  1086     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextTagTable.pod
--r--r--r--  root/root  12658    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TextView.pod
--r--r--r--  root/root  1371     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ToggleAction.pod
--r--r--r--  root/root  2023     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ToggleButton.pod
--r--r--r--  root/root  1164     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ToggleToolButton.pod
--r--r--r--  root/root  2534     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ToolButton.pod
--r--r--r--  root/root  4316     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/ToolItem.pod
--r--r--r--  root/root  8682     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Toolbar.pod
--r--r--r--  root/root  1327     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Tooltips.pod
--r--r--r--  root/root  614      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeDragDest.pod
--r--r--r--  root/root  602      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeDragSource.pod
--r--r--r--  root/root  2157     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeIter.pod
--r--r--r--  root/root  13813    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeModel.pod
--r--r--r--  root/root  2024     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeModelFilter.pod
--r--r--r--  root/root  1633     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeModelSort.pod
--r--r--r--  root/root  2552     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreePath.pod
--r--r--r--  root/root  620      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeRowReference.pod
--r--r--r--  root/root  3063     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeSelection.pod
--r--r--r--  root/root  1293     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeSortable.pod
--r--r--r--  root/root  3208     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeStore.pod
--r--r--r--  root/root  14568    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeView.pod
--r--r--r--  root/root  8145     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/TreeViewColumn.pod
--r--r--r--  root/root  3323     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/UIManager.pod
--r--r--r--  root/root  703      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VBox.pod
--r--r--r--  root/root  1395     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VButtonBox.pod
--r--r--r--  root/root  609      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VPaned.pod
--r--r--r--  root/root  542      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VRuler.pod
--r--r--r--  root/root  858      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VScale.pod
--r--r--r--  root/root  1215     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VScrollbar.pod
--r--r--r--  root/root  562      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/VSeparator.pod
--r--r--r--  root/root  2209     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Viewport.pod
--r--r--r--  root/root  31620    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Widget.pod
--r--r--r--  root/root  17060    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/Window.pod
--r--r--r--  root/root  594      usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/WindowGroup.pod
--r--r--r--  root/root  14635    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/api.pod
--r--r--r--  root/root  9883     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/devel.pod
--r--r--r--  root/root  47541    usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/enums.pod
--r--r--r--  root/root  6516     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/index.pod
--r--r--r--  root/root  5087     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/main.pod
--r--r--r--  root/root  4062     usr/lib/perl5/site_perl/5.8.7/i486-linux/Gtk2/version.pod
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/auto/
-drwxr-xr-x  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/auto/Gtk2/
--rw-r--r--  root/root  36244    usr/lib/perl5/site_perl/5.8.7/i486-linux/auto/Gtk2/.packlist
--r--r--r--  root/root  0        usr/lib/perl5/site_perl/5.8.7/i486-linux/auto/Gtk2/Gtk2.bs
--r-xr-xr-x  root/root  2004898  usr/lib/perl5/site_perl/5.8.7/i486-linux/auto/Gtk2/Gtk2.so
-drwxr-xr-x  root/root  0        usr/man/
-drwxr-xr-x  root/root  0        usr/man/man3/
--r--r--r--  root/root  3984     usr/man/man3/Gtk2.3.gz
--r--r--r--  root/root  3526     usr/man/man3/Gtk2::AboutDialog.3.gz
--r--r--r--  root/root  2980     usr/man/man3/Gtk2::AccelGroup.3.gz
--r--r--r--  root/root  2304     usr/man/man3/Gtk2::AccelLabel.3.gz
--r--r--r--  root/root  2900     usr/man/man3/Gtk2::AccelMap.3.gz
--r--r--r--  root/root  2576     usr/man/man3/Gtk2::Accelerator.3.gz
--r--r--r--  root/root  3251     usr/man/man3/Gtk2::Action.3.gz
--r--r--r--  root/root  3112     usr/man/man3/Gtk2::ActionGroup.3.gz
--r--r--r--  root/root  2592     usr/man/man3/Gtk2::Adjustment.3.gz
--r--r--r--  root/root  2646     usr/man/man3/Gtk2::Alignment.3.gz
--r--r--r--  root/root  2449     usr/man/man3/Gtk2::Arrow.3.gz
--r--r--r--  root/root  2401     usr/man/man3/Gtk2::AspectFrame.3.gz
--r--r--r--  root/root  2011     usr/man/man3/Gtk2::Bin.3.gz
--r--r--r--  root/root  2737     usr/man/man3/Gtk2::Box.3.gz
--r--r--r--  root/root  3709     usr/man/man3/Gtk2::Button.3.gz
--r--r--r--  root/root  2490     usr/man/man3/Gtk2::ButtonBox.3.gz
--r--r--r--  root/root  3100     usr/man/man3/Gtk2::Calendar.3.gz
--r--r--r--  root/root  2034     usr/man/man3/Gtk2::CellEditable.3.gz
--r--r--r--  root/root  2311     usr/man/man3/Gtk2::CellLayout.3.gz
--r--r--r--  root/root  5630     usr/man/man3/Gtk2::CellRenderer.3.gz
--r--r--r--  root/root  2174     usr/man/man3/Gtk2::CellRendererCombo.3.gz
--r--r--r--  root/root  2197     usr/man/man3/Gtk2::CellRendererPixbuf.3.gz
--r--r--r--  root/root  2046     usr/man/man3/Gtk2::CellRendererProgress.3.gz
--r--r--r--  root/root  3715     usr/man/man3/Gtk2::CellRendererText.3.gz
--r--r--r--  root/root  2285     usr/man/man3/Gtk2::CellRendererToggle.3.gz
--r--r--r--  root/root  2533     usr/man/man3/Gtk2::CellView.3.gz
--r--r--r--  root/root  2139     usr/man/man3/Gtk2::CheckButton.3.gz
--r--r--r--  root/root  2557     usr/man/man3/Gtk2::CheckMenuItem.3.gz
--r--r--r--  root/root  2912     usr/man/man3/Gtk2::Clipboard.3.gz
--r--r--r--  root/root  5507     usr/man/man3/Gtk2::CodeGen.3.gz
--r--r--r--  root/root  2572     usr/man/man3/Gtk2::ColorButton.3.gz
--r--r--r--  root/root  2808     usr/man/man3/Gtk2::ColorSelection.3.gz
--r--r--r--  root/root  2185     usr/man/man3/Gtk2::ColorSelectionDialog.3.gz
--r--r--r--  root/root  2631     usr/man/man3/Gtk2::Combo.3.gz
--r--r--r--  root/root  4142     usr/man/man3/Gtk2::ComboBox.3.gz
--r--r--r--  root/root  2829     usr/man/man3/Gtk2::ComboBoxEntry.3.gz
--r--r--r--  root/root  3510     usr/man/man3/Gtk2::Container.3.gz
--r--r--r--  root/root  2687     usr/man/man3/Gtk2::Curve.3.gz
--r--r--r--  root/root  5865     usr/man/man3/Gtk2::Dialog.3.gz
--r--r--r--  root/root  2253     usr/man/man3/Gtk2::Drag.3.gz
--r--r--r--  root/root  2098     usr/man/man3/Gtk2::DrawingArea.3.gz
--r--r--r--  root/root  2484     usr/man/man3/Gtk2::Editable.3.gz
--r--r--r--  root/root  4121     usr/man/man3/Gtk2::Entry.3.gz
--r--r--r--  root/root  2935     usr/man/man3/Gtk2::EntryCompletion.3.gz
--r--r--r--  root/root  2323     usr/man/man3/Gtk2::EventBox.3.gz
--r--r--r--  root/root  2810     usr/man/man3/Gtk2::Expander.3.gz
--r--r--r--  root/root  3750     usr/man/man3/Gtk2::FileChooser.3.gz
--r--r--r--  root/root  2686     usr/man/man3/Gtk2::FileChooserButton.3.gz
--r--r--r--  root/root  2468     usr/man/man3/Gtk2::FileChooserDialog.3.gz
--r--r--r--  root/root  2332     usr/man/man3/Gtk2::FileChooserWidget.3.gz
--r--r--r--  root/root  2493     usr/man/man3/Gtk2::FileFilter.3.gz
--r--r--r--  root/root  2844     usr/man/man3/Gtk2::FileSelection.3.gz
--r--r--r--  root/root  2230     usr/man/man3/Gtk2::Fixed.3.gz
--r--r--r--  root/root  2657     usr/man/man3/Gtk2::FontButton.3.gz
--r--r--r--  root/root  2385     usr/man/man3/Gtk2::FontSelection.3.gz
--r--r--r--  root/root  2345     usr/man/man3/Gtk2::FontSelectionDialog.3.gz
--r--r--r--  root/root  2709     usr/man/man3/Gtk2::Frame.3.gz
--r--r--r--  root/root  2310     usr/man/man3/Gtk2::GC.3.gz
--r--r--r--  root/root  2048     usr/man/man3/Gtk2::GammaCurve.3.gz
--r--r--r--  root/root  4347     usr/man/man3/Gtk2::Gdk.3.gz
--r--r--r--  root/root  2056     usr/man/man3/Gtk2::Gdk::Atom.3.gz
--r--r--r--  root/root  2059     usr/man/man3/Gtk2::Gdk::Bitmap.3.gz
--r--r--r--  root/root  2435     usr/man/man3/Gtk2::Gdk::Color.3.gz
--r--r--r--  root/root  2762     usr/man/man3/Gtk2::Gdk::Colormap.3.gz
--r--r--r--  root/root  3861     usr/man/man3/Gtk2::Gdk::Cursor.3.gz
--r--r--r--  root/root  3405     usr/man/man3/Gtk2::Gdk::Device.3.gz
--r--r--r--  root/root  3017     usr/man/man3/Gtk2::Gdk::Display.3.gz
--r--r--r--  root/root  2202     usr/man/man3/Gtk2::Gdk::DisplayManager.3.gz
--r--r--r--  root/root  3737     usr/man/man3/Gtk2::Gdk::DragContext.3.gz
--r--r--r--  root/root  4080     usr/man/man3/Gtk2::Gdk::Drawable.3.gz
--r--r--r--  root/root  4705     usr/man/man3/Gtk2::Gdk::Event.3.gz
--r--r--r--  root/root  2149     usr/man/man3/Gtk2::Gdk::Event::Button.3.gz
--r--r--r--  root/root  2368     usr/man/man3/Gtk2::Gdk::Event::Client.3.gz
--r--r--r--  root/root  2085     usr/man/man3/Gtk2::Gdk::Event::Configure.3.gz
--r--r--r--  root/root  2520     usr/man/man3/Gtk2::Gdk::Event::Crossing.3.gz
--r--r--r--  root/root  2013     usr/man/man3/Gtk2::Gdk::Event::DND.3.gz
--r--r--r--  root/root  2125     usr/man/man3/Gtk2::Gdk::Event::Expose.3.gz
--r--r--r--  root/root  2000     usr/man/man3/Gtk2::Gdk::Event::Focus.3.gz
--r--r--r--  root/root  2090     usr/man/man3/Gtk2::Gdk::Event::Key.3.gz
--r--r--r--  root/root  2150     usr/man/man3/Gtk2::Gdk::Event::Motion.3.gz
--r--r--r--  root/root  1881     usr/man/man3/Gtk2::Gdk::Event::NoExpose.3.gz
--r--r--r--  root/root  2302     usr/man/man3/Gtk2::Gdk::Event::OwnerChange.3.gz
--r--r--r--  root/root  2064     usr/man/man3/Gtk2::Gdk::Event::Property.3.gz
--r--r--r--  root/root  2014     usr/man/man3/Gtk2::Gdk::Event::Proximity.3.gz
--r--r--r--  root/root  2269     usr/man/man3/Gtk2::Gdk::Event::Scroll.3.gz
--r--r--r--  root/root  2131     usr/man/man3/Gtk2::Gdk::Event::Selection.3.gz
--r--r--r--  root/root  2199     usr/man/man3/Gtk2::Gdk::Event::Setting.3.gz
--r--r--r--  root/root  2151     usr/man/man3/Gtk2::Gdk::Event::Visibility.3.gz
--r--r--r--  root/root  2279     usr/man/man3/Gtk2::Gdk::Event::WindowState.3.gz
--r--r--r--  root/root  4038     usr/man/man3/Gtk2::Gdk::GC.3.gz
--r--r--r--  root/root  2680     usr/man/man3/Gtk2::Gdk::Geometry.3.gz
--r--r--r--  root/root  2671     usr/man/man3/Gtk2::Gdk::Input.3.gz
--r--r--r--  root/root  3286     usr/man/man3/Gtk2::Gdk::Keymap.3.gz
--r--r--r--  root/root  2974     usr/man/man3/Gtk2::Gdk::Keysyms.3.gz
--r--r--r--  root/root  7685     usr/man/man3/Gtk2::Gdk::Pixbuf.3.gz
--r--r--r--  root/root  2375     usr/man/man3/Gtk2::Gdk::PixbufAnimation.3.gz
--r--r--r--  root/root  2174     usr/man/man3/Gtk2::Gdk::PixbufAnimationIter.3.gz
--r--r--r--  root/root  2382     usr/man/man3/Gtk2::Gdk::PixbufLoader.3.gz
--r--r--r--  root/root  3006     usr/man/man3/Gtk2::Gdk::Pixmap.3.gz
--r--r--r--  root/root  2367     usr/man/man3/Gtk2::Gdk::Rectangle.3.gz
--r--r--r--  root/root  2929     usr/man/man3/Gtk2::Gdk::Region.3.gz
--r--r--r--  root/root  2086     usr/man/man3/Gtk2::Gdk::Rgb.3.gz
--r--r--r--  root/root  2752     usr/man/man3/Gtk2::Gdk::Screen.3.gz
--r--r--r--  root/root  2528     usr/man/man3/Gtk2::Gdk::Selection.3.gz
--r--r--r--  root/root  1892     usr/man/man3/Gtk2::Gdk::Threads.3.gz
--r--r--r--  root/root  2717     usr/man/man3/Gtk2::Gdk::Visual.3.gz
--r--r--r--  root/root  7650     usr/man/man3/Gtk2::Gdk::Window.3.gz
--r--r--r--  root/root  2111     usr/man/man3/Gtk2::HBox.3.gz
--r--r--r--  root/root  2352     usr/man/man3/Gtk2::HButtonBox.3.gz
--r--r--r--  root/root  1988     usr/man/man3/Gtk2::HPaned.3.gz
--r--r--r--  root/root  1977     usr/man/man3/Gtk2::HRuler.3.gz
--r--r--r--  root/root  2167     usr/man/man3/Gtk2::HScale.3.gz
--r--r--r--  root/root  2285     usr/man/man3/Gtk2::HScrollbar.3.gz
--r--r--r--  root/root  1983     usr/man/man3/Gtk2::HSeparator.3.gz
--r--r--r--  root/root  2825     usr/man/man3/Gtk2::HandleBox.3.gz
--r--r--r--  root/root  3765     usr/man/man3/Gtk2::Helper.3.gz
--r--r--r--  root/root  2152     usr/man/man3/Gtk2::IconFactory.3.gz
--r--r--r--  root/root  2280     usr/man/man3/Gtk2::IconInfo.3.gz
--r--r--r--  root/root  2737     usr/man/man3/Gtk2::IconSet.3.gz
--r--r--r--  root/root  2416     usr/man/man3/Gtk2::IconSize.3.gz
--r--r--r--  root/root  2917     usr/man/man3/Gtk2::IconSource.3.gz
--r--r--r--  root/root  2939     usr/man/man3/Gtk2::IconTheme.3.gz
--r--r--r--  root/root  3761     usr/man/man3/Gtk2::IconView.3.gz
--r--r--r--  root/root  3617     usr/man/man3/Gtk2::Image.3.gz
--r--r--r--  root/root  2387     usr/man/man3/Gtk2::ImageMenuItem.3.gz
--r--r--r--  root/root  2092     usr/man/man3/Gtk2::InputDialog.3.gz
--r--r--r--  root/root  2183     usr/man/man3/Gtk2::Invisible.3.gz
--r--r--r--  root/root  2060     usr/man/man3/Gtk2::Item.3.gz
--r--r--r--  root/root  2771     usr/man/man3/Gtk2::ItemFactory.3.gz
--r--r--r--  root/root  4510     usr/man/man3/Gtk2::Label.3.gz
--r--r--r--  root/root  2616     usr/man/man3/Gtk2::Layout.3.gz
--r--r--r--  root/root  3461     usr/man/man3/Gtk2::List.3.gz
--r--r--r--  root/root  2815     usr/man/man3/Gtk2::ListItem.3.gz
--r--r--r--  root/root  3091     usr/man/man3/Gtk2::ListStore.3.gz
--r--r--r--  root/root  3497     usr/man/man3/Gtk2::Menu.3.gz
--r--r--r--  root/root  1997     usr/man/man3/Gtk2::MenuBar.3.gz
--r--r--r--  root/root  2534     usr/man/man3/Gtk2::MenuItem.3.gz
--r--r--r--  root/root  2688     usr/man/man3/Gtk2::MenuShell.3.gz
--r--r--r--  root/root  2475     usr/man/man3/Gtk2::MenuToolButton.3.gz
--r--r--r--  root/root  3658     usr/man/man3/Gtk2::MessageDialog.3.gz
--r--r--r--  root/root  2391     usr/man/man3/Gtk2::Misc.3.gz
--r--r--r--  root/root  4226     usr/man/man3/Gtk2::Notebook.3.gz
--r--r--r--  root/root  2382     usr/man/man3/Gtk2::Object.3.gz
--r--r--r--  root/root  2293     usr/man/man3/Gtk2::OptionMenu.3.gz
--r--r--r--  root/root  3813     usr/man/man3/Gtk2::Paned.3.gz
--r--r--r--  root/root  2892     usr/man/man3/Gtk2::Pango.3.gz
--r--r--r--  root/root  2353     usr/man/man3/Gtk2::Pango::AttrList.3.gz
--r--r--r--  root/root  2634     usr/man/man3/Gtk2::Pango::Context.3.gz
--r--r--r--  root/root  2115     usr/man/man3/Gtk2::Pango::Font.3.gz
--r--r--r--  root/root  3599     usr/man/man3/Gtk2::Pango::FontDescription.3.gz
--r--r--r--  root/root  2076     usr/man/man3/Gtk2::Pango::FontFace.3.gz
--r--r--r--  root/root  2018     usr/man/man3/Gtk2::Pango::FontFamily.3.gz
--r--r--r--  root/root  2171     usr/man/man3/Gtk2::Pango::FontMap.3.gz
--r--r--r--  root/root  2099     usr/man/man3/Gtk2::Pango::FontMetrics.3.gz
--r--r--r--  root/root  2122     usr/man/man3/Gtk2::Pango::Fontset.3.gz
--r--r--r--  root/root  3264     usr/man/man3/Gtk2::Pango::Language.3.gz
--r--r--r--  root/root  3749     usr/man/man3/Gtk2::Pango::Layout.3.gz
--r--r--r--  root/root  2215     usr/man/man3/Gtk2::Pango::LayoutIter.3.gz
--r--r--r--  root/root  2426     usr/man/man3/Gtk2::Pango::Matrix.3.gz
--r--r--r--  root/root  3132     usr/man/man3/Gtk2::Pango::Script.3.gz
--r--r--r--  root/root  2093     usr/man/man3/Gtk2::Pango::ScriptIter.3.gz
--r--r--r--  root/root  2603     usr/man/man3/Gtk2::Pango::TabArray.3.gz
--r--r--r--  root/root  2132     usr/man/man3/Gtk2::Pango::version.3.gz
--r--r--r--  root/root  2271     usr/man/man3/Gtk2::Plug.3.gz
--r--r--r--  root/root  3116     usr/man/man3/Gtk2::ProgressBar.3.gz
--r--r--r--  root/root  2449     usr/man/man3/Gtk2::RadioAction.3.gz
--r--r--r--  root/root  3422     usr/man/man3/Gtk2::RadioButton.3.gz
--r--r--r--  root/root  2434     usr/man/man3/Gtk2::RadioMenuItem.3.gz
--r--r--r--  root/root  2430     usr/man/man3/Gtk2::RadioToolButton.3.gz
--r--r--r--  root/root  3082     usr/man/man3/Gtk2::Range.3.gz
--r--r--r--  root/root  2492     usr/man/man3/Gtk2::Rc.3.gz
--r--r--r--  root/root  2612     usr/man/man3/Gtk2::RcStyle.3.gz
--r--r--r--  root/root  2124     usr/man/man3/Gtk2::Requisition.3.gz
--r--r--r--  root/root  2489     usr/man/man3/Gtk2::Ruler.3.gz
--r--r--r--  root/root  2607     usr/man/man3/Gtk2::Scale.3.gz
--r--r--r--  root/root  1942     usr/man/man3/Gtk2::Scrollbar.3.gz
--r--r--r--  root/root  3539     usr/man/man3/Gtk2::ScrolledWindow.3.gz
--r--r--r--  root/root  2116     usr/man/man3/Gtk2::Selection.3.gz
--r--r--r--  root/root  2815     usr/man/man3/Gtk2::SelectionData.3.gz
--r--r--r--  root/root  1929     usr/man/man3/Gtk2::Separator.3.gz
--r--r--r--  root/root  2035     usr/man/man3/Gtk2::SeparatorMenuItem.3.gz
--r--r--r--  root/root  2207     usr/man/man3/Gtk2::SeparatorToolItem.3.gz
--r--r--r--  root/root  6591     usr/man/man3/Gtk2::SimpleList.3.gz
--r--r--r--  root/root  3713     usr/man/man3/Gtk2::SimpleMenu.3.gz
--r--r--r--  root/root  2341     usr/man/man3/Gtk2::SizeGroup.3.gz
--r--r--r--  root/root  2202     usr/man/man3/Gtk2::Socket.3.gz
--r--r--r--  root/root  3909     usr/man/man3/Gtk2::SpinButton.3.gz
--r--r--r--  root/root  2501     usr/man/man3/Gtk2::Statusbar.3.gz
--r--r--r--  root/root  2202     usr/man/man3/Gtk2::Stock.3.gz
--r--r--r--  root/root  5648     usr/man/man3/Gtk2::Style.3.gz
--r--r--r--  root/root  3063     usr/man/man3/Gtk2::Table.3.gz
--r--r--r--  root/root  2374     usr/man/man3/Gtk2::TargetEntry.3.gz
--r--r--r--  root/root  2250     usr/man/man3/Gtk2::TargetList.3.gz
--r--r--r--  root/root  2030     usr/man/man3/Gtk2::TearoffMenuItem.3.gz
--r--r--r--  root/root  2004     usr/man/man3/Gtk2::TextAttributes.3.gz
--r--r--r--  root/root  4715     usr/man/man3/Gtk2::TextBuffer.3.gz
--r--r--r--  root/root  2033     usr/man/man3/Gtk2::TextChildAnchor.3.gz
--r--r--r--  root/root  4462     usr/man/man3/Gtk2::TextIter.3.gz
--r--r--r--  root/root  2107     usr/man/man3/Gtk2::TextMark.3.gz
--r--r--r--  root/root  4638     usr/man/man3/Gtk2::TextTag.3.gz
--r--r--r--  root/root  2287     usr/man/man3/Gtk2::TextTagTable.3.gz
--r--r--r--  root/root  6188     usr/man/man3/Gtk2::TextView.3.gz
--r--r--r--  root/root  2394     usr/man/man3/Gtk2::ToggleAction.3.gz
--r--r--r--  root/root  2499     usr/man/man3/Gtk2::ToggleButton.3.gz
--r--r--r--  root/root  2242     usr/man/man3/Gtk2::ToggleToolButton.3.gz
--r--r--r--  root/root  2733     usr/man/man3/Gtk2::ToolButton.3.gz
--r--r--r--  root/root  3464     usr/man/man3/Gtk2::ToolItem.3.gz
--r--r--r--  root/root  4375     usr/man/man3/Gtk2::Toolbar.3.gz
--r--r--r--  root/root  2412     usr/man/man3/Gtk2::Tooltips.3.gz
--r--r--r--  root/root  2071     usr/man/man3/Gtk2::TreeDragDest.3.gz
--r--r--r--  root/root  2043     usr/man/man3/Gtk2::TreeDragSource.3.gz
--r--r--r--  root/root  2730     usr/man/man3/Gtk2::TreeIter.3.gz
--r--r--r--  root/root  7201     usr/man/man3/Gtk2::TreeModel.3.gz
--r--r--r--  root/root  2676     usr/man/man3/Gtk2::TreeModelFilter.3.gz
--r--r--r--  root/root  2474     usr/man/man3/Gtk2::TreeModelSort.3.gz
--r--r--r--  root/root  2857     usr/man/man3/Gtk2::TreePath.3.gz
--r--r--r--  root/root  2117     usr/man/man3/Gtk2::TreeRowReference.3.gz
--r--r--r--  root/root  3029     usr/man/man3/Gtk2::TreeSelection.3.gz
--r--r--r--  root/root  2375     usr/man/man3/Gtk2::TreeSortable.3.gz
--r--r--r--  root/root  2842     usr/man/man3/Gtk2::TreeStore.3.gz
--r--r--r--  root/root  6894     usr/man/man3/Gtk2::TreeView.3.gz
--r--r--r--  root/root  4648     usr/man/man3/Gtk2::TreeViewColumn.3.gz
--r--r--r--  root/root  3225     usr/man/man3/Gtk2::UIManager.3.gz
--r--r--r--  root/root  2111     usr/man/man3/Gtk2::VBox.3.gz
--r--r--r--  root/root  2352     usr/man/man3/Gtk2::VButtonBox.3.gz
--r--r--r--  root/root  1989     usr/man/man3/Gtk2::VPaned.3.gz
--r--r--r--  root/root  1977     usr/man/man3/Gtk2::VRuler.3.gz
--r--r--r--  root/root  2167     usr/man/man3/Gtk2::VScale.3.gz
--r--r--r--  root/root  2285     usr/man/man3/Gtk2::VScrollbar.3.gz
--r--r--r--  root/root  1983     usr/man/man3/Gtk2::VSeparator.3.gz
--r--r--r--  root/root  2641     usr/man/man3/Gtk2::Viewport.3.gz
--r--r--r--  root/root  12159    usr/man/man3/Gtk2::Widget.3.gz
--r--r--r--  root/root  7650     usr/man/man3/Gtk2::Window.3.gz
--r--r--r--  root/root  2026     usr/man/man3/Gtk2::WindowGroup.3.gz
--r--r--r--  root/root  8093     usr/man/man3/Gtk2::api.3.gz
--r--r--r--  root/root  6101     usr/man/man3/Gtk2::devel.3.gz
--r--r--r--  root/root  19270    usr/man/man3/Gtk2::enums.3.gz
--r--r--r--  root/root  3669     usr/man/man3/Gtk2::index.3.gz
--r--r--r--  root/root  3877     usr/man/man3/Gtk2::main.3.gz
--r--r--r--  root/root  3337     usr/man/man3/Gtk2::version.3.gz
-drwxr-xr-x  root/root  0        usr/share/
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/gtk2-perl-1.142/
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/AUTHORS
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/ChangeLog
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/LICENSE
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/MANIFEST
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/NEWS
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/README
+-rw-r--r--  root/root  usr/doc/gtk2-perl-1.142/TODO
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/perl5/
+drwxr-xr-x  root/root  usr/lib/perl5/5.8.8/
+drwxr-xr-x  root/root  usr/lib/perl5/5.8.8/i486-linux/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2.pm
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/AboutDialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/AccelGroup.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/AccelLabel.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/AccelMap.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Accelerator.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Action.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ActionGroup.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Adjustment.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Alignment.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Arrow.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/AspectFrame.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Assistant.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Bin.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Box.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Button.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ButtonBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Calendar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellEditable.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellLayout.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRenderer.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererAccel.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererCombo.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererPixbuf.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererProgress.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererSpin.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererText.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellRendererToggle.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CellView.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CheckButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CheckMenuItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Clipboard.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/CodeGen.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ColorButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ColorSelection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ColorSelectionDialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Combo.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ComboBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ComboBoxEntry.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Container.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Curve.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Dialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Drag.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/DrawingArea.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Editable.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Entry.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/EntryCompletion.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/EventBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Expander.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FileChooser.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FileChooserButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FileChooserDialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FileChooserWidget.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FileFilter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FileSelection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Fixed.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FontButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FontSelection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/FontSelectionDialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Frame.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/GC.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/GammaCurve.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Atom.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Bitmap.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Cairo/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Cairo/Context.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Color.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Colormap.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Cursor.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Device.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Display.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/DisplayManager.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/DragContext.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Drawable.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Button.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Client.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Configure.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Crossing.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/DND.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Expose.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Focus.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/GrabBroken.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Key.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Motion.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/NoExpose.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/OwnerChange.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Property.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Proximity.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Scroll.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Selection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Setting.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/Visibility.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Event/WindowState.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/GC.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Geometry.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Input.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Keymap.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Keysyms.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/PangoRenderer.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Pixbuf.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/PixbufAnimation.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/PixbufAnimationIter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/PixbufFormat.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/PixbufLoader.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/PixbufSimpleAnim.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Pixmap.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Rectangle.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Region.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Rgb.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Screen.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Selection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Threads.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Visual.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/Window.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Gdk/X11.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HButtonBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HPaned.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HRuler.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HScale.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HScrollbar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HSeparator.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/HandleBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Helper.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconFactory.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconInfo.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconSet.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconSize.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconSource.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconTheme.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/IconView.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Image.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ImageMenuItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/InputDialog.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/Files.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/doctypes
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/gdk.typemap
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/gtk.typemap
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/gtk2perl-autogen.h
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/gtk2perl-versions.h
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/gtk2perl.h
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/gtk2perl.typemap
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Install/pango.typemap
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Invisible.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Item.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ItemFactory.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Label.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Layout.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/LinkButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/List.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ListItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ListStore.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Menu.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/MenuBar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/MenuItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/MenuShell.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/MenuToolButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/MessageDialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Misc.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Notebook.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Object.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/OptionMenu.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/PageSetup.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Paned.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango.pm
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/AttrList.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Cairo.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Cairo/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Cairo/Context.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Cairo/FontMap.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Context.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Font.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/FontDescription.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/FontFace.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/FontFamily.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/FontMap.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/FontMetrics.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Fontset.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Language.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Layout.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/LayoutIter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Matrix.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Renderer.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/Script.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/ScriptIter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/TabArray.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Pango/version.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/PaperSize.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Plug.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Print.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/PrintContext.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/PrintOperation.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/PrintOperationPreview.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/PrintSettings.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ProgressBar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RadioAction.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RadioButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RadioMenuItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RadioToolButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Range.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Rc.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RcStyle.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentChooser.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentChooserDialog.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentChooserMenu.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentChooserWidget.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentFilter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentInfo.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/RecentManager.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Requisition.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Ruler.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Scale.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Scrollbar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ScrolledWindow.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Selection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SelectionData.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Separator.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SeparatorMenuItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SeparatorToolItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SimpleList.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SimpleMenu.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SizeGroup.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Socket.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/SpinButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/StatusIcon.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Statusbar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Stock.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Style.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Table.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TargetEntry.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TargetList.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TearoffMenuItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TestHelper.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextAttributes.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextBuffer.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextChildAnchor.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextIter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextMark.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextTag.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextTagTable.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TextView.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ToggleAction.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ToggleButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ToggleToolButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ToolButton.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/ToolItem.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Toolbar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Tooltips.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeDragDest.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeDragSource.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeIter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeModel.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeModelFilter.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeModelSort.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreePath.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeRowReference.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeSelection.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeSortable.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeSortable/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeSortable/IterCompareFunc.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeStore.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeView.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/TreeViewColumn.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/UIManager.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VButtonBox.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VPaned.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VRuler.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VScale.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VScrollbar.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/VSeparator.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Viewport.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Widget.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/Window.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/WindowGroup.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/api.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/devel.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/enums.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/index.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/main.pod
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/Gtk2/version.pod
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Gtk2/
+-rw-r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Gtk2/.packlist
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Gtk2/Gtk2.bs
+-r-xr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Gtk2/Gtk2.so
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man3/
+-r--r--r--  root/root  usr/man/man3/Gtk2.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::AboutDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::AccelGroup.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::AccelLabel.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::AccelMap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Accelerator.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Action.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ActionGroup.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Adjustment.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Alignment.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Arrow.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::AspectFrame.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Assistant.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Bin.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Box.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Button.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ButtonBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Calendar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellEditable.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellLayout.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRenderer.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererAccel.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererCombo.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererPixbuf.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererProgress.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererSpin.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererText.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellRendererToggle.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CellView.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CheckButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CheckMenuItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Clipboard.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::CodeGen.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ColorButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ColorSelection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ColorSelectionDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Combo.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ComboBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ComboBoxEntry.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Container.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Curve.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Dialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Drag.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::DrawingArea.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Editable.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Entry.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::EntryCompletion.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::EventBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Expander.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FileChooser.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FileChooserButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FileChooserDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FileChooserWidget.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FileFilter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FileSelection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Fixed.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FontButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FontSelection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::FontSelectionDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Frame.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::GC.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::GammaCurve.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Atom.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Bitmap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Cairo::Context.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Color.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Colormap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Cursor.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Device.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Display.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::DisplayManager.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::DragContext.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Drawable.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Button.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Client.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Configure.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Crossing.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::DND.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Expose.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Focus.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::GrabBroken.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Key.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Motion.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::NoExpose.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::OwnerChange.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Property.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Proximity.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Scroll.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Selection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Setting.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::Visibility.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Event::WindowState.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::GC.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Geometry.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Input.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Keymap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Keysyms.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::PangoRenderer.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Pixbuf.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::PixbufAnimation.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::PixbufAnimationIter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::PixbufFormat.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::PixbufLoader.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::PixbufSimpleAnim.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Pixmap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Rectangle.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Region.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Rgb.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Screen.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Selection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Threads.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Visual.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::Window.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Gdk::X11.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HButtonBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HPaned.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HRuler.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HScale.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HScrollbar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HSeparator.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::HandleBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Helper.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconFactory.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconInfo.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconSet.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconSize.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconSource.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconTheme.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::IconView.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Image.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ImageMenuItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::InputDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Invisible.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Item.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ItemFactory.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Label.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Layout.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::LinkButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::List.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ListItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ListStore.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Menu.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::MenuBar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::MenuItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::MenuShell.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::MenuToolButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::MessageDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Misc.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Notebook.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Object.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::OptionMenu.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::PageSetup.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Paned.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::AttrList.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Cairo.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Cairo::Context.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Cairo::FontMap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Context.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Font.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::FontDescription.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::FontFace.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::FontFamily.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::FontMap.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::FontMetrics.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Fontset.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Language.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Layout.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::LayoutIter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Matrix.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Renderer.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::Script.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::ScriptIter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::TabArray.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Pango::version.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::PaperSize.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Plug.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Print.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::PrintContext.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::PrintOperation.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::PrintOperationPreview.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::PrintSettings.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ProgressBar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RadioAction.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RadioButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RadioMenuItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RadioToolButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Range.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Rc.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RcStyle.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentChooser.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentChooserDialog.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentChooserMenu.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentChooserWidget.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentFilter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentInfo.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::RecentManager.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Requisition.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Ruler.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Scale.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Scrollbar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ScrolledWindow.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Selection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SelectionData.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Separator.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SeparatorMenuItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SeparatorToolItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SimpleList.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SimpleMenu.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SizeGroup.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Socket.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::SpinButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::StatusIcon.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Statusbar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Stock.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Style.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Table.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TargetEntry.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TargetList.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TearoffMenuItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextAttributes.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextBuffer.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextChildAnchor.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextIter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextMark.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextTag.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextTagTable.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TextView.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ToggleAction.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ToggleButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ToggleToolButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ToolButton.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::ToolItem.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Toolbar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Tooltips.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeDragDest.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeDragSource.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeIter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeModel.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeModelFilter.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeModelSort.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreePath.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeRowReference.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeSelection.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeSortable.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeSortable::IterCompareFunc.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeStore.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeView.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::TreeViewColumn.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::UIManager.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VButtonBox.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VPaned.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VRuler.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VScale.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VScrollbar.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::VSeparator.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Viewport.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Widget.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::Window.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::WindowGroup.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::api.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::devel.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::enums.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::index.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::main.3.gz
+-r--r--r--  root/root  usr/man/man3/Gtk2::version.3.gz
+drwxr-xr-x  root/root  usr/share/

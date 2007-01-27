@@ -1,21 +1,20 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/T/TS/TSCH/Glib-1.142.tar.gz
+# MD5SUMS: 6f3c675acf177763f51394b7e087d507 Glib-1.082.tar.gz
+# MD5SUMS: b3ab8094fb83d0931e4042f2f6704342 Glib-1.105.tar.gz
+# MD5SUMS: 639d22451339e07844e6be3b5e345959 Glib-1.120.tar.gz
+# MD5SUMS: 60e26957f890accb29b755fd9ce57a57 Glib-1.142.tar.gz
+# REQUIRES: glib2 perl
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.120
+VERSION=1.142
 ARCH=noarch
 BUILD=1tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -26,22 +25,21 @@ chown -R root.root .
 perl Makefile.PL
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS ChangeLog LICENSE MANIFEST NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/Glib-$VERSION
