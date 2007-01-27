@@ -2,7 +2,7 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: ftp://ftp.fu-berlin.de/unix/linux/mirrors/gentoo/distfiles/transcode-1.0.2.tar.gz
 # MD5SUMS: e353c0ab7e927a8672528e05a9ae960b transcode-1.0.2.tar.gz
-# REQUIRES: ffmpeg lame libdvdread libjpeg mjpegtools x11
+# REQUIRES: a52dec ffmpeg gtk+ imagemagick libdv libdvdread libfame libogg libpng libquicktime libtheora libvorbis libxml2 mjpegtools sdl x11
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -11,7 +11,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.0.2
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -37,7 +37,21 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --with-libavcodec-includes=/usr/include/ffmpeg \
+  --with-libpostproc-includes=/usr/include/postproc \
   --enable-mjpegtools \
+  --enable-libpostproc \
+  --enable-ogg \
+  --enable-vorbis \
+  --enable-theora \
+  --enable-libdv \
+  --enable-libquicktime \
+  --enable-a52 \
+  --enable-libxml2 \
+  --enable-sdl \
+  --enable-gtk \
+  --enable-libfame \
+  --enable-imagemagick \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
