@@ -9,4 +9,3 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-config etc/tpbrc.new
