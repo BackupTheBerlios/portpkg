@@ -1,0 +1,68 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://download.videolan.org/pub/videolan/vlc/0.8.6a/vlc-0.8.6a.tar.bz2
+# MD5SUMS: 80217c4513bb15cd071ef8cb782513f6 vlc-0.8.6a.tar.bz2
+# REQUIRES: alsa-lib desktop-file-utils ffmpeg fribidi gnutls hal libcddb libdvbpsi4 libdvdread libebml libid3tag libmad libmodplug libmpcdec libnotify samba sdl speex sysfsutils vcdimager wxgtk x11
+# OPTIONAL: gnome-vfs
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.8.6a
+ARCH=${ARCH:-i486}
+BUILD=1tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/vlc-$VERSION.tar.bz2
+cd vlc-$VERSION
+cat $CWD/*.patch | patch -p1
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  $ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
+rm -fv $PKG/usr/info/dir
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT-NLS AUTHORS COPYING ChangeLog HACKING INSTALL INSTALL.win32 INSTALL.wince NEWS README README.MacOSX.rtf THANKS \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/vlc-$VERSION
+  rm -rf $PKG
+fi
