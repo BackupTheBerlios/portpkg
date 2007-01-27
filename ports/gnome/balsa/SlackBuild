@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://balsa.gnome.org/balsa-2.3.13.tar.bz2
+# SOURCES: http://balsa.gnome.org/balsa-2.3.14.tar.bz2
 # MD5SUMS: a1c7fe3454243f1719a19fcdb0905948 balsa-2.3.13.tar.bz2
-# REQUIRES: aspell gmime gtkhtml libesmtp pcre
+# MD5SUMS: 6a86f8bebc21bd279b9fd4d2a21a36c0 balsa-2.3.14.tar.bz2
+# REQUIRES: aspell desktop-file-utils gmime gtkhtml libesmtp pcre scrollkeeper
 # UP2DATE: http://balsa.gnome.org/download
 
 TMP=${TMP:-/tmp}
@@ -10,7 +11,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.3.13
+VERSION=2.3.14
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -31,38 +32,36 @@ tar xjvf $CWD/balsa-$VERSION.tar.bz2
 cd balsa-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
   --with-ssl \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
 rm -rf $PKG/var/lib/scrollkeeper
-rm -rf $PKG/usr/info/dir
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING NEWS README TODO \
+  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/balsa-$VERSION
