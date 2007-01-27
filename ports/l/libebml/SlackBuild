@@ -1,0 +1,49 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://dl.matroska.org/downloads/libebml/libebml-0.7.7.tar.bz2
+# MD5SUMS: 7c8456a50fd82c1c9755917d0182c49e libebml-0.7.7.tar.bz2
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.7.7
+ARCH=${ARCH:-i486}
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/libebml-$VERSION.tar.bz2
+cd libebml-$VERSION
+chown -R root.root .
+cd make/linux
+make prefix=/usr
+make install prefix=$PKG/usr
+cd ../..
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ChangeLog \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/libebml-$VERSION
+  rm -rf $PKG
+fi
