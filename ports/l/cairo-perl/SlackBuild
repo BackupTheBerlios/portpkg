@@ -1,0 +1,44 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/T/TS/TSCH/Cairo-1.022.tar.gz
+# MD5SUMS: ae4fe611f3b5d926e6cae3fae5799b2e Cairo-1.022.tar.gz
+# REQUIRES: cairo perl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.022
+ARCH=noarch
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/Cairo-$VERSION.tar.gz
+cd Cairo-$VERSION
+chown -R root.root .
+perl Makefile.PL
+make
+make install DESTDIR=$PKG
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ChangeLog LICENSE MANIFEST NEWS README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Cairo-$VERSION
+  rm -rf $PKG
+fi
