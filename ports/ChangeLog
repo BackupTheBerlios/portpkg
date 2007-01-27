@@ -1,85 +1,179 @@
+2007-01-27  topf  <topf@users.berlios.de>
+
+  * l/wxgtk/SlackBuild, l/wxgtk/footprint, l/wxgtk/md5sums, l/wxgtk/requires, l/wxgtk/sources:
+  Version bump.
+
+  * xap/vlc/SlackBuild, xap/vlc/doinst.sh, xap/vlc/footprint, xap/vlc/slack-desc, xap/vlc/vlc-0.8.6a-wxgtk-2.8.patch:
+  New entry. Includes patch for wxGTK-2.8.
+
+  * l/x264/SlackBuild, l/x264/footprint, l/x264/slack-desc, l/openexr/SlackBuild, l/openexr/footprint, l/openexr/slack-desc:
+  New entry.
+
+  * l/fftw/SlackBuild, l/fftw/footprint, l/fftw/slack-desc: New entry.
+
+  * l/libdc1394/SlackBuild, l/libdc1394/footprint, l/libdc1394/slack-desc:
+  New entry.
+
+  * l/libquicktime/SlackBuild, l/libquicktime/footprint, l/libquicktime/slack-desc:
+  New entry.
+
+  * l/libmatroska/SlackBuild, l/libmatroska/footprint, l/libmatroska/slack-desc, l/libiec61883/SlackBuild, l/libiec61883/footprint, l/libiec61883/slack-desc:
+  New entry.
+
+  * l/libfame/SlackBuild, l/libfame/footprint, l/libfame/libfame-0.9.1-gcc34-1.patch, l/libfame/slack-desc:
+  New entry.
+
+  * l/libebml/SlackBuild, l/libebml/footprint, l/libebml/slack-desc: New entry.
+
+  * l/libdvbpsi4/SlackBuild, l/libdvbpsi4/footprint, l/libdvbpsi4/slack-desc:
+  New entry.
+
+  * l/io-socket-ssl/SlackBuild, l/io-socket-ssl/footprint, l/io-socket-ssl/slack-desc:
+  New entry.
+
+  * ap/transcode/ChangeLog, ap/transcode/SlackBuild, ap/transcode/footprint:
+  Enabled mjpegtools ffmpeg ogg vorbis theora libdv libquicktime a52 libxml2 sdl gtk  libfame and imagemagick codecs.
+
+  * ap/tpb/ChangeLog, ap/tpb/SlackBuild, ap/tpb/doinst.sh, ap/tpb/footprint, ap/tpb/md5sums, ap/tpb/requires, ap/tpb/sources:
+  xosd is optional now.
+
+  * xap/mplayer/ChangeLog, xap/mplayer/SlackBuild, xap/mplayer/footprint:
+  Version bump.
+
+  * l/mpeg2dec/ChangeLog, l/mpeg2dec/SlackBuild, l/mpeg2dec/footprint, l/mpeg2dec/md5sums, l/mpeg2dec/requires, l/mpeg2dec/sources:
+  Version bump.
+
+  * l/libraw1394/ChangeLog, l/libraw1394/SlackBuild, l/libraw1394/footprint, l/libraw1394/md5sums, l/libraw1394/requires, l/libraw1394/slack-desc, l/libraw1394/sources:
+  Version bump.
+
+  * l/libdv/ChangeLog, l/libdv/SlackBuild, l/libdv/footprint, l/libdv/md5sums, l/libdv/requires, l/libdv/slack-desc, l/libdv/sources:
+  Version bump.
+
+  * l/libcddb/ChangeLog, l/libcddb/SlackBuild, l/libcddb/footprint, l/libcddb/md5sums, l/libcddb/requires, l/libcddb/sources:
+  Version bump.
+
+  * ap/icon-naming-utils/ChangeLog, ap/icon-naming-utils/SlackBuild, ap/icon-naming-utils/footprint:
+  Fixed installation directory for .pc files.
+
+  * l/libavc1394/ChangeLog, l/libavc1394/SlackBuild, l/libavc1394/footprint, l/libavc1394/md5sums, l/libavc1394/requires, l/libavc1394/slack-desc, l/libavc1394/sources:
+  Version bump.
+
+  * l/gtk2-perl/ChangeLog, l/gtk2-perl/SlackBuild, l/gtk2-perl/footprint, l/gtk2-perl/md5sums, l/gtk2-perl/requires, l/gtk2-perl/slack-desc, l/gtk2-perl/sources:
+  Version bump.
+
+  * l/glib-perl/ChangeLog, l/glib-perl/SlackBuild, l/glib-perl/footprint, l/glib-perl/md5sums, l/glib-perl/requires, l/glib-perl/sources:
+  Version bump.
+
+  * ap/ffmpeg/ChangeLog, ap/ffmpeg/SlackBuild, ap/ffmpeg/footprint:
+  Added --enable-shared --enable-gpl --enable-pp --enable-swscaler --enable-libtheora --enable-vorbis --enable-libogg --enable-x264 --enable-xvid --enable-a52 --enable-faac --enable-faad --enable-mp3lame and fix for transcode.
+
+  * l/event-rpc/SlackBuild, l/event-rpc/footprint, l/event-rpc/slack-desc:
+  New entry.
+
+  * l/event/ChangeLog, l/event/SlackBuild, l/event/footprint, l/event/requires, l/event/slack-desc, l/event/sources:
+  Version bump.
+
+  * l/cairo-perl/SlackBuild, l/cairo-perl/footprint, l/cairo-perl/slack-desc:
+  New entry.
+
+  * gnome/balsa/ChangeLog, gnome/balsa/SlackBuild, gnome/balsa/footprint:
+  Version bump.
+
+  * xap/acidrip/ChangeLog, xap/acidrip/SlackBuild, xap/acidrip/acidrip.desktop:
+  Use media-cdrom icon in .desktop file instead of meddling with acidrip's logo.
+
+  * l/flash-plugin/SlackBuild, l/flash-plugin/footprint, l/flash-plugin/md5sums, l/flash-plugin/requires, l/flash-plugin/slack-desc, l/flash-plugin/sources:
+  Version bump.
+
+2007-01-26  topf  <topf@users.berlios.de>
+
+  * open/ri-li/SlackBuild, open/ri-li/footprint, open/ri-li/info, open/ri-li/slack-desc:
+  Upgraded to version 2.0.0 (dan)
+
+  * open/fltk/SlackBuild, open/fltk/doinst.sh, open/fltk/footprint, open/fltk/info, open/fltk/slack-desc:
+  Upgraded to version 1.1.7 (dan)
+
 2007-01-25  topf  <topf@users.berlios.de>
 
-  * open/libdvdread/SlackBuild, open/libdvdread/footprint, open/libdvdread/info, open/libdvdread/slack-desc:
-  Upgraded to 0.9.6 (ldv)
-
-  * open/gnutls/ChangeLog, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info:
-  Upgraded to 1.4.5 (ldv)
-
-  * open/gle/SlackBuild, open/gle/doinst.sh, open/gle/footprint, open/gle/info, open/gle/slack-desc:
-  GLE - Graphics Layout Engine (dan)
-
-  * open/cups-pdf/ChangeLog, open/cups-pdf/SlackBuild, open/cups-pdf/footprint, open/cups-pdf/info:
-  Upgraded to 2.4.3 (ldv)
-
-  * open/cups-pdf/SlackBuild, open/cups-pdf/doinst.sh, open/cups-pdf/footprint, open/cups-pdf/info, open/cups-pdf/slack-desc:
-  Upgraded to 2.4.2 (ldv)
-
-  * open/comix/ChangeLog, open/comix/SlackBuild, open/comix/footprint, open/comix/info:
-  Upgraded to 3.6.1 (ldv)
-
-  * open/comix/SlackBuild, open/comix/doinst.sh, open/comix/footprint, open/comix/info, open/comix/slack-desc:
-  Upgraded to 3.6 (ldv)
-
-  * open/vamps/SlackBuild, open/vamps/footprint, open/vamps/info, open/vamps/slack-desc:
+  * ap/vamps/ChangeLog, ap/vamps/SlackBuild, ap/vamps/footprint, ap/vamps/md5sums, ap/vamps/requires, ap/vamps/slack-desc, ap/vamps/sources:
   Upgraded to 0.99.2 (ldv)
 
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to 2.5.6 (sjn)
+  * kde/kooka/ChangeLog, kde/kooka/SlackBuild, kde/kooka/doinst.sh, kde/kooka/footprint, kde/kooka/slack-desc:
+  kooka - is a raster image scan program for KDE (dan)
 
-  * open/pygtk/SlackBuild, open/pygtk/footprint, open/pygtk/info, open/pygtk/slack-desc:
+  * l/pygtk/SlackBuild, l/pygtk/footprint, l/pygtk/ChangeLog:
   Upgraded to 2.10.3 (ldv)
 
-  * open/pygobject/SlackBuild, open/pygobject/footprint, open/pygobject/info, open/pygobject/slack-desc:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint:
+  Updated to 2.5.6 (sjn)
+
+  * ap/rar/SlackBuild, ap/rar/md5sums, ap/rar/requires, ap/rar/sources:
+  Updated to 3.6.0 (sjn)
+
+  * l/pygobject/ChangeLog, l/pygobject/SlackBuild, l/pygobject/footprint, l/pygobject/slack-desc:
   Upgraded to 2.12.3 (ldv)
 
-  * open/pycairo/SlackBuild, open/pycairo/footprint, open/pycairo/info, open/pycairo/slack-desc:
-  Upgraded to 1.2.2 (ldv)
+  * l/pycairo/ChangeLog, l/pycairo/SlackBuild, l/pycairo/footprint, l/pycairo/slack-desc:
+  Moved to portpkg.berlios.de/l/.
 
-  * open/pcmanfm/ChangeLog, open/pcmanfm/SlackBuild, open/pcmanfm/footprint, open/pcmanfm/info:
+  * xap/pcmanfm/ChangeLog, xap/pcmanfm/SlackBuild, xap/pcmanfm/footprint, xap/pcmanfm/md5sums, xap/pcmanfm/requires, xap/pcmanfm/sources:
   Upgraded to 0.3.2.2 (ldv)
 
-  * open/pcmanfm/SlackBuild, open/pcmanfm/doinst.sh, open/pcmanfm/footprint, open/pcmanfm/info, open/pcmanfm/slack-desc:
-  Upgraded to 0.3.2.1 (ldv)
-
-  * open/mplayer-codecs/SlackBuild, open/mplayer-codecs/footprint, open/mplayer-codecs/info, open/mplayer-codecs/slack-desc:
+  * xap/mplayer-codecs/ChangeLog, xap/mplayer-codecs/SlackBuild, xap/mplayer-codecs/footprint:
   Updated to 20061022 (sjn)
 
-  * open/lsdvd/SlackBuild, open/lsdvd/footprint, open/lsdvd/info, open/lsdvd/patch-types, open/lsdvd/slack-desc:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/doinst.sh, xap/mirage/footprint:
+  Upgraded to 0.8 (ldv)
+
+  * l/libgpg-error/md5sums, l/libgpg-error/requires, l/libgpg-error/sources, l/libgpg-error/ChangeLog, l/libgpg-error/SlackBuild:
+  Updated to 1.4 (sjn)
+
+  * l/libgcrypt/ChangeLog, l/libgcrypt/SlackBuild, l/libgcrypt/md5sums, l/libgcrypt/requires, l/libgcrypt/sources:
+  Updated to 1.2.3 (sjn)
+
+  * ap/lsdvd/ChangeLog, ap/lsdvd/SlackBuild, ap/lsdvd/footprint, ap/lsdvd/patch-types:
   Patched to build with libdvdread-0.9.6 (ldv)
 
-  * open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/slack-desc:
+  * l/libdvdread/ChangeLog, l/libdvdread/SlackBuild, l/libdvdread/footprint, l/libdvdread/slack-desc:
+  Upgraded to 0.9.6 (ldv)
+
+  * l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/footprint:
   Upgraded to 0.48 (sjn)
+
+  * l/gsl/ChangeLog, l/gsl/SlackBuild, l/gsl/footprint, l/gsl/md5sums, l/gsl/slack-desc, l/gsl/sources:
+  Upgraded to version 1.8 (dan)
+
+  * l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/slack-desc:
+  Upgraded to 1.4.5 (ldv)
+
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/slack-desc:
+  Moved to portpkg.berlios.de/l/.
+
+  * xap/gle/ChangeLog, xap/gle/SlackBuild, xap/gle/doinst.sh, xap/gle/footprint, xap/gle/slack-desc:
+  GLE - Graphics Layout Engine (dan)
+
+  * ap/cups-pdf/ChangeLog, ap/cups-pdf/SlackBuild, ap/cups-pdf/doinst.sh, ap/cups-pdf/footprint:
+  Upgraded to 2.4.3 (ldv)
+
+  * xap/comix/ChangeLog, xap/comix/SlackBuild, xap/comix/doinst.sh, xap/comix/footprint, xap/comix/slack-desc:
+  Upgraded to 3.6.1 (ldv)
+
+  * ap/cabextract/SlackBuild, ap/cabextract/md5sums, ap/cabextract/requires, ap/cabextract/sources:
+  Updated to 1.2 (sjn)
+
+  * gnome/netspeed_applet/SlackBuild, gnome/netspeed_applet/footprint:
+  Version bump.
+
+  * d/portpkg/NEWS: Oh dear, it's 2007 now... typo.
+
+  * d/portpkg/NEWS, d/portpkg/footprint, d/portpkg/SlackBuild: Release 0.38.2.
 
   * d/portpkg/portpkg:
   * Set USE_ALPHA_CODE=true on default, this should be safe anyways.
   * Fix group if portpkg is run from outside of the tree.
   * Force verbose mode for password interaction when fakeroot is not used.
 
-2006-09-27  topf  <topf@users.berlios.de>
-
-  * open/cabextract/SlackBuild, open/cabextract/footprint, open/cabextract/info, open/cabextract/slack-desc:
-  Updated to 1.2 (sjn)
-
-  * open/libgcrypt/SlackBuild, open/libgcrypt/footprint, open/libgcrypt/info, open/libgcrypt/slack-desc:
-  Updated to 1.2.3 (sjn)
-
-  * open/libgpg-error/SlackBuild, open/libgpg-error/footprint, open/libgpg-error/info, open/libgpg-error/slack-desc:
-  Updated to 1.4 (sjn)
-
-  * open/rar/SlackBuild, open/rar/footprint, open/rar/info, open/rar/slack-desc:
-  Updated to 3.6.0 (sjn)
-
 2006-09-23  topf  <topf@users.berlios.de>
-
-  * open/mirage/SlackBuild, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
-  Upgraded to 0.8 (ldv)
-
-  * open/gsl/SlackBuild, open/gsl/footprint, open/gsl/info, open/gsl/slack-desc:
-  Upgraded to version 1.8 (dan)
-
-  * open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc:
-  Upgraded to 1.4.4 (ldv)
 
 2006-09-21  topf  <topf@users.berlios.de>
 
@@ -306,10 +400,7 @@
   * testing/fakeroot/ChangeLog, testing/fakeroot/SlackBuild, testing/fakeroot/footprint, testing/fakeroot/slack-desc:
   Updated to 1.5.10 (sjn)
 
-  * xap/mplayer-codecs/ChangeLog, xap/mplayer-codecs/SlackBuild, xap/mplayer-codecs/SlackBuild~, open/mplayer-codecs/ChangeLog, open/mplayer-codecs/SlackBuild, open/mplayer-codecs/footprint, open/mplayer-codecs/info, open/mplayer-codecs/slack-desc:
-  Updated to 20060611 (sjn)
-
-  * open/mplayer-codecs/SlackBuild, open/mplayer-codecs/footprint, open/mplayer-codecs/info, open/mplayer-codecs/slack-desc:
+  * xap/mplayer-codecs/ChangeLog, xap/mplayer-codecs/SlackBuild, xap/mplayer-codecs/SlackBuild~:
   Updated to 20060611 (sjn)
 
   * xap/tango-icon-theme/SlackBuild:
@@ -417,7 +508,7 @@
 
 2006-08-19  topf  <topf@users.berlios.de>
 
-  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc, open/gnutls/ChangeLog, open/gnutls/SlackBuild:
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint:
   Upgraded to 1.4.2 (ldv)
 
   * xap/epdfview/ChangeLog, xap/epdfview/SlackBuild, xap/epdfview/patch-cache.gz, xap/epdfview/patch-desktop.gz, xap/epdfview/patch-popplercheck.gz, xap/epdfview/patch-savebutton.gz:
@@ -425,9 +516,6 @@
 
   * l/cairo/ChangeLog, l/cairo/SlackBuild, l/cairo/md5sums, l/cairo/requires, l/cairo/sources:
   Updated to 1.2.2 (sjn)
-
-  * open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc:
-  Upgraded to 1.4.2 (ldv)
 
 2006-08-13  topf  <topf@users.berlios.de>
 
@@ -500,16 +588,16 @@
   * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild:
   Updated to 2.4.0 (sjn)
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild:
   Updated to 2.4.0 (sjn)
 
   * xap/rox-filer/ChangeLog, xap/rox-filer/SlackBuild, xap/rox-filer/footprint:
   Upgraded to 2.5 (ldv)
 
-  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint, open/mirage/ChangeLog, open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint:
   Upgraded to 0.7.3 (ldv)
 
-  * l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/md5sums, l/libetpan/requires, l/libetpan/sources, open/libetpan/ChangeLog, open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/slack-desc:
+  * l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/md5sums, l/libetpan/requires, l/libetpan/sources:
   Updated to 0.46 (sjn)
 
   * d/portpkg/portpkg: Use fgrep where appropriate.
@@ -531,16 +619,7 @@
   cache(): Minor changes.
   general: Use {}-blocks, not ()-blocks.
 
-  * open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc, open/mirage/SlackBuild:
-  Upgraded to 0.7.3 (ldv)
-
 2006-08-03  topf  <topf@users.berlios.de>
-
-  * open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/slack-desc:
-  Updated to 0.46 (sjn)
-
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to 2.4.0 (sjn)
 
 2006-08-02  topf  <topf@users.berlios.de>
 
@@ -618,7 +697,7 @@
   * kde/kipi-plugins/ChangeLog, kde/kipi-plugins/SlackBuild, kde/kipi-plugins/footprint, kde/kipi-plugins/frmprintwizard-cropframe.patch, kde/kipi-plugins/md5sums, kde/kipi-plugins/requires, kde/kipi-plugins/sources:
   Applied patch for cropframe.h in frmprintwizard.ui (dan)
 
-  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/sources, open/gnutls/ChangeLog, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/slack-desc:
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/sources:
   Upgraded to 1.4.1 (ldv)
 
   * xap/thunar/SlackBuild, xap/thunar/doinst.sh, xap/thunar/footprint, xap/thunar/slack-desc:
@@ -803,9 +882,6 @@
   * Fixed SlackBuild skeleton to remove any perllocal.pod files
   * Remove /usr/share/mime/* files, they are updated by update-mime-database.
 
-  * open/gnutls/slack-desc, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info:
-  Upgraded to 1.4.1 (ldv)
-
 2006-07-19  topf  <topf@users.berlios.de>
 
   * d/portpkg/portpkg, d/portpkg/sync.zz.cleanup:
@@ -919,7 +995,10 @@
 
 2006-07-12  topf  <topf@users.berlios.de>
 
-  * xap/ri-li/ChangeLog, xap/ri-li/SlackBuild, xap/ri-li/footprint, xap/ri-li/slack-desc:
+  * xap/ri-li/ChangeLog, xap/ri-li/SlackBuild, xap/ri-li/footprint, xap/ri-li/slack-desc, open/ri-li/ChangeLog, open/ri-li/SlackBuild, open/ri-li/footprint, open/ri-li/info, open/ri-li/slack-desc:
+  Ri-li - an arcade game on GPL (dan)
+
+  * open/ri-li/SlackBuild, open/ri-li/footprint, open/ri-li/info, open/ri-li/slack-desc:
   Ri-li - an arcade game on GPL (dan)
 
 2006-07-11  topf  <topf@users.berlios.de>
@@ -927,10 +1006,7 @@
   * xap/galculator/ChangeLog, xap/galculator/SlackBuild, xap/galculator/doinst.sh, xap/galculator/footprint, xap/galculator/slack-desc:
   Added galculator-1.2.5.2 (ldv)
 
-  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint, open/mirage/ChangeLog, open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
-  Updated to 0.7.1 (ldv)
-
-  * open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/footprint:
   Updated to 0.7.1 (ldv)
 
 2006-07-10  topf  <topf@users.berlios.de>
@@ -995,13 +1071,10 @@
   * xap/qtiplot/ChangeLog, xap/qtiplot/SlackBuild, xap/qtiplot/footprint, xap/qtiplot/md5sums, xap/qtiplot/requires, xap/qtiplot/slack-desc, xap/qtiplot/sources:
   QtiPlot - Data analysis and scientific plotting (dan)
 
-  * l/gsl/ChangeLog, l/gsl/SlackBuild, l/gsl/footprint, l/gsl/md5sums, l/gsl/slack-desc, l/gsl/sources, open/gsl/ChangeLog, open/gsl/SlackBuild, open/gsl/footprint, open/gsl/info, open/gsl/md5sums, open/gsl/slack-desc, open/gsl/sources:
+  * l/gsl/ChangeLog, l/gsl/SlackBuild, l/gsl/footprint, l/gsl/md5sums, l/gsl/slack-desc, l/gsl/sources:
   gsl - GNU Scientific Library or C and C++ programmers (dan)
 
   * d/portpkg/virtual: cxxlibs, cvs are not essential; removed from bootstrap/.
-
-  * open/gsl/SlackBuild, open/gsl/footprint, open/gsl/info, open/gsl/md5sums, open/gsl/slack-desc, open/gsl/sources:
-  gsl - GNU Scientific Library or C and C++ programmers (dan)
 
   * l/libmusicbrainz/sources, l/libmusicbrainz/SlackBuild, l/libmusicbrainz/footprint, l/libmusicbrainz/md5sums, l/libmusicbrainz/requires, l/libmusicbrainz/slack-desc:
   Added installation of python module. Regenerated script.
@@ -1015,13 +1088,10 @@
   * xap/epdfview/ChangeLog, xap/epdfview/SlackBuild, xap/epdfview/doinst.sh, xap/epdfview/footprint, xap/epdfview/slack-desc:
   Added epdfview-0.1.5 (ldv)
 
-  * ap/cups-pdf/ChangeLog, ap/cups-pdf/SlackBuild, ap/cups-pdf/footprint, ap/cups-pdf/slack-desc, open/cups-pdf/ChangeLog, open/cups-pdf/SlackBuild, open/cups-pdf/footprint, open/cups-pdf/info, open/cups-pdf/slack-desc:
+  * ap/cups-pdf/ChangeLog, ap/cups-pdf/SlackBuild, ap/cups-pdf/footprint, ap/cups-pdf/slack-desc:
   Added cups-pdf-2.4.1 (ldv)
 
   * d/portpkg/sync.portpkg: Reset ARCH to print 'i486' for the recent-list.
-
-  * open/cups-pdf/SlackBuild, open/cups-pdf/footprint, open/cups-pdf/info, open/cups-pdf/slack-desc:
-  Added cups-pdf-2.4.1 (ldv)
 
   * d/portpkg/portpkg:
   check_reqs(): $prev is unitialised.
@@ -1101,7 +1171,7 @@
 
   * AUTHORS: Added ldv.
 
-  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/doinst.sh, xap/mirage/footprint, xap/mirage/slack-desc, open/mirage/ChangeLog, open/mirage/SlackBuild, open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc:
+  * xap/mirage/ChangeLog, xap/mirage/SlackBuild, xap/mirage/doinst.sh, xap/mirage/footprint, xap/mirage/slack-desc:
   Added mirage-0.7 (ldv)
 
   * ap/vobcopy/SlackBuild, ap/vobcopy/footprint, ap/vobcopy/slack-desc:
@@ -1119,9 +1189,6 @@
   * xap/grsync/SlackBuild, xap/grsync/footprint: Upgraded to grsync-0.4.3.
 
 2006-06-27  topf  <topf@users.berlios.de>
-
-  * open/mirage/doinst.sh, open/mirage/footprint, open/mirage/info, open/mirage/slack-desc, open/mirage/SlackBuild:
-  Added mirage-0.7 (ldv)
 
   * d/portpkg/autoport: Fix version sorting with -d.
 
@@ -1226,10 +1293,7 @@
   * gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-monitor/footprint, gnome/gnome-system-monitor/md5sums, gnome/gnome-system-monitor/requires, gnome/gnome-system-monitor/sources:
   Version bump.
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Upgraded to 2.3.1 (sjn)
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint:
   Upgraded to 2.3.1 (sjn)
 
   * l/event-execflow/SlackBuild, l/event-execflow/footprint: Version bump.
@@ -1276,7 +1340,7 @@
   * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/sources:
   Updated to 2.3.0 (sjn)
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources:
   Updated to 2.3.0 (sjn)
 
   * d/portpkg/portpkg: check_reqs():
@@ -1387,9 +1451,6 @@
 
   * open/ChangeLog: Removed (should not have been here).
 
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/info:
-  Updated to 2.3.0 (sjn)
-
   * ap/mjpegtools/SlackBuild, ap/mjpegtools/footprint, ap/mjpegtools/requires, ap/mjpegtools/slack-desc, ap/mjpegtools/sources:
   Version bump. Regenerated. Added --without-libquicktime.
 
@@ -1436,11 +1497,6 @@
   Rewrote HTTP submit sub and added support for signing the submission with GnuPG.
 
   * GPG-KEYS: Added GPG-KEYS to collect public keys of authors.
-
-2006-06-10  topf  <topf@users.berlios.de>
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to v2.2.3 (sjn)
 
 2006-06-07  topf  <topf@users.berlios.de>
 
@@ -1515,7 +1571,7 @@
   * xap/tango-icon-theme/SlackBuild, xap/tango-icon-theme/md5sums, xap/tango-icon-theme/slack-desc, xap/tango-icon-theme/sources:
   Version bump.
 
-  * xap/mplayer-codecs/ChangeLog, xap/mplayer-codecs/SlackBuild, xap/mplayer-codecs/SlackBuild~, xap/mplayer-codecs/md5sums, xap/mplayer-codecs/requires, xap/mplayer-codecs/sources, open/mplayer-codecs/SlackBuild, open/mplayer-codecs/SlackBuild~, open/mplayer-codecs/footprint, open/mplayer-codecs/info, open/mplayer-codecs/slack-desc, open/mplayer-codecs/ChangeLog:
+  * xap/mplayer-codecs/ChangeLog, xap/mplayer-codecs/SlackBuild, xap/mplayer-codecs/SlackBuild~, xap/mplayer-codecs/md5sums, xap/mplayer-codecs/requires, xap/mplayer-codecs/sources:
   Updated to 20060501 (sjn)
 
   * gnome/gdm/footprint, gnome/gdm/md5sums, gnome/gdm/requires, gnome/gdm/sources, gnome/gdm/SlackBuild:
@@ -1541,11 +1597,6 @@
 
   * gnome/abiword/ChangeLog, gnome/abiword/SlackBuild, gnome/abiword/doinst.sh, gnome/abiword/footprint, gnome/abiword/slack-desc:
   Initial import.
-
-2006-05-28  topf  <topf@users.berlios.de>
-
-  * open/mplayer-codecs/ChangeLog, open/mplayer-codecs/SlackBuild, open/mplayer-codecs/SlackBuild~, open/mplayer-codecs/footprint, open/mplayer-codecs/info, open/mplayer-codecs/slack-desc:
-  Updated to 20060501 (sjn)
 
 2006-05-19  topf  <topf@users.berlios.de>
 
@@ -1596,7 +1647,7 @@
   * ap/compface/slack-desc, ap/compface/sources, ap/compface/ChangeLog, ap/compface/SlackBuild, ap/compface/footprint, ap/compface/md5sums:
   New port (sjn)
 
-  * l/libetpan/md5sums, l/libetpan/requires, l/libetpan/slack-desc, l/libetpan/sources, l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/footprint, open/libetpan/ChangeLog, open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/md5sums, open/libetpan/requires, open/libetpan/slack-desc, open/libetpan/sources:
+  * l/libetpan/md5sums, l/libetpan/requires, l/libetpan/slack-desc, l/libetpan/sources, l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/footprint:
   New port (sjn)
 
   * l/cairo/ChangeLog, l/cairo/SlackBuild, l/cairo/footprint, l/cairo/md5sums, l/cairo/requires, l/cairo/slack-desc, l/cairo/sources:
@@ -1611,13 +1662,10 @@
   * xap/sylpheed-claws-extra-plugins/ChangeLog, xap/sylpheed-claws-extra-plugins/SlackBuild, xap/sylpheed-claws-extra-plugins/footprint, xap/sylpheed-claws-extra-plugins/md5sums, xap/sylpheed-claws-extra-plugins/requires, xap/sylpheed-claws-extra-plugins/slack-desc, xap/sylpheed-claws-extra-plugins/sources:
   Updated to 2.2.0 (sjn)
 
-  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz, open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/ChangeLog, xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
   Updated to 2.2.0 (sjn)
 
   * d/portpkg/changelogs, d/portpkg/webstats: Added for administration.
-
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/sources:
-  Updated to 2.2.0 (sjn)
 
   * d/portpkg/export.portpkg, d/portpkg/portpkg:
   * Write footprint to $LOG_DIR/$name.footprint.
@@ -2049,12 +2097,6 @@
   * ap/colordiff/SlackBuild, ap/colordiff/footprint, ap/colordiff/slack-desc:
   Initial import.
 
-  * open/sylpheed-claws/ChangeLog, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  Updated to 2.1.1 (sjn)
-
-  * open/libetpan/SlackBuild, open/libetpan/footprint, open/libetpan/info, open/libetpan/md5sums, open/libetpan/requires, open/libetpan/slack-desc, open/libetpan/sources:
-  New port (sjn)
-
 2006-04-25  hnaz  <hnaz@users.berlios.de>
 
   * AUTHORS: Fixed hnaz' emailaddress.
@@ -2119,7 +2161,7 @@
 
   * d/portpkg/portpkg: get(): Should be 'sed -n "...p"'. Fixed and cleaned-up.
 
-  * ap/rar/ChangeLog, ap/rar/SlackBuild, ap/rar/footprint, ap/rar/md5sums, ap/rar/requires, ap/rar/slack-desc, ap/rar/sources, open/rar/ChangeLog, open/rar/SlackBuild, open/rar/footprint, open/rar/info, open/rar/md5sums, open/rar/requires, open/rar/slack-desc, open/rar/sources:
+  * ap/rar/ChangeLog, ap/rar/SlackBuild, ap/rar/footprint, ap/rar/md5sums, ap/rar/requires, ap/rar/slack-desc, ap/rar/sources:
   Initial rar port (hnaz)
 
   * n/snort/rules/other-ids.rules, n/snort/rules/p2p.rules, n/snort/rules/policy.rules, n/snort/rules/pop2.rules, n/snort/rules/pop3.rules, n/snort/rules/porn.rules, n/snort/rules/rpc.rules, n/snort/rules/rservices.rules, n/snort/rules/scan.rules, n/snort/rules/shellcode.rules, n/snort/rules/smtp.rules, n/snort/rules/snmp.rules, n/snort/rules/sql.rules, n/snort/rules/telnet.rules, n/snort/rules/tftp.rules, n/snort/rules/virus.rules, n/snort/rules/web-attacks.rules, n/snort/rules/web-cgi.rules, n/snort/rules/web-client.rules, n/snort/rules/web-coldfusion.rules, n/snort/rules/web-frontpage.rules, n/snort/rules/web-iis.rules, n/snort/rules/web-misc.rules, n/snort/rules/web-php.rules, n/snort/rules/x11.rules, n/snort/rules/icmp-info.rules, n/snort/rules/icmp.rules, n/snort/rules/imap.rules, n/snort/rules/info.rules, n/snort/rules/local.rules, n/snort/rules/misc.rules, n/snort/rules/multimedia.rules, n/snort/rules/mysql.rules, n/snort/rules/netbios.rules, n/snort/rules/nntp.rules, n/snort/rules/oracle.rules, n/snort/ChangeLog, n/snort/SlackBuild, n/snort/classification.config.new, n/snort/footprint, n/snort/gen-msg.map.new, n/snort/md5sums, n/snort/reference.config.new, n/snort/rules/Makefile.am, n/snort/rules/attack-responses.rules, n/snort/rules/backdoor.rules, n/snort/rules/bad-traffic.rules, n/snort/rules/chat.rules, n/snort/rules/ddos.rules, n/snort/rules/deleted.rules, n/snort/rules/dns.rules, n/snort/rules/dos.rules, n/snort/rules/experimental.rules, n/snort/rules/exploit.rules, n/snort/rules/finger.rules, n/snort/rules/ftp.rules, n/snort/sid-msg.map.new, n/snort/sid.new, n/snort/snort.conf.new, n/snort/sources:
@@ -2817,7 +2859,7 @@
   * d/swig/ChangeLog, d/swig/SlackBuild, d/swig/footprint, d/swig/md5sums, d/swig/slack-desc, d/swig/sources:
   swig - a software development tool (dan)
 
-  * ap/vamps/ChangeLog, ap/vamps/SlackBuild, ap/vamps/footprint, ap/vamps/md5sums, ap/vamps/requires, ap/vamps/slack-desc, ap/vamps/sources, open/vamps/ChangeLog, open/vamps/SlackBuild, open/vamps/footprint, open/vamps/info, open/vamps/md5sums, open/vamps/requires, open/vamps/slack-desc, open/vamps/sources:
+  * ap/vamps/ChangeLog, ap/vamps/SlackBuild, ap/vamps/footprint, ap/vamps/md5sums, ap/vamps/requires, ap/vamps/slack-desc, ap/vamps/sources:
   vamps - a tool to help backing up DVDs (dan)
 
   * kde/amarok/ChangeLog, kde/amarok/SlackBuild, kde/amarok/footprint, kde/amarok/md5sums, kde/amarok/optional, kde/amarok/requires:
@@ -2920,16 +2962,6 @@
   * d/portpkg/portpkg:
   Patched a regular expression that prevented portpkg from being executed in Bash-3.1.
 
-2006-02-04  topf  <topf@users.berlios.de>
-
-  * open/vamps/SlackBuild, open/vamps/footprint, open/vamps/info, open/vamps/md5sums, open/vamps/requires, open/vamps/slack-desc, open/vamps/sources:
-  vamps - a tool to help backing up DVDs (dan)
-
-2006-01-06  topf  <topf@users.berlios.de>
-
-  * open/rar/SlackBuild, open/rar/footprint, open/rar/info, open/rar/md5sums, open/rar/requires, open/rar/slack-desc, open/rar/sources:
-  Initial rar port (hnaz)
-
 2005-12-09  topf  <topf@users.berlios.de>
 
   * d/portpkg/SlackBuild: Release 0.37.6.
@@ -2964,8 +2996,6 @@
 2005-12-05  topf  <topf@users.berlios.de>
 
 2005-11-25  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/virtual: Added.
 
   * gnome/gnome-ppp/doinst.sh, gnome/gnome-ppp/footprint, gnome/gnome-ppp/md5sums, gnome/gnome-ppp/requires, gnome/gnome-ppp/slack-desc, gnome/gnome-ppp/sources, gnome/gnome-ppp/SlackBuild:
   Version update. Script re-autoported.
@@ -3011,10 +3041,10 @@
   * l/loudmouth/SlackBuild, l/loudmouth/footprint, l/loudmouth/md5sums, l/loudmouth/requires, l/loudmouth/slack-desc, l/loudmouth/sources, l/libtasn1/footprint, l/libtasn1/md5sums, l/libtasn1/slack-desc, l/libtasn1/sources, l/libtasn1/SlackBuild:
   New port (sjn)
 
-  * l/libgpg-error/ChangeLog, l/libgpg-error/SlackBuild, l/libgpg-error/footprint, l/libgpg-error/md5sums, l/libgpg-error/sources, open/libgpg-error/ChangeLog, open/libgpg-error/SlackBuild, open/libgpg-error/footprint, open/libgpg-error/info, open/libgpg-error/md5sums, open/libgpg-error/requires, open/libgpg-error/slack-desc, open/libgpg-error/sources:
+  * l/libgpg-error/ChangeLog, l/libgpg-error/SlackBuild, l/libgpg-error/footprint, l/libgpg-error/md5sums, l/libgpg-error/sources:
   Upgraded to v.1.1 (sjn)
 
-  * l/libgcrypt/SlackBuild, l/libgcrypt/footprint, l/libgcrypt/md5sums, l/libgcrypt/sources, l/libgcrypt/ChangeLog, open/libgcrypt/ChangeLog, open/libgcrypt/SlackBuild, open/libgcrypt/footprint, open/libgcrypt/info, open/libgcrypt/md5sums, open/libgcrypt/requires, open/libgcrypt/slack-desc, open/libgcrypt/sources:
+  * l/libgcrypt/SlackBuild, l/libgcrypt/footprint, l/libgcrypt/md5sums, l/libgcrypt/sources, l/libgcrypt/ChangeLog:
   Upgraded to v.1.2.2 (sjn)
 
   * kde/krusader/ChangeLog, kde/krusader/SlackBuild, kde/krusader/footprint, kde/krusader/requires, kde/krusader/slack-desc, kde/krusader/sources:
@@ -3026,13 +3056,13 @@
   * ap/gtypist/ChangeLog, ap/gtypist/SlackBuild, ap/gtypist/footprint, ap/gtypist/gtypist.slack-desc, ap/gtypist/md5sums, ap/gtypist/mirrors, ap/gtypist/requires, ap/gtypist/slack-desc, ap/gtypist/sources:
   GNU Typist (also called gtypist) - an universal typing tutor. (dan)
 
-  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources, open/gnutls/ChangeLog, open/gnutls/SlackBuild:
+  * l/gnutls/ChangeLog, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/md5sums, l/gnutls/requires:
   Upgraded to v.1.2.8 (sjn)
 
   * xap/flphoto/ChangeLog, xap/flphoto/SlackBuild, xap/flphoto/doinst.sh, xap/flphoto/footprint, xap/flphoto/md5sums, xap/flphoto/mirrors, xap/flphoto/requires, xap/flphoto/slack-desc, xap/flphoto/sources:
   flphoto - a basic image management program (dan)
 
-  * l/fltk/SlackBuild, l/fltk/footprint, l/fltk/md5sums, l/fltk/mirrors, l/fltk/requires, l/fltk/slack-desc, l/fltk/sources, l/fltk/ChangeLog:
+  * l/fltk/SlackBuild, l/fltk/footprint, l/fltk/md5sums, l/fltk/mirrors, l/fltk/requires, l/fltk/slack-desc, l/fltk/sources, l/fltk/ChangeLog, open/fltk/SlackBuild, open/fltk/footprint, open/fltk/info, open/fltk/md5sums, open/fltk/mirrors, open/fltk/requires, open/fltk/slack-desc, open/fltk/sources:
   FLTK library. (dan)
 
   * AUTHORS: Added 'dan'.
@@ -3209,14 +3239,8 @@
   * xap/ardour/ChangeLog, xap/ardour/SlackBuild, xap/ardour/footprint, xap/ardour/md5sums, xap/ardour/requires:
   version update (lem)
 
-  * open/libgpg-error/ChangeLog, open/libgpg-error/SlackBuild, open/libgpg-error/footprint, open/libgpg-error/info, open/libgpg-error/md5sums, open/libgpg-error/requires, open/libgpg-error/slack-desc, open/libgpg-error/sources:
-  Upgraded to v.1.1
-
-  * open/libgcrypt/ChangeLog, open/libgcrypt/SlackBuild, open/libgcrypt/footprint, open/libgcrypt/info, open/libgcrypt/md5sums, open/libgcrypt/requires, open/libgcrypt/slack-desc, open/libgcrypt/sources:
-  Upgraded to v.1.2.2
-
-  * open/gnutls/ChangeLog, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources:
-  Upgraded to v.1.2.8
+  * open/fltk/SlackBuild, open/fltk/footprint, open/fltk/info, open/fltk/md5sums, open/fltk/mirrors, open/fltk/requires, open/fltk/slack-desc, open/fltk/sources:
+  FLTK library.
 
 2005-11-01  topf  <topf@users.berlios.de>
 
@@ -3242,11 +3266,6 @@
   Check the SlackBuild for presence of '|| exit 1' and use 'sh -e' if not.
 
 2005-10-26  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/SlackBuild, testing/portpkg/doinst.sh, testing/portpkg/portpkg:
-  Changed the virtual group configuration form in /etc from directory style to a single file. This seems to be easier to handle.
-
-  * testing/portpkg/checkpkg: Fixed an unbound-variable-bug.
 
   * testing/savage/ChangeLog, testing/savage/SlackBuild, testing/savage/footprint, testing/savage/install.patch, testing/savage/md5sums, testing/savage/requires, testing/savage/slack-desc, testing/savage/sources:
   Moved xap/savage-20050419-i386-1tom to testing/.
@@ -3330,32 +3349,10 @@
 
 2005-10-17  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/ChangeLog, testing/portpkg/NEWS: Synced.
-
-  * testing/portpkg/ABOUT, testing/portpkg/FAQ, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.orig, testing/portpkg/ROADMAP, testing/portpkg/SlackBuild, testing/portpkg/admin.changelogs, testing/portpkg/admin.checktree, testing/portpkg/admin.docs, testing/portpkg/admin.merge, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/doinst.sh, testing/portpkg/export.cvs, testing/portpkg/export.http, testing/portpkg/export.tarball, testing/portpkg/footprint, testing/portpkg/group.mplayer, testing/portpkg/mirrors, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/sync.55.pseudo-ports, testing/portpkg/sync.66.slackware-source, testing/portpkg/sync.77.update-open, testing/portpkg/sync.99.clean-cache:
-  Release 0.38test18.
-
 2005-10-15  topf  <topf@users.berlios.de>
 
-  * ChangeLog, extra/aterm/ChangeLog, extra/gpgme/ChangeLog, extra/libgsf/ChangeLog, extra/openssh-x509/ChangeLog, extra/windowmaker/ChangeLog, ap/abook/ChangeLog, ap/anacron/ChangeLog, ap/antiword/ChangeLog, ap/athcool/ChangeLog, ap/bonnie++/ChangeLog, ap/cabextract/ChangeLog, ap/convmv/ChangeLog, ap/cpan2tgz/ChangeLog, ap/cpudyn/ChangeLog, ap/dd_rescue/ChangeLog, ap/dosemu/ChangeLog, ap/dvdauthor/ChangeLog, ap/exiftags/ChangeLog, ap/exifutils/ChangeLog, ap/ffmpeg/ChangeLog, ap/fuse/ChangeLog, ap/fvcool/ChangeLog, ap/giftcurs/ChangeLog, ap/hibernate-script/ChangeLog, ap/html2text/ChangeLog, ap/htop/ChangeLog, ap/jack/ChangeLog, ap/jhead/ChangeLog, ap/john/ChangeLog, ap/lame/ChangeLog, ap/lapack/ChangeLog, ap/lirc/ChangeLog, ap/lsdvd/ChangeLog, ap/lshw/ChangeLog, ap/mjpegtools/ChangeLog, ap/nano/ChangeLog, ap/nrg2iso/ChangeLog, ap/ntfsprogs/ChangeLog, ap/ogmtools/ChangeLog, ap/pinfo/ChangeLog, ap/pnm2ppa/ChangeLog, ap/prelink/ChangeLog, ap/qstat/ChangeLog, ap/setcd/ChangeLog, ap/subtitleripper/ChangeLog, ap/swatch/ChangeLog, ap/tpb/ChangeLog, ap/transcode/ChangeLog, ap/unrar/ChangeLog, ap/vcdimager/ChangeLog, ap/x86cpucaps/ChangeLog, ap/xmltv/ChangeLog, ap/yafray/ChangeLog, ap/zsnes/ChangeLog, xap/bookmarkbridge/ChangeLog, xap/ed2k-gtk-gui/ChangeLog, xap/gaim-encryption/ChangeLog, xap/giftoxic/ChangeLog, xap/gimp-gap/ChangeLog, xap/icon-slicer/ChangeLog, xap/linphone/ChangeLog, xap/rdesktop/ChangeLog, xap/sylpheed-claws-themes/ChangeLog, xap/acidrip/ChangeLog, xap/acroread/ChangeLog, xap/amule/ChangeLog, xap/amyedit/ChangeLog, xap/ardour/ChangeLog, xap/armagetron/ChangeLog, xap/arphicfonts/ChangeLog, xap/aterm/ChangeLog, xap/audacity/ChangeLog, xap/avidemux/ChangeLog, xap/baobab/ChangeLog, xap/bbkeys/ChangeLog, xap/bmp/ChangeLog, xap/cire/ChangeLog, xap/deng/ChangeLog, xap/desktop-file-utils/ChangeLog, xap/dia/ChangeLog, xap/dillo/ChangeLog, xap/edonkeyclc/ChangeLog, xap/enlightenment/ChangeLog, xap/eterm/ChangeLog, xap/ettercap-ng/ChangeLog, xap/fcitx/ChangeLog, xap/feh/ChangeLog, xap/freedoom/ChangeLog, xap/freevo/ChangeLog, xap/fyre/ChangeLog, xap/gfeed/ChangeLog, xap/giftui/ChangeLog, xap/gnofract4d/ChangeLog, xap/gnuitar/ChangeLog, xap/gnumeric/ChangeLog, xap/gocr/ChangeLog, xap/gqradio/ChangeLog, xap/gqview/ChangeLog, xap/graphviz/ChangeLog, xap/graveman/ChangeLog, xap/gtk-gnutella/ChangeLog, xap/gtk-server/ChangeLog, xap/gtklp/ChangeLog, xap/gtksourceview/ChangeLog, xap/gxmessage/ChangeLog, xap/hydrogen/ChangeLog, xap/i855crt/ChangeLog, xap/idesk/ChangeLog, xap/jimmac/ChangeLog, xap/jpilot/ChangeLog, xap/kino/ChangeLog, xap/lbreakout2/ChangeLog, xap/libnotify/ChangeLog, xap/mbox/ChangeLog, xap/mixmos/ChangeLog, xap/mplayer-codecs/ChangeLog, xap/mplayer-fonts/ChangeLog, xap/mplayer-skins/ChangeLog, xap/mplayer/ChangeLog, xap/nicotine/ChangeLog, xap/notification-daemon/ChangeLog, xap/ogle/ChangeLog, xap/ogle_gui/ChangeLog, xap/perlpanel/ChangeLog, xap/pitivi/ChangeLog, xap/pyne/ChangeLog, xap/qemu/ChangeLog, xap/quodlibet/ChangeLog, xap/redhat-artwork/ChangeLog, xap/root-tail/ChangeLog, xap/scrot/ChangeLog, xap/scummvm/ChangeLog, xap/sqlitebrowser/ChangeLog, xap/straw/ChangeLog, xap/sylpheed-claws/ChangeLog, xap/tagtool/ChangeLog, xap/texmacs/ChangeLog, xap/torsmo/ChangeLog, xap/tvtime/ChangeLog, xap/video-dvdrip/ChangeLog, xap/wired/ChangeLog, xap/wmi/ChangeLog, xap/xchm/ChangeLog, xap/xdaf/ChangeLog, xap/xf86-corefonts/ChangeLog, xap/xmame/ChangeLog, xap/xmbmon/ChangeLog, xap/xosd/ChangeLog, xap/xqf/ChangeLog, xap/xvid4conf/ChangeLog, xap/zinf/ChangeLog, testing/bootchart/ChangeLog, testing/criawips/ChangeLog, testing/dbus/ChangeLog, testing/deltup/ChangeLog, testing/eina-gnome/ChangeLog, testing/fontconfig/ChangeLog, testing/gazpacho/ChangeLog, testing/glitz/ChangeLog, testing/gnome-volume-manager/ChangeLog, testing/gtk-webcore/ChangeLog, testing/gtkhtml/ChangeLog, testing/hal/ChangeLog, testing/initng/ChangeLog, testing/libeina/ChangeLog, testing/libxft/ChangeLog, testing/manedit/ChangeLog, testing/mplayer-gtk2/ChangeLog, testing/nvidia/ChangeLog, testing/polypaudio/ChangeLog, testing/portpkg/ChangeLog, testing/pycairo/ChangeLog, testing/pygtk/ChangeLog, testing/sabayon/ChangeLog, testing/seahorse/ChangeLog, testing/wxgtk/ChangeLog, testing/xfce-goodies/ChangeLog, testing/xfmedia/ChangeLog, testing/ximian-connector/ChangeLog, pasture/aalib/ChangeLog, pasture/abiword/ChangeLog, pasture/bittornado/ChangeLog, pasture/bittorrent/ChangeLog, pasture/blackbox/ChangeLog, pasture/cyrus-sasl/ChangeLog, pasture/esound/ChangeLog, pasture/expat/ChangeLog, pasture/fribidi/ChangeLog, pasture/gal20/ChangeLog, pasture/gconfmm20/ChangeLog, pasture/gthumb/ChangeLog, pasture/gtkhtml30/ChangeLog, pasture/gtkmm22/ChangeLog, pasture/k3b-i18n/ChangeLog, pasture/libart_lgpl/ChangeLog, pasture/libgsf/ChangeLog, pasture/libgtkhtml/ChangeLog, pasture/librsvg/ChangeLog, pasture/libsigc++1/ChangeLog, pasture/libsoup20/ChangeLog, pasture/libwpd/ChangeLog, pasture/libxml++1/ChangeLog, pasture/libxml2/ChangeLog, pasture/libxslt/ChangeLog, pasture/linux-pam/ChangeLog, pasture/magicdev/ChangeLog, pasture/mozilla-firefox/ChangeLog, pasture/pango/ChangeLog, pasture/shared-mime-info/ChangeLog, pasture/startup-notification/ChangeLog, pasture/storable/ChangeLog, pasture/xcdroast/ChangeLog, pasture/xine-lib/ChangeLog, pasture/xsane/ChangeLog, pasture/atk/ChangeLog, pasture/db41/ChangeLog, pasture/gaim/ChangeLog, pasture/gdm/ChangeLog, pasture/gftp/ChangeLog, pasture/gimp/ChangeLog, pasture/gnet/ChangeLog, pasture/k3b/ChangeLog, pasture/lcms/ChangeLog, pasture/xfce/ChangeLog, open/ChangeLog, open/slackins/ChangeLog, n/ddclient/ChangeLog, n/ebayagent/ChangeLog, n/elinks/ChangeLog, n/email/ChangeLog, n/fping/ChangeLog, n/gift/ChangeLog, n/httpup/ChangeLog, n/ibmonitor/ChangeLog, n/mail-spamassassin/ChangeLog, n/mailfilter/ChangeLog, n/micq/ChangeLog, n/mpd/ChangeLog, n/msmtp/ChangeLog, n/mutella/ChangeLog, n/nagios/ChangeLog, n/neon/ChangeLog, n/nessus-core/ChangeLog, n/pavuk/ChangeLog, n/postfix-sasl/ChangeLog, n/postfix/ChangeLog, n/rdate/ChangeLog, n/renattach/ChangeLog, n/sarg/ChangeLog, n/scponly/ChangeLog, n/snarf/ChangeLog, n/snort/ChangeLog, n/snort/rules/ChangeLog, n/squid/ChangeLog, n/squid/patches/ChangeLog, n/thttpd/ChangeLog, n/tmsnc/ChangeLog, n/wifi-radar/ChangeLog, n/wvdial/ChangeLog, n/wvstreams/ChangeLog, n/yp-tools/ChangeLog, kde/amarok/ChangeLog, kde/digikam/ChangeLog, kde/digikamimageplugins/ChangeLog, kde/gwenview/ChangeLog, kde/k3bmonkeyaudioplugin/ChangeLog, kde/kipi-plugins/ChangeLog, kde/knetworkconf/ChangeLog, kde/libkexif/ChangeLog, kde/libkipi/ChangeLog, kde/showimg/ChangeLog, kde/superkaramba/ChangeLog, kde/thinkeramik/ChangeLog, gnome/diacanvas2/ChangeLog, gnome/gnome-clipboard-daemon/ChangeLog, gnome/gnome-desktop/ChangeLog, gnome/gnome-keyring/ChangeLog, gnome/gnome-netstatus/ChangeLog, gnome/gnome-screensaver/ChangeLog, gnome/gnome-system-monitor/ChangeLog, gnome/gnome2-vte-perl/ChangeLog, gnome/hardware-monitor/ChangeLog, gnome/inkscape/ChangeLog, gnome/libbonobo/ChangeLog, gnome/nautilus-cd-burner/ChangeLog, gnome/netspeed_applet/ChangeLog, gnome/system-tools-backends/ChangeLog, gnome/epiphany/ChangeLog, gnome/evolution/ChangeLog, gnome/gdesklets/ChangeLog, gnome/gnome-doc-utils/ChangeLog, gnome/gnome-icon-theme/ChangeLog, gnome/hicolor-icon-theme/ChangeLog, gnome/libcroco/ChangeLog, gnome/libgail-gnome/ChangeLog, gnome/libghttp/ChangeLog, gnome/libgnome/ChangeLog, gnome/firestarter/ChangeLog, gnome/anjuta/ChangeLog, gnome/at-spi/ChangeLog, gnome/bluefish/ChangeLog, gnome/bubblemon/ChangeLog, gnome/bug-buddy/ChangeLog, gnome/conglomerate/ChangeLog, gnome/control-center/ChangeLog, gnome/dasher/ChangeLog, gnome/drwright/ChangeLog, gnome/epiphany-extensions/ChangeLog, gnome/evince/ChangeLog, gnome/evolution-data-server/ChangeLog, gnome/evolution-webcal/ChangeLog, gnome/f-spot/ChangeLog, gnome/galeon/ChangeLog, gnome/gcalctool/ChangeLog, gnome/gconfmm/ChangeLog, gnome/gcursor/ChangeLog, gnome/glabels/ChangeLog, gnome/gnome-applets/ChangeLog, gnome/gnome-audio/ChangeLog, gnome/gnome-backgrounds/ChangeLog, gnome/gnome-blog/ChangeLog, gnome/gnome-btdownload/ChangeLog, gnome/gnome-cpufreq-applet/ChangeLog, gnome/gnome-cups-manager/ChangeLog, gnome/gnome-dial/ChangeLog, gnome/gnome-games/ChangeLog, gnome/gnome-media/ChangeLog, gnome/gnome-menus/ChangeLog, gnome/gnome-mime-data/ChangeLog, gnome/gnome-nettool/ChangeLog, gnome/gnome-panel/ChangeLog, gnome/gnome-pkgtool/ChangeLog, gnome/gnome-python-extras/ChangeLog, gnome/gnome-python/ChangeLog, gnome/gnome-schedule/ChangeLog, gnome/gnome-settings-visualeffects/ChangeLog, gnome/gnome-speech/ChangeLog, gnome/gnome-sshman/ChangeLog, gnome/gnome-terminal/ChangeLog, gnome/gnome-themes/ChangeLog, gnome/gnome-utils/ChangeLog, gnome/gnome-vfsmm/ChangeLog, gnome/gnome2-canvas-perl/ChangeLog, gnome/gnome2-dia-perl/ChangeLog, gnome/gnome2-gconf-perl/ChangeLog, gnome/gnome2-perl/ChangeLog, gnome/gnome2-user-docs/ChangeLog, gnome/gnomebaker/ChangeLog, gnome/gnopernicus/ChangeLog, gnome/gnubiff/ChangeLog, gnome/goobox/ChangeLog, gnome/gparted/ChangeLog, gnome/gphoto2/ChangeLog, gnome/gsplashfu/ChangeLog, gnome/gthumb/ChangeLog, gnome/gtk-doc/ChangeLog, gnome/gtk-engines/ChangeLog, gnome/gtkglext/ChangeLog, gnome/gtkhtml/ChangeLog, gnome/gtkspell/ChangeLog, gnome/gtorrentviewer/ChangeLog, gnome/gtweakui/ChangeLog, gnome/jamboree/ChangeLog, gnome/kazehakase/ChangeLog, gnome/libbonoboui/ChangeLog, gnome/libgnomecanvas/ChangeLog, gnome/libgnomecanvasmm/ChangeLog, gnome/libgnomecups/ChangeLog, gnome/libgnomedb/ChangeLog, gnome/libgnomemm/ChangeLog, gnome/libgnomeprint/ChangeLog, gnome/libgnomeprintui/ChangeLog, gnome/libgnomesu/ChangeLog, gnome/libgnomeui/ChangeLog, gnome/libgnomeuimm/ChangeLog, gnome/mihais-memfree/ChangeLog, gnome/nautilus-media/ChangeLog, gnome/orbit2/ChangeLog, gnome/revelation/ChangeLog, gnome/rhythmbox/ChangeLog, gnome/rubrica/ChangeLog, gnome/screem/ChangeLog, gnome/seahorse/ChangeLog, gnome/serpentine/ChangeLog, gnome/sound-juicer/ChangeLog, gnome/ximian-artwork/ChangeLog, gnome/yarssr/ChangeLog, gnome/zenity/ChangeLog, gnome/aegis-virus-scanner/ChangeLog, gnome/balsa/ChangeLog, gnome/bmp-extra-plugins/ChangeLog, gnome/cog/ChangeLog, gnome/disksearch/ChangeLog, gnome/eel/ChangeLog, gnome/eog/ChangeLog, gnome/file-roller/ChangeLog, gnome/gai/ChangeLog, gnome/gail/ChangeLog, gnome/gal/ChangeLog, gnome/gamp/ChangeLog, gnome/gconf-editor/ChangeLog, gnome/gconf/ChangeLog, gnome/gdm/ChangeLog, gnome/gedit/ChangeLog, gnome/ggv/ChangeLog, gnome/glade/ChangeLog, gnome/gmencoder/ChangeLog, gnome/gmpc/ChangeLog, gnome/gnome-common/ChangeLog, gnome/gnome-osd/ChangeLog, gnome/gnome-ppp/ChangeLog, gnome/gnome-ppx/ChangeLog, gnome/gnome-session/ChangeLog, gnome/gnome-system-tools/ChangeLog, gnome/gnome-themes-extras/ChangeLog, gnome/gnome-vfs/ChangeLog, gnome/gnome2-print-perl/ChangeLog, gnome/gnome2-rsvg-perl/ChangeLog, gnome/gnome2-vfs-perl/ChangeLog, gnome/gnome2-wnck-perl/ChangeLog, gnome/gnomevfs-mount/ChangeLog, gnome/gok/ChangeLog, gnome/gpass/ChangeLog, gnome/gpdf/ChangeLog, gnome/gpp/ChangeLog, gnome/grip/ChangeLog, gnome/gst-ffmpeg/ChangeLog, gnome/gst-python/ChangeLog, gnome/gstreamer/ChangeLog, gnome/gtkam/ChangeLog, gnome/gurlchecker/ChangeLog, gnome/gwget/ChangeLog, gnome/intltool/ChangeLog, gnome/leafpad/ChangeLog, gnome/libgtop/ChangeLog, gnome/libsoup/ChangeLog, gnome/libwnck/ChangeLog, gnome/libxklavier/ChangeLog, gnome/liferea/ChangeLog, gnome/mail-notification/ChangeLog, gnome/metacity/ChangeLog, gnome/monkey-bubble/ChangeLog, gnome/muine/ChangeLog, gnome/nautilus/ChangeLog, gnome/ontv/ChangeLog, gnome/sclog/ChangeLog, gnome/scrollkeeper/ChangeLog, gnome/sodipodi/ChangeLog, gnome/timer-applet/ChangeLog, gnome/totem/ChangeLog, gnome/tsclient/ChangeLog, gnome/tutka/ChangeLog, gnome/ubuntu-artwork/ChangeLog, gnome/vino/ChangeLog, gnome/vte/ChangeLog, gnome/yelp/ChangeLog, gnome/zapping/ChangeLog, n/p0f/ChangeLog, l/gift-gnutella/ChangeLog, l/libdvdnav/ChangeLog, l/libdvdcss/ChangeLog, l/compress-zlib/ChangeLog, l/libdvdread/ChangeLog, l/file-scan/ChangeLog, l/poppler/ChangeLog, l/gtk2-mozembed-perl/ChangeLog, l/xanimdlls/ChangeLog, l/pyvorbis/ChangeLog, l/plugger/ChangeLog, l/wxpython/ChangeLog, l/digest-sha1/ChangeLog, l/pysparse/ChangeLog, l/soundtouch/ChangeLog, l/bmp-wma/ChangeLog, l/bluecurve/ChangeLog, l/qt63dlls/ChangeLog, l/gift-ares/ChangeLog, l/glib-perl/ChangeLog, l/libxml++/ChangeLog, l/timedate/ChangeLog, l/libevent/ChangeLog, l/libesmtp/ChangeLog, l/libgpg-error/ChangeLog, l/exif-browser/ChangeLog, l/rp9codecs/ChangeLog, l/gtk-xfce-engine/ChangeLog, l/codec-binaries/ChangeLog, l/libraw1394/ChangeLog, l/clearlooks/ChangeLog, l/pymodplug/ChangeLog, l/xml-twig/ChangeLog, l/pyid3lib/ChangeLog, l/libsamplerate/ChangeLog, l/numeric/ChangeLog, l/openldap/ChangeLog, l/extutils-pkgconfig/ChangeLog, l/openh323/ChangeLog, l/sqlite/ChangeLog, l/pycrypto/ChangeLog, l/rmxmms/ChangeLog, l/pygame/ChangeLog, l/pyflac/ChangeLog, l/raptor/ChangeLog, l/gtk2-html2-perl/ChangeLog, l/twisted/ChangeLog, l/gtk-qt-engine/ChangeLog, l/libmusicbrainz/ChangeLog, l/gtk2-glext-perl/ChangeLog, l/freetype/ChangeLog, l/out_lame/ChangeLog, l/soap-lite/ChangeLog, l/experience-engine/ChangeLog, l/libnet/ChangeLog, l/libgda/ChangeLog, l/libelf/ChangeLog, l/libcap/ChangeLog, l/libast/ChangeLog, l/flash-plugin/ChangeLog, l/ladspa/ChangeLog, l/nessus-plugins/ChangeLog, l/locale-maketext-lexicon/ChangeLog, l/imlib2/ChangeLog, l/libavc1394/ChangeLog, l/id3lib/ChangeLog, l/gtk2-gladexml-perl/ChangeLog, l/gnutls/ChangeLog, l/glibmm/ChangeLog, l/giblib/ChangeLog, l/iso-codes/ChangeLog, l/gtk-perl/ChangeLog, l/aspell6-cs/ChangeLog, l/mpeg2dec/ChangeLog, l/portaudio/ChangeLog, l/nessus-libraries/ChangeLog, l/chmlib/ChangeLog, l/libwww-perl/ChangeLog, l/gtk-sharp/ChangeLog, l/locale-gettext/ChangeLog, l/termreadkey/ChangeLog, l/gift-openft/ChangeLog, l/gtk2-perl/ChangeLog, l/gift-fasttrack/ChangeLog, l/memoize/ChangeLog, l/a52dec/ChangeLog, l/slmodem/ChangeLog, l/libgphoto2/ChangeLog, l/extutils-depends/ChangeLog, l/libintl-perl/ChangeLog, l/enchant/ChangeLog, l/datemanip/ChangeLog, l/xml-writer/ChangeLog, l/libtunepimp/ChangeLog, l/libglademm/ChangeLog, l/libosip/ChangeLog, l/libnasl/ChangeLog, l/liblrdf/ChangeLog, l/libdnet/ChangeLog, l/libcdio/ChangeLog, l/libcddb/ChangeLog, l/pymusepack/ChangeLog, l/date-calc/ChangeLog, l/libvisual/ChangeLog, l/xml-simple/ChangeLog, l/mmpython/ChangeLog, l/egenix-mx-base/ChangeLog, l/libtheora/ChangeLog, l/dvtitler/ChangeLog, l/libmodplug/ChangeLog, l/libsigc++/ChangeLog, l/gtk2-spell-perl/ChangeLog, l/algorithm-diff/ChangeLog, l/wxgtk/ChangeLog, l/speex/ChangeLog, l/smpeg/ChangeLog, l/pyxml/ChangeLog, l/pyrex/ChangeLog, l/pyogg/ChangeLog, l/pymad/ChangeLog, l/pygtk/ChangeLog, l/pwlib/ChangeLog, l/libdv/ChangeLog, l/gtkmm/ChangeLog, l/gtk+2/ChangeLog, l/gtk+2/profile.d/ChangeLog, l/gpgme/ChangeLog, l/gmime/ChangeLog, l/fnlib/ChangeLog, l/gamin/ChangeLog, l/event/ChangeLog, l/faad2/ChangeLog, l/archive-zip/ChangeLog, l/archive-tar/ChangeLog, l/boost/ChangeLog, l/cairo/ChangeLog, l/libmpcdec/ChangeLog, l/html-tagset/ChangeLog, l/pyorbit/ChangeLog, l/xvidcore/ChangeLog, l/xml-rss/ChangeLog, l/divx4linux/ChangeLog, l/pyfemax/ChangeLog, l/libsndfile/ChangeLog, l/html-parser/ChangeLog, l/gtk2-trayicon-perl/ChangeLog, l/libgcrypt/ChangeLog, l/pyao/ChangeLog, l/faac/ChangeLog, l/html-tree/ChangeLog, l/tv_grab_cz/ChangeLog, l/uri/ChangeLog, l/pil/ChangeLog, l/gd/ChangeLog, l/gc/ChangeLog, d/valgrind/ChangeLog, d/ltrace/ChangeLog, d/fakeroot/ChangeLog, d/scons/ChangeLog, d/psyco/ChangeLog, d/stow/ChangeLog, d/ruby/ChangeLog, d/mono/ChangeLog, d/tla/ChangeLog, d/lua/ChangeLog, d/ddd/ChangeLog:
+  * ChangeLog, extra/aterm/ChangeLog, extra/gpgme/ChangeLog, extra/libgsf/ChangeLog, extra/openssh-x509/ChangeLog, extra/windowmaker/ChangeLog, ap/abook/ChangeLog, ap/anacron/ChangeLog, ap/antiword/ChangeLog, ap/athcool/ChangeLog, ap/bonnie++/ChangeLog, ap/cabextract/ChangeLog, ap/convmv/ChangeLog, ap/cpan2tgz/ChangeLog, ap/cpudyn/ChangeLog, ap/dd_rescue/ChangeLog, ap/dosemu/ChangeLog, ap/dvdauthor/ChangeLog, ap/exiftags/ChangeLog, ap/exifutils/ChangeLog, ap/ffmpeg/ChangeLog, ap/fuse/ChangeLog, ap/fvcool/ChangeLog, ap/giftcurs/ChangeLog, ap/hibernate-script/ChangeLog, ap/html2text/ChangeLog, ap/htop/ChangeLog, ap/jack/ChangeLog, ap/jhead/ChangeLog, ap/john/ChangeLog, ap/lame/ChangeLog, ap/lapack/ChangeLog, ap/lirc/ChangeLog, ap/lsdvd/ChangeLog, ap/lshw/ChangeLog, ap/mjpegtools/ChangeLog, ap/nano/ChangeLog, ap/nrg2iso/ChangeLog, ap/ntfsprogs/ChangeLog, ap/ogmtools/ChangeLog, ap/pinfo/ChangeLog, ap/pnm2ppa/ChangeLog, ap/prelink/ChangeLog, ap/qstat/ChangeLog, ap/setcd/ChangeLog, ap/subtitleripper/ChangeLog, ap/swatch/ChangeLog, ap/tpb/ChangeLog, ap/transcode/ChangeLog, ap/unrar/ChangeLog, ap/vcdimager/ChangeLog, ap/x86cpucaps/ChangeLog, ap/xmltv/ChangeLog, ap/yafray/ChangeLog, ap/zsnes/ChangeLog, xap/bookmarkbridge/ChangeLog, xap/ed2k-gtk-gui/ChangeLog, xap/gaim-encryption/ChangeLog, xap/giftoxic/ChangeLog, xap/gimp-gap/ChangeLog, xap/icon-slicer/ChangeLog, xap/linphone/ChangeLog, xap/rdesktop/ChangeLog, xap/sylpheed-claws-themes/ChangeLog, xap/acidrip/ChangeLog, xap/acroread/ChangeLog, xap/amule/ChangeLog, xap/amyedit/ChangeLog, xap/ardour/ChangeLog, xap/armagetron/ChangeLog, xap/arphicfonts/ChangeLog, xap/aterm/ChangeLog, xap/audacity/ChangeLog, xap/avidemux/ChangeLog, xap/baobab/ChangeLog, xap/bbkeys/ChangeLog, xap/bmp/ChangeLog, xap/cire/ChangeLog, xap/deng/ChangeLog, xap/desktop-file-utils/ChangeLog, xap/dia/ChangeLog, xap/dillo/ChangeLog, xap/edonkeyclc/ChangeLog, xap/enlightenment/ChangeLog, xap/eterm/ChangeLog, xap/ettercap-ng/ChangeLog, xap/fcitx/ChangeLog, xap/feh/ChangeLog, xap/freedoom/ChangeLog, xap/freevo/ChangeLog, xap/fyre/ChangeLog, xap/gfeed/ChangeLog, xap/giftui/ChangeLog, xap/gnofract4d/ChangeLog, xap/gnuitar/ChangeLog, xap/gnumeric/ChangeLog, xap/gocr/ChangeLog, xap/gqradio/ChangeLog, xap/gqview/ChangeLog, xap/graphviz/ChangeLog, xap/graveman/ChangeLog, xap/gtk-gnutella/ChangeLog, xap/gtk-server/ChangeLog, xap/gtklp/ChangeLog, xap/gtksourceview/ChangeLog, xap/gxmessage/ChangeLog, xap/hydrogen/ChangeLog, xap/i855crt/ChangeLog, xap/idesk/ChangeLog, xap/jimmac/ChangeLog, xap/jpilot/ChangeLog, xap/kino/ChangeLog, xap/lbreakout2/ChangeLog, xap/libnotify/ChangeLog, xap/mbox/ChangeLog, xap/mixmos/ChangeLog, xap/mplayer-codecs/ChangeLog, xap/mplayer-fonts/ChangeLog, xap/mplayer-skins/ChangeLog, xap/mplayer/ChangeLog, xap/nicotine/ChangeLog, xap/notification-daemon/ChangeLog, xap/ogle/ChangeLog, xap/ogle_gui/ChangeLog, xap/perlpanel/ChangeLog, xap/pitivi/ChangeLog, xap/pyne/ChangeLog, xap/qemu/ChangeLog, xap/quodlibet/ChangeLog, xap/redhat-artwork/ChangeLog, xap/root-tail/ChangeLog, xap/scrot/ChangeLog, xap/scummvm/ChangeLog, xap/sqlitebrowser/ChangeLog, xap/straw/ChangeLog, xap/sylpheed-claws/ChangeLog, xap/tagtool/ChangeLog, xap/texmacs/ChangeLog, xap/torsmo/ChangeLog, xap/tvtime/ChangeLog, xap/video-dvdrip/ChangeLog, xap/wired/ChangeLog, xap/wmi/ChangeLog, xap/xchm/ChangeLog, xap/xdaf/ChangeLog, xap/xf86-corefonts/ChangeLog, xap/xmame/ChangeLog, xap/xmbmon/ChangeLog, xap/xosd/ChangeLog, xap/xqf/ChangeLog, xap/xvid4conf/ChangeLog, xap/zinf/ChangeLog, testing/bootchart/ChangeLog, testing/criawips/ChangeLog, testing/dbus/ChangeLog, testing/deltup/ChangeLog, testing/eina-gnome/ChangeLog, testing/fontconfig/ChangeLog, testing/gazpacho/ChangeLog, testing/glitz/ChangeLog, testing/gnome-volume-manager/ChangeLog, testing/gtk-webcore/ChangeLog, testing/gtkhtml/ChangeLog, testing/hal/ChangeLog, testing/initng/ChangeLog, testing/libeina/ChangeLog, testing/libxft/ChangeLog, testing/manedit/ChangeLog, testing/mplayer-gtk2/ChangeLog, testing/nvidia/ChangeLog, testing/polypaudio/ChangeLog, testing/sabayon/ChangeLog, testing/seahorse/ChangeLog, testing/xfce-goodies/ChangeLog, testing/xfmedia/ChangeLog, testing/ximian-connector/ChangeLog, pasture/aalib/ChangeLog, pasture/abiword/ChangeLog, pasture/bittornado/ChangeLog, pasture/bittorrent/ChangeLog, pasture/blackbox/ChangeLog, pasture/cyrus-sasl/ChangeLog, pasture/esound/ChangeLog, pasture/expat/ChangeLog, pasture/fribidi/ChangeLog, pasture/gal20/ChangeLog, pasture/gconfmm20/ChangeLog, pasture/gthumb/ChangeLog, pasture/gtkhtml30/ChangeLog, pasture/gtkmm22/ChangeLog, pasture/k3b-i18n/ChangeLog, pasture/libart_lgpl/ChangeLog, pasture/libgsf/ChangeLog, pasture/libgtkhtml/ChangeLog, pasture/librsvg/ChangeLog, pasture/libsigc++1/ChangeLog, pasture/libsoup20/ChangeLog, pasture/libwpd/ChangeLog, pasture/libxml++1/ChangeLog, pasture/libxml2/ChangeLog, pasture/libxslt/ChangeLog, pasture/linux-pam/ChangeLog, pasture/magicdev/ChangeLog, pasture/mozilla-firefox/ChangeLog, pasture/pango/ChangeLog, pasture/shared-mime-info/ChangeLog, pasture/startup-notification/ChangeLog, pasture/storable/ChangeLog, pasture/xcdroast/ChangeLog, pasture/xine-lib/ChangeLog, pasture/xsane/ChangeLog, pasture/atk/ChangeLog, pasture/db41/ChangeLog, pasture/gaim/ChangeLog, pasture/gdm/ChangeLog, pasture/gftp/ChangeLog, pasture/gimp/ChangeLog, pasture/gnet/ChangeLog, pasture/k3b/ChangeLog, pasture/lcms/ChangeLog, pasture/xfce/ChangeLog, open/ChangeLog, open/slackins/ChangeLog, n/ddclient/ChangeLog, n/ebayagent/ChangeLog, n/elinks/ChangeLog, n/email/ChangeLog, n/fping/ChangeLog, n/gift/ChangeLog, n/httpup/ChangeLog, n/ibmonitor/ChangeLog, n/mail-spamassassin/ChangeLog, n/mailfilter/ChangeLog, n/micq/ChangeLog, n/mpd/ChangeLog, n/msmtp/ChangeLog, n/mutella/ChangeLog, n/nagios/ChangeLog, n/neon/ChangeLog, n/nessus-core/ChangeLog, n/pavuk/ChangeLog, n/postfix-sasl/ChangeLog, n/postfix/ChangeLog, n/rdate/ChangeLog, n/renattach/ChangeLog, n/sarg/ChangeLog, n/scponly/ChangeLog, n/snarf/ChangeLog, n/snort/ChangeLog, n/snort/rules/ChangeLog, n/squid/ChangeLog, n/squid/patches/ChangeLog, n/thttpd/ChangeLog, n/tmsnc/ChangeLog, n/wifi-radar/ChangeLog, n/wvdial/ChangeLog, n/wvstreams/ChangeLog, n/yp-tools/ChangeLog, kde/amarok/ChangeLog, kde/digikam/ChangeLog, kde/digikamimageplugins/ChangeLog, kde/gwenview/ChangeLog, kde/k3bmonkeyaudioplugin/ChangeLog, kde/kipi-plugins/ChangeLog, kde/knetworkconf/ChangeLog, kde/libkexif/ChangeLog, kde/libkipi/ChangeLog, kde/showimg/ChangeLog, kde/superkaramba/ChangeLog, kde/thinkeramik/ChangeLog, gnome/diacanvas2/ChangeLog, gnome/gnome-clipboard-daemon/ChangeLog, gnome/gnome-desktop/ChangeLog, gnome/gnome-keyring/ChangeLog, gnome/gnome-netstatus/ChangeLog, gnome/gnome-screensaver/ChangeLog, gnome/gnome-system-monitor/ChangeLog, gnome/gnome2-vte-perl/ChangeLog, gnome/hardware-monitor/ChangeLog, gnome/inkscape/ChangeLog, gnome/libbonobo/ChangeLog, gnome/nautilus-cd-burner/ChangeLog, gnome/netspeed_applet/ChangeLog, gnome/system-tools-backends/ChangeLog, gnome/epiphany/ChangeLog, gnome/evolution/ChangeLog, gnome/gdesklets/ChangeLog, gnome/gnome-doc-utils/ChangeLog, gnome/gnome-icon-theme/ChangeLog, gnome/hicolor-icon-theme/ChangeLog, gnome/libcroco/ChangeLog, gnome/libgail-gnome/ChangeLog, gnome/libghttp/ChangeLog, gnome/libgnome/ChangeLog, gnome/firestarter/ChangeLog, gnome/anjuta/ChangeLog, gnome/at-spi/ChangeLog, gnome/bluefish/ChangeLog, gnome/bubblemon/ChangeLog, gnome/bug-buddy/ChangeLog, gnome/conglomerate/ChangeLog, gnome/control-center/ChangeLog, gnome/dasher/ChangeLog, gnome/drwright/ChangeLog, gnome/epiphany-extensions/ChangeLog, gnome/evince/ChangeLog, gnome/evolution-data-server/ChangeLog, gnome/evolution-webcal/ChangeLog, gnome/f-spot/ChangeLog, gnome/galeon/ChangeLog, gnome/gcalctool/ChangeLog, gnome/gconfmm/ChangeLog, gnome/gcursor/ChangeLog, gnome/glabels/ChangeLog, gnome/gnome-applets/ChangeLog, gnome/gnome-audio/ChangeLog, gnome/gnome-backgrounds/ChangeLog, gnome/gnome-blog/ChangeLog, gnome/gnome-btdownload/ChangeLog, gnome/gnome-cpufreq-applet/ChangeLog, gnome/gnome-cups-manager/ChangeLog, gnome/gnome-dial/ChangeLog, gnome/gnome-games/ChangeLog, gnome/gnome-media/ChangeLog, gnome/gnome-menus/ChangeLog, gnome/gnome-mime-data/ChangeLog, gnome/gnome-nettool/ChangeLog, gnome/gnome-panel/ChangeLog, gnome/gnome-pkgtool/ChangeLog, gnome/gnome-python-extras/ChangeLog, gnome/gnome-python/ChangeLog, gnome/gnome-schedule/ChangeLog, gnome/gnome-settings-visualeffects/ChangeLog, gnome/gnome-speech/ChangeLog, gnome/gnome-sshman/ChangeLog, gnome/gnome-terminal/ChangeLog, gnome/gnome-themes/ChangeLog, gnome/gnome-utils/ChangeLog, gnome/gnome-vfsmm/ChangeLog, gnome/gnome2-canvas-perl/ChangeLog, gnome/gnome2-dia-perl/ChangeLog, gnome/gnome2-gconf-perl/ChangeLog, gnome/gnome2-perl/ChangeLog, gnome/gnome2-user-docs/ChangeLog, gnome/gnomebaker/ChangeLog, gnome/gnopernicus/ChangeLog, gnome/gnubiff/ChangeLog, gnome/goobox/ChangeLog, gnome/gparted/ChangeLog, gnome/gphoto2/ChangeLog, gnome/gsplashfu/ChangeLog, gnome/gthumb/ChangeLog, gnome/gtk-doc/ChangeLog, gnome/gtk-engines/ChangeLog, gnome/gtkglext/ChangeLog, gnome/gtkhtml/ChangeLog, gnome/gtkspell/ChangeLog, gnome/gtorrentviewer/ChangeLog, gnome/gtweakui/ChangeLog, gnome/jamboree/ChangeLog, gnome/kazehakase/ChangeLog, gnome/libbonoboui/ChangeLog, gnome/libgnomecanvas/ChangeLog, gnome/libgnomecanvasmm/ChangeLog, gnome/libgnomecups/ChangeLog, gnome/libgnomedb/ChangeLog, gnome/libgnomemm/ChangeLog, gnome/libgnomeprint/ChangeLog, gnome/libgnomeprintui/ChangeLog, gnome/libgnomesu/ChangeLog, gnome/libgnomeui/ChangeLog, gnome/libgnomeuimm/ChangeLog, gnome/mihais-memfree/ChangeLog, gnome/nautilus-media/ChangeLog, gnome/orbit2/ChangeLog, gnome/revelation/ChangeLog, gnome/rhythmbox/ChangeLog, gnome/rubrica/ChangeLog, gnome/screem/ChangeLog, gnome/seahorse/ChangeLog, gnome/serpentine/ChangeLog, gnome/sound-juicer/ChangeLog, gnome/ximian-artwork/ChangeLog, gnome/yarssr/ChangeLog, gnome/zenity/ChangeLog, gnome/aegis-virus-scanner/ChangeLog, gnome/balsa/ChangeLog, gnome/bmp-extra-plugins/ChangeLog, gnome/cog/ChangeLog, gnome/disksearch/ChangeLog, gnome/eel/ChangeLog, gnome/eog/ChangeLog, gnome/file-roller/ChangeLog, gnome/gai/ChangeLog, gnome/gail/ChangeLog, gnome/gal/ChangeLog, gnome/gamp/ChangeLog, gnome/gconf-editor/ChangeLog, gnome/gconf/ChangeLog, gnome/gdm/ChangeLog, gnome/gedit/ChangeLog, gnome/ggv/ChangeLog, gnome/glade/ChangeLog, gnome/gmencoder/ChangeLog, gnome/gmpc/ChangeLog, gnome/gnome-common/ChangeLog, gnome/gnome-osd/ChangeLog, gnome/gnome-ppp/ChangeLog, gnome/gnome-ppx/ChangeLog, gnome/gnome-session/ChangeLog, gnome/gnome-system-tools/ChangeLog, gnome/gnome-themes-extras/ChangeLog, gnome/gnome-vfs/ChangeLog, gnome/gnome2-print-perl/ChangeLog, gnome/gnome2-rsvg-perl/ChangeLog, gnome/gnome2-vfs-perl/ChangeLog, gnome/gnome2-wnck-perl/ChangeLog, gnome/gnomevfs-mount/ChangeLog, gnome/gok/ChangeLog, gnome/gpass/ChangeLog, gnome/gpdf/ChangeLog, gnome/gpp/ChangeLog, gnome/grip/ChangeLog, gnome/gst-ffmpeg/ChangeLog, gnome/gst-python/ChangeLog, gnome/gstreamer/ChangeLog, gnome/gtkam/ChangeLog, gnome/gurlchecker/ChangeLog, gnome/gwget/ChangeLog, gnome/intltool/ChangeLog, gnome/leafpad/ChangeLog, gnome/libgtop/ChangeLog, gnome/libsoup/ChangeLog, gnome/libwnck/ChangeLog, gnome/libxklavier/ChangeLog, gnome/liferea/ChangeLog, gnome/mail-notification/ChangeLog, gnome/metacity/ChangeLog, gnome/monkey-bubble/ChangeLog, gnome/muine/ChangeLog, gnome/nautilus/ChangeLog, gnome/ontv/ChangeLog, gnome/sclog/ChangeLog, gnome/scrollkeeper/ChangeLog, gnome/sodipodi/ChangeLog, gnome/timer-applet/ChangeLog, gnome/totem/ChangeLog, gnome/tsclient/ChangeLog, gnome/tutka/ChangeLog, gnome/ubuntu-artwork/ChangeLog, gnome/vino/ChangeLog, gnome/vte/ChangeLog, gnome/yelp/ChangeLog, gnome/zapping/ChangeLog, n/p0f/ChangeLog, l/gift-gnutella/ChangeLog, l/libdvdnav/ChangeLog, l/libdvdcss/ChangeLog, l/compress-zlib/ChangeLog, l/libdvdread/ChangeLog, l/file-scan/ChangeLog, l/poppler/ChangeLog, l/gtk2-mozembed-perl/ChangeLog, l/xanimdlls/ChangeLog, l/pyvorbis/ChangeLog, l/plugger/ChangeLog, l/wxpython/ChangeLog, l/digest-sha1/ChangeLog, l/pysparse/ChangeLog, l/soundtouch/ChangeLog, l/bmp-wma/ChangeLog, l/bluecurve/ChangeLog, l/qt63dlls/ChangeLog, l/gift-ares/ChangeLog, l/glib-perl/ChangeLog, l/libxml++/ChangeLog, l/timedate/ChangeLog, l/libevent/ChangeLog, l/libesmtp/ChangeLog, l/libgpg-error/ChangeLog, l/exif-browser/ChangeLog, l/rp9codecs/ChangeLog, l/gtk-xfce-engine/ChangeLog, l/codec-binaries/ChangeLog, l/libraw1394/ChangeLog, l/clearlooks/ChangeLog, l/pymodplug/ChangeLog, l/xml-twig/ChangeLog, l/pyid3lib/ChangeLog, l/libsamplerate/ChangeLog, l/numeric/ChangeLog, l/openldap/ChangeLog, l/extutils-pkgconfig/ChangeLog, l/openh323/ChangeLog, l/sqlite/ChangeLog, l/pycrypto/ChangeLog, l/rmxmms/ChangeLog, l/pygame/ChangeLog, l/pyflac/ChangeLog, l/raptor/ChangeLog, l/gtk2-html2-perl/ChangeLog, l/twisted/ChangeLog, l/gtk-qt-engine/ChangeLog, l/libmusicbrainz/ChangeLog, l/gtk2-glext-perl/ChangeLog, l/freetype/ChangeLog, l/out_lame/ChangeLog, l/soap-lite/ChangeLog, l/experience-engine/ChangeLog, l/libnet/ChangeLog, l/libgda/ChangeLog, l/libelf/ChangeLog, l/libcap/ChangeLog, l/libast/ChangeLog, l/flash-plugin/ChangeLog, l/ladspa/ChangeLog, l/nessus-plugins/ChangeLog, l/locale-maketext-lexicon/ChangeLog, l/imlib2/ChangeLog, l/libavc1394/ChangeLog, l/id3lib/ChangeLog, l/gtk2-gladexml-perl/ChangeLog, l/gnutls/ChangeLog, l/glibmm/ChangeLog, l/giblib/ChangeLog, l/iso-codes/ChangeLog, l/gtk-perl/ChangeLog, l/aspell6-cs/ChangeLog, l/mpeg2dec/ChangeLog, l/portaudio/ChangeLog, l/nessus-libraries/ChangeLog, l/chmlib/ChangeLog, l/libwww-perl/ChangeLog, l/gtk-sharp/ChangeLog, l/locale-gettext/ChangeLog, l/termreadkey/ChangeLog, l/gift-openft/ChangeLog, l/gtk2-perl/ChangeLog, l/gift-fasttrack/ChangeLog, l/memoize/ChangeLog, l/a52dec/ChangeLog, l/slmodem/ChangeLog, l/libgphoto2/ChangeLog, l/extutils-depends/ChangeLog, l/libintl-perl/ChangeLog, l/enchant/ChangeLog, l/datemanip/ChangeLog, l/xml-writer/ChangeLog, l/libtunepimp/ChangeLog, l/libglademm/ChangeLog, l/libosip/ChangeLog, l/libnasl/ChangeLog, l/liblrdf/ChangeLog, l/libdnet/ChangeLog, l/libcdio/ChangeLog, l/libcddb/ChangeLog, l/pymusepack/ChangeLog, l/date-calc/ChangeLog, l/libvisual/ChangeLog, l/xml-simple/ChangeLog, l/mmpython/ChangeLog, l/egenix-mx-base/ChangeLog, l/libtheora/ChangeLog, l/dvtitler/ChangeLog, l/libmodplug/ChangeLog, l/libsigc++/ChangeLog, l/gtk2-spell-perl/ChangeLog, l/algorithm-diff/ChangeLog, l/wxgtk/ChangeLog, l/speex/ChangeLog, l/smpeg/ChangeLog, l/pyxml/ChangeLog, l/pyrex/ChangeLog, l/pyogg/ChangeLog, l/pymad/ChangeLog, l/pygtk/ChangeLog, l/pwlib/ChangeLog, l/libdv/ChangeLog, l/gtkmm/ChangeLog, l/gtk+2/ChangeLog, l/gtk+2/profile.d/ChangeLog, l/gpgme/ChangeLog, l/gmime/ChangeLog, l/fnlib/ChangeLog, l/gamin/ChangeLog, l/event/ChangeLog, l/faad2/ChangeLog, l/archive-zip/ChangeLog, l/archive-tar/ChangeLog, l/boost/ChangeLog, l/cairo/ChangeLog, l/libmpcdec/ChangeLog, l/html-tagset/ChangeLog, l/pyorbit/ChangeLog, l/xvidcore/ChangeLog, l/xml-rss/ChangeLog, l/divx4linux/ChangeLog, l/pyfemax/ChangeLog, l/libsndfile/ChangeLog, l/html-parser/ChangeLog, l/gtk2-trayicon-perl/ChangeLog, l/libgcrypt/ChangeLog, l/pyao/ChangeLog, l/faac/ChangeLog, l/html-tree/ChangeLog, l/tv_grab_cz/ChangeLog, l/uri/ChangeLog, l/pil/ChangeLog, l/gd/ChangeLog, l/gc/ChangeLog, d/valgrind/ChangeLog, d/ltrace/ChangeLog, d/fakeroot/ChangeLog, d/scons/ChangeLog, d/psyco/ChangeLog, d/stow/ChangeLog, d/ruby/ChangeLog, d/mono/ChangeLog, d/tla/ChangeLog, d/lua/ChangeLog, d/ddd/ChangeLog:
   Updated.
-
-2005-10-12  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/CREDITS, testing/portpkg/footprint: Synced.
-
-  * testing/portpkg/autoport:
-  Back to /usr/doc/$NAME-$VERSION directories for documentation.
-
-  * testing/portpkg/admin.changelogs, testing/portpkg/translate: New entry.
-
-  * testing/portpkg/portpkg: Fixed a typo.
-
-  * testing/portpkg/checktree, testing/portpkg/exclude.new, testing/portpkg/ignore.new, testing/portpkg/merge, testing/portpkg/mirrors.new, testing/portpkg/prepare, testing/portpkg/sync.00.portpkg-tree.new, testing/portpkg/sync.55.pseudo-ports.new, testing/portpkg/sync.66.slackware-source.new, testing/portpkg/sync.77.update-open.new, testing/portpkg/sync.99.clean-cache.new, testing/portpkg/use.new:
-  Removed (obsolete).
-
-  * testing/portpkg/ABOUT, testing/portpkg/FAQ, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.orig, testing/portpkg/SlackBuild, testing/portpkg/admin.checktree, testing/portpkg/admin.docs, testing/portpkg/admin.merge, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/checktree, testing/portpkg/doinst.sh, testing/portpkg/exclude, testing/portpkg/exclude.new, testing/portpkg/export.cvs, testing/portpkg/export.http, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/ignore.new, testing/portpkg/merge, testing/portpkg/mirrors, testing/portpkg/mirrors.new, testing/portpkg/portpkg, testing/portpkg/pp-config, testing/portpkg/prepare, testing/portpkg/requires, testing/portpkg/sync.00.portpkg-tree, testing/portpkg/sync.00.portpkg-tree.new, testing/portpkg/sync.55.pseudo-ports, testing/portpkg/sync.55.pseudo-ports.new, testing/portpkg/sync.66.slackware-source, testing/portpkg/sync.66.slackware-source.new, testing/portpkg/sync.77.update-open, testing/portpkg/sync.77.update-open.new, testing/portpkg/sync.99.clean-cache, testing/portpkg/sync.99.clean-cache.new, testing/portpkg/use, testing/portpkg/use.new:
-  Release 0.38test17.
 
 2005-10-11  topf  <topf@users.berlios.de>
 
@@ -3429,9 +3426,6 @@
   Moved n/bittornado-0.3.12-noarch-1hnaz to pasture/.
 
 2005-10-07  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/portpkg:
-  Fixed md5sums checking bug.
 
   * d/portpkg/SlackBuild, d/portpkg/footprint, d/portpkg/portpkg:
   Fixed md5sums checking again.
@@ -3544,12 +3538,8 @@
 
 2005-08-16  hnaz  <hnaz@users.berlios.de>
 
-  * testing/portpkg/make-wrapper: Removed confusing diff markers.
-
-  * d/portpkg/SlackBuild, d/portpkg/portpkg, testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/make-wrapper, testing/portpkg/portpkg:
+  * d/portpkg/SlackBuild, d/portpkg/portpkg:
   Added support for blocking packages. Please update, this is important!
-
-  * testing/portpkg/portpkg: Moved to pango-devel.
 
   * n/msmtp/SlackBuild, n/msmtp/footprint, n/msmtp/md5sums: Upgrade to 1.4.4.
 
@@ -3564,13 +3554,7 @@
   * xap/scummvm/SlackBuild, xap/scummvm/doinst.sh, xap/scummvm/footprint, xap/scummvm/md5sums, xap/scummvm/requires, xap/scummvm/slack-desc, xap/scummvm/sources:
   New port.
 
-  * testing/portpkg/SlackBuild, testing/portpkg/make-wrapper:
-  Fixed typo. Now it should work ;)
-
 2005-08-13  hnaz  <hnaz@users.berlios.de>
-
-  * testing/portpkg/SlackBuild, testing/portpkg/pp-config:
-  Fix usage of -mtune/-mcpu. Choose flags via the gcc version.
 
   * d/portpkg/ChangeLog, d/portpkg/SlackBuild, d/portpkg/pp-config:
   Fixed the usage of -mtune and -mcpu. Choose by gcc-version.
@@ -3588,24 +3572,8 @@
   Works with GTK+2.
   Works with SLKCFLAGS.
 
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint: make-wrapper fixes.
-
   * xap/gtk-gnutella/SlackBuild, xap/gtk-gnutella/footprint, xap/gtk-gnutella/requires:
   Use Configure instead of configure.gnu. We're now back with SLKCFLAGS and more.
-
-  * testing/portpkg/make-wrapper:
-  Added option to disable parallel make jobs individually. Use 'PARAMAKE=false make foo' in the SlackBuild if it fails with parallel builds.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/make-wrapper:
-  Removed the row() call in make-wrapper, which disturbs some configure-scripts.
-
-  * testing/portpkg/make-wrapper, testing/portpkg/portpkg, testing/portpkg/pp-config, testing/portpkg/SlackBuild, testing/portpkg/footprint:
-  Added make-wrapper.
-  PATH changed in portpkg to prefer the wrapper.
-  Added configuration submenu in pp-config.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/pp-config:
-  Changed deprecated -mcpu to -mtune.
 
   * n/postfix-sasl/SlackBuild, n/postfix-sasl/doinst.sh, n/postfix-sasl/footprint, n/postfix-sasl/makedefs, n/postfix-sasl/md5sums, n/postfix-sasl/rc.postfix.new, n/postfix-sasl/requires, n/postfix-sasl/slack-desc, n/postfix-sasl/sources:
   New meta-port.
@@ -3623,10 +3591,10 @@
   * n/nessus-core/SlackBuild, n/nessus-core/footprint, n/nessus-core/md5sums, n/nessus-core/requires, n/nessus-core/slack-desc, n/nessus-core/sources, l/nessus-plugins/SlackBuild, l/nessus-plugins/footprint, l/nessus-plugins/md5sums, l/nessus-plugins/requires, l/nessus-plugins/slack-desc, l/nessus-plugins/sources, l/nessus-libraries/SlackBuild, l/nessus-libraries/footprint, l/nessus-libraries/md5sums, l/nessus-libraries/slack-desc, l/nessus-libraries/sources, l/libnasl/SlackBuild, l/libnasl/footprint, l/libnasl/requires, l/libnasl/slack-desc, l/libnasl/sources:
   new entry (lem)
 
-  * xap/notification-daemon/SlackBuild, xap/notification-daemon/footprint, xap/notification-daemon/md5sums, xap/notification-daemon/requires, xap/notification-daemon/slack-desc, xap/notification-daemon/sources, xap/libnotify/SlackBuild, xap/libnotify/footprint, xap/libnotify/md5sums, xap/libnotify/requires, xap/libnotify/slack-desc, xap/libnotify/sources, open/pycairo/SlackBuild, open/pycairo/footprint, open/pycairo/info, open/pycairo/md5sums, open/pycairo/requires, open/pycairo/slack-desc, open/pycairo/sources, testing/pycairo/SlackBuild, testing/pycairo/footprint, testing/pycairo/md5sums, testing/pycairo/requires, testing/pycairo/slack-desc, testing/pycairo/sources:
+  * xap/notification-daemon/SlackBuild, xap/notification-daemon/footprint, xap/notification-daemon/md5sums, xap/notification-daemon/requires, xap/notification-daemon/slack-desc, xap/notification-daemon/sources, xap/libnotify/SlackBuild, xap/libnotify/footprint, xap/libnotify/md5sums, xap/libnotify/requires, xap/libnotify/slack-desc, xap/libnotify/sources:
   new record (lem)
 
-  * open/pygtk/SlackBuild, open/pygtk/footprint, open/pygtk/info, open/pygtk/md5sums, open/pygtk/requires, open/pygtk/slack-desc, open/pygtk/sources, testing/pygtk/SlackBuild, testing/pygtk/footprint, testing/pygtk/md5sums, testing/pygtk/requires, testing/pygtk/slack-desc, testing/pygtk/sources, gnome/gnome-terminal/SlackBuild, gnome/gnome-terminal/doinst.sh, gnome/gnome-terminal/footprint, gnome/gnome-terminal/md5sums, gnome/gnome-terminal/requires, gnome/gnome-terminal/sources, gnome/gnome-schedule/SlackBuild, gnome/gnome-schedule/doinst.sh, gnome/gnome-schedule/footprint, gnome/gnome-schedule/md5sums, gnome/gnome-schedule/requires, gnome/gnome-schedule/slack-desc, gnome/gnome-schedule/sources:
+  * gnome/gnome-terminal/SlackBuild, gnome/gnome-terminal/doinst.sh, gnome/gnome-terminal/footprint, gnome/gnome-terminal/md5sums, gnome/gnome-terminal/requires, gnome/gnome-terminal/sources, gnome/gnome-schedule/SlackBuild, gnome/gnome-schedule/doinst.sh, gnome/gnome-schedule/footprint, gnome/gnome-schedule/md5sums, gnome/gnome-schedule/requires, gnome/gnome-schedule/slack-desc, gnome/gnome-schedule/sources:
   version update (lem)
 
   * testing/glitz/SlackBuild, testing/glitz/footprint, testing/glitz/md5sums, testing/glitz/requires, testing/glitz/slack-desc, testing/glitz/sources:
@@ -3656,14 +3624,6 @@
   * d/portpkg/SlackBuild, d/portpkg/footprint, d/portpkg/portpkg, d/portpkg/ChangeLog:
   Modified information output on DRY_RUN.
   Fixed $flag_var grepping/sedding.
-
-2005-08-11  topf  <topf@users.berlios.de>
-
-  * open/pygtk/SlackBuild, open/pygtk/footprint, open/pygtk/info, open/pygtk/md5sums, open/pygtk/requires, open/pygtk/slack-desc, open/pygtk/sources:
-  version update (lem)
-
-  * open/pycairo/SlackBuild, open/pycairo/footprint, open/pycairo/info, open/pycairo/md5sums, open/pycairo/requires, open/pycairo/slack-desc, open/pycairo/sources:
-  new record (lem)
 
 2005-08-03  topf  <topf@users.berlios.de>
 
@@ -3761,11 +3721,6 @@
 
 2005-07-23  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/footprint: Release 0.38test13.
-
-  * testing/portpkg/ABOUT, testing/portpkg/CREDITS, testing/portpkg/FAQ, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/README.QuickStart, testing/portpkg/README.orig, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checktree, testing/portpkg/footprint, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/prepare, testing/portpkg/sync.00.portpkg-tree.new, testing/portpkg/sync.55.pseudo-ports.new, testing/portpkg/sync.66.slackware-source.new, testing/portpkg/sync.77.update-open.new, testing/portpkg/sync.99.clean-cache.new:
-  Release 0.38test13
-
 2005-07-22  topf  <topf@users.berlios.de>
 
   * gnome/gdm/SlackBuild, gnome/gdm/footprint, gnome/gdm/sources:
@@ -3828,9 +3783,6 @@
 
   * l/gtk-qt-engine/SlackBuild, l/gtk-qt-engine/doinst.sh, l/gtk-qt-engine/footprint, l/gtk-qt-engine/md5sums, l/gtk-qt-engine/requires, l/gtk-qt-engine/slack-desc, l/gtk-qt-engine/sources, l/gamin/SlackBuild, l/gamin/footprint, l/gamin/md5sums:
   Version update.
-
-  * testing/portpkg/exclude, testing/portpkg/exclude.new, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/ignore.new, testing/portpkg/import.portpkg-tree, testing/portpkg/import.pseudo-ports, testing/portpkg/import.slackware-source, testing/portpkg/mirrors.au, testing/portpkg/mirrors.de, testing/portpkg/mirrors.jp, testing/portpkg/mirrors.new, testing/portpkg/mirrors.us, testing/portpkg/portpkg, testing/portpkg/pp-config, testing/portpkg/sync.00.portpkg-tree.new, testing/portpkg/sync.55.pseudo-ports.new, testing/portpkg/sync.66.slackware-source.new, testing/portpkg/sync.77.update-open.new, testing/portpkg/sync.99.clean-cache.new, testing/portpkg/update-ports, testing/portpkg/use.new, testing/portpkg/README, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/doinst.sh:
-  Release 0.38test12.
 
 2005-07-09  hnaz  <hnaz@users.berlios.de>
 
@@ -3898,9 +3850,6 @@
   * l/libtunepimp/SlackBuild, l/libtunepimp/footprint, l/libtunepimp/md5sums, l/libtunepimp/requires, l/libtunepimp/slack-desc, l/libtunepimp/sources:
   New entry.
 
-  * testing/portpkg/README, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/checktree, testing/portpkg/doinst.sh, testing/portpkg/footprint, testing/portpkg/import.portpkg-tree, testing/portpkg/import.pseudo-ports, testing/portpkg/import.slackware-source, testing/portpkg/md5sums, testing/portpkg/merge, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/prepare, testing/portpkg/update-ports:
-  Release 0.38test11.
-
 2005-06-17  topf  <topf@users.berlios.de>
 
   * kde/superkaramba/requires: Removed "python-2.4".
@@ -3924,9 +3873,6 @@
   Moved from l/.
 
 2005-06-09  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/README, testing/portpkg/README.cp, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checktree, testing/portpkg/doinst.sh, testing/portpkg/export.cvs, testing/portpkg/export.http, testing/portpkg/footprint, testing/portpkg/import.portpkg-tree, testing/portpkg/import.pseudo-ports, testing/portpkg/import.slackware-source, testing/portpkg/md5sums, testing/portpkg/merge, testing/portpkg/mirrors.au, testing/portpkg/mirrors.de, testing/portpkg/mirrors.jp, testing/portpkg/mirrors.us, testing/portpkg/portpkg, testing/portpkg/pp-config, testing/portpkg/pseudo-ports, testing/portpkg/slackware-source, testing/portpkg/update-ports:
-  Release 0.38test10.
 
   * n/pavuk/SlackBuild, n/pavuk/doinst.sh, n/pavuk/footprint, n/pavuk/md5sums, n/pavuk/requires, n/pavuk/slack-desc, n/pavuk/sources:
   Version update.
@@ -3992,9 +3938,6 @@
 
 2005-05-31  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/CREDITS, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/README.QuickStart, testing/portpkg/README.cp, testing/portpkg/README.orig, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/checktree, testing/portpkg/doinst.sh, testing/portpkg/footprint, testing/portpkg/md5sums, testing/portpkg/merge, testing/portpkg/mirrors.au, testing/portpkg/mirrors.de, testing/portpkg/mirrors.jp, testing/portpkg/mirrors.us, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/prepare, testing/portpkg/pseudo-ports, testing/portpkg/repos, testing/portpkg/requires, testing/portpkg/slack-desc, testing/portpkg/slackware-source, testing/portpkg/update-ports:
-  Release 0.38test9.
-
   * ChangeLog: Updated. (cronjob)
 
 2005-05-30  topf  <topf@users.berlios.de>
@@ -4025,19 +3968,10 @@
 
   * ChangeLog: Updated. (cronjob)
 
-  * testing/portpkg/portpkg: Rewrote parts of update_meta_info().
-
-  * testing/portpkg/autoport: Back to create-gconf-list at package time.
-
-  * testing/portpkg/ignore: Added libxft.
-
 2005-05-27  topf  <topf@users.berlios.de>
 
   * xap/gnofract4d/requires, gnome/glade/requires, gnome/gnome-panel/requires, xap/ed2k-gtk-gui/requires:
   Removed optional libxft.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/md5sums, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/requires:
-  Release 0.38test8.
 
   * gnome/libgnomecups/sources: Corrected URL.
 
@@ -4097,24 +4031,13 @@
 
 2005-05-25  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/autoport, testing/portpkg/portpkg: Small fixes.
-
   * ChangeLog: Updated. (cronjob)
 
 2005-05-24  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/portpkg: Fixed typo in SUBMIT_SUB
-
-  * testing/portpkg/autoport: Massive updates.
-
   * ChangeLog: Updated. (cronjob)
 
 2005-05-23  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/autoport: Small fixes.
-
-  * testing/portpkg/README, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/footprint, testing/portpkg/md5sums, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/repos:
-  New release.
 
   * ap/swatch/SlackBuild, ap/swatch/footprint, ap/swatch/md5sums, ap/swatch/requires, ap/swatch/slack-desc, l/date-calc/SlackBuild, l/date-calc/md5sums, l/datemanip/SlackBuild, l/datemanip/md5sums:
   Fixed 'make PREFIX' mistake.
@@ -4177,16 +4100,8 @@
   * gnome/gstreamer/SlackBuild, gnome/gstreamer/footprint, gnome/gstreamer/md5sums, gnome/gstreamer/readme.autoport, gnome/gstreamer/slack-desc, gnome/gstreamer/sources:
   Version update.
 
-  * testing/portpkg/ChangeLog, testing/portpkg/config.log: Removed.
-
-  * testing/portpkg/ChangeLog, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/config.log, testing/portpkg/footprint, testing/portpkg/md5sums, testing/portpkg/portpkg, testing/portpkg/repos, testing/portpkg/requires:
-  Another update.
-
   * gnome/totem/SlackBuild, gnome/totem/doinst.sh, gnome/totem/footprint, gnome/totem/md5sums:
   Updated version.
-
-  * testing/portpkg/COPYING, testing/portpkg/CREDITS, testing/portpkg/ChangeLog, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/README.QuickStart, testing/portpkg/README.cp, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/doinst.sh, testing/portpkg/exclude, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/md5sums, testing/portpkg/mirrors.au, testing/portpkg/mirrors.de, testing/portpkg/mirrors.jp, testing/portpkg/mirrors.us, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/prepare, testing/portpkg/repos, testing/portpkg/slack-desc:
-  Next try. (tom)
 
   * pasture/mozilla-firefox/SlackBuild, pasture/mozilla-firefox/footprint, pasture/mozilla-firefox/md5sums, pasture/mozilla-firefox/requires:
   Updated version, added line 62,63,64 in SlackBuild (patch moz_libdir,MRE_HOME path) (sjn)
@@ -4873,7 +4788,7 @@
   * xap/gtk-gnutella/SlackBuild, xap/gtk-gnutella/requires:
   Added byacc to requires. [needed to build]
 
-  * l/libgcrypt/SlackBuild, l/libgcrypt/footprint, l/libgcrypt/info, l/libgcrypt/md5sums, l/libgcrypt/requires, l/libgcrypt/slack-desc, l/libgcrypt/sources, open/libgcrypt/SlackBuild, open/libgcrypt/footprint, open/libgcrypt/info, open/libgcrypt/md5sums, open/libgcrypt/requires, open/libgcrypt/slack-desc, open/libgcrypt/sources, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/info, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/slack-desc, l/gnutls/sources, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources:
+  * l/libgcrypt/SlackBuild, l/libgcrypt/footprint, l/libgcrypt/info, l/libgcrypt/md5sums, l/libgcrypt/requires, l/libgcrypt/slack-desc, l/libgcrypt/sources, l/gnutls/SlackBuild, l/gnutls/footprint, l/gnutls/info, l/gnutls/md5sums, l/gnutls/requires, l/gnutls/slack-desc, l/gnutls/sources:
   Integrated. -> l/
 
 2005-04-03  topf  <topf@users.berlios.de>
@@ -4887,12 +4802,6 @@
   Updated xap/graveman to 0.3.9-i686-1tom.
 
 2005-04-01  topf  <topf@users.berlios.de>
-
-  * open/libgcrypt/SlackBuild, open/libgcrypt/footprint, open/libgcrypt/info, open/libgcrypt/md5sums, open/libgcrypt/requires, open/libgcrypt/slack-desc, open/libgcrypt/sources, open/gnutls/SlackBuild, open/gnutls/footprint, open/gnutls/info, open/gnutls/md5sums, open/gnutls/requires, open/gnutls/slack-desc, open/gnutls/sources:
-  new entry (cronjob)
-
-  * testing/portpkg/COPYING, testing/portpkg/CREDITS, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/README.QuickStart, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/doinst.sh, testing/portpkg/exclude, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/mirrors.de, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/pp-sync-bin, testing/portpkg/pp-sync-src, testing/portpkg/prepare, testing/portpkg/slack-desc:
-  Outdated.
 
   * d/portpkg/pp-export, d/portpkg/slack-desc: *** empty log message ***
 
@@ -4914,7 +4823,7 @@
   * xap/sylpheed-claws-themes/SlackBuild, xap/sylpheed-claws-themes/doinst.sh, xap/sylpheed-claws-themes/footprint, xap/sylpheed-claws-themes/md5sums, xap/sylpheed-claws-themes/slack-desc, xap/sylpheed-claws-themes/sources, xap/sylpheed-claws-themes/sylpheed-claws-themes-1.0.tar.bz2:
   Moved open/sylpheed-claws-themes-1.0-noarch-1sjn to xap/.
 
-  * xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums, open/sylpheed-claws/Readme, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
+  * xap/sylpheed-claws/Readme, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/footprint, xap/sylpheed-claws/md5sums:
   Moved open/sylpheed-claws-1.0.4-i686-1sjn to xap/.
 
   * n/renattach/SlackBuild, n/renattach/footprint, n/renattach/md5sums, n/renattach/slack-desc, n/renattach/sources:
@@ -4954,9 +4863,6 @@
 
   * d/portpkg/portpkg: Make PORT_IS_BROKEN a symlink to its buildlog.
 
-  * open/sylpheed-claws/Readme, open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-   (cronjob)
-
   * AUTHORS: *** empty log message ***
 
   * d/portpkg/portpkg:
@@ -4980,7 +4886,7 @@
   * gnome/yelp/SlackBuild, gnome/yelp/requires, gnome/yelp/slack-desc, gnome/yelp/sources:
   Version bump.
 
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/readme, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz, xap/sylpheed-claws/slack-desc, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/doinst.sh, xap/sylpheed-claws/footprint, xap/sylpheed-claws/info, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires:
+  * xap/sylpheed-claws/slack-desc, xap/sylpheed-claws/sources, xap/sylpheed-claws/sylpheed-claws-gettext.patch.gz, xap/sylpheed-claws/SlackBuild, xap/sylpheed-claws/doinst.sh, xap/sylpheed-claws/footprint, xap/sylpheed-claws/info, xap/sylpheed-claws/md5sums, xap/sylpheed-claws/requires:
   Integrated. -> xap/
 
   * l/libdnet/SlackBuild, l/libdnet/footprint, l/libdnet/info, l/libdnet/md5sums, l/libdnet/slack-desc, l/libdnet/sources:
@@ -5092,9 +4998,6 @@
   In do_export(), check if "footprint" is present not older than its SlackBuild.
 
 2005-03-21  topf  <topf@users.berlios.de>
-
-  * open/sylpheed-claws/SlackBuild, open/sylpheed-claws/doinst.sh, open/sylpheed-claws/footprint, open/sylpheed-claws/info, open/sylpheed-claws/md5sums, open/sylpheed-claws/readme, open/sylpheed-claws/requires, open/sylpheed-claws/slack-desc, open/sylpheed-claws/sources, open/sylpheed-claws/sylpheed-claws-gettext.patch.gz:
-  *** empty log message ***
 
   * d/portpkg/autoport:
   Correct $PKG/usr/share/{man,doc} before mkdir $PKG/usr/doc.
@@ -5288,7 +5191,7 @@
   * n/rdate/SlackBuild, n/rdate/footprint, n/rdate/info, n/rdate/md5sums, n/rdate/slack-desc, n/rdate/sources:
   Moved open/rdate-1.4-i686-1hnaz to n/.
 
-  * l/pygtk/SlackBuild, l/pygtk/footprint, l/pygtk/info, l/pygtk/md5sums, l/pygtk/requires, l/pygtk/slack-desc, l/pygtk/sources, open/pygtk/SlackBuild, open/pygtk/footprint, open/pygtk/info, open/pygtk/md5sums, open/pygtk/requires, open/pygtk/slack-desc, open/pygtk/sources:
+  * l/pygtk/SlackBuild, l/pygtk/footprint, l/pygtk/info, l/pygtk/md5sums, l/pygtk/requires, l/pygtk/slack-desc, l/pygtk/sources:
   Moved open/pygtk-2.6.0-i686-1hnaz to l/.
 
   * xap/nicotine/SlackBuild, xap/nicotine/doinst.sh, xap/nicotine/footprint, xap/nicotine/info, xap/nicotine/md5sums, xap/nicotine/requires, xap/nicotine/slack-desc, xap/nicotine/sources:
@@ -5335,7 +5238,7 @@
 
 2005-03-15  topf  <topf@users.berlios.de>
 
-  * open/imlib2/SlackBuild, open/imlib2/footprint, open/imlib2/info, open/imlib2/md5sums, open/imlib2/requires, open/imlib2/slack-desc, open/imlib2/sources, open/pygtk/SlackBuild, open/pygtk/footprint, open/pygtk/info, open/pygtk/md5sums, open/pygtk/requires, open/pygtk/slack-desc, open/pygtk/sources:
+  * open/imlib2/SlackBuild, open/imlib2/footprint, open/imlib2/info, open/imlib2/md5sums, open/imlib2/requires, open/imlib2/slack-desc, open/imlib2/sources:
   Autocommited via upload.
 
 2005-03-14  topf  <topf@users.berlios.de>
@@ -5429,13 +5332,7 @@
 
 2005-03-08  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/footprint, testing/portpkg/portpkg:
-  Merged local/portpkg-0.35cvs-noarch-12tom into testing/.
-
   * xap/root-tail/info: *** empty log message ***
-
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/footprint, testing/portpkg/portpkg:
-  Merged local/portpkg-0.35cvs-noarch-11tom into testing/.
 
 2005-03-07  topf  <topf@users.berlios.de>
 
@@ -5477,20 +5374,6 @@
   * l/clearlooks/SlackBuild, l/clearlooks/footprint, l/clearlooks/md5sums, l/clearlooks/requires, l/clearlooks/slack-desc, l/clearlooks/sources:
   Moved open/clearlooks-0.3-i686-1lem to l/.
 
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/doinst.sh, testing/portpkg/footprint:
-  Merged local/portpkg-0.35cvs-noarch-10tom into testing/.
-
-2005-03-03  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/doinst.sh, testing/portpkg/footprint:
-  Merged local/portpkg-0.35cvs-noarch-9tom into testing/.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/portpkg:
-  Merged local/portpkg-0.35cvs-noarch-8tom into testing/.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/footprint, testing/portpkg/portpkg, testing/portpkg/portpkg.1:
-  Updated testing/portpkg to 0.35cvs-noarch-7tom.
-
 2005-03-01  topf  <topf@users.berlios.de>
 
   * l/libgpg-error/doinst.sh, l/gamin/footprint, l/gamin/md5sums, ap/lsdvd/footprint, ap/lsdvd/md5sums:
@@ -5498,16 +5381,10 @@
 
 2005-02-26  topf  <topf@users.berlios.de>
 
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/footprint, testing/portpkg/portpkg:
-  Merged local/portpkg-0.35cvs-noarch-6tom into testing/.
-
   * xap/graveman/graveman-0.3.8.tar.bz2: *** empty log message ***
 
   * xap/graveman/SlackBuild, xap/graveman/doinst.sh, xap/graveman/footprint, xap/graveman/graveman-0.3.8.tar.bz2, xap/graveman/md5sums, xap/graveman/requires, xap/graveman/sources:
   Updated xap/graveman to 0.3.8-i486-3tom.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/portpkg:
-  Updated testing/portpkg to 0.35cvs-noarch-5tom.
 
   * gnome/gwget/SlackBuild, gnome/gwget/doinst.sh, gnome/gwget/footprint, gnome/gwget/md5sums, gnome/gwget/requires, gnome/gwget/slack-desc, gnome/gwget/sources:
   Moved open/gwget-0.93-i486-1lem to gnome/.
@@ -5530,9 +5407,6 @@
   * xap/xosd/SlackBuild, xap/xosd/footprint, xap/xosd/md5sums, xap/xosd/requires, xap/xosd/slack-desc, xap/xosd/sources:
   Added xap/xosd-2.2.12-i486-2tom.
 
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/portpkg, testing/portpkg/pp-sync-bin:
-  Updated testing/portpkg to 0.35cvs-noarch-4tom.
-
   * l/gpgme/SlackBuild.old, l/gpgme/doinst.sh: *** empty log message ***
 
   * l/gpgme/SlackBuild, l/gpgme/SlackBuild.old, l/gpgme/footprint, l/gpgme/md5sums, l/gpgme/post-install-fix.autoport, l/gpgme/slack-desc, l/gpgme/sources:
@@ -5540,17 +5414,6 @@
 
   * l/libgpg-error/SlackBuild, l/libgpg-error/footprint, l/libgpg-error/md5sums, l/libgpg-error/slack-desc, l/libgpg-error/sources:
   Updated l/libgpg-error to 1.0-i486-2tom.
-
-  * testing/portpkg/SlackBuild, testing/portpkg/footprint, testing/portpkg/mirrors.de, testing/portpkg/portpkg:
-  Updated testing/portpkg to 0.35cvs-noarch-3tom.
-
-  * testing/portpkg/NEWS, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/footprint, testing/portpkg/mirrors, testing/portpkg/portpkg, testing/portpkg/pp-config:
-  *** empty log message ***
-
-2005-02-24  topf  <topf@users.berlios.de>
-
-  * testing/portpkg/COPYING, testing/portpkg/CREDITS, testing/portpkg/NEWS, testing/portpkg/README, testing/portpkg/README.Links, testing/portpkg/README.PortpkgGuide, testing/portpkg/README.QuestionsAndAnswers, testing/portpkg/README.QuickStart, testing/portpkg/SlackBuild, testing/portpkg/autoport, testing/portpkg/checkpkg, testing/portpkg/exclude, testing/portpkg/footprint, testing/portpkg/ignore, testing/portpkg/mirrors, testing/portpkg/portpkg, testing/portpkg/portpkg.1, testing/portpkg/pp-config, testing/portpkg/pp-sync-bin, testing/portpkg/pp-sync-src, testing/portpkg/prepare, testing/portpkg/slack-desc:
-  Added testing/portpkg-0.35cvs-noarch-1tom.
 
 2005-02-23  topf  <topf@users.berlios.de>
 
@@ -5682,7 +5545,7 @@
   * ap/fvcool/SlackBuild, d/stow/SlackBuild, gnome/bluefish/SlackBuild, gnome/bug-buddy/SlackBuild, gnome/control-center/SlackBuild, gnome/eel/SlackBuild, gnome/evolution-data-server/SlackBuild, gnome/evolution/SlackBuild, gnome/gai/SlackBuild, gnome/gal/SlackBuild, gnome/gconf-editor/SlackBuild, gnome/ggv/SlackBuild, gnome/gnome-applets/SlackBuild, gnome/gnome-netstatus/SlackBuild, gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-tools/SlackBuild, gnome/gnome-terminal/SlackBuild, gnome/gnome2-user-docs/SlackBuild, gnome/gparted/SlackBuild, gnome/gsplashfu/SlackBuild, gnome/kazehakase/SlackBuild, gnome/libgail-gnome/SlackBuild, gnome/libgtop/SlackBuild, gnome/libwnck/SlackBuild, gnome/metacity/SlackBuild, gnome/nautilus/SlackBuild, gnome/orbit2/SlackBuild, gnome/seahorse/SlackBuild, gnome/totem/SlackBuild, gnome/vino/SlackBuild, gnome/yelp/SlackBuild, l/experience-engine/SlackBuild, l/gtkmm/SlackBuild, l/libnet/SlackBuild, l/pil/SlackBuild, testing/gnome-volume-manager/SlackBuild, testing/mplayer-gtk2/SlackBuild, xap/redhat-artwork/SlackBuild:
   Patched against new $SLKCFLAGS style.
 
-  * xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/graveman/SlackBuild, xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild, xap/tvtime/SlackBuild, xap/wired/SlackBuild, xap/xmbmon/SlackBuild, xap/xqf/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, xap/ettercap-ng/SlackBuild, testing/polypaudio/SlackBuild, testing/wxgtk/SlackBuild, testing/xfce-goodies/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/avidemux/SlackBuild, xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/enlightenment/SlackBuild, xap/eterm/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/dd_rescue/SlackBuild, ap/dvdauthor/SlackBuild, ap/fuse/SlackBuild, ap/giftcurs/SlackBuild, ap/jack/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/qstat/SlackBuild, ap/subtitleripper/SlackBuild, ap/vcdimager/SlackBuild, d/fakeroot/SlackBuild, d/mono/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/cog/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/firestarter/SlackBuild, gnome/gail/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gdesklets/SlackBuild, gnome/gedit/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppp/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild, gnome/gstreamer/SlackBuild, gnome/gtk-engines/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/inkscape/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libsoup/SlackBuild, gnome/libxklavier/SlackBuild, gnome/liferea/SlackBuild, gnome/mail-notification/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/muine/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/netspeed_applet/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/screem/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/timer-applet/SlackBuild, gnome/tsclient/SlackBuild, gnome/tutka/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/enchant/SlackBuild, l/exif-browser/SlackBuild, l/fnlib/SlackBuild, l/freetype/SlackBuild, l/gamin/SlackBuild, l/gc/SlackBuild, l/gift-ares/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/glibmm/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-sharp/SlackBuild, l/id3lib/SlackBuild, l/imlib2/SlackBuild, l/libast/SlackBuild, l/libavc1394/SlackBuild, l/libcddb/SlackBuild, l/libcdio/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libglademm/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libsndfile/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/portaudio/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/smpeg/SlackBuild, l/soundtouch/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/elinks/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvstreams/SlackBuild, pasture/atk/SlackBuild, pasture/db41/SlackBuild, pasture/esound/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gimp/SlackBuild, pasture/gthumb/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/libxslt/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, pasture/pango/SlackBuild, pasture/xfce/SlackBuild, pasture/xine-lib/SlackBuild, testing/criawips/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild:
+  * xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/graveman/SlackBuild, xap/gtklp/SlackBuild, xap/hydrogen/SlackBuild, xap/icon-slicer/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/qemu/SlackBuild, xap/tagtool/SlackBuild, xap/tvtime/SlackBuild, xap/wired/SlackBuild, xap/xmbmon/SlackBuild, xap/xqf/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, xap/ettercap-ng/SlackBuild, testing/polypaudio/SlackBuild, testing/xfce-goodies/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/avidemux/SlackBuild, xap/bmp/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/cire/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/enlightenment/SlackBuild, xap/eterm/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/dd_rescue/SlackBuild, ap/dvdauthor/SlackBuild, ap/fuse/SlackBuild, ap/giftcurs/SlackBuild, ap/jack/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/qstat/SlackBuild, ap/subtitleripper/SlackBuild, ap/vcdimager/SlackBuild, d/fakeroot/SlackBuild, d/mono/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/cog/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/firestarter/SlackBuild, gnome/gail/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gdesklets/SlackBuild, gnome/gedit/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppp/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild, gnome/gstreamer/SlackBuild, gnome/gtk-engines/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/inkscape/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libsoup/SlackBuild, gnome/libxklavier/SlackBuild, gnome/liferea/SlackBuild, gnome/mail-notification/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/muine/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/netspeed_applet/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/screem/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/timer-applet/SlackBuild, gnome/tsclient/SlackBuild, gnome/tutka/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/enchant/SlackBuild, l/exif-browser/SlackBuild, l/fnlib/SlackBuild, l/freetype/SlackBuild, l/gamin/SlackBuild, l/gc/SlackBuild, l/gift-ares/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/glibmm/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-sharp/SlackBuild, l/id3lib/SlackBuild, l/imlib2/SlackBuild, l/libast/SlackBuild, l/libavc1394/SlackBuild, l/libcddb/SlackBuild, l/libcdio/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libglademm/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libsndfile/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/portaudio/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/smpeg/SlackBuild, l/soundtouch/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/elinks/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvstreams/SlackBuild, pasture/atk/SlackBuild, pasture/db41/SlackBuild, pasture/esound/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gimp/SlackBuild, pasture/gthumb/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/libxslt/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, pasture/pango/SlackBuild, pasture/xfce/SlackBuild, pasture/xine-lib/SlackBuild, testing/criawips/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/libeina/SlackBuild:
   Patched to use $SLKCFLAGS.
 
 2005-02-07  topf  <topf@users.berlios.de>
@@ -6029,9 +5892,6 @@
 
   * xap/wired/SlackBuild, xap/wired/doinst.sh, xap/wired/footprint, xap/wired/md5sums, xap/wired/requires, xap/wired/slack-desc, xap/wired/sources:
   Moved open/wired-0.11-i486-1lem to xap/.
-
-  * testing/wxgtk/SlackBuild, testing/wxgtk/footprint, testing/wxgtk/md5sums, testing/wxgtk/requires, testing/wxgtk/slack-desc, testing/wxgtk/sources:
-  Moved open/wxgtk-2.5.3-i486-3lem to testing/.
 
 2005-01-25  topf  <topf@users.berlios.de>
 
