@@ -11,7 +11,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.14
 ARCH=noarch
-BUILD=5tom
+BUILD=6tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -25,8 +25,8 @@ make
 make install DESTDIR=$PKG
 mkdir -p $PKG/usr/share/applications
 install -m 644 $CWD/acidrip.desktop $PKG/usr/share/applications/
-logo=`find $PKG/usr/lib/perl5/site_perl/ -name logo.png | sed "s,^$PKG,,"`
-echo "Icon=$logo" >>$PKG/usr/share/applications/acidrip.desktop
+#logo=`find $PKG/usr/lib/perl5/site_perl/ -name logo.png | sed "s,^$PKG,,"`
+#echo "Icon=$logo" >>$PKG/usr/share/applications/acidrip.desktop
 find $PKG/ -name perllocal.pod | xargs -r rm -fv
 rm -fv $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
