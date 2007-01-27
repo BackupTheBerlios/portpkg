@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.8.1
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -39,7 +39,7 @@ CFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   $ARCH-slackware-linux
 make
-make install DESTDIR=$PKG
+make install DESTDIR=$PKG pkgconfigdir=/usr/lib/pkgconfig
 rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
