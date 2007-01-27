@@ -1,0 +1,60 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://heanet.dl.sourceforge.net/ijbswa/privoxy-3.0.3-2-stable.src.tar.gz
+# MD5SUMS: d7f6c2fcb926e6110659de6e866b21e4 privoxy-3.0.3-2-stable.src.tar.gz
+# REQUIRES: pcre
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=3.0.3_2
+ARCH=${ARCH:-i486}
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/privoxy-3.0.3-2-stable.src.tar.gz
+cd privoxy-3.0.3-stable
+chown -R root.root .
+autoheader
+autoconf
+./configure \
+  --prefix=/usr \
+  --with-user=privoxy \
+  --sysconfdir=/etc/privoxy \
+  $ARCH-slackware-linux
+make
+make install prefix=$PKG/usr CONF_BASE=$PKG/etc/privoxy
+cat <<EOF >>$PKG/etc/privoxy/config
+
+# Uncomment for tor router:
+#forward-socks4a / localhost:9050 .
+EOF
+mv $PKG/etc/privoxy/config $PKG/etc/privoxy/config.new
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/privoxy-3.0.3-stable
+  rm -rf $PKG
+fi
