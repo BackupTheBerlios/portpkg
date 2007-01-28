@@ -1,4 +1,24 @@
+2007-01-28  topf  <topf@users.berlios.de>
+
+  * d/portpkg/autoport: * Check for --enable-shared.
+  * Perform deletion of /usr/info/dir after /usr/share/info has been moved to /usr/info.
+
+  * d/portpkg/portpkg: * regex(): Be more precise in regular expression.
+  * ls_diff(): Exclude EXCLUDE scope from packages to be tested for upgrades.
+
 2007-01-27  topf  <topf@users.berlios.de>
+
+  * xap/ri-li/ChangeLog, xap/ri-li/SlackBuild, xap/ri-li/footprint, xap/ri-li/slack-desc:
+  Upgraded to version 2.0.0 (dan)
+
+  * l/fltk/ChangeLog, l/fltk/SlackBuild, l/fltk/doinst.sh, l/fltk/footprint, l/fltk/md5sums, l/fltk/mirrors, l/fltk/requires, l/fltk/sources:
+  Upgraded to version 1.1.7 (dan)
+
+  * n/privoxy/SlackBuild, n/privoxy/doinst.sh, n/privoxy/footprint, n/privoxy/slack-desc:
+  New entry.
+
+  * n/tor/SlackBuild, n/tor/doinst.sh, n/tor/footprint, n/tor/slack-desc:
+  New entry.
 
   * l/wxgtk/SlackBuild, l/wxgtk/footprint, l/wxgtk/md5sums, l/wxgtk/requires, l/wxgtk/sources:
   Version bump.
@@ -84,14 +104,6 @@
 
   * l/flash-plugin/SlackBuild, l/flash-plugin/footprint, l/flash-plugin/md5sums, l/flash-plugin/requires, l/flash-plugin/slack-desc, l/flash-plugin/sources:
   Version bump.
-
-2007-01-26  topf  <topf@users.berlios.de>
-
-  * open/ri-li/SlackBuild, open/ri-li/footprint, open/ri-li/info, open/ri-li/slack-desc:
-  Upgraded to version 2.0.0 (dan)
-
-  * open/fltk/SlackBuild, open/fltk/doinst.sh, open/fltk/footprint, open/fltk/info, open/fltk/slack-desc:
-  Upgraded to version 1.1.7 (dan)
 
 2007-01-25  topf  <topf@users.berlios.de>
 
@@ -995,10 +1007,7 @@
 
 2006-07-12  topf  <topf@users.berlios.de>
 
-  * xap/ri-li/ChangeLog, xap/ri-li/SlackBuild, xap/ri-li/footprint, xap/ri-li/slack-desc, open/ri-li/ChangeLog, open/ri-li/SlackBuild, open/ri-li/footprint, open/ri-li/info, open/ri-li/slack-desc:
-  Ri-li - an arcade game on GPL (dan)
-
-  * open/ri-li/SlackBuild, open/ri-li/footprint, open/ri-li/info, open/ri-li/slack-desc:
+  * xap/ri-li/ChangeLog, xap/ri-li/SlackBuild, xap/ri-li/footprint, xap/ri-li/slack-desc:
   Ri-li - an arcade game on GPL (dan)
 
 2006-07-11  topf  <topf@users.berlios.de>
@@ -3062,7 +3071,7 @@
   * xap/flphoto/ChangeLog, xap/flphoto/SlackBuild, xap/flphoto/doinst.sh, xap/flphoto/footprint, xap/flphoto/md5sums, xap/flphoto/mirrors, xap/flphoto/requires, xap/flphoto/slack-desc, xap/flphoto/sources:
   flphoto - a basic image management program (dan)
 
-  * l/fltk/SlackBuild, l/fltk/footprint, l/fltk/md5sums, l/fltk/mirrors, l/fltk/requires, l/fltk/slack-desc, l/fltk/sources, l/fltk/ChangeLog, open/fltk/SlackBuild, open/fltk/footprint, open/fltk/info, open/fltk/md5sums, open/fltk/mirrors, open/fltk/requires, open/fltk/slack-desc, open/fltk/sources:
+  * l/fltk/SlackBuild, l/fltk/footprint, l/fltk/md5sums, l/fltk/mirrors, l/fltk/requires, l/fltk/slack-desc, l/fltk/sources, l/fltk/ChangeLog:
   FLTK library. (dan)
 
   * AUTHORS: Added 'dan'.
@@ -3238,9 +3247,6 @@
 
   * xap/ardour/ChangeLog, xap/ardour/SlackBuild, xap/ardour/footprint, xap/ardour/md5sums, xap/ardour/requires:
   version update (lem)
-
-  * open/fltk/SlackBuild, open/fltk/footprint, open/fltk/info, open/fltk/md5sums, open/fltk/mirrors, open/fltk/requires, open/fltk/slack-desc, open/fltk/sources:
-  FLTK library.
 
 2005-11-01  topf  <topf@users.berlios.de>
 
