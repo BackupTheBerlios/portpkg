@@ -311,7 +311,7 @@ regex() # pkgex_list >regex_list
 #           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3}(\.tgz)?)$";;
 	   syn=`synonyms -m 1 "[(|]${arg##*/}[|)]"`
            [ "$syn" ] && case $arg in */*) arg="${arg%/*}/$syn";; *) arg=$syn;; esac
-           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-]*){3})$";;
+           echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-/]*){3})$";;
     esac
   # now protect pluses and replace slashes with '/(.*/)?' (except `pwd` expressions)
   done | sed -r "s,\+,\\\+,g;\,$cwd,!s,/([^])]),/(.*/)?\1,g"
@@ -349,7 +349,7 @@ ls_diff() # [pkgex] >list
 #    $LAZY_CHECKS && ls_inst
     $REINSTALL || ls_inst
   } | sort_ver | tee $t/avail.full | any2base >$t/avail
-  ls_inst | any2base >$t/inst
+  ls_inst | grep -v $(exclude) | any2base >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
 
