@@ -1,3 +1,110 @@
+2007-01-28  topf  <topf@users.berlios.de>
+
+  * autoport: * Check for --enable-shared.
+  * Perform deletion of /usr/info/dir after /usr/share/info has been moved to /usr/info.
+
+  * portpkg: * regex(): Be more precise in regular expression.
+  * ls_diff(): Exclude EXCLUDE scope from packages to be tested for upgrades.
+
+2007-01-25  topf  <topf@users.berlios.de>
+
+  * NEWS: Oh dear, it's 2007 now... typo.
+
+  * NEWS, footprint, SlackBuild: Release 0.38.2.
+
+  * portpkg: * Set USE_ALPHA_CODE=true on default, this should be safe anyways.
+  * Fix group if portpkg is run from outside of the tree.
+  * Force verbose mode for password interaction when fakeroot is not used.
+
+2006-09-21  topf  <topf@users.berlios.de>
+
+  * portpkg, sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Minor bug fixes.
+
+  * SlackBuild, doinst.sh: Install synonyms config file.
+
+  * portpkg:
+  * Chunk of bug fixes, and improvements.
+  * Added compatibility layer for package synonyms.
+  * Removed tautologous code.
+
+  * synonyms: Added synonyms database for packages with ambiguous names.
+
+  * sync.gsb-frg:
+  Changed default version of FRG to current, which seems to be stable enough. Added comment for the x86_64 URL.
+
+2006-09-04  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Use universal time in info file.
+
+  * portpkg:
+  * slk2loc(): Fixed version string conversion.
+  * build_pkg(): Link PORT_IS_BROKEN before running the plugin.
+  * do_find(): New (improved?) output for USE_ALPHA_CODE.
+
+  * autoport:
+  Don't fix '-' to '_' in the version field, just in the makepkg line.
+
+  * portpkg:
+  * slk2loc(): Fix '-' to '_' in VERSION strings.
+  * get_info(): Use plain VERSION=srcver string for decoding source urls.
+
+  * SlackBuild: Version should be called '...cvs'.
+
+  * portpkg:
+  * Fixed to display 'reinstall' again.
+  * Use variables to avoid doing the same regex twice.
+
+  * autoport: Respect word edges in expressions.
+
+  * autoport: SlackBuild.skel:
+  * Added -e to the shebang.
+  * Removed Bash-specific syntax.
+  * Also try to correct /usr/share/info/ locations if exit.
+
+2006-08-31  topf  <topf@users.berlios.de>
+
+  * portpkg: Fixed initialisation of exclude-variables, moved into init().
+
+2006-08-28  topf  <topf@users.berlios.de>
+
+  * sync.portpkg: Fixed uninitialised arg $1.
+
+  * portpkg: check_reqs(): Fixed bug affecting to ignore all USE settings.
+
+2006-08-27  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Removed garbage.
+
+  * SlackBuild: Install report.* plugins.
+
+  * export.portpkg: Use also pkg-config to test curl version.
+
+  * autoport: Fixed pause strings.
+
+  * portpkg: Removed arch_filter, let EXCLUDE handle that.
+
+  * portpkg:
+  * Readded exclude-list. Added EXCLUDE, IGNORE, USE to manage those lists.
+  * parse_options(): -w, -t accept only single expressions now.
+
+  * portpkg:
+  * sort_ver(): Replaced 'patches/' with PREFER.
+  * get_info(): Avoid too much broken pipes in Slackware-10.2.
+  * check_req(): ignore should be exclude here.
+  * maintainer_mode(): Fix error messages concerning mono-find-requires.
+  * init(): Check PREFER.
+
+  * portpkg: Added default values for MY_REALNAME and MY_EMAIL.
+
+  * portpkg:
+  * ls_slk(): Reverted to use find -follow instead of find -L, because Slackware 10.2 still uses findutils-4.1.
+  * plugin(): Added plugin().
+  * do_export(), do_sync(): Use new plugin().
+  * build_pkg(): If compilation fails, ask to use report plugin.
+
+  * report.portpkg: Added reporting plugin.
+
 2006-08-13  topf  <topf@users.berlios.de>
 
   * sync.portpkg: Force regeneration of ChangeLog if argument is 'force'.
@@ -1144,8 +1251,6 @@
 
 2005-04-27  topf  <topf@users.berlios.de>
 
-  * ChangeLog: Updated. (cronjob)
-
 2005-04-23  topf  <topf@users.berlios.de>
 
   * autoport: Fixed new old gconf installation.
@@ -1299,8 +1404,6 @@
 2005-03-20  topf  <topf@users.berlios.de>
 
   * autoport: Corrected "update-mime-database usr/share/mime".
-
-  * SlackBuild, footprint: Updated d/portpkg to 0.36-noarch-2tom.
 
   * portpkg: Adjusted messages in maintainer mode.
 
@@ -1458,8 +1561,6 @@
 
 2004-12-01  topf  <topf@users.berlios.de>
 
-  * SlackBuild, autoport, portpkg: Updated d/portpkg to 0.30-noarch-2tom.
-
 2004-11-30  topf  <topf@users.berlios.de>
 
   * SlackBuild, autoport, portpkg, pseudo, requires, slack-desc, sources:
@@ -1490,8 +1591,6 @@
   * SlackBuild, portpkg: Added options --noreqs and --dryrun.
 
 2004-11-17  topf  <topf@users.berlios.de>
-
-  * checkpkg: Updated to gnome-python-2.6.1
 
 2004-11-15  topf  <topf@users.berlios.de>
 
