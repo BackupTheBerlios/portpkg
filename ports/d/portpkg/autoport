@@ -637,6 +637,7 @@ if grep -sqe "#:config" -e "#:make" $script; then
     fi
     check "--program-prefix\>" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
     check "--disable-static\>" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
+    check "--enable-shared\>" $TMP/$srcdir_prefix/configure || snip ac_enable_shared $script
     check "--disable-scrollkeeper\>" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
     check "--disable-update-mimedb\>" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
     snip cfg_autogen $script
@@ -954,6 +955,7 @@ PKG_CONFIG_PATH=/%prefix%/lib/pkgconfig \ ##pkgconfig
   --localstatedir=/var/lib \ ##ac_localstatedir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
+  --enable-shared \ ##ac_enable_shared
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
   --disable-update-mimedb \ ##ac_disable_update_mimedb
 #:configure-opts
@@ -994,7 +996,6 @@ python setup.py build install --root=$PKG ##python
 ##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
 find $PKG/ -name perllocal.pod | xargs -r rm -fv ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
-rm -fv $PKG/%prefix%/info/dir
 rm -fv $PKG/%prefix%/share/mime/* || true ##mime-database
 find $PKG/ -name mimeinfo.cache | xargs -r rm -fv ##mime-database
 ##find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
@@ -1010,6 +1011,7 @@ find $PKG/ -name mimeinfo.cache | xargs -r rm -fv ##mime-database
 #%post-strip-fix%
 #:doc
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/%prefix%/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #:docfiles
 #:docs
