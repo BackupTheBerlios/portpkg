@@ -1,0 +1,39 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: svn://https://svn.sacredchao.net/svn/quodlibet/trunk/plugins%quodlibet-plugins
+# REQUIRES: quodlibet
+# OPTIONAL: gnome-schedule mutagen python
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=svn
+ARCH=${ARCH:-i486}
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+cp -rf $CWD/quodlibet-plugins/ .
+cd quodlibet-plugins
+chown -R root.root .
+mkdir -p $PKG/usr/share/quodlibet/plugins
+cp -a * $PKG/usr/share/quodlibet/plugins/
+cd $PKG
+find -depth -name .svn -exec rm -rf {} \;
+find -type f -exec chmod 644 {} \;
+find -type d -exec chmod 755 {} \;
+find -exec chown root.root {} \;
+cd $CWD
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/quodlibet-$VERSION
+  rm -rf $PKG
+fi
