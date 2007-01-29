@@ -1,4 +1,55 @@
+2007-01-29  topf  <topf@users.berlios.de>
+
+  * d/portpkg/sync.portpkg: Removed unneccessary cosmetics.
+
+  * d/portpkg/portpkg:
+  * Set /sbin in PATH global.
+  * row(), warn(): Format output.
+  * Do not set maintainer mode automatically.
+  * do_add(): Warn about implicit expressions.
+  * init(): Trap INT.
+
+  * d/portpkg/checkpkg:
+  * Added DEL_CMD and del_pkg().
+  * Use del_pkg for removing packages.
+
+  * d/portpkg/autoport:
+  Use xargs -rl for config, gconf and icons install scripts.
+
+  * d/yasm/SlackBuild, d/yasm/footprint, d/yasm/slack-desc: New entry.
+
+  * gnome/mail-notification/SlackBuild, gnome/mail-notification/footprint:
+  Version bump.
+
+  * xap/quodlibet-plugins/SlackBuild, xap/quodlibet-plugins/footprint, xap/quodlibet-plugins/slack-desc:
+  New entry.
+
+  * l/ctypes/SlackBuild, l/ctypes/footprint, l/ctypes/slack-desc: New entry.
+
+  * ap/aview/SlackBuild, ap/aview/footprint, ap/aview/slack-desc: New entry.
+
+  * xap/quodlibet/SlackBuild, xap/quodlibet/footprint: Version bump.
+
+  * l/mutagen/SlackBuild, l/mutagen/footprint: Version bump.
+
+  * l/libmusicbrainz/SlackBuild, l/libmusicbrainz/footprint: Version bump.
+
+  * n/privoxy/SlackBuild, n/privoxy/doinst.sh:
+  Add rc script to rc.local on install.
+
+  * n/tor/SlackBuild, n/tor/doinst.sh, n/tor/footprint, n/tor/rc.tor, n/tor/slack-desc:
+  * Version bump.
+  * Added rc script.
+
+  * n/privoxy/SlackBuild, n/privoxy/doinst.sh, n/privoxy/footprint:
+  * Added warning to do useradd privoxy before compile.
+  * Fixed installation paths.
+  * Install rc.privoxy now.
+
 2007-01-28  topf  <topf@users.berlios.de>
+
+  * n/privoxy/SlackBuild, n/privoxy/footprint:
+  Version bump. Fixed wrong paths in configuration files.
 
   * d/portpkg/autoport: * Check for --enable-shared.
   * Perform deletion of /usr/info/dir after /usr/share/info has been moved to /usr/info.
