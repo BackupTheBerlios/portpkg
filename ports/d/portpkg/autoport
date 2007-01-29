@@ -1033,9 +1033,9 @@ find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
-( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh ##etc_config
-( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -l echo gconf >>$PKG/install/doinst.sh ##schemas
-( cd $PKG; find -name index.theme ) | xargs -l echo icons >>$PKG/install/doinst.sh ##icons
+( cd $PKG; find * -name "*.new" ) | xargs -rl echo config >>$PKG/install/doinst.sh ##etc_config
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -rl echo gconf >>$PKG/install/doinst.sh ##schemas
+( cd $PKG; find -name index.theme ) | xargs -rl echo icons >>$PKG/install/doinst.sh ##icons
 
 #:tail
 #%post-tail-fix%
