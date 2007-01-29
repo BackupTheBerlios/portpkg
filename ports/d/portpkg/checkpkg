@@ -3,6 +3,14 @@
 
 . `which portpkg` || exit 1
 
+DEL_CMD=${DEL_CMD:-'su -c "removepkg $list 2>&1"'}
+
+del_pkg() # pkg_exps
+{
+  local list="$@"
+  eval "$DEL_CMD"
+}
+
 main_menu()
 {
   local t=`mktemp -d`
@@ -84,7 +92,8 @@ $dir/$name/slack-desc | head -n 1 | cut -d " " -f 2- | sed "s,[\"],',g"`
   done >$t/list_remove
   if [ -s $t/list_remove ]; then
     clear
-    su -c "removepkg `cat $t/list_remove` 2>&1"
+    del_pkg `cat $t/list_remove`
+#    su -c "removepkg `cat $t/list_remove` 2>&1"
 #    # fake a summary
 #    echo -e "\nSummary of actions:" >/tmp/portpkg-summary
 #    cat $t/list_remove | xargs -l echo "  --> Removed" >>/tmp/portpkg-summary
