@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=3.0.6
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -20,15 +20,26 @@ cd $TMP
 tar xzvf $CWD/privoxy-$VERSION-stable-src.tar.gz
 cd privoxy-$VERSION-stable
 chown -R root.root .
+if ! grep -sq "^privoxy:" /etc/passwd \
+&& ! grep -sq "^privoxy:" /etc/group; then
+  cat <<EOF
+###########################################################################
+# Please add a user and a group named privoxy before building this package:
+# su -c "useradd privoxy"
+###########################################################################
+EOF
+  exit 1
+fi
 autoheader
 autoconf
 ./configure \
   --prefix=/usr \
   --with-user=privoxy \
   --sysconfdir=/etc/privoxy \
+  --localstatedir=/var \
   $ARCH-slackware-linux
 make
-make install prefix=$PKG/usr CONF_BASE=$PKG/etc/privoxy
+make install prefix=$PKG/usr CONF_BASE=$PKG/etc/privoxy VAR_DEST=$PKG/var
 sed -i "s,$PKG,,g" $PKG/etc/privoxy/config
 cat <<EOF >>$PKG/etc/privoxy/config
 
@@ -36,6 +47,14 @@ cat <<EOF >>$PKG/etc/privoxy/config
 #forward-socks4a / localhost:9050 .
 EOF
 mv $PKG/etc/privoxy/config $PKG/etc/privoxy/config.new
+mkdir -p $PKG/etc/rc.d
+install -m 755 slackware/rc.privoxy.orig $PKG/etc/rc.d/rc.privoxy.new
+sed -i "s,%PROGRAM%,privoxy,g;\
+s,%SBIN_DEST%,/usr/sbin,g;\
+s,%CONF_DEST%,/etc/privoxy,g;\
+s,%USER%,privoxy,g;\
+s,%GROUP%,privoxy,g;" $PKG/etc/rc.d/rc.privoxy.new
+mkdir -p $PKG/var/run/privoxy
 find $PKG/ -name perllocal.pod | xargs -r rm -fv
 rm -fv $PKG/usr/info/dir
 ( cd $PKG
@@ -44,6 +63,7 @@ rm -fv $PKG/usr/info/dir
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mv $PKG/usr/doc/privoxy $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -51,7 +71,7 @@ find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-( cd $PKG; find * -name "*.new" ) | xargs -r echo config >>$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -rl echo config >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz

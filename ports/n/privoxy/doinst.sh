@@ -9,5 +9,4 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-useradd privoxy
-groupadd privoxy
+useradd privoxy 2>/dev/null
