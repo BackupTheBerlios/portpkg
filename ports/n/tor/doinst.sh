@@ -9,3 +9,12 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
+if ! grep -sqw /etc/rc.d/rc.tor etc/rc.d/rc.local; then
+  cat >>etc/rc.d/rc.local <<EOF
+
+# Start the tor daemon:
+if [ -x /etc/rc.d/rc.tor ]; then
+  /etc/rc.d/rc.tor start
+fi
+EOF
+fi

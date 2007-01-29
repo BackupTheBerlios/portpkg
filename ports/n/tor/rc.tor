@@ -1,0 +1,32 @@
+#!/bin/sh
+
+tor_start() {
+  if [ -x /usr/bin/tor ]; then
+    echo "Starting service tor:  /usr/bin/tor --runasdaemon 1"
+    if ! /usr/bin/tor --runasdaemon 1 >/dev/null; then
+      echo "$0: failed"
+      exit 1
+    fi
+  fi
+}
+
+tor_stop() {
+  killall tor
+}
+
+tor_restart() {
+  tor_stop
+  sleep 1
+  tor_start
+}
+
+case "$1" in
+  start)
+    tor_start;;
+  stop)
+    tor_stop;;
+  restart)
+    tor_restart;;
+  *)
+    echo "usage $0 {start|stop|restart}";;
+esac
