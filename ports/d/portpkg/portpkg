@@ -53,6 +53,7 @@ TMP=/tmp
 ADM_DIR=/var/log
 INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
+PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 
 # find the ports root and some other locations
 PRT_ROOT=`until [ "$(pwd)" = "/" ]; do [ -f .ports_root ] && pwd && break; cd ..; done`
@@ -154,8 +155,10 @@ slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
 log()    { echo -e "$@" | tee -a $LOG_DIR/portpkg.log; }
 #stanza() { $level_one && log "\n$@"; }
 stanza() { log "\n$@"; }
-row()    { log "  --> $@"; }
-warn()   { log "WARNING: $@" >&2; }
+#row()    { log "  --> $@"; }
+row()    { log "  --> $@" | fmt -t | sed "s,^[^ ],      &,"; }
+#warn()   { log "WARNING: $@" >&2; }
+warn()   { log "WARNING: $@" | fmt -t | sed "s,^   ,      &," >&2; }
 error()  { [ "$*" ] && log "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && log "$@" >&2 || log "$@" >/dev/null; }
@@ -219,7 +222,7 @@ get() # url dest [md5sum]
   urls=`mirrors | while read master mirror; do \
 echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
 
-  debug "get(): urls="$urls
+  debug "get(): urls:" $urls
   $DRY_RUN && return 0
   mkdir -p ${dest%/*}
 
@@ -442,6 +445,8 @@ fi
     return 1
   fi
 
+  debug "get_info(): $1 is $loc"
+
   # set global variables
 #  group=`echo ${loc%/*} | any2gany`
   group=${loc%/*}
@@ -513,7 +518,7 @@ ls_src "/$package.tgz$"; } | head -n 1`
 
   # flags
   maintain=$MAINTAIN_ALL
-  [ "$MY_TAG" ] && case $package in *[0-9]$MY_TAG) maintain=true;; esac
+#  [ "$MY_TAG" ] && case $package in *[0-9]$MY_TAG) maintain=true;; esac
 #  $MAINTAIN_ALL && maintain=true
   no_fakeroot=$NO_FAKEROOT
   rebuild=$REBUILD
@@ -870,7 +875,8 @@ build_pkg()
 
     # execute SlackBuild
     mkdir -p $LOG_DIR
-    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp"
+#    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp"
+    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp"
     if ! $no_fakeroot && has_prog fakeroot; then
       # run fakerooted SlackBuild
 #      row "Executing (fakerooted) $script $script_opt"
@@ -986,7 +992,7 @@ check_pkg()
 #  | sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
   sed "s,.* ,," $t/footprint | grep -ve /$ -e ^install/ \
   | ( cd $INST_DIR; fgrep -xf - * ) | grep -v "^$replace:" \
-  | sed -r "s,^(.*):(.*)$,\2 interferes with \1," | while read s; do warn $s; done
+  | sed -r "s,^(.*)-.*-.*-.*:(.*)$,/\2 interferes with \1," | while read s; do warn $s; done
 
   # warn about tags
   case $package in *[0-9]) case $sources in ftp://ftp.slackware.com/*) ;; *)
@@ -995,7 +1001,7 @@ check_pkg()
 
   # list .new files
   grep -wo "etc/.*\.new$" $t/footprint | while read s; do
-    [ -f /${s%.new} ] && warn "Consider updating ${s%.new} with $s!"
+    [ -f /${s%.new} ] && warn "Consider updating /${s%.new} with ${s##*/}!"
   done
 
   # for now, all this is tolerable
@@ -1099,7 +1105,7 @@ add_pkg()
 #  fi
 ##  return 0
   ( [ "$replace" ] && pkg_file="$replace%$pkg_file"
-  debug "add_pkg():" `eval echo $ADD_CMD`
+  debug "add_pkg(): $ADD_CMD"
   $DRY_RUN && stanza "Installing package $package...\nPACKAGE DESCRIPTION:\n$description"
   $DRY_RUN || eval $ADD_CMD ) || error "Installation failed!"
 }
@@ -1113,6 +1119,10 @@ do_add() # pkgex-list
 
   # if we have implicit expressions here (groups), tell what they contain
   case "$@" in */|*/\ *|*%)
+    warn "You are using an implicit expression. Use with caution!"
+    $NO_REQS || warn "Exact results are NOT COMPLETELY predictable. \
+Try --dryrun first and consider using --noreqs and/or --ignore!"
+
     stanza "Targets: "`echo "$targets" | sed "s,.*/,,"` | fmt -t
     pause "Continue? (ctrl-c to abort)";;
   esac
@@ -1252,7 +1262,7 @@ do_sync()
   local importer
 
   [ "$SYNC" ] || die "Run pp-config to define what to sync!"
-  stanza "Syncing your data base:"
+  stanza "Updating ports:"
 
   for importer in $SYNC; do
 #    if [ -f $PRT_DIR/plugins/$importer ]; then
@@ -1307,7 +1317,7 @@ Actions (alternative):
   -i, --info        View information about specified ports
   -f, --find strs   Find ports by pattern strings
   -l, --list        List available ports
-  -s, --sync        Sync local ports tree
+  -s, --sync        Update ports
   -u, --upgrade     Upgrade all (!) outdated ports (see --diff)
   -v, --version	    View version information
   -x, --export msg  Upload ports to portpkg.berlios.de
@@ -1434,7 +1444,7 @@ init()
 
   # make/check temporary directory
   [ "$TMP" ] || die "TMP is emtpy!"
-  [ "$TMP" = "/" ] && die "TMP cannot be /"
+  [ "$TMP" = "/" ] && die "TMP cannot be /!"
   [ -d "$TMP" ] || die "Internal error!"
   [ -d "$LOG_DIR" ] || mkdir -p $LOG_DIR
 
@@ -1444,6 +1454,7 @@ init()
   log "`whoami`@`hostname`:`pwd`$ $0 $@" >/dev/null
 
   # clean up on exit
+  trap 'error "** ctrl-c pressed"; exit 1' INT
   trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
   case ${BASH_VERSION:-} in 3.1.*) ;; *) trap '' PIPE;; esac
@@ -1457,7 +1468,7 @@ init()
   # check
 #  has_prog sed || die
   case "$PREFER" in
-    *\ *) die "PREFER must be one simple group expression ('patches/')!";;
+    *\ *) die "PREFER must be one simple group expression (e.g. patches/)!";;
   esac
   case $ARCH in
 #    i?86) arch_filter="-\(i.86\|noarch\)-[^-]*$";;
