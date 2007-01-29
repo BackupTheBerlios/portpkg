@@ -10,3 +10,12 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 useradd privoxy 2>/dev/null
+if ! grep -sqw /etc/rc.d/rc.privoxy etc/rc.d/rc.local; then
+  cat >>etc/rc.d/rc.local <<EOF
+
+# Start the privoxy daemon:
+if [ -x /etc/rc.d/rc.privoxy ]; then
+  /etc/rc.d/rc.privoxy start
+fi
+EOF
+fi
