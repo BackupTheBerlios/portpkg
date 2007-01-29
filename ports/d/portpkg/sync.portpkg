@@ -36,21 +36,23 @@ row "Syncing $TREE/"
 # avoid error message about missing ~/.cvspass
 touch ~/.cvspass
 
-get $SOURCE $TREE | sed -r "\
-s,^U ,Updating ,;\
-s,^C ,Conflict with ,;\
-s,^P ,Patching ,;\
-s,^M ,Locally modified ,;\
-s,^\\? ,Unknown entry ," \
-| while read s; do row "$s"; done | tee $t/tree.log
+get $SOURCE $TREE | tee $t/tree.log
+#get $SOURCE $TREE | sed -r "\
+#s,^U ,Updating ,;\
+#s,^C ,Conflict with ,;\
+#s,^P ,Patching ,;\
+#s,^M ,Locally modified ,;\
+#s,^\\? ,Unknown entry ," \
+#| while read s; do row "$s"; done | tee $t/tree.log
 
-grep -sqe "Conflict with" -e "Locally modified" $t/tree.log && tree_is_clean=false
+#grep -sqe "Conflict with" -e "Locally modified" $t/tree.log && tree_is_clean=false
+grep -sqe "^C " -e "^M " $t/tree.log && tree_is_clean=false
 
 # do a simple test to avoid a chunk of "permission denied" errors
 case $login in *anonymous*|*pserver*|"") exit 0;; esac
 
 # looks like we have CVS write access
-debug "sync.portpkg: convinced by $login to do CVS admin tasks"
+debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
 
 has_prog rcs2log || die
 has_prog lynx || die
