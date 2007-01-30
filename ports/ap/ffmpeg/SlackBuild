@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=svn
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -28,13 +28,12 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-#tar xzvf $CWD/$NAME-0.4.9-pre1.tar.gz
-cp -av $CWD/ffmpeg/ .
+cp -rf $CWD/ffmpeg/ .
 cd ffmpeg
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
-  --prefix=$PKG/usr \
+  --prefix=/usr \
   --enable-shared \
   --enable-gpl \
   --enable-pp \
@@ -49,7 +48,7 @@ CFLAGS="$SLKCFLAGS" \
   --enable-faad \
   --enable-mp3lame
 make
-make install
+make install DESTDIR=$PKG
 # for transcode:
 sed -i "s,^#define AVCODEC_H$,&\n`cat version.h`," $PKG/usr/include/ffmpeg/avcodec.h
 ( cd $PKG
