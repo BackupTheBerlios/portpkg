@@ -140,7 +140,7 @@ any2dir()   { sed -r "s,/?[^/]*$,,"; }
 any2base()  { sed -r "s,^.*/,,"; }
 pkg2name()  { sed -r "s,^(.*)-.*-.*-.*$,\1,"; }
 pkg2ver()   { sed -r "s,^.*-(.*)-.*-.*$,\1,"; }
-pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; } 
+pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; }
 #loc2gpkg()  { sed -r "s,^$PRT_DIR/,,"; }
 any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$INST_DIR)/,,"; }
 slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
@@ -417,7 +417,7 @@ get_info() # pkgex
 ##    */*) # explicitly named port: no exclude list
 ##         loc=`ls_loc $(regex $1) | default`
 ##         [ "$loc" ] && debug "get_info(): excluded port specified explicitly!";;
-#    *)   
+#    *)
   # find port, take the first if more than one available
   fix_ports_root "$@"
   re=`regex $1`
@@ -875,6 +875,7 @@ build_pkg()
 
     # execute SlackBuild
     mkdir -p $LOG_DIR
+    date >$LOG_DIR/$name.buildlog
 #    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp"
     build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp"
     if ! $no_fakeroot && has_prog fakeroot; then
@@ -888,12 +889,14 @@ build_pkg()
 #PATH=\$PATH:/sbin TMP=$tmp fakeroot sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
 	build_cmd="HOME=$tmp TMPDIR=$tmp $build_cmd"
-	eval $NOBODY_BUILD_CMD 2>&1 | tee $LOG_DIR/$name.buildlog >$output
+	eval "echo \"# $NOBODY_BUILD_CMD\"" >>$LOG_DIR/$name.buildlog
+	eval $NOBODY_BUILD_CMD 2>&1 | tee -a $LOG_DIR/$name.buildlog >$output
       else
 #        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp \
 #fakeroot sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
-	eval $build_cmd 2>&1 | tee $LOG_DIR/$name.buildlog >$output
+	echo "$ $build_cmd" >>$LOG_DIR/$name.buildlog
+	eval $build_cmd 2>&1 | tee -a $LOG_DIR/$name.buildlog >$output
       fi
     else
 #      $no_fakeroot && warn "Fakeroot disabled for this port!" \
@@ -906,23 +909,30 @@ build_pkg()
         row "Gaining root privileges"
 #        su -c "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
-	eval $ROOT_BUILD_CMD 2>&1 | tee $LOG_DIR/$name.buildlog >$output
+        # chown package and package-tree to `whoami`, so we can work with it
+        build_cmd="$build_cmd; chown -R `whoami` $tmp/$package.tgz $tmp/package-$name"
+	eval "echo \"$ $ROOT_BUILD_CMD\"" >>$LOG_DIR/$name.buildlog
+	eval $ROOT_BUILD_CMD 2>&1 | tee -a $LOG_DIR/$name.buildlog >$output
       else
 #        eval "ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp sh $sh_opt $script $script_opt" 2>&1 \
 #        | tee $LOG_DIR/$name.buildlog >$output
-	eval $build_cmd 2>&1 | tee $LOG_DIR/$name.buildlog >$output
+	echo "# $build_cmd" >>$LOG_DIR/$name.buildlog
+	eval $build_cmd 2>&1 | tee -a $LOG_DIR/$name.buildlog >$output
       fi
 #      # this is a hack-around for some faulty install scripts
 #      chmod 1777 /tmp
     fi #2>&1 | tee $LOG_DIR/$name.buildlog >$output
 
+    # shrink buildlogs
+    gzip -f $LOG_DIR/$name.buildlog
+
     # success? (this is the most promising test to ensure it worked)
     if ! [ -f $tmp/$package.tgz ]; then
-      $VERBOSE || tail $LOG_DIR/$name.buildlog
-      error "Compilation failed (see $LOG_DIR/$name.buildlog)!"
-      $maintain && ln -sf $LOG_DIR/$name.buildlog PORT_IS_BROKEN
+      $VERBOSE || gunzip -c $LOG_DIR/$name.buildlog | tail
+      error "Compilation failed (see $LOG_DIR/$name.buildlog.gz)!"
+      $maintain && ln -sf $LOG_DIR/$name.buildlog.gz PORT_IS_BROKEN
       # query the reporting plugin
-      plugin $REPORT $LOG_DIR/$name.buildlog
+      plugin $REPORT $LOG_DIR/$name.buildlog.gz
       return 1
     else
       # remove this tag in any case
@@ -937,12 +947,12 @@ build_pkg()
     fi
     row "Skipping package building"
     cp $pkg_file $tmp/
-    # save old buildlog
-    [ -f $LOG_DIR/$name.buildlog.gz ] && gunzip -f $LOG_DIR/$name.buildlog.gz
+#    # save old buildlog
+#    [ -f $LOG_DIR/$name.buildlog.gz ] && gunzip -f $LOG_DIR/$name.buildlog.gz
   fi
 
   # cruft for maintainers of port scripts :)
-  maintainer_mode | tee -a $LOG_DIR/$name.buildlog
+  maintainer_mode #| tee -a $LOG_DIR/$name.buildlog
 
   # clean up
 #  row "Moving $package to $PKG_DIR/$group/"
@@ -950,7 +960,7 @@ build_pkg()
 #  cp $tmp/$package.tgz $PKG_DIR/$group/
   for prod in $products; do
     row "Moving $prod.tgz to $PKG_DIR/$group/"
-    cp $tmp/$prod.tgz $PKG_DIR/$group/
+    mv $tmp/$prod.tgz $PKG_DIR/$group/
     echo $PKG_DIR/$group/$prod.tgz >>$CACHE/pkg
   done
   pkg_file=$PKG_DIR/$group/$package.tgz
@@ -962,7 +972,7 @@ build_pkg()
 #    # pseudo ports: don't cache sources
 #    $pseudo && rm -f $SRC_DIR/$srcname
   done
-  gzip -f $LOG_DIR/$name.buildlog
+#  gzip -f $LOG_DIR/$name.buildlog
   ! $maintain && [ -d $tmp/package-$name ] && rm -rf $tmp/package-$name
   true
 }
