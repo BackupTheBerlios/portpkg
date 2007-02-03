@@ -928,7 +928,7 @@ build_pkg()
 
     # success? (this is the most promising test to ensure it worked)
     if ! [ -f $tmp/$package.tgz ]; then
-      $VERBOSE || gunzip -c $LOG_DIR/$name.buildlog | tail
+      $VERBOSE || gunzip -c $LOG_DIR/$name.buildlog.gz | tail
       error "Compilation failed (see $LOG_DIR/$name.buildlog.gz)!"
       $maintain && ln -sf $LOG_DIR/$name.buildlog.gz PORT_IS_BROKEN
       # query the reporting plugin
