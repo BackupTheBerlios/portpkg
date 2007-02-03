@@ -25,7 +25,6 @@ body
     }
 p
     {
-    top-margin: 3em;
     font-family: "Trebuchet MS", sans-serif;
     text-indent: 3em;
     }
