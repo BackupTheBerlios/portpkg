@@ -44,6 +44,7 @@ into.\" 0 0 0 " >$t/menu
   -e "s,^x$,& \"X-Window-system\" ," \
   -e "s,^xap$,& \"X-Applications\" ," \
   -e "s,^y$,& \"Games\" ," \
+  -e "s,^z$,& \"Addon trees\" ," \
   -e "s,^[^ ]*$,& & ," | tr "\n" " " >>$t/menu
   . $t/menu
 }
