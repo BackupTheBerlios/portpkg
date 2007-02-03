@@ -11,7 +11,8 @@
 
 DIST_VER=${DIST_VER:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
 SOURCE=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
-FILES="ChangeLog.txt FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
+FILES="ChangeLog.txt FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5 kernels/VERSIONS.TXT"
+#TREE=$PRT_DIR/slackware.com/bin
 TREE=$PRT_DIR/z/bin/slackware
 
 # check that we're a plug-in
@@ -102,7 +103,67 @@ cp \$CWD/$name-\$VERSION-\$ARCH-\$BUILD.tgz \$TMP/
 EOF
 done
 
+row "Rebuilding pseudo kernel ports"
+
+# get arch from glibc package
+arch=`grep "/glibc-[^-]*-[^-]*-[^-]*\.tgz$" $t/files | rev | cut -d - -f 2 | rev | sort -u`
+
+# for each flavour (bare.i, bareacpi.i etc.)
+for kernel in `sed -nr "s,^kernels/(.*)/bzImage$,\1,p" $t/files`; do
+  # get kernel version from VERSIONS.TXT
+  if grep -sqw $kernel $t/kernels/VERSIONS.TXT; then
+    ver=`grep -w $kernel $t/kernels/VERSIONS.TXT | egrep -o "\<[0-9.]+\>"`
+  else
+    ver=`egrep -o "\<[0-9.]+\>" $t/kernels/VERSIONS.TXT | head -n 1`
+  fi
+  name="kernel-$kernel"
+  desc="$name: $name (Linux $ver)
+$name:
+$name: This is the Linux kernel version $ver from
+$name: $SOURCE."
+  build=1pseudo
+  group=kernels
+  md5sum_s=`grep " \./kernels/$kernel/System.map.gz$" $t/CHECKSUMS.md5 | sed "s, .*,,"`
+  md5sum_b=`grep " \./kernels/$kernel/bzImage$" $t/CHECKSUMS.md5 | sed "s, .*,,"`
+  md5sum_c=`grep " \./kernels/$kernel/config$" $t/CHECKSUMS.md5 | sed "s, .*,,"`
+  path=$TREE/$group
+  mkdir -p $path
+  cat >$path/$name.SlackBuild <<EOF
+#!/bin/sh
+# This is a pseudo kernel port--it may look absurd
+# MAINTAINER: Portpkg Project <portpkg-devel@lists.berlios.de>
+# SOURCES: $SOURCE/kernels/$kernel/System.map.gz%System.map-$kernel-$ver.gz
+# SOURCES: $SOURCE/kernels/$kernel/bzImage%vmlinuz-$kernel-$ver
+# SOURCES: $SOURCE/kernels/$kernel/config%config-$kernel-$ver
+# MD5SUMS: $md5sum_s System.map-$kernel-$ver.gz
+# MD5SUMS: $md5sum_b vmlinuz-$kernel-$ver
+# MD5SUMS: $md5sum_c config-$kernel-$ver
+
+TMP=\${TMP:-/tmp}
+PKG=\$TMP/package-$name
+CWD=\`pwd\`
+
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
+
+mkdir -p \$PKG/install
+cat >\$PKG/install/slack-desc <<eof
+$desc
+eof
+
+mkdir -p \$PKG/boot
+install -m 644 \$CWD/System.map-$kernel-$ver.gz \$PKG/boot/System.map-$kernel-$ver.gz
+install -m 644 \$CWD/vmlinuz-$kernel-$ver \$PKG/boot/vmlinuz-$kernel-$ver
+install -m 644 \$CWD/config-$kernel-$ver \$PKG/boot/config-$kernel-$ver
+gunzip \$PKG/boot/System.map-$kernel-$ver.gz
+
+cd \$PKG
+makepkg -l y -c n \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.tgz
+EOF
+done
+
 # done? make the changes valid
 for file in $FILES; do
-  mv $t/$file $TREE/
+  mv $t/$file $TREE/$file
 done
