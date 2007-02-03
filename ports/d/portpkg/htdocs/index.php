@@ -164,7 +164,7 @@ since 2004
 <a href="http://developer.berlios.de/project/showfiles.php?group_id=2486">Download</a> /
 <a href="http://developer.berlios.de/forum/?group_id=2486">Forums</a> /
 <a href="http://developer.berlios.de/projects/portpkg">Project Page</a> /
-<a href="http://cvs.berlios.de/viewcvs/portpkg">Browse CVS</a> /
+<a href="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports">Browse CVS</a> /
 <a href="people">People</a>
 
 <div align="left">
