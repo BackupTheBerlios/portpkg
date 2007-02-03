@@ -13,6 +13,8 @@
 
 SOURCE=:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg
 DEST=http://portpkg.berlios.de/upload.php
+#TREE=$PRT_DIR/portpkg.berlios.de
+TREE=$PRT_DIR
 
 # check that we're a plug-in
 #if ! [ "$PORTPKG" ]; then
@@ -28,7 +30,7 @@ dest=""
 quote=false
 case $1 in
   *:)   export_opt="Moved to ${1%:}/."
-        dest=$PRT_DIR/${1%:};;
+        dest=$TREE/${1%:};;
   q)    quote=true;;
   *\ *) export_opt="$1";;
   *)    die "You must specify a summary of your export! At least two words required.";; esac
@@ -71,12 +73,14 @@ for arg in `explicit "$@"`; do
     continue
   fi
 
-  pause "Continue exporting $package? (ctrl-c to abort)"
+#  pause "Continue exporting $package? (ctrl-c to abort)"
 
   # if there's $PRT_DIR/CVS/Root which doesn't contain "anonymous" it must be a CVS
   # write account (?)
-  if [ -f $PRT_DIR/CVS/Root ] && ! grep -sq "anonymous" $PRT_DIR/CVS/Root; then
+  if [ -f $TREE/CVS/Root ] && ! grep -sq "anonymous" $TREE/CVS/Root; then
     warn "Trying to write directly to CVS!"
+
+    pause "Continue submitting $package? (ctrl-c to abort)"
 
     # check again
     has_prog cvs || die
@@ -90,6 +94,11 @@ for arg in `explicit "$@"`; do
     $DRY_RUN && pre=echo || pre=""
 
     if [ "$dest" ]; then
+      # check dest
+      if ! [ -d `dirname $dest`/CVS ]; then
+	die "`dirname $dest` not in CVS! Add it first!"
+      fi
+
       # first clean $dest/
       if [ -d $dest/$name ]; then
         row "Cleaning destination $dest/$name"
@@ -138,6 +147,8 @@ for arg in `explicit "$@"`; do
     $pre sed -i "/: Updated./{N;d}" ChangeLog
     $pre cvs -qz3 ci -m "Updated." ChangeLog
   else
+    pause "Continue uploading $package? (ctrl-c to abort)"
+
     # use upload backend
     has_prog curl || die
 
@@ -194,12 +205,14 @@ it to a key server!"
 
     # upload the tarball to $DEST
     row "Uploading $LOG_DIR/$package.tar.bz2"
+#    curl -F file=@$LOG_DIR/$package.tar.bz2 $DEST \
     curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $DEST >/dev/null 2>&1 \
     || error "Upload failed!"
 
     # upload the tarball's signature if any
     if [ -f $LOG_DIR/$package.tar.bz2.asc ]; then
       row "Uploading $LOG_DIR/$package.tar.bz2.asc"
+#      curl -F file=@$LOG_DIR/$package.tar.bz2.asc $DEST \
       curl -F filetoupload=@$LOG_DIR/$package.tar.bz2.asc $DEST >/dev/null 2>&1 \
       || error "Upload failed!"
     fi
