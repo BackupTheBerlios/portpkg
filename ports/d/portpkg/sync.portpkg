@@ -1,12 +1,13 @@
 #!/bin/sh
 #BLURB="Portpkg's build scripts (RECOMMENDED)"
 #
-# This plugin is basically a "cvs up -dP" in $PRT_DIR.
-# For CVS write access, following administration tasks are done:
-#  * Commit ports that are uploaded via web backend
-#    (http://portpkg.berlios.de/upload.php) to the CVS
-#  * Sync ChangeLog if older than 48 hours (regenerated via rcs2log)
-#  * Sync web stats if older than 48 hours (synced with ChangeLog)
+# This plugin is basically a "cvs up -dP" in $TREE, but:
+#   phase #1: Update CVS
+#   phase #2: Retrieve uploaded ports and save them in open/
+#     -- stop if no obvious CVS account --
+#   phase #3: Retrieve uploaded buildlogs in reports/
+#     -- stop if ChangeLog is newer than 48 hours --
+#   phase #4: Update and commit ChangeLog
 
 SOURCE=cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports
 TREE=$PRT_DIR
@@ -18,17 +19,20 @@ if [ "`basename $0`" != "portpkg" ]; then
 fi
 
 t=`mktemp -d`
-tree_is_clean=true
-viewcvs=http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports
+#tree_is_clean=true
+#viewcvs=http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports
 mailhost=users.berlios.de
-shell=shell.berlios.de
-htdocs=/home/groups/portpkg/htdocs
-upload=$htdocs/upload
-merged=$upload/merged
+#shell=shell.berlios.de
+#htdocs=/home/groups/portpkg/htdocs
+#upload=$htdocs/upload
+#merged=$upload/merged
 login=`cat $TREE/CVS/Root 2>/dev/null | cut -d @ -f 1`
 
 has_prog cvs || die
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
+
+# don't do anything in DRY_RUN
+$DRY_RUN && pre=echo || pre=""
 
 # sync port dir
 row "Syncing $TREE/"
@@ -36,7 +40,7 @@ row "Syncing $TREE/"
 # avoid error message about missing ~/.cvspass
 touch ~/.cvspass
 
-get $SOURCE $TREE | tee $t/tree.log
+$pre get $SOURCE $TREE | tee $t/tree.log
 #get $SOURCE $TREE | sed -r "\
 #s,^U ,Updating ,;\
 #s,^C ,Conflict with ,;\
@@ -46,26 +50,29 @@ get $SOURCE $TREE | tee $t/tree.log
 #| while read s; do row "$s"; done | tee $t/tree.log
 
 #grep -sqe "Conflict with" -e "Locally modified" $t/tree.log && tree_is_clean=false
-grep -sqe "^C " -e "^M " $t/tree.log && tree_is_clean=false
+#grep -sqe "^C " -e "^M " $t/tree.log && tree_is_clean=false
 
-# do a simple test to avoid a chunk of "permission denied" errors
-case $login in *anonymous*|*pserver*|"") exit 0;; esac
+## do a simple test to avoid a chunk of "permission denied" errors
+#case $login in *anonymous*|*pserver*|"") exit 0;; esac
 
-# looks like we have CVS write access
-debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
+## looks like we have CVS write access
+#debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
 
-has_prog rcs2log || die
+#has_prog rcs2log || die
 has_prog lynx || die
 
-# commit uploads from http://portpkg.berlios.de/upload to the CVS
+## commit uploads from http://portpkg.berlios.de/upload to the CVS
+# get uploads from http://portpkg.berlios.de/upload
 cd $TREE || die
-files=`lynx -dump portpkg.berlios.de/upload | sed "0,/^Refer/d" | grep -o "http://.*-.*-.*-.*\.tar\.bz2\(\|\.asc\)$"`
-uploads=`echo "$files" | grep "\.tar\.bz2$"`
+#files=`lynx -dump portpkg.berlios.de/upload | sed "0,/^Refer/d" | grep -o "http://.*-.*-.*-.*\.tar\.bz2\(\|\.asc\)$"`
+files=`$pre lynx -dump http://portpkg.berlios.de/upload | grep -o "http://[^ ?]*[^/]$" | sort -u`
 
+uploads=`echo "$files" | grep "\.tar\.bz2$"`
 if [ "$uploads" ]; then
   row "Syncing $TREE/open"
   for src in $uploads; do
     pkg=`basename $src`
+    [ -f $TREE/open/$pkg ] && continue
     row "Downloading $pkg"
     get $src $TREE/open/$pkg || continue
     if echo "$files" | grep -xsq "$src.asc"; then
@@ -73,48 +80,67 @@ if [ "$uploads" ]; then
       get $src.asc $TREE/open/$pkg.asc || continue
       if has_prog gpg; then
 	row "Verifying signature"
-	gpg --verify $TREE/open/$pkg.asc || continue
+	if ! gpg --verify $TREE/open/$pkg.asc; then
+	  mv $TREE/open/$pkg $TREE/open/$pkg.badsig
+	  continue
+	fi
       fi
     fi
-  
-    row "Mergeing $pkg"
-    name=`basename $pkg .tar.bz2 | pkg2name`
-    if [ "`tar tjf $TREE/open/$pkg | sed "1d;s,\./,,;s,/.*,," | sort -u`" != "$name" ]; then
-      row "Skipping: $pkg has illegal prefix!"
-      continue
-    fi
-  
-    # clean port dir in $TREE/open/ and extract tarball
-    find $TREE/open/$name/ -type f ! -path "*CVS*" -exec rm -v {} \; 2>/dev/null
-    tar xjvf $TREE/open/$pkg --exclude "*CVS*" -C $TREE/open/
-    rm $TREE/open/$pkg
-    rm -f $TREE/open/$pkg.asc
-  
-    # remove SlackBuilds that are not in ./*/*SlackBuild
-    find $TREE/open/$name/ -name "*SlackBuild" -mindepth 2 -exec mv {} {}.renamed \;
-    find $TREE/open/$name/ -type f -exec chmod 644 {} \;
-    find $TREE/open/$name/ -type d -exec chmod 755 {} \;
-    find $TREE/open/$name/ -name ".*" -exec rm -v {} \;
-    find $TREE/open/$name/ -name "*~" -exec rm -v {} \;
-    find $TREE/open/$name/ -name "ChangeLog" -exec rm -v {} \;
-    find $TREE/open/$name/ -type l -exec rm -v {} \;
-  
-    # commit
-    msg=`grep -si "^ChangeLog" $TREE/open/$name/info | cut -d : -f 2 | xargs`
-    tag=`basename ${pkg##*[0-9-][0-9]} .tar.bz2`
-    rm -f $CACHE/*
-#    get_info $TREE/open/$name || continue
-#    portpkg -mx "$msg ($tag)" $TREE/open/$name
-    ( MAINTAIN_ALL=true
-    msg_level=1
-    # this must be done with the CVS exporter plugins
-    do_export "$msg ($tag)" open/$name ) || continue
 
-    # move it away
-    row "Moving into merged/"
-    ssh $login@shell.berlios.de "mv -f $upload/$pkg $merged/"
-    echo "$files" | grep -xsq "$src.asc" \
-    && ssh $login@shell.berlios.de "mv -f $upload/$pkg.asc $merged/"
+#    row "Mergeing $pkg"
+#    name=`basename $pkg .tar.bz2 | pkg2name`
+#    if [ "`tar tjf $TREE/open/$pkg | sed "1d;s,\./,,;s,/.*,," | sort -u`" != "$name" ]; then
+#      row "Skipping: $pkg has illegal prefix!"
+#      continue
+#    fi
+
+#    # clean port dir in $TREE/open/ and extract tarball
+#    find $TREE/open/$name/ -type f ! -path "*CVS*" -exec rm -v {} \; 2>/dev/null
+#    tar xjvf $TREE/open/$pkg --exclude "*CVS*" -C $TREE/open/
+#    rm $TREE/open/$pkg
+#    rm -f $TREE/open/$pkg.asc
+
+#    # remove SlackBuilds that are not in ./*/*SlackBuild
+#    find $TREE/open/$name/ -name "*SlackBuild" -mindepth 2 -exec mv {} {}.renamed \;
+#    find $TREE/open/$name/ -type f -exec chmod 644 {} \;
+#    find $TREE/open/$name/ -type d -exec chmod 755 {} \;
+#    find $TREE/open/$name/ -name ".*" -exec rm -v {} \;
+#    find $TREE/open/$name/ -name "*~" -exec rm -v {} \;
+#    find $TREE/open/$name/ -name "ChangeLog" -exec rm -v {} \;
+#    find $TREE/open/$name/ -type l -exec rm -v {} \;
+
+#    # commit
+#    msg=`grep -si "^ChangeLog" $TREE/open/$name/info | cut -d : -f 2 | xargs`
+#    tag=`basename ${pkg##*[0-9-][0-9]} .tar.bz2`
+#    rm -f $CACHE/*
+##    get_info $TREE/open/$name || continue
+#    portpkg -mx "$msg ($tag)" $TREE/open/$name
+#    ( MAINTAIN_ALL=true
+#    msg_level=1
+#    # this must be done with the CVS exporter plugins
+#    do_export "$msg ($tag)" open/$name ) || continue
+
+#    # move it away
+#    row "Moving into merged/"
+#    ssh $login@shell.berlios.de "mv -f $upload/$pkg $merged/"
+#    echo "$files" | grep -xsq "$src.asc" \
+#    && ssh $login@shell.berlios.de "mv -f $upload/$pkg.asc $merged/"
+  done
+fi
+
+# do a simple test to avoid a chunk of "permission denied" errors
+case $login in *anonymous*|*pserver*|"") exit 0;; esac
+debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
+
+# get uploaded buildlogs
+buildlogs=`echo "$files" | grep -e "\.buildlog$" -e "\.buildlog\.gz$"`
+if [ "$buildlogs" ]; then
+  row "Syncing $TREE/reports"
+  for src in $buildlogs; do
+    pkg=`basename $src`
+    [ -f $TREE/reports/$pkg ] && continue
+    row "Downloading $pkg"
+    get $src $TREE/reports/$pkg || continue
   done
 fi
 
@@ -124,62 +150,66 @@ if ! [ "${1:-}" = "force" ] && [ "`find $TREE/ChangeLog -mtime -2`" ]; then
   exit 0
 fi
 
+has_prog rcs2log || die
+
 cd $TREE || die
 row "Syncing $TREE/ChangeLog"
-rm ChangeLog
+$pre rm ChangeLog
 
-# patch rcs2log to use -z3 option
-install -m 755 `which rcs2log` $t/rcs2log
-sed -i "s,cvs -q ,cvs -qz3 ," $t/rcs2log
-$t/rcs2log -i 2 -h $mailhost >ChangeLog
+## patch rcs2log to use -z3 option
+#install -m 755 `which rcs2log` $t/rcs2log
+#sed -i "s,cvs -q ,cvs -qz3 ," $t/rcs2log
+#$t/rcs2log -i 2 -h $mailhost >ChangeLog
+$pre rcs2log -i 2 -h $mailhost >ChangeLog
 
 # "Updated." lines are unnecessary
 sed -i "/: Updated.$/{N;d}" ChangeLog
-cvs ci -m "Updated." ChangeLog
+$pre cvs ci -m "Updated." ChangeLog
 
-$tree_is_clean || die "Would like to do more admin tasks but CVS is NOT in sync!"
+##$tree_is_clean || die "Would like to do more admin tasks but CVS is NOT in sync!"
+#grep -sqe "^C " -e "^M " $t/tree.log && die "Would like to do more admin tasks but CVS is NOT in sync!"
 
-# web stats
-#row "Syncing $TREE/d/portpkg/ports.recent"
-row "Syncing http://portpkg.berlios.de/ports.recent"
-{ echo "<dl>"
-  cat $TREE/ChangeLog \
-| grep -oe "^[0-9][^ ]*" -e "[^ ]*[./]*SlackBuild" \
-| sed "s,[./]SlackBuild,," \
-| head -n 40 \
-| ( d=""
-    while read s; do
-      case $s in
-        [0-9]*[0-9])
-          d="$s";;
-        *)
-          [ "$d" ] && echo "<dt>$d</dt>"
-          d=""
-          ls_loc `regex $s` | grep -ve local/ -e z/ | any2gany \
-| sed "s,-$ARCH-,-i486-,;s,\(.*\)-\([^-]*-[^-]*-[^-]*\)$,<a href=\"$viewcvs/\1\">\1</a> \2<br>,"
-      esac
-    done )
-  echo "</dl>"
+## web stats
+##row "Syncing $TREE/d/portpkg/ports.recent"
+#row "Syncing http://portpkg.berlios.de/ports.recent"
+#{ echo "<dl>"
+#  cat $TREE/ChangeLog \
+#| grep -oe "^[0-9][^ ]*" -e "[^ ]*[./]*SlackBuild" \
+#| sed "s,[./]SlackBuild,," \
+#| head -n 40 \
+#| ( d=""
+#    while read s; do
+#      case $s in
+#        [0-9]*[0-9])
+#          d="$s";;
+#        *)
+#          [ "$d" ] && echo "<dt>$d</dt>"
+#          d=""
+#          ls_loc `regex $s` | grep -ve local/ -e z/ | any2gany \
+#| sed "s,-$ARCH-,-i486-,;s,\(.*\)-\([^-]*-[^-]*-[^-]*\)$,<a href=\"$viewcvs/\1\">\1</a> \2<br>,"
+#      esac
+#    done )
+#  echo "</dl>"
 #} >$TREE/d/portpkg/ports.recent
-} >$t/ports.recent
-ARCH=i486
+#} >$t/ports.recent
+#ARCH=i486
 
-#row "Syncing $TREE/d/portpkg/ports.amount"
-row "Syncing http://portpkg.berlios.de/ports.amount"
-#find $TREE/ -name "Entries" -exec grep SlackBuild {} \; | wc -l >$TREE/d/portpkg/ports.amount
-find $TREE/ -name "Entries" -exec grep SlackBuild {} \; | wc -l >$t/ports.amount
+##row "Syncing $TREE/d/portpkg/ports.amount"
+#row "Syncing http://portpkg.berlios.de/ports.amount"
+##find $TREE/ -name "Entries" -exec grep SlackBuild {} \; | wc -l >$TREE/d/portpkg/ports.amount
+#find $TREE/ -name "Entries" -exec grep SlackBuild {} \; | wc -l >$t/ports.amount
 
-#row "Syncing $TREE/d/portpkg/ports.complete"
-row "Syncing http://portpkg.berlios.de/ports.complete"
-find $TREE/ -name "Entries" -exec grep -H SlackBuild {} \; \
-| sed "s,/CVS/Entries:,,;s,SlackBuild.*,SlackBuild,;s,^$TREE/,," \
-| while read s; do
-  p=`echo $s | slk2loc`
-  n=`echo $p | pkg2name | any2base`
-  d=`grep -m1 -sh "^$n:" $s $(echo $s | sed "s,SlackBuild,slack-desc,")`
-  echo "$p|$d"
-#done | column -t -s \| >$TREE/d/portpkg/ports.complete
-done | column -t -s \| >$t/ports.complete
+##row "Syncing $TREE/d/portpkg/ports.complete"
+#row "Syncing http://portpkg.berlios.de/ports.complete"
+#find $TREE/ -name "Entries" -exec grep -H SlackBuild {} \; \
+#| sed "s,/CVS/Entries:,,;s,SlackBuild.*,SlackBuild,;s,^$TREE/,," \
+#| while read s; do
+#  p=`echo $s | slk2loc`
+#  n=`echo $p | pkg2name | any2base`
+#  d=`grep -m1 -sh "^$n:" $s $(echo $s | sed "s,SlackBuild,slack-desc,")`
+#  echo "$p|$d"
+##done | column -t -s \| >$TREE/d/portpkg/ports.complete
+#done | column -t -s \| >$t/ports.complete
 
-#cvs ci -m "Updated." $TREE/d/portpkg/ports.*
-scp $t/ports.* $login@$shell:$htdocs/
+##$pre cvs ci -m "Updated." $TREE/d/portpkg/ports.*
+#$pre scp $t/ports.* $login@$shell:$htdocs/
