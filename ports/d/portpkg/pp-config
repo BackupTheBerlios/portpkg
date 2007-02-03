@@ -133,8 +133,15 @@ plugins()
       `echo "$SYNC" | tr " " "\n" | grep -qx $(basename $plugin) && echo on || echo off`" "
   done >>$t/menu
   . $t/menu 2>$t/plugins
+
+  # run sync.portpkg first as long as TREE=$PRT_DIR
+  if grep -sqw sync.portpkg $t/plugins; then
+    grep -sqx "TREE=\$PRT_DIR" $PRT_DIR/plugins/sync.portpkg $CFG_DIR/plugins/sync.portpkg \
+    && sed -i "s, sync.portpkg , ,;s,^,sync.portpkg ," $t/plugins
+  fi
+
   sed -i "/^SYNC=/d" $RC
-  echo "SYNC=\"`tr " " "\n" <$t/plugins | sort -u | tr "\n" " "`\"" >>$RC
+  echo "SYNC=\"`cat $t/plugins`\"" >>$RC
   . $RC
 }
 
