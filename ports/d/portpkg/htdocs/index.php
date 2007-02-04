@@ -72,7 +72,10 @@ a:active
     background-color: #282828;
     position: relative;
     padding: 10px;
-    clear: left
+    font-family: "Trebuchet MS", sans-serif;
+    padding: 10px 20px;
+    margin-top: 10px;
+    clear: left;
     }
 #header
     {
@@ -82,7 +85,7 @@ a:active
     font-family: verdana, geneva, arial, sans-serif;
     font-size: 42px;
     font-weight: bold;
-    height: 60px;
+    height: 110px;
     line-height: 90%;
     letter-spacing: -3;
     }
@@ -109,7 +112,7 @@ a:active
     margin-left: auto;
     position: relative;
     width: 600px;
-    border: 1px solid #222;
+    border: 1px solid #bba;
     }
 #navi
     {
@@ -117,6 +120,7 @@ a:active
     text-align: right;
     padding: 0px 20px;
     margin-top: 10px;
+    font-weight: bold;
     }
 #mainbox
     {
@@ -129,10 +133,13 @@ a:active
     {
     background-color: #112;
     position: relative;
-    padding: 10px 20px ;
+    padding: 10px 20px;
     margin-top: 10px;
     width: 65%;
     float: left;
+    border: 1px solid #667;
+    border-left: 0;
+    border-bottom: 0;
     }
 #sidebar
     {
@@ -153,7 +160,12 @@ a:active
     <div>
 	<div id="page">
 	    <div id="header">
+		<div style="float: left">
+<img src="logo.png"/>
+	    </div>
+	    <div>
 Portpkg&mdash;Source package system for Slackware<br>
+	    </div>
 	    </div>
 	    <div id="subheader">
 since 2004
