@@ -205,16 +205,16 @@ it to a key server!"
 
     # upload the tarball to $DEST
     row "Uploading $LOG_DIR/$package.tar.bz2"
-#    curl -F file=@$LOG_DIR/$package.tar.bz2 $DEST \
-    curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $DEST >/dev/null 2>&1 \
-    || error "Upload failed!"
+    curl -F file=@$LOG_DIR/$package.tar.bz2 $DEST || error "Upload failed!"
+#    curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $DEST >/dev/null 2>&1 \
+#    || error "Upload failed!"
 
     # upload the tarball's signature if any
     if [ -f $LOG_DIR/$package.tar.bz2.asc ]; then
       row "Uploading $LOG_DIR/$package.tar.bz2.asc"
-#      curl -F file=@$LOG_DIR/$package.tar.bz2.asc $DEST \
-      curl -F filetoupload=@$LOG_DIR/$package.tar.bz2.asc $DEST >/dev/null 2>&1 \
-      || error "Upload failed!"
+      curl -F file=@$LOG_DIR/$package.tar.bz2.asc $DEST || error "Upload failed!"
+#      curl -F filetoupload=@$LOG_DIR/$package.tar.bz2.asc $DEST >/dev/null 2>&1 \
+#      || error "Upload failed!"
     fi
   fi
 done
