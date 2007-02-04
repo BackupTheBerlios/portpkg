@@ -3,7 +3,7 @@
 # SOURCES: http://download.videolan.org/pub/videolan/vlc/0.8.6a/vlc-0.8.6a.tar.bz2
 # MD5SUMS: 80217c4513bb15cd071ef8cb782513f6 vlc-0.8.6a.tar.bz2
 # REQUIRES: alsa-lib desktop-file-utils ffmpeg fribidi gnutls hal libcddb libdvbpsi4 libdvdread libebml libid3tag libmad libmodplug libmpcdec libnotify samba sdl speex sysfsutils vcdimager wxgtk x11
-# OPTIONAL: gnome-vfs
+# OPTIONAL: gnome-vfs libmatroska
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.8.6a
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
