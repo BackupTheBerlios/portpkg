@@ -1,16 +1,19 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://mesh.dl.sourceforge.net/sourceforge/wxwindows/wxGTK-2.8.0.tar.bz2
+# SOURCES: http://mesh.dl.sourceforge.net/sourceforge/wxwindows/wxGTK-2.6.3.tar.bz2
 # MD5SUMS: 1371dd278e8f5a7e1fb821c1e3b3795b wxGTK-2.6.0.tar.bz2
+# MD5SUMS: 3cd76c3c47913e52a3175dd47239c6ec wxGTK-2.6.3.tar.bz2
 # MD5SUMS: 9de30aeaad9bac6f8869907fa42fe950 wxGTK-2.8.0.tar.bz2
 # REQUIRES: glib2 gtk+2 libpng libtiff x11
+# OPTIONAL: esound gcc-g++
+## BLOCKS: wxpython-wxgtk
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.0
+VERSION=2.6.3
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -37,9 +40,16 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
+  --enable-unicode \
+  --`pkg-config libgnomeprint-2.2 && echo with || echo without`-gnomeprint \
+  --`pkg-config gnome-vfs-2.0 && echo with || echo without`-gnomevfs \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
+pushd contrib/src
+make
+make install DESTDIR=$PKG
+popd
 rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -48,6 +58,9 @@ rm -fv $PKG/usr/info/dir
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  CHANGES-GTK.txt CHANGES.txt COPYING.LIB INSTALL.txt LICENCE.txt README-GTK.txt README.txt TODO.txt \
+  $PKG/usr/doc/$NAME-$VERSION
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
