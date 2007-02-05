@@ -697,7 +697,8 @@ maintainer_mode()
   # generate requires list
   echo -n "$requires" >$t/old_req
   echo -n "$optional" >$t/old_opt
-  ( cd $tmp/package-$name/; find * -type f ) | sed "s,\.so\..*,.so," >$t/flist
+#  ( cd $tmp/package-$name/; find * -type f ) | sed "s,\.so\..*,.so," >$t/flist
+  ( cd $tmp/package-$name/; find -type f ) | sed "s,^\./,,;s,\.so\..*,.so," >$t/flist
   find $tmp/package-$name/ -type f | xargs file >$t/ftypes
 
   # find depdendencies, but exclude dependencies of them
@@ -705,7 +706,7 @@ maintainer_mode()
   find $tmp/package-$name/ | deps | fgrep -vf $t/flist >$t/deps
 #  grep -whf - $INST_DIR/* <$t/deps | ( cd /; deps ) >$t/deps_deps
 #  fgrep -whf $t/deps $INST_DIR/* | ( cd /; deps ) >$t/deps_deps
-  find $INST_DIR | xargs fgrep -whf $t/deps | ( cd /; deps ) >$t/deps_deps
+  find $INST_DIR/ | xargs fgrep -whf $t/deps | ( cd /; deps ) >$t/deps_deps
   fgrep -vxf $t/deps_deps $t/deps >$t/depfiles
 
   # find perl dependencies (modules are identified by their man pages)
@@ -742,8 +743,8 @@ maintainer_mode()
 
   # resolve dependent files to package names
 #  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; grep -lf - * ) \
-  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; find | xargs grep -lf - ) \
-| pkg2name | fgrep -vx "$name" | sort -u >$t/auto_req_raw
+  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; find -exec grep -lf - {} + ) \
+| sed "s,^\./,,;/^$name$/d" | pkg2name | sort -u >$t/auto_req_raw
   debug "maintainer_mode(): auto reqs: "`cat $t/auto_req_raw`
 
   # find and strip ignore list
@@ -1005,8 +1006,8 @@ check_pkg()
 #  | ( cd $INST_DIR; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
 #  | sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
   sed "s,.* ,," $t/footprint | grep -ve /$ -e ^install/ \
-  | ( cd $INST_DIR; find | xargs fgrep -xf - ) | grep -v "^$replace:" \
-  | sed -r "s,^(.*)-.*-.*-.*:(.*)$,/\2 interferes with \1," | while read s; do warn $s; done
+  | ( cd $INST_DIR; find -exec fgrep -xf - {} + ) | grep -v "^\./$replace:" \
+  | sed -r "s,^\./(.*)-.*-.*-.*:(.*)$,/\2 interferes with \1," | while read s; do warn $s; done
 #  | ( cd $INST_DIR; fgrep -xf - * ) | grep -v "^$replace:" \
 
   # warn about tags
