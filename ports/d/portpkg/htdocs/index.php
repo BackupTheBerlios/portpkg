@@ -192,30 +192,39 @@ since 2004
 
 	    <div id="mainbox">
 <?php
-$lines = file ('ABOUT');
-print ('<p>');
-foreach ($lines as $line) {
-  if (ereg ('---', $line)) {
-    break;
+$file = fopen('ABOUT','r');
+if ($file) {
+  print('<p>');
+  while (!feof($file)) {
+    $line = fgets($file);
+    if (ereg('---',$line))
+      break;
+    if (!ereg('^About',$line))
+      print($line);
   }
-  if (!ereg ('^About', $line))
-    print ($line);
+  fclose($file);
+  print ('</p>');
 }
-print ('</p>');
 ?>
 	    </div>
 
 	    <div id="box">
 <?php
-$lines = file ('NEWS');
-foreach ($lines as $line_num => $line) {
-  if ($line_num == 70) {
-    print ('(...)');
-    break;
+$file = fopen('NEWS','r');
+if ($file) {
+  $lines = 0;
+  while (!feof($file)) {
+    $line = fgets($file);
+    $lines++;
+    if ($lines == 70) {
+      print('(...)');
+      break;
+    }
+    $line = ereg_replace('NEWS','<h2>News</h2>',$line);
+    $line = ereg_replace('^([-/0-9]{10})','<p><em>\1</em><br>',$line);
+    print ($line);
   }
-  $line = ereg_replace ('NEWS', '<h2>News</h2>', $line);
-  $line = ereg_replace ('^([-/0-9]{10})', '<p><em>\1</em><br>', $line);
-  print ($line);
+  fclose($file);
 }
 ?>
 	    </div>
@@ -227,30 +236,40 @@ foreach ($lines as $line_num => $line) {
 
 <h2>Recent changes</h2>
 <?php
-$lines = file ('ports.ChangeLog');
-$items = 0;
-foreach ($lines as $line_num => $line) {
-  if ($line_num == 200) {
-    print ('(...)');
-    break;
-  }
-  if (ereg ('^[0-9].*[0-9] ', $line)) {
-    $date = ereg_replace ('^([0-9].*[0-9]).*$', '<p><em>\1</em><br>', $line);
-    $last_date = "";
-  } elseif (ereg ('[^ ]+[./]SlackBuild', $line)) {
-    preg_match_all('|([^ ]+)[./]SlackBuild.*:(.*)|', $line, $matches, PREG_SET_ORDER);
-    foreach ($matches as $match) {
-      if (!$date == $last_date) {
-	print($date);
-	$last_date = $date;
-      }
-      print (
-        '<a href="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/' .
-        $match[1].'">'.$match[1].'</a> '.$match[2].'<br>');
-      $items++;
-      if ($items == 50) {
-        print ('(...)');
-        break 2;
+$file = fopen('ports.ChangeLog','r');
+if ($file) {
+  $lines = 0;
+  $items = 0;
+  $date = "";
+  while (!feof($file)) {
+    $line = fgets($file);
+    $lines++;
+    if ($lines >= 200) {
+      print ('(...)');
+      break;
+    }
+    if (ereg('^[-0-9]{10} ',$line)) {
+      $last_date = $date;
+      $date = ereg_replace('^([-0-9]{10}).*$','<p><em>\1</em><br>',$line);
+    } elseif (ereg('[^ ]+[./]SlackBuild',$line)) {
+      preg_match_all('|([^ ]+)[./]SlackBuild.*:(.*)|',$line,$matches,PREG_SET_ORDER);
+      if ($matches[0][2] == "") {
+          $line = fgets($file);
+          $log = ereg_replace('\*','',$line);
+      } else
+        $log = $matches[0][2];
+      foreach ($matches as $match) {
+        if ($date != $last_date) {
+  	  print($date);
+	  $last_date = $date;
+        }
+        print('<a href="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/'.
+          $match[1].'">'.$match[1].'</a> '.$log.'<br>');
+        $items++;
+        if ($items >= 30) {
+          print ('(...)');
+          break 2;
+        }
       }
     }
   }
