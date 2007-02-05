@@ -1,3 +1,62 @@
+2007-02-04  topf  <topf@users.berlios.de>
+
+  * d/portpkg/export.portpkg: Enabled new upload method.
+
+  * ap/vobcopy/SlackBuild, ap/vobcopy/footprint: Version bump.
+
+  * ap/vbetool/footprint, ap/vbetool/slack-desc, ap/vbetool/SlackBuild:
+  New entry.
+
+  * xap/vlc/SlackBuild: New revision to indicate rebuild for downgraded wxgtk.
+
+  * l/wxpython/SlackBuild, l/wxpython/footprint, l/wxpython/md5sums, l/wxpython/requires, l/wxpython/sources:
+  Updated. Fixed.
+
+  * l/wxgtk/footprint, l/wxgtk/SlackBuild:
+  Downgraded. To messy to get wxPython-2.8 working.
+
+  * xap/gdvdshrink/SlackBuild, xap/gdvdshrink/doinst.sh, xap/gdvdshrink/footprint, xap/gdvdshrink/gdvdshrink.desktop, xap/gdvdshrink/slack-desc:
+  New entry.
+
+  * d/portpkg/htdocs/index.php: Inserted logo.
+
+  * d/portpkg/logo.png, d/portpkg/logo.svg: Added logo files.
+
+2007-02-03  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  * build_pkg(): Fixed 'gunzip: buildlog: No such file or directory'.
+
+  * d/portpkg/sync.slackware-bin: Re-added kernel pseudo ports.
+
+  * d/portpkg/checkpkg: Added label for z/.
+
+  * d/portpkg/pp-config: Run sync.portpkg first as long as TREE=PRT_DIR in it.
+
+  * d/portpkg/htdocs/index.php: Removed 'unknown property' in CSS.
+
+  * d/portpkg/htdocs/index.php: Fixed ViewCVS URL.
+
+  * d/portpkg/sync.portpkg:
+  * Disabled code that commits uploads to CVS, too messy.
+  * Support DRY_RUN.
+  * Seperated open/ from CVS.
+  * Retrieve buildlogs in reports/ for developers.
+  * Disabled cosmetics.
+  * Disabled webstats code, will be obsolete for new webpage.
+
+  * d/portpkg/export.portpkg:
+  * Use TREE, not PRT_DIR.
+  * Pause after warnings, not before.
+  * Test if parent of dest is in CVS.
+
+  * d/portpkg/htdocs/index.php, d/portpkg/htdocs/robots.txt, d/portpkg/htdocs/upload.php:
+  Added htdocs.
+
+  * d/portpkg/NEWS:
+  * Changed date to %F format.
+  * Removed webbrowser irritating symbols.
+
 2007-02-02  topf  <topf@users.berlios.de>
 
   * d/portpkg/portpkg:
