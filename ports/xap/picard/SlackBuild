@@ -1,0 +1,44 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.musicbrainz.org/pub/musicbrainz/picard/picard-0.7.2.tar.gz
+# MD5SUMS: 840d2202a792a36fc981fd691c8c49a5 picard-0.7.2.tar.gz
+# REQUIRES: desktop-file-utils pygtk python quodlibet wxpython
+# OPTIONAL: python-musicbrainz2
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.7.2
+ARCH=noarch
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/picard-$VERSION.tar.gz
+cd picard-$VERSION
+chown -R root.root .
+python setup.py install --root=$PKG
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  AUTHORS COPYING ChangeLog INSTALL README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/picard-$VERSION
+  rm -rf $PKG
+fi
