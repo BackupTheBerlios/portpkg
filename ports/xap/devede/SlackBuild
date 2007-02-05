@@ -1,58 +1,51 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.rastersoft.com/descargas/devede20.tar.bz2
+# SOURCES: http://www.rastersoft.com/descargas/devede2.10.tar.bz2
+# MD5SUMS: 539d382baa1b809c3fd59397ececb2d2 devede2.10.tar.bz2
 # MD5SUMS: 631661a222d4f7ca27258d8b6b678197 devede20.tar.bz2
 # REQUIRES: dvdauthor mplayer pygtk python vcdimager
+# OPTIONAL: desktop-file-utils
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.0
-ARCH=${ARCH:-i486}
+VERSION=2.10
+ARCH=noarch
 BUILD=1tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/devede20.tar.bz2
-cd devede
+tar xjvf $CWD/devede$VERSION.tar.bz2
+cd devede$VERSION
 chown -R root.root .
+# fix install script
 sed -i "s,^\./uninstall,#&," install.sh
-sed -i "s, /, $PKG/,g" install.sh
+sed -i "s, /, $PKG/,g;s,/usr/local/,/usr/,g;s,/share/doc/devede/,/doc/devede-$VERSION/,g" install.sh
 mkdir -p $PKG/usr/bin $PKG/usr/share/pixmaps $PKG/usr/share/applications
 ./install.sh
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rf $PKG/usr/info/dir
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/devede
+  rm -rf $TMP/devede$VERSION
   rm -rf $PKG
 fi
