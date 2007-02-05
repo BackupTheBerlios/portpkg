@@ -641,6 +641,7 @@ check_opts()
 check_blocks()
 {
   local block
+  $NO_REQS && return 0
   for block in $blocks; do
     if ls_inst -q `regex $block`; then
       # we have a blocking package installed, exit!
