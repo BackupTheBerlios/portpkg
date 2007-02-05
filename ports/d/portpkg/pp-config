@@ -3,7 +3,7 @@
 
 source `which portpkg` || exit 1
 t=`mktemp -d`
-#is_root || die
+
 if [ -f $PRT_DIR/portpkg.conf ]; then
   RC=$PRT_DIR/portpkg.conf
 elif [ "`whoami`" = "root" ]; then
@@ -11,36 +11,20 @@ elif [ "`whoami`" = "root" ]; then
 else
   RC=~/.portpkg.conf
 fi
-#newest_slack=10.1
 
 target()
 {
   heading="DISTRIBUTION VERSION"
+  dist_ver=`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`
   dialog --title "$heading" --inputbox \
-"What distribution do you focus? Possible answers are '10.0', '10.1' or \
-'current'.
-If unsure enter '$newest_slack'." 0 0 \
+"What distribution do you focus?
+/etc/slackware-version notes $dist_ver, but you can also choose 'current'.
+If unsure enter '$dist_ver'." 0 0 \
     "$DIST_VER" 2>$t/dist-ver || exit
   DIST_VER=`cat $t/dist-ver`
   sed -i "/^DIST_VER=/d" $RC
   if [ "$DIST_VER" ]; then
     echo "DIST_VER=\"$DIST_VER\"" >>$RC
-#    if [ $DIST_VER == current ]; then
-##      if dialog --title "$heading" --yesno \
-##"It is recommended to make exclude.$DIST_VER a symlink to exclude. \
-##Shall I do that for you?
-##If unsure answer 'yes'." 0 0; then
-#      if dialog --title "$heading" --yesno \
-#"It is recommended to add pasture/ to exclude.local for Slackware-current. \
-#Shall I do that for you?
-#If unsure answer 'yes'." 0 0; then
-#        # add pasture/ to the list of excluded ports
-#        sed -i "/^pasture\/$/d" $CFG_DIR/exclude.local
-#        echo "pasture/" >>$CFG_DIR/exclude.local
-##         rm -rf $CFG_DIR/exclude
-##         ln -s exclude.$DIST_VER $CFG_DIR/exclude
-#      fi
-#    fi
   fi
 }
 
@@ -103,24 +87,6 @@ If unsure answer 'no'." 0 0; then
   fi
 }
 
-resources()
-{
-  heading="RESOURCES SETTINGS"
-  echo -n "dialog --title \"$heading\" --checklist \
-\"Select which importers you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
-  local importer
-  for importer in `find $CFG_DIR/importers/* 2>/dev/null`; do
-    echo -n `basename $importer` \
-      `grep ^#BLURB= $importer | cut -d = -f 2` \
-      `[ -x $importer ] && echo on || echo off`" "
-    chmod -x $importer
-  done >>$t/menu
-  . $t/menu 2>$t/resources
-  for importer in `cat $t/resources`; do
-    chmod +x $CFG_DIR/importers/$importer
-  done
-}
-
 plugins()
 {
   heading="PLUGINS SETTINGS"
@@ -143,28 +109,6 @@ plugins()
   sed -i "/^SYNC=/d" $RC
   echo "SYNC=\"`cat $t/plugins`\"" >>$RC
   . $RC
-}
-
-mirrors()
-{
-  heading="MIRROR SETTINGS"
-  echo -n "dialog --title \"$heading\" --menu \
-\"Which of the currently available mirror files do you want to use?\" 0 0 0 " >$t/menu
-  local mirror
-  for mirror in `find $CFG_DIR/mirrors.* | grep -v mirrors.local`; do
-    echo `basename $mirror | sed "s,.*\.,,"` `grep ^#BLURB= $mirror | cut -d = -f 2` \\
-  done >>$t/menu
-  echo "none \"Use primary download URLs\"" >>$t/menu
-  . $t/menu 2>$t/out
-  out=`cat $t/out`
-#  rm -rf $PRT_DIR/mirrors
-  sed -i "/^MIRRORS=/d" $RC
-  if [ "$out" != "none" ]; then
-#    rm -rf $CFG_DIR/mirrors
-#    ln -s $out $CFG_DIR/mirrors
-    echo "MIRRORS=$out" >>$RC
-    . $RC
-  fi
 }
 
 cpu()
@@ -266,20 +210,6 @@ If unsure choose 'default'." 0 0 0 \
   esac
 }
 
-paths()
-{
-  heading="PATH SETTINGS"
-  eval "BIN_PRT_DIR=`grep ^BIN_PRT_DIR= $RC | cut -d = -f 2`"
-  dialog --title "$heading" --extra-label "Change" --inputmenu \
-"Set different values for sources and binaries (.tgz-packages) here:
-If unsure leave as is." 0 0 9 \
-  "sources"  "$SRC_DIR" \
-  `if [ "$BIN_PRT_DIR" ]; then
-    echo "bin-pseudos $BIN_PRT_DIR"
-  fi` \
-  "binaries" "$PKG_DIR" 2>$t/menu
-}
-
 settings()
 {
   heading="VARIOUS SETTINGS"
@@ -318,9 +248,6 @@ Select what you want to configure:" 0 0 0 \
   optimise "Set processor optimising" \
   settings "Various settings" \
   dependencies "Set dependency handling" 2>$t/sub
-#  mirrors "Set mirrors for downloads" \
-#  resources "Set wich resources to use" \
-#  paths "Set paths for sources and binaries" \
   rc=$?
   sub=`cat $t/sub`
   [ $rc == 0 ] && $sub
