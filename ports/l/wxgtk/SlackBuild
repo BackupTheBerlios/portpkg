@@ -4,9 +4,7 @@
 # MD5SUMS: 1371dd278e8f5a7e1fb821c1e3b3795b wxGTK-2.6.0.tar.bz2
 # MD5SUMS: 3cd76c3c47913e52a3175dd47239c6ec wxGTK-2.6.3.tar.bz2
 # MD5SUMS: 9de30aeaad9bac6f8869907fa42fe950 wxGTK-2.8.0.tar.bz2
-# REQUIRES: glib2 gtk+2 libpng libtiff x11
-# OPTIONAL: esound gcc-g++
-## BLOCKS: wxpython-wxgtk
+# REQUIRES: esound gcc-g++ glib2 gtk+2 libpng libtiff x11
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -15,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.6.3
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -33,6 +31,7 @@ cd $TMP
 tar xjvf $CWD/wxGTK-$VERSION.tar.bz2
 cd wxGTK-$VERSION
 chown -R root.root .
+cat $CWD/*.patch | patch -p1 --verbose
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
