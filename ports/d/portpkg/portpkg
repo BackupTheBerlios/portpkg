@@ -744,7 +744,7 @@ maintainer_mode()
   # resolve dependent files to package names
 #  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; grep -lf - * ) \
   sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; find -exec grep -lf - {} + ) \
-| sed "s,^\./,,;/^$name$/d" | pkg2name | sort -u >$t/auto_req_raw
+| sed "s,^\./,," | pkg2name | fgrep -vx "$name" | sort -u >$t/auto_req_raw
   debug "maintainer_mode(): auto reqs: "`cat $t/auto_req_raw`
 
   # find and strip ignore list
