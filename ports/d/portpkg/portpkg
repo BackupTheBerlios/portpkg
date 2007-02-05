@@ -1,4 +1,4 @@
-#!/bin/sh -u
+#!/bin/sh -fu
 #
 # Portpkg -- A ports system for Slackware Linux, written in Bash++
 # Copyright (C) 2003-2005 Thomas Pfaff <topf at users dot berlios dot de>
@@ -704,7 +704,8 @@ maintainer_mode()
   deps() { xargs ldd 2>/dev/null | sed -nr "s,.* => /(.+\.so)\..*$,\1,p"; }
   find $tmp/package-$name/ | deps | fgrep -vf $t/flist >$t/deps
 #  grep -whf - $INST_DIR/* <$t/deps | ( cd /; deps ) >$t/deps_deps
-  fgrep -whf $t/deps $INST_DIR/* | ( cd /; deps ) >$t/deps_deps
+#  fgrep -whf $t/deps $INST_DIR/* | ( cd /; deps ) >$t/deps_deps
+  find $INST_DIR | xargs fgrep -whf $t/deps | ( cd /; deps ) >$t/deps_deps
   fgrep -vxf $t/deps_deps $t/deps >$t/depfiles
 
   # find perl dependencies (modules are identified by their man pages)
@@ -717,7 +718,8 @@ maintainer_mode()
 | xargs fgrep -h "import " \
 | sed -r "s,^ *,,;s,from (.*) import .*$,\1,g;s, as .*$,,;s,\"[^\"]*\",,g;s,.*import ,,g" \
 | sort -u | while read s; do
-    ( cd $INST_DIR/; grep -h "/$s\.py$" * | grep -v "/site-packages/..*/$s\.py$" )
+#    ( cd $INST_DIR/; grep -h "/$s\.py$" * | grep -v "/site-packages/..*/$s\.py$" )
+    ( cd $INST_DIR/; find | xargs grep -h "/$s\.py$" | grep -v "/site-packages/..*/$s\.py$" )
   done | sort -u >>$t/depfiles
 
   # find mono dependencies
@@ -739,7 +741,8 @@ maintainer_mode()
   } | sed "s,^/,," >>$t/depfiles
 
   # resolve dependent files to package names
-  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; grep -lf - * ) \
+#  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; grep -lf - * ) \
+  sed "s,^,^," $t/depfiles | ( cd $INST_DIR/; find | xargs grep -lf - ) \
 | pkg2name | fgrep -vx "$name" | sort -u >$t/auto_req_raw
   debug "maintainer_mode(): auto reqs: "`cat $t/auto_req_raw`
 
@@ -1002,8 +1005,9 @@ check_pkg()
 #  | ( cd $INST_DIR; fgrep -xf - * ) | grep -v "$name-[^-]*-[^-]*-[^-]*:" \
 #  | sed -r "s,^(.*):(.*)$,WARNING: \2 interferes with \1,"
   sed "s,.* ,," $t/footprint | grep -ve /$ -e ^install/ \
-  | ( cd $INST_DIR; fgrep -xf - * ) | grep -v "^$replace:" \
+  | ( cd $INST_DIR; find | xargs fgrep -xf - ) | grep -v "^$replace:" \
   | sed -r "s,^(.*)-.*-.*-.*:(.*)$,/\2 interferes with \1," | while read s; do warn $s; done
+#  | ( cd $INST_DIR; fgrep -xf - * ) | grep -v "^$replace:" \
 
   # warn about tags
   case $package in *[0-9]) case $sources in ftp://ftp.slackware.com/*) ;; *)
