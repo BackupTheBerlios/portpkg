@@ -11,7 +11,7 @@ if ($_FILES["$var"]['tmp_name'] == "")
 if (is_uploaded_file($_FILES["$var"]['tmp_name'])) {
   $filesize = $_FILES["$var"]['size'];
   $filename = $_FILES["$var"]['name'];
-  $filetmp = $_FILES["$var"]['tmp_name']
+  $filetmp = $_FILES["$var"]['tmp_name'];
   if ($filesize < 1)
     die("Error: no file selected!\n");
   if ($filesize > $max_size)
@@ -20,9 +20,8 @@ if (is_uploaded_file($_FILES["$var"]['tmp_name'])) {
     die("Error: $filename does already exist!\n");
   if (!move_uploaded_file($filetmp,$upload_dir.$filename))
     die("Error: file couldn't be moved!\n");
-  else {
-    printf("Success: $filename has been submitted!\n");
-    mail("toastbrot@web.de","Portpkg: Upload ($filename)","$filename");
-  }
+  printf("Success: $filename has been submitted!\n");
+//  mail("portpkg-devel@lists.berlios.de","Portpkg: Upload ($filename)","$filename");
+  mail("topf@users.berlios.de","Portpkg: Upload ($filename)","$filename");
 }
 ?> 
