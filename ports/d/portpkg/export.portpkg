@@ -171,9 +171,9 @@ for arg in `explicit "$@"`; do
 
     # make a tarball of this port in $LOG_DIR/
     mkdir -p $LOG_DIR
-    rm -f $LOG_DIR/$package.tar.bz2*
+    rm -f $LOG_DIR/$package.tar.bz2
     mkdir -p $t/$package/$name
-    cp -a $path/* $t/$package/$name/
+    cp -a $path $t/$package/
 
     # add maintainer information and changelog entry
     cat >$t/$package/$name/info <<EOF
