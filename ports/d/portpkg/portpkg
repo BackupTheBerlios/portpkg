@@ -179,8 +179,8 @@ slk2loc() # <file_list >pkg_list
 {
   xargs egrep -sHom 4 "^(VERSION|ARCH|BUILD|TAG)=[-\$\{\}+:._a-zA-Z0-9]*" \
 | sed -r "s,\",,g;s,\\$\{ARCH:-[^}]+},$ARCH,g;s,\\$\{[A-Z]+:-([^}]+)},\1,g;\
-s,:VERSION=,:0&,;s,:ARCH=,:1&,;s,:BUILD=,:2&,;s,:TAG=,:3&," | sort | sed -n "\
-/:VERSION=/{s,[./]SlackBuild:0:VERSION=,-,;x;s,\n,,g;/--/d;p};\
+s,:VERSION=,:0&,;s,:ARCH=,:1&,;s,:BUILD=,:2&,;s,:TAG=,:3&," | sort | sed -nr "\
+/:VERSION=/{s,(=.*)-,\1_,g;s,[./]SlackBuild:0:VERSION=,-,;x;s,\n,,g;/^$/d;/--/d;p};\
 /:ARCH=/{s,.*=,-,;H};/:BUILD=/{s,.*=,-,;H};/:TAG=/{s,.*=,,;H};\
 \${x;s,\n,,g;/--/d;p}"
 }
