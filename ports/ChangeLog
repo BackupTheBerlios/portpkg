@@ -1,3 +1,70 @@
+2007-02-07  topf  <topf@users.berlios.de>
+
+  * d/portpkg/sync.dropline-bin, d/portpkg/sync.slackbuildsorg:
+  Initial version.
+
+  * d/portpkg/portpkg:
+  * Added STACK, stack_add(), stack_del() and is_in_stack() to handle package queues (temp is obsolete).
+  * slk2loc(): Improved sed expressions. Don't insist on correct VERSION-ARCH-BUILD order. Support optional TAG variable.
+  * slk2loc(), get_info(), build_pkg(): Added support for SlackBuilds.org style scripts.
+  * Added header().
+  * stanza(), row(), debug(), pause(): Improved text formatting.
+  * get_info(): Remove annoying warning about TMP.
+  * check_reqs(): Fixed ignoring not installed packages in TEST_REQS mode.
+  * add_pkg(): Remember intentionally canceled packages (fixes circular dependency issue).
+  * do_add(): List targets also for recursive '.' argument.
+
+2007-02-06  topf  <topf@users.berlios.de>
+
+  * d/portpkg/export.portpkg: Fixed for 'set -f'.
+
+  * d/portpkg/htdocs/upload.php:
+  * Fixed syntax error.
+  * Added (commented) portpkg-devel list address.
+
+2007-02-05  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg: Fixed another previous patch.
+
+  * d/portpkg/portpkg: Fixed previous patch.
+
+  * l/wxgtk/SlackBuild, l/wxgtk/wxGTK-2.6.3-Makefile.patch:
+  Patched not to symlink into DESTDIR.
+
+  * d/portpkg/portpkg:
+  * Use set -f.
+  * Don't use wildcards with grep.
+
+  * d/portpkg/portpkg:
+  * check_blocks(): Return if NO_REQS is set true.
+
+  * d/portpkg/pp-config:
+  * Removed dead code.
+  * Improved target selection.
+
+  * d/portpkg/ignore, d/portpkg/mirrors, d/portpkg/repos, d/portpkg/synonyms, d/portpkg/use, d/portpkg/virtual:
+  Updated.
+
+  * d/portpkg/INSTALL:
+  * Reformatted, updated.
+  * Added note to install fakeroot.
+
+  * d/portpkg/htdocs/index.php:
+  * Use fopen() and fgets() instead of file().
+  * Improve ChangeLog parsing.
+
+  * xap/picard/SlackBuild, xap/picard/doinst.sh, xap/picard/footprint, xap/picard/slack-desc:
+  New entry.
+
+  * l/python-musicbrainz2/SlackBuild, l/python-musicbrainz2/footprint, l/python-musicbrainz2/slack-desc:
+  New entry.
+
+  * xap/devede/SlackBuild, xap/devede/doinst.sh, xap/devede/footprint, xap/devede/slack-desc:
+  Version bump.
+
+  * xap/cinelerra/SlackBuild, xap/cinelerra/doinst.sh, xap/cinelerra/footprint, xap/cinelerra/slack-desc:
+  New entry.
+
 2007-02-04  topf  <topf@users.berlios.de>
 
   * d/portpkg/export.portpkg: Enabled new upload method.
