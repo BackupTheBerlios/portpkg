@@ -79,6 +79,7 @@ ENGINE_VER=cvs
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
+STACK=`mktemp -d`
 
 # global variables
 targets=""
@@ -94,7 +95,7 @@ tmp=$TMP
 #arch_filter=""
 output=/dev/null
 #level_one=true
-temp=`mktemp -d`
+#temp=`mktemp -d`
 cwd=`pwd`
 
 # config files
@@ -145,24 +146,19 @@ pkg2rel()   { sed -r "s,^.*-(.*-.*-.*)$,\1,"; }
 any2gany()  { sed -r "s,^($PRT_DIR|$PKG_DIR|$INST_DIR)/,,"; }
 slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
-slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
-  | sed "\,:VERSION=,{s,\(=.*\)-,\1_,g;s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
-#  | sed -n "\,:VERSION=,{s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g};\,$arch_filter,p"; }
-# FIXME: preset $BUILD and $VERSION is not supported, only reset!
-# TODO: slk2loc should strip ^$PRT_DIR/
 
 # message system
 log()    { echo -e "$@" | tee -a $LOG_DIR/portpkg.log; }
-#stanza() { $level_one && log "\n$@"; }
-stanza() { log "\n$@"; }
-#row()    { log "  --> $@"; }
+header() { log -e "\n+==============================================================================
+| $@
++=============================================================================="; }
+stanza() { log "\n$@" | fmt -tw 80; }
 row()    { log "  --> $@" | fmt -t | sed "s,^[^ ],      &,"; }
-#warn()   { log "WARNING: $@" >&2; }
 warn()   { log "WARNING: $@" | fmt -t | sed "s,^   ,      &," >&2; }
 error()  { [ "$*" ] && log "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
-debug()  { $DEBUG && log "$@" >&2 || log "$@" >/dev/null; }
-pause()  { $INTERACTIVE || return 0; log -n "\n* $@ " >&2; local s; read s; log -n $s; }
+debug()  { $DEBUG && log "$@" | fmt -t >&2 || log "$@" >/dev/null; }
+pause()  { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -s >&2; local s; read s; log -n $s; }
 
 # checks
 has_args()   { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
@@ -170,6 +166,26 @@ is_root()    { [ "$UID" = "0" ] || error "You must be root to run this action!";
 has_prog()   { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
 has_ports()  { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
 is_integer() { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: ${1##*/}!"; }
+
+# simple stack system
+stack_add()   { echo "$group/$package" >>$STACK/$1; }
+stack_del()   { sed -i "\,^$group/$package$,d" $STACK/$1; }
+is_in_stack() { fgrep -sqx "$group/$package" $STACK/$1; }
+
+# magic script list to package list converter
+slk2loc() # <file_list >pkg_list
+# FIXME: preset $BUILD and $VERSION is not supported, only reset!
+## TODO: slk2loc should strip ^$PRT_DIR/
+{
+  xargs egrep -sHom 4 "^(VERSION|ARCH|BUILD|TAG)=[-\$\{\}+:._a-zA-Z0-9]*" \
+| sed -r "s,\",,g;s,\\$\{ARCH:-[^}]+},$ARCH,g;s,\\$\{[A-Z]+:-([^}]+)},\1,g;\
+s,:VERSION=,:0&,;s,:ARCH=,:1&,;s,:BUILD=,:2&,;s,:TAG=,:3&," | sort | sed -n "\
+/:VERSION=/{s,[./]SlackBuild:0:VERSION=,-,;x;s,\n,,g;/--/d;p};\
+/:ARCH=/{s,.*=,-,;H};/:BUILD=/{s,.*=,-,;H};/:TAG=/{s,.*=,,;H};\
+\${x;s,\n,,g;/--/d;p}"
+}
+#slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
+#  | sed "\,:VERSION=,{s,\(=.*\)-,\1_,g;s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
 
 # sort a pkg-list by version
 # TODO: correctly sort "pre", "rc", "alpha", "beta"
@@ -401,7 +417,7 @@ fix_ports_root() # pkgex
 get_info() # pkgex
 {
   local loc arch build re srcver rel nre
-  local decode='sed "s,[{}],,g;s,\$NAME,$name,g;s,\$VERSION,$srcver,g;s,\$ARCH,$arch,g;s,\$BUILD,$build,g"'
+  local decode='sed "s,[{}],,g;s,\$NAME,$name,g;s,\$VERSION,$srcver,g;s,\$ARCH,$arch,g;s,\$BUILD,$build,g;s,\$PRGNAM,$name,g;s,\$TAG,,g"'
   debug "get_info() $@"
 
 #  case $1 in
@@ -489,13 +505,15 @@ sed -nr "/^# opt/{s,.* ,,;s, ,\n,g;p}" $path/requires 2>/dev/null; } | sort -u |
 #grep -s "^# opt" $path/requires | sed "s,.* ,,"; } | sort -u`
   sources=`{ \
 sed -nr "/^# SOURCES:/{s,.*: ,,;s, ,\n,g;p}" $script; \
-sed -nr "/^[^#]/p" $path/sources 2>/dev/null; } | eval $decode`
+sed -nr "/^[^#]/p" $path/sources 2>/dev/null; } | eval $decode
+sed -nr "/^DOWNLOAD=/s,^.*=,,p" $path/$name.info 2>/dev/null`
 #  sources=`{ \
 #grep -s "^# SOURCES: " $script | cut -d " " -f 3- | tr " " "\n"; \
 #grep -sve ^$ -e ^# $path/sources; } | eval $decode`
   md5sums=`{ \
 sed -nr "/^# MD5SUMS:/s,.*: ,,p" $script; \
-sed -nr "/^[^#]/p" $path/md5sums 2>/dev/null; }`
+sed -nr "/^[^#]/p" $path/md5sums 2>/dev/null; }
+sed -nr "/^MD5SUM=/s,^.*=,,p" $path/$name.info 2>/dev/null`
 #  md5sums=`{ \
 #grep -s "^# MD5SUMS: " $script | cut -d " " -f 3-
 #grep -sve ^$ -e ^# $path/md5sums; } | sort -u -k 2`
@@ -534,7 +552,8 @@ ls_src "/$package.tgz$"; } | head -n 1`
   if ! grep -sq "^TMP=\${TMP:-" $script; then
 #    tmp=`grep "^TMP=" $script | cut -d = -f 2`
     tmp=/tmp
-    $DOWNLOAD_ONLY || warn "Assuming script uses TMP=$tmp!"
+#    $DOWNLOAD_ONLY || warn "Assuming script uses TMP=$tmp!"
+    $DOWNLOAD_ONLY || debug "get_info(): assuming script uses TMP=$tmp"
   fi
 
   # check if the script produces multiple packages
@@ -542,7 +561,7 @@ ls_src "/$package.tgz$"; } | head -n 1`
 #  if [ `grep "^[^#]*makepkg " $script | wc -l` -gt 1 ]; then
 #    arch=`echo $package | pkg2rel | cut -d - -f 2`
 #    build=`echo $package | pkg2rel | cut -d - -f 3`
-  products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script | eval $decode`
+  products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz.*,\1,p" $script | eval $decode`
   products=${products:-$package}
 #    products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script \
 #| sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
@@ -594,8 +613,8 @@ echo $inst_pkg; } | default`
 #    # is it blacklistet?
 #    elif echo -e "$req\n$avail_pkg" | grep -sq $(exclude); then
 #      debug "check_reqs(): $name: $req is blacklisted"
-    elif [ "${avail_pkg##*/}" = "$inst_pkg" ]; then
-      debug "check_reqs(): $req is up-to-date"
+    elif [ "${avail_pkg##*/}" = "$inst_pkg" ] && [ "$inst_pkg" ]; then
+      debug "check_reqs(): $req is up-to-date ($inst_pkg)"
     # is it optional but not listed in the use scope?
 #    elif echo "$optional" | fgrep -sqx "$req" && ! echo "${avail_pkg:-0}" | grep -sq $(use); then
     elif $opt && ! echo "${avail_pkg:-0}" | grep -sq $(use); then
@@ -609,7 +628,10 @@ echo $inst_pkg; } | default`
       $DRY_RUN && ! [ "${prev:-}" ] && stanza "Preparing dependencies of $package:"
       prev=$name
 #      ( $DRY_RUN && level_one=false
-      ( $DRY_RUN && stanza() { :; }
+      ( if $DRY_RUN; then
+          stanza() { :; }
+          header() { :; }
+        fi
 #      get_info $avail_pkg || exit 1
       tar=`echo "$targets" | grep $(regex $req)`
       [ "$tar" ] && debug "check_reqs(): $name: $req is in targets scope, requesting $tar"
@@ -618,7 +640,7 @@ echo $inst_pkg; } | default`
       add_pkg || die "${avail_pkg##*/} failed! Stopping $prev." ) || return 1
       $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency ${avail_pkg##*/}"
     # is it blacklistet?
-    elif echo "$avail_pkg" | grep -sqv $(exclude); then
+    elif echo "$avail_pkg" | grep -sqv $(exclude) && [ "$avail_pkg" ]; then
       debug "check_reqs(): $req ($avail_pkg) is blacklisted"
     elif ! [ "$inst_pkg" ]; then
       error "Cannot find required package $req! Stopping."
@@ -802,7 +824,7 @@ build_pkg()
   fi
 
   # warnings concerning fakeroot
-  if ( $no_fakeroot || ! has_prog fakeroot); then
+  if ( $no_fakeroot || ! has_prog fakeroot ); then
     if [ "$name" != "fakeroot" ]; then
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
@@ -814,6 +836,8 @@ build_pkg()
   fi
 
   $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
+
+  header "Starting $script"
   stanza "Building $package:"
 
   cd ${script%/*} || return 1
@@ -881,8 +905,9 @@ build_pkg()
     # execute SlackBuild
     mkdir -p $LOG_DIR
     date >$LOG_DIR/$name.buildlog
+    # set OUTPUT=$tmp here just in case it's a slackbuilds.org type sctipt
 #    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" PATH=\$PATH:/sbin TMP=$tmp"
-    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp"
+    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp OUTPUT=$tmp"
     if ! $no_fakeroot && has_prog fakeroot; then
       # run fakerooted SlackBuild
 #      row "Executing (fakerooted) $script $script_opt"
@@ -1032,21 +1057,25 @@ add_pkg()
 
   # if it is already tracked as "started" (and therefore not "finished"),
   # it is either broken or a circular dependency
-  if fgrep -sqx "$group/$package" $temp/canceled; then
+#  if fgrep -sqx "$group/$package" $temp/canceled; then
+  if is_in_stack canceled; then
     debug "add_pkg() $name has already been canceled, skipping"
     return 0
-  elif fgrep -sqx "$group/$package" $temp/started; then
+#  elif fgrep -sqx "$group/$package" $temp/started; then
+  elif is_in_stack started; then
     error "Circular dependency! Stopping $name."
     return 1
   # otherwise if tracked as "finished" (because of a dependency), skip it
-  elif fgrep -sqx "$group/$package" $temp/finished; then
+#  elif fgrep -sqx "$group/$package" $temp/finished; then
+  elif is_in_stack finished; then
     return 0
   elif ls_inst -q "/$package$" && ! $REINSTALL; then
     stanza "$package is already installed. Skipping."
     return 0
   else
   # else track it as "started"
-    echo $group/$package >>$temp/started
+#    echo $group/$package >>$temp/started
+    stack_add started
   fi
 
   # requirements check
@@ -1054,6 +1083,8 @@ add_pkg()
   check_opts || return 1
   check_blocks || return 1
 
+
+  stack_add canceled
   # package file found in cache? (first in its group, then other places)
 #  if ! [ "$pkg_file" ] || $rebuild; then
     build_pkg || return 1
@@ -1063,10 +1094,13 @@ add_pkg()
 #    # tell what's happening
 #    stanza "Already built. Skipping."
 #  fi
+  stack_del canceled
 
   # track as "finished", remove from "started" list
-  echo $group/$package >>$temp/finished
-  sed -i "\,^$group/$package$,d" $temp/started
+#  echo $group/$package >>$temp/finished
+  stack_add finished
+#  sed -i "\,^$group/$package$,d" $temp/started
+  stack_del started
 
   # don't get confused in download-only mode
   if $DOWNLOAD_ONLY; then
@@ -1083,7 +1117,8 @@ add_pkg()
   check_pkg || return 1
 
   # what to display?
-  echo $group/$package >>$temp/canceled
+#  echo $group/$package >>$temp/canceled
+  stack_add canceled
 #  if ! $slot_in && ls_inst -Fqx $package; then
 #  if ls_inst -q "/$package$"; then
   if [ "$replace" = "$package" ]; then
@@ -1102,7 +1137,8 @@ add_pkg()
 #    stanza "Installing $package..."
 #    add="$INSTALLPKG"
   fi
-  sed -i "\,^$group/$package$,d" $temp/canceled
+#  sed -i "\,^$group/$package$,d" $temp/canceled
+  stack_del canceled
 
   # update install list cache
 #  sed -ir "\,^$INST_DIR/$name(-[^-]*){3}$,d" $CACHE/inst
@@ -1133,19 +1169,28 @@ do_add() # pkgex-list
 
   targets=`explicit "$@"`
 
+  if [ "$targets" = "." ]; then
+    fix_ports_root "$targets"
+    targets=`ls_slk "$@" | slk2name`
+  fi
+
   # if we have implicit expressions here (groups), tell what they contain
-  case "$@" in */|*/\ *|*%)
+#  case "$@" in */|*/\ *|*%)
+  if [ `echo "$targets" | wc -l` -gt 1 ]; then
     warn "You are using an implicit expression. Use with caution!"
     $NO_REQS || warn "Exact results are NOT COMPLETELY predictable. \
 Try --dryrun first and consider using --noreqs and/or --ignore!"
 
-    stanza "Targets: "`echo "$targets" | sed "s,.*/,,"` | fmt -t
-    pause "Continue? (ctrl-c to abort)";;
-  esac
+    stanza "Targets: "`echo "$targets" | sed "s,.*/,,"`
+    pause "Continue? (ctrl-c to abort)"
+  fi
+#;;
+#  esac
 
   if $DOWNLOAD_ONLY; then
     stanza "Downloading files:"
     stanza() { :; }
+    header() { :; }
 #    level_one=false
   fi
 
@@ -1167,7 +1212,7 @@ do_diff() # [pkgex]
   diff_list=`ls_diff "$@"`
   [ "$diff_list" ] || die "No differences found."
 
-  stanza "PACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
+  echo -e "\nPACKAGE NAME:\r\t\t\t\tAVAILABLE:\r\t\t\t\t\t\t\tINSTALLED:"
   for pkg in $diff_list; do
     debug "do_diff(): pkg=$pkg"
     avail_rel=`echo $pkg | pkg2rel`
