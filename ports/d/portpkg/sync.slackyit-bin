@@ -9,7 +9,8 @@
 # How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
-SOURCE=http://www.slacky.it/download
+DIST_VER=${DIST_VER:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
+SOURCE=http://www.slacky.it/repository/slackware/slackware-$DIST_VER
 FILES="ChangeLog.txt FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
 TREE=$PRT_DIR/z/bin/slackyit
 
