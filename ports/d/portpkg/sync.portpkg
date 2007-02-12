@@ -32,7 +32,9 @@ has_prog cvs || die
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
 # don't do anything in DRY_RUN
-$DRY_RUN && pre=echo || pre=""
+pre=""
+$DRY_RUN && pre=:
+$DEBUG && $DRY_RUN && pre=debug
 
 # sync port dir
 row "Syncing $TREE/"

@@ -12,6 +12,7 @@ if  [ "`basename $0`" != "portpkg" ]; then
 fi
 
 row "Syncing $TREE"
+$DRY_RUN && exit 0
 t=`mktemp -d`
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
