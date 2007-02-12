@@ -26,7 +26,7 @@ NO_REQS=false           # Disable dependency handling completely
 TEST_REQS=false         # Do not try to install required dependencies
 LAZY_CHECKS=false       # Do not try to upgrade required dependencies
 DEBUG=false             # Display debugging output
-USE_ALPHA_CODE=true     # Use unstable features
+USE_ALPHA_CODE=false    # Use unstable features
 DOWNLOAD_ONLY=false     # Do not compile
 PREPARE_ONLY=false      # Do not install
 REINSTALL=false         # Force installation
@@ -84,8 +84,9 @@ STACK=`mktemp -d`
 # global variables
 targets=""
 package="" name="" group="" path="" script="" description=""
-sources="" md5sums="" pkg_file="" products="" replace=""
-requires="" optional="" blocks="" #uses=""
+sources="" md5sums="" pkg_file="" replace=""
+requires="" optional="" blocks=""
+#uses="" products=""
 maintain=$MAINTAIN_ALL
 no_fakeroot=$NO_FAKEROOT
 rebuild=$REBUILD
@@ -101,16 +102,16 @@ cwd=`pwd`
 # config files
 synonyms() { cache $CACHE/synonyms 'grep -vshe ^# -e ^$ $CFG_DIR/synonyms $PRT_DIR/synonyms | sed "s,^,(,;s,$,),;s, ,|,g"' "$@"; }
 mirrors() { cache $CACHE/mirrors 'grep -vshe ^# -e ^$ $CFG_DIR/mirrors $PRT_DIR/mirrors'; }
-if ! $USE_ALPHA_CODE; then
+#if ! $USE_ALPHA_CODE; then
 ##ignore()  { cache $CACHE/ignore 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)'; }
 #ignore()  { regex `cache $CACHE/ignore 'grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude'`; }
 ##exclude() { cache $CACHE/exclude 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/exclude $PRT_DIR/exclude)'; }
 #exclude() { ignore; }
 ##use()     { cache $CACHE/use 'regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)'; }
 #use()     { regex `cache $CACHE/use 'grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use'`; }
-repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repos | sed s,^,$PRT_DIR/,'
-            test -s $CACHE/repos || echo $PRT_DIR; }
-fi
+#repos()   { cache $CACHE/repos 'grep -vshe ^# -e ^$ $CFG_DIR/repos $PRT_DIR/repos | sed s,^,$PRT_DIR/,'
+#            test -s $CACHE/repos || echo $PRT_DIR; }
+#fi
 
 prefer()  { regex "$PREFER"; }
 ignore()  { regex "$IGNORE"; }
@@ -125,13 +126,13 @@ ls_virt() { cache $CACHE/virt 'grep -vshe ^# -e ^$ $CFG_DIR/virtual $PRT_DIR/vir
 ls_inst() { cache $CACHE/inst 'find $INST_DIR/ -type f' "$@"; }
 #ls_pkg()  { cache $CACHE/pkg 'cd $PKG_DIR 2>/dev/null && find * -name "*.tgz" | sed "s,\.tgz$,,"' "$@"; }
 ls_pkg()  { cache $CACHE/pkg 'find $PKG_DIR/ -name "*.tgz" 2>/dev/null' "$@"; }
-if $USE_ALPHA_CODE; then
+#if $USE_ALPHA_CODE; then
 #ls_slk()  { cache $CACHE/slk 'find -L $PRT_DIR/ -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
 ls_slk()  { cache $CACHE/slk 'find $PRT_DIR/ -follow -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
-else
-#ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
-ls_slk()  { cache $CACHE/slk 'find $(repos) -follow -name "*SlackBuild" 2>/dev/null' "$@"; }
-fi
+#else
+##ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
+#ls_slk()  { cache $CACHE/slk 'find $(repos) -follow -name "*SlackBuild" 2>/dev/null' "$@"; }
+#fi
 ls_loc()  { cache $CACHE/loc 'ls_slk | slk2loc' "$@"; }
 ls_src()  { cache $CACHE/src 'find $SRC_DIR/ -type f -maxdepth 1 2>/dev/null' "$@"; }
 
@@ -201,13 +202,13 @@ s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 | sed -r "s, ,,g;\,(^|/)$PREFER,s,-999_,-,"
 }
 
-if $USE_ALPHA_CODE; then
+#if $USE_ALPHA_CODE; then
 # pipe only the "default" package of a list (new style)
 default() { sort_ver | head -n 1; }
-else
-# pipe only the "default" package of a list (old style)
-default() { head -n 1; }
-fi
+#else
+## pipe only the "default" package of a list (old style)
+#default() { head -n 1; }
+#fi
 
 # cache the output of "action" and grep a regex
 cache() # file action regex
@@ -437,21 +438,21 @@ get_info() # pkgex
   # find port, take the first if more than one available
   fix_ports_root "$@"
   re=`regex $1`
-if $USE_ALPHA_CODE; then
+#if $USE_ALPHA_CODE; then
 #  loc=`\
 #ls_slk $re | grep -v $(exclude) | slk2loc | sort_ver
 #ls_slk $re | slk2loc | sort_ver`
   loc=`ls_slk $re | grep -v $(exclude) | slk2loc | sort_ver`
   loc=${loc:-`ls_slk $re | slk2loc | sort_ver`}
 #  loc=`echo "$loc" | head -n 1`
-else
-#  loc=`\
-#ls_loc $re | grep -v $(exclude) | default
-#ls_loc $re | default`
-  loc=`ls_loc $re | grep -v $(exclude) | default`
-  loc=${loc:-`ls_loc $re | default`}
-#  loc=`echo "$loc" | head -n 1`
-fi
+#else
+##  loc=`\
+##ls_loc $re | grep -v $(exclude) | default
+##ls_loc $re | default`
+#  loc=`ls_loc $re | grep -v $(exclude) | default`
+#  loc=${loc:-`ls_loc $re | default`}
+##  loc=`echo "$loc" | head -n 1`
+#fi
   loc=`echo "$loc" | head -n 1`
 #;;
 #  esac
@@ -556,13 +557,13 @@ ls_src "/$package.tgz$"; } | head -n 1`
     $DOWNLOAD_ONLY || debug "get_info(): assuming script uses TMP=$tmp"
   fi
 
-  # check if the script produces multiple packages
+#  # check if the script produces multiple packages
 #  products="$package"
 #  if [ `grep "^[^#]*makepkg " $script | wc -l` -gt 1 ]; then
 #    arch=`echo $package | pkg2rel | cut -d - -f 2`
 #    build=`echo $package | pkg2rel | cut -d - -f 3`
-  products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz.*,\1,p" $script | eval $decode`
-  products=${products:-$package}
+#  products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz.*,\1,p" $script | eval $decode`
+#  products=${products:-$package}
 #    products=`sed -nr "s,^[^#]*makepkg .*/([^ ]*)\.tgz ?.*,\1,p" $script \
 #| sed "s,[{}],,g;s,\\$NAME,$name,g;s,\\$VERSION,$version,g;s,\\$ARCH,$arch,g;s,\\$BUILD,$build,g"`
 #  fi
@@ -806,7 +807,7 @@ maintainer_mode()
 build_pkg()
 {
   local t=`mktemp -d`
-  local src srcname md5sum script_opt flags_var sh_opt prod build_cmd
+  local src srcname md5sum script_opt flags_var sh_opt prod build_cmd products
 
   # package file found in cache?
   if [ "$pkg_file" ] && ! $rebuild; then
@@ -837,7 +838,7 @@ build_pkg()
 
   $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
 
-  header "Starting $script"
+  header "Starting ${script#$PRT_DIR/}"
   stanza "Building $package:"
 
   cd ${script%/*} || return 1
@@ -953,11 +954,16 @@ build_pkg()
 #      chmod 1777 /tmp
     fi #2>&1 | tee $LOG_DIR/$name.buildlog >$output
 
+    # find produced packages names
+    products=`sed -nr "s,^\+ [^#]*makepkg ?.* (.*\.tgz).*,\1,p" $LOG_DIR/$name.buildlog`
+    products=${products:-$tmp/$package.tgz}
+
     # shrink buildlogs
     gzip -f $LOG_DIR/$name.buildlog
 
     # success? (this is the most promising test to ensure it worked)
-    if ! [ -f $tmp/$package.tgz ]; then
+#    if ! [ -f $tmp/$package.tgz ]; then
+    if ! [ "$products" ]; then
       $VERBOSE || gunzip -c $LOG_DIR/$name.buildlog.gz | tail
       error "Compilation failed (see $LOG_DIR/$name.buildlog.gz)!"
       $maintain && ln -sf $LOG_DIR/$name.buildlog.gz PORT_IS_BROKEN
@@ -977,6 +983,7 @@ build_pkg()
     fi
     row "Skipping package building"
     cp $pkg_file $tmp/
+    products=$tmp/$package.tgz
 #    # save old buildlog
 #    [ -f $LOG_DIR/$name.buildlog.gz ] && gunzip -f $LOG_DIR/$name.buildlog.gz
   fi
@@ -989,9 +996,10 @@ build_pkg()
   mkdir -p $PKG_DIR/$group
 #  cp $tmp/$package.tgz $PKG_DIR/$group/
   for prod in $products; do
-    row "Moving $prod.tgz to $PKG_DIR/$group/"
-    mv $tmp/$prod.tgz $PKG_DIR/$group/
-    echo $PKG_DIR/$group/$prod.tgz >>$CACHE/pkg
+    row "Moving ${prod##*/} to $PKG_DIR/$group/"
+#    mv $tmp/$prod.tgz $PKG_DIR/$group/
+    mv $prod $PKG_DIR/$group/
+    echo $PKG_DIR/$group/${prod##*/} >>$CACHE/pkg
   done
   pkg_file=$PKG_DIR/$group/$package.tgz
   row "Cleaning up"
@@ -1156,7 +1164,9 @@ add_pkg()
 ##    return 1
 #  fi
 ##  return 0
-  ( [ "$replace" ] && pkg_file="$replace%$pkg_file"
+  ( cd ${pkg_file%/*}
+    pkg_file=${pkg_file##*/}
+  [ "$replace" ] && pkg_file="$replace%$pkg_file"
   debug "add_pkg(): $ADD_CMD"
   $DRY_RUN && stanza "Installing package $package...\nPACKAGE DESCRIPTION:\n$description"
   $DRY_RUN || eval $ADD_CMD ) || error "Installation failed!"
@@ -1258,13 +1268,13 @@ do_find() # text [..] >list
     mv $t/list.new $t/list
   done
   [ -s $t/list ] || die "No search results found."
-  if $USE_ALPHA_CODE; then
+#  if $USE_ALPHA_CODE; then
     xargs grep -m 1 "^[^ ]*: " <$t/list | cut -d : -f 2- | sort -u
-  else
-    # limit the characters of each argline, because regex needs some space later
-    sed "s,^$PRT_DIR/,,;s,[./]SlackBuild$,,;s,/[^/]*slack-desc$,," $t/list \
-    | xargs -s 2048 | while read s; do do_list $s; done
-  fi
+#  else
+#    # limit the characters of each argline, because regex needs some space later
+#    sed "s,^$PRT_DIR/,,;s,[./]SlackBuild$,,;s,/[^/]*slack-desc$,," $t/list \
+#    | xargs -s 2048 | while read s; do do_list $s; done
+#  fi
 }
 
 # print information about a port
@@ -1288,7 +1298,7 @@ do_info() # pkgex-list
       echo "UNCOMPRESSED PACKAGE SIZE:  `expr $(echo $s | cut -d " " -f 2) / 1024` K"
       echo "PACKAGE LOCATION:  $pkg_file" | fmt -t
     fi
-    [ "$products" != "$package" ] && echo "SCRIPT PRODUCES:  "$products | fmt -t
+#    [ "$products" != "$package" ] && echo "SCRIPT PRODUCES:  "$products | fmt -t
     echo "SCRIPT LOCATION:  $script" | fmt -t
     [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
@@ -1310,11 +1320,12 @@ do_list() # [pkgex-list] >glist
     "") ls_loc;;
     *)  # grep arguments (in order to see virtual groups we list them here also)
         virt=`ls_virt $(regex "$@") | any2base`
-        if $USE_ALPHA_CODE; then
+#        if $USE_ALPHA_CODE; then
 	  ls_slk `regex "$@" $virt` | slk2loc | sort_ver
-	else
-	  ls_loc `regex "$@" $virt` | sort_ver
-	fi;;
+#	else
+#	  ls_loc `regex "$@" $virt` | sort_ver
+#	fi
+        ;;
   esac | any2gany
 }
 
@@ -1520,11 +1531,11 @@ init()
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
   case ${BASH_VERSION:-} in 3.1.*) ;; *) trap '' PIPE;; esac
 
-  if ! $USE_ALPHA_CODE; then
-    IGNORE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)`
-    EXCLUDE="$IGNORE"
-    USE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)`
-  fi
+#  if ! $USE_ALPHA_CODE; then
+#    IGNORE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)`
+#    EXCLUDE="$IGNORE"
+#    USE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/use $PRT_DIR/use)`
+#  fi
 
   # check
 #  has_prog sed || die
