@@ -42,6 +42,7 @@ done
 
 # rebuild the tree
 row "Rebuilding pseudo ports"
+$DRY_RUN && exit 0
 rm -rf $TREE
 mkdir -p $TREE
 
@@ -99,7 +100,8 @@ $desc
 eof
 
 CWD=\`pwd\`
-cp \$CWD/$name-\$VERSION-\$ARCH-\$BUILD.tgz \$TMP/
+makepkg() { cp \$CWD/\`basename \$1\` \$1; }
+makepkg \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
 done
 
@@ -120,7 +122,8 @@ for kernel in `sed -nr "s,^kernels/(.*)/bzImage$,\1,p" $t/files`; do
   desc="$name: $name (Linux $ver)
 $name:
 $name: This is the Linux kernel version $ver from
-$name: $SOURCE."
+$name: $SOURCE.
+$name:"
   build=1pseudo
   group=kernels
   md5sum_s=`grep " \./kernels/$kernel/System.map.gz$" $t/CHECKSUMS.md5 | sed "s, .*,,"`

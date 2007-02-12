@@ -43,6 +43,7 @@ done
 
 # rebuild the tree
 row "Rebuilding pseudo ports"
+$DRY_RUN && exit 0
 rm -rf $TREE
 mkdir -p $TREE
 
@@ -100,7 +101,8 @@ $desc
 eof
 
 CWD=\`pwd\`
-cp \$CWD/$name-\$VERSION-\$ARCH-\$BUILD.tgz \$TMP/
+makepkg() { cp \$CWD/\`basename \$1\` \$1; }
+makepkg \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
 done
 
