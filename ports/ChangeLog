@@ -1,3 +1,27 @@
+2007-02-12  topf  <topf@users.berlios.de>
+
+  * d/portpkg/portpkg:
+  * Reset USE_ALPHA_CODE to false and removed old ('non-alpha') code which is required now.
+  * Moved global variable products as local to build_pkg().
+  * build_pkg(): Grep variable products in plain text from buildlog instead of interpreting variables in the build script.
+  * add_pkg(): Shorten upgradepkg's output by cd'ing to pkg_file's directory.
+
+  * d/portpkg/sync.slackware-bin:
+  * Support DRY_RUN.
+  * Use a (faked) makepkg for script analyse.
+
+  * d/portpkg/sync.portpkg, d/portpkg/sync.slackbuildsorg, d/portpkg/sync.zz.cleanup:
+  Support DRY_RUN.
+
+  * d/portpkg/sync.dropline-bin, d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin, d/portpkg/sync.slackyit-bin:
+  * Support DRY_RUN.
+  * Use a (faked) makepkg for script analyse.
+
+  * d/portpkg/portpkg.1:
+  In fact, 'direct mode' should be named 'indirect mode'. :-)
+
+2007-02-11  topf  <topf@users.berlios.de>
+
 2007-02-10  topf  <topf@users.berlios.de>
 
   * d/portpkg/sync.slackyit-bin: Updated URL and added DIST_VER.
