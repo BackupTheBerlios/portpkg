@@ -44,7 +44,7 @@ MY_EMAIL=$MY_TAG@`hostname`
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
 EXPORT="export.portpkg"
 REPORT="report.portpkg"
-PREFER="patches/"
+PREFER="local/"
 EXCLUDE="pasture/ testing/ extra/ open/ aaa_elflibs kernel-ide kernel-generic kernel-modules kernel-source alsa-driver"
 USE=""
 IGNORE="aaa_elflibs glibc-solibs glibc-i18n glibc-profile glibc-zoneinfo cxxlibs openssl-solibs"
@@ -133,7 +133,8 @@ ls_slk()  { cache $CACHE/slk 'find $PRT_DIR/ -follow -name "CVS" -prune -o -type
 ##ls_slk()  { cache $CACHE/slk 'find -L $(repos) -name "*SlackBuild" 2>/dev/null' "$@"; }
 #ls_slk()  { cache $CACHE/slk 'find $(repos) -follow -name "*SlackBuild" 2>/dev/null' "$@"; }
 #fi
-ls_loc()  { cache $CACHE/loc 'ls_slk | slk2loc' "$@"; }
+#ls_loc()  { cache $CACHE/loc 'ls_slk | slk2loc' "$@"; }
+ls_loc()  { ls_slk "$@" | slk2loc; }
 ls_src()  { cache $CACHE/src 'find $SRC_DIR/ -type f -maxdepth 1 2>/dev/null' "$@"; }
 
 # converters
@@ -153,12 +154,12 @@ log()    { echo -e "$@" | tee -a $LOG_DIR/portpkg.log; }
 header() { log -e "\n+==============================================================================
 | $@
 +=============================================================================="; }
-stanza() { log "\n$@" | fmt -tw 80; }
-row()    { log "  --> $@" | fmt -t | sed "s,^[^ ],      &,"; }
-warn()   { log "WARNING: $@" | fmt -t | sed "s,^   ,      &," >&2; }
+stanza() { log "\n$@" | fold -sw 75 | sed "3,\$s,^,   ,"; }
+row()    { log "  --> $@" | fold -sw 75 | sed "2,\$s,^,      ,"; }
+warn()   { log "WARNING: $@" | fold -sw 75 | sed "2,\$s,^,         ," >&2; }
 error()  { [ "$*" ] && log "$@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
-debug()  { $DEBUG && log "$@" | fmt -t >&2 || log "$@" >/dev/null; }
+debug()  { $DEBUG && log "$@" | fold -sw 75 | sed "2,\$s,^,   ," >&2 || log "$@" >/dev/null; }
 pause()  { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -s >&2; local s; read s; log -n $s; }
 
 # checks
@@ -178,12 +179,12 @@ slk2loc() # <file_list >pkg_list
 # FIXME: preset $BUILD and $VERSION is not supported, only reset!
 ## TODO: slk2loc should strip ^$PRT_DIR/
 {
-  xargs egrep -sHom 4 "^(VERSION|ARCH|BUILD|TAG)=[-\$\{\}+:._a-zA-Z0-9]*" \
-| sed -r "s,\",,g;s,\\$\{ARCH:-[^}]+},$ARCH,g;s,\\$\{[A-Z]+:-([^}]+)},\1,g;\
-s,:VERSION=,:0&,;s,:ARCH=,:1&,;s,:BUILD=,:2&,;s,:TAG=,:3&," | sort | sed -nr "\
-/:VERSION=/{s,(=.*)-,\1_,g;s,[./]SlackBuild:0:VERSION=,-,;x;s,\n,,g;/^$/d;/--/d;p};\
-/:ARCH=/{s,.*=,-,;H};/:BUILD=/{s,.*=,-,;H};/:TAG=/{s,.*=,,;H};\
-\${x;s,\n,,g;/--/d;p}"
+  xargs egrep -sHom 4 "^(VERSION|ARCH|BUILD|TAG)=\"?(\\$\{)?[-%+:._a-zA-Z0-9]+\}?\"?" \
+| sed -r "s,\",,g;/=$/d;s,[\./]SlackBuild:,:,;s,\\$\{ARCH:-[^}]+},$ARCH,g;\
+s,\\$\{[A-Z]+:-([^}]+)},\1,g;s,:VERSION=,:0=,;s,:ARCH=,:1=,;s,:BUILD=,:2=,;s,:TAG=,:3=," \
+| sort \
+| sed -nr "/:0=/{s,(=.*)-,\1_,g;s,:0=,-,;x;s,\n,,g;/^$/d;/--/d;p};\
+/:[12]=/{s,.*=,-,;H};/:3=/{s,.*=,,;H};\${x;s,\n,,g;/--/d;p}"
 }
 #slk2loc()   { xargs grep -sH "^VERSION=\|^ARCH=\|^BUILD=" -m 3 \
 #  | sed "\,:VERSION=,{s,\(=.*\)-,\1_,g;s,[\./]SlackBuild:VERSION=,-,;N;s,\n.*=,-,;N;s,\n.*=,-,;s,\${ARCH:-[^}]*},$ARCH,;s,\${[A-Z]*:-\([^}]*\)},\1,g}"; }
@@ -195,7 +196,7 @@ sort_ver() # <pkg_list >pkg_list
   # separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
   # (but *only* within version-arch-build parts!)
   sed -r "\
-`$LAZY_CHECKS || echo '\,(^|/)$PREFER,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;'`\
+`$LAZY_CHECKS || echo "\,(^|/)$PREFER,s,-([^-]*-[^-]*-[^-]*)$,-999_\1,;"`\
 s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 :split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
 | sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
@@ -255,7 +256,7 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
           cvs -qz3 up -dP . )
         else
           ( cd ${dest%/*}
-          cvs -qz3 -d `dirname ${try#cvs://}` co -P ${try##*/} )
+          cvs -qz3 -d `dirname ${try#cvs://}` co -d ${dest##*/} -P ${try##*/} )
         fi || continue
         return 0;;
       svn://*)
@@ -269,6 +270,11 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
           ( cd ${dest%/*}
           svn co $try ${dest##*/} )
         fi || continue
+        return 0;;
+      rsync://*)
+        # rsync://url
+        has_prog rsync || die
+        rsync -avz $try $dest || continue
         return 0;;
       *)
         has_prog wget || die
@@ -788,13 +794,13 @@ maintainer_mode()
   update_header
 
   # show a few statistics and check for common mistakes
-  [ -s $t/new_req ] && row "New dependencies:" `cat $t/new_req` | fmt
+  [ -s $t/new_req ] && row "New dependencies:" `cat $t/new_req`
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req >$t/arb_req
-  [ -s $t/arb_req ] && row "Arbitrary dependencies (KEEP THIS LIST SHORT):" `cat $t/arb_req` | fmt
+  [ -s $t/arb_req ] && row "Arbitrary dependencies (KEEP THIS LIST SHORT):" `cat $t/arb_req`
   grep -e "-upgraded$" $t/auto_req >$t/check_req
 #  ls_loc -v $(exclude) | pkg2name | any2base | fgrep -vxf - $t/auto_req >>$t/check_req
   ls_slk -v $(exclude) | slk2name | fgrep -vxf - $t/auto_req >>$t/check_req
-  [ -s $t/check_req ] && warn "Check these dependencies:" `cat $t/check_req` | fmt -t
+  [ -s $t/check_req ] && warn "Check these dependencies:" `cat $t/check_req`
 
   # remove obsolete files
   rm -f arbitrary requires blocks optional slot-in pseudo no-fakeroot flags md5sums sources
@@ -963,7 +969,7 @@ build_pkg()
 
     # success? (this is the most promising test to ensure it worked)
 #    if ! [ -f $tmp/$package.tgz ]; then
-    if ! [ "$products" ]; then
+    if ! [ -f ${products%% *} ]; then
       $VERBOSE || gunzip -c $LOG_DIR/$name.buildlog.gz | tail
       error "Compilation failed (see $LOG_DIR/$name.buildlog.gz)!"
       $maintain && ln -sf $LOG_DIR/$name.buildlog.gz PORT_IS_BROKEN
@@ -1186,7 +1192,7 @@ do_add() # pkgex-list
 
   # if we have implicit expressions here (groups), tell what they contain
 #  case "$@" in */|*/\ *|*%)
-  if [ `echo "$targets" | wc -l` -gt 1 ]; then
+  if [ `echo "$targets" | wc -l` != `echo "${@:-.}" | wc -w` ]; then
     warn "You are using an implicit expression. Use with caution!"
     $NO_REQS || warn "Exact results are NOT COMPLETELY predictable. \
 Try --dryrun first and consider using --noreqs and/or --ignore!"
