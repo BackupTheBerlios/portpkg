@@ -1,3 +1,55 @@
+2007-02-18  topf  <topf@users.berlios.de>
+
+  * d/portpkg/pp-config: Don't remove SYNC on cancel.
+
+  * d/portpkg/portpkg:
+  * prefer should better be set to local/ as documentation says.
+  * Don't cache ls_loc() anymore, to prevent running slk2loc to the whole ports tree.
+  * stanza(), row(), warn(), debug(): Don't use fmt -t as it's buggy with large text lines.
+  * slk2loc(): Polished regexes.
+  * sort_ver(): Replaced 's with "s to actually enable sorting prefer variable.
+  * get(): Support saving cvs to arbitrary destinations.
+  * get(): Added rsync:// scheme.
+  * maintainer_mode(): fmt is now obsolete.
+  * build_pkg(): Test -f first products entry.
+  * do_add(): Test for implicit expressions better.
+
+  * d/portpkg/autoport:
+  * Find next build variable easier.
+  * Don't operate in CACHE if it doesn't exist yet.
+
+  * d/portpkg/INSTALL: Corrected installation command.
+
+  * l/ffcall/SlackBuild, l/ffcall/footprint, l/ffcall/slack-desc:
+  Added to repository.
+
+  * l/cinvoke/SlackBuild, l/cinvoke/footprint, l/cinvoke/slack-desc:
+  Added to repository.
+
+  * gnome/balsa/SlackBuild:
+  Added --enable-smime --with-gtkspell --with-gtksourceview.
+
+  * xap/gtk-server/SlackBuild.cp: Removed.
+
+  * xap/gtk-server/SlackBuild, xap/gtk-server/SlackBuild.cp, xap/gtk-server/footprint:
+  Updated to version 2.1.3.
+
+2007-02-14  topf  <topf@users.berlios.de>
+
+  * ap/vamps/SlackBuild, ap/vamps/vamps-0.99.3.patch:
+  Added patch to fix 'Premature EOF' problem.
+
+  * ap/dvdauthor/SlackBuild, ap/dvdauthor/footprint:
+  Reverted commit, version 0.6.13 should have been hold back.
+
+  * ap/dvdauthor/SlackBuild, ap/dvdauthor/footprint:
+  Upgraded to version 0.6.13.
+
+  * gnome/inkscape/SlackBuild, gnome/inkscape/footprint:
+  Updated to version 0.45.
+
+  * d/portpkg/logo.png, d/portpkg/logo.svg: Little more discreet version.
+
 2007-02-12  topf  <topf@users.berlios.de>
 
   * d/portpkg/portpkg:
