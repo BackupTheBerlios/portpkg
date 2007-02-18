@@ -328,7 +328,9 @@ arch=${s:-$arch}
 # build: check if we need to increase it
 n=1
 #gpkg=`ls_loc | any2gany | grep "^$group/$name-$version-$arch-[0-9]*$MY_TAG$" | head -n 1`
-gpkg=`ls_slk $(regex $name) | slk2loc | any2gany | grep -x "$group/$name-$version-$arch-[0-9]*$MY_TAG" | head -n 1`
+#gpkg=`ls_slk $(regex $name) | slk2loc | any2gany | grep -x "$group/$name-$version-$arch-[0-9]*$MY_TAG" | head -n 1`
+gpkg=`find $ADM_DIR/packages $ADM_DIR/removed_packages | any2gany \
+| grep -x "$name-$version-$arch-[0-9]*$MY_TAG" | default`
 if [ $gpkg ]; then
   $INTERACTIVE && stanza "There is already $gpkg."
   # find it
@@ -856,10 +858,14 @@ case $script in *.new)
 esac
 
 # remove old package and add the new one to the cache
-sed -ir "\,^$PRT_DIR/$group/$name(-[^-]*){3}$,d" $CACHE/loc 2>/dev/null
-sed -ir "\,^$script$,d" $CACHE/slk
-echo $PRT_DIR/$group/$package >>$CACHE/loc
-echo $script >>$CACHE/slk
+if [ -f $CACHE/loc ]; then
+  sed -ir "\,^$PRT_DIR/$group/$name(-[^-]*){3}$,d" $CACHE/loc
+  echo $PRT_DIR/$group/$package >>$CACHE/loc
+fi
+if [ -f $CACHE/slk ]; then
+  sed -ir "\,^$script$,d" $CACHE/slk
+  echo $script >>$CACHE/slk
+fi
 #rm $CACHE/prt
 #rm $CACHE/slk
 }
