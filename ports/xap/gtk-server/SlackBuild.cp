@@ -1,8 +1,7 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://heanet.dl.sourceforge.net/gtk-server/gtk-server-2.1.3.tar.gz
+# SOURCES: http://dl.sourceforge.net/gtk-server/gtk-server-2.0.12.tar.gz
 # MD5SUMS: 3d8697d07c256be3629701f15ca91dbe gtk-server-2.0.12.tar.gz
-# MD5SUMS: d02650037c1fb482d5bc8d4a753508b2 gtk-server-2.1.3.tar.gz
 # REQUIRES: gtk+2 libffi libglade
 # UP2DATE: http://heanet.dl.sourceforge.net/sourceforge/gtk-server
 
@@ -11,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.1.3
+VERSION=2.0.12
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -32,35 +31,41 @@ tar xzvf $CWD/gtk-server-$VERSION.tar.gz
 cd gtk-server-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
-./configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --localstatedir=/var/lib \
-  --program-prefix="" \
-  --with-gtk2
+./configure #\
+#  --prefix=/usr \
+#  --sysconfdir=/etc \
+#  --localstatedir=/var/lib \
+#  --program-prefix="" \
+#  --disable-static \
+#  --enable-glade \
+#  --with-gtk2 \
+#  --enable-library \
+#  $ARCH-slackware-linux
+#sed -i "s,/usr/local/etc,$PKG/etc/," Makefile
+#sed -i "s,/usr/local/,$PKG/usr/," Makefile
+mkdir -p $PKG/etc $PKG/usr/bin
 make
-mkdir $PKG/etc
-make install prefix=$PKG/usr SYSCONFIG=$PKG/etc
-rmdir $PKG/usr/etc
+make install SYSCONFIG=$PKG/etc prefix=$PKG/usr
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
-rm -fv $PKG/usr/info/dir
+mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  CREDITS INSTALL README.1ST \
+  CREDITS README \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/gtk-server-$VERSION
