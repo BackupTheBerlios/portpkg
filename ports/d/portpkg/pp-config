@@ -99,6 +99,7 @@ plugins()
       `echo "$SYNC" | tr " " "\n" | grep -qx $(basename $plugin) && echo on || echo off`" "
   done >>$t/menu
   . $t/menu 2>$t/plugins
+  [ "$?" != 0 ] && return
 
   # run sync.portpkg first as long as TREE=$PRT_DIR
   if grep -sqw sync.portpkg $t/plugins; then
