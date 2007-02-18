@@ -4,6 +4,7 @@
 # MD5SUMS: a1c7fe3454243f1719a19fcdb0905948 balsa-2.3.13.tar.bz2
 # MD5SUMS: 6a86f8bebc21bd279b9fd4d2a21a36c0 balsa-2.3.14.tar.bz2
 # REQUIRES: aspell desktop-file-utils gmime gtkhtml libesmtp pcre scrollkeeper
+# OPTIONAL: gtksourceview gtkspell
 # UP2DATE: http://balsa.gnome.org/download
 
 TMP=${TMP:-/tmp}
@@ -13,7 +14,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.3.14
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -38,6 +39,9 @@ CFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --with-ssl \
+  --enable-smime \
+  --with-gtkspell \
+  --with-gtksourceview \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
