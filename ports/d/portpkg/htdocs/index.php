@@ -251,8 +251,8 @@ if ($file) {
     if (ereg('^[-0-9]{10} ',$line)) {
       $last_date = $date;
       $date = ereg_replace('^([-0-9]{10}).*$','<p><em>\1</em><br>',$line);
-    } elseif (ereg('[^ ]+[./]SlackBuild',$line)) {
-      preg_match_all('|([^ ]+)[./]SlackBuild.*:(.*)|',$line,$matches,PREG_SET_ORDER);
+    } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
+      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
       if ($matches[0][2] == "") {
           $line = fgets($file);
           $log = ereg_replace('\*','',$line);
