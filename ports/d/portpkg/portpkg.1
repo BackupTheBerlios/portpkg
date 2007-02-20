@@ -25,7 +25,10 @@ password when prompted to do so.
 
 .SH EXPRESSIONS
 
-portpkg allows four different types to express a port or a range of ports:
+Presumed that all port identifiers belong to the form
+\fIgroup\fP/\fIname\fP-\fIversion\fP-\fIarchitecture\fP-\fIbuild\fP
+where \fIgroup\fP describes the path from the ports tree to the port itself,
+portpkg allows four different ways to express a target:
 .TP
 \fBimplicit\fP
 By using the form \fIgroup/\fP. Resulting in a range of ports.
@@ -33,18 +36,26 @@ Ports matching expressions in \fBignore\fP are excluded.
 .TP
 .B explicit
 By using the form
-[\fIgroup\fP/]\fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP].
+\fIgroup\fP/\fIname\fP or just \fIname\fP.
 Resulting in the default version only. (Up to version 0.38: this is the
 first listed non-restricted port, from version 0.39 on: the most recent
-non-restricted version.)
+non-restricted version.
+Also, up to version 0.38 the form
+[\fIgroup\fP/]\fIname\fP[-\fIversion\fP-\fIarch\fP-\fIbuild\fP]
+was possible.)
 .TP
 .B indirect
 By changing into the directory of the build script an leaving
-\fIexpression\fP empty. In direct mode, dependencies resolution is
+\fIexpression\fP empty. In indirect mode, dependencies resolution is
 disabled, missing dependencies still prevent the execution of the build
 script, but no recursive installation is performed. Usable also for
 build scripts that are outside of the defined ports tree, which would be
 ignored otherwise.
+.TP
+.B descriptive
+By using a regular expression with the form
+\fB/\fP\fIregex\fP\fB/\fP
+that is representative for the whole identifier.
 
 .SH OPTIONS
 
@@ -149,7 +160,7 @@ Find port \fIfoobar\fP, download source code, compile/package/install it, show
 compile output, but don't check dependencies:
     $ \fBportpkg -gq foobar\fP
 
-Or in direct mode:
+Or indirect:
     $ \fBcd ~/scripts/foobar\fP
     $ \fBportpkg -g\fP
 
@@ -160,7 +171,7 @@ description:
 View meta-information about the port \fBmozilla\fP:
     $ \fBportpkg --info mozilla\fP
 
-Or in direct mode:
+Or indirect:
     $ \fBcd ~/scripts/mozilla\fP
     $ \fBportpkg -i\fP
 

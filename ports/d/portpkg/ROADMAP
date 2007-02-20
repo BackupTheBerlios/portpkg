@@ -1,4 +1,4 @@
-Upcoming Release: Major Changes
+ROADMAP
 
    This page is meant to inform maintainers and users of the major changes in
    the upcoming releases of portpkg.
@@ -29,7 +29,23 @@ Upcoming Release: Major Changes
 
     New version sorting
 
+  Portpkg version 0.39 will have a version sorting routine to point to
+  default packages in case of doubt. This will make the 'repos' config
+  file obsolete, which was made to determine the order of sub trees to
+  circumvent this problem.
+
     Moving open/ out of CVS
+
+  The group open/ will not be distributed by CVS anymore, because it's
+  too painfull to administrate. But there's still
+  http://portpkg.berlios.de/upload which contains all contributions and
+  sync.portpkg will fetch them from there.
+
+    GUI frontend in the making
+
+  A frontend based upon the GTK-Server is currently implemented and will    
+  probably show up in 0.39. See
+  http://portpkg.berlios.de/images/gui.png.
 
    --------------------------------------------------------------------------
 
