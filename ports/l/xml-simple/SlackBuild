@@ -1,30 +1,45 @@
-VERSION=2.13
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-Simple-2.16.tar.gz
+# MD5SUMS: 3891139e5e2e2134e596aa1404e866df XML-Simple-2.13.tar.gz
+# MD5SUMS: 80c0980ff63d77b871de41acc7175df7 XML-Simple-2.16.tar.gz
+# REQUIRES: perl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=2.16
 ARCH=noarch
 BUILD=1tom
 
-CWD=`pwd`
-NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
 rm -rf $PKG
 mkdir -p $PKG/usr
-
-cd /tmp || exit 1
-tar xzvf $CWD/XML-Simple-$VERSION.tar.gz || exit 1
-cd XML-Simple-$VERSION || exit 1
+cd $TMP
+tar xzvf $CWD/XML-Simple-$VERSION.tar.gz
+cd XML-Simple-$VERSION
 chown -R root.root .
-perl Makefile.PL PREFIX=/usr SYSCONFDIR=/etc LOCALSTATEDIR=/var/lib || exit 1
-make || exit 1
-make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
-mv $PKG/usr/share/{man,doc} $PKG/usr/ 2>/dev/null
-rmdir $PKG/usr/share 2>/dev/null
-gzip -9 $PKG/usr/man/man?/*
+perl Makefile.PL
+make
+make install DESTDIR=$PKG
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   MANIFEST README \
-  $PKG/usr/doc/$NAME-$VERSION
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/XML-Simple-$VERSION
+  rm -rf $PKG
+fi
