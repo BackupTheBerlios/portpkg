@@ -1,3 +1,10 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://freedesktop.org/~david/dist/hal-0.5.7.tar.gz
+# MD5SUMS: 4163afb8285db64e00e7b1392b401d92 hal-0.5.7.tar.gz
+# REQUIRES: expat libusb python
+# OPTIONAL: dbus dbus-bindings pygobject
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -5,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.5.7
 ARCH=${ARCH:-i486}
-BUILD=6tom
+BUILD=7tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -23,6 +30,21 @@ cd $TMP
 tar xzvf $CWD/$NAME-$VERSION.tar.gz
 cd $NAME-$VERSION
 chown -R root.root .
+if grep -sq "2\.4" /usr/include/linux/version.h; then
+  echo "
+===========================================================================
+HAL requires Linux kernel-headers version 2.6, but your system seems to
+have version 2.4 installed. Upgrade to version 2.6 to build HAL!
+
+(This package is maybe located in extra/ or in testing/ of the Slackware
+distribution, but that in extra/ should be preferred.)
+
+For Slackware releases where the Linux kernel-headers located in d/ are of
+version 2.4 it is recommended to DOWNGRADE to them after you built HAL.
+===========================================================================
+"
+  exit 1
+fi
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
