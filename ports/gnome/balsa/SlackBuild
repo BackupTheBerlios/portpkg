@@ -14,7 +14,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.3.14
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -40,8 +40,8 @@ CFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --with-ssl \
   --enable-smime \
-  --with-gtkspell \
-  --with-gtksourceview \
+  --`pkg-config gtkspell-2.0 && echo with || echo without`-gtkspell \
+  --`pkg-config gtksourceview-1.0 && echo with || echo without`-gtksourceview \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
