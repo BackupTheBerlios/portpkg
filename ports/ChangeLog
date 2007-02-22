@@ -1,3 +1,102 @@
+2007-02-22  topf  <topf@users.berlios.de>
+
+  * gnome/gnome-python-extras/requires: Added gnome-python, removed mozilla.
+
+  * xap/notification-daemon/SlackBuild, xap/notification-daemon/doinst.sh, xap/notification-daemon/footprint, xap/notification-daemon/md5sums, xap/notification-daemon/requires, xap/notification-daemon/slack-desc, xap/notification-daemon/sources:
+  Upgraded to 0.3.6.
+
+  * xap/libnotify/SlackBuild, xap/libnotify/footprint: Upgraded to 0.4.3.
+
+  * xap/gdvdshrink/SlackBuild: Added vamps to dependencies.
+
+  * gnome/libgtop/SlackBuild, gnome/libgtop/footprint, gnome/libgtop/md5sums, gnome/libgtop/requires, gnome/libgtop/sources:
+  Upgraded to 2.14.7.
+
+  * gnome/ekiga/SlackBuild, gnome/ekiga/footprint: Upgraded to 2.0.5.
+
+  * gnome/gnome-python-desktop/SlackBuild: Rebuilt dependencies list.
+
+  * gnome/gnome-python-desktop/SlackBuild, gnome/gnome-python-desktop/footprint, gnome/gnome-python-desktop/md5sums, gnome/gnome-python-desktop/requires, gnome/gnome-python-desktop/sources:
+  Upgraded to 2.16.0.
+
+  * gnome/gnome-python/SlackBuild: Fixed URI.
+
+  * gnome/gnome-python/SlackBuild, gnome/gnome-python/footprint, gnome/gnome-python/md5sums, gnome/gnome-python/requires, gnome/gnome-python/sources:
+  Upgraded to 2.16.2.
+
+  * gnome/fast-user-switch-applet/requires: Added gdm.
+
+  * gnome/deskbar-applet/requires: Added gnome-python-extras.
+
+  * testing/libnl/SlackBuild, testing/libnl/footprint, testing/libnl/libnl-1.pc:
+  Upgraded to 1.0_pre6. Retrieve source from Debian.
+
+  * testing/hal/SlackBuild: Fixed policy.
+
+  * testing/gnome-power-manager/SlackBuild: Fixed policy.
+
+  * testing/dhcp/SlackBuild, testing/dhcp/footprint: Upgraded to 3.0.5.
+
+  * testing/dhcdbd/SlackBuild, testing/dhcdbd/footprint, testing/dhcdbd/slack-desc:
+  Upgraded to 2.0. Retrieve source from Debian.
+
+  * l/pyrex/SlackBuild, l/pyrex/footprint: Upgraded to 0.9.5.1a.
+
+  * l/pygtk/SlackBuild: Added pycairo to dependencies.
+
+  * l/pwlib/SlackBuild, l/pwlib/footprint: Upgraded to 1.10.4.
+
+  * l/opal/SlackBuild, l/opal/footprint: Upgraded to 2.2.5.
+
+  * l/iso-codes/SlackBuild, l/iso-codes/footprint:
+  Downgraded to 0.44 to fix URI.
+
+  * l/gtk2-perl/SlackBuild: Added cairo-perl to dependencies.
+
+  * l/glib-perl/SlackBuild:
+  Added extutils-depends and extutils-pkgconfig to dependencies.
+
+  * l/flash-plugin/SlackBuild, l/flash-plugin/footprint:
+  Fixed URI. Don't query pkg-config for installation prefix.
+
+2007-02-21  topf  <topf@users.berlios.de>
+
+  * d/portpkg/FAQ, d/portpkg/slack-desc: Updated. Reformatted.
+
+  * n/privoxy/SlackBuild: Fixed error message.
+
+  * testing/hal/SlackBuild, testing/hal/footprint, testing/hal/md5sums, testing/hal/requires, testing/hal/sources:
+  Exit with error message if wrong kernel headers are installed.
+
+  * patches/atk/SlackBuild: Fixed URI and MD5sum which seemed to be wrong.
+
+  * l/xml-simple/SlackBuild, l/xml-simple/footprint, l/xml-simple/md5sums, l/xml-simple/requires, l/xml-simple/slack-desc, l/xml-simple/sources:
+  Upgraded to 2.16. Rebuilt script.
+
+  * gnome/gnome-vfs/SlackBuild: Added dbus to requirements.
+
+  * gnome/rhythmbox/SlackBuild, gnome/rhythmbox/footprint: Upgraded to 0.9.8.
+
+  * gnome/gnome-session/SlackBuild: Added control-center to requirements.
+
+  * gnome/gnome-icon-theme/SlackBuild: Added icon-naming-utils to requirements.
+
+  * gnome/gnome-desktop/SlackBuild: Added gnome-doc-utils to requirements.
+
+  * gnome/control-center/SlackBuild:
+  Added hal to requirements, since it's not optional anymore.
+
+  * gnome/balsa/SlackBuild: Fixed configure options.
+
+  * gnome/gnome-themes/sources, gnome/gnome-themes/SlackBuild, gnome/gnome-themes/footprint, gnome/gnome-themes/md5sums:
+  Updated to 2.16.3.
+
+2007-02-20  topf  <topf@users.berlios.de>
+
+2007-02-19  topf  <topf@users.berlios.de>
+
+  * d/portpkg/htdocs/index.php: Minor changes to the ChangeLog parser.
+
 2007-02-18  topf  <topf@users.berlios.de>
 
   * d/portpkg/pp-config: Don't remove SYNC on cancel.
