@@ -1,13 +1,13 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://fpdownload.macromedia.com/get/shockwave/flash/english/linux/9.0.31.0/install_flash_player_9_linux.tar.gz
+# SOURCES: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_9_linux.tar.gz
 # MD5SUMS: 76b38231a68995935185aa42dfda9db7 install_flash_player_9_linux.tar.gz
 # REQUIRES: gtk+2 x11
 # OPTIONAL: mozilla-firefox seamonkey
 
 VERSION=9
 ARCH=i386
-BUILD=1tom
+BUILD=2tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -19,12 +19,13 @@ cd /tmp
 tar xzvf $CWD/install_flash_player_9_linux.tar.gz
 cd install_flash_player_9_linux
 chown -R root.root .
-pkg-config --exists firefox-plugin && LIBDIR=`pkg-config --variable libdir firefox-plugin`
-pkg-config --exists seamonkey-plugin && LIBDIR=`pkg-config --variable libdir seamonkey-plugin`
-if ! [ "${LIBDIR:-}" ]; then
-  echo "*** Either Firefox or Seamonkey is needed for Flash-player!"
-  exit 1
-fi
+#pkg-config --exists firefox-plugin && LIBDIR=`pkg-config --variable libdir firefox-plugin`
+#pkg-config --exists seamonkey-plugin && LIBDIR=`pkg-config --variable libdir seamonkey-plugin`
+#if ! [ "${LIBDIR:-}" ]; then
+#  echo "*** Either Firefox or Seamonkey is needed for Flash-player!"
+#  exit 1
+#fi
+LIBDIR=/usr/lib/mozilla
 mkdir -p $PKG$LIBDIR/plugins $PKG$LIBDIR/components
 mv *.so $PKG$LIBDIR/plugins/
 mv *.xpt $PKG$LIBDIR/components/
