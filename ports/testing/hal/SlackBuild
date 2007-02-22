@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.5.7
 ARCH=${ARCH:-i486}
-BUILD=7tom
+BUILD=8tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -69,6 +69,8 @@ make install DESTDIR=$PKG
 mkdir $PKG/etc/rc.d
 install -m 644 $CWD/rc.hal $PKG/etc/rc.d/
 mv $PKG/etc/rc.d/rc.hal $PKG/etc/rc.d/rc.hal.new
+sed -i "s,<policy at_console=\"true\">,<policy group=\"users\">," \
+  $PKG/etc/dbus-1/system.d/*
 rm -rf $PKG/usr/info/dir
 find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG

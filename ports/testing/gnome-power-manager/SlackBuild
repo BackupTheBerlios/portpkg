@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.16.0
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -44,6 +44,8 @@ CXXFLAGS="$SLKCFLAGS" \
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
+sed -i "s,<policy at_console=\"true\">,<policy group=\"users\">," \
+  $PKG/etc/dbus-1/system.d/*
 rm -rf $PKG/var/lib/scrollkeeper
 rm -fv $PKG/usr/info/dir
 ( cd $PKG
