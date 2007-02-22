@@ -1,26 +1,17 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: ftp://ftp.isc.org/isc/dhcp/dhcp-3.0.4.tar.gz
+# SOURCES: ftp://ftp.isc.org/isc/dhcp/dhcp-3.0.5.tar.gz
 # MD5SUMS: 004ef935fd54b8046b16bdde31a9e151 dhcp-3.0.4.tar.gz
+# MD5SUMS: ce5d30d4645e4eab1f54561b487d1ec7 dhcp-3.0.5.tar.gz
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.0.4
+VERSION=3.0.5
 ARCH=${ARCH:-i486}
 BUILD=1tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -30,30 +21,28 @@ cd dhcp-$VERSION
 cat $CWD/*.patch | patch -p1 --verbose
 chown -R root.root .
 ./configure --copts -DEXTENDED_NEW_OPTION_INFO
-make
-make install DESTDIR=$PKG
-cp -av $PKG/usr/local/* $PKG/usr/
-rm -rf $PKG/usr/local
+make LIBDIR=/usr/lib INCDIR=/usr/include
+make install DESTDIR=$PKG LIBDIR=/usr/lib INCDIR=/usr/include
 find $PKG/ -name perllocal.pod | xargs -r rm -fv
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  LICENSE README \
+  LICENSE README RELNOTES \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/dhcp-$VERSION
