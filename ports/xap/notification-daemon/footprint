@@ -1,22 +1,35 @@
-drwxr-xr-x  root/root  0      ./
-drwxr-xr-x  root/root  0      etc/
-drwxr-xr-x  root/root  0      etc/dbus-1/
-drwxr-xr-x  root/root  0      etc/dbus-1/system.d/
--rw-r--r--  root/root  434    etc/dbus-1/system.d/notification-daemon.conf
-drwxr-xr-x  root/root  0      install/
--rw-r--r--  root/root  637    install/slack-desc
-drwxr-xr-x  root/root  0      usr/
-drwxr-xr-x  root/root  0      usr/doc/
-drwxr-xr-x  root/root  0      usr/doc/notification-daemon-0.2.1/
--rw-r--r--  root/root  158    usr/doc/notification-daemon-0.2.1/AUTHORS
--rw-r--r--  root/root  17992  usr/doc/notification-daemon-0.2.1/COPYING
--rw-r--r--  root/root  18733  usr/doc/notification-daemon-0.2.1/ChangeLog
--rw-r--r--  root/root  9240   usr/doc/notification-daemon-0.2.1/INSTALL
--rw-r--r--  root/root  165    usr/doc/notification-daemon-0.2.1/NEWS
--rw-r--r--  root/root  27     usr/doc/notification-daemon-0.2.1/README
-drwxr-xr-x  root/root  0      usr/libexec/
--rwxr-xr-x  root/root  82760  usr/libexec/notification-daemon
-drwxr-xr-x  root/root  0      usr/share/
-drwxr-xr-x  root/root  0      usr/share/dbus-1/
-drwxr-xr-x  root/root  0      usr/share/dbus-1/services/
--rw-r--r--  root/root  89     usr/share/dbus-1/services/org.freedesktop.Notifications.service
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/notification-daemon.schemas
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/notification-daemon-0.3.6/
+-rw-r--r--  root/root  usr/doc/notification-daemon-0.3.6/AUTHORS
+-rw-r--r--  root/root  usr/doc/notification-daemon-0.3.6/COPYING
+-rw-r--r--  root/root  usr/doc/notification-daemon-0.3.6/ChangeLog
+-rw-r--r--  root/root  usr/doc/notification-daemon-0.3.6/INSTALL
+-rw-r--r--  root/root  usr/doc/notification-daemon-0.3.6/NEWS
+-rw-r--r--  root/root  usr/doc/notification-daemon-0.3.6/README
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/notification-daemon-1.0/
+drwxr-xr-x  root/root  usr/lib/notification-daemon-1.0/engines/
+-rw-r--r--  root/root  usr/lib/notification-daemon-1.0/engines/libbubble.a
+-rwxr-xr-x  root/root  usr/lib/notification-daemon-1.0/engines/libbubble.la
+-rwxr-xr-x  root/root  usr/lib/notification-daemon-1.0/engines/libbubble.so
+-rwxr-xr-x  root/root  usr/lib/notification-daemon-1.0/engines/libstandard.la
+-rwxr-xr-x  root/root  usr/lib/notification-daemon-1.0/engines/libstandard.so
+drwxr-xr-x  root/root  usr/libexec/
+-rwxr-xr-x  root/root  usr/libexec/notification-daemon
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/dbus-1/
+drwxr-xr-x  root/root  usr/share/dbus-1/services/
+-rw-r--r--  root/root  usr/share/dbus-1/services/org.freedesktop.Notifications.service
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/notification-daemon.mo
