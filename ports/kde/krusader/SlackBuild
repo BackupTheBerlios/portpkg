@@ -1,70 +1,74 @@
 #!/bin/sh
+# MAINTAINER: Stefano Stabellini 'stb' <stefano at stabellini dot net>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/krusader/krusader-1.70.0.tar.gz
+# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/krusader/krusader-1.70.1.tar.gz
 # MD5SUMS: 3c2d73637c72e1042fef52ad1a336a64 krusader-1.70.0.tar.gz
-# REQUIRES: kdebase kdelibs
+# MD5SUMS: d8b33c94385fe055d55f592f0dc15c36 krusader-1.70.1.tar.gz
+# REQUIRES: kdebase kdelibs qt
+# OPTIONAL: desktop-file-utils
 #
 # Heavily based on the Slackware 10.2 SlackBuild
 # http://krusader.sourceforge.net
 
+TMP=${TMP:-/tmp}
 CWD=`pwd`
-if [ "$TMP" = "" ]; then
- TMP=/tmp
-fi
-PKG=$TMP/package-krusader
-NAME=krusader
-VERSION=1.70.0
-TARGET=i486
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.70.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
-if [ "$ARCH" = "i486" ]; then
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
   SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2"
 fi
 
-if [ ! -d $TMP ]; then
- mkdir -p $TMP 
-fi
-if [ ! -d $PKG ]; then
- mkdir -p $PKG
-fi
-
+rm -rf $PKG
+mkdir -p $PKG/opt/kde
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
+tar xzvf $CWD/krusader-$VERSION.tar.gz
+cd krusader-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-./configure --prefix=/opt/kde \
+./configure \
+  --prefix=/opt/kde \
+  --program-prefix="" \
+  --disable-static \
+  --enable-shared \
 --disable-debug \
 --mandir=/usr/man \
---program-prefix="" \
---program-suffix="" \
-$TARGET-slackware-linux
+  $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/opt/kde/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-AUTHORS COPYING CVSNEWS ChangeLog INSTALL README TODO \
- $PKG/usr/doc/$NAME-$VERSION
-
-( cd $PKG
-  find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
-  find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
-)
-
-gzip -9 $PKG/usr/man/*/*
-rm -rf $PKG/tmp
+  AUTHORS COPYING ChangeLog FAQ INSTALL README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
-cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
 cd $PKG
-makepkg -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
- rm -rf $TMP/$NAME-$VERSION
- rm -rf $PKG
+  rm -rf $TMP/krusader-$VERSION
+  rm -rf $PKG
 fi
