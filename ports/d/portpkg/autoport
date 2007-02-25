@@ -1,7 +1,7 @@
 #!/bin/sh -u
 #
 # Autoport -- An Automatic SlackBuild Generator
-# Copyright (C) 2004, 2005 Thomas Pfaff <topf@users.berlios.de>
+# Copyright (C) 2004-2007 Thomas Pfaff <topf@users.berlios.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -266,13 +266,13 @@ parse_options()
 set_info()
 {
 $INTERACTIVE && stanza "Autoport -- An Automatic SlackBuild Generator
-Copyright (C) 2004, 2005 Thomas Pfaff <topf at users dot berlios dot de>
-Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+Copyright (C) 2004-2007 Thomas Pfaff <topf at users dot berlios dot de>
+Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you \
 are welcome to redistribute it under certain conditions.
 
-Autoport is quite experimental. A source code URL given, it will download and
-unpack the code and searche for different keywords to adjust a suitable
-SlackBuild script. If autoport doesn't work as expected, please mail at:
+Autoport is quite experimental. A source code URL given, it will download and \
+unpack the code and searche for different keywords to adjust a suitable \
+SlackBuild script. If autoport doesn't work as expected, please mail at: \
 <topf at users dot berlios dot de>"
 
 #[ "$sources" ] || die "No source url specified! Try: autoport --help"
@@ -333,11 +333,12 @@ gpkg=`find $ADM_DIR/packages $ADM_DIR/removed_packages | any2gany \
 | grep -x "$name-$version-$arch-[0-9]*$MY_TAG" | default`
 if [ $gpkg ]; then
   $INTERACTIVE && stanza "There is already $gpkg."
-  # find it
-  while [ "$group/$name-$version-$arch-$n$MY_TAG" != $gpkg ]; do
-    ((n++))
-    [ "$n" = "1000" ] && die "Strange: Cannot find build number!"
-  done
+  n=`echo $gpkg | sed "s,.*-,,;s,$MY_TAG$,,"`
+#  # find it
+#  while [ "$group/$name-$version-$arch-$n$MY_TAG" != $gpkg ]; do
+#    ((n++))
+#    [ "$n" = "1000" ] && die "Strange: Cannot find build number!"
+#  done
   # now that we found it, we can find a bigger number too!
   ((n++))
 fi
