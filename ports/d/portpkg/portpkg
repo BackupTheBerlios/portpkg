@@ -233,7 +233,7 @@ cache() # file action regex
 get() # url dest [md5sum]
 {
   local url=$1 dest=$2 md5sum=${3:-}
-  local urls master mirror try
+  local urls master mirror try i total random
   debug "get() $@"
 
   # mirrors
@@ -244,8 +244,14 @@ echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
   $DRY_RUN && return 0
   mkdir -p ${dest%/*}
 
-  # try primary url if mirror fails
-  for try in $urls; do
+#  # try primary url if mirror fails
+#  for try in $urls; do
+  # try mirrors in random order
+  for i in $urls; do
+    total=`echo $urls | wc -w`
+    random=$((total*RANDOM/32767+1))
+    try=`echo $urls | cut -d " " -f $random`
+    urls=`echo $urls | sed "s,\<$try\>,,"`
     debug "get(): trying $try"
     case $try in
       cvs://*)
