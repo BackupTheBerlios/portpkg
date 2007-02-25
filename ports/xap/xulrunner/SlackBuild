@@ -1,0 +1,101 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.8.0.4/source/xulrunner-1.8.0.4-source.tar.bz2
+# MD5SUMS: 4dc09831aa4e94fda5182a4897ed08e9 xulrunner-1.8.0.4-source.tar.bz2
+# REQUIRES: gcc-g++ libgnomeui libidl libpng x11
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.8.0.4
+ARCH=${ARCH:-i486}
+BUILD=1tom
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/xulrunner-$VERSION-source.tar.bz2
+cd mozilla
+chown -R root.root .
+cat $CWD/*.patch | patch -p1 --verbose
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  --disable-static \
+  --enable-shared \
+  --enable-application=xulrunner \
+  --with-system-jpeg \
+  --with-system-zlib \
+  --with-system-png \
+  --with-system-mng \
+  --disable-tests \
+  --disable-installer \
+  --enable-canvas \
+  --enable-svg \
+  --enable-xft \
+  --enable-pango \
+  --disable-freetype2 \
+  --enable-optimize="$SLKCFLAGS" \
+  --enable-default-toolkit=gtk2 \
+  --enable-system-cairo \
+  --disable-xprint \
+  --disable-gnomevfs \
+  --with-default-mozilla-five-home=/usr/lib/mozilla \
+  --enable-strip \
+  --disable-debug \
+  --disable-javaxpcom \
+  --enable-extensions=default,cookie,permissions \
+  $ARCH-slackware-linux
+MOZ_CO_PROJECT=xulrunner \
+MOZILLA_OFFICIAL=1 \
+BUILD_OFFICIAL=1 \
+MOZ_MAKE_FLAGS=-j1 \
+make
+MOZ_CO_PROJECT=xulrunner \
+MOZILLA_OFFICIAL=1 \
+BUILD_OFFICIAL=1 \
+MOZ_MAKE_FLAGS=-j1 \
+make install DESTDIR=$PKG
+rm -fv $PKG/usr/share/mime/* || true
+find $PKG/ -name mimeinfo.cache | xargs -r rm -fv
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  LICENSE README.txt \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/mozilla
+  rm -rf $PKG
+fi
