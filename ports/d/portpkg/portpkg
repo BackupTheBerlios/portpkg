@@ -377,7 +377,8 @@ ls_diff() # [pkgex] >list
   debug "ls_diff() $@"
 
   # prepare lists
-  { ls_loc `regex ${@:-@}` | grep -v $(exclude)
+#  { ls_loc `regex ${@:-@}` | grep -v $(exclude)
+  { ls_slk `regex ${@:-@}` | slk2loc | grep -v $(exclude)
 #    $LAZY_CHECKS && ls_inst
     $REINSTALL || ls_inst
   } | sort_ver | tee $t/avail.full | any2base >$t/avail
@@ -587,7 +588,7 @@ ls_src "/$package.tgz$"; } | head -n 1`
 # check if all required packages are installed
 check_reqs()
 {
-  local prev req inst_pkg avail_pkg list re opt tar
+  local prev req inst_pkg avail_pkg list re opt tar missing
   debug "check_reqs(): starting for $package"
   $NO_REQS && return 0
   $LAZY_CHECKS && debug "check_reqs(): being lazy"
@@ -604,6 +605,7 @@ check_reqs()
   debug "check_reqs(): $name: dependencies:" $requires $optional
 #  for req in $requires $uses; do
 #  for req in $list; do
+  missing=""
   opt=false
   for req in $requires -- $optional; do
     [ "$req" = "--" ] && opt=true && continue
@@ -656,10 +658,15 @@ echo $inst_pkg; } | default`
     elif echo "$avail_pkg" | grep -sqv $(exclude) && [ "$avail_pkg" ]; then
       debug "check_reqs(): $req ($avail_pkg) is blacklisted"
     elif ! [ "$inst_pkg" ]; then
-      error "Cannot find required package $req! Stopping."
-      return 1
+#      error "Cannot find required package $req! Stopping."
+#      return 1
+      missing="$missing $req"
     fi
   done
+  if [ "$missing" ]; then
+    error "Cannot find required packages:" $missing
+    return 1
+  fi
   return 0
 }
 
@@ -975,7 +982,7 @@ build_pkg()
 
     # success? (this is the most promising test to ensure it worked)
 #    if ! [ -f $tmp/$package.tgz ]; then
-    if ! [ -f ${products%% *} ]; then
+    if ! [ -f `echo "$products" | head -n 1` ]; then
       $VERBOSE || gunzip -c $LOG_DIR/$name.buildlog.gz | tail
       error "Compilation failed (see $LOG_DIR/$name.buildlog.gz)!"
       $maintain && ln -sf $LOG_DIR/$name.buildlog.gz PORT_IS_BROKEN
