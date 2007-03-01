@@ -9,8 +9,6 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-config etc/rc.d/rc.messagebus.new
-
 if ! grep "^messagebus:x:" etc/passwd >/dev/null 2>&1; then
   echo "messagebus:x:60:60:messagebus:/etc/messagebus:" >>etc/passwd
 fi
@@ -20,7 +18,6 @@ fi
 if ! grep "^messagebus:" etc/shadow >/dev/null 2>&1; then
   echo "messagebus:*:9797:0:::::" >>etc/shadow
 fi
-
 if ! grep -sq "/etc/rc.d/rc.messagebus start" etc/rc.d/rc.local; then
 cat <<EOF >>etc/rc.d/rc.local
 
