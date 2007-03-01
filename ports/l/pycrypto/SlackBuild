@@ -1,28 +1,44 @@
-VERSION=2.0
-ARCH=noarch
-BUILD=1lem
+#!/bin/sh
+# MAINTAINER: Tomas Stefano 'lem' <stefano at cedo dot cz>
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz
+# MD5SUMS: 4d5674f3898a573691ffb335e8d749cd pycrypto-2.0.1.tar.gz
+# MD5SUMS: 55f9875c554ede75ad605d2c7504d94f pycrypto-2.0.tar.gz
+# REQUIRES: gmp python
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
-rm -rf $PKG
-mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
 
-cd $TMP || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
-cd $NAME-$VERSION || exit 1
+VERSION=2.0.1
+ARCH=noarch
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/pycrypto-$VERSION.tar.gz
+cd pycrypto-$VERSION
 chown -R root.root .
-python setup.py build install --root=$PKG || exit 1
+python setup.py build install --root=$PKG
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   ChangeLog LICENSE MANIFEST README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-
-cd $PKG || exit 1
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
-find -type d | grep /doc/ | xargs -r chmod 755
-find -type f | grep /doc/ | xargs -r chmod 644
-find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
 
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/pycrypto-$VERSION
+  rm -rf $PKG
+fi
