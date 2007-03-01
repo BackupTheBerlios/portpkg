@@ -1,3 +1,100 @@
+2007-03-01  topf  <topf@users.berlios.de>
+
+  * gnome/gnome-vfs/SlackBuild, gnome/gnome-vfs/footprint:
+  Upgraded to 2.16.3. Require dbus-glib.
+
+  * testing/dbus/SlackBuild, testing/dbus/doinst.sh, testing/dbus/footprint:
+  Split into dbus, dbus-glib and dbus-python.
+
+  * testing/dbus-python/SlackBuild, testing/dbus-python/footprint, testing/dbus-python/slack-desc:
+  Forked from dbus build script.
+
+  * testing/dbus-glib/SlackBuild, testing/dbus-glib/footprint, testing/dbus-glib/slack-desc:
+  Forked from dbus build script.
+
+2007-02-25  topf  <topf@users.berlios.de>
+
+  * gnome/liferea/SlackBuild, gnome/liferea/footprint: Upgraded to 1.0.27.
+
+  * gnome/metacity/SlackBuild, gnome/metacity/footprint: Upgraded to 2.16.5.
+
+  * kde/krusader/SlackBuild, kde/krusader/doinst.sh, kde/krusader/footprint, kde/krusader/slack-desc:
+  Upgraded to 1.70.1.
+
+  * d/portpkg/portpkg:
+  * ls_diff(): Use ls_slk() and slk2loc(), not ls_loc().
+  * check_reqs(): Show all missing dependencies, not just the first.
+  * build_pkg(): Fixed testing of built package.
+
+  * d/portpkg/SlackBuild, d/portpkg/doinst.sh:
+  * Find and configure .new files dynamically.
+
+  * d/portpkg/portpkg: * get(): Try mirrors in random order.
+
+  * d/portpkg/mirrors:
+  * Uncommented commonly used mirrors.
+  * Fixed URLs.
+
+  * d/portpkg/autoport: Fixed copyright. Fixed incrementing build variable.
+
+  * gnome/epiphany/SlackBuild, gnome/yelp/SlackBuild:
+  Added xulrunner to options.
+
+  * xap/xulrunner/SlackBuild, xap/xulrunner/doinst.sh, xap/xulrunner/footprint, xap/xulrunner/moz252436.patch, xap/xulrunner/moz310924.patch, xap/xulrunner/moz325644.patch, xap/xulrunner/nsIPermission.patch, xap/xulrunner/nsISidebar.patch, xap/xulrunner/pango-cairo.patch, xap/xulrunner/slack-desc, xap/xulrunner/system-prefs.patch, xap/xulrunner/system-proxies.patch:
+  Added to repository.
+
+2007-02-23  topf  <topf@users.berlios.de>
+
+  * gnome/gstreamer/SlackBuild, gnome/gstreamer/footprint, gnome/gstreamer/setup.07.get-register.gz:
+  Upgraded to 0.10.11.
+
+  * gnome/gst-python/SlackBuild, gnome/gst-python/footprint:
+  Upgraded to 0.10.7.
+
+  * gnome/gst-plugins-ugly/SlackBuild, gnome/gst-plugins-ugly/footprint:
+  Upgraded to 0.10.5.
+
+  * gnome/gst-plugins-good/SlackBuild, gnome/gst-plugins-good/footprint:
+  Upgraded to 0.10.5.
+
+  * gnome/gst-plugins-base/SlackBuild, gnome/gst-plugins-base/footprint:
+  Upgraded to 0.10.11.
+
+  * gnome/gst-ffmpeg/SlackBuild, gnome/gst-ffmpeg/footprint:
+  Upgraded to 0.10.2.
+
+  * gnome/gst-plugins-bad/SlackBuild, gnome/gst-plugins-bad/footprint, gnome/gst-plugins-bad/slack-desc:
+  Added to repository.
+
+  * gnome/goffice/SlackBuild, gnome/goffice/footprint, gnome/goffice/slack-desc:
+  Added to repository.
+
+  * xap/xmbmon/SlackBuild, xap/xmbmon/footprint, xap/xmbmon/md5sums, xap/xmbmon/requires, xap/xmbmon/slack-desc, xap/xmbmon/sources:
+  Fixed make commands.
+
+  * xap/gnumeric/SlackBuild, xap/gnumeric/footprint, xap/gnumeric/md5sums, xap/gnumeric/requires, xap/gnumeric/sources:
+  Upgraded to 1.6.3.
+
+  * xap/cinelerra/SlackBuild: Added fftw to dependencies.
+
+  * l/sqlite/SlackBuild, l/sqlite/footprint, l/sqlite/md5sums, l/sqlite/requires, l/sqlite/sources:
+  Upgraded to 3.3.13. Added tcl to optional dependencies.
+
+  * l/mpeg2dec/SlackBuild:
+  Changed URI to use 'sf.net', to prevent portpkg from trying to use a Sourceforge mirror for it.
+
+  * l/libgda/SlackBuild, l/libgda/doinst.sh, l/libgda/footprint, l/libgda/requires, l/libgda/slack-desc, l/libgda/sources:
+  Upgraded to 1.2.4. Removed db41 dependency.
+
+  * l/a52dec/sources:
+  Changed URI to use 'sf.net', to prevent portpkg from trying to use a Sourceforge mirror for it.
+
+  * gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-cd-burner/footprint:
+  Upgraded to 2.16.3.
+
+  * gnome/gnome-python-desktop/SlackBuild:
+  Added nautilus-cd-burner to dependencies.
+
 2007-02-22  topf  <topf@users.berlios.de>
 
   * gnome/gnome-python-extras/requires: Added gnome-python, removed mozilla.
