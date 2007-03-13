@@ -1,4 +1,7 @@
+#!/bin/sh
 # vim: ft=sh
+# MAINTAINER: Daniel Kmieæ 'dan' <danielos@narsil.asua.org.pl>
+# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/qwtplot3d/qwtplot3d-0.2.6.tgz
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -6,7 +9,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.2.6
 ARCH=${ARCH:-i486}
-BUILD=1dan
+BUILD=2dan
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -45,7 +48,7 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+/sbin/makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/$NAME
