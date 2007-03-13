@@ -1,12 +1,15 @@
-# vim: ft=sh
-# Daniel Kmiec <danielos@narsil.asua.org.pl>
+#!/bin/sh
+# MAINTAINER: Daniel Kmieæ 'dan' <danielos@narsil.asua.org.pl>
+# SOURCES: http://puzzle.dl.sourceforge.net/sourceforge/swig/swig-1.3.31.tar.gz
+# MD5SUMS: 4a0bae63e3713e89b26db7209b6a7e05 swig-1.3.31.tar.gz
+# REQUIRES: gcc-g++
 #
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.3.27
+VERSION=1.3.31
 ARCH=${ARCH:-i486}
 BUILD=1dan
 
@@ -43,10 +46,10 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/
+mv $PKG/usr/share/{man,doc,info} $PKG/usr/
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ANNOUNCE LICENSE README TODO \
+  ANNOUNCE LICENSE README TODO CHANGES INSTALL \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -55,9 +58,10 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG || exit 1
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+/sbin/makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/$NAME-$VERSION
   rm -rf $PKG
 fi
+# vim: ft=sh
