@@ -175,16 +175,12 @@ How to make compiling faster?
 -----------------------------
 
 Use ccache: All you need is to symlink gcc, g++ and cc in /usr/local/bin
-to /usr/bin/ccache. See man ccache. Note, that ccache (as each
-SlackBuild) will be run as user nobody with home directory /tmp. For
-example, if you want to set the maximum size of the cache to 500 MB, do
-this:
+to /usr/bin/ccache (see 'man ccache'). If you want to set the maximum
+size of the cache to 500 MB, do this:
 
- # su nobody
- $ export HOME=/tmp
  $ ccache -M 500M
 
-Use $CFLAGS: -O0 means no optimizations and is twice as fast as -O2 for
+Use CFLAGS: -O0 means no optimizations and is twice as fast as -O2 for
 compile time, but a little slower at runtime.
 
 Why are some ports that are listed with --list not available?
