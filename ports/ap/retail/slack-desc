@@ -1,0 +1,11 @@
+retail: Retail, an intelligent incremental logfile reader.
+retail:
+retail: Reads a file or list of files given as arguments, and outputs any
+retail: new contents thereof to stdout. If the file has changed, it will
+retail: attempt to handle the situation intelligently. It keeps track of
+retail: what parts of files it has read in the past, and only reads lines
+retail: which have been appended since the last time it was asked to read
+retail: the files.
+retail: 
+retail: Written by A L Lambert.
+retail:
