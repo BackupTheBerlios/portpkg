@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=svn
 ARCH=${ARCH:-i486}
-BUILD=3tom
+BUILD=4tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -39,14 +39,14 @@ CFLAGS="$SLKCFLAGS" \
   --enable-pp \
   --enable-swscaler \
   --enable-libtheora \
-  --enable-vorbis \
+  --enable-libvorbis \
   --enable-libogg \
   --enable-x264 \
   --enable-xvid \
-  --enable-a52 \
-  --enable-faac \
-  --enable-faad \
-  --enable-mp3lame
+  --enable-liba52 \
+  --enable-libfaac \
+  --enable-libfaad \
+  --enable-libmp3lame
 make
 make install DESTDIR=$PKG
 # for transcode:
