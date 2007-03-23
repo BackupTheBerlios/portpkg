@@ -2,8 +2,8 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gdm/2.14/gdm-2.14.9.tar.bz2
 # MD5SUMS: 7e46bc3b0a5b08e79f1f2f1b869caf40 gdm-2.14.9.tar.bz2
-# REQUIRES: libglade libgnomecanvas librsvg popt x11
-# OPTIONAL: gksu libgnomesu
+# REQUIRES: gnome-doc-utils libglade libgnomecanvas librsvg popt x11
+# OPTIONAL: desktop-file-utils gksu libgnomesu scrollkeeper
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
