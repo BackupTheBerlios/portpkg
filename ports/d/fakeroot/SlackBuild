@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.2.10.tar.gz
+# SOURCES: http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.5.10.tar.gz
 # MD5SUMS: cf18e2fc54f406324623a570fc4e6c20 fakeroot_1.2.10.tar.gz
+# MD5SUMS: 76730bf4c9068773e857e18c346d8c81 fakeroot_1.5.10.tar.gz
 # MD5SUMS: bf177f1e2d71a1e6c11782106e157bef fakeroot_1.5.5.tar.gz
 # MD5SUMS: 02a410fade33f08d2556fdb60edaaf62 fakeroot_1.5.8.tar.gz
 # REQUIRES: glibc
@@ -16,7 +17,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.2.10
+VERSION=1.5.10
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -38,6 +39,8 @@ cd $NAME-$VERSION || exit 1
 chown -R root.root .
 # Don't make those docs..
 sed -i 's,SUBDIRS=.*,SUBDIRS=scripts test,' Makefile.am
+# patch for glibc-2.5 and coreutils-6.x
+cat $CWD/*.patch | patch -p1 --verbose
 automake
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
