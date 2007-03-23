@@ -2,7 +2,7 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://www.avahi.org/download/avahi-0.6.11.tar.gz
 # MD5SUMS: 91fd8cc0c2bae638848faad36cf1c032 avahi-0.6.11.tar.gz
-# REQUIRES: dbus desktop-file-utils gdbm libcap libdaemon libglade python
+# REQUIRES: dbus-python desktop-file-utils gdbm libcap libdaemon libglade pygtk python
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
