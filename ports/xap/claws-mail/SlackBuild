@@ -1,0 +1,84 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-2.8.1.tar.bz2
+# MD5SUMS: b68983f2edac97cc094c527536d49a09 claws-mail-2.8.1.tar.bz2
+# REQUIRES: aspell desktop-file-utils glib2 gpgme gtk+2 libetpan openldap-client pilot-link startup-notification
+
+set -e
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=2.8.1
+ARCH=${ARCH:-i686}
+BUILD=1sjn
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mtune=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG $TMP/$NAME-$VERSION
+mkdir -p $PKG/usr
+cd $TMP || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+cd $NAME-$VERSION || exit 1
+#zcat $CWD/sylpheed-claws-gettext.patch.gz | patch -p1 || exit 1
+
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --mandir=/usr/man \
+  --with-manualdir=/usr/doc/$NAME-$VERSION/manual \
+  --enable-ldap \
+  --enable-spamassassin-plugin \
+  --enable-gpgme \
+  --enable-openssl \
+  --enable-aspell \
+  --target=$ARCH-slackware-linux || exit 1
+make || exit 1
+make install DESTDIR=$PKG \
+faqdir=$DESTDIR/usr/doc/$NAME-$VERSION/faq \
+manualdir=$DESTDIR/usr/doc/$NAME-$VERSION/manual || exit 1
+find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded 
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs strip --strip-debug
+)
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT-NLS AUTHORS ChangeLog COPYING NEWS READM* RELEASE_NOTES TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+rm -r $PKG/usr/share/doc
+mv $PKG/usr/share/icons/hicolor/48x48/apps $PKG/usr/share/pixmaps
+rm -rf $PKG/usr/share/icons
+mv $PKG/usr/man/man1/$ARCH-slackware-linux-claws-mail.1 $PKG/usr/man/man1/claws-mail.1
+find $PKG/usr/man -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+#cat $CWD/doinst.sh >$PKG/install/doinst.sh
+cat claws-mail.desktop | sed 's/claws-mail.png/\/usr\/share\/pixmaps\/claws-mail.png/' > $PKG/usr/share/applications/claws-mail.desktop
+
+cd $PKG || exit 1
+rm -f usr/bin/sylpheed-claws
+rm -f usr/doc/$NAME-$VERSION/manual/*/*.{ps,pdf}
+mv usr/bin/$ARCH-slackware-linux-claws-mail usr/bin/claws-mail
+
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ];then
+rm -rf $PKG $TMP/$NAME-$VERSION
+fi
+
+
