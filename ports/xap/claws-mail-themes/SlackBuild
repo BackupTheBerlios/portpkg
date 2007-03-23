@@ -1,0 +1,47 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-themes-20070116.tar.bz2
+# MD5SUMS: f75f14fac8927671aa0a17d896347035 claws-mail-themes-20070116.tar.bz2
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=20070116
+ARCH=noarch
+BUILD=1sjn
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/claws-mail-themes-$VERSION.tar.bz2
+cd claws-mail-themes-$VERSION
+chown -R root.root .
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --program-prefix="" \
+  $ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  RELEASE_NOTES \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/claws-mail-themes-$VERSION
+  rm -rf $PKG
+fi
