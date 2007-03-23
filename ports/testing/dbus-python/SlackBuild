@@ -1,7 +1,8 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://dbus.freedesktop.org/releases/dbus-0.62.tar.gz
+# SOURCES: http://dbus.freedesktop.org/releases/dbus-python/dbus-python-0.71.tar.gz
 # MD5SUMS: ba7692f63d0e9f1ef06703dff56cb650 dbus-0.62.tar.gz
+# MD5SUMS: ee893bc87b784a8c2285f5041b5e7033 dbus-python-0.71.tar.gz
 # REQUIRES: dbus-glib libxml2 pyrex python x11
 # OPTIONAL: cxxlibs expat gcc-g++
 # FLAGS: no-fakeroot
@@ -11,63 +12,23 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.62
-ARCH=${ARCH:-i486}
-BUILD=5tom
-
-if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
-elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
-fi
+VERSION=0.71
+ARCH=noarch
+BUILD=1tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/dbus-$VERSION.tar.gz
-cd dbus-$VERSION
+tar xzvf $CWD/dbus-python-$VERSION.tar.gz
+cd dbus-python-$VERSION
 chown -R root.root .
-CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
-./configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --localstatedir=/var \
-  --program-prefix="" \
-  --disable-static \
-  --enable-x \
-  --disable-gtk \
-  --disable-mono \
-  --disable-mono-docs \
-  --enable-python \
-  --disable-static \
-  --disable-qt \
-  --disable-tests \
-  --enable-checks \
-  --enable-asserts \
-  --disable-glib \
-  --with-system-pid-file=/var/run/dbus.pid \
-  --with-session-socket-dir=/tmp \
-  $ARCH-slackware-linux
-( cd python
-  make
-  make install DESTDIR=$PKG
-)
-mkdir -p $PKG/var/lib/dbus
-( cd $PKG
-  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
-)
+python setup.py build install --root=$PKG
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README \
+  AUTHORS COPYING ChangeLog NEWS \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -79,6 +40,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/dbus-$VERSION
+  rm -rf $TMP/dbus-python-$VERSION
   rm -rf $PKG
 fi
