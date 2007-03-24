@@ -149,7 +149,7 @@ a:active
     width: 20%;
     margin-left: 10px;
     float: left;
-    font-size: small;
+    font-size: xx-small;
     line-height: 120%;
     }
 -->
