@@ -1,6 +1,13 @@
-VERSION=0.1.1
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://downloads.sourceforge.net/kipi/libkipi-0.1.5.tar.bz2
+# MD5SUMS: 395d87ad36b1261f58bdeac87145734c libkipi-0.1.1.tar.bz2
+# MD5SUMS: aef790871583444cd81bd9dea9c3fd0b libkipi-0.1.5.tar.bz2
+# REQUIRES: kdelibs
+# OPTIONAL: desktop-file-utils
+VERSION=0.1.5
 ARCH=${ARCH:-i486}
-BUILD=1andreas
+BUILD=1sjn
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -15,7 +22,7 @@ cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
-  --prefix=/opt/kde \
+  --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
@@ -29,10 +36,15 @@ cp -a \
 
 cd $PKG || exit 1
 cat $CWD/slack-desc >$PKG/install/slack-desc
-find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
+
 find -type d | grep /doc/ | xargs -r chmod 755
 find -type f | grep /doc/ | xargs -r chmod 644
 find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
 find -type f | grep -e /man/ -e /info/ | xargs -r gzip -9
 
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/libkipi-$VERSION
+  rm -rf $PKG
+fi
