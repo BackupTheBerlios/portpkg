@@ -5,7 +5,7 @@
 # MD5SUMS: bdd3b950e4a3c65d61bceed9149888a9 gtk+-2.8.12.tar.bz2
 # MD5SUMS: 1a03dbed4b794194a610e9d7eb175b06 gtk+-2.8.19.tar.bz2
 # REQUIRES: atk cairo expat glib2 libjpeg libpixman libpng libtiff pango x11 x11-devel zlib
-# OPTIONAL: cups gtk-doc perl python sgml-tools
+# OPTIONAL: cups gtk-doc linuxdoc-tools sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -45,9 +45,9 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-mkdir -p $PKG/etc/gtk-2.0
-cp -a \
-    $CWD/profile.d $PKG/etc
+mkdir -p $PKG/etc/gtk-2.0 $PKG/etc/profile.d
+install -m 755 $CWD/profile.d/gtk+.sh $PKG/etc/profile.d/
+install -m 755 $CWD/profile.d/gtk+.csh $PKG/etc/profile.d/
 rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
