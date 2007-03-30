@@ -1,3 +1,84 @@
+2007-03-30  topf  <topf@users.berlios.de>
+
+  * gnome/epiphany/SlackBuild, gnome/epiphany/footprint: Upgraded to 2.16.3.
+
+  * d/portpkg/mirrors:
+  Don't change sourceforge URIs that use don't contain 'dl.' within URL.
+
+  * d/portpkg/export.portpkg:
+  Don't commit info files to CVS, but remove them later.
+
+  * d/portpkg/autoport: Use -mtune for ARCH=i486.
+
+  * d/fakeroot/SlackBuild: Don't run fakeroot with itself.
+
+  * gnome/gconf-editor/SlackBuild, gnome/gconf-editor/footprint, gnome/gconf-editor/md5sums, gnome/gconf-editor/requires, gnome/gconf-editor/sources:
+  Upgraded to 2.16.0.
+
+  * gnome/gthumb/SlackBuild, gnome/gthumb/footprint, gnome/gthumb/md5sums, gnome/gthumb/requires, gnome/gthumb/sources:
+  Upgraded to 2.10.0.
+
+  * l/cairo-perl/SlackBuild:
+  Added extutils-depends, extutils-pkgconfig to requirements list.
+
+  * l/gtk+2/SlackBuild, l/gtk+2/footprint:
+  Removed python, perl dependencies. Fixed installation of profile.d. Don't install CVS into etc/.
+
+  * l/extutils-depends/SlackBuild, l/extutils-depends/footprint:
+  Rebuilt script.
+
+  * l/iso-codes/SlackBuild: Fix version in .pc file.
+
+  * l/libgda/SlackBuild: openldap should be optional.
+
+  * l/xml-twig/Makefile.PL.patch, l/xml-twig/SlackBuild, l/xml-twig/footprint, l/xml-twig/md5sums, l/xml-twig/requires, l/xml-twig/sources:
+  Upgraded to 3.29, updated Makefile patch.
+
+  * testing/hal/hal-0.5.7.1-fixes-1.patch, testing/hal/rc.hal, testing/hal/SlackBuild:
+  Added patch for DBus > 0.62. Use haldaemon, not daemon as user/group. In rc.hal use uname -r | cut -d . -f 1-2, not /sbin/kernelversion.
+
+  * xap/gtksourceview/SlackBuild, xap/gtksourceview/footprint:
+  Upgraded to 1.8.5.
+
+  * xap/gdvdshrink/SlackBuild: Moved mplayer to requirements list.
+
+  * kde/noteedit/SlackBuild, kde/noteedit/doinst.sh, kde/noteedit/footprint, kde/noteedit/slack-desc:
+  music notation (dcm)
+
+  * kde/tse3/SlackBuild, kde/tse3/footprint, kde/tse3/slack-desc:
+  midi backend (dcm)
+
+  * n/mailfilter/SlackBuild, n/mailfilter/footprint, n/mailfilter/md5sums, n/mailfilter/requires, n/mailfilter/sources:
+  Updated to v0.8 (sjn)
+
+  * kde/libkipi/SlackBuild, kde/libkipi/footprint, kde/libkipi/md5sums, kde/libkipi/requires, kde/libkipi/sources:
+  Updated to v0.1.5,changed --prefix to /usr (sjn)
+
+  * kde/libkexif/SlackBuild, kde/libkexif/footprint, kde/libkexif/md5sums, kde/libkexif/requires, kde/libkexif/sources:
+  Updated to v0.2.5 (sjn)
+
+  * l/libgpod/SlackBuild, l/libgpod/footprint, l/libgpod/slack-desc:
+  New port: added libgpod-0.4.2 for digikam (sjn)
+
+  * patches/k3b-i18n/ChangeLog, patches/k3b-i18n/SlackBuild, patches/k3b-i18n/footprint, patches/k3b-i18n/md5sums, patches/k3b-i18n/slack-desc, patches/k3b-i18n/sources:
+  Updated to v1.0,changed --prefix to /usr (sjn)
+
+  * kde/digikamimageplugins/SlackBuild, kde/digikamimageplugins/footprint, kde/digikamimageplugins/md5sums, kde/digikamimageplugins/requires, kde/digikamimageplugins/sources:
+  Updated to v0.9.1,changed --prefix to /usr (sjn)
+
+  * kde/digikam/SlackBuild, kde/digikam/footprint, kde/digikam/md5sums, kde/digikam/requires, kde/digikam/sources:
+  Updated to v0.9.1,changed --prefix to /usr (sjn)
+
+  * ap/jasper/SlackBuild, ap/jasper/footprint, ap/jasper/slack-desc:
+  New port: added jasper-1.900.1 for digikam (sjn)
+
+  * xap/azureus/Azureus.desktop, xap/azureus/Azureus.png, xap/azureus/Azureus.torrent.png, xap/azureus/Go_Azureus.desktop, xap/azureus/SlackBuild, xap/azureus/footprint, xap/azureus/slack-desc:
+  New port: Java BitTorrent Client (sjn)
+
+2007-03-24  topf  <topf@users.berlios.de>
+
+  * d/portpkg/htdocs/index.php: Changed sidebar font size.
+
 2007-03-23  topf  <topf@users.berlios.de>
 
   * d/portpkg/synonyms: Added claws-mail and co.
