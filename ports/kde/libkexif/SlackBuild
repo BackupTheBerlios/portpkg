@@ -1,11 +1,17 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://downloads.sourceforge.net/kipi/libkexif-0.2.5.tar.bz2
+# MD5SUMS: 28a7eb727d6a884343ce8cbe061cb58f libkexif-0.2.1.tar.bz2
+# MD5SUMS: a2b933b80deabe57d8515583236ae6ff libkexif-0.2.5.tar.bz2
+# REQUIRES: kdelibs libexif
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.2.1
+VERSION=0.2.5
 ARCH=${ARCH:-i486}
-BUILD=1andreas
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -20,6 +26,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
+rm -rf $NAME-$VERSION
 tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
@@ -33,7 +40,7 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
