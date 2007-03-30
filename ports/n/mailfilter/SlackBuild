@@ -1,4 +1,11 @@
-VERSION=0.6.2
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://home.in.tum.de/~baueran/mailfilter/mailfilter-0.8.tar.gz
+# MD5SUMS: 0c03ef7f9ff214b034eaaf68515610aa mailfilter-0.6.2.tar.gz
+# MD5SUMS: a935c224bfb9c10257a45206305aa832 mailfilter-0.8.tar.gz
+# REQUIRES: cxxlibs
+# OPTIONAL: gcc-g++ openssl
+VERSION=0.8
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -30,14 +37,14 @@ make DESTDIR=$PKG install || exit 1
 
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL \
-  NEWS README THANKS TODO doc/rcfile* doc/FAQ \
+  AUTHORS COPYING ChangeLog INSTALL \
+  NEWS README THANKS TODO doc/FAQ \
   $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cd $PKG
 find . -type f | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-chown -R root.bin usr/bin
+
 find . -type f -path '*/man/*man?/*.*' -path '*.[1-9]' -exec gzip -9f {} \;
 
 makepkg -l y -c n /tmp/${NAME}-${VERSION}-${ARCH}-${BUILD}.tgz
