@@ -1,0 +1,33 @@
+Submitted By: Jim Gifford (patches at jg555 dot com)
+Date: 2006-08-19
+Initial Package Version: 0.5.7.1
+Origin: DBus List
+Upstream Status: N/A
+Description: Changes dbus_connection_disconnect to dbus_connection_close
+             sinces it's depreciated and removed from the current dbus
+
+diff -Naur hal-0.5.7.1.orig/tools/hal-device.c hal-0.5.7.1/tools/hal-device.c
+--- hal-0.5.7.1.orig/tools/hal-device.c	2005-11-02 07:38:14.000000000 -0800
++++ hal-0.5.7.1/tools/hal-device.c	2006-08-10 13:35:57.000000000 -0700
+@@ -155,7 +155,7 @@
+ 
+ 	libhal_ctx_shutdown(hal_ctx, &error);
+ 	libhal_ctx_free(hal_ctx);
+-	dbus_connection_disconnect(conn);
++	dbus_connection_close(conn);
+ 	dbus_connection_unref(conn);
+ 	dbus_error_free(&error);
+ 
+diff -Naur hal-0.5.7.1.orig/tools/lshal.c hal-0.5.7.1/tools/lshal.c
+--- hal-0.5.7.1.orig/tools/lshal.c	2006-02-13 06:35:31.000000000 -0800
++++ hal-0.5.7.1/tools/lshal.c	2006-08-10 13:35:31.000000000 -0700
+@@ -701,7 +701,7 @@
+ 	libhal_ctx_shutdown (hal_ctx, &error);
+ 	libhal_ctx_free (hal_ctx);
+ 
+-	dbus_connection_disconnect (conn);
++	dbus_connection_close (conn);
+ 	dbus_connection_unref (conn);
+ 
+ 	if (show_device)
+

@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.5.7
 ARCH=${ARCH:-i486}
-BUILD=8tom
+BUILD=9tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -45,6 +45,10 @@ NOTES:
 EOF
   exit 1
 fi
+if pkg-config "dbus-1 > 0.62"; then
+  echo "DBus > 0.62, patching HAL"
+  cat $CWD/hal-0.5.7.1-fixes-1.patch | patch -p1 --verbose
+fi
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -55,8 +59,8 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   --with-pid-file=/var/run/hald.pid \
   --with-system-pid-file=/var/run/hald.pid \
-  --with-hal-user=daemon \
-  --with-hal-group=daemon \
+  --with-hal-user=haldaemon \
+  --with-hal-group=haldaemon \
   --enable-fstab-sync \
   --enable-hotplug-map \
   --enable-pcmcia-support \
