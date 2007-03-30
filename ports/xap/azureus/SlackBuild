@@ -1,0 +1,41 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://switch.dl.sourceforge.net/sourceforge/azureus/Azureus_2.5.0.4_linux.tar.bz2
+# MD5SUMS: aa0ef937ab4faaaefb37c137842b1e0e Azureus_2.5.0.4_linux.tar.bz2
+# REQUIRES: desktop-file-utils
+
+TMP=${TMP:-/var/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+VERSION=2.5.0.4
+ARCH=${ARCH:-i386}
+BUILD=1sjn
+
+rm -rf $PKG
+mkdir -p $PKG/usr/{lib,doc/azureus-$VERSION}
+mkdir -p $PKG/usr/share/{applications,pixmaps}
+cd $TMP
+rm -rf Azureus_$VERSION
+tar xjvf $CWD/Azureus_${VERSION}_linux.tar.bz2 -C $PKG/usr/lib
+cd $PKG
+
+mv usr/lib/azureus/{*.txt,*.html} usr/doc/azureus-$VERSION/
+mv usr/lib/azureus/*.png usr/share/pixmaps/
+
+mkdir $PKG/install
+cat $CWD/slack-desc >install/slack-desc
+cp $CWD/Azureus.desktop $PKG/usr/share/applications/
+
+mkdir -p usr/share/apps/konqueror/servicemenus
+cp $CWD/Go_Azureus.desktop usr/share/apps/konqueror/servicemenus/
+
+chown -R root.root .
+
+makepkg -l y -c n $TMP/azureus-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi
+
