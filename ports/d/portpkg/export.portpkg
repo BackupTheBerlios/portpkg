@@ -127,7 +127,7 @@ for arg in `explicit "$@"`; do
     [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
 
     # compare local tree with CVS
-    find ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
+    find ! -name "info" ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
     find -path "*/CVS/Entries" -exec grep -H / {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
 
     # add/remove entries that are new/not here anymore
@@ -146,6 +146,9 @@ for arg in `explicit "$@"`; do
     $DRY_RUN || rcs2log -i 2 -h $mail_host >ChangeLog
     $pre sed -i "/: Updated./{N;d}" ChangeLog
     $pre cvs -qz3 ci -m "Updated." ChangeLog
+
+    # remove info file
+    $pre rm -f info
   else
     pause "Continue uploading $package? (ctrl-c to abort)"
 
