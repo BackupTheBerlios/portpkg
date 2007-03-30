@@ -1,25 +1,26 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gtksourceview/1.8/gtksourceview-1.8.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gtksourceview/1.8/gtksourceview-1.8.5.tar.bz2
 # MD5SUMS: 0a9f68a3faf982599b64276487c37c6d gtksourceview-1.2.0.tar.bz2
 # MD5SUMS: f3403c0f8c5f924b022534b0d93d8e0f gtksourceview-1.6.0.tar.bz2
 # MD5SUMS: caf5575b88189db9ca703afcd6cce32d gtksourceview-1.8.0.tar.bz2
-# REQUIRES: gtk+2 gtk-doc libgnomeprint
-# OPTIONAL: sgml-tools
+# MD5SUMS: de67df2944c1cccbc2d0b4a738e11050 gtksourceview-1.8.5.tar.bz2
+# REQUIRES: gtk+2 libgnomeprint
+# OPTIONAL: gtk-doc linuxdoc-tools sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.8.0
+VERSION=1.8.5
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -39,17 +40,17 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
