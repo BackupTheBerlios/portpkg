@@ -1,9 +1,10 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: ftp://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.16/gnome-vfs-2.16.3.tar.bz2
+# SOURCES: ftp://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.18/gnome-vfs-2.18.0.1.tar.bz2
 # MD5SUMS: b657e31974d6981adf9b2c4db981f62c gnome-vfs-2.14.2.tar.bz2
 # MD5SUMS: fdea9d7be42320c3fa6a09e645613480 gnome-vfs-2.16.0.tar.bz2
 # MD5SUMS: 586d6fe3740385c000a864d5e2cf8215 gnome-vfs-2.16.3.tar.bz2
+# MD5SUMS: 0b7a6ab495c0d94c3db00a7b0321adbf gnome-vfs-2.18.0.1.tar.bz2
 # REQUIRES: bzip2 dbus-glib gconf gnome-mime-data libbonobo libxml2 openssl
 # OPTIONAL: acl avahi gamin gtk-doc hal krb5 linuxdoc-tools samba sgml-tools
 
@@ -12,14 +13,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.3
+VERSION=2.18.0.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -39,7 +40,6 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
   $ARCH-slackware-linux
 make
