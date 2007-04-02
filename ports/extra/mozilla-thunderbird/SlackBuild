@@ -1,0 +1,87 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# REQUIRES: desktop-file-utils glib2 gtk+2 libXt libxml2 pango
+CWD=`pwd`
+TMP=${TMP:-/tmp}
+PKG=$TMP/package-mozilla-thunderbird
+
+# edit $CWD/mozilla-thunderbird.options and configure your language
+source $CWD/mozilla-thunderbird.options
+
+if [ -z $MY_LANG ];then
+MY_LANG=en-US
+fi
+
+#
+## Adopted SlackBuild from slackware-current.This script will build package in your language
+#
+# This is not a source build script.  Rather, it builds a Slackware
+# package from the official binary tarball available from mozilla.org.
+# Using the official binaries seems like the most direct way to satify
+# the Mozilla project's concerns about quality control (and thus to
+# provide the most quality-certified package possible), and therefore
+# be able to use the official trademarks and logos.
+#
+# Thanks to the folks at the Mozilla Foundation for permission to
+# distribute this, and for all the great work!  :-)
+
+VERSION=1.5.0.10
+ARCH=${ARCH:-i686}
+BUILD=1sjn
+
+#Sorry
+rm -f $CWD/thunderbird-$VERSION.tar.gz
+wget -c http://mozilla2.mirrors.tds.net/pub/mozilla.org/thunderbird/releases/$VERSION/linux-i686/$MY_LANG/thunderbird-$VERSION.tar.gz -P $CWD
+
+rm -rf $PKG
+mkdir -p $PKG/usr/lib
+( cd $PKG/usr/lib
+  tar xzf $CWD/thunderbird-$VERSION.tar.gz || exit 1
+  chown -R root:root .
+  mv thunderbird thunderbird-$VERSION
+  ln -sf thunderbird-$VERSION thunderbird
+  cd thunderbird-$VERSION
+perl -pi -e "s/\/local//" thunderbird
+  #zcat $CWD/mozilla-thunderbird-simple.diff.gz | patch -p1 --verbose --backup --suffix=.orig || exit 1
+  #if [ ! $? = 0 ]; then
+   # exit 1
+  #fi
+  zcat $CWD/mozilla-thunderbird-firefox.diff.gz | patch -p1 --verbose --backup --suffix=.orig || exit 1
+  if [ ! $? = 0 ]; then
+    exit 1
+  fi
+  find . -name "*.orig" -exec rm -f {} \;
+)
+if [ ! $? = 0 ]; then
+  exit 1
+fi
+mkdir -p $PKG/usr/bin
+( cd $PKG/usr/bin
+  ln -sf /usr/lib/thunderbird-$VERSION/thunderbird .
+)
+mkdir -p $PKG/usr/share/applications
+cat $CWD/mozilla-thunderbird.desktop > $PKG/usr/share/applications/mozilla-thunderbird.desktop
+mkdir -p $PKG/usr/share/pixmaps
+cat $CWD/thunderbird.png > $PKG/usr/share/pixmaps/thunderbird.png
+
+# These files/directories are usually created if Thunderbird is run as root, which on many
+# systems might (and possibly should) be never.  Therefore, if we don't see them we'll
+# put stubs in place to prevent startup errors.
+( cd $PKG/usr/lib/thunderbird-$VERSION
+  if [ -d chrome ]; then
+    if [ ! -r chrome/app-chrome.manifest ]; then
+      echo > chrome/app-chrome.manifest
+    fi
+  fi
+  if [ ! -d updates ]; then
+    mkdir -p updates/0
+  fi
+)
+
+mkdir $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
+cd $PKG
+makepkg -l y -c n $TMP/mozilla-thunderbird-$VERSION-$ARCH-$BUILD.tgz
+
