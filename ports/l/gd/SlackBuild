@@ -1,11 +1,17 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://www.libgd.org/releases/gd-2.0.34.tar.bz2
+# MD5SUMS: be0a6d326cd8567e736fbc75df0a5c45 gd-2.0.33.tar.gz
+# MD5SUMS: 8c25c322f12030b1c24488efd577fec0 gd-2.0.34.tar.bz2
+# REQUIRES: fontconfig libXpm libjpeg libpng
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.0.33
+VERSION=2.0.34
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=2sjn
 
 if [ "$ARCH" = "i386" ]; then
   OPTIMIZE="-O2 -march=i386 -mcpu=i686"
@@ -20,22 +26,25 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
+rm -rf gd-$VERSION
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
 CFLAGS="$OPTIMIZE" \
 CXXFLAGS="$OPTIMIZE" \
 ./configure \
   --prefix=/usr \
+  --program-prefix= \
+  --program-suffix= \
   --disable-static \
-  $ARCH-slackware-linux || exit 1
+  --build=$ARCH-slackware-linux || exit 1
+
 make || exit 1
 make install DESTDIR=$PKG || exit 1
 
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  chown -R root.bin usr/bin
 )
 
 mkdir -p $PKG/install
