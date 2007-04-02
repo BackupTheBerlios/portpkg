@@ -1,24 +1,26 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.16/gnome-session-2.16.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.18/gnome-session-2.18.0.tar.bz2
 # MD5SUMS: 191dc3a18eb37aca391914b404cf1cd7 gnome-session-2.14.2.tar.bz2
 # MD5SUMS: c4fa459f0c5d528e8f3019e096d3fd75 gnome-session-2.15.92.tar.bz2
 # MD5SUMS: 0a79eac14f4e13b1935e02eeec7745c1 gnome-session-2.16.0.tar.bz2
+# MD5SUMS: 830dbabe74474da49018889d27eefaae gnome-session-2.18.0.tar.bz2
 # REQUIRES: control-center desktop-file-utils gconf gnome-desktop
+# OPTIONAL: libxcb
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.0
+VERSION=2.18.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -38,18 +40,18 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README \
@@ -60,7 +62,7 @@ find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -l echo gconf >>$PKG/install/doinst.sh
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -rl echo gconf >>$PKG/install/doinst.sh
 
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
