@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/eel/2.16/eel-2.16.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/eel/2.18/eel-2.18.0.1.tar.bz2
 # MD5SUMS: 7002f4f99317ed11da8b9db15b7e4a2b eel-2.14.1.tar.bz2
 # MD5SUMS: 7403a91bd27979f7513b9e9325e1d890 eel-2.16.0.tar.bz2
+# MD5SUMS: dd06a56773af79e4292e63c6bcca9449 eel-2.18.0.1.tar.bz2
 # REQUIRES: gail gnome-desktop gnome-menus libglade
 
 TMP=${TMP:-/tmp}
@@ -10,14 +11,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.0
+VERSION=2.18.0.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -38,16 +39,17 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
+  --enable-shared \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README THANKS TODO \
