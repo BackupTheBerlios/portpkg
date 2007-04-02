@@ -1,27 +1,29 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/metacity/2.16/metacity-2.16.5.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/metacity/2.18/metacity-2.18.0.tar.bz2
 # MD5SUMS: 08c38e04c8ea83b524e36b17ffaec661 metacity-2.11.1.tar.bz2
 # MD5SUMS: fa01d95221a64a1f6d4e088ca9b6362e metacity-2.12.0.tar.bz2
 # MD5SUMS: 2480951fb0636d3fc6a78ab8a54f355d metacity-2.14.0.tar.bz2
 # MD5SUMS: 5172849a35be21bda78041623eb45656 metacity-2.14.1.tar.bz2
 # MD5SUMS: db1f2582681bf5eb0a8ecab45b622d7b metacity-2.16.0.tar.bz2
 # MD5SUMS: 7ac14eb4caffbb15df91b70b0def2f5e metacity-2.16.5.tar.bz2
+# MD5SUMS: 2af31af033618329d093267ac00e49ff metacity-2.18.0.tar.bz2
 # REQUIRES: desktop-file-utils gconf gtk+2 startup-notification
+# OPTIONAL: libcm libxcb
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.5
+VERSION=2.18.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -42,6 +44,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --enable-shared \
+  --`pkg-config cm && echo enable || echo disable`-compositor \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
