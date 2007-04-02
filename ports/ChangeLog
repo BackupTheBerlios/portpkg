@@ -1,3 +1,75 @@
+2007-04-02  topf  <topf@users.berlios.de>
+
+  * gnome/control-center/SlackBuild, gnome/control-center/footprint:
+  Upgraded to 2.18.0.
+
+  * gnome/gnome-desktop/SlackBuild, gnome/gnome-desktop/footprint:
+  Upgraded to 2.18.0.
+
+  * gnome/gnome-session/SlackBuild, gnome/gnome-session/footprint:
+  Upgraded to 2.18.0.
+
+  * gnome/gnome-panel/doinst.sh, gnome/gnome-panel/footprint, gnome/gnome-panel/SlackBuild:
+  Upgraded to 2.18.0.
+
+  * gnome/libgnomekbd/SlackBuild, gnome/libgnomekbd/doinst.sh, gnome/libgnomekbd/footprint, gnome/libgnomekbd/slack-desc:
+  Added to repository.
+
+  * gnome/gnome-icon-theme/footprint, gnome/gnome-icon-theme/SlackBuild:
+  Upgraded to 2.18.0.
+
+  * testing/libcm/SlackBuild, testing/libcm/footprint, testing/libcm/slack-desc:
+  Added to repository.
+
+  * gnome/gnome-terminal/footprint, gnome/gnome-terminal/SlackBuild:
+  Upgraded to 2.18.0.
+
+  * gnome/metacity/SlackBuild, gnome/metacity/footprint:
+  Upgraded to 2.18.0. Add --enable-compositor if libcm is installed.
+
+  * gnome/vte/SlackBuild, gnome/vte/footprint: Upgraded to 0.16.0.
+
+  * gnome/libgnomeui/SlackBuild, gnome/libgnomeui/footprint:
+  Upgraded to 2.18.1.
+
+  * gnome/libgnome/SlackBuild, gnome/libgnome/footprint: Upgraded to 2.18.0.
+
+  * gnome/eel/SlackBuild, gnome/eel/footprint: Upgraded to 2.18.0.1.
+
+  * gnome/gnome-keyring/SlackBuild, gnome/gnome-keyring/footprint:
+  Upgraded to 0.8.
+
+  * gnome/nautilus/SlackBuild, gnome/nautilus/footprint: Upgraded to 2.18.0.1.
+
+  * gnome/gnome-vfs/SlackBuild, gnome/gnome-vfs/footprint:
+  Upgraded to 2.18.0.1.
+
+  * testing/gnome-power-manager/SlackBuild, testing/gnome-power-manager/footprint:
+  Upgraded to 2.18.1.
+
+  * gnome/file-roller/SlackBuild, gnome/file-roller/footprint:
+  Upgraded to 2.18.0.
+
+  * xap/opera/SlackBuild, xap/opera/footprint: Removed chown root.bin (sjn)
+
+  * extra/mozilla-thunderbird/SlackBuild, extra/mozilla-thunderbird/doinst.sh, extra/mozilla-thunderbird/footprint, extra/mozilla-thunderbird/mozilla-thunderbird-firefox.diff.gz, extra/mozilla-thunderbird/mozilla-thunderbird.desktop, extra/mozilla-thunderbird/mozilla-thunderbird.options, extra/mozilla-thunderbird/slack-desc, extra/mozilla-thunderbird/thunderbird.png:
+  New port, adopted SlackBuild from slackware-current.This script will build package in your language.Use of perl instead of mozilla-thunderbird-simple.diff.gz (sjn)
+
+  * extra/mozilla-firefox/ChangeLog, extra/mozilla-firefox/SlackBuild, extra/mozilla-firefox/clawsmail.sh, extra/mozilla-firefox/firefox.moz_plugin_path.diff.gz, extra/mozilla-firefox/firefox.png, extra/mozilla-firefox/footprint, extra/mozilla-firefox/mozilla-firefox-thunderbird.diff.gz, extra/mozilla-firefox/mozilla-firefox.desktop, extra/mozilla-firefox/mozilla-firefox.options, extra/mozilla-firefox/slack-desc:
+  Removed SlackBuild, *.desktop, slack-desc. Adopted SlackBuild from slackware-current.This script will build package in your language.Use of perl instead of firefox-thunderbird-simple.diff.gz (sjn)
+
+  * kde/libkexiv2/SlackBuild, kde/libkexiv2/footprint, kde/libkexiv2/slack-desc:
+  Removed mkdir /opt/kde (sjn)
+
+  * l/imlib2/SlackBuild, l/imlib2/footprint, l/imlib2/md5sums, l/imlib2/requires, l/imlib2/sources:
+  Removed chown root.bin (sjn)
+
+  * l/libetpan/ChangeLog, l/libetpan/SlackBuild, l/libetpan/footprint:
+  Moved -kateos-linux to -slackware-linux (sjn)
+
+  * l/gd/SlackBuild, l/gd/footprint, l/gd/md5sums, l/gd/requires, l/gd/sources:
+  Fixed ./configure options (sjn)
+
 2007-03-30  topf  <topf@users.berlios.de>
 
   * gnome/epiphany/SlackBuild, gnome/epiphany/footprint: Upgraded to 2.16.3.
