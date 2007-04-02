@@ -1,39 +1,42 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: ftp://opera.nsc.no/pub/nsc.no/mirrors/operasoftware/linux/901/final/en/i386/shared/opera-9.01-20060728.6-shared-qt.i386-en.tar.bz2
-# MD5SUMS: ddb25c6a50d7900556edf8785797f5a7  opera-9.01-20060728.6-shared-qt.i386-en.tar.bz2
-# MD5SUMS: 2e08c3529c9d27b6fe82f4b71f2d62dc  opera-8.51-20051114.6-shared-qt.i386-en.tar.gz
-# MD5SUMS: 5e60bc787e4c80cb4c5d890dacf01c1f  opera-8.51-20051114.5-shared-qt.i386-en.tar.gz
-# MD5SUMS: a75e23eadc636dc8936499ac96ea1734  opera-8.50-20050916.5-shared-qt.i386-en.tar.gz
-# REQUIRES: cxxlibs expat lesstif libjpeg libmng libpng x11 x11-devel zlib
-# OPTIONAL: qt
+# SOURCES: ftp://opera.inode.at/linux/910/final/en/i386/shared/opera-9.10-20061214.5-shared-qt.i386-en.tar.bz2
+# MD5SUMS: a75e23eadc636dc8936499ac96ea1734 opera-8.50-20050916.5-shared-qt.i386-en.tar.gz
+# MD5SUMS: 5e60bc787e4c80cb4c5d890dacf01c1f opera-8.51-20051114.5-shared-qt.i386-en.tar.gz
+# MD5SUMS: 2e08c3529c9d27b6fe82f4b71f2d62dc opera-8.51-20051114.6-shared-qt.i386-en.tar.gz
+# MD5SUMS: ddb25c6a50d7900556edf8785797f5a7 opera-9.01-20060728.6-shared-qt.i386-en.tar.bz2
+# MD5SUMS: a60b0abe55ca580952b30f4540632425 opera-9.10-20061214.5-shared-qt.i386-en.tar.bz2
+# MD5SUMS: b2531e899ffbdb40e0383614926e06a5 opera-9.10-20061214.5-shared-qt.i386-en.tar.gz
+# MD5SUMS: f4d7007948c2841583314f321ff88e30 opera-9.10-20061214.6-shared-qt.i386-en.tar.bz2
+# REQUIRES: cxxlibs expat lesstif libjpeg libmng libpng zlib
+# OPTIONAL: desktop-file-utils gcc-g++ libXcursor libXext libXft libXinerama libXmu libXrandr libXt mesa qt
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=9.01
-BUILDVERS=20060728.6
+VERSION=9.10
+BUILDVERS=20061214.5
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=3sjn
 
 #
 ## choose your language (pl, pt, see opera.language file (en included opera tarball))
 #
 LANGUAGE=
-LANGVERS=900
+LANGVERS=910
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP || exit 1
-rm -rf $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en-400
+rm -rf $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en-521
 tar xjvf $CWD/$NAME-$VERSION-$BUILDVERS-shared-qt.i386-en.tar.bz2 || exit 1
-cd $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en-400 || exit 1
+cd $NAME-$VERSION-$BUILDVERS-shared-qt.i386-en-521 || exit 1
 chown -R root.root .
 echo y | ./install.sh --prefix=${PKG}/usr || exit 1
 
 ( cd $PKG
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin 
+
 ##
 ## download
 ##
@@ -62,7 +65,15 @@ cd $PKG || exit 1
 #
 ## opera.path.patch
 #
-find . -type f -name '*' -exec perl -pi -e "s/$PKG//" {} \;
+perl -pi -e "s/\/tmp\/package-opera//" usr/bin/opera
+perl -pi -e "s/\/tmp//" usr/bin/opera
+perl -pi -e "s/\/tmp\/package-opera//" usr/share/opera/ini/pluginpath.ini
+perl -pi -e "s/tmp\/package-opera//" usr/share/opera/java/opera.policy
+
+if [ ! -f /usr/lib/libqt-mt.so.3 ];then
+ln -sf /usr/lib/qt-*/lib/libqt-mt.so.3 usr/lib/libqt-mt.so.3
+fi
+
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
