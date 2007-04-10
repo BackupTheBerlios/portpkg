@@ -249,7 +249,7 @@ echo $url | sed -nr "s,^$master,$mirror,p"; done | tac`" $url"
   # try mirrors in random order
   for i in $urls; do
     total=`echo $urls | wc -w`
-    random=$((total*RANDOM/32767+1))
+    random=$(((total-1)*RANDOM/32767+1))
     try=`echo $urls | cut -d " " -f $random`
     urls=`echo $urls | sed "s,\<$try\>,,"`
     debug "get(): trying $try"
@@ -1523,6 +1523,8 @@ maintain,export,noask,ignore:,use:"
 
 init()
 {
+  local excl_pre12
+
   # reset locales
   export LANG=C
   export LANGUAGE=C
@@ -1548,7 +1550,7 @@ init()
   trap 'error "** ctrl-c pressed"; exit 1' INT
   trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
-  case ${BASH_VERSION:-} in 3.1.*) ;; *) trap '' PIPE;; esac
+  case ${BASH_VERSION:-} in 3.[12].*) ;; *) trap '' PIPE;; esac
 
 #  if ! $USE_ALPHA_CODE; then
 #    IGNORE=`regex $(grep -vshe ^# -e ^$ $CFG_DIR/ignore $PRT_DIR/ignore $CFG_DIR/exclude $PRT_DIR/exclude)`
@@ -1560,6 +1562,13 @@ init()
 #  has_prog sed || die
   case "$PREFER" in
     *\ *) die "PREFER must be one simple group expression (e.g. patches/)!";;
+  esac
+  # we need special dependencies for specific Slackware version
+  excl_pre12="libSM libXScrnSaver libXcomposite libXcursor libXdamage libXext libXft libXinerama libXmu libXpm libXrandr libXt libXtst libXxf86misc libXxf86vm libdmx libxcb libxkbfile mesa"
+  case `cut -d " " -f 2 /etc/slackware-version` in
+    [89].*|10.*) EXLUCDE="linuxdoc-tools $excl_pre12 $EXCLUDE";;
+    11.0)        EXCLUDE="sgml-tools $excl_pre12 $EXCLUDE";;
+    *)           EXCLUDE="sgml-tools x11 x11-devel $EXCLUDE";;
   esac
   case $ARCH in
 #    i?86) arch_filter="-\(i.86\|noarch\)-[^-]*$";;
