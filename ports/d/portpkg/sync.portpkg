@@ -69,6 +69,7 @@ cd $TREE || die
 #files=`lynx -dump portpkg.berlios.de/upload | sed "0,/^Refer/d" | grep -o "http://.*-.*-.*-.*\.tar\.bz2\(\|\.asc\)$"`
 files=`$pre lynx -dump http://portpkg.berlios.de/upload | grep -o "http://[^ ?]*[^/]$" | sort -u`
 
+if [ "$files" ]; then
 uploads=`echo "$files" | grep "\.tar\.bz2$"`
 if [ "$uploads" ]; then
   row "Syncing $TREE/open"
@@ -82,7 +83,16 @@ if [ "$uploads" ]; then
       get $src.asc $TREE/open/$pkg.asc || continue
       if has_prog gpg; then
 	row "Verifying signature"
-	if ! gpg --verify $TREE/open/$pkg.asc; then
+	if gpg --verify $TREE/open/$pkg.asc; then
+          if [ `tar tf $TREE/open/$pkg | cut -d / -f 1 | sort -u | wc -l` = 1 ]; then
+            row "Unpacking $pkg"
+            ( cd $TREE/open
+              tar xf $pkg
+            )
+          else
+            mv $TREE/open/$pkg $TREE/open/$pkg.badform
+          fi
+        else
 	  mv $TREE/open/$pkg $TREE/open/$pkg.badsig
 	  continue
 	fi
@@ -130,10 +140,19 @@ if [ "$uploads" ]; then
   done
 fi
 
+for i in `ls $TREE/open 2>/dev/null`; do
+  if ! echo "$uploads" | egrep -sq "/$i(|\.tar\.bz2)$"; then
+    row "$i is no longer in the repository"
+    rm -rf $TREE/open/$i
+  fi
+done
+fi
+
 # do a simple test to avoid a chunk of "permission denied" errors
 case $login in *anonymous*|*pserver*|"") exit 0;; esac
 debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
 
+if [ "$files" ]; then
 # get uploaded buildlogs
 buildlogs=`echo "$files" | grep -e "\.buildlog$" -e "\.buildlog\.gz$"`
 if [ "$buildlogs" ]; then
@@ -143,7 +162,16 @@ if [ "$buildlogs" ]; then
     [ -f $TREE/reports/$pkg ] && continue
     row "Downloading $pkg"
     get $src $TREE/reports/$pkg || continue
+#    case $src in *.gz) gunzip $TREE/reports/$pkg;; esac
   done
+fi
+
+for i in `ls $TREE/reports 2>/dev/null`; do
+  if ! echo "$buildlogs" | grep -sq "/$i$"; then
+    row "$i is no longer in the repository"
+    rm -f $TREE/reports/$i
+  fi
+done
 fi
 
 # ChangeLog
