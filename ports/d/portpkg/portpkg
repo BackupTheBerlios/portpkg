@@ -238,7 +238,7 @@ get() # url dest [md5sum]
 
   # mirrors
   urls=`mirrors | while read master mirror; do \
-echo $url | sed -n "s,^$master,$mirror,p"; done | tac`" $url"
+echo $url | sed -nr "s,^$master,$mirror,p"; done | tac`" $url"
 
   debug "get(): urls:" $urls
   $DRY_RUN && return 0
