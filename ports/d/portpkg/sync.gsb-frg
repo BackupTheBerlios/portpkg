@@ -53,9 +53,9 @@ grep -v ^d $t/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
 # since portpkg's dependency handling is rather simple, we trim version
 # handling and interpret alternatives as optional dependencies
 sed -r "\
-/REQUIRED/s/ *, */\nPACKAGE REQUIRED:  /g
-/SUGGESTS/s/ *, */\nPACKAGE SUGGESTS:  /g
-/CONFLICTS/s/ *, */\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
+/PACKAGE REQUIRED:/s/ *, */\nPACKAGE REQUIRED:  /g
+/PACKAGE SUGGESTS:/s/ *, */\nPACKAGE SUGGESTS:  /g
+/PACKAGE CONFLICTS:/s/ *, */\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
 sed -ri "/REQUIRED.* \|+ /{s/REQUIRED/SUGGESTS/;s/ \|+ /\nPACKAGE SUGGESTS:  /g}" $t/packages
 sed -ri "s/ [<>=]+ .*$//" $t/packages
 
