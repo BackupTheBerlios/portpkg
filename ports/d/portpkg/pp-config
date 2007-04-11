@@ -100,11 +100,12 @@ plugins()
   done >>$t/menu
   . $t/menu 2>$t/plugins
   [ "$?" != 0 ] && return
+  tr " " "\n" <$t/plugins | sort -u | xargs >$t/plugins
 
   # run sync.portpkg first as long as TREE=$PRT_DIR
   if grep -sqw sync.portpkg $t/plugins; then
     grep -sqx "TREE=\$PRT_DIR" $PRT_DIR/plugins/sync.portpkg $CFG_DIR/plugins/sync.portpkg \
-    && sed -i "s, sync.portpkg , ,;s,^,sync.portpkg ," $t/plugins
+    && sed -ir "s,(^| )sync.portpkg ,\1,;s,^,sync.portpkg ," $t/plugins
   fi
 
   sed -i "/^SYNC=/d" $RC
