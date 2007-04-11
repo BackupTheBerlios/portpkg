@@ -42,7 +42,9 @@ row "Syncing $TREE/"
 # avoid error message about missing ~/.cvspass
 touch ~/.cvspass
 
-$pre get $SOURCE $TREE | tee $t/tree.log
+# checkout CVS
+export CVS_RSH=ssh
+$pre get $SOURCE $TREE #| tee $t/tree.log
 #get $SOURCE $TREE | sed -r "\
 #s,^U ,Updating ,;\
 #s,^C ,Conflict with ,;\
@@ -162,12 +164,12 @@ if [ "$buildlogs" ]; then
     [ -f $TREE/reports/$pkg ] && continue
     row "Downloading $pkg"
     get $src $TREE/reports/$pkg || continue
-#    case $src in *.gz) gunzip $TREE/reports/$pkg;; esac
+    case $src in *.gz) gunzip $TREE/reports/$pkg;; esac
   done
 fi
 
 for i in `ls $TREE/reports 2>/dev/null`; do
-  if ! echo "$buildlogs" | grep -sq "/$i$"; then
+  if ! echo "$buildlogs" | egrep -sq "/$i(|\.gz)$"; then
     row "$i is no longer in the repository"
     rm -f $TREE/reports/$i
   fi
