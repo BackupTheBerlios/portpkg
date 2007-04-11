@@ -18,27 +18,28 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 # default configuration
-MAINTAIN_ALL=false      # Force maintainer mode
-VERBOSE=false           # Display more output
-DRY_RUN=false           # Simulate downloads/compilations/installations
-INTERACTIVE=true        # Ask for comfirmations
-NO_REQS=false           # Disable dependency handling completely
-TEST_REQS=false         # Do not try to install required dependencies
-LAZY_CHECKS=false       # Do not try to upgrade required dependencies
-DEBUG=false             # Display debugging output
-USE_ALPHA_CODE=false    # Use unstable features
-DOWNLOAD_ONLY=false     # Do not compile
-PREPARE_ONLY=false      # Do not install
-REINSTALL=false         # Force installation
-REBUILD=false           # Force compilation
-REMAINTAIN=false        # Try to skip compilation
-NO_FAKEROOT=false       # Do not use compilation sandbox
+MAINTAIN_ALL=false              # Force maintainer mode
+VERBOSE=false                   # Display more output
+DRY_RUN=false                   # Simulate downloads/compilations/installations
+INTERACTIVE=true                # Ask for comfirmations
+NO_REQS=false                   # Disable dependency handling completely
+TEST_REQS=false                 # Do not try to install required dependencies
+LAZY_CHECKS=false               # Do not try to upgrade required dependencies
+DEBUG=false                     # Display debugging output
+USE_ALPHA_CODE=false            # Use unstable features
+DOWNLOAD_ONLY=false             # Do not compile
+PREPARE_ONLY=false              # Do not install
+REINSTALL=false                 # Force installation
+REBUILD=false                   # Force compilation
+REMAINTAIN=false                # Try to skip compilation
+NO_FAKEROOT=false               # Do not use compilation sandbox
 
-ARCH=i486
-CFLAGS=""
-MY_TAG=`whoami`
-MY_REALNAME=`grep ^$MY_TAG: /etc/passwd | cut -d : -f 5 | cut -d , -f 1`
-MY_EMAIL=$MY_TAG@`hostname`
+ARCH=i486                       # Build architecture
+CFLAGS=""                       # Compiler flags (effectless for ARCH=i486)
+MY_TAG=`whoami`                 # Tag for user written build scripts
+#MY_REALNAME=`grep ^$MY_TAG: /etc/passwd | cut -d : -f 5 | cut -d , -f 1`
+MY_REALNAME=$MY_TAG             # Realname for contributed build scripts
+MY_EMAIL=$MY_TAG@`hostname`     # Mail address for contributed build scripts
 
 # sensitive default values :)
 SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup"
@@ -49,11 +50,17 @@ EXCLUDE="pasture/ testing/ extra/ open/ aaa_elflibs kernel-ide kernel-generic ke
 USE=""
 IGNORE="aaa_elflibs glibc-solibs glibc-i18n glibc-profile glibc-zoneinfo cxxlibs openssl-solibs"
 
+# don't change this
 TMP=/tmp
 ADM_DIR=/var/log
 INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
+ENGINE_VER=cvs
+TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
+export TMPDIR
+CACHE=`mktemp -d`
+STACK=`mktemp -d`
 
 # find the ports root and some other locations
 PRT_ROOT=`until [ "$(pwd)" = "/" ]; do [ -f .ports_root ] && pwd && break; cd ..; done`
@@ -73,13 +80,6 @@ WGET_CMD='wget -c -O $dest.part $try'
 [ -f $CFG_DIR/local.conf ] && . $CFG_DIR/local.conf
 [ -f ~/.portpkg.conf ] && . ~/.portpkg.conf
 [ -f $PRT_DIR/portpkg.conf ] && . $PRT_DIR/portpkg.conf
-
-# constant values
-ENGINE_VER=cvs
-TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
-export TMPDIR
-CACHE=`mktemp -d`
-STACK=`mktemp -d`
 
 # global variables
 targets=""
@@ -1442,7 +1442,7 @@ version()
 {
   cat <<EOF
     
-Portpkg version $ENGINE_VER.
+Portpkg version $ENGINE_VER (\$Revision: 1.282 $).
 Copyright (C) 2003-2006 Thomas Pfaff <topf at users dot berlios dot de>.
 Portpkg comes with ABSOLUTELY NO WARRANTY. This is free software, and you
 are welcome to redistribute it under certain conditions.
