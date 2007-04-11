@@ -1,7 +1,7 @@
 #!/bin/sh -fu
 #
-# Portpkg -- A ports system for Slackware Linux, written in Bash++
-# Copyright (C) 2003-2005 Thomas Pfaff <topf at users dot berlios dot de>
+# Portpkg -- Source package manager for Slackware
+# Copyright (C) 2003-2007 Thomas Pfaff <topf at users dot berlios dot de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -837,7 +837,10 @@ build_pkg()
   if $maintain && ! $DOWNLOAD_ONLY; then
 #    script_opt=""
     warn "Maintainer mode: Script header will be modified!"
-    $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
+#    $rebuild && warn "You shouldn't rebuild. Better change BUILD number!"
+    if $rebuild && echo "$replace" | grep -sqx $package; then
+      debug "build_pkg(): rebuilding installed package $package"
+    fi
 #    md5sums=""
   else
     script_opt="--cleanup"
@@ -855,7 +858,7 @@ build_pkg()
     output=/dev/stdout
   fi
 
-  $DOWNLOAD_ONLY || case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
+  $DOWNLOAD_ONLY || case `pause "Continue preparing $package${replace:+ to replace $replace}? (s to skip)"` in s|S) continue;; esac
 
   header "Starting ${script#$PRT_DIR/}"
   stanza "Building $package:"
@@ -1187,7 +1190,12 @@ add_pkg()
     pkg_file=${pkg_file##*/}
   [ "$replace" ] && pkg_file="$replace%$pkg_file"
   debug "add_pkg(): $ADD_CMD"
-  $DRY_RUN && stanza "Installing package $package...\nPACKAGE DESCRIPTION:\n$description"
+  $DRY_RUN && stanza "Installing/upgrading package $package..."
+#\nPACKAGE DESCRIPTION:\n$description"
+  # wait while another install process is running
+  while pgrep -u root -x "upgradepkg|installpkg" >/dev/null; do
+    sleep 1
+  done
   $DRY_RUN || eval $ADD_CMD ) || error "Installation failed!"
 }
 
@@ -1513,9 +1521,9 @@ maintain,export,noask,ignore:,use:"
   debug "parse_options() $start_args"
   debug "$action() $@"
 
-  $NO_REQS && warn "Dependency resolving disabled!"
-  $LAZY_CHECKS && warn "Enable lazy version checking!"
-  $DRY_RUN && warn "Up-/downloading, packaging and installing simulated!"
+  $NO_REQS && debug "parse_options(): dependency resolving disabled"
+  $LAZY_CHECKS && debug "parse_options(): enabled lazy version checking"
+  $DRY_RUN && debug "parse_options(): up-/downloading, packaging and installing simulated"
 
   $action "$@"
 #  exit $?
