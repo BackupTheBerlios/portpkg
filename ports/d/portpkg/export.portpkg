@@ -189,7 +189,7 @@ EOF
 
     # remove private and backup files
     ( cd $t/$package
-      find -name "CVS" -exec rm -rf {} \;
+      find -name "CVS" -depth -exec rm -rf {} \;
       find -name "*.autoport" -exec rm -f {} \;
       find -name "*~" -exec rm -f {} \;
       tar cjf $LOG_DIR/$package.tar.bz2 . )
