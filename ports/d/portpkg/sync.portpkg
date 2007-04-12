@@ -62,6 +62,12 @@ $pre get $SOURCE $TREE #| tee $t/tree.log
 ## looks like we have CVS write access
 #debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
 
+# import GPG-KEYS
+if [ -f $TREE/GPG-KEYS ] && has_prog gpg; then
+  row "Updating GPG keys"
+  gpg -q --import $TREE/GPG-KEYS
+fi
+
 #has_prog rcs2log || die
 has_prog lynx || die
 
@@ -78,6 +84,8 @@ if [ "$uploads" ]; then
   for src in $uploads; do
     pkg=`basename $src`
     [ -f $TREE/open/$pkg ] && continue
+    [ -f $TREE/open/$pkg.badsig ] && continue
+    [ -d $TREE/open/`basename $pkg .tar.bz2` ] && continue
     row "Downloading $pkg"
     get $src $TREE/open/$pkg || continue
     if echo "$files" | grep -xsq "$src.asc"; then
@@ -86,14 +94,16 @@ if [ "$uploads" ]; then
       if has_prog gpg; then
 	row "Verifying signature"
 	if gpg --verify $TREE/open/$pkg.asc; then
-          if [ `tar tf $TREE/open/$pkg | cut -d / -f 1 | sort -u | wc -l` = 1 ]; then
+#          if [ `tar tf $TREE/open/$pkg | cut -d / -f 1 | sort -u | wc -l` = 1 ]; then
             row "Unpacking $pkg"
             ( cd $TREE/open
-              tar xf $pkg
+              mkdir `basename $pkg .tar.bz2`
+              tar xf $pkg -C `basename $pkg .tar.bz2`/
+              rm $pkg $pkg.asc
             )
-          else
-            mv $TREE/open/$pkg $TREE/open/$pkg.badform
-          fi
+#          else
+#            mv $TREE/open/$pkg $TREE/open/$pkg.badform
+#          fi
         else
 	  mv $TREE/open/$pkg $TREE/open/$pkg.badsig
 	  continue
@@ -143,7 +153,9 @@ if [ "$uploads" ]; then
 fi
 
 for i in `ls $TREE/open 2>/dev/null`; do
-  if ! echo "$uploads" | egrep -sq "/$i(|\.tar\.bz2)$"; then
+#  case $i in *.badsig|*.badform) continue;; esac
+  if ! echo "$uploads" | egrep -sqe "/$i(|\.tar\.bz2)$" \
+    -e "/`basename $i .asc`$" -e "/`basename $i .badsig`$"; then
     row "$i is no longer in the repository"
     rm -rf $TREE/open/$i
   fi
@@ -162,6 +174,7 @@ if [ "$buildlogs" ]; then
   for src in $buildlogs; do
     pkg=`basename $src`
     [ -f $TREE/reports/$pkg ] && continue
+    [ -f $TREE/reports/`basename $pkg .gz` ] && continue
     row "Downloading $pkg"
     get $src $TREE/reports/$pkg || continue
     case $src in *.gz) gunzip $TREE/reports/$pkg;; esac
