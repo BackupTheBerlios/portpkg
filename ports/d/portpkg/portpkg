@@ -57,7 +57,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.283 $"
+ENGINE_REV="\$Revision: 1.284 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -234,7 +234,7 @@ cache() # file action regex
 get() # url dest [md5sum]
 {
   local url=$1 dest=$2 md5sum=${3:-}
-  local urls master mirror try i total random
+  local urls master mirror try i total random module repo
   debug "get() $@"
 
   # mirrors
@@ -256,14 +256,17 @@ echo $url | sed -nr "s,^$master,$mirror,p"; done | tac`" $url"
     debug "get(): trying $try"
     case $try in
       cvs://*)
-        # cvs://login@host:/cvsroot/module
+        # cvs://repo/module (top level module) or
+        # cvs://repo=module
 	has_prog cvs || die
+        module=`echo $try | sed "s,^[^=]*[=/],,"`
+        repo=`echo $try | sed -r "s,^cvs://(.*).$module$,\1,"`
         if [ -d $dest/CVS ]; then
           ( cd $dest
           cvs -qz3 up -dP . )
         else
           ( cd ${dest%/*}
-          cvs -qz3 -d `dirname ${try#cvs://}` co -d ${dest##*/} -P ${try##*/} )
+          cvs -qz3 -d $repo co -d ${dest##*/} -P $module )
         fi || continue
         return 0;;
       svn://*)
@@ -1592,7 +1595,10 @@ init()
   [ "`whoami`" = "root" ] && warn "You are root! Please run portpkg as unprivileged user!"
 
   # if not used as include file then start me
-  [ "${0##*/}" = "portpkg" ] && parse_options "$@"
+  case ${0##*/} in
+    portpkg) parse_options "$@";;
+    pp_*)    eval ${0##*/pp_} "$@";;
+  esac
 
   return 0
 }
