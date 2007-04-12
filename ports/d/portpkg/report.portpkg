@@ -34,5 +34,21 @@ row "Uploading $1"
 # stop here when $DRY_RUN
 $DRY_RUN && exit 0
 
+case $1 in *.buildlog.gz)
+  # add dependency information to the buildlog
+  { echo "+--------------------+"
+    echo "PORTPKG: $ENGINE_VER ($ENGINE_REV)"
+    echo "SLACKWARE: `cat /etc/slackware-version`"
+    echo "REQUIRED DEPENDENCIES:"
+    for i in $requires; do
+      echo "  $i:" `ls_inst $(regex $i) | any2base`
+    done
+    echo "OPTIONAL DEPENDENCIES:"
+    for i in $optional; do
+      echo "  $i:" `ls_inst $(regex $i) | any2base`
+    done
+  } | gzip - >>$1
+esac
+
 # upload $1 to $DEST
-curl -F filetoupload=@$1 $DEST >/dev/null 2>&1 || error "Upload failed!"
+curl -F file=@$1 $DEST || error "Upload failed!"
