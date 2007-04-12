@@ -57,6 +57,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
+ENGINE_REV="\$Revision: 1.283 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -157,7 +158,7 @@ header() { log -e "\n+==========================================================
 stanza() { log "\n$@" | fold -sw 75 | sed "3,\$s,^,   ,"; }
 row()    { log "  --> $@" | fold -sw 75 | sed "2,\$s,^,      ,"; }
 warn()   { log "WARNING: $@" | fold -sw 75 | sed "2,\$s,^,         ," >&2; }
-error()  { [ "$*" ] && log "$@" >&2; return 1; }
+error()  { [ "$*" ] && log "** $@" >&2; return 1; }
 die()    { error "$@"; exit 1; }
 debug()  { $DEBUG && log "$@" | fold -sw 75 | sed "2,\$s,^,   ," >&2 || log "$@" >/dev/null; }
 pause()  { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -s >&2; local s; read s; log -n $s; }
@@ -1442,8 +1443,8 @@ version()
 {
   cat <<EOF
     
-Portpkg version $ENGINE_VER (\$Revision: 1.282 $).
-Copyright (C) 2003-2006 Thomas Pfaff <topf at users dot berlios dot de>.
+Portpkg version $ENGINE_VER ($ENGINE_REV).
+Copyright (C) 2003-2007 Thomas Pfaff <topf at users dot berlios dot de>.
 Portpkg comes with ABSOLUTELY NO WARRANTY. This is free software, and you
 are welcome to redistribute it under certain conditions.
 EOF
@@ -1555,7 +1556,7 @@ init()
   log "`whoami`@`hostname`:`pwd`$ $0 $@" >/dev/null
 
   # clean up on exit
-  trap 'error "** ctrl-c pressed"; exit 1' INT
+  trap 'error "ctrl-c pressed"; exit 1' INT
   trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
   # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
   case ${BASH_VERSION:-} in 3.[12].*) ;; *) trap '' PIPE;; esac
