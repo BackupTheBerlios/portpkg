@@ -24,17 +24,19 @@ else
   esac
 fi
 
-case `pause "Do you want to send $1 to portpkg.berlios.de? (y for yes)"` in
+file=$1
+
+case `pause "Do you want to send $file to portpkg.berlios.de? (y for yes)"` in
   y|Y) :;;
   *) exit 0;;
 esac
 
-row "Uploading $1"
+row "Uploading $file"
 
 # stop here when $DRY_RUN
 $DRY_RUN && exit 0
 
-case $1 in *.buildlog.gz)
+case $file in *.buildlog.gz)
   # add dependency information to the buildlog
   { echo "+--------------------+"
     echo "PORTPKG: $ENGINE_VER ($ENGINE_REV)"
@@ -47,8 +49,12 @@ case $1 in *.buildlog.gz)
     for i in $optional; do
       echo "  $i:" `ls_inst $(regex $i) | any2base`
     done
-  } | gzip - >>$1
+  } | gzip - >>$file
+  # timestamp
+  new_file=${file%.buildlog.gz}-`date +%Y-%m-%d,%T`.buildlog.gz
+  mv $file $new_file
+  file=$new_file
 esac
 
-# upload $1 to $DEST
-curl -F file=@$1 $DEST || error "Upload failed!"
+# upload $file to $DEST
+curl -F file=@$file $DEST || error "Upload failed!"
