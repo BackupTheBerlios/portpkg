@@ -222,7 +222,7 @@ if ($file) {
     }
     $line = ereg_replace('NEWS','<h2>News</h2>',$line);
     $line = ereg_replace('^([-/0-9]{10})','<p><em>\1</em><br>',$line);
-    $line = ereg_replace('(http://[^ ]*)','<a href="\1">\1</a>',$line);
+    $line = ereg_replace('(http://[^ ]*)([., !])','<a href="\1">\1</a>\2',$line);
     print ($line);
   }
   fclose($file);
