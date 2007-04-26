@@ -1,0 +1,51 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://dl.google.com/linux/standalone/picasa-2.2.2820-5.i386.bin
+# MD5SUMS: 4dc28b3419a16e07984f9bf28a0fcc2e picasa-2.2.2820-5.i386.bin
+# REQUIRES: arts desktop-file-utils esound glib2 gtk+2 lcms libXt libgphoto2 libxml2 mesa pango sane
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=2.2.2820
+ARCH=${ARCH:-i386}
+BUILD=1sjn
+
+rm -rf $PKG $TMP/$NAME-$VERSION
+mkdir -p $PKG/usr/lib/$NAME-$VERSION
+
+/bin/sh $CWD/$NAME-$VERSION-5.i386.bin --target $TMP/$NAME-$VERSION --noexec
+
+cd $TMP/$NAME-$VERSION
+mkdir -p $PKG/usr/share/{applications,pixmaps}
+cat desktop/google-picasa-mediadetector.desktop.template >$PKG/usr/share/applications/google-picasa-mediadetector.desktop
+cp desktop/picasa.xpm $PKG/usr/share/pixmaps
+cat desktop/google-picasa.desktop.template >$PKG/usr/share/applications/google-picasa.desktop
+sed -i s#EXEC#\/usr\/lib\/$NAME-$VERSION\/bin\/picasa# $PKG/usr/share/applications/google-picasa.desktop
+sed -i s#ICON#\/usr\/share\/pixmaps\/picasa.xpm# $PKG/usr/share/applications/google-picasa.desktop
+sed -i s#EXEC#\/usr\/lib\/$NAME-$VERSION\/bin\/mediadetector# $PKG/usr/share/applications/google-picasa-mediadetector.desktop
+sed -i s#ICON#\/usr\/share\/pixmaps\/picasa.xpm# $PKG/usr/share/applications/google-picasa-mediadetector.desktop
+mv lib bin wine $PKG/usr/lib/$NAME-$VERSION
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION/scripts
+cp -a README LICENSE.FOSS GPLV2 LGPLV2 $PKG/usr/doc/$NAME-$VERSION
+
+cp -a desktop/picasa-hook-email.sh.template desktop/picasa-hook-filemanager.sh.template \
+  desktop/picasa-hook-mimehandler.sh.template desktop/picasa-hook-urlhandler.sh.template \
+    $PKG/usr/doc/$NAME-$VERSION/scripts
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+#mv usr/lib/$NAME-$VERSION/wine/man usr/
+find . -type f -path '*/man/*man?/*.*' -path '*.[1-9]' -exec gzip -9 {} \;
+chown -R root.root .
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi
