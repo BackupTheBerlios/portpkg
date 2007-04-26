@@ -1,12 +1,13 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://heanet.dl.sourceforge.net/gswitchit/libxklavier-3.0.tar.gz
+# SOURCES: http://heanet.dl.sourceforge.net/gswitchit/libxklavier-3.2.tar.gz
 # MD5SUMS: 8da1a1a2ba934e94288bef8a4e4ca62d libxklavier-2.0.tar.bz2
 # MD5SUMS: 1c53646f35d77564f42d3f4342cd443f libxklavier-2.2.tar.bz2
 # MD5SUMS: 121059650d877d5fd7b91a725bdf0588 libxklavier-3.0.tar.bz2
 # MD5SUMS: 7457dc72cfcb57498882ea652cb79eeb libxklavier-3.0.tar.gz
+# MD5SUMS: 8f89a65b2d0aa8f8f5979c7d9de3d051 libxklavier-3.2.tar.gz
 # REQUIRES: glib2 libxml2 x11
-# OPTIONAL: gtk-doc sgml-tools
+# OPTIONAL: gtk-doc libxkbfile linuxdoc-tools sgml-tools
 # UP2DATE: http://prdownloads.sourceforge.net/gswitchit
 
 TMP=${TMP:-/tmp}
@@ -14,14 +15,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.0
+VERSION=3.2
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -41,17 +42,17 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING CREDITS ChangeLog INSTALL NEWS README \
