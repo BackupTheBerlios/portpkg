@@ -5,7 +5,7 @@
 
 VERSION=0.38.2cvs
 ARCH=noarch
-BUILD=2tom
+BUILD=3tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -23,9 +23,10 @@ install -m 644 $CWD/mirrors $PKG/etc/portpkg/mirrors.new
 install -m 644 $CWD/ignore $PKG/etc/portpkg/ignore.new
 #install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude.new
 install -m 644 $CWD/use $PKG/etc/portpkg/use.new
-install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
-install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
-install -m 644 $CWD/report.* $PKG/etc/portpkg/plugins/
+install -m 644 $CWD/plugins/* $PKG/etc/portpkg/plugins/
+#install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
+#install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
+#install -m 644 $CWD/report.* $PKG/etc/portpkg/plugins/
 install -m 644 $CWD/virtual $PKG/etc/portpkg/virtual.new
 install -m 644 $CWD/synonyms $PKG/etc/portpkg/synonyms.new
 
