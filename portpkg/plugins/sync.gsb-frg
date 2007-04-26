@@ -1,0 +1,112 @@
+#!/bin/sh
+#BLURB="Freerock's GNOME (GSB) binaries (RECOMMEDED)"
+#
+# This plugin is a generic Slackware-style repo importer. It creates port
+# scripts, that--instead of building packages by source--download a certain
+# binary package from a repo. (Such a repo needs to have the files
+# ChangeLog.txt, FILELIST.TXT, PACKAGES.TXT and CHECKSUMS.md5.)
+#
+# How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
+# the lines SOURCE= and TREE= and enable the plugin with pp-config.
+
+#FRG_VERSION=2.12.1
+FRG_VERSION=current
+SOURCE=ftp://ftp3.linuxpackages.net/pub/FreeRock-Gnome/frg-$FRG_VERSION
+#SOURCE=ftp://ftp3.linuxpackages.net/pub/FreeRock-Gnome_x86_64/frg64-$FRG_VERSION/
+FILES="ChangeLog FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
+TREE=$PRT_DIR/z/bin/gsb-frg
+
+# check that we're a plug-in
+if  [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+row "Syncing $TREE"
+t=`mktemp -d`
+mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
+
+# check the first file for changes
+first=`echo $FILES | cut -d " " -f 1`
+get $SOURCE/$first $t/$first || die
+if [ -f $TREE/$first ] && cmp -s $t/$first $TREE/$first; then
+  # exit silently
+  exit 0
+fi
+
+# get the rest
+rest=`echo $FILES | cut -d " " -f 2-`
+for file in $rest; do
+  row "Retrieving $file"
+  get $SOURCE/$file $t/$file
+done
+
+# rebuild the tree
+row "Rebuilding pseudo ports"
+$DRY_RUN && exit 0
+rm -rf $TREE
+mkdir -p $TREE
+
+# make a *simple* file list
+grep -v ^d $t/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
+
+# since portpkg's dependency handling is rather simple, we trim version
+# handling and interpret alternatives as optional dependencies
+sed -r "\
+/PACKAGE REQUIRED:/s/ *, */\nPACKAGE REQUIRED:  /g
+/PACKAGE SUGGESTS:/s/ *, */\nPACKAGE SUGGESTS:  /g
+/PACKAGE CONFLICTS:/s/ *, */\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
+sed -ri "/REQUIRED.* \|+ /{s/REQUIRED/SUGGESTS/;s/ \|+ /\nPACKAGE SUGGESTS:  /g}" $t/packages
+sed -ri "s/ [<>=]+ .*$//" $t/packages
+
+# find each binary packages
+sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
+| egrep -v "(^|/)source/" | while read s; do
+  group=${s%/*}
+  pkg=${s##*/}
+  name=${pkg%-*-*-*}
+  rel=${pkg#$name-}
+  ver=${rel%%-*}
+  arch=${rel%-*}
+  arch=${arch#*-}
+  build=${rel##*-}
+  md5sum=`grep "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
+  info=`sed -n "/ $pkg\($\| \|\.tgz\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
+  desc=`echo "$info" | grep "^$name:"`
+  req=`echo "$info" | grep REQUIRED | cut -d " " -f 4- | xargs`
+  opt=`echo "$info" | grep SUGGESTS | cut -d " " -f 4- | xargs`
+  blk=`echo "$info" | grep CONFLICTS | cut -d " " -f 4- | xargs`
+
+  # make the SlackBuild
+  path=$TREE/$group
+  mkdir -p $path
+  cat >$path/$name.SlackBuild <<EOF
+#!/bin/sh
+# This is a pseudo port--it may look absurd
+# MAINTAINER: Portpkg Project <portpkg-devel@lists.berlios.de>
+# SOURCES: $SOURCE/$group/$pkg.tgz
+# MD5SUMS: $md5sum
+# REQUIRES: $req
+# OPTIONAL: $opt
+# BLOCKS: $blk
+
+TMP=\${TMP:-/tmp}
+
+VERSION=$ver
+ARCH=$arch
+BUILD=$build
+
+cat >/dev/null <<eof
+$desc
+eof
+
+CWD=\`pwd\`
+makepkg() { cp \$CWD/\`basename \$1\` \$1; }
+makepkg \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.tgz
+EOF
+done
+
+# done? make the changes valid
+for file in $FILES; do
+  mv $t/$file $TREE/
+done

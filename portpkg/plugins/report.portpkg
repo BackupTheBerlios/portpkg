@@ -1,0 +1,60 @@
+#!/bin/sh
+#BLURB="Report bugs to portpkg.berlios.de"
+
+DEST=http://portpkg.berlios.de/upload.php
+
+# check that we're a plug-in
+#if ! [ "$PORTPKG" ]; then
+if [ "`basename $0`" != "portpkg" ]; then
+  echo "I'm a plugin. Don't run me!"
+  exit 1
+fi
+
+has_args "$@" || die
+has_prog curl || die
+
+# hm, use at least 7.12.2 (Slackware 10.1)
+if has_prog pkg-config; then
+  pkg-config --atleast-version=7.12.2 libcurl || die "You need curl >= 7.12.2"
+else
+  case `curl -V | head -n 1 | cut -d " " -f 2` in
+    7.12.0|7.12.1)   die "You need curl >= 7.12.2";;
+    7.1[23456789].*) ;;
+    *)               die "You need curl >= 7.12.2";;
+  esac
+fi
+
+file=$1
+
+case `pause "Do you want to send $file to portpkg.berlios.de? (y for yes)"` in
+  y|Y) :;;
+  *) exit 0;;
+esac
+
+row "Uploading $file"
+
+# stop here when $DRY_RUN
+$DRY_RUN && exit 0
+
+case $file in *.buildlog.gz)
+  # add dependency information to the buildlog
+  { echo "+--------------------+"
+    echo "PORTPKG: $ENGINE_VER ($ENGINE_REV)"
+    echo "SLACKWARE: `cat /etc/slackware-version`"
+    echo "REQUIRED DEPENDENCIES:"
+    for i in $requires; do
+      echo "  $i:" `ls_inst $(regex $i) | any2base`
+    done
+    echo "OPTIONAL DEPENDENCIES:"
+    for i in $optional; do
+      echo "  $i:" `ls_inst $(regex $i) | any2base`
+    done
+  } | gzip - >>$file
+  # timestamp
+  new_file=${file%.buildlog.gz}-`date +%Y-%m-%d,%T`.buildlog.gz
+  mv $file $new_file
+  file=$new_file
+esac
+
+# upload $file to $DEST
+curl -F file=@$file $DEST || error "Upload failed!"

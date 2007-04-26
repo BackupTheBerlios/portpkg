@@ -1,0 +1,2019 @@
+2007-04-26  topf  <topf@users.berlios.de>
+
+  * Makefile, SlackBuild: Use Makefile.
+
+  * SlackBuild: Moved plugins to plugins/.
+
+  * sync.portpkg, sync.slackbuildsorg, sync.slackware-bin, sync.slackyit-bin, sync.zz.cleanup, export.portpkg, report.portpkg, sync.dropline-bin, sync.gsb-frg, sync.linuxpackages-bin, plugins/export.portpkg, plugins/report.portpkg, plugins/sync.dropline-bin, plugins/sync.gsb-frg, plugins/sync.linuxpackages-bin, plugins/sync.portpkg, plugins/sync.slackbuildsorg, plugins/sync.slackware-bin, plugins/sync.slackyit-bin, plugins/sync.zz.cleanup:
+  Moved to plugins/.
+
+  * htdocs/doc.php, htdocs/index.php: Use doc.php.
+
+  * htdocs/index.php: Parse http:// links even better.
+
+  * htdocs/index.php: Parse http:// links.
+
+2007-04-25  topf  <topf@users.berlios.de>
+
+  * htdocs/upload.php: Mail buildlogs to portpkg-devel list.
+
+2007-04-24  topf  <topf@users.berlios.de>
+
+  * report.portpkg: Put a timestamp on report filenames.
+
+2007-04-12  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * get(): Support modules via CVS by cvs://repo=module scheme.
+  * init(): Run single functions when named pp_*.
+
+  * export.portpkg: Fixed find error message.
+
+  * portpkg:
+  * Added ENGINE_REV.
+  * error(): Print '**'.
+  * Updated copyright note in --version.
+
+  * report.portpkg:
+  Add version information about Portpkg, Slackware and dependencies to the buildlog.
+
+  * sync.portpkg:
+  * Import GPG keys from GPG-KEYS.
+  * Fixed again syncing/unpacking open/ and reports/.
+
+2007-04-11  topf  <topf@users.berlios.de>
+
+  * pp-config: Fixed duplication of entries in SYNC.
+
+  * portpkg:
+  * Code cleanup.
+  * Set MY_REALNAME to MY_TAG, instead of messing with /etc/passwd entries.
+  * Added $Revision: 1.1 $ to --version display.
+
+  * sync.portpkg:
+  * Added CVS_RSH=ssh.
+  * Uncommented gunzip instruction.
+  * Fixed removal of unzipped buildlogs.
+
+  * slack-desc: Added note about glibc.
+
+  * portpkg:
+  * Updated copyright notes.
+  * build_pkg(): Removed 'you shouldn't rebuild' warning, changed to a more meaningful log entry.
+  * build_pkg(): Added '...to replace package xxx' when asking for confirmation.
+  * add_pkg(): Removed package description display in dry-run mode as is got mangled by stanza().
+  * add_pkg(): Wait until other running processes of installpkg/upgradepkg have finished.
+  * parse_options(): Changed boring warnings to log entries.
+
+2007-04-10  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * get(): Use main URL as very last try.
+  * init(): Don't trap pipe in Bash-3.2.
+  * init(): Use exclude lists for specific Slackware versions.
+
+  * sync.portpkg: * Unpack tarballs in open/ and buildlogs in reports/
+  * Remove items that are no longer found on the repository.
+
+  * synonyms: Added pidgin aka gaim.
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Fixed inaccurate parsing of dependencies information.
+
+  * mirrors:
+  Fixed sourceforge mirrors: Match either dl.sourceforge.net or *.dl.sourceforge.net.
+
+  * portpkg: get(): Use extended regular expressions in 'mirrors'.
+
+2007-03-30  topf  <topf@users.berlios.de>
+
+  * mirrors:
+  Don't change sourceforge URIs that use don't contain 'dl.' within URL.
+
+  * export.portpkg: Don't commit info files to CVS, but remove them later.
+
+  * autoport: Use -mtune for ARCH=i486.
+
+2007-03-24  topf  <topf@users.berlios.de>
+
+  * htdocs/index.php: Changed sidebar font size.
+
+2007-03-23  topf  <topf@users.berlios.de>
+
+  * synonyms: Added claws-mail and co.
+
+2007-03-16  topf  <topf@users.berlios.de>
+
+  * FAQ: Build scripts are no longer run as nobody by default.
+
+2007-03-01  topf  <topf@users.berlios.de>
+
+  * slack-desc: Added note that d/ series are recommended to install.
+
+2007-02-25  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * ls_diff(): Use ls_slk() and slk2loc(), not ls_loc().
+  * check_reqs(): Show all missing dependencies, not just the first.
+  * build_pkg(): Fixed testing of built package.
+
+  * SlackBuild, doinst.sh: * Find and configure .new files dynamically.
+
+  * portpkg: * get(): Try mirrors in random order.
+
+  * mirrors:
+  * Uncommented commonly used mirrors.
+  * Fixed URLs.
+
+  * autoport: Fixed copyright. Fixed incrementing build variable.
+
+2007-02-21  topf  <topf@users.berlios.de>
+
+  * FAQ, slack-desc: Updated. Reformatted.
+
+2007-02-20  topf  <topf@users.berlios.de>
+
+  * NEWS, ROADMAP, portpkg.1: Updated.
+
+2007-02-19  topf  <topf@users.berlios.de>
+
+  * htdocs/index.php: Minor changes to the ChangeLog parser.
+
+2007-02-18  topf  <topf@users.berlios.de>
+
+  * pp-config: Don't remove SYNC on cancel.
+
+  * portpkg:
+  * prefer should better be set to local/ as documentation says.
+  * Don't cache ls_loc() anymore, to prevent running slk2loc to the whole ports tree.
+  * stanza(), row(), warn(), debug(): Don't use fmt -t as it's buggy with large text lines.
+  * slk2loc(): Polished regexes.
+  * sort_ver(): Replaced 's with "s to actually enable sorting prefer variable.
+  * get(): Support saving cvs to arbitrary destinations.
+  * get(): Added rsync:// scheme.
+  * maintainer_mode(): fmt is now obsolete.
+  * build_pkg(): Test -f first products entry.
+  * do_add(): Test for implicit expressions better.
+
+  * autoport:
+  * Find next build variable easier.
+  * Don't operate in CACHE if it doesn't exist yet.
+
+  * ABOUT, FAQ, ROADMAP: Updated.
+
+  * INSTALL: Corrected installation command.
+
+2007-02-14  topf  <topf@users.berlios.de>
+
+  * logo.png, logo.svg: Little more discreet version.
+
+2007-02-12  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+  * portpkg:
+  * Reset USE_ALPHA_CODE to false and removed old ('non-alpha') code which is required now.
+  * Moved global variable products as local to build_pkg().
+  * build_pkg(): Grep variable products in plain text from buildlog instead of interpreting variables in the build script.
+  * add_pkg(): Shorten upgradepkg's output by cd'ing to pkg_file's directory.
+
+  * synonyms: Updated.
+
+  * sync.slackware-bin:
+  * Support DRY_RUN.
+  * Use a (faked) makepkg for script analyse.
+
+  * sync.portpkg, sync.slackbuildsorg, sync.zz.cleanup: Support DRY_RUN.
+
+  * sync.dropline-bin, sync.gsb-frg, sync.linuxpackages-bin, sync.slackyit-bin:
+  * Support DRY_RUN.
+  * Use a (faked) makepkg for script analyse.
+
+  * portpkg.1: In fact, 'direct mode' should be named 'indirect mode'. :-)
+
+2007-02-10  topf  <topf@users.berlios.de>
+
+  * sync.slackyit-bin: Updated URL and added DIST_VER.
+
+2007-02-07  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * slk2loc(): Replace - in VERSION to _. Remove leading empty line.
+
+  * sync.dropline-bin, sync.slackbuildsorg: Initial version.
+
+  * portpkg:
+  * Added STACK, stack_add(), stack_del() and is_in_stack() to handle package queues (temp is obsolete).
+  * slk2loc(): Improved sed expressions. Don't insist on correct VERSION-ARCH-BUILD order. Support optional TAG variable.
+  * slk2loc(), get_info(), build_pkg(): Added support for SlackBuilds.org style scripts.
+  * Added header().
+  * stanza(), row(), debug(), pause(): Improved text formatting.
+  * get_info(): Remove annoying warning about TMP.
+  * check_reqs(): Fixed ignoring not installed packages in TEST_REQS mode.
+  * add_pkg(): Remember intentionally canceled packages (fixes circular dependency issue).
+  * do_add(): List targets also for recursive '.' argument.
+
+2007-02-06  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Fixed for 'set -f'.
+
+  * htdocs/upload.php:
+  * Fixed syntax error.
+  * Added (commented) portpkg-devel list address.
+
+2007-02-05  topf  <topf@users.berlios.de>
+
+  * portpkg: Fixed another previous patch.
+
+  * portpkg: Fixed previous patch.
+
+  * portpkg:
+  * Use set -f.
+  * Don't use wildcards with grep.
+
+  * portpkg:
+  * check_blocks(): Return if NO_REQS is set true.
+
+  * pp-config:
+  * Removed dead code.
+  * Improved target selection.
+
+  * ignore, mirrors, repos, synonyms, use, virtual: Updated.
+
+  * INSTALL:
+  * Reformatted, updated.
+  * Added note to install fakeroot.
+
+  * htdocs/index.php:
+  * Use fopen() and fgets() instead of file().
+  * Improve ChangeLog parsing.
+
+2007-02-04  topf  <topf@users.berlios.de>
+
+  * NEWS: Updated.
+
+  * export.portpkg: Enabled new upload method.
+
+  * htdocs/index.php: Inserted logo.
+
+  * logo.png, logo.svg: Added logo files.
+
+2007-02-03  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * build_pkg(): Fixed 'gunzip: buildlog: No such file or directory'.
+
+  * sync.slackware-bin: Re-added kernel pseudo ports.
+
+  * checkpkg: Added label for z/.
+
+  * ROADMAP: Updated.
+
+  * pp-config: Run sync.portpkg first as long as TREE=PRT_DIR in it.
+
+  * htdocs/index.php: Removed 'unknown property' in CSS.
+
+  * htdocs/index.php: Fixed ViewCVS URL.
+
+  * sync.portpkg:
+  * Disabled code that commits uploads to CVS, too messy.
+  * Support DRY_RUN.
+  * Seperated open/ from CVS.
+  * Retrieve buildlogs in reports/ for developers.
+  * Disabled cosmetics.
+  * Disabled webstats code, will be obsolete for new webpage.
+
+  * export.portpkg:
+  * Use TREE, not PRT_DIR.
+  * Pause after warnings, not before.
+  * Test if parent of dest is in CVS.
+
+  * htdocs/index.php, htdocs/robots.txt, htdocs/upload.php: Added htdocs.
+
+  * NEWS:
+  * Changed date to %F format.
+  * Removed webbrowser irritating symbols.
+
+2007-02-02  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  build_pkg():
+  * Log date and $build_cmd.
+  * Gzip buildlog right after running the SlackBuild, so we can use a .gz for reports.
+
+2007-01-29  topf  <topf@users.berlios.de>
+
+  * sync.portpkg: Removed unneccessary cosmetics.
+
+  * portpkg:
+  * Set /sbin in PATH global.
+  * row(), warn(): Format output.
+  * Do not set maintainer mode automatically.
+  * do_add(): Warn about implicit expressions.
+  * init(): Trap INT.
+
+  * checkpkg:
+  * Added DEL_CMD and del_pkg().
+  * Use del_pkg for removing packages.
+
+  * autoport: Use xargs -rl for config, gconf and icons install scripts.
+
+2007-01-28  topf  <topf@users.berlios.de>
+
+  * ChangeLog, synonyms: Updated.
+
+  * autoport: * Check for --enable-shared.
+  * Perform deletion of /usr/info/dir after /usr/share/info has been moved to /usr/info.
+
+  * portpkg: * regex(): Be more precise in regular expression.
+  * ls_diff(): Exclude EXCLUDE scope from packages to be tested for upgrades.
+
+2007-01-25  topf  <topf@users.berlios.de>
+
+  * NEWS: Oh dear, it's 2007 now... typo.
+
+  * NEWS, footprint, SlackBuild: Release 0.38.2.
+
+  * portpkg: * Set USE_ALPHA_CODE=true on default, this should be safe anyways.
+  * Fix group if portpkg is run from outside of the tree.
+  * Force verbose mode for password interaction when fakeroot is not used.
+
+2006-09-21  topf  <topf@users.berlios.de>
+
+  * portpkg, sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Minor bug fixes.
+
+  * SlackBuild, doinst.sh: Install synonyms config file.
+
+  * portpkg:
+  * Chunk of bug fixes, and improvements.
+  * Added compatibility layer for package synonyms.
+  * Removed tautologous code.
+
+  * synonyms: Added synonyms database for packages with ambiguous names.
+
+  * sync.gsb-frg:
+  Changed default version of FRG to current, which seems to be stable enough. Added comment for the x86_64 URL.
+
+2006-09-04  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Use universal time in info file.
+
+  * portpkg:
+  * slk2loc(): Fixed version string conversion.
+  * build_pkg(): Link PORT_IS_BROKEN before running the plugin.
+  * do_find(): New (improved?) output for USE_ALPHA_CODE.
+
+  * autoport:
+  Don't fix '-' to '_' in the version field, just in the makepkg line.
+
+  * portpkg:
+  * slk2loc(): Fix '-' to '_' in VERSION strings.
+  * get_info(): Use plain VERSION=srcver string for decoding source urls.
+
+  * SlackBuild: Version should be called '...cvs'.
+
+  * portpkg:
+  * Fixed to display 'reinstall' again.
+  * Use variables to avoid doing the same regex twice.
+
+  * autoport: Respect word edges in expressions.
+
+  * autoport: SlackBuild.skel:
+  * Added -e to the shebang.
+  * Removed Bash-specific syntax.
+  * Also try to correct /usr/share/info/ locations if exit.
+
+2006-08-31  topf  <topf@users.berlios.de>
+
+  * portpkg: Fixed initialisation of exclude-variables, moved into init().
+
+2006-08-28  topf  <topf@users.berlios.de>
+
+  * sync.portpkg: Fixed uninitialised arg $1.
+
+  * portpkg: check_reqs(): Fixed bug affecting to ignore all USE settings.
+
+2006-08-27  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Removed garbage.
+
+  * SlackBuild: Install report.* plugins.
+
+  * export.portpkg: Use also pkg-config to test curl version.
+
+  * autoport: Fixed pause strings.
+
+  * portpkg: Removed arch_filter, let EXCLUDE handle that.
+
+  * portpkg:
+  * Readded exclude-list. Added EXCLUDE, IGNORE, USE to manage those lists.
+  * parse_options(): -w, -t accept only single expressions now.
+
+  * portpkg:
+  * sort_ver(): Replaced 'patches/' with PREFER.
+  * get_info(): Avoid too much broken pipes in Slackware-10.2.
+  * check_req(): ignore should be exclude here.
+  * maintainer_mode(): Fix error messages concerning mono-find-requires.
+  * init(): Check PREFER.
+
+  * portpkg: Added default values for MY_REALNAME and MY_EMAIL.
+
+  * portpkg:
+  * ls_slk(): Reverted to use find -follow instead of find -L, because Slackware 10.2 still uses findutils-4.1.
+  * plugin(): Added plugin().
+  * do_export(), do_sync(): Use new plugin().
+  * build_pkg(): If compilation fails, ask to use report plugin.
+
+  * report.portpkg: Added reporting plugin.
+
+2006-08-13  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+  * sync.portpkg: Force regeneration of ChangeLog if argument is 'force'.
+
+  * autoport:
+  * Use ls_slk() to find existing ports.
+  * Fixed docs detection.
+  * Intentionally placed an unimposing '2>/dev/null'.
+
+  * portpkg:
+  * regex(): Reworked.
+  * check_reqs(): Reworked: Go through _all_ dependencies known and decide
+    for each one what to do.
+  * check_pkg(): Changed debug message.
+  * add_pkg(): Remove replaced packages from inst cache.
+  * do_list(): Use ls_slk() as a base for USE_ALPHA_CODE.
+  * do_sync(): Pass arguments to plugins.
+  * do_upgrade(): Fix selection scope into loc/slk cache.
+
+2006-08-05  topf  <topf@users.berlios.de>
+
+  * autoport:
+  When fixing sourceforge.net URLs, set them to a default mirror, instead of
+    generating an unusable pseudo URL.
+
+  * portpkg: Use fgrep where appropriate.
+
+  * pp-config: Sort SYNC.
+
+  * autoport:
+  * Test configure also for MCS.
+  * Fix cache updatings.
+
+  * portpkg:
+  ls_inst(): Ignore directories.
+  exlicit(): Sort per expression only, not in total to preserve command line
+    order.
+  maintainer_mode(): Added instructions to resolve mono dependencies.
+  build_pkg(): Warn about fakeroot before confirmation dialog. Don't complain
+    about missing fakeroot when it's fakeroot which is to be built.
+  init(): Fixed strings.
+  cache(): Minor changes.
+  general: Use {}-blocks, not ()-blocks.
+
+2006-07-31  topf  <topf@users.berlios.de>
+
+  * autoport: Fix src cache after downloads.
+
+2006-07-30  topf  <topf@users.berlios.de>
+
+  * sync.slackware-bin: Minor speed improvements.
+
+  * portpkg.1:
+  Updated to new meanings of --lazy, --reinstall, --use and --ignore.
+
+  * portpkg:
+  * Improved finding PRT_ROOT.
+  * slk2gname(): Fixed expression.
+  * regex(): As we use now extended regex, we need to protect the +'s.
+  * fix_ports_root(): restrict slk cache to `pwd`.
+  * get_info(): Use ls_slk() to find the port, this will break
+    name-ver-arch-build expressions, it's only for USE_ALPHA_CODE.
+  * get_info(): \$products should fall back to \$package.
+  * check_reqs(): Use ls_slk() rather than ls_loc(); minor changes.
+  * maintainer_mode(): Disabled looking for pkg-config as a dependency.
+  * build_pkg(): Don't skip updating CVS sources; fixed logging.
+
+  * autoport: Use -f with gtk-update-icon-cache.
+
+2006-07-28  topf  <topf@users.berlios.de>
+
+  * ignore:
+  Removed gpm from list as it's not known as a package that overlaps with others, and also freetype and fontconfig as they are now separate packages at least in -current.
+
+  * sync.zz.cleanup: Adapt new ls_pkg() output.
+
+  * portpkg:
+  * ignore(), use(): Don't cache regexs.
+  * ls_pkg(): Keep .tgz.
+  * sort_ver(): Prefer patches/, not local/.
+  * regex(): Use -E and extended regexs.
+  * regex(): Allow '/regexp/'.
+  * ls_diff(): REINSTALL disables ls_inst() for available packages now.
+  * ls_diff(): Don't comlain about non-existent *.check files.
+  * get_info(): Reduced code.
+  * parse_options(): --use also removes expressions from ignore and vice versa.
+
+2006-07-26  topf  <topf@users.berlios.de>
+
+  * portpkg: add_pkg(): Don't use ls_inst -F.
+
+  * portpkg:
+  Replaced a bunch of basenames and dirnames to ${##*/} and ${%/*} instructions.
+
+  * portpkg, sync.zz.cleanup:
+  * Added ls_src().
+  * get(): Return when DRY_RUN is set.
+  * check_reqs(): Request full package name of available package.
+
+  * portpkg:
+  * Fixed to use absolute paths in ls_virt() now.
+  * explicit(): Remove duplicate entries.
+
+  * checkpkg, portpkg: Fixed to use absolute paths in ls_inst() now.
+
+  * autoport, checkpkg, portpkg, sync.portpkg, sync.zz.cleanup:
+  * Added any2gany(), replaced loc2gpkg.
+  * Fixed to use absolute paths in ls_pkg()'s output.
+
+  * portpkg:
+  * ls_diff(), do_diff() Moved code from do_diff() to ls_diff(), so do_upgrade() profits.
+  * maintainer_mode(): Removed 'which scrollkeeper', small fixes.
+  * do_upgrade(): Support pkgex to diff from.
+
+2006-07-25  topf  <topf@users.berlios.de>
+
+  * ignore:
+  Disabled all those various packages that should be revised by maintainers.
+
+  * virtual:
+  Updated gnome-platform/, gnome-desktop/ and gnome-bindings/ groups.
+
+  * portpkg:
+  * Added ADD_CMD, ROOT_BUILD_CMD, NOBODY_BUILD_CMD and WGET_CMD.
+  * Removed INSTALLPKG AND UPGRADEPKG.
+  * Removed level_one.
+  * build_pkg(): Added build_cmd and reduced code excess.
+  * regex(): Fixed . expression again.
+  * add_pkg(): Removed add and replaced su with ADD_CMD.
+  * init(): Use log >/dev/null instead of debug here.
+
+  * portpkg: regex(): Fix regex for ..
+
+  * portpkg: do_diff(): Skip equal versions when LAZY_CHECKS is set.
+
+  * portpkg:
+  add_pkg(): Check if $package is installed *before* it is added to $temp/started.
+
+  * portpkg:
+  cache(): Fix bug when $filter quits before $action finished and $file is incomplete.
+
+  * portpkg:
+  * Added slk2name().
+  * Use new regex() and slk2name() to reduce some complex pipes.
+  * check_reqs(): Don't ignore dependencies that are not in ls_loc().
+
+  * portpkg: regex(): Expressions match also output of ls_slk().
+
+  * portpkg:
+  * regex(): Use '@' for anything, '0' or empty for nothing.
+  * ls_diff(), do_diff(): Compare all ports or only on base of the arguments.
+
+  * portpkg:
+  * sort_ver(): Prefer local/ only when LAZY_CHECKS is not set.
+  * do_list(): Use sort_ver() if we have arguments.
+
+2006-07-20  topf  <topf@users.berlios.de>
+
+  * portpkg: maintainer_mode(): Find also update-mime-database dependency.
+
+  * autoport:
+  * Check also for SHARED_MIME_INFO.
+  * Clean cache files completely after port creation.
+  * Fixed SlackBuild skeleton to remove any perllocal.pod files
+  * Remove /usr/share/mime/* files, they are updated by update-mime-database.
+
+2006-07-19  topf  <topf@users.berlios.de>
+
+  * portpkg, sync.zz.cleanup: Don't complain about missing PKG_DIR or SRC_DIR.
+
+2006-07-18  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  get_info(): Moving code to seperate function fix_ports_root().
+  fix_ports_root(): Separated from get_info().
+  build_pkg(): Ask for confirmation before starting to build.
+  do_list(): Use fix_ports_root().
+  parse_options(): Force REBUILD=true when DOWNLOAD_ONLY=true.
+
+2006-07-17  topf  <topf@users.berlios.de>
+
+  * portpkg: build_pkg(): Don't complain about ovwerwriting old buildlog.
+
+  * portpkg: maintainer_mode(): Find misc dependencies.
+
+  * portpkg: Fixed string arguments for cache(). Minor speed-ups.
+
+2006-07-14  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * add_pkg(): Fixed a bug that avoided circular dependencies to be tracked.
+  * check_reqs(): Prevent a common mistake: exclude $name from $requires.
+  * do_upgrade(): Fixed bug that avoided actual upgrade after files are downloaded.
+  * check_reqs(): Don't complain about optional dependencies to be installed when $DOWNLOAD_ONLY is set.
+
+2006-07-13  topf  <topf@users.berlios.de>
+
+  * portpkg.1: Updates.
+
+  * sync.portpkg:
+  * Clean up *.asc files.
+  * Do ARCH=i486 a little later to work correctly.
+
+  * autoport:
+  * Use update_header().
+  * Support source format 'dir'.
+
+  * portpkg:
+  ls_slk(): Use -follow also for USE_NEW_CODE.
+  sort_ver(): Sort local/ also on top.
+  ls_diff():
+    * Include installed versions only for LAZY_CHECKS
+    * Fix sorting of local/.
+  check_reqs(): Fix sorting of local/.
+  maintainer_mode(): Split out function update_header().
+  parse_options():
+    * Recursively set REMAINTAIN=PREPARE_ONLY=REBUILD=REINSTALL=true.
+    * Changed warning about LAZY_CHECKS.
+
+2006-07-09  topf  <topf@users.berlios.de>
+
+  * README.QuickStart: Renamed to INSTALL.
+
+2006-07-08  topf  <topf@users.berlios.de>
+
+  * virtual: cxxlibs, cvs are not essential; removed from bootstrap/.
+
+  * sync.portpkg: Reset ARCH to print 'i486' for the recent-list.
+
+  * portpkg:
+  check_reqs(): $prev is unitialised.
+  build_pkg(): Say 'Moving *.tgz...' to clarify it's the package file.
+
+2006-07-04  topf  <topf@users.berlios.de>
+
+  * portpkg: explicit(): Use any2base() for implicit expressions.
+
+  * autoport: Set MONO_SHARED_DIR to $TMP, not to /tmp.
+
+2006-07-01  topf  <topf@users.berlios.de>
+
+  * sync.portpkg:
+  * Test mtime of ChangeLog more precise.
+  * Prevent webstats from being updated if CVS has version conflicts.
+
+  * sync.zz.cleanup:
+  * Sort packages found in $SRC_DIR into $PKG_DIR.
+  * Minor changes to the message output.
+
+  * portpkg: init(): reset LC variables.
+
+2006-06-29  topf  <topf@users.berlios.de>
+
+  * sync.update-open: Merged with sync.portpkg.
+
+  * autoport: Convert '-' in version strings to '_'.
+
+2006-06-27  topf  <topf@users.berlios.de>
+
+  * autoport: Fix version sorting with -d.
+
+  * portpkg: Fixed another minor issues.
+
+  * portpkg, sync.portpkg: Fixed minor issues.
+
+  * mirrors: Use slackware.at as default mirror.
+
+  * INSTALL, README: Issue with ~/ports/.ports_root is fixed.
+
+  * changelogs, sync.portpkg, webstats:
+  Merged changelogs and webstats administration scripts into sync.portpkg.
+
+  * autoport: Fixed testing for *.new files.
+
+2006-06-26  topf  <topf@users.berlios.de>
+
+  * ChangeLog, NEWS: Updated.
+
+  * prepare: Removed (obsolete).
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Changed <http://portpkg.berlios.de> to <portpkg-devel@lists.berlios.de>.
+
+  * use: Added kde/.
+
+  * portpkg.1:
+  Updated due to changed explicit declarations and added documentation and examples for --ignore and --use options.
+
+  * autoport: Parse 'gnome://foo' shortcuts.
+
+  * autoport:
+  Use explicit() in '-u' and simply warn in case of modifying a script of another maintainer.
+
+  * autoport: Let the build script find *.new file and add them to doinst.sh
+
+  * autoport: Don't add pkgconfig results to requires.
+
+  * autoport, sync.portpkg: Consistently use row(), not echo.
+
+  * virtual:
+  * Disabled glitz since it's in testing/.
+  * Added bootstrap/ for essential packages.
+
+  * ChangeLog: Updated.
+
+  * SlackBuild, doinst.sh, footprint:
+  Merged exclude with ignore. Version bump to 0.38.1.
+
+  * exclude: Joined with ignore.
+
+  * ignore: Merged exclude with ignore.
+
+  * autoport: Check if mcs is used and add MONO_SHARED_DIR=/tmp.
+
+2006-06-24  topf  <topf@users.berlios.de>
+
+  * mirrors: More fixes.
+
+  * mirrors:
+  * Added MPlayer mirrors.
+  * Fixed Linuxpackages.net masks.
+
+2006-06-23  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+  * portpkg:
+  build_pkg(): Don't lose buildlog when package build process is skipped.
+
+  * portpkg: maintainer_mode(): Fix some improper string operations.
+
+2006-06-19  topf  <topf@users.berlios.de>
+
+  * portpkg: maintainer_mode(): Fixed typo.
+
+  * portpkg: check_reqs():
+  * Use default to determine $inst_pkg.
+  * Add $inst_pkg as an option of available packages.
+
+  * portpkg: * Removed $uses.
+  * check_reqs(): Determine list of (un)wanted dependencies.
+  * get_info(), do_info(): Removed use of $uses.
+  * help(), parse_options(): Added command line arguments for ignore and
+    use: -w, --ignore and -t, --use.
+
+  * portpkg:
+  Internally equated exclude() and ignore() which seemed to result in the same anyway.
+
+  * portpkg: build_pkg(): Fixed updating of $md5sums.
+
+  * portpkg:
+  Discarded the concept of "explicit expressions". They were meant to
+  protect the user from installing unwanted ports, but seemed to impose
+  the user's will:
+  * explicit(): Strip exclude list from "implicit expressions".
+  * get_info(): Always search also in excluded ports, but as a last resort.
+
+  * portpkg:
+  * Added log() as an element of the message system. Log anything to $LOG_DIR/portpkg.log.
+  * init(): Added log entries.
+  * maintainer_mode(), build_pkg(): Cleaned up to use row() instead of echo.
+
+2006-06-18  topf  <topf@users.berlios.de>
+
+  * webstats: Precise regular expressions.
+
+2006-06-17  topf  <topf@users.berlios.de>
+
+  * webstats: Make complete list added.
+
+  * portpkg: * Added ls_virt().
+  * explicit(), do_list(): Use ls_virt().
+
+  * portpkg:
+  get_info(): Also interpret $NAME for secondary packages produced by the script.
+
+  * portpkg: regex(): Fixed regular expression for explicit naming.
+
+2006-06-14  topf  <topf@users.berlios.de>
+
+  * export.portpkg:
+  * Test mtime of footprint and build script (returned to old behaviour).
+  * Test $PRT_DIR/CVS/Root for CVS write account indications (old behaviour).
+
+  * SlackBuild: Fixed typo. "svn" should be "subversion".
+
+  * checkpkg: * Auto-size windows.
+  * Patch to find descriptions with recent sync.slackware-bin.
+
+2006-06-13  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Reverted the move to RPM tools.
+
+  * portpkg: maintainer_mode():
+  * Went back to ldd to resolve dependencies instead of RPM tools.
+  * Added python modules detection.
+  * Completely generate a new header instead of fiddling the SlackBuild.
+  build_pkg():
+  * Minor cleanups.
+
+  * portpkg:
+  * Avoid messages when they are unsuitable in DOWNLOAD_ONLY or PREPARE_ONLY mode.
+  * do_upgrade(): Download all needed files before starting to build.
+
+  * portpkg: get_info(): Search package files also in $SRC_DIR.
+
+  * portpkg: get(): Added support for SVN sources via svn://[http://]repo.
+
+  * portpkg: sort_ver(): Slightly improved algorithm.
+
+2006-06-11  topf  <topf@users.berlios.de>
+
+  * NEWS: Updated.
+
+  * sync.update-open: Added support for testing tarball authentity via GnuPG.
+
+  * export.portpkg: Fixed testing of package age (again).
+  Test CVS write acces in the port's directory, not in the ports root.
+  Rewrote HTTP submit sub and added support for signing the submission with GnuPG.
+
+2006-06-03  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Test mtime of $pkg_file, rather than footprint.
+  Remove *~ backup files before exporting (thanks to Sajmon).
+
+2006-05-17  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Test mtime of footprint only if it exists.
+
+  * SlackBuild:
+  * rpm is now optional.
+  * Added gcc and glibc to the list of optional dependencies.
+
+  * changelogs, webstats: Added for administration.
+
+  * export.portpkg, portpkg:
+  * Write footprint to $LOG_DIR/$name.footprint.
+  * Create footprint after rewriting script header to make sure its
+     newer.
+  * Stop export when footprint is *older* (not when its not newer) than
+    the script.
+  * Minor changes to output messages.
+
+2006-05-08  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * Check explicitly for TMP=${TMP:-xxx} in the script and set tmp=/tmp
+    is this failes in get_info().
+  * Cleaned up some debugging messages.
+  * Don't remove FLAGS header in maintainer_mode().
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.slackyit-bin:
+  Synced with the generic engine in sync.slackware-bin.
+
+  * sync.slackware-bin:
+  * Actually, we need FILELIST.TXT, because many packages are not
+    listed in PACKAGES.TXT.
+  * Misc updates to the generic engine.
+
+  * mirrors:
+  * Added mirrors for linuxpackages.net.
+  * Added default mirror for sourceforge.net.
+
+2006-05-06  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * Fixed typo. Interactive means "_do_ ask".
+  * Fixed $url if no mirros declared in get() (hnaz).
+  * Fixed testing whether `pwd` is in $PRT_DIR in get_info().
+  * Fixed parsing md5sums also from within script in get_info().
+  * Fixed setting TMP enviroment correctly in build_pkg() (hnaz).
+
+  * pp-config: settings(): Do not evaluate results if dialog is canceled.
+
+2006-05-04  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+  * export.portpkg: Pause a little earlier.
+
+  * autoport:
+  * Added -z (debug).
+  * Fixes.
+
+  * pp-config: Added dailog for "various settings".
+
+  * portpkg: More comments in code.
+
+  * sync.slackware-bin:
+  * Do not use FILELIST.TXT. Not needed anymore.
+  * Use one-file-ports to reduce tree size.
+
+  * NEWS, doinst.sh, prepare, use, README, ROADMAP: Updates.
+
+  * mirrors.au, mirrors.de, mirrors.jp, mirrors.us: Obsolete.
+
+  * INSTALL, SlackBuild:
+  * Updated documentation.
+  * Use *.new conventions in /etc now.
+  * New header style.
+
+  * mirrors, portpkg, pp-config:
+  * No more mirrors.*. Use /etc/portpkg/mirrors or ~/ports/mirrors.
+  * Smaller fixes.
+
+  * portpkg:
+  * regex(): "." should list ports recursively.
+  * Code cleanups.
+
+  * portpkg:
+  Use ignore(), exclude(), mirrors(), repos(), use() instead of variables.
+
+  * portpkg: Allow "portpkg --list .".
+
+  * autoport: Code cleanups.
+
+  * portpkg: Fixed do_find(): Don't run do_list() if nothing found.
+
+2006-05-01  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+  * autoport:
+  $group should really be set to the argument. Don't try to correct that.
+
+  * autoport: check(), snip(), add_inst(), remove_inst():
+  * Cleanups.
+
+  * autoport: encode(), decode():
+  * Don't use $NAME anymore.
+  * Cleanups.
+
+  * autoport:
+  * Try to detect pkgconfig .pc files and add them to requires/optional.
+  * snip() slkcflags when ARCH=noarch.
+
+  * autoport: * Don't set verbose before get().
+  * Copy header of old script.
+
+  * autoport: Converted to use sel() instead of snip().
+
+  * autoport: * Update caches after new buildscript is created.
+  * Use internal do_add(), instead of portpkg again.
+  * Don't use -m 1 in grep.
+
+  * autoport:
+  * Removed ask() and $i_act, use portpkg's pause() and $INTERACTIVE now.
+  * Removed Bash-specific syntax.
+
+  * autoport: Code cleanups (split into several functions).
+
+  * autoport: * Added hier() to print a hierarchy list of tags
+  * Added sel() to snip() all subsections but one
+
+  * portpkg: do_find():
+  * Search also for descriptions in *SlackBuilds
+  * Fix "xarg: arglist too long" bug
+
+  * portpkg: do_info(): Cleanups.
+
+  * portpkg: build_pkg(): Add new package to the cache.
+
+  * portpkg: maintainer_mode(): $t/ignore isn't used anymore.
+
+  * portpkg: build_pkg(): Fixed typo in checksum warnings.
+
+  * portpkg:
+  maintainer_mode():
+  * Cleanup generating FLAGS line in header.
+  * Add rebuild flag.
+
+  * portpkg:
+  maintainer_mode(): Exclude own files when examining the list of dependencies of the dependencies.
+
+  * portpkg:
+  get_info(): In direct mode and when is outside of PRT_DIR, set PRT_DIR=PKG_DIR=`pwd`.
+
+  * portpkg: warn(): output should be directed to stderr.
+
+  * portpkg: Precised any2dir(): return empty if the argument is a basename.
+
+  * portpkg: Simplified ls_inst() and ls_pkg().
+
+  * portpkg:
+  Detect if the buildscript makes more than one packages and display this in --info.
+
+  * portpkg: Find and use the buildscript's TMP.
+
+  * portpkg: Unfortunately, exporting TMPDIR was correct.
+
+2006-04-29  topf  <topf@users.berlios.de>
+
+  * portpkg.1: Updates.
+
+2006-04-28  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * Remove Bash-specific syntax (brace expansion, "==", "declare", "<()", etc.)
+  * Changed all variables that can be modified with command arguments to
+    global ones; $maintain, $no_fakeroot and $rebuild contain per-port values
+  * TMPDIR doesn't need to be exported
+  * Changed $action to a local variable in parse_options()
+  * Added rebuild flag functionality for ports
+  * Code cleanups
+  * Fixed bug in ls_diff(): make any2base earlier
+  * Removed $size and $u_size; moved code to do_info()
+  * Removed useless use of awk / cat / temp files
+  * Speed-up --find by not following symlinks
+  * Checks against TMPDIR was meant to be TMP in init()
+
+2006-04-26  topf  <topf@users.berlios.de>
+
+  * checkpkg, pp-config, prepare: Use "bash" in sheebang, not "sh".
+
+  * ChangeLog: Updated.
+
+  * portpkg: restored return codes for do_add() and do_info()
+
+  * portpkg:
+  * massive (one could say "aggressive") code cleanup
+  * removed obsolete flags "pseudo" and "slot-in"
+  * use USE_ALPHA_CODE=true for new sorting methods
+  * no more warning in direct mode about dependencies
+  * new dependencies resolution function moved from "ldd" to
+    "/usr/lib/rpm/find-requires" which is much better (yes, again!)
+  especially for perl modules and reduces the code; rpm should be
+  installed anyways on a good system ;-)
+  * fixed reproducing sources in new header code in maintainer_mode() when
+    the source contains a "&"
+  * fixed wrong warning about missing md5sums
+  * packages should be coppied (not moved) from $TMP to $PKG_DIR
+  * check early for skipping if a package is already installed
+  * use term "expression" instead of "list" in help()
+  * added "-n" and "--noask" to help()
+  * check if TMP and TMPDIR are not empty
+
+  * portpkg.1: Updates.
+
+  * export.portpkg:
+  * Removed lines in ChangeLogs that are just saying that it has been updated.
+  * Fix version check for curl (thanks to sjn).
+
+2006-04-25  topf  <topf@users.berlios.de>
+
+  * autoport: * Use #!/bin/bash to avoid certain errors
+  * Fixed and crunched up2date method
+  * Removed chowning root-bin binaries (hnaz)
+
+  * portpkg:
+    * Try any matching expression for mirrors, not just the last one (get()).
+    * Don't check integrity twice (build_pkg()).
+
+2006-04-21  topf  <topf@users.berlios.de>
+
+  * portpkg: get(): Fallback to $o_url.
+
+  * portpkg: get(): Should be 'sed -n "...p"'. Fixed and cleaned-up.
+
+2006-04-20  topf  <topf@users.berlios.de>
+
+  * portpkg.1: Rewritten. Use term 'expression' instead of 'list'.
+
+  * ignore:
+  Removed gtk+2 dependencies. This is now obsolete and maintainer_mode() handles this much better now.
+
+  * autoport: * Fail if -u didn't find anything.
+  > * Added option -d to automatically guess recent version.
+  > * Fix grep for cpan scheme.
+
+  * portpkg: * get_info(): Fixed typo.
+  * maintainer_mode(): write info into header, remove obsolete files.
+
+  * portpkg: get_info(): read-in flags from within script header.
+
+  * portpkg: get_info(): read-in info also from within script header.
+
+  * portpkg: maintainer_mode(): don't use -t in fmt here.
+
+  * portpkg:
+  add_pkg(): Enabled check_blocks(). check_blocks(): define variable block.
+
+  * portpkg:
+  Added check_opts(). add_pkg(): Warning about not met optional dependencies.
+
+  * portpkg: explicit(): ls_slk() must not have regex() argument.
+
+2006-04-15  topf  <topf@users.berlios.de>
+
+  * pp-sync-bin, pp-sync-src: *** empty log message ***
+
+  * portpkg:
+  * Look for plugins in $PRT_DIR/plugins and prefer them over $CFG_DIR/plugins (do_sync(), do_export()).
+  * Code clean-ups (do_sync(), do_export()).
+
+  * portpkg: List expected .new file in check_pkg().
+
+  * portpkg: Use more fmt -t.
+
+  * portpkg: Fixed typo.
+
+  * portpkg:
+  Added $md5sums, in build_pkg() don't read-in md5sums directly, use $md5sums instead.
+
+  * portpkg: Use TEST_REQS when $prepare_only is true, not NO_REQS.
+
+  * portpkg: do_info(): Use fmt -t more often.
+
+  * portpkg: check_pkg():
+  * Added etc/gconf/gconf.xml.* files to the list of mistakes.
+  * Return silently if package is not built.
+
+  * portpkg: maintainer_mode():
+  * Avoid including recursive dependencies.
+  * Deleting -solibs and adding x11-devel should not be part of maintainer_mode(), removed.
+  * More code clean-ups.
+
+  * portpkg: Fixed typo bug.
+
+  * portpkg: regex(): Changed unnecessary '\/' to '/'.
+
+  * portpkg: Return 0 in pause() when $INTERACTIVE is false.
+
+  * portpkg: check_reqs():
+  * Setting msg_level to 1 in this subshell is enough
+  * elif $TEST_REQS is unnecessary.
+  * Some code clean-ups.
+
+  * portpkg:
+  Append the list of installed packages to the list of available packages in ls_diff() to avoid downgrading of locally installed versions that are newer than versions in ls_loc().
+
+  * portpkg:
+  get_info(): Read out description also from within the script itself (cat >>slack-desc <<EOF).
+
+  * portpkg: Remove logging of downloads. Always show wget output.
+
+  * portpkg: Watch out for confile 'mirror' too.
+
+  * portpkg: Message for the case $prepare_only is set and package exists.
+
+  * portpkg: get_info():
+  * Use ls_pkg() to locate .tgz file.
+  * Use $package to decide $maintainer_mode, avoid calculating $build.
+
+  * portpkg: Have $path globally.
+
+  * portpkg: Use -P for cvs co in get().
+
+  * portpkg: Don't start with \n in error(). This messes the output.
+
+  * portpkg: * Added EXPORT and default to export.portpkg.
+  * Check presence of plugins in do_sync() and do_export().
+  * Removed hint about touch ~/.ports_root, obsolete.
+
+2006-04-01  topf  <topf@users.berlios.de>
+
+  * portpkg: Return 0 in check_pkg().
+
+  * portpkg:
+  Moved parts of maintainer_mode() to new check_pkg() that is run on *every* package:
+  * Check for uncommon install locations
+  * Check for files that interfere with other packages
+  * Warn about missing packager tags
+
+  * export.portpkg: Obtain confirmation before each export.
+
+  * sync.portpkg: Use new cvs:// scheme in get().
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Create slack-required, slack-suggests and slack-conflicts files for binary pseudo ports.
+
+  * sync.gsb-frg: Use ChangeLog not ChangeLog.txt.
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.slackware-bin, sync.slackyit-bin:
+  Fix loading the same file twice.
+
+  * portpkg:
+  Also use the files slack-required, slack-suggests and slack-conflicts for info parsing.
+
+  * portpkg: Turn off interactive mode in dry-run.
+
+  * portpkg: Fix output of ls_inst.
+
+  * portpkg: According to changelog/current this is obsolete now.
+
+  * portpkg: Search in $(pwd)/ not $(pwd) for the case this is a symlink.
+
+  * portpkg:
+  Use $o_url to find mirrors in order to use the last fitting expression.
+
+  * portpkg:
+  Added new experimental (but disabled) version sorting routine sort_ver().
+
+2006-03-31  topf  <topf@users.berlios.de>
+
+  * portpkg: Added confirmation dialogs for upgrade and install.
+
+  * sync.slackware-bin, sync.slackyit-bin, sync.gsb-frg:
+  Added $FILES to determine what files to download.
+
+  * repos: Added z/{bin/}linuxpackages
+
+  * sync.linuxpackages-bin:
+  Don't insist on downloading ChangeLog.txt from linuxpackages.net
+
+  * sync.linuxpackages-bin: Don't use $DIST_VER for linuxpackages.net.
+
+2006-03-23  topf  <topf@users.berlios.de>
+
+  * checkpkg: Use su -c for removepkg, just as portpkg does for installpkg.
+
+  * portpkg: Use cvs:// uris to handle CVS repositories in 'sources' files.
+
+  * autoport: Query CPAN to find Perl modules.
+
+2006-03-22  topf  <topf@users.berlios.de>
+
+  * portpkg: Some code clean-up.
+
+  * portpkg: Use -h with grep for the 'virtual' files.
+
+  * portpkg:
+  Default to MY_TAG=`whoami` and SYNC="sync.portpkg sync.slackware-bin sync.zz.cleanup" to make portpkg run out-of-the-box.
+
+  * portpkg: Fall back to ~/ports if not root and no .ports-root found.
+
+  * portpkg:
+  Properly check downloaded files on md5sums and rename them to *.invalid if they fail.
+  Allow additional configuration files (repos, mirrors, ignore, exclude, use, virtual) also in $PRT_DIR.
+  Append maintainer_mode() output to the .buildlog.
+  Gzip buildlogs of successfully built packages.
+
+  * checkpkg: Fixed minor bug.
+
+2006-03-19  topf  <topf@users.berlios.de>
+
+  * portpkg: Put .../share/pkgconfig/ on the black list of mistakes.
+
+  * portpkg: Fixed --find to work again and to avoid error messages.
+
+2006-03-18  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+  * README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, ROADMAP, SlackBuild, footprint, ABOUT, FAQ, NEWS, README, README.Links:
+  Version bump.
+
+  * autoport: Precise the definition of GNOME sources.
+
+  * portpkg: More meaningful error messages.
+
+  * portpkg:
+  Change $LOG_DIR to /var/portpkg/log instead of /var/log/portpkg. If .ports_root is found as a mark to point to the top of the ports tree, use $PRT_DIR/dist $PRT_DIR/pkg and $PRT_DIR/log.
+
+  * portpkg:
+  Added $TEST_REQS=false. In direct mode, set TEST_REQS=true instead of NO_REQS. In check_reqs(), fail if any dependency is not installed.
+
+  * portpkg: Don't trap broken pipes in Bash-3.1 anymore.
+
+  * export.portpkg: Fail when symlinks are present.
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.portpkg, sync.slackware-bin, sync.slackyit-bin, sync.zz.cleanup:
+  Always fail if no write access to $TREE.
+
+  * sync.portpkg:
+  Test the presence of $TREE/CVS, not $TREE itself, which is always present.
+
+2006-03-16  topf  <topf@users.berlios.de>
+
+  * autoport: Avoid error message.
+
+2006-03-15  topf  <topf@users.berlios.de>
+
+  * autoport: Added docfiles2 section.
+
+  * autoport: Avoid using an existing binary when -b is set.
+
+  * autoport: Use the name of the source package to correct GNOME urls.
+
+2006-03-14  topf  <topf@users.berlios.de>
+
+  * autoport:
+  Correct the urls of GNOME source files automatically when updating an existing build script.
+
+  * autoport: Make sure -b runs the port we want it to run.
+
+2006-03-12  topf  <topf@users.berlios.de>
+
+  * export.portpkg: Don't export \*.autoport files.
+
+  * portpkg: More meaningful error message if no ports found.
+
+  * autoport: Use relative path for gconftool-2 in doinst.sh.
+
+  * autoport: Check for KDEDIRS and use /opt/kde.
+
+  * autoport: Use '%prefix%' instead of '/usr'.
+
+  * autoport: Check for '--disable-update-mimedb'.
+
+  * autoport: Fix use of non-existent marking 'cfg_configure'.
+
+  * autoport: Change '#\!' to '#:' for the template markings.
+
+  * autoport: Use decode() to test the result of encode().
+
+2006-02-20  topf  <topf@users.berlios.de>
+
+  * sync.gsb-frg, sync.linuxpackages-bin, sync.portpkg, sync.slackware-bin, sync.slackyit-bin, sync.update-open, sync.zz.cleanup:
+  Renewed plugin descriptions.
+
+  * pp-config: Adding pasture/ to exclude.local is obsolete.
+
+  * pp-config: Use $PRT_DIR/portpkg.conf.
+
+  * sync.linuxpackages-bin, sync.slackware-bin:
+  Use $DIST_VER, not $SLACK_VERSION.
+
+  * doinst.sh: Commented out obsolete code.
+
+  * sync.linuxpackages-bin, sync.slackware-bin:
+  Don't overwrite $SLACK_VERSION variable.
+
+  * portpkg: Try to find the ports tree automatically by locating .ports_root.
+
+  * portpkg: Include per-tree config file at $PRT_DIR/portpkg.conf.
+
+  * autoport: Use getopt.
+
+  * autoport:
+  Don't overwrite an existing build script before the new script is complete.
+
+  * autoport: Find x-fix locations.
+
+  * autoport: Remove "#[+-=]" lines from .autoport files.
+
+  * autoport: Removed obsolete " || exit 1".
+
+  * autoport:
+  Re-arranged sections: head, vars, slkcflags, prepare, config, configure, configure-opts, install, refine, strip, doc, docfiles, tail, package and cleanup.
+
+  * autoport: Fixed another two bugs in insertion of .autoport files.
+
+  * autoport: Fixed insertion of .autoport files.
+
+  * autoport: Check for .omf.in files.
+
+  * autoport: Extract "fixes" from build script to .autoport files.
+
+2006-02-19  topf  <topf@users.berlios.de>
+
+  * autoport: Remove mimeinfo.cache files.
+
+  * autoport: Check for index.theme and do gtk-update-icon-cache.
+
+  * autoport: Check for --disable-scrollkeeper.
+
+2006-02-18  topf  <topf@users.berlios.de>
+
+  * portpkg: Show installed version(s) in do_info().
+
+2006-02-15  topf  <topf@users.berlios.de>
+
+  * sync.linuxpackages-bin: Added sync.linuxpackages.
+
+  * repos: Fixed repos path for GSB/FRG.
+
+  * sync.gsb-frg: Update to version 2.12.1.
+
+  * sync.slackware-bin, sync.slackyit-bin, sync.gsb-frg:
+  Parse the file lists better.
+
+  * portpkg: Prevent error message of an already created link.
+
+2006-02-13  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  Added $INSTALLPKG and $UPGRADEPKG to make them customisable (for sudo or such).
+
+  * portpkg: Patched (2nd time) malformed regular expression.
+
+  * portpkg: Don't use 'sort +n'.
+
+  * portpkg:
+  Patched a regular expression that prevented portpkg from being executed in Bash-3.1.
+
+2005-12-09  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Release 0.37.6.
+
+  * prepare: Minor changes.
+
+  * export.portpkg:
+  Added new functionalities for administration of ports via CVS.
+
+  * sync.update-open: Added for administration of uploaded contribs.
+
+  * sync.slackware-bin: Minor cleanups.
+
+  * sync.portpkg: Declare variable t. Minor cleanups.
+
+  * sync.zz.cleanup: Activated new naming conventions and new plugin system.
+
+  * repos: Enabled GSB/FRG and Slacky.it repos.
+
+  * pp-config, portpkg: Activated new naming conventions and new plugin system.
+
+  * portpkg: Fixed a typo in mirror list naming.
+
+  * checkpkg: Clean the cache of installed packages after call of portpkg.
+
+  * sync.gsb-frg, sync.slackyit-bin: Added plugin for binary pseudo ports.
+
+2005-11-19  topf  <topf@users.berlios.de>
+
+  * ignore, ChangeLog: Updated.
+
+  * portpkg:
+  Added flags file and functionality. Backported new features in maintainer_mode() from the testing version.
+
+  * portpkg: Create new md5sums right after download, not in maintainer_mode().
+
+2005-11-18  topf  <topf@users.berlios.de>
+
+  * pp-config, portpkg:
+  Added $MIRRORS. Use a variable instead of linking /etc/portpkg/mirrors.
+
+  * portpkg: Inform about implicit targets in do_add().
+
+  * export.portpkg, portpkg:
+  Backported 'direct mode' from testing version: If no argument given, find SlackBuild in current dir.
+
+  * autoport: Try to chown nobody.nogroup only if root.
+
+  * SlackBuild, portpkg, use: Added 'use' config file and functionality.
+
+  * portpkg:
+  Filter only architecture relevant packages in slk2loc(). Neglect architecture differences for ix86 in ls_diff().
+
+  * portpkg:
+  add_pkg(): Use global port variables (after get_info()), don't require argument. Don't use global summary cache files.
+
+  * portpkg: Declare $repos global.
+
+2005-11-17  topf  <topf@users.berlios.de>
+
+  * sync.zz.cleanup: Try to remove empty dirs recursively.
+
+  * sync.portpkg: Some cleanups. Don't hide CVS dirs anymore.
+
+  * exclude: Added more to exclude.
+
+  * SlackBuild, portpkg, virtual:
+  Added 'virtual' config file and functionality.
+
+  * portpkg: Fallback to repos=$PRT_DIR if /etc/portpkg/repos isn't present.
+
+  * ChangeLog: Updated.
+
+  * sync.slackware-bin: Added sync.slackware-bin. pp-sync-bin is now obsolete.
+
+  * autoport, checkpkg, portpkg, sync.zz.cleanup:
+  Added any2base() and any2dir() to replace 'cut -d / -f 1/2'. Added (but commented out) some needed major changes in group parsing.
+
+  * portpkg: Make more use of cache features for ls_inst().
+
+  * portpkg: Added $SYNC. Allow use of new-style sync-plugins in do_sync().
+
+  * portpkg: Declare $t in get().
+
+  * export.portpkg, portpkg:
+  Handle $export_opt in do_export(), not in parse_options().
+
+  * export.portpkg:
+  Remove CVS dirs recursiv in export tarball (Thanks to Piotr Simon).
+
+  * portpkg: Search 'requires' for optional and conflicting expressions.
+
+  * portpkg: Fixed reporting of a return code in check_reqs().
+
+2005-11-16  topf  <topf@users.berlios.de>
+
+  * portpkg: Fixed return code in build_pkg().
+
+  * portpkg: Avoid 'grep -m' options, so we won't get any broken pipes.
+
+  * ChangeLog: Updated.
+
+  * portpkg: Fixed a typo (?) in maintainer_mode() dependencies pipe.
+
+  * portpkg: Minor speed-ups for check_reqs().
+
+  * SlackBuild, portpkg, repos:
+  Added repos configuration file and functionality.
+
+  * SlackBuild, export.portpkg, portpkg, sync.portpkg, sync.zz.cleanup:
+  Moved syncing with and exporting to portpkg.berlios.de out of portpkg (but still hard coded). Basically, this will be the style of the upcoming plugins system.
+
+  * checkpkg, portpkg:
+  Use regular expressions in ls_xxx functions instead of piping through a new grep process.
+
+2005-11-13  topf  <topf@users.berlios.de>
+
+  * pp-config: Run as non-root. Use \~/.portpkg.conf.
+
+  * portpkg: Changed /var/log/portpkg to $LOG_DIR
+
+  * portpkg: Make portpkg work as non-root:
+   * introduced LOG_DIR, to allow setting all paths into non-system space
+   * don't require to be run as root
+
+  * portpkg: Fixed some careless rm -rf instructions. Thanks to MReimer.
+
+  * portpkg:
+  Fixed testing for existence of directories. [ -d $var ] is always true, if $var is a nullstring.
+
+2005-10-31  topf  <topf@users.berlios.de>
+
+  * autoport, checkpkg: Minor fixes.
+
+  * portpkg: Find ports containing ALL arguments, not ANY in --find.
+
+  * portpkg: Enhanced dryrun output for dependencies, removed summary output.
+
+  * portpkg: Speed up 'ls_slk | slk2loc'.
+
+  * portpkg: Reuse md5sums, don't assume all symlinks are to be removed.
+
+  * portpkg: Speed up some find-functions by caching.
+
+  * portpkg: Also use ~/.portpkg.conf
+
+  * SlackBuild, portpkg:
+  Check the SlackBuild for presence of '|| exit 1' and use 'sh -e' if not.
+
+2005-10-08  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+2005-10-07  topf  <topf@users.berlios.de>
+
+  * SlackBuild, footprint, portpkg: Fixed md5sums checking again.
+
+  * portpkg, SlackBuild, footprint: Fixed bug in md5sums checking.
+
+2005-08-16  hnaz  <hnaz@users.berlios.de>
+
+  * SlackBuild, portpkg:
+  Added support for blocking packages. Please update, this is important!
+
+2005-08-13  hnaz  <hnaz@users.berlios.de>
+
+  * ChangeLog, SlackBuild, pp-config:
+  Fixed the usage of -mtune and -mcpu. Choose by gcc-version.
+
+2005-08-12  hnaz  <hnaz@users.berlios.de>
+
+  * ChangeLog, SlackBuild, pp-config: Changed the usage of -mcpu to -mtune.
+
+2005-08-11  hnaz  <hnaz@users.berlios.de>
+
+  * ChangeLog, SlackBuild, footprint, portpkg: Sorry for breaking, fixed it.
+
+  * SlackBuild, footprint, portpkg, ChangeLog:
+  Modified information output on DRY_RUN.
+  Fixed $flag_var grepping/sedding.
+
+2005-06-09  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated.
+
+2005-04-27  topf  <topf@users.berlios.de>
+
+  * ChangeLog: Updated. (cronjob)
+
+2005-04-23  topf  <topf@users.berlios.de>
+
+  * autoport: Fixed new old gconf installation.
+
+2005-04-22  topf  <topf@users.berlios.de>
+
+  * autoport: Switched back to install schemas via doinst.sh.
+
+2005-04-21  topf  <topf@users.berlios.de>
+
+  * autoport: Write skeleton after downlading source file.
+  Check for .desktop.in.in.
+  Mkdir $PKG/etc/gconf/gconf.xml.defaults for schemas installation to stop gconf creating using 700 mask.
+
+2005-04-19  topf  <topf@users.berlios.de>
+
+  * autoport: Removed "prepare", inserted section "strip".
+
+  * autoport: Added section prepare (chowning root.bin and stripping bins).
+  Moved beginning of section doc-fix to enclose only cp -av ... $PKG/usr/doc/...
+  Leave source tree in $TMP as portpkg does, for user inspections.
+
+2005-04-18  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Removed integration of pp-config in pkgtool.
+
+  * checkpkg: Fixed summary output dialog of removed packages.
+
+2005-04-17  topf  <topf@users.berlios.de>
+
+  * pp-config: Fixed resources menu to work with more than one importer script.
+
+  * ChangeLog: Updated.
+
+  * ChangeLog: *** empty log message ***
+
+  * ChangeLog: Added.
+
+  * autoport, pp-config: Back to -mcpu instead -mtune.
+
+2005-04-16  topf  <topf@users.berlios.de>
+
+  * exclude.10.0, exclude.10.1, exclude.current, footprint, SlackBuild:
+  Release 0.37.1.
+
+  * doinst.sh: Fixed typo.
+
+  * prepare: Changed back to one exclude list.
+
+  * pp-sync-bin:
+  Code cleanup. Added blurb. Renamed kernel packages to kernels/kernel-$flavour.
+
+  * mirrors.de, mirrors.jp, mirrors.us, mirrors.au: Added blurbs
+
+  * pp-config:
+  Changed exclude-files to former behaviour. Added support for importer scripts. Added blurbs for mirror files. Changed outdated -mcpu to -mtune.
+
+  * autoport:
+  Changed command line syntax for -u. Fixed missing scrollkeeper-update parameter in doinst.sh. Don't remove update-desktop-database automatically. Changed outdated -mcpu to -mtune. Removed mistaken deletion of %gconf.xml files.
+
+  * portpkg:
+  Check for more common mistakes. Optimimised CVS sync routine. Changed $SYNC_ADDON system to /etc/portkpg/importers/\*. Sync also /usr/obj/pkg/local/\*.
+
+2005-04-10  topf  <topf@users.berlios.de>
+
+  * portpkg: Fixed mistake with CFLAGS warning.
+
+  * portpkg: Code cleanup.
+  Precised search expression for Perl modules.
+  Fixed detection of arbitrary dependencies.
+  Show up missing CFLAGS error-message only in maintainer mode and ARCH != noarch.
+
+2005-04-04  topf  <topf@users.berlios.de>
+
+  * NEWS, README.QuestionsAndAnswers, SlackBuild, doinst.sh, footprint:
+  Release 0.37.
+
+  * autoport: Fixed reading source tarball file list correctly.
+
+  * autoport: Use path of existing port only if intended to re-use it.
+
+2005-04-01  topf  <topf@users.berlios.de>
+
+  * pp-export, slack-desc: *** empty log message ***
+
+  * SlackBuild, pp-config, prepare:
+  Make /etc/portpkg/exclude a symlink just like /etc/portpkg/mirrors.
+  /etc/portpkg/exclude.local should not be touched by pp-config.
+
+  * exclude.10.0, exclude.10.1, exclude.current:
+  Appended version specific exclude lists to standard exclude list.
+
+  * mirrors.au, mirrors.de, mirrors.jp, mirrors.us:
+  Added a few more mirror lists.
+
+  * portpkg:
+  Search /var/log/packages for dependencies to be ignored, not /usr/ports.
+
+2005-03-31  topf  <topf@users.berlios.de>
+
+  * exclude.current: Stupid me, not every-one has ARCH=i686.
+
+  * exclude.10.0, exclude.10.1, exclude.current, pp-config, prepare:
+  Use additional exclude list.
+
+  * SlackBuild, exclude.10.0, exclude.10.1, exclude.current, prepare:
+  Make additional exclude lists of duplicated ports for several Slackware versions.
+
+2005-03-30  topf  <topf@users.berlios.de>
+
+  * portpkg: Make PORT_IS_BROKEN a symlink to its buildlog.
+
+  * pp-sync-src: Updated.
+
+  * portpkg:
+  Changed summary log from /var/log/portpkg.log to /var/log/portpkg/log.
+
+  * portpkg: Don't remove /tmp/package-$name when running maintainer mode.
+
+  * portpkg: Use --cleanup only in non-maintainer mode.
+
+  * autoport: Fixed re-encoding version changes.
+
+2005-03-25  topf  <topf@users.berlios.de>
+
+  * autoport:
+  Remove unneeded files from package (perllocal.pod, usr/info/dir, %gconf.xml, var/lib/scrollkeeper etc.).
+
+  * portpkg: Make use of SlackBuild --cleanup.
+
+  * autoport: Re-use script path when re-autoporting.
+  Use --cleanup.
+
+2005-03-24  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, footprint: Fixed usr/bin/update-mime-database again.
+
+  * SlackBuild, footprint, portpkg, portpkg.1:
+  Write log files to /var/log/portpkg.
+
+2005-03-22  topf  <topf@users.berlios.de>
+
+  * NEWS, README, README.Links, README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, footprint:
+  Synced docs.
+
+  * portpkg:
+  In do_export(), check if "footprint" is present not older than its SlackBuild.
+
+2005-03-21  topf  <topf@users.berlios.de>
+
+  * autoport: Correct $PKG/usr/share/{man,doc} before mkdir $PKG/usr/doc.
+
+  * portpkg: Check whether ports have maintainer's tag when exporting.
+
+2005-03-20  topf  <topf@users.berlios.de>
+
+  * autoport: Corrected "update-mime-database usr/share/mime".
+
+  * SlackBuild, footprint: Updated d/portpkg to 0.36-noarch-2tom.
+
+  * portpkg: Adjusted messages in maintainer mode.
+
+  * autoport:
+  Fixed removing of update-mime-database where update-desktop-database is meant.
+
+2005-03-17  topf  <topf@users.berlios.de>
+
+  * portpkg: Changed --export to use a ChangeLog entry as argument.
+  Changed info layout in do_export.
+
+  * portpkg.1: Fixed typos.
+
+2005-03-16  topf  <topf@users.berlios.de>
+
+  * autoport: Strip current ar archive.
+  Enable --program-prefix="" again.
+
+  * portpkg: Remove PORT_IS_BROKEN also on success as non-maintainer.
+
+  * ignore: Added (outdated) elflibs.
+
+  * ignore:
+  Added hal, dbus, howl, gamin, fam, esound, arts, polypaudio, audiofile and alsa-lib. In almost any case, they're optional and interchangeable.
+
+  * .#footprint.1.14: Removed
+
+2005-03-12  topf  <topf@users.berlios.de>
+
+  * .#footprint.1.14, CREDITS, NEWS, README, README.PortpkgGuide, README.QuestionsAndAnswers, SlackBuild, autoport, checkpkg, doinst.sh, exclude, footprint, ignore, mirrors.de, portpkg, portpkg.1, pp-config, pp-sync-bin, pp-sync-src:
+  Moved local/portpkg-0.36-noarch-1tom to d/.
+
+2005-02-20  topf  <topf@users.berlios.de>
+
+  * footprint, portpkg, SlackBuild, pp-clean-cache, md5sums, NEWS, README, README.Links, README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, autoport, checkpkg, portpkg.1, pp-config, pp-export, pp-sync-bin, pp-sync-src, prepare, slack-desc, README.AutoportGuide, README.MaintainerGuide, README.UserGuide:
+  *** empty log message ***
+
+2005-02-10  topf  <topf@users.berlios.de>
+
+  * SlackBuild, md5sums, portpkg: Fixed bug in md5sum check routine
+
+2005-02-08  topf  <topf@users.berlios.de>
+
+  * md5sums: *** empty log message ***
+
+2005-02-04  topf  <topf@users.berlios.de>
+
+  * SlackBuild, footprint, md5sums, portpkg, prepare, README.QuestionsAndAnswers:
+  Updated d/portpkg to 0.34b-noarch-1tom.
+
+2005-02-02  topf  <topf@users.berlios.de>
+
+  * SlackBuild, footprint, md5sums, portpkg:
+  Updated d/portpkg to 0.34a-noarch-1tom.
+
+  * NEWS, README, README.AutoportGuide, README.Links, README.MaintainerGuide, README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, README.UserGuide, SlackBuild, autoport, checkpkg, footprint, md5sums, portpkg, pp-config, pp-sync-bin, pp-sync-src:
+  Updated d/portpkg to 0.34-noarch-1tom.
+
+2005-01-25  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, footprint, pp-sync-bin, pp-sync-src:
+  Updated d/portpkg to 0.33a-noarch-2tom.
+
+2005-01-24  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, footprint, portpkg:
+  Updated d/portpkg to 0.33a-noarch-1tom.
+
+2005-01-23  topf  <topf@users.berlios.de>
+
+  * pp-sync-dist, pp-sync-slack: *** empty log message ***
+
+  * NEWS, README, README.MaintainerGuide, SlackBuild, autoport, checkpkg, footprint, portpkg, pp-clean-cache, pp-config, pp-export, pp-sync-bin, pp-sync-src, slack-desc:
+  Updated d/portpkg to 0.33-noarch-1tom.
+
+  * README, README.Links, README.QuestionsAndAnswers, prepare, SlackBuild, autoport, footprint, portpkg, pp-export:
+  Updated d/portpkg to 0.32-noarch-5tom.
+
+2005-01-21  topf  <topf@users.berlios.de>
+
+  * portpkg: *** empty log message ***
+
+  * SlackBuild, autoport, footprint, portpkg, pp-sync-slack, slack-desc:
+  Updated d/portpkg to 0.32-noarch-4tom.
+
+2005-01-18  topf  <topf@users.berlios.de>
+
+  * autoport, footprint, portpkg, SlackBuild:
+  Updated d/portpkg to 0.32-noarch-3tom.
+
+2005-01-16  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, footprint, portpkg, pp-sync-dist:
+  Updated d/portpkg to 0.32-noarch-2tom.
+
+2005-01-10  topf  <topf@users.berlios.de>
+
+  * footprint, portpkg, portpkg.1, pp-sync-dist, pp-sync-slack, slack-desc, NEWS, README, README.AutoportGuide, README.MaintainerGuide, README.PortpkgGuide, README.QuickStart, README.UserGuide, SlackBuild, autoport:
+  Updated d/portpkg to 0.32-noarch-1tom.
+
+2005-01-03  topf  <topf@users.berlios.de>
+
+  * SlackBuild, checkpkg, footprint, portpkg, pp-clean-cache, pp-export:
+  Updated d/portpkg to 0.31-noarch-5tom.
+
+2005-01-02  topf  <topf@users.berlios.de>
+
+  * SlackBuild, portpkg, pp-export, pp-sync-dist: *** empty log message ***
+
+2004-12-19  topf  <topf@users.berlios.de>
+
+  * README.AutoportGuide, README.MaintainerGuide, SlackBuild, portpkg:
+  Updated d/portpkg to 0.31-noarch-3tom.
+
+  * README.AutoportGuide, autoport, portpkg: *** empty log message ***
+
+2004-12-18  topf  <topf@users.berlios.de>
+
+  * pp-export, README, README.AutoportGuide, README.MaintainerGuide, autoport:
+  *** empty log message ***
+
+  * NEWS, README.QuickStart, README.UserGuide, SlackBuild, autoport, portpkg, pp-export, prepare, slack-desc, README, README.AutoportGuide, README.Links, README.MaintainerGuide, README.PortpkgGuide, README.QuestionsAndAnswers:
+  Updated d/portpkg to 0.31-noarch-2tom.
+
+2004-12-16  topf  <topf@users.berlios.de>
+
+  * NEWS, README.AutoportGuide, README.MaintainerGuide, README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, README.UserGuide, SlackBuild, autoport, portpkg, pp-sync-dist, pp-sync-slack, prepare:
+  Updated d/portpkg to 0.31-noarch-1tom.
+
+2004-12-13  topf  <topf@users.berlios.de>
+
+  * pseudo, sources: *** empty log message ***
+
+2004-12-12  topf  <topf@users.berlios.de>
+
+  * requires, MaintainerGuide.html, MaintainerGuide.txt, PortpkgGuide.html, PortpkgGuide.txt, QuickStart.html, QuickStart.txt, TodoBugsAbout.html, TodoBugsAbout.txt, UserGuide.html, UserGuide.txt, clean-cache, sync-dist, sync-slack:
+  *** empty log message ***
+
+  * NEWS, README, README.Links, README.MaintainerGuide, README.PortpkgGuide, README.QuestionsAndAnswers, README.QuickStart, README.UserGuide, SlackBuild, autoport, portpkg, pp-clean-cache, pp-sync-dist, pp-sync-slack, prepare, slack-desc:
+  Updated d/portpkg to 0.30-noarch-6tom.
+
+2004-12-11  topf  <topf@users.berlios.de>
+
+  * MaintainerGuide.txt, PortpkgGuide.txt, QuickStart.txt, TodoBugsAbout.txt, UserGuide.txt, autoport, prepare, MaintainerGuide.html, PortpkgGuide.html, QuickStart.html, SlackBuild, TodoBugsAbout.html, UserGuide.html, clean-cache, portpkg, requires, sync-dist:
+  Updated d/portpkg to 0.30-noarch-5tom.
+
+2004-12-08  topf  <topf@users.berlios.de>
+
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+
+2004-12-02  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, portpkg, sources:
+  Updated d/portpkg to 0.30-noarch-3tom.
+
+2004-12-01  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, portpkg: Updated d/portpkg to 0.30-noarch-2tom.
+
+2004-11-30  topf  <topf@users.berlios.de>
+
+  * SlackBuild, autoport, portpkg, pseudo, requires, slack-desc, sources:
+  Updated portpkg to 0.30
+
+2004-11-26  topf  <topf@users.berlios.de>
+
+  * SlackBuild, COPYING, portpkg: *** empty log message ***
+
+2004-11-22  topf  <topf@users.berlios.de>
+
+  * SlackBuild, portpkg: minor fixes
+
+2004-11-21  topf  <topf@users.berlios.de>
+
+  * SlackBuild, portpkg, portpkg.1, sync-dist: 0.29e
+
+2004-11-18  topf  <topf@users.berlios.de>
+
+  * SlackBuild, portpkg: *** empty log message ***
+
+  * SlackBuild, portpkg, slack-desc, sync-dist: Minor bug fixes.
+
+  * SlackBuild, portpkg, portpkg.1: *** empty log message ***
+
+  * SlackBuild, portpkg: Bug fix.
+
+  * SlackBuild, portpkg: Added options --noreqs and --dryrun.
+
+2004-11-17  topf  <topf@users.berlios.de>
+
+  * checkpkg: Updated to gnome-python-2.6.1
+
+2004-11-15  topf  <topf@users.berlios.de>
+
+  * SlackBuild, portpkg, sync-dist, sync-slack: Some minor changes.
+
+2004-11-13  topf  <topf@users.berlios.de>
+
+  * portpkg: *** empty log message ***
+
+  * SlackBuild, portpkg: Make summary only once
+
+2004-11-13  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * sync-slack: Fixed creation of .build-wrappers
+
+  * SlackBuild, portpkg: Find also packages in wrong places in /usr/obj/pkg
+
+  * SlackBuild, portpkg: *** empty log message ***
+
+2004-11-12  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * SlackBuild, checkpkg, portpkg:
+  Bugfix: $PATH for sbins when running with sudo
+
+  * SlackBuild, checkpkg, clean-cache, portpkg, portpkg.1, slack-desc, sync-dist, sync-slack:
+  Changed to global dirs (/usr/ports etc.)
+
+2004-11-11  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * portpkg, sync-slack: Bug fixes.
+
+  * checkpkg: *** empty log message ***
+
+  * sync-slack: Oopsi, fix.
+
+  * sync-slack: Added .build-wrapper.
+
+2004-11-10  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * checkpkg: Again bug fix.
+
+  * checkpkg: Bug fix.
+
+  * SlackBuild, checkpkg, slack-desc, sync-dist:
+  Added checkpkg, a dialog based interace
+
+  * SlackBuild, portpkg: *** empty log message ***
+
+2004-11-08  tomtoastbrot  <tomtoastbrot@users.berlios.de>
+
+  * requires, SlackBuild, portpkg: *** empty log message ***
+
+  * portpkg:
+
+  * portpkg: New file.
+
+  * clean-cache, portpkg.1, slack-desc:
+
+  * clean-cache, portpkg.1, slack-desc: New file.
+
+  * SlackBuild, requires, sync-dist, sync-slack:
+
+  * SlackBuild, requires, sync-dist, sync-slack: New file.
+

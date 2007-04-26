@@ -1,0 +1,81 @@
+#
+# This is a maintained list of ALTERNATIVE package names.
+#
+# Although there's some logic somtimes, there're also exceptions that make it
+# impossible to generate this list automatically (e.g. Glib != glib).
+#
+# This list should not be used for replacement packages since version must be
+# comparable between them.
+#
+# Place this file either in /etc/portpkg or your ports tree (probable ~/ports).
+#
+
+# renamed packages
+pkgconfig pkg-config
+gnomemeeting ekiga
+polypaudio pulseaudio
+video-dvdrip dvdrip
+sylpheed-claws claws-mail
+sylpheed-claws-themes claws-mail-themes
+sylpheed-claws-extra-plugins claws-mail-extra-plugins
+gaim pidgin
+
+
+# uppercase letters
+AdobeReader adobereader
+aMule amule
+CriticalMass criticalmass
+Eterm eterm
+ettercap-NG ettercap-ng
+ExtUtils-Depends extutils-depends
+ExtUtils-PkgConfig extutils-pkgconfig
+eyeD3 eyed3
+gDesklets gdesklets
+GeoIP geoip
+giFT-FastTrack gift-fasttrack
+giFTcurs giftcurs
+giFToxic giftoxic
+LabPlot labplot
+libIDL libidl
+Linux-PAM linux-pam
+mDNSResponder mdnsresponder
+Mesa mesa
+MesaGLUT mesaglut
+MesaLib mesalib
+MPlayer mplayer
+NetworkManager networkmanager
+OpenSP opensp
+Pyrex pyrex
+PyXML pyxml
+SDL_gfx sdl_gfx
+wxGTK wxgtk
+wxPython wxpython
+XML-Writer xml-writer
+
+# Perl modules
+compress-zlib perl-compress-zlib
+Glib glib-perl
+Gnome2 gnome2-perl
+Gnome2-Canvas gnome2-canvas-perl
+Gnome2-GConf gnome2-gconf-perl
+Gnome2-VFS gnome2-vfs-perl
+Gtk-Perl gtk-perl
+Gtk2 gtk2-perl
+Gtk2-GladeXML gtk2-gladexml-perl
+html-parser perl-html-parser
+html-tagset perl-html-tagset
+module-build perl-module-build
+net-ip perl-net-ip
+SDL_perl perl-sdl_perl
+perl-uri uri
+perl-YAML perl-yaml yaml
+
+# C++ libraries
+gtkmm gtkmm2
+glibmm glibmm2
+libsigc++ libsigc++2
+
+# Flash
+flash-player flash-player-plugin flash-plugin
+
+gc libgc

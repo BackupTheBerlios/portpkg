@@ -1,0 +1,54 @@
+About The Portpkg Project
+
+   Portpkg is a ports system for Slackware Linux. Its purpose is to build and
+   manage a larger set of software for Slackware.
+
+   This is done not by provding binary packages, but by collecting scripts
+   that download, compile and install software on your machine. The
+   implementation is very simple and automated while still gaining the
+   maximum possible "Slackwareness". Contribution of own ports is realised by
+   uploading them onto our server which commits them into an open directory.
+   Our Crew will later merge them into the ports tree.
+
+   --------------------------------------------------------------------------
+
+Contribute
+
+   If you want to contribute to this project, then read on, there're many
+   ways to help us:
+
+  Bug Reporting
+
+     o If you use portpkg and something doesn't work, upload the buildlog!
+       You can find it in /tmp, it is called buildlog-<portname>, go to
+       http://portpkg.berlios.de and click browse and upload it. This is
+       anonymous, and helps a lot!
+     o If you have a clue what is borked, send a short bug-report on
+       http://portpkg.berlios.de.
+     o If you know how to fix a broken SlackBuild and want to code directly
+       as a maintainer, ask me for a CVS-account!
+
+  Contributing Ports
+
+     o Make ports you missed in the ports collection. A good starting point
+       is the autoport script from the portpkg package. See also QuickStart
+       and PortpkgGuide. Upload them on http://portpkg.berlios.de either with
+       the web panel on the right or the integrated export action (portpkg
+       --export). They will be automatically committed into the group open/
+       within the next hour and checked later to be merged to the collection.
+     o If you miss dependencies or descriptions or something leave a message
+       for the maintainer.
+     o If you find annoying dependencies being actually optional, tell us.
+
+  Wanted
+
+     o Feedback
+     o Maintainers
+
+   --------------------------------------------------------------------------
+
+Contact
+
+   As always, feel free to contact me:
+     o Tom <topf at users dot berlios dot de> or
+     o Portpkg mailing list <portpkg-users@lists.berlios.de>.

@@ -1,0 +1,29 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
+# OPTIONAL: cvs fakeroot gcc glibc gnupg lynx subversion wget
+
+VERSION=0.38.2cvs
+ARCH=noarch
+BUILD=4tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+
+make DESTDIR=$PKG PREFIX=/usr install
+sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
+
+gzip -9 $PKG/usr/man/man?/*
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT COPYING CREDITS FAQ INSTALL NEWS README* ROADMAP \
+  $PKG/usr/doc/$NAME-$VERSION/
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -rl echo config >>$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
