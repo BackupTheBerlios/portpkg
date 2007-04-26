@@ -1,27 +1,28 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/libbonoboui/2.16/libbonoboui-2.16.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/libbonoboui/2.18/libbonoboui-2.18.0.tar.bz2
 # MD5SUMS: 076905fc924b22e9b5656a51490ea07e libbonoboui-2.13.1.tar.bz2
 # MD5SUMS: dc26dc17cddc625cac37ecfab263a51a libbonoboui-2.14.0.tar.bz2
 # MD5SUMS: da86d37f26d53958048cc89cb0cc304a libbonoboui-2.15.1.tar.bz2
 # MD5SUMS: 603ffc92491ef27ccfbc2b69abd3906b libbonoboui-2.16.0.tar.bz2
+# MD5SUMS: 22bd67a0a8b7f156c02c5fc08fb1fa24 libbonoboui-2.18.0.tar.bz2
 # MD5SUMS: b23daafa8344a88696d497f20285ef55 libbonoboui-2.8.1.tar.bz2
 # REQUIRES: desktop-file-utils libglade libgnome libgnomecanvas
-# OPTIONAL: gtk-doc sgml-tools
+# OPTIONAL: gtk-doc linuxdoc-tools sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.0
+VERSION=2.18.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -41,17 +42,17 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog INSTALL NEWS README \
