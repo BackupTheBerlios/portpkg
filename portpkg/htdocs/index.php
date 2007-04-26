@@ -179,14 +179,14 @@ since 2004
 <a href="people">People</a>
 
 <div align="left">
-<a href="NEWS">doc.php?doc=News</a> /
-<a href="INSTALL">doc.php?doc=Install</a> /
-<a href="README">doc.php?doc=Readme</a> /
-<a href="ABOUT">doc.php?doc=About</a> /
-<a href="FAQ">doc.php?doc=FAQ</a> /
-<a href="README.Links">doc.php?doc=Links</a> /
-<a href="ROADMAP">doc.php?doc=Roadmap</a> /
-<a href="ChangeLog">doc.php?doc=ChangeLog</a>
+<a href="doc.php?doc=NEWS">News</a> /
+<a href="doc.php?doc=INSTALL">Install</a> /
+<a href="doc.php?doc=README">Readme</a> /
+<a href="doc.php?doc=ABOUT">About</a> /
+<a href="doc.php?doc=FAQ">FAQ</a> /
+<a href="doc.php?doc=README.Links">Links</a> /
+<a href="doc.php?doc=ROADMAP">Roadmap</a> /
+<a href="doc.php?doc=ChangeLog">ChangeLog</a>
 </div>
 	    </div>
 
