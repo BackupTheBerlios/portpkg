@@ -1,19 +1,21 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/epiphany/2.16/epiphany-2.16.3.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/epiphany/2.18/epiphany-2.18.1.tar.bz2
 # MD5SUMS: 872ef8d5e95cdc359f93b5ded501d98d epiphany-2.14.2.1.tar.bz2
 # MD5SUMS: 3ee93d168eb5720a96f4c7adf2cdf2d4 epiphany-2.16.3.tar.bz2
+# MD5SUMS: 680a14ee43637728c94bcdf02ef16a4a epiphany-2.18.1.tar.bz2
 # REQUIRES: desktop-file-utils gcc-g++ gconf gnome-desktop iso-codes libglade libpng libxslt scrollkeeper
-# OPTIONAL: dbus libXft libXt libxcb linuxdoc-tools mozilla python seamonkey sgml-tools xulrunner
+# OPTIONAL: dbus linuxdoc-tools mozilla python seamonkey x11 xulrunner
+# BLOCKS: mozilla-nss
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.3
+VERSION=2.18.1
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -37,9 +39,13 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
   --disable-scrollkeeper \
+  --`pkg-config NetworkManager && echo enable || echo disable`-network-manager \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
@@ -50,7 +56,6 @@ rm -rf $PKG/var/lib/scrollkeeper
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
