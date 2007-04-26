@@ -1,7 +1,9 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-2.8.1.tar.bz2
+# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-2.9.1.tar.bz2
 # MD5SUMS: b68983f2edac97cc094c527536d49a09 claws-mail-2.8.1.tar.bz2
+# MD5SUMS: 0a5a22e456640070ca09f6d65c0f680c claws-mail-2.9.0.tar.bz2
+# MD5SUMS: c0e2718d4bcd932709a6e1bcc910c47a claws-mail-2.9.1.tar.bz2
 # REQUIRES: aspell desktop-file-utils glib2 gpgme gtk+2 libetpan openldap-client pilot-link startup-notification
 
 set -e
@@ -10,7 +12,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.1
+VERSION=2.9.1
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
@@ -50,7 +52,6 @@ make || exit 1
 make install DESTDIR=$PKG \
 faqdir=$DESTDIR/usr/doc/$NAME-$VERSION/faq \
 manualdir=$DESTDIR/usr/doc/$NAME-$VERSION/manual || exit 1
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded 
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded

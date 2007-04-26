@@ -1,7 +1,9 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-extra-plugins-2.8.0.tar.bz2
+# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-extra-plugins-2.9.1.tar.bz2
 # MD5SUMS: 30fa4df35a55fbbc584ce40d7145f92e claws-mail-extra-plugins-2.8.0.tar.bz2
+# MD5SUMS: 5e86ceebdc36c3218cccd718de8b30af claws-mail-extra-plugins-2.9.0.tar.bz2
+# MD5SUMS: cde3849c15009521b51c4afc94f1606a claws-mail-extra-plugins-2.9.1.tar.bz2
 # MD5SUMS: 06b53d69913ea1c96fb154fa2686606a sylpheed-claws-extra-plugins-2.3.0.tar.bz2
 # MD5SUMS: f0a7c85c033dba930706f18b73274213 sylpheed-claws-extra-plugins-2.4.0.tar.bz2
 # MD5SUMS: db771d49bf9bde1cce075b93f8028a19 sylpheed-claws-extra-plugins-2.5.2.tar.bz2
@@ -12,7 +14,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.8.0
+VERSION=2.9.1
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -52,7 +54,6 @@ make install DESTDIR=$PKG
 )
 done
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
