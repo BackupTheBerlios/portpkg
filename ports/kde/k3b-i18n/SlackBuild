@@ -1,0 +1,56 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/k3b/k3b-i18n-1.0.1.tar.bz2
+# MD5SUMS: 80d1ac1766ad8a8cdadca5f4273f2d95 k3b-i18n-0.11.tar.bz2
+# MD5SUMS: f87a27408a4153d860103816ba83db09 k3b-i18n-1.0.1.tar.bz2
+# MD5SUMS: 19534f984a9846b50bf027d1a9ce4988 k3b-i18n-1.0.tar.bz2
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=1.0.1
+ARCH=noarch
+BUILD=1sjn
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG $TMP/$NAME-$VERSION
+mkdir -p $PKG
+cd $TMP || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+cd $NAME-$VERSION || exit 1
+chown -R root.root .
+
+./configure \
+  --prefix=/usr \
+  --program-prefix="" \
+  --program-suffix="" || exit 1
+make || exit 1
+make install DESTDIR=$PKG || exit 1
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  AUTHORS ChangeLog COPYING NEWS README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+#MY_LANG="de"
+#RMLANG=` ls $PKG/opt/kde/share/locale | grep -v $MY_LANG`
+#for i in $RMLANG; do
+#rm -r $PKG/opt/kde/share/locale/${i}
+#done
+
+cd $PKG || exit 1
+makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
