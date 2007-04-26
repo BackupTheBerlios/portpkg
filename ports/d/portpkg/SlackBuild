@@ -5,42 +5,16 @@
 
 VERSION=0.38.2cvs
 ARCH=noarch
-BUILD=3tom
+BUILD=4tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=/tmp/package-$NAME
 rm -rf $PKG
 
-# directories
-mkdir -p $PKG/etc/portpkg/plugins
-mkdir -p $PKG/usr/bin
-mkdir -p $PKG/usr/man/man1
-
-# configuration
-install -m 644 $CWD/repos $PKG/etc/portpkg/repos.new
-install -m 644 $CWD/mirrors $PKG/etc/portpkg/mirrors.new
-install -m 644 $CWD/ignore $PKG/etc/portpkg/ignore.new
-#install -m 644 $CWD/exclude $PKG/etc/portpkg/exclude.new
-install -m 644 $CWD/use $PKG/etc/portpkg/use.new
-install -m 644 $CWD/plugins/* $PKG/etc/portpkg/plugins/
-#install -m 644 $CWD/sync.* $PKG/etc/portpkg/plugins/
-#install -m 644 $CWD/export.* $PKG/etc/portpkg/plugins/
-#install -m 644 $CWD/report.* $PKG/etc/portpkg/plugins/
-install -m 644 $CWD/virtual $PKG/etc/portpkg/virtual.new
-install -m 644 $CWD/synonyms $PKG/etc/portpkg/synonyms.new
-
-# man page
-install -m 644 $CWD/portpkg.1 $PKG/usr/man/man1/
-
-# executables
-install -m 755 $CWD/portpkg $PKG/usr/bin/
+make DESTDIR=$PKG PREFIX=/usr install
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
-install -m 755 $CWD/pp-config $PKG/usr/bin/
-install -m 755 $CWD/checkpkg $PKG/usr/bin/
-install -m 755 $CWD/autoport $PKG/usr/bin/
 
-#chown -R root.bin $PKG/usr/bin
 gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
