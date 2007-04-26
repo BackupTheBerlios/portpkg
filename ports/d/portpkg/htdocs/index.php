@@ -179,14 +179,14 @@ since 2004
 <a href="people">People</a>
 
 <div align="left">
-<a href="NEWS">News</a> /
-<a href="INSTALL">Install</a> /
-<a href="README">Readme</a> /
-<a href="ABOUT">About</a> /
-<a href="FAQ">FAQ</a> /
-<a href="README.Links">Links</a> /
-<a href="ROADMAP">Roadmap</a> /
-<a href="ChangeLog">ChangeLog</a>
+<a href="NEWS">doc.php?doc=News</a> /
+<a href="INSTALL">doc.php?doc=Install</a> /
+<a href="README">doc.php?doc=Readme</a> /
+<a href="ABOUT">doc.php?doc=About</a> /
+<a href="FAQ">doc.php?doc=FAQ</a> /
+<a href="README.Links">doc.php?doc=Links</a> /
+<a href="ROADMAP">doc.php?doc=Roadmap</a> /
+<a href="ChangeLog">doc.php?doc=ChangeLog</a>
 </div>
 	    </div>
 
@@ -222,7 +222,7 @@ if ($file) {
     }
     $line = ereg_replace('NEWS','<h2>News</h2>',$line);
     $line = ereg_replace('^([-/0-9]{10})','<p><em>\1</em><br>',$line);
-    $line = ereg_replace('(http://[^ ]*)([., !])','<a href="\1">\1</a>\2',$line);
+    $line = ereg_replace('((ht|f)tp://[^ ]*[a-z0-9])','<a href="\1">\1</a>',$line);
     print ($line);
   }
   fclose($file);
