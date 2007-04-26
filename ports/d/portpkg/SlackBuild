@@ -1,17 +1,21 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/portpkg
 # REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
 # OPTIONAL: cvs fakeroot gcc glibc gnupg lynx subversion wget
 
 VERSION=0.38.2cvs
 ARCH=noarch
-BUILD=4tom
+BUILD=5tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=/tmp/package-$NAME
 rm -rf $PKG
 
+cd $TMP
+cp -a $CWD/portpkg/ . || exit 1
+cd portpkg
 make DESTDIR=$PKG PREFIX=/usr install
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 
