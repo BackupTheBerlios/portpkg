@@ -1,123 +1,446 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         290 install/doinst.sh
--rw-r--r-- root/root         262 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/bin            0 usr/bin/
--rwxr-xr-x root/bin        77224 usr/bin/seahorse
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/seahorse-0.6.3/
--rw-r--r-- root/root         140 usr/doc/seahorse-0.6.3/AUTHORS
--rw-r--r-- root/root       17992 usr/doc/seahorse-0.6.3/COPYING
--rw-r--r-- root/root        7988 usr/doc/seahorse-0.6.3/ChangeLog
--rw-r--r-- root/root        7831 usr/doc/seahorse-0.6.3/INSTALL
--rw-r--r-- root/root        1033 usr/doc/seahorse-0.6.3/NEWS
--rw-r--r-- root/root        1757 usr/doc/seahorse-0.6.3/README
--rw-r--r-- root/root         640 usr/doc/seahorse-0.6.3/THANKS
--rw-r--r-- root/root        2600 usr/doc/seahorse-0.6.3/TODO
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/applications/
--rw-r--r-- root/root        1505 usr/share/applications/seahorse.desktop
-drwxr-xr-x root/root           0 usr/share/gnome/
-drwxr-xr-x root/root           0 usr/share/gnome/help/
-drwxr-xr-x root/root           0 usr/share/gnome/help/seahorse/
-drwxr-xr-x root/root           0 usr/share/gnome/help/seahorse/C/
-drwxr-xr-x root/root           0 usr/share/gnome/help/seahorse/C/figures/
--rw-r--r-- root/root       19802 usr/share/gnome/help/seahorse/C/figures/export.png
--rw-r--r-- root/root       10178 usr/share/gnome/help/seahorse/C/figures/file-manager.png
--rw-r--r-- root/root       18657 usr/share/gnome/help/seahorse/C/figures/generate.png
--rw-r--r-- root/root       19393 usr/share/gnome/help/seahorse/C/figures/import.png
--rw-r--r-- root/root       55532 usr/share/gnome/help/seahorse/C/figures/key-manager.png
--rw-r--r-- root/root       33840 usr/share/gnome/help/seahorse/C/figures/key-properties.png
--rw-r--r-- root/root       10166 usr/share/gnome/help/seahorse/C/figures/passphrase.png
--rw-r--r-- root/root       11218 usr/share/gnome/help/seahorse/C/figures/preferences.png
--rw-r--r-- root/root       23050 usr/share/gnome/help/seahorse/C/figures/recipients.png
--rw-r--r-- root/root       11743 usr/share/gnome/help/seahorse/C/figures/signature.png
--rw-r--r-- root/root       11283 usr/share/gnome/help/seahorse/C/figures/text-editor.png
--rw-r--r-- root/root        3672 usr/share/gnome/help/seahorse/C/legal.xml
--rw-r--r-- root/root       33709 usr/share/gnome/help/seahorse/C/seahorse.xml
-drwxr-xr-x root/root           0 usr/share/locale/
-drwxr-xr-x root/root           0 usr/share/locale/am/
-drwxr-xr-x root/root           0 usr/share/locale/am/LC_MESSAGES/
--rw-r--r-- root/root        4729 usr/share/locale/am/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/ca/
-drwxr-xr-x root/root           0 usr/share/locale/ca/LC_MESSAGES/
--rw-r--r-- root/root       13418 usr/share/locale/ca/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/cs/
-drwxr-xr-x root/root           0 usr/share/locale/cs/LC_MESSAGES/
--rw-r--r-- root/root       13355 usr/share/locale/cs/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/da/
-drwxr-xr-x root/root           0 usr/share/locale/da/LC_MESSAGES/
--rw-r--r-- root/root        1123 usr/share/locale/da/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/de/
-drwxr-xr-x root/root           0 usr/share/locale/de/LC_MESSAGES/
--rw-r--r-- root/root       12374 usr/share/locale/de/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/es/
-drwxr-xr-x root/root           0 usr/share/locale/es/LC_MESSAGES/
--rw-r--r-- root/root       12995 usr/share/locale/es/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/fi/
-drwxr-xr-x root/root           0 usr/share/locale/fi/LC_MESSAGES/
--rw-r--r-- root/root        1097 usr/share/locale/fi/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/fr/
-drwxr-xr-x root/root           0 usr/share/locale/fr/LC_MESSAGES/
--rw-r--r-- root/root       14118 usr/share/locale/fr/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/hu/
-drwxr-xr-x root/root           0 usr/share/locale/hu/LC_MESSAGES/
--rw-r--r-- root/root       13550 usr/share/locale/hu/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/it/
-drwxr-xr-x root/root           0 usr/share/locale/it/LC_MESSAGES/
--rw-r--r-- root/root       13382 usr/share/locale/it/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/ja/
-drwxr-xr-x root/root           0 usr/share/locale/ja/LC_MESSAGES/
--rw-r--r-- root/root       15073 usr/share/locale/ja/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/ms/
-drwxr-xr-x root/root           0 usr/share/locale/ms/LC_MESSAGES/
--rw-r--r-- root/root        2411 usr/share/locale/ms/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/nl/
-drwxr-xr-x root/root           0 usr/share/locale/nl/LC_MESSAGES/
--rw-r--r-- root/root       13528 usr/share/locale/nl/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/no/
-drwxr-xr-x root/root           0 usr/share/locale/no/LC_MESSAGES/
--rw-r--r-- root/root       10687 usr/share/locale/no/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt/
-drwxr-xr-x root/root           0 usr/share/locale/pt/LC_MESSAGES/
--rw-r--r-- root/root       13461 usr/share/locale/pt/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/
-drwxr-xr-x root/root           0 usr/share/locale/pt_BR/LC_MESSAGES/
--rw-r--r-- root/root       13547 usr/share/locale/pt_BR/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/ru/
-drwxr-xr-x root/root           0 usr/share/locale/ru/LC_MESSAGES/
--rw-r--r-- root/root        1229 usr/share/locale/ru/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/sl/
-drwxr-xr-x root/root           0 usr/share/locale/sl/LC_MESSAGES/
--rw-r--r-- root/root        1311 usr/share/locale/sl/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/sv/
-drwxr-xr-x root/root           0 usr/share/locale/sv/LC_MESSAGES/
--rw-r--r-- root/root       13133 usr/share/locale/sv/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/tr/
-drwxr-xr-x root/root           0 usr/share/locale/tr/LC_MESSAGES/
--rw-r--r-- root/root       13215 usr/share/locale/tr/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/uk/
-drwxr-xr-x root/root           0 usr/share/locale/uk/LC_MESSAGES/
--rw-r--r-- root/root        8361 usr/share/locale/uk/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/
-drwxr-xr-x root/root           0 usr/share/locale/zh_CN/LC_MESSAGES/
--rw-r--r-- root/root        1257 usr/share/locale/zh_CN/LC_MESSAGES/seahorse.mo
-drwxr-xr-x root/root           0 usr/share/omf/
-drwxr-xr-x root/root           0 usr/share/omf/seahorse/
--rw-r--r-- root/root         756 usr/share/omf/seahorse/seahorse-C.omf
-drwxr-xr-x root/root           0 usr/share/pixmaps/
--rw-r--r-- root/root        2617 usr/share/pixmaps/seahorse.png
-drwxr-xr-x root/root           0 usr/share/seahorse/
-drwxr-xr-x root/root           0 usr/share/seahorse/glade/
--rw-r--r-- root/root       11562 usr/share/seahorse/glade/seahorse-export.glade2
--rw-r--r-- root/root       17605 usr/share/seahorse/glade/seahorse-file-manager.glade2
--rw-r--r-- root/root       20967 usr/share/seahorse/glade/seahorse-generate.glade2
--rw-r--r-- root/root       13440 usr/share/seahorse/glade/seahorse-import.glade2
--rw-r--r-- root/root       14811 usr/share/seahorse/glade/seahorse-key-manager.glade2
--rw-r--r-- root/root       19134 usr/share/seahorse/glade/seahorse-key-properties.glade2
--rw-r--r-- root/root        7127 usr/share/seahorse/glade/seahorse-preferences.glade2
--rw-r--r-- root/root       13303 usr/share/seahorse/glade/seahorse-recipients.glade2
--rw-r--r-- root/root       10798 usr/share/seahorse/glade/seahorse-signatures.glade2
--rw-r--r-- root/root       19857 usr/share/seahorse/glade/seahorse-text-editor.glade2
--rw-r--r-- root/root        2617 usr/share/seahorse/glade/seahorse.png
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/gconf/
+drwxr-xr-x  root/root  etc/gconf/schemas/
+-rw-r--r--  root/root  etc/gconf/schemas/seahorse-gedit.schemas
+-rw-r--r--  root/root  etc/gconf/schemas/seahorse.schemas
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/bin/
+-rwxr-xr-x  root/root  usr/bin/seahorse
+-rwxr-xr-x  root/root  usr/bin/seahorse-agent
+-rwxr-xr-x  root/root  usr/bin/seahorse-daemon
+-rwxr-xr-x  root/root  usr/bin/seahorse-preferences
+-rwxr-xr-x  root/root  usr/bin/seahorse-tool
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/seahorse-1.0/
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/COPYING
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/HACKING
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/INSTALL
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/NEWS
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/README
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/THANKS
+-rw-r--r--  root/root  usr/doc/seahorse-1.0/TODO
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/libcryptui/
+-rw-r--r--  root/root  usr/include/libcryptui/cryptui-key-chooser.h
+-rw-r--r--  root/root  usr/include/libcryptui/cryptui-key-combo.h
+-rw-r--r--  root/root  usr/include/libcryptui/cryptui-key-list.h
+-rw-r--r--  root/root  usr/include/libcryptui/cryptui-key-store.h
+-rw-r--r--  root/root  usr/include/libcryptui/cryptui-keyset.h
+-rw-r--r--  root/root  usr/include/libcryptui/cryptui.h
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/bonobo/
+drwxr-xr-x  root/root  usr/lib/bonobo/servers/
+-rw-r--r--  root/root  usr/lib/bonobo/servers/GNOME_SeahorseApplet.server
+drwxr-xr-x  root/root  usr/lib/gedit-2/
+drwxr-xr-x  root/root  usr/lib/gedit-2/plugins/
+-rw-r--r--  root/root  usr/lib/gedit-2/plugins/libseahorse-pgp.a
+-rwxr-xr-x  root/root  usr/lib/gedit-2/plugins/libseahorse-pgp.la
+-rwxr-xr-x  root/root  usr/lib/gedit-2/plugins/libseahorse-pgp.so
+-rw-r--r--  root/root  usr/lib/gedit-2/plugins/seahorse-pgp.gedit-plugin
+-rw-r--r--  root/root  usr/lib/libcryptui.a
+-rwxr-xr-x  root/root  usr/lib/libcryptui.la
+-rwxr-xr-x  root/root  usr/lib/libcryptui.so.0.0.0
+drwxr-xr-x  root/root  usr/lib/nautilus/
+drwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/
+-rw-r--r--  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-seahorse.a
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-seahorse.la
+-rwxr-xr-x  root/root  usr/lib/nautilus/extensions-1.0/libnautilus-seahorse.so
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/cryptui-0.0.pc
+drwxr-xr-x  root/root  usr/lib/seahorse/
+-rwxr-xr-x  root/root  usr/lib/seahorse/seahorse-applet
+-rwxr-xr-x  root/root  usr/lib/seahorse/seahorse-ssh-askpass
+-rwxr-xr-x  root/root  usr/lib/seahorse/xloadimage
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/seahorse-agent.1.gz
+-rw-r--r--  root/root  usr/man/man1/seahorse-daemon.1.gz
+-rw-r--r--  root/root  usr/man/man1/seahorse-tool.1.gz
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/applications/
+-rw-r--r--  root/root  usr/share/applications/seahorse-pgp-encrypted.desktop
+-rw-r--r--  root/root  usr/share/applications/seahorse-pgp-keys.desktop
+-rw-r--r--  root/root  usr/share/applications/seahorse-pgp-preferences.desktop
+-rw-r--r--  root/root  usr/share/applications/seahorse-pgp-signature.desktop
+-rw-r--r--  root/root  usr/share/applications/seahorse.desktop
+drwxr-xr-x  root/root  usr/share/control-center-2.0/
+drwxr-xr-x  root/root  usr/share/control-center-2.0/capplets/
+-rw-r--r--  root/root  usr/share/control-center-2.0/capplets/seahorse-pgp-preferences.desktop
+drwxr-xr-x  root/root  usr/share/dbus-1/
+drwxr-xr-x  root/root  usr/share/dbus-1/services/
+-rw-r--r--  root/root  usr/share/dbus-1/services/org.gnome.seahorse.service
+drwxr-xr-x  root/root  usr/share/gnome-2.0/
+drwxr-xr-x  root/root  usr/share/gnome-2.0/ui/
+-rw-r--r--  root/root  usr/share/gnome-2.0/ui/GNOME_SeahorseApplet.xml
+drwxr-xr-x  root/root  usr/share/gnome/
+drwxr-xr-x  root/root  usr/share/gnome/help/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse-applet/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse-applet/C/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse-applet/C/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse-applet/C/seahorse-applet.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/C/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/C/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/export.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/file-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/generate.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/import.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/key-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/key-properties.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/passphrase.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/preferences.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/recipients.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/seahorse-window.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/signature.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/figures/text-editor.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/legal.xml
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/C/seahorse.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/en_GB/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/en_GB/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/export.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/file-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/generate.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/import.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/key-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/key-properties.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/passphrase.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/preferences.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/recipients.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/seahorse-window.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/signature.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/figures/text-editor.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/en_GB/seahorse.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/es/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/es/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/export.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/file-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/generate.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/import.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/key-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/key-properties.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/passphrase.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/preferences.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/recipients.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/seahorse-window.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/signature.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/figures/text-editor.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/es/seahorse.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/fr/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/fr/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/export.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/file-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/generate.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/import.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/key-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/key-properties.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/passphrase.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/preferences.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/recipients.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/seahorse-window.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/signature.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/figures/text-editor.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/fr/seahorse.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/it/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/it/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/export.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/file-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/generate.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/import.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/key-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/key-properties.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/passphrase.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/preferences.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/recipients.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/seahorse-window.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/signature.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/figures/text-editor.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/it/seahorse.xml
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/sv/
+drwxr-xr-x  root/root  usr/share/gnome/help/seahorse/sv/figures/
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/export.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/file-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/generate.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/import.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/key-manager.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/key-properties.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/passphrase.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/preferences.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/recipients.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/seahorse-window.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/signature.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/figures/text-editor.png
+-rw-r--r--  root/root  usr/share/gnome/help/seahorse/sv/seahorse.xml
+drwxr-xr-x  root/root  usr/share/icons/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/22x22/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/22x22/apps/
+-rw-r--r--  root/root  usr/share/icons/hicolor/22x22/apps/seahorse-preferences.svg
+-rw-r--r--  root/root  usr/share/icons/hicolor/22x22/apps/seahorse.svg
+drwxr-xr-x  root/root  usr/share/icons/hicolor/48x48/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/48x48/apps/
+-rw-r--r--  root/root  usr/share/icons/hicolor/48x48/apps/seahorse-applet.png
+-rw-r--r--  root/root  usr/share/icons/hicolor/48x48/apps/seahorse-preferences.png
+-rw-r--r--  root/root  usr/share/icons/hicolor/48x48/apps/seahorse.png
+drwxr-xr-x  root/root  usr/share/icons/hicolor/scalable/
+drwxr-xr-x  root/root  usr/share/icons/hicolor/scalable/apps/
+-rw-r--r--  root/root  usr/share/icons/hicolor/scalable/apps/seahorse-applet.svg
+-rw-r--r--  root/root  usr/share/icons/hicolor/scalable/apps/seahorse-preferences.svg
+-rw-r--r--  root/root  usr/share/icons/hicolor/scalable/apps/seahorse.svg
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/bn_IN/
+drwxr-xr-x  root/root  usr/share/locale/bn_IN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn_IN/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/dz/
+drwxr-xr-x  root/root  usr/share/locale/dz/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/dz/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/mk/
+drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ml/
+drwxr-xr-x  root/root  usr/share/locale/ml/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ml/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/sl/
+drwxr-xr-x  root/root  usr/share/locale/sl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sl/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/tr/
+drwxr-xr-x  root/root  usr/share/locale/tr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/tr/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_HK/
+drwxr-xr-x  root/root  usr/share/locale/zh_HK/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_HK/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/seahorse.mo
+drwxr-xr-x  root/root  usr/share/mime/
+drwxr-xr-x  root/root  usr/share/mime/packages/
+-rw-r--r--  root/root  usr/share/mime/packages/seahorse.xml
+drwxr-xr-x  root/root  usr/share/omf/
+drwxr-xr-x  root/root  usr/share/omf/seahorse-applet/
+-rw-r--r--  root/root  usr/share/omf/seahorse-applet/seahorse-applet-C.omf
+drwxr-xr-x  root/root  usr/share/omf/seahorse/
+-rw-r--r--  root/root  usr/share/omf/seahorse/seahorse-C.omf
+-rw-r--r--  root/root  usr/share/omf/seahorse/seahorse-en_GB.omf
+-rw-r--r--  root/root  usr/share/omf/seahorse/seahorse-es.omf
+-rw-r--r--  root/root  usr/share/omf/seahorse/seahorse-fr.omf
+-rw-r--r--  root/root  usr/share/omf/seahorse/seahorse-it.omf
+-rw-r--r--  root/root  usr/share/omf/seahorse/seahorse-sv.omf
+drwxr-xr-x  root/root  usr/share/pixmaps/
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse-applet.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse-preferences.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse.png
+drwxr-xr-x  root/root  usr/share/pixmaps/seahorse/
+drwxr-xr-x  root/root  usr/share/pixmaps/seahorse/22x22/
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-applet-encrypted.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-applet-key.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-applet-signed.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-applet-text.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-applet-unknown.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-key-personal.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-key-ssh.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-key.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-preferences.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-share-keys.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-sign-bad.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse-sign-ok.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/22x22/seahorse.png
+drwxr-xr-x  root/root  usr/share/pixmaps/seahorse/48x48/
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-applet-encrypted.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-applet-key.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-applet-signed.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-applet-text.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-applet-unknown.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-applet.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-key-personal.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-key-ssh.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-key.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-person.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-preferences.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-share-keys.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-sign-bad.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-sign-ok.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-sign-unknown.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse-sign.png
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/48x48/seahorse.png
+drwxr-xr-x  root/root  usr/share/pixmaps/seahorse/scalable/
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-applet-encrypted.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-applet-key.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-applet-signed.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-applet-text.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-applet-unknown.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-applet.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-key-personal.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-key-ssh.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-key.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-person.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-preferences.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-share-keys.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-sign-bad.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-sign-ok.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-sign-unknown.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse-sign.svg
+-rw-r--r--  root/root  usr/share/pixmaps/seahorse/scalable/seahorse.svg
+drwxr-xr-x  root/root  usr/share/seahorse/
+drwxr-xr-x  root/root  usr/share/seahorse/glade/
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-add-keyserver.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-add-subkey.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-add-uid.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-agent-cache.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-applet-preferences.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-change-passphrase.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-expires.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-generate-select.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-gkeyring-item-properties.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-key-manager.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-key-manager.ui
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-keyserver-results.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-keyserver-results.ui
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-keyserver-search.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-keyserver-sync.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-multi-encrypt.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-notify.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-pgp-generate.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-pgp-private-key-properties.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-pgp-public-key-properties.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-prefs.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-progress.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-revoke.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-sign.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-signer.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-ssh-generate.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-ssh-key-properties.glade
+-rw-r--r--  root/root  usr/share/seahorse/glade/seahorse-ssh-upload.glade
