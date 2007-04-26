@@ -1,0 +1,66 @@
+#!/bin/sh
+# MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
+# SOURCES: http://download.m0k.org/transmission/files/Transmission-0.6.1.tar.gz
+# MD5SUMS: 1156a88c77ab71782b9261881ea13811 Transmission-0.6.1.tar.gz
+# REQUIRES: desktop-file-utils gtk+2 openssl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.6.1
+ARCH=${ARCH:-i486}
+BUILD=1shv
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/Transmission-$VERSION.tar.gz
+cd Transmission-$VERSION
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  $ARCH-slackware-linux
+make
+    $CWD/fakedestdir $PKG install
+    mkdir -p $PKG/usr/share/applications
+    mkdir -p $PKG/usr/share/pixmaps
+    cp $CWD/transmission.desktop $PKG/usr/share/applications
+    cp $CWD/Transmission-Icon-48.png $PKG/usr/share/pixmaps
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  AUTHORS LICENSE NEWS README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Transmission-$VERSION
+  rm -rf $PKG
+fi
