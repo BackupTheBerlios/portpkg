@@ -1,9 +1,13 @@
 #!/bin/sh
 # MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.sqlite.org/sqlite-3.3.13.tar.gz
+# SOURCES: http://www.sqlite.org/sqlite-3.3.16.tar.gz
 # MD5SUMS: 802f19e1f0eba56f3f1be8c6491c8a55 sqlite-3.2.2.tar.gz
 # MD5SUMS: 6b24d9c364215fba82242a86f54e0ad1 sqlite-3.3.13.tar.gz
+# MD5SUMS: e1a4428a5cb17f28164731b72f06130a sqlite-3.3.14.tar.gz
+# MD5SUMS: e2127324bf0d487f162d2d972c157388 sqlite-3.3.15.tar.gz
+# MD5SUMS: 97069f859307438f3693bfa6703aefb3 sqlite-3.3.16.tar.gz
 # MD5SUMS: dd2a7b6f2a07a4403a0b5e17e8ed5b88 sqlite-3.3.5.tar.gz
 # REQUIRES: ncurses perl readline
 # OPTIONAL: tcl
@@ -13,26 +17,27 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.3.13
+VERSION=3.3.16
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2sjn
 
 if [ "$ARCH" = "i386" ]; then
-  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+  SLKCFLAGS="-O3 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O3 -march=i486 -mcpu=i686"
 elif [ "$ARCH" = "s390" ]; then
-  SLKCFLAGS="-O2"
+  SLKCFLAGS="-O3"
 elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
+  SLKCFLAGS="-O3"
 fi
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
+rm -rf sqlite-$VERSION
 tar xzvf $CWD/sqlite-$VERSION.tar.gz
 cd sqlite-$VERSION
-chown -R root.root .
+chown -R root:root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -46,7 +51,7 @@ CXXFLAGS="$SLKCFLAGS" \
 make clean all
 make install DESTDIR=$PKG
 ## make this executable
-#chmod 755 $PKG/usr/lib/tcl8.4/sqlite3/libtclsqlite3.so
+chmod 755 $PKG/usr/lib/tcl8.4/sqlite3/libtclsqlite3.so
 mkdir -p $PKG/usr/man/man1
 install -m 644 sqlite3.1 $PKG/usr/man/man1/
 ( cd $PKG

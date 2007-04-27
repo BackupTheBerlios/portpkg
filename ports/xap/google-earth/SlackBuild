@@ -1,0 +1,55 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://dl.google.com/earth/client/current/GoogleEarthLinux.bin
+# MD5SUMS: 3a4051c185afc719bf807a4a693c44b0 GoogleEarthLinux.bin
+# REQUIRES: curl desktop-file-utils libXcursor libXft libXinerama libXmu libXrandr libmng libpng libtiff mesa shared-mime-info
+set -e
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=4.0.2735
+ARCH=i386
+BUILD=2sjn
+
+rm -rf $PKG $TMP/googleearth-$VERSION
+mkdir -p $PKG $TMP/googleearth-$VERSION
+
+cd $TMP
+/bin/sh $CWD/GoogleEarthLinux.bin --noexec --target $TMP/googleearth-$VERSION
+cd $TMP/googleearth-$VERSION
+
+patch -p1 < $CWD/startup-script.diff
+
+mkdir -p $PKG/usr/doc/google-earth-$VERSION
+cp *.txt README.linux $PKG/usr/doc/google-earth-$VERSION
+
+mkdir -p $PKG/usr/lib/google-earth
+cp bin/googleearth $PKG/usr/lib/google-earth
+tar -xvf googleearth-linux-x86.tar -C $PKG/usr/lib/google-earth
+tar -xvf googleearth-data.tar -C $PKG/usr/lib/google-earth
+cp -a linux/xdg $PKG/usr/lib/google-earth/linux
+
+mkdir -p $PKG/usr/bin
+cd $PKG/usr/bin
+ln -s ../lib/google-earth/googleearth .
+
+mkdir -p $PKG/usr/share/{applications,mime/packages}
+cp $CWD/*.desktop $PKG/usr/share/applications
+cp $CWD/*.xml $PKG/usr/share/mime/packages
+cp $CWD/*.png $PKG/usr/lib/google-earth
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+chown -R root.root .
+find . \( -name '*.png' -o -name '*.[xk]ml' \) -exec chmod 644 {} \;
+makepkg -l y -c n $TMP/google-earth-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $PKG
+fi
