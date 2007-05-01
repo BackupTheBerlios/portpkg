@@ -1,7 +1,8 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/alacarte/0.10/alacarte-0.10.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/alacarte/0.11/alacarte-0.11.3.tar.bz2
 # MD5SUMS: 646c9d5619d25e8d7676289d892bb761 alacarte-0.10.0.tar.bz2
+# MD5SUMS: 5ca9f07e839f64b7fcefc84cfb05aa17 alacarte-0.11.3.tar.bz2
 # REQUIRES: desktop-file-utils python
 
 TMP=${TMP:-/tmp}
@@ -9,14 +10,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.10.0
+VERSION=0.11.3
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -38,13 +39,13 @@ CFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
 mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog INSTALL NEWS README \
