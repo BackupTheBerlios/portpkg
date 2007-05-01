@@ -1,105 +1,493 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         574 install/doinst.sh
--rw-r--r-- root/root         166 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/at-spi-1.6.3/
--rw-r--r-- root/root         248 usr/doc/at-spi-1.6.3/AUTHORS
--rw-r--r-- root/root       25292 usr/doc/at-spi-1.6.3/COPYING
--rw-r--r-- root/root      233717 usr/doc/at-spi-1.6.3/ChangeLog
--rw-r--r-- root/root       12028 usr/doc/at-spi-1.6.3/NEWS
--rw-r--r-- root/root        6003 usr/doc/at-spi-1.6.3/README
--rw-r--r-- root/root        3331 usr/doc/at-spi-1.6.3/TODO
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/at-spi-1.0/
-drwxr-xr-x root/root           0 usr/include/at-spi-1.0/cspi/
--rw-r--r-- root/root        1985 usr/include/at-spi-1.0/cspi/spi-impl.h
--rw-r--r-- root/root        3041 usr/include/at-spi-1.0/cspi/spi-listener.h
--rw-r--r-- root/root       11747 usr/include/at-spi-1.0/cspi/spi-roletypes.h
--rw-r--r-- root/root        5118 usr/include/at-spi-1.0/cspi/spi-statetypes.h
--rw-r--r-- root/root       35091 usr/include/at-spi-1.0/cspi/spi.h
-drwxr-xr-x root/root           0 usr/include/at-spi-1.0/libspi/
--rw-r--r-- root/root      310097 usr/include/at-spi-1.0/libspi/Accessibility.h
--rw-r--r-- root/root        2137 usr/include/at-spi-1.0/libspi/accessible.h
--rw-r--r-- root/root        1841 usr/include/at-spi-1.0/libspi/action.h
--rw-r--r-- root/root        2175 usr/include/at-spi-1.0/libspi/application.h
--rw-r--r-- root/root        1979 usr/include/at-spi-1.0/libspi/base.h
--rw-r--r-- root/root        1870 usr/include/at-spi-1.0/libspi/component.h
--rw-r--r-- root/root        2232 usr/include/at-spi-1.0/libspi/devicelistener.h
--rw-r--r-- root/root        2032 usr/include/at-spi-1.0/libspi/editabletext.h
--rw-r--r-- root/root        2070 usr/include/at-spi-1.0/libspi/eventlistener.h
--rw-r--r-- root/root        1951 usr/include/at-spi-1.0/libspi/hyperlink.h
--rw-r--r-- root/root        1945 usr/include/at-spi-1.0/libspi/hypertext.h
--rw-r--r-- root/root        1844 usr/include/at-spi-1.0/libspi/image.h
--rw-r--r-- root/root        1784 usr/include/at-spi-1.0/libspi/keymasks.h
--rw-r--r-- root/root        1813 usr/include/at-spi-1.0/libspi/keystrokelistener.h
--rw-r--r-- root/root        1630 usr/include/at-spi-1.0/libspi/libspi.h
--rw-r--r-- root/root        1886 usr/include/at-spi-1.0/libspi/listener.h
--rw-r--r-- root/root        1939 usr/include/at-spi-1.0/libspi/relation.h
--rw-r--r-- root/root        1973 usr/include/at-spi-1.0/libspi/remoteobject.h
--rw-r--r-- root/root        1974 usr/include/at-spi-1.0/libspi/selection.h
--rw-r--r-- root/root        3013 usr/include/at-spi-1.0/libspi/stateset.h
--rw-r--r-- root/root        1926 usr/include/at-spi-1.0/libspi/streamablecontent.h
--rw-r--r-- root/root        1826 usr/include/at-spi-1.0/libspi/table.h
--rw-r--r-- root/root        1871 usr/include/at-spi-1.0/libspi/text.h
--rw-r--r-- root/root        1849 usr/include/at-spi-1.0/libspi/value.h
-drwxr-xr-x root/root           0 usr/include/at-spi-1.0/login-helper/
--rw-r--r-- root/root       29338 usr/include/at-spi-1.0/login-helper/Accessibility_LoginHelper.h
--rw-r--r-- root/root        2684 usr/include/at-spi-1.0/login-helper/login-helper.h
-drwxr-xr-x root/root           0 usr/lib/
-drwxr-xr-x root/root           0 usr/lib/bonobo/
-drwxr-xr-x root/root           0 usr/lib/bonobo/servers/
--rw-r--r-- root/root         472 usr/lib/bonobo/servers/Accessibility_Registry.server
-drwxr-xr-x root/root           0 usr/lib/gtk-2.0/
-drwxr-xr-x root/root           0 usr/lib/gtk-2.0/modules/
--rwxr-xr-x root/root        1857 usr/lib/gtk-2.0/modules/libatk-bridge.la
--rwxr-xr-x root/root       20088 usr/lib/gtk-2.0/modules/libatk-bridge.so
--rwxr-xr-x root/root        1817 usr/lib/libcspi.la
--rwxr-xr-x root/root       70456 usr/lib/libcspi.so.0.10.3
--rwxr-xr-x root/root         851 usr/lib/libloginhelper.la
--rwxr-xr-x root/root       12616 usr/lib/libloginhelper.so.0.0.0
--rwxr-xr-x root/root        1792 usr/lib/libspi.la
--rwxr-xr-x root/root      246672 usr/lib/libspi.so.0.10.3
-drwxr-xr-x root/root           0 usr/lib/orbit-2.0/
--rwxr-xr-x root/root         960 usr/lib/orbit-2.0/Accessibility_LoginHelper_module.la
--rwxr-xr-x root/root        6796 usr/lib/orbit-2.0/Accessibility_LoginHelper_module.so
--rwxr-xr-x root/root         888 usr/lib/orbit-2.0/Accessibility_module.la
--rwxr-xr-x root/root       57676 usr/lib/orbit-2.0/Accessibility_module.so
-drwxr-xr-x root/root           0 usr/lib/pkgconfig/
--rw-r--r-- root/root         305 usr/lib/pkgconfig/cspi-1.0.pc
--rw-r--r-- root/root         341 usr/lib/pkgconfig/libloginhelper-1.0.pc
--rw-r--r-- root/root         307 usr/lib/pkgconfig/libspi-1.0.pc
-drwxr-xr-x root/root           0 usr/libexec/
--rwxr-xr-x root/root       42928 usr/libexec/at-spi-registryd
-drwxr-xr-x root/root           0 usr/share/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/
-drwxr-xr-x root/root           0 usr/share/gtk-doc/html/at-spi-cspi/
--rw-r--r-- root/root         654 usr/share/gtk-doc/html/at-spi-cspi/home.png
--rw-r--r-- root/root         459 usr/share/gtk-doc/html/at-spi-cspi/left.png
--rw-r--r-- root/root         472 usr/share/gtk-doc/html/at-spi-cspi/right.png
--rw-r--r-- root/root         406 usr/share/gtk-doc/html/at-spi-cspi/up.png
-drwxr-xr-x root/root           0 usr/share/idl/
-drwxr-xr-x root/root           0 usr/share/idl/at-spi-1.0/
--rw-r--r-- root/root        2135 usr/share/idl/at-spi-1.0/Accessibility.idl
--rw-r--r-- root/root        4052 usr/share/idl/at-spi-1.0/Accessibility_Accessible.idl
--rw-r--r-- root/root        2693 usr/share/idl/at-spi-1.0/Accessibility_Action.idl
--rw-r--r-- root/root        4469 usr/share/idl/at-spi-1.0/Accessibility_Application.idl
--rw-r--r-- root/root        1960 usr/share/idl/at-spi-1.0/Accessibility_Component.idl
--rw-r--r-- root/root        1472 usr/share/idl/at-spi-1.0/Accessibility_Desktop.idl
--rw-r--r-- root/root        1853 usr/share/idl/at-spi-1.0/Accessibility_EditableText.idl
--rw-r--r-- root/root        1449 usr/share/idl/at-spi-1.0/Accessibility_Event.idl
--rw-r--r-- root/root        1455 usr/share/idl/at-spi-1.0/Accessibility_Hyperlink.idl
--rw-r--r-- root/root        1261 usr/share/idl/at-spi-1.0/Accessibility_Hypertext.idl
--rw-r--r-- root/root        1432 usr/share/idl/at-spi-1.0/Accessibility_Image.idl
--rw-r--r-- root/root        6277 usr/share/idl/at-spi-1.0/Accessibility_LoginHelper.idl
--rw-r--r-- root/root       11049 usr/share/idl/at-spi-1.0/Accessibility_Registry.idl
--rw-r--r-- root/root        1910 usr/share/idl/at-spi-1.0/Accessibility_Relation.idl
--rw-r--r-- root/root        9468 usr/share/idl/at-spi-1.0/Accessibility_Role.idl
--rw-r--r-- root/root        1572 usr/share/idl/at-spi-1.0/Accessibility_Selection.idl
--rw-r--r-- root/root        4987 usr/share/idl/at-spi-1.0/Accessibility_State.idl
--rw-r--r-- root/root        1432 usr/share/idl/at-spi-1.0/Accessibility_StreamableContent.idl
--rw-r--r-- root/root        2503 usr/share/idl/at-spi-1.0/Accessibility_Table.idl
--rw-r--r-- root/root        3628 usr/share/idl/at-spi-1.0/Accessibility_Text.idl
--rw-r--r-- root/root        1372 usr/share/idl/at-spi-1.0/Accessibility_Value.idl
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/at-spi-1.18.1/
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/COPYING
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/INSTALL
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/NEWS
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/README
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/TODO
+drwxr-xr-x  root/root  usr/doc/at-spi-1.18.1/reference/
+drwxr-xr-x  root/root  usr/doc/at-spi-1.18.1/reference/html/
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Accessible_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Accessible_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Action_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Action_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Application_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Application_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Component_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Component_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Desktop_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Desktop_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Document_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Document_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__EditableText_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__EditableText_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Event_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Event_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Hyperlink_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Hyperlink_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Hypertext_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Hypertext_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Image_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Image_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__LoginHelper_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__LoginHelper_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Registry_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Registry_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Relation_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Relation_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Role_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Role_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Selection_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Selection_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Selector_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Selector_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__State_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__State_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__StreamableContent_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__StreamableContent_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Table_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Table_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Text_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Text_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Value_8idl-source.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/Accessibility__Value_8idl.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/annotated.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/dir_9b9e32c1c6d2edc3317fe4b437371c10.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/dirs.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/doxygen.css
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/doxygen.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/exceptionAccessibility_1_1ContentStream_1_1IOError.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/exceptionAccessibility_1_1ContentStream_1_1NoPermission.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/exceptionAccessibility_1_1ContentStream_1_1NotSupported.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/files.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x63.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x64.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x65.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x67.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x68.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x69.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x6b.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x6c.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x6d.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x6e.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x70.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x72.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x73.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x74.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x75.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x76.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x77.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x78.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_0x79.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_enum.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_eval.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_func.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_type.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/functions_vars.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x62.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x63.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x64.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x65.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x6b.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x6c.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x6d.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x72.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x73.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_0x74.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_enum.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_eval.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/globals_type.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/hierarchy.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/index.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Accessible.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Accessible.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Action.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Application.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Application.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1CommandListener.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Component.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1ContentStream.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Desktop.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Desktop.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1DeviceEventController.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1DeviceEventListener.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Document.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1EditableText.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1EditableText.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1EventListener.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1EventListener.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Hyperlink.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Hypertext.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Image.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1LoginHelper.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Registry.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Registry.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Relation.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Selection.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Selector.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1StateSet.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1StreamableContent.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Table.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Text.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Text.png
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/interfaceAccessibility_1_1Value.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespaceAccessibility.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x62.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x63.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x64.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x65.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x6b.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x6c.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x6d.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x72.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x73.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_0x74.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_enum.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_eval.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespacemembers_type.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/namespaces.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1BoundingBox.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1Command.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1DeviceEvent.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1Event.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1EventDetails.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1EventListenerMode.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1KeyDefinition.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1LoginHelper_1_1WindowInfo.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/structAccessibility_1_1Text_1_1Range.html
+-rw-r--r--  root/root  usr/doc/at-spi-1.18.1/reference/html/tabs.css
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/at-spi-1.0/
+drwxr-xr-x  root/root  usr/include/at-spi-1.0/cspi/
+-rw-r--r--  root/root  usr/include/at-spi-1.0/cspi/spi-impl.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/cspi/spi-listener.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/cspi/spi-roletypes.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/cspi/spi-statetypes.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/cspi/spi.h
+drwxr-xr-x  root/root  usr/include/at-spi-1.0/libspi/
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/Accessibility.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/accessible.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/action.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/application.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/base.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/component.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/devicelistener.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/document.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/editabletext.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/eventlistener.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/hyperlink.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/hypertext.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/image.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/keymasks.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/keystrokelistener.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/libspi.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/listener.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/relation.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/remoteobject.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/selection.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/stateset.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/streamablecontent.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/table.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/text.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/libspi/value.h
+drwxr-xr-x  root/root  usr/include/at-spi-1.0/login-helper/
+-rw-r--r--  root/root  usr/include/at-spi-1.0/login-helper/Accessibility_LoginHelper.h
+-rw-r--r--  root/root  usr/include/at-spi-1.0/login-helper/login-helper.h
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/bonobo/
+drwxr-xr-x  root/root  usr/lib/bonobo/servers/
+-rw-r--r--  root/root  usr/lib/bonobo/servers/Accessibility_Registry.server
+drwxr-xr-x  root/root  usr/lib/gtk-2.0/
+drwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/libatk-bridge.la
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/modules/libatk-bridge.so
+-rwxr-xr-x  root/root  usr/lib/libcspi.la
+-rwxr-xr-x  root/root  usr/lib/libcspi.so.0.10.11
+-rwxr-xr-x  root/root  usr/lib/libloginhelper.la
+-rwxr-xr-x  root/root  usr/lib/libloginhelper.so.0.0.0
+-rwxr-xr-x  root/root  usr/lib/libspi.la
+-rwxr-xr-x  root/root  usr/lib/libspi.so.0.10.11
+drwxr-xr-x  root/root  usr/lib/orbit-2.0/
+-rwxr-xr-x  root/root  usr/lib/orbit-2.0/Accessibility_LoginHelper_module.la
+-rwxr-xr-x  root/root  usr/lib/orbit-2.0/Accessibility_LoginHelper_module.so
+-rwxr-xr-x  root/root  usr/lib/orbit-2.0/Accessibility_module.la
+-rwxr-xr-x  root/root  usr/lib/orbit-2.0/Accessibility_module.so
+drwxr-xr-x  root/root  usr/lib/pkgconfig/
+-rw-r--r--  root/root  usr/lib/pkgconfig/cspi-1.0.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/libloginhelper-1.0.pc
+-rw-r--r--  root/root  usr/lib/pkgconfig/libspi-1.0.pc
+drwxr-xr-x  root/root  usr/libexec/
+-rwxr-xr-x  root/root  usr/libexec/at-spi-registryd
+drwxr-xr-x  root/root  usr/share/
+drwxr-xr-x  root/root  usr/share/gtk-doc/
+drwxr-xr-x  root/root  usr/share/gtk-doc/html/
+drwxr-xr-x  root/root  usr/share/gtk-doc/html/at-spi-cspi/
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-Accessible-Objects.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleAction-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleApplication-API.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleComponent-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleDocument-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleEditableText-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleHyperlink-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleHypertext-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleImage-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleRelations-and-RelationSets.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleSelection-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleStreamableContent-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleTable-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleText-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-AccessibleValue-Interface.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-Event-Listener-Support.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-Registry-queries.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-SPI-main-loop-and-initialization.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi-State-and-StateSets.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi.devhelp
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/at-spi-cspi.devhelp2
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/ch05.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/home.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/index.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/index.sgml
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/left.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/right.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/spi-accessible.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/spi-application.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/spi-component.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/spi-main.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/style.css
+-rw-r--r--  root/root  usr/share/gtk-doc/html/at-spi-cspi/up.png
+drwxr-xr-x  root/root  usr/share/idl/
+drwxr-xr-x  root/root  usr/share/idl/at-spi-1.0/
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Accessible.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Action.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Application.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Component.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Desktop.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Document.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_EditableText.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Event.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Hyperlink.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Hypertext.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Image.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_LoginHelper.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Registry.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Relation.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Role.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Selection.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Selector.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_State.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_StreamableContent.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Table.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Text.idl
+-rw-r--r--  root/root  usr/share/idl/at-spi-1.0/Accessibility_Value.idl
+drwxr-xr-x  root/root  usr/share/locale/
+drwxr-xr-x  root/root  usr/share/locale/ar/
+drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/az/
+drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/be/
+drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/bg/
+drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/bn/
+drwxr-xr-x  root/root  usr/share/locale/bn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bn/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/bs/
+drwxr-xr-x  root/root  usr/share/locale/bs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/bs/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ca/
+drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/cs/
+drwxr-xr-x  root/root  usr/share/locale/cs/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cs/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/cy/
+drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/cy/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/da/
+drwxr-xr-x  root/root  usr/share/locale/da/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/da/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/de/
+drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/dz/
+drwxr-xr-x  root/root  usr/share/locale/dz/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/dz/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/el/
+drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/en_CA/
+drwxr-xr-x  root/root  usr/share/locale/en_CA/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_CA/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/en_GB/
+drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/eo/
+drwxr-xr-x  root/root  usr/share/locale/eo/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eo/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/es/
+drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/eu/
+drwxr-xr-x  root/root  usr/share/locale/eu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eu/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/fa/
+drwxr-xr-x  root/root  usr/share/locale/fa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fa/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/fi/
+drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/fr/
+drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/gl/
+drwxr-xr-x  root/root  usr/share/locale/gl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gl/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/gu/
+drwxr-xr-x  root/root  usr/share/locale/gu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/gu/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/he/
+drwxr-xr-x  root/root  usr/share/locale/he/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/he/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/hi/
+drwxr-xr-x  root/root  usr/share/locale/hi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hi/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/hr/
+drwxr-xr-x  root/root  usr/share/locale/hr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hr/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/hu/
+drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/id/
+drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/is/
+drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/it/
+drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ka/
+drwxr-xr-x  root/root  usr/share/locale/ka/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ka/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ko/
+drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/lt/
+drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/lt/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/mn/
+drwxr-xr-x  root/root  usr/share/locale/mn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mn/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/mr/
+drwxr-xr-x  root/root  usr/share/locale/mr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mr/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ms/
+drwxr-xr-x  root/root  usr/share/locale/ms/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ms/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/nb/
+drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/nl/
+drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/nn/
+drwxr-xr-x  root/root  usr/share/locale/nn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/nn/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/or/
+drwxr-xr-x  root/root  usr/share/locale/or/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/or/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/pa/
+drwxr-xr-x  root/root  usr/share/locale/pa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pa/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/pl/
+drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/pt/
+drwxr-xr-x  root/root  usr/share/locale/pt/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/
+drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ro/
+drwxr-xr-x  root/root  usr/share/locale/ro/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ro/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ru/
+drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ru/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/rw/
+drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sk/
+drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sl/
+drwxr-xr-x  root/root  usr/share/locale/sl/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sl/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sq/
+drwxr-xr-x  root/root  usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sq/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sr/
+drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/
+drwxr-xr-x  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@Latn/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sr@ije/
+drwxr-xr-x  root/root  usr/share/locale/sr@ije/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sr@ije/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/sv/
+drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/sv/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/th/
+drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/ug/
+drwxr-xr-x  root/root  usr/share/locale/ug/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ug/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/uk/
+drwxr-xr-x  root/root  usr/share/locale/uk/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uk/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/vi/
+drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/wa/
+drwxr-xr-x  root/root  usr/share/locale/wa/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/wa/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/xh/
+drwxr-xr-x  root/root  usr/share/locale/xh/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/xh/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/
+drwxr-xr-x  root/root  usr/share/locale/zh_CN/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_CN/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_HK/
+drwxr-xr-x  root/root  usr/share/locale/zh_HK/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_HK/LC_MESSAGES/at-spi.mo
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/
+drwxr-xr-x  root/root  usr/share/locale/zh_TW/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/zh_TW/LC_MESSAGES/at-spi.mo
