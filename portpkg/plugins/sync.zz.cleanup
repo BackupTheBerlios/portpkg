@@ -5,8 +5,7 @@ SOURCE=$PRT_DIR
 TREE=$PKG_DIR
 
 # check that we're a plug-in
-#if ! [ "$PORTPKG" ]; then
-if [ "`basename $0`" != "portpkg" ]; then
+if ! [ "$PRT_DIR" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
@@ -16,7 +15,7 @@ t=`mktemp -d`
 # sync package dir
 row "Syncing $TREE/"
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
-ls_loc | any2gany | sed "s,.*,$PKG_DIR/&.tgz," >$t/avail
+ls_slk | slk2loc | any2gany | sed "s,.*,$PKG_DIR/&.tgz," >$t/avail
 
 # move packages found in $SRC_DIR to $PKG_DIR (pseudo ports do that)
 #find $SRC_DIR/ -regex ".*-[^-]*-[^-]*-[^-]*\.tgz$" -exec mv {} $PKG_DIR/ \; 2>/dev/null
