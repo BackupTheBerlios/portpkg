@@ -37,6 +37,7 @@ mplayer/mplayer-skins
 mono/mono
 mono/gtk-sharp
 
+gnome-desktop/alacarte
 gnome-desktop/bug-buddy
 gnome-desktop/control-center
 gnome-desktop/dasher
@@ -70,9 +71,11 @@ gnome-desktop/gnome-menus
 gnome-desktop/gnome-netstatus
 gnome-desktop/gnome-nettool
 gnome-desktop/gnome-panel
+gnome-desktop/gnome-power-manager
 gnome-desktop/gnome-python-desktop
 gnome-desktop/gnome-screensaver
 gnome-desktop/gnome-session
+gnome-desktop/gnome-sharp
 gnome-desktop/gnome-speech
 gnome-desktop/gnome-system-monitor
 gnome-desktop/gnome-system-tools
@@ -81,7 +84,6 @@ gnome-desktop/gnome-themes
 gnome-desktop/gnome-user-docs
 gnome-desktop/gnome-utils
 gnome-desktop/gnome-volume-manager
-gnome-desktop/gnopernicus
 gnome-desktop/gok
 gnome-desktop/gst-plugins-base
 gnome-desktop/gst-plugins-good
@@ -91,25 +93,32 @@ gnome-desktop/gtkhtml
 gnome-desktop/gtksourceview
 gnome-desktop/gucharmap
 gnome-desktop/libgail-gnome
+gnome-desktop/libgnomekbd
 gnome-desktop/libgnomeprint
 gnome-desktop/libgnomeprintui
 gnome-desktop/libgtop
+gnome-desktop/liboobs
 gnome-desktop/librsvg
 gnome-desktop/libsoup
 gnome-desktop/libwnck
-gnome-desktop/libxklavier
 gnome-desktop/metacity
 gnome-desktop/nautilus
 gnome-desktop/nautilus-cd-burner
+gnome-desktop/orca
 gnome-desktop/scrollkeeper
+gnome-desktop/seahorse
 gnome-desktop/sound-juicer
 gnome-desktop/startup-notification
 gnome-desktop/system-tools-backends
+gnome-desktop/tomboy
 gnome-desktop/totem
 gnome-desktop/vino
 gnome-desktop/vte
 gnome-desktop/yelp
 gnome-desktop/zenity
+
+gnome-devtools/devhelp
+gnome-devtools/glade3
 
 gnome-platform/gconf
 gnome-platform/orbit2
@@ -147,6 +156,7 @@ gnome-bindings/libgnomemm
 gnome-bindings/libgnomeuimm
 gnome-bindings/libsigc++
 gnome-bindings/libxml++
+gnome-bindings/glib-java
 gnome-bindings/libgconf-java
 gnome-bindings/libglade-java
 gnome-bindings/libgnome-java
@@ -162,3 +172,6 @@ gnome-bindings/gnome-python
 gnome-bindings/pygobject
 gnome-bindings/pygtk
 gnome-bindings/pyorbit
+
+gnome-admin/pessulus
+gnome-admin/sabayon
