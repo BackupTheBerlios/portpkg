@@ -141,20 +141,26 @@ remove_inst() # command_to_remove file
 
 usage()
 {
-  stanza "Usage: autoport [options] [source url]
+  cat <<EOF
+
+Usage: autoport [options] [source]
+  Write a build script for a source file.
 
 Options:
-  -a             Run non-interactive (use defaults)
-  -f             Force to re-autobuild a port when non-interactve
-  -n name        Preset name of port
-  -v version     Preset version of port
-  -g group       Preset group of port
-  -u port        (Re-)Use port (use this option first)
-  -b             Execute portpkg after port generation
-  -d             Try to find up-to-date version
-  source url     Preset URL of source code (if not found via -u)
-                 (Use cpan://file::mimeinfo to search for Perl modules
-                   or gnome://tarball-1.0.tar.bz2 to shorten GNOME urls)"
+  -a          Run non-interactive (use defaults)
+  -f          Force to re-autobuild a script when non-interactve
+  -n name     Set name of script
+  -v version  Set version of script
+  -g group    Set group of script
+  -u port     (Re-)Use script (use before -n, -v or -g)
+  -b          Execute portpkg after script generation
+  -d          Try to look-up newest version
+
+Source:
+  URI of source code
+  Use  cpan://search::module        to search for Perl modules
+   or  gnome://package-1.0.tar.bz2  to shorten GNOME URLs
+EOF
   exit 0
 }
 
@@ -252,10 +258,10 @@ parse_options()
       cpan://*)
         sources=`search_cpan $@`;;
       gnome://*)
-       tarball=${1#*://}
-       name=`echo $tarball | rev | cut -d - -f 2- | rev`
-       major_minor=`echo $tarball | rev | cut -d - -f 1 | rev | cut -d . -f 1-2`
-       sources=http://ftp.gnome.org/pub/gnome/sources/$name/$major_minor/$tarball;;
+        tarball=${1#*://}
+        name=`echo $tarball | rev | cut -d - -f 2- | rev`
+        major_minor=`echo $tarball | rev | cut -d - -f 1 | rev | cut -d . -f 1-2`
+        sources=http://ftp.gnome.org/pub/gnome/sources/$name/$major_minor/$tarball;;
       *://*)
         sources=$1;;
     esac
@@ -266,14 +272,14 @@ parse_options()
 set_info()
 {
 $INTERACTIVE && stanza "Autoport -- An Automatic SlackBuild Generator
-Copyright (C) 2004-2007 Thomas Pfaff <topf at users dot berlios dot de>
+Copyright (C) 2004-2007 Thomas Pfaff <topf@users.berlios.de> \
 Autoport comes with ABSOLUTELY NO WARRANTY. This is free software, and you \
 are welcome to redistribute it under certain conditions.
 
 Autoport is quite experimental. A source code URL given, it will download and \
-unpack the code and searche for different keywords to adjust a suitable \
+unpack the code and search for different keywords to adjust a suitable \
 SlackBuild script. If autoport doesn't work as expected, please mail at: \
-<topf at users dot berlios dot de>"
+<topf@users.berlios.de>"
 
 #[ "$sources" ] || die "No source url specified! Try: autoport --help"
 #[ "$group" ] || group=local
@@ -629,20 +635,24 @@ if grep -sqe "#:config" -e "#:make" $script; then
     arch=noarch
   elif check "^configure$" $t/footprint; then
     sel config configure $script
-    if check "\<KDEDIRS\>" $TMP/$srcdir_prefix/configure; then
-      sed -i "s,%prefix%,opt/kde,g" $script
-      snip ac_sysconfdir $script
-      snip ac_localstatedir $script
-    else
+#    if check "\<KDEDIRS\>" $TMP/$srcdir_prefix/configure; then
+#      sed -i "s,%prefix%,opt/kde,g" $script
+#      snip ac_sysconfdir $script
+#      snip ac_localstatedir $script
+#    else
       check "--prefix\>" $TMP/$srcdir_prefix/configure || snip ac_prefix $script
       check "--sysconfdir\>" $TMP/$srcdir_prefix/configure || snip ac_sysconfdir $script
       check "--localstatedir\>" $TMP/$srcdir_prefix/configure || snip ac_localstatedir $script
-    fi
+#    fi
     check "--program-prefix\>" $TMP/$srcdir_prefix/configure || snip ac_program_prefix $script
     check "--disable-static\>" $TMP/$srcdir_prefix/configure || snip ac_disable_static $script
     check "--enable-shared\>" $TMP/$srcdir_prefix/configure || snip ac_enable_shared $script
     check "--disable-scrollkeeper\>" $TMP/$srcdir_prefix/configure || snip ac_disable_scrollkeeper $script
     check "--disable-update-mimedb\>" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mimedb $script
+    check "--disable-update-mime-database\>" $TMP/$srcdir_prefix/configure || snip ac_disable_update_mime_database $script
+    check "--docdir\>" $TMP/$srcdir_prefix/configure && snip non_ac_docdir $script || snip ac_docdir $script
+    check "--mandir\>" $TMP/$srcdir_prefix/configure && snip non_ac_mandir $script || snip ac_mandir $script
+    check "--infodir\>" $TMP/$srcdir_prefix/configure && snip non_ac_infodir $script || snip ac_infodir $script
     snip cfg_autogen $script
     snip pkgconfig $script
     # pkgconfig
@@ -960,11 +970,15 @@ PKG_CONFIG_PATH=/%prefix%/lib/pkgconfig \ ##pkgconfig
   --prefix=/%prefix% \ ##ac_prefix
   --sysconfdir=/%etc% \ ##ac_sysconfdir
   --localstatedir=/var/lib \ ##ac_localstatedir
+  --docdir=/usr/doc/$NAME-$VERSION \ ##ac_docdir
+  --mandir=/usr/man \ ##ac_mandir
+  --infodir=/usr/info \ ##ac_mandir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
   --enable-shared \ ##ac_enable_shared
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
   --disable-update-mimedb \ ##ac_disable_update_mimedb
+  --disable-update-mime-database \ ##ac_disable_update_mime_database
 #:configure-opts
 #%post-configure-opts-fix%
   $ARCH-slackware-linux
@@ -994,6 +1008,7 @@ make install prefix=$PKG/%prefix% ##inst_prefix
 #:mk_inst
 ##make install ##inst
 python setup.py build install --root=$PKG ##python
+find $PKG/ -name perllocal.pod | xargs -r rm -fv ##perl
 #:install
 #%post-install-fix%
 #:refine
@@ -1001,7 +1016,6 @@ python setup.py build install --root=$PKG ##python
 ##GCONF_CONFIG_SOURCE="xml::$PKG/etc/gconf/gconf.xml.defaults" \ ##schemas
 ##gconftool-2 --makefile-install-rule $PKG/etc/gconf/schemas/*.schemas ##schemas
 ##find $PKG/etc/gconf/ -name "%gconf.xml" | xargs -r rm ##schemas
-find $PKG/ -name perllocal.pod | xargs -r rm -fv ##perl
 rm -rf $PKG/var/lib/scrollkeeper ##scrollkeeper
 rm -fv $PKG/%prefix%/share/mime/* || true ##mime-database
 find $PKG/ -name mimeinfo.cache | xargs -r rm -fv ##mime-database
@@ -1017,7 +1031,9 @@ find $PKG/ -name mimeinfo.cache | xargs -r rm -fv ##mime-database
 #:strip
 #%post-strip-fix%
 #:doc
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/ || true ##non_ac_mandir
+mv $PKG/usr/share/doc $PKG/usr/ || true ##non_ac_docdir
+mv $PKG/usr/share/info $PKG/usr/ || true ##non_ac_infodir
 rm -fv $PKG/%prefix%/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 #:docfiles
