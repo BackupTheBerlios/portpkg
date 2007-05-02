@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.ekiga.org/admin/downloads/latest/sources/sources/pwlib-1.10.4.tar.gz
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/pwlib/1.10/pwlib-1.10.7.tar.bz2
 # MD5SUMS: 51414920d7b21125df2bf6870c0fc2e4 pwlib-1.10.1.tar.gz
 # MD5SUMS: a9b71fec93079ff15374b26db71defab pwlib-1.10.4.tar.gz
+# MD5SUMS: ac63195688211579e1ada30bb7b07ff1 pwlib-1.10.7.tar.bz2
 # REQUIRES: expat gcc-g++ libavc1394 libdv libraw1394 openssl sdl
 # OPTIONAL: alsa-lib openldap openldap-client
 
@@ -11,14 +12,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.10.4
+VERSION=1.10.7
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -28,7 +29,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/pwlib-$VERSION.tar.gz
+tar xjvf $CWD/pwlib-$VERSION.tar.bz2
 cd pwlib-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
@@ -37,6 +38,8 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   $ARCH-slackware-linux
 make
@@ -46,7 +49,7 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 find $PKG/usr/doc -type f | xargs -r chmod 644
