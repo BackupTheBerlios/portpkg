@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/ekiga/2.0/ekiga-2.0.5.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/ekiga/2.0/ekiga-2.0.9.tar.bz2
 # MD5SUMS: d593da6ac49dce495ef4c6ada06b54b6 ekiga-2.0.2.tar.bz2
 # MD5SUMS: 49a0f2cb223179ee2c830c3e548a398a ekiga-2.0.5.tar.bz2
+# MD5SUMS: 6c7a01faef8203d6f0ba0dfe6188bb1a ekiga-2.0.9.tar.bz2
 # REQUIRES: avahi evolution-data-server libgnomeui opal
 # OPTIONAL: dbus desktop-file-utils gcc gconf scrollkeeper sdl
 
@@ -11,14 +12,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.0.5
+VERSION=2.0.9
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -37,6 +38,9 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
   --disable-scrollkeeper \
@@ -51,7 +55,6 @@ rm -rf $PKG/var/lib/scrollkeeper
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
