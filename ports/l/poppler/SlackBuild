@@ -1,22 +1,24 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://poppler.freedesktop.org/poppler-0.5.3.tar.gz
-# MD5SUMS: d06207536555f5711e7bc61711c1b8a0  poppler-0.5.3.tar.gz
-# REQUIRES: gtk+2 libjpeg
+# SOURCES: http://poppler.freedesktop.org/poppler-0.5.4.tar.gz
+# MD5SUMS: d06207536555f5711e7bc61711c1b8a0 poppler-0.5.3.tar.gz
+# MD5SUMS: 053fdfd70533ecce1a06353fa945f061 poppler-0.5.4.tar.gz
+# REQUIRES: gcc-g++ gtk+2 libjpeg poppler-data
+# OPTIONAL: linuxdoc-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.5.3
+VERSION=0.5.4
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -35,32 +37,35 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --disable-static \
+  --enable-shared \
+  --disable-utils \
   --disable-poppler-qt \
-  $ARCH-slackware-linux || exit 1
+  $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README README-XPDF TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README README-XPDF TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/poppler-$VERSION
