@@ -1,19 +1,20 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/eog/2.18/eog-2.18.0.1.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/eog/2.18/eog-2.18.1.tar.bz2
 # MD5SUMS: ced2bda133914373bc41827765227363 eog-2.13.91.tar.bz2
 # MD5SUMS: 8e73c94511aeacdc79039fac238bb6b2 eog-2.14.0.tar.bz2
 # MD5SUMS: b15c4eb87bdf33673632717604db471c eog-2.16.0.tar.bz2
 # MD5SUMS: 32f4cd4cd3108522eccf0b8fd85c8bbd eog-2.18.0.1.tar.bz2
+# MD5SUMS: 512f847adc024fde6d10b71b78d3f396 eog-2.18.1.tar.bz2
 # MD5SUMS: 8a9d8f9b27e51392513a37cc69221e98 eog-2.8.2.tar.bz2
-# REQUIRES: desktop-file-utils gconf gnome-desktop lcms libexif libglade libgnomeprintui scrollkeeper
+# REQUIRES: desktop-file-utils gconf gnome-desktop gnome-icon-theme lcms libexif libglade libgnomeprintui scrollkeeper
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.18.0.1
+VERSION=2.18.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
