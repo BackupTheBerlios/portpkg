@@ -4,8 +4,7 @@
 DEST=http://portpkg.berlios.de/upload.php
 
 # check that we're a plug-in
-#if ! [ "$PORTPKG" ]; then
-if [ "`basename $0`" != "portpkg" ]; then
+if ! [ "$PRT_DIR" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
