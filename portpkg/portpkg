@@ -82,7 +82,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.3 $"
+ENGINE_REV="\$Revision: 1.4 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -208,8 +208,10 @@ get() # url dest [md5sum]
   debug "get() $@"
 
   # mirrors
+#  urls=`mirrors | while read master mirror; do \
+#echo $url | sed -nr "s,^$master,$mirror,p"; done | tac`" $url"
   urls=`mirrors | while read master mirror; do \
-echo $url | sed -nr "s,^$master,$mirror,p"; done | tac`" $url"
+  case $url in $master*) echo $mirror${url#$master};; esac; done`" $url"
 
   debug "get(): urls:" $urls
   $DRY_RUN && cache_add src $dest
@@ -381,7 +383,7 @@ check_indirect() # pkgex
 {
   [ "${1:-}" = "." ] || return
   # yes, all relative to current dir, thus no pkgex resolution
-  debug "check_indirect(): direct mode: disabling dependencies resolution"
+  debug "check_indirect(): indirect mode: disabling dependencies resolution"
   TEST_REQS=true
   debug "check_indirect(): restricting slk cache to `pwd`"
   PRT_DIR=`pwd` ls_slk >/dev/null
@@ -449,15 +451,18 @@ get_info() # pkgex
   nre=`regex $name`
   requires=`{ \
 sed -nr "/^# REQUIRES:/{s,.*: ,,;s, ,\n,g;p}" $script; \
-sed -nr "/^[^#][^|]*$/{s, .*,,;s, ,\n,g;p}" $path/requires $path/slack-required 2>/dev/null; } | sort -u | grep -v $nre`
+sed -nr "/^[^#][^|]*$/{s, .*,,;s, ,\n,g;p}" $path/requires $path/slack-required 2>/dev/null; \
+} | sort -u | grep -v $nre`
   optional=`{ \
 sed -nr "/^# OPTIONAL:/{s,.*: ,,;s, ,\n,g;p}" $script; \
 sed -nr "/^[^#][^|]*$/{s, .*,,;s, ,\n,g;p}" $path/optional $path/slack-suggests 2>/dev/null; \
-sed -nr "/^# opt/{s,.* ,,;s, ,\n,g;p}" $path/requires 2>/dev/null; } | sort -u | grep -v $nre`
+sed -nr "/^# opt/{s,.* ,,;s, ,\n,g;p}" $path/requires 2>/dev/null; \
+} | sort -u | grep -v $nre`
   blocks=`{ \
 sed -nr "/^# BLOCKS:/{s,.*: ,,;s, ,\n,g;p}" $script; \
 sed -nr "/^[^#][^|]*$/{s, .*,,;s, ,\n,g;p}" $path/blocks $path/slack-conflicts 2>/dev/null; \
-sed -nr "/^# block/{s,.* ,,;s, ,\n,g;p}" $path/requires 2>/dev/null; } | sort -u | grep -v $nre`
+sed -nr "/^# block/{s,.* ,,;s, ,\n,g;p}" $path/requires 2>/dev/null; \
+} | sort -u | grep -v $nre`
   sources=`{ \
 sed -nr "/^# SOURCES:/{s,.*: ,,;s, ,\n,g;p}" $script; \
 sed -nr "/^[^#]/p" $path/sources 2>/dev/null; } | eval $decode
@@ -547,7 +552,7 @@ echo $inst_pkg; } | default`
       $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "Installing dependency ${avail_pkg##*/}"
     # is it blacklistet?
     elif echo "$avail_pkg" | grep -sqv $(exclude) && [ "$avail_pkg" ]; then
-      debug "check_reqs(): $req ($avail_pkg) is blacklisted"
+      debug "check_reqs(): $name: $req: blacklisted [$avail_pkg]"
     elif ! [ "$inst_pkg" ]; then
       debug "check_reqs(): $name: $req: missing"
       missing="$missing $req"
