@@ -170,10 +170,26 @@ for arg in `explicit "$@"`; do
     [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
     [ "${MY_REALNAME:-}" ] || die "No real name configured. Please run: pp-config"
 
+    if $USE_ALPHA_CODE; then
+    row "Generating patch for $group/$package"
+    else
     row "Preparing $group/$package for upload"
+    fi
 
     # make a tarball of this port in $LOG_DIR/
     mkdir -p $LOG_DIR
+    if $USE_ALPHA_CODE; then
+    rm -f $LOG_DIR/$package.patch $LOG_DIR/$package.patch.gz $LOG_DIR/$package.patch.asc
+
+    # add maintainer information and changelog entry
+    cat >$LOG_DIR/$package.patch <<EOF
+Package:  $package
+Maintainer:  $MY_REALNAME '$MY_TAG' <$MY_EMAIL>
+ChangeLog entry:  $export_opt
+Timestamp:  `date -u`
+
+EOF
+    else
     rm -f $LOG_DIR/$package.tar.bz2
     mkdir -p $t/$package/$name
     cp -a $path $t/$package/
@@ -186,26 +202,60 @@ Intended group:  $group/
 ChangeLog entry:  $export_opt
 Timestamp:  `date -u`
 EOF
+    fi
 
+    if $USE_ALPHA_CODE; then
+    # find type of the port the user wants to export
+    if [ -d $path/CVS ]; then
+# && [ `cat $path/CVS/Root | cut -d @ -f 2-` = "cvs.berlios.de:/cvsroot/portpkg" ]; then
+      # situation #1) modified CVS
+      debug "export.portpkg: type #1) cvsdiff"
+      cd $path
+      repo=`cat CVS/Repository | cut -d / -f 2-`
+      cvs diff -uN >>$LOG_DIR/$package.patch
+      sed -ri "s,^(---|\+\+\+) ,\1 $repo/," $LOG_DIR/$package.patch
+    else
+      # situation #2) not in CVS
+      debug "export.portpkg: type #2) new"
+      cd $PRT_DIR
+      diff -urNx CVS -x "*.autoport" -x "*~" open/$name/ $group/$name/ \
+      | sed -r "s,^(\+\+\+) $group/,\1 open/," >>$LOG_DIR/$package.patch
+    fi
+    else
     # remove private and backup files
     ( cd $t/$package
       find -name "CVS" -depth -exec rm -rf {} \;
       find -name "*.autoport" -exec rm -f {} \;
       find -name "*~" -exec rm -f {} \;
       tar cjf $LOG_DIR/$package.tar.bz2 . )
+    fi
 
     # test if there's a key to sign the tarball for $MY_EMAIL
     if has_prog gpg && gpg -K | grep -sq "<$MY_EMAIL>"; then
+      if $USE_ALPHA_CODE; then
+      debug "export.portpkg: adding signature"
+      gpg --clearsign -u $MY_EMAIL $LOG_DIR/$package.patch
+      mv $LOG_DIR/$package.patch.asc $LOG_DIR/$package.patch
+      else
       gpg -abu $MY_EMAIL $LOG_DIR/$package.tar.bz2
+      fi
     else
       warn "Please install gnupg next time and generate a key pair for \
 $MY_EMAIL and send the public key to one of the project leaders or export \
 it to a key server!"
     fi
 
+    if $USE_ALPHA_CODE; then
+    # shrink!
+    gzip $LOG_DIR/$package.patch
+    fi
+
     # stop here when $DRY_RUN
     $DRY_RUN && continue
 
+    if $USE_ALPHA_CODE; then
+    ( plugin report.portpkg $LOG_DIR/$package.patch.gz )
+    else
 #    # upload the tarball to $DEST
 #    row "Uploading $LOG_DIR/$package.tar.bz2"
 #    curl -F file=@$LOG_DIR/$package.tar.bz2 $DEST || error "Upload failed!"
@@ -220,6 +270,7 @@ it to a key server!"
 ##      curl -F filetoupload=@$LOG_DIR/$package.tar.bz2.asc $DEST >/dev/null 2>&1 \
 ##      || error "Upload failed!"
       ( plugin report.portpkg $LOG_DIR/$package.tar.bz2.asc )
+    fi
     fi
   fi
 done
