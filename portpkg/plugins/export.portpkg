@@ -17,8 +17,7 @@ DEST=http://portpkg.berlios.de/upload.php
 TREE=$PRT_DIR
 
 # check that we're a plug-in
-#if ! [ "$PORTPKG" ]; then
-if [ "`basename $0`" != "portpkg" ]; then
+if ! [ "$PRT_DIR" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
@@ -66,12 +65,12 @@ for arg in `explicit "$@"`; do
     continue
   fi
 
-  # check "ownership"
-#  case $package in *[0-9]$MY_TAG) ;; *)
-  if ! $maintain; then
-    row "$group/$name is not your port. Skipping."
-    continue
-  fi
+#  # check "ownership"
+##  case $package in *[0-9]$MY_TAG) ;; *)
+#  if ! $maintain; then
+#    row "$group/$name is not your port. Skipping."
+#    continue
+#  fi
 
 #  pause "Continue exporting $package? (ctrl-c to abort)"
 
@@ -138,33 +137,34 @@ for arg in `explicit "$@"`; do
     $pre cvs -qz3 ci -m "$export_opt" || die
 
     # now update ChangeLog
+    row "Generating ${path#$PRT_DIR/}/ChangeLog"
     touch ChangeLog
     grep -sq "^/ChangeLog/" CVS/Entries || $pre cvs -qz3 add ChangeLog
     $pre rm -f ChangeLog
 #    cvs_host=`echo $SOURCE | cut -d @ -f 2 | cut -d : -f 1`
     mail_host=users.berlios.de
     $DRY_RUN || rcs2log -i 2 -h $mail_host >ChangeLog
-    $pre sed -i "/: Updated./{N;d}" ChangeLog
+    $pre sed -i "/: Updated\.$/{N;d}" ChangeLog
     $pre cvs -qz3 ci -m "Updated." ChangeLog
 
     # remove info file
     $pre rm -f info
   else
-    pause "Continue uploading $package? (ctrl-c to abort)"
+#    pause "Continue uploading $package? (ctrl-c to abort)"
 
-    # use upload backend
-    has_prog curl || die
+#    # use upload backend
+#    has_prog curl || die
 
-    # hm, use at least 7.12.2 (Slackware 10.1)
-    if has_prog pkg-config; then
-      pkg-config --atleast-version=7.12.2 libcurl || die "You need curl >= 7.12.2"
-    else
-    case `curl -V | head -n 1 | cut -d " " -f 2` in
-      7.12.0|7.12.1)   die "You need curl >= 7.12.2";;
-      7.1[23456789].*) ;;
-      *)               die "You need curl >= 7.12.2";;
-    esac
-    fi
+#    # hm, use at least 7.12.2 (Slackware 10.1)
+#    if has_prog pkg-config; then
+#      pkg-config --atleast-version=7.12.2 libcurl || die "You need curl >= 7.12.2"
+#    else
+#    case `curl -V | head -n 1 | cut -d " " -f 2` in
+#      7.12.0|7.12.1)   die "You need curl >= 7.12.2";;
+#      7.1[23456789].*) ;;
+#      *)               die "You need curl >= 7.12.2";;
+#    esac
+#    fi
 
     [ "${MY_TAG:-}" ] || die "No tag configured. Please run: pp-config"
     [ "${MY_EMAIL:-}" ] || die "No mail address configured. Please run: pp-config"
@@ -206,18 +206,20 @@ it to a key server!"
     # stop here when $DRY_RUN
     $DRY_RUN && continue
 
-    # upload the tarball to $DEST
-    row "Uploading $LOG_DIR/$package.tar.bz2"
-    curl -F file=@$LOG_DIR/$package.tar.bz2 $DEST || error "Upload failed!"
-#    curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $DEST >/dev/null 2>&1 \
-#    || error "Upload failed!"
+#    # upload the tarball to $DEST
+#    row "Uploading $LOG_DIR/$package.tar.bz2"
+#    curl -F file=@$LOG_DIR/$package.tar.bz2 $DEST || error "Upload failed!"
+##    curl -F filetoupload=@$LOG_DIR/$package.tar.bz2 $DEST >/dev/null 2>&1 \
+##    || error "Upload failed!"
+    ( plugin report.portpkg $LOG_DIR/$package.tar.bz2 )
 
     # upload the tarball's signature if any
     if [ -f $LOG_DIR/$package.tar.bz2.asc ]; then
-      row "Uploading $LOG_DIR/$package.tar.bz2.asc"
-      curl -F file=@$LOG_DIR/$package.tar.bz2.asc $DEST || error "Upload failed!"
-#      curl -F filetoupload=@$LOG_DIR/$package.tar.bz2.asc $DEST >/dev/null 2>&1 \
-#      || error "Upload failed!"
+#      row "Uploading $LOG_DIR/$package.tar.bz2.asc"
+#      curl -F file=@$LOG_DIR/$package.tar.bz2.asc $DEST || error "Upload failed!"
+##      curl -F filetoupload=@$LOG_DIR/$package.tar.bz2.asc $DEST >/dev/null 2>&1 \
+##      || error "Upload failed!"
+      ( plugin report.portpkg $LOG_DIR/$package.tar.bz2.asc )
     fi
   fi
 done
