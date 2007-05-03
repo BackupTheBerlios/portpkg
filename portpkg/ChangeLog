@@ -1,0 +1,86 @@
+2007-05-03  topf  <topf@users.berlios.de>
+
+  * portpkg.1: Updated.
+
+  * portpkg:
+  * Various patches.
+  * Added AUTO_MAINTAIN.
+  * parse_options(): Split -w|--ignore into -j|--ignore and -w|--exclude, added -c|--testreqs.
+  * init(): Support addon.* plugins.
+
+  * plugins/export.portpkg:
+  Added next-generation-code for generating patch files instead of tarballs.
+
+  * plugins/export.portpkg:
+  * Bugfixes.
+  * Don't test 'ownership'.
+  * Use report.portpkg for uploads.
+
+2007-05-02  topf  <topf@users.berlios.de>
+
+  * plugins/sync.zz.cleanup:
+  * Fixed plugin test.
+  * Use ls_slk | slk2loc, not ls_loc.
+
+  * plugins/sync.portpkg:
+  * Fixed plugin test.
+  * Code cleanup.
+
+  * plugins/report.portpkg: Fixed plugin test.
+
+  * synonyms: Added synonym 'pam'.
+
+  * virtual: Updated for GNOME-2.18.
+
+  * ROADMAP: Reformatted.
+
+  * logo.svg: Simplified.
+
+  * htdocs/upload.php: Mail patch files to portpkg-devel list.
+
+  * autoport:
+  * Updated --help output.
+  * Removed check for KDE prefix /opt/kde.
+  * Test for --disable-update-mime-database, --docdir, --mandir and --infodir.
+  * Moved 'find perllocal' into install block, so it can be sniped with Perl is not used.
+
+2007-04-26  topf  <topf@users.berlios.de>
+
+  * htdocs/index.php: OMG
+
+  * SlackBuild, doinst.sh, footprint, slack-desc:
+  Removed. Not required anymore.
+
+  * FAQ, ROADMAP, htdocs/doc.php, htdocs/index.php, htdocs/robots.txt, htdocs/upload.php, plugins/export.portpkg, plugins/report.portpkg, plugins/sync.dropline-bin, plugins/sync.gsb-frg, plugins/sync.linuxpackages-bin, plugins/sync.portpkg, plugins/sync.slackbuildsorg, plugins/sync.slackware-bin, plugins/sync.slackyit-bin, plugins/sync.zz.cleanup:
+  New file.
+
+  * FAQ, ROADMAP, htdocs/doc.php, htdocs/index.php, htdocs/robots.txt, htdocs/upload.php, plugins/export.portpkg, plugins/report.portpkg, plugins/sync.dropline-bin, plugins/sync.gsb-frg, plugins/sync.linuxpackages-bin, plugins/sync.portpkg, plugins/sync.slackbuildsorg, plugins/sync.slackware-bin, plugins/sync.slackyit-bin, plugins/sync.zz.cleanup:
+  Separated portpkg from ports.
+
+  * ABOUT, logo.png, mirrors, portpkg.1, slack-desc, use, virtual: New file.
+
+  * ABOUT, logo.png, mirrors, portpkg.1, slack-desc, use, virtual:
+  Separated portpkg from ports.
+
+  * CREDITS, INSTALL, Makefile, portpkg, pp-config, repos: New file.
+
+  * CREDITS, INSTALL, Makefile, portpkg, pp-config, repos:
+  Separated portpkg from ports.
+
+  * COPYING, README, autoport: New file.
+
+  * COPYING, README, autoport: Separated portpkg from ports.
+
+  * ChangeLog.20070426, README.Links, footprint, ignore: New file.
+
+  * ChangeLog.20070426, README.Links, footprint, ignore:
+  Separated portpkg from ports.
+
+  * NEWS, SlackBuild, synonyms: New file.
+
+  * NEWS, SlackBuild, synonyms: Separated portpkg from ports.
+
+  * checkpkg, doinst.sh, logo.svg: New file.
+
+  * checkpkg, doinst.sh, logo.svg: Separated portpkg from ports.
+
