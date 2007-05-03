@@ -32,7 +32,7 @@ portpkg allows four different ways to express a target:
 .TP
 \fBimplicit\fP
 By using the form \fIgroup/\fP. Resulting in a range of ports.
-Ports matching expressions in \fBignore\fP are excluded.
+Ports matching expressions in the variable \fBEXCLUDE\fP are excluded.
 .TP
 .B explicit
 By using the form
@@ -100,15 +100,18 @@ E.g. md5sums of sources won't be checked, instead the actual value will be writt
 \fB-r\fP, \fB--remaintain\fP (\fBREMAINTAIN=true\fP)
 Skip package building step if possible (implies \fB--prepare --rebuild\fP).
 .TP
-\fB-w\fP, \fB--ignore\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBignore\fP)
+\fB-w\fP, \fB--exclude\fP \fIexpression\fP
 Exclude \fIexpression\fP from implicit expressions and remove from \fBuse\fP list.
 .TP
-\fB-t\fP, \fB--use\fP \fIexpression\fP[\fB,\fP\fB...\fP] (see \fBuse\fP)
-Add \fIexpression\fP to arbitrary dependencies and remove from \fBignore\fP list.
+\fB-j\fP, \fB--ignore\fP \fIexpression\fP
+Ignore \fIexpression\fP in dependencies lists.
+.TP
+\fB-t\fP, \fB--use\fP \fIexpression\fP
+Include \fIexpression\fP from optional dependencies and remove from \fBexclude\fP list.
 
 .SH ACTIONS
 
-portpkg has several \fBactions\fP to act on and one \fBdefault\fP action
+portpkg knows several \fBactions\fP to perform and one \fBdefault\fP action
 if none is specified. The default action is to \fBadd\fP, which includes
     * checking recursively for any dependencies to be run initally,
     * downloading the source code,
@@ -233,17 +236,11 @@ only be expanded:
 \fB~/ports/mirrors\fP
 List of mirrors to be used when downloading files. 
 .TP
-\fB~/ports/ignore\fP
-List of ports to exclude from implicit declarations, upgrades or when
-generating the \fBrequires\fP file. (Formerly splitted into \fBignore\fP and
-\fBexclude\fP.)
-.TP
-\fB~/ports/use\fP
-List of ports to be required dependencies when they are actually listed as
-optional dependencies. Usefull in conjunction with \fBvirtual\fP.
-.TP
 \fB~/ports/virtual\fP
 List of ports and their virtual groups. Usefull to cross-link ports.
+.TP
+\fB~/ports/synonyms\fP
+List of ports with alternative names.
 .LP
 Log files:
 .TP
