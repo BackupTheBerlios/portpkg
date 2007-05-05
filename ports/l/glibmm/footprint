@@ -4,6 +4,15 @@ drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/slack-desc
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/glibmm-2.12.3/
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/CHANGES
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/COPYING
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/INSTALL
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/NEWS
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/README
+-rw-r--r--  root/root  usr/doc/glibmm-2.12.3/README.win32
 drwxr-xr-x  root/root  usr/doc/glibmm-2.4/
 drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/
 drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/images/
@@ -20,7 +29,6 @@ drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/reference/html/
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Cond-members.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Cond.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ArrayHandleIterator.html
--rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ListHandleIterator-members.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1ListHandleIterator.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1Container__Helpers_1_1SListHandleIterator.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/classGlib_1_1ConvertError-members.html
@@ -314,6 +322,7 @@ drwxr-xr-x  root/root  usr/doc/glibmm-2.4/docs/reference/html/
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/convert_8h.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/date_8h.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/debug_8h.html
+-rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/deprecated.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/dispatcher_8h.html
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/doxygen.css
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/docs/reference/html/doxygen.png
@@ -622,13 +631,6 @@ drwxr-xr-x  root/root  usr/doc/glibmm-2.4/examples/thread/
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/dispatcher2.cc
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/thread.cc
 -rw-r--r--  root/root  usr/doc/glibmm-2.4/examples/thread/threadpool.cc
-drwxr-xr-x  root/root  usr/doc/glibmm-2.8.9/
--rw-r--r--  root/root  usr/doc/glibmm-2.8.9/AUTHORS
--rw-r--r--  root/root  usr/doc/glibmm-2.8.9/COPYING
--rw-r--r--  root/root  usr/doc/glibmm-2.8.9/ChangeLog
--rw-r--r--  root/root  usr/doc/glibmm-2.8.9/NEWS
--rw-r--r--  root/root  usr/doc/glibmm-2.8.9/README
--rw-r--r--  root/root  usr/doc/glibmm-2.8.9/README.win32
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/glibmm-2.4/
 -rw-r--r--  root/root  usr/include/glibmm-2.4/glibmm.h
@@ -755,9 +757,9 @@ drwxr-xr-x  root/root  usr/lib/glibmm-2.4/proc/pm/
 -rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/Util.pm
 -rw-r--r--  root/root  usr/lib/glibmm-2.4/proc/pm/WrapParser.pm
 -rwxr-xr-x  root/root  usr/lib/libglibmm-2.4.la
--rwxr-xr-x  root/root  usr/lib/libglibmm-2.4.so.1.0.23
+-rwxr-xr-x  root/root  usr/lib/libglibmm-2.4.so.1.0.24
 -rwxr-xr-x  root/root  usr/lib/libglibmm_generate_extra_defs-2.4.la
--rwxr-xr-x  root/root  usr/lib/libglibmm_generate_extra_defs-2.4.so.1.0.23
+-rwxr-xr-x  root/root  usr/lib/libglibmm_generate_extra_defs-2.4.so.1.0.24
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/glibmm-2.4.pc
 drwxr-xr-x  root/root  usr/share/
