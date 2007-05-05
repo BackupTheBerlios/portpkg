@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.1.1.26
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -35,12 +35,18 @@ CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \
-  --localstatedir=/var/lib \
+  --localstatedir=/var \
   --program-prefix="" \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
+mkdir -p $PKG/var/lib/tor
+chown daemon.daemon $PKG/var/lib/tor
+chmod 700 $PKG/var/lib/tor
 cp $PKG/etc/tor/torrc.sample $PKG/etc/tor/torrc.new
+sed -i "/^#DataDirectory /s,^#,," $PKG/etc/tor/torrc.new
+echo "User daemon" >>$PKG/etc/tor/torrc.new
+echo "Group daemon" >>$PKG/etc/tor/torrc.new
 mv $PKG/etc/tor/tor-tsocks.conf $PKG/etc/tor/tor-tsocks.conf.new
 mkdir -p $PKG/etc/rc.d
 install -m 755 $CWD/rc.tor $PKG/etc/rc.d/rc.tor.new

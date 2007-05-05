@@ -18,3 +18,4 @@ if [ -x /etc/rc.d/rc.tor ]; then
 fi
 EOF
 fi
+chown daemon.daemon var/lib/tor/*
