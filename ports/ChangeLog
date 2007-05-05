@@ -1,22 +1,136 @@
+2007-05-05  topf  <topf@users.berlios.de>
+
+  * xap/winki/SlackBuild, xap/winki/footprint: Upgraded to 0.4.3.
+
+  * testing/network-manager-applet/SlackBuild, testing/network-manager-applet/doinst.sh, testing/network-manager-applet/footprint, testing/network-manager-applet/slack-desc:
+  Added to repository.
+
+  * testing/networkmanager/SlackBuild, testing/networkmanager/dbus_disconnect.patch, testing/networkmanager/dbus_ver.patch, testing/networkmanager/footprint:
+  Upgraded to 0.6.5.
+
+  * testing/hal/SlackBuild, testing/hal/doinst.sh, testing/hal/footprint:
+  Reverted back to daemon.daemon. Don't write to /etc/groups.
+
+  * testing/gnome-volume-manager/SlackBuild, testing/gnome-volume-manager/footprint:
+  Upgraded to 2.17.0.
+
+  * testing/gnome-power-manager/SlackBuild, testing/gnome-power-manager/footprint:
+  Upgraded to 2.18.2.
+
+  * testing/dbus/SlackBuild, testing/dbus/doinst.sh:
+  Use daemon.daemon (Slack <= 11.0) or messagebus if it exists on system.
+
+  * testing/avahi/footprint, testing/avahi/SlackBuild:
+  Upgraded to 0.6.17. Use daemon.daemon and access with group uucp.
+
+  * l/gtkmm-docs/footprint, l/gtkmm-docs/SlackBuild: Upgraded to 2.10.4.
+
+  * l/gtkmm/SlackBuild, l/gtkmm/footprint: Upgraded to 2.10.4.
+
+  * l/glibmm/footprint, l/glibmm/slack-desc, l/glibmm/SlackBuild:
+  Upgraded to 2.12.3.
+
+  * kde/libkexiv2/SlackBuild: Added exiv2 to dependencies.
+
+  * n/wvdial/SlackBuild, n/wvdial/footprint, n/wvdial/md5sums, n/wvdial/requires, n/wvdial/slack-desc, n/wvdial/sources:
+  Rewrote script. Removed hint about chmoding +s wvdial.
+
+  * n/wvstreams/SlackBuild, n/wvstreams/footprint, n/wvstreams/md5sums, n/wvstreams/requires, n/wvstreams/slack-desc, n/wvstreams/sources:
+  Upgraded to 4.2.2.
+
+  * n/tor/SlackBuild, n/tor/doinst.sh, n/tor/footprint:
+  Use daemon.daemon. Fixed directories.
+
+  * n/privoxy/SlackBuild, n/privoxy/doinst.sh, n/privoxy/footprint:
+  Use daemon.daemon instead of privoxy.privoxy.
+
+  * n/fusesmb/SlackBuild, n/fusesmb/footprint, n/fusesmb/slack-desc:
+  Changed from local/n to n/; replace the build 1shv with a wrong pgp (*.acs) file (shv)
+
+  * l/pyorbit/SlackBuild, l/pyorbit/footprint, l/pyorbit/requires, l/pyorbit/slack-desc, l/pyorbit/sources:
+  Upgraded to 2.14.1.
+
+  * l/libxml++/SlackBuild, l/libxml++/footprint, l/libxml++/requires, l/libxml++/slack-desc, l/libxml++/sources:
+  Upgraded to 2.14.0.
+
+  * l/libglademm/SlackBuild, l/libglademm/footprint, l/libglademm/requires, l/libglademm/slack-desc, l/libglademm/sources:
+  Upgraded to 2.6.3.
+
+  * l/gtk2-gladexml-perl/SlackBuild, l/gtk2-gladexml-perl/footprint, l/gtk2-gladexml-perl/md5sums, l/gtk2-gladexml-perl/requires, l/gtk2-gladexml-perl/slack-desc, l/gtk2-gladexml-perl/sources:
+  Upgraded to 1.006.
+
+2007-05-03  topf  <topf@users.berlios.de>
+
+  * .cvsignore: Added portpkg.conf.
+
+2007-05-02  topf  <topf@users.berlios.de>
+
+  * .cvsignore: Added .ports_root
+
+  * gnome/evince/SlackBuild, gnome/evince/footprint: Upgraded to 0.8.1.
+
+  * l/poppler/SlackBuild, l/poppler/footprint:
+  Upgraded to 0.5.4. Added --disable-utils.
+
+  * l/poppler-data/SlackBuild, l/poppler-data/footprint, l/poppler-data/slack-desc:
+  Added to repository.
+
+  * gnome/epiphany-extensions/doinst.sh, gnome/epiphany-extensions/footprint, gnome/epiphany-extensions/SlackBuild:
+  Upgraded to 2.18.0.
+
+  * l/pwlib/SlackBuild, l/pwlib/footprint:
+  Upgraded to 1.10.7. Fetch source from ftp.gnome.org.
+
+  * gnome/eog/SlackBuild, gnome/eog/footprint:
+  Upgraded to 2.18.1. Added gnome-icon-theme to dependencies.
+
+  * gnome/ekiga/SlackBuild, gnome/ekiga/footprint: Upgraded to 2.0.9.
+
+  * l/opal/SlackBuild, l/opal/footprint:
+  Upgraded to 2.2.8. Fetch source from ftp.gnome.org.
+
+2007-05-01  topf  <topf@users.berlios.de>
+
+  * gnome/deskbar-applet/SlackBuild, gnome/deskbar-applet/doinst.sh, gnome/deskbar-applet/footprint, gnome/deskbar-applet/md5sums, gnome/deskbar-applet/requires, gnome/deskbar-applet/sources:
+  Upgraded to 2.18.1.
+
+  * gnome/dasher/SlackBuild, gnome/dasher/footprint: Upgraded to 4.4.1.
+
+  * gnome/bug-buddy/SlackBuild, gnome/bug-buddy/doinst.sh, gnome/bug-buddy/footprint, gnome/bug-buddy/requires, gnome/bug-buddy/slack-desc, gnome/bug-buddy/sources:
+  Upgraded to 2.18.1.
+
+  * gnome/at-spi/stop.autoport: Removed.
+
+  * gnome/at-spi/SlackBuild, gnome/at-spi/footprint, gnome/at-spi/md5sums, gnome/at-spi/requires, gnome/at-spi/slack-desc, gnome/at-spi/sources:
+  Upgraded to 1.18.1.
+
+  * gnome/alacarte/SlackBuild, gnome/alacarte/footprint, gnome/alacarte/slack-desc:
+  Upgraded to 0.11.3.
+
+2007-04-27  topf  <topf@users.berlios.de>
+
+  * xap/google-earth/SlackBuild, xap/google-earth/footprint, xap/google-earth/google-earth.png, xap/google-earth/googleearth-mimetypes.xml, xap/google-earth/googleearth.desktop, xap/google-earth/slack-desc, xap/google-earth/startup-script.diff:
+  Fixed user:groups perms (sjn)
+
+  * l/sqlite/SlackBuild, l/sqlite/footprint: Fixed user:groups perms (sjn)
+
 2007-04-26  topf  <topf@users.berlios.de>
 
   * d/portpkg/ChangeLog, d/portpkg/SlackBuild, d/portpkg/footprint:
   Finally the separated portpkg port.
 
-  * d/portpkg/portpkg, d/portpkg/htdocs/doc.php, d/portpkg/htdocs/index.php, d/portpkg/htdocs/robots.txt, d/portpkg/htdocs/upload.php, d/portpkg/Makefile, d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.Links, d/portpkg/plugins/export.portpkg, d/portpkg/plugins/report.portpkg, d/portpkg/plugins/sync.dropline-bin, d/portpkg/plugins/sync.gsb-frg, d/portpkg/plugins/sync.linuxpackages-bin, d/portpkg/plugins/sync.portpkg, d/portpkg/plugins/sync.slackbuildsorg, d/portpkg/plugins/sync.slackware-bin, d/portpkg/plugins/sync.slackyit-bin, d/portpkg/plugins/sync.zz.cleanup, d/portpkg/ABOUT, d/portpkg/COPYING, d/portpkg/CREDITS, d/portpkg/FAQ, d/portpkg/INSTALL, d/portpkg/ROADMAP, d/portpkg/autoport, d/portpkg/checkpkg, d/portpkg/ignore, d/portpkg/logo.png, d/portpkg/logo.svg, d/portpkg/mirrors, d/portpkg/portpkg.1, d/portpkg/pp-config, d/portpkg/repos, d/portpkg/synonyms, d/portpkg/use, d/portpkg/virtual:
+  * d/portpkg/portpkg, d/portpkg/Makefile, d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.Links, d/portpkg/ABOUT, d/portpkg/COPYING, d/portpkg/CREDITS, d/portpkg/FAQ, d/portpkg/INSTALL, d/portpkg/ROADMAP, d/portpkg/autoport, d/portpkg/checkpkg, d/portpkg/ignore, d/portpkg/logo.png, d/portpkg/logo.svg, d/portpkg/mirrors, d/portpkg/portpkg.1, d/portpkg/pp-config, d/portpkg/repos, d/portpkg/synonyms, d/portpkg/use, d/portpkg/virtual:
   Removed. portpkg is now separat from the ports.
 
   * d/portpkg/Makefile, d/portpkg/SlackBuild: Use Makefile.
 
   * d/portpkg/SlackBuild: Moved plugins to plugins/.
 
-  * d/portpkg/sync.portpkg, d/portpkg/sync.slackbuildsorg, d/portpkg/sync.slackware-bin, d/portpkg/sync.slackyit-bin, d/portpkg/sync.zz.cleanup, d/portpkg/export.portpkg, d/portpkg/report.portpkg, d/portpkg/sync.dropline-bin, d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin, d/portpkg/plugins/export.portpkg, d/portpkg/plugins/report.portpkg, d/portpkg/plugins/sync.dropline-bin, d/portpkg/plugins/sync.gsb-frg, d/portpkg/plugins/sync.linuxpackages-bin, d/portpkg/plugins/sync.portpkg, d/portpkg/plugins/sync.slackbuildsorg, d/portpkg/plugins/sync.slackware-bin, d/portpkg/plugins/sync.slackyit-bin, d/portpkg/plugins/sync.zz.cleanup:
+  * d/portpkg/sync.portpkg, d/portpkg/sync.slackbuildsorg, d/portpkg/sync.slackware-bin, d/portpkg/sync.slackyit-bin, d/portpkg/sync.zz.cleanup, d/portpkg/export.portpkg, d/portpkg/report.portpkg, d/portpkg/sync.dropline-bin, d/portpkg/sync.gsb-frg, d/portpkg/sync.linuxpackages-bin:
   Moved to plugins/.
 
   * gnome/control-center/SlackBuild:
   Moved libgnomekbd from optional to required.
-
-  * d/portpkg/htdocs/doc.php, d/portpkg/htdocs/index.php: Use doc.php.
 
   * ap/dvdauthor/SlackBuild, ap/dvdauthor/footprint: Updated to 0.6.14.
 
@@ -96,14 +210,6 @@
   * gnome/gnome-ppp/SlackBuild, gnome/gnome-ppp/footprint, gnome/gnome-ppp/md5sums, gnome/gnome-ppp/requires, gnome/gnome-ppp/sources:
   Upgraded to 0.3.23. Fixed URL.
 
-  * d/portpkg/htdocs/index.php: Parse http:// links even better.
-
-  * d/portpkg/htdocs/index.php: Parse http:// links.
-
-2007-04-25  topf  <topf@users.berlios.de>
-
-  * d/portpkg/htdocs/upload.php: Mail buildlogs to portpkg-devel list.
-
 2007-04-24  topf  <topf@users.berlios.de>
 
   * d/portpkg/report.portpkg: Put a timestamp on report filenames.
@@ -137,7 +243,7 @@
   * d/portpkg/portpkg:
   * Code cleanup.
   * Set MY_REALNAME to MY_TAG, instead of messing with /etc/passwd entries.
-  * Added $Revision: 1.150 $ to --version display.
+  * Added $Revision: 1.151 $ to --version display.
 
   * d/portpkg/sync.portpkg:
   * Added CVS_RSH=ssh.
@@ -341,10 +447,6 @@
 
   * xap/azureus/Azureus.desktop, xap/azureus/Azureus.png, xap/azureus/Azureus.torrent.png, xap/azureus/Go_Azureus.desktop, xap/azureus/SlackBuild, xap/azureus/footprint, xap/azureus/slack-desc:
   New port: Java BitTorrent Client (sjn)
-
-2007-03-24  topf  <topf@users.berlios.de>
-
-  * d/portpkg/htdocs/index.php: Changed sidebar font size.
 
 2007-03-23  topf  <topf@users.berlios.de>
 
@@ -642,10 +744,6 @@
 
 2007-02-20  topf  <topf@users.berlios.de>
 
-2007-02-19  topf  <topf@users.berlios.de>
-
-  * d/portpkg/htdocs/index.php: Minor changes to the ChangeLog parser.
-
 2007-02-18  topf  <topf@users.berlios.de>
 
   * d/portpkg/pp-config: Don't remove SYNC on cancel.
@@ -753,10 +851,6 @@
 
   * d/portpkg/export.portpkg: Fixed for 'set -f'.
 
-  * d/portpkg/htdocs/upload.php:
-  * Fixed syntax error.
-  * Added (commented) portpkg-devel list address.
-
 2007-02-05  topf  <topf@users.berlios.de>
 
   * d/portpkg/portpkg: Fixed another previous patch.
@@ -783,10 +877,6 @@
   * d/portpkg/INSTALL:
   * Reformatted, updated.
   * Added note to install fakeroot.
-
-  * d/portpkg/htdocs/index.php:
-  * Use fopen() and fgets() instead of file().
-  * Improve ChangeLog parsing.
 
   * xap/picard/SlackBuild, xap/picard/doinst.sh, xap/picard/footprint, xap/picard/slack-desc:
   New entry.
@@ -820,8 +910,6 @@
   * xap/gdvdshrink/SlackBuild, xap/gdvdshrink/doinst.sh, xap/gdvdshrink/footprint, xap/gdvdshrink/gdvdshrink.desktop, xap/gdvdshrink/slack-desc:
   New entry.
 
-  * d/portpkg/htdocs/index.php: Inserted logo.
-
   * d/portpkg/logo.png, d/portpkg/logo.svg: Added logo files.
 
 2007-02-03  topf  <topf@users.berlios.de>
@@ -835,10 +923,6 @@
 
   * d/portpkg/pp-config: Run sync.portpkg first as long as TREE=PRT_DIR in it.
 
-  * d/portpkg/htdocs/index.php: Removed 'unknown property' in CSS.
-
-  * d/portpkg/htdocs/index.php: Fixed ViewCVS URL.
-
   * d/portpkg/sync.portpkg:
   * Disabled code that commits uploads to CVS, too messy.
   * Support DRY_RUN.
@@ -851,9 +935,6 @@
   * Use TREE, not PRT_DIR.
   * Pause after warnings, not before.
   * Test if parent of dest is in CVS.
-
-  * d/portpkg/htdocs/index.php, d/portpkg/htdocs/robots.txt, d/portpkg/htdocs/upload.php:
-  Added htdocs.
 
   * d/portpkg/NEWS:
   * Changed date to %F format.
