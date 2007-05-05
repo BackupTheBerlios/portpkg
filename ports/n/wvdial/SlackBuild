@@ -1,40 +1,51 @@
-VERSION=1.54.0
-ARCH=${ARCH:-i486}
-BUILD=4tom
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://open.nit.ca/download/wvdial-1.54.0.tar.gz
+# MD5SUMS: 8648c044305fc66ee33ecc55d36f8c8b wvdial-1.54.0.tar.gz
+# REQUIRES: gcc-g++ ppp wvstreams
 
+TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
-PKG=/tmp/package-$NAME
-rm -rf $PKG
-mkdir -p $PKG{/usr,/etc/ppp/peers}
+PKG=$TMP/package-$NAME
 
-cd /tmp || exit 1
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION || exit 1
+VERSION=1.54.0
+ARCH=${ARCH:-i486}
+BUILD=5tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/wvdial-$VERSION.tar.gz
+cd wvdial-$VERSION
 chown -R root.root .
 make PREFIX=/usr || exit 1
 make install PREFIX=$PKG/usr PPPDIR=$PKG/etc/ppp/peers || exit 1
-
+mkdir -p $PKG/etc/ppp/peers
 touch $PKG/etc/ppp/wvdial
-
-chown -R root.bin $PKG{,/usr}/{,s}bin
-find $PKG/ | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
-mv $PKG/usr/share/{man,doc} $PKG/usr/
-rmdir $PKG/usr/share
-gzip -9 $PKG/usr/man/man?/*
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT ABOUT-NLS ANNOUNCE AUTHORS CONFIGURATION CHANGES COPYING COPYRIGHT \
-  CREDITS ChangeLog Changelog CHANGELOG CONTRIBUTORS *FAQ* FEATURES FILES \
-  HACKING History HISTORY INSTALL* LICENSE LSM MANIFEST NEWS *README* \
-  *Readme* SITES *RELEASE* RELNOTES THANKS TIPS TODO VERSION CONFIGURATION* \
-  GPL License Doc doc Docs* docs* Roadmap ROADMAP *BUGS* index.ht* *INDEX* \
-  $PKG/usr/doc/$NAME-$VERSION
+  CHANGES FAQ README TODO \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
-cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/ -name "*.new" -o -name "*.schemas" -o -name "*.omf" \
-| sed "s,^$PKG/,," | xargs -r -l echo config >>$PKG/install/doinst.sh
 
-cd $PKG || exit 1
-makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/wvdial-$VERSION
+  rm -rf $PKG
+fi
