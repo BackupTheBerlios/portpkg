@@ -10,17 +10,15 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 config etc/rc.d/rc.hal.new
-
-if ! grep "^haldaemon:x:" etc/passwd >/dev/null 2>&1; then
-  echo "haldaemon:x:61:61:haldaemon:/etc/hal:" >>etc/passwd
-fi
-if ! grep "^haldaemon::" etc/group >/dev/null 2>&1; then
-  echo "haldaemon::61:haldaemon" >>etc/group
-fi
-if ! grep "^haldaemon:" etc/shadow >/dev/null 2>&1; then
-  echo "haldaemon:*:9797:0:::::" >>etc/shadow
-fi
-
+#if ! grep "^haldaemon:x:" etc/passwd >/dev/null 2>&1; then
+#  echo "haldaemon:x:61:61:haldaemon:/etc/hal:" >>etc/passwd
+#fi
+#if ! grep "^haldaemon::" etc/group >/dev/null 2>&1; then
+#  echo "haldaemon::61:haldaemon" >>etc/group
+#fi
+#if ! grep "^haldaemon:" etc/shadow >/dev/null 2>&1; then
+#  echo "haldaemon:*:9797:0:::::" >>etc/shadow
+#fi
 if ! grep -sq "/etc/rc.d/rc.hal start" etc/rc.d/rc.local; then
 cat <<EOF >>etc/rc.d/rc.local
 

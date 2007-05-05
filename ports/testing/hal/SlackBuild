@@ -3,7 +3,7 @@
 # SOURCES: http://freedesktop.org/~david/dist/hal-0.5.7.tar.gz
 # MD5SUMS: 4163afb8285db64e00e7b1392b401d92 hal-0.5.7.tar.gz
 # REQUIRES: expat libusb python
-# OPTIONAL: dbus dbus-bindings dbus-glib pygobject
+# OPTIONAL: dbus dbus-bindings dbus-glib dbus-python pygobject
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.5.7
 ARCH=${ARCH:-i486}
-BUILD=9tom
+BUILD=10tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -59,8 +59,8 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   --with-pid-file=/var/run/hald.pid \
   --with-system-pid-file=/var/run/hald.pid \
-  --with-hal-user=haldaemon \
-  --with-hal-group=haldaemon \
+  --with-hal-user=daemon \
+  --with-hal-group=daemon \
   --enable-fstab-sync \
   --enable-hotplug-map \
   --enable-pcmcia-support \
@@ -76,7 +76,6 @@ mv $PKG/etc/rc.d/rc.hal $PKG/etc/rc.d/rc.hal.new
 sed -i "s,<policy at_console=\"true\">,<policy group=\"users\">," \
   $PKG/etc/dbus-1/system.d/*
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
