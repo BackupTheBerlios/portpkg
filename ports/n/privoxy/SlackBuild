@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=3.0.6
 ARCH=${ARCH:-i486}
-BUILD=4tom
+BUILD=6tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -20,23 +20,14 @@ cd $TMP
 tar xzvf $CWD/privoxy-$VERSION-stable-src.tar.gz
 cd privoxy-$VERSION-stable
 chown -R root.root .
-if ! grep -sq "^privoxy:" /etc/passwd \
-&& ! grep -sq "^privoxy:" /etc/group; then
-  cat <<EOF
-###########################################################################
-# Please add a user and a group named privoxy before building this package:
-# su -c "groupadd privoxy; useradd privoxy"
-###########################################################################
-EOF
-  exit 1
-fi
 autoheader
 autoconf
 ./configure \
   --prefix=/usr \
-  --with-user=privoxy \
   --sysconfdir=/etc/privoxy \
   --localstatedir=/var \
+  --with-user=daemon \
+  --with-group=daemon \
   $ARCH-slackware-linux
 make
 make install prefix=$PKG/usr CONF_BASE=$PKG/etc/privoxy VAR_DEST=$PKG/var
@@ -52,10 +43,10 @@ install -m 755 slackware/rc.privoxy.orig $PKG/etc/rc.d/rc.privoxy.new
 sed -i "s,%PROGRAM%,privoxy,g;\
 s,%SBIN_DEST%,/usr/sbin,g;\
 s,%CONF_DEST%,/etc/privoxy,g;\
-s,%USER%,privoxy,g;\
-s,%GROUP%,privoxy,g;" $PKG/etc/rc.d/rc.privoxy.new
+s,%USER%,daemon,g;\
+s,%GROUP%,daemon,g;" $PKG/etc/rc.d/rc.privoxy.new
 mkdir -p $PKG/var/run/privoxy
-find $PKG/ -name perllocal.pod | xargs -r rm -fv
+chown -R daemon.daemon $PKG/var/log/privoxy $PKG/var/run/privoxy
 rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded

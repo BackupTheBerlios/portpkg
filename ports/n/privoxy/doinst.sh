@@ -9,7 +9,6 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-useradd privoxy 2>/dev/null
 if ! grep -sqw /etc/rc.d/rc.privoxy etc/rc.d/rc.local; then
   cat >>etc/rc.d/rc.local <<EOF
 
@@ -19,3 +18,4 @@ if [ -x /etc/rc.d/rc.privoxy ]; then
 fi
 EOF
 fi
+chown daemon.daemon var/log/privoxy/* var/run/privoxy/*
