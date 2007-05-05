@@ -1,16 +1,17 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.winki-the-ripper.de/share/dist/winki-0.4.1.tar.gz
+# SOURCES: http://www.winki-the-ripper.de/share/dist/winki-0.4.3.tar.gz
 # MD5SUMS: 3a1e177622d7002cb4cb1e92c677d754 winki-0.4.1.tar.gz
+# MD5SUMS: 388f7ecfba5dbb1bc8de714e5cc0027f winki-0.4.3.tar.gz
 # REQUIRES: pygtk python
-# OPTIONAL: dvdauthor ffmpeg lame libdvdcss lsdvd mjpegtools mplayer vcdimager vorbis-tools
+# OPTIONAL: desktop-file-utils dvdauthor ffmpeg lame libdvdcss lsdvd mjpegtools mplayer pygobject vcdimager vorbis-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.4.1
+VERSION=0.4.3
 ARCH=noarch
 BUILD=2tom
 
@@ -21,23 +22,24 @@ tar xzvf $CWD/winki-$VERSION.tar.gz
 cd winki-$VERSION
 chown -R root.root .
 python setup.py build install --root=$PKG
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
 rm -rf $PKG/var/lib/scrollkeeper
-rm -rf $PKG/usr/info/dir
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  $PKG/usr/share/winkirip/doc/* \
+  README \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/winki-$VERSION
