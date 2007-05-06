@@ -1,9 +1,10 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gconf-editor/2.16/gconf-editor-2.16.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gconf-editor/2.18/gconf-editor-2.18.0.tar.bz2
 # MD5SUMS: ec8b0d4ee2a460ed31f69e4825fb4e17 gconf-editor-2.12.0.tar.bz2
 # MD5SUMS: eb8b979464f6e383e5a27b57ee4e8382 gconf-editor-2.14.0.tar.bz2
 # MD5SUMS: e52b3177ef6ebd1fcf2c84acbe90a663 gconf-editor-2.16.0.tar.bz2
+# MD5SUMS: cbaefa1ff8a548a3d381c67aed426fb7 gconf-editor-2.18.0.tar.bz2
 # REQUIRES: desktop-file-utils gconf libgnomeui scrollkeeper
 # OPTIONAL: libxcb
 
@@ -12,7 +13,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.0
+VERSION=2.18.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -39,7 +40,6 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
   --disable-scrollkeeper \
   $ARCH-slackware-linux
