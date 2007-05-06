@@ -1,16 +1,25 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gcalctool/5.9/gcalctool-5.9.14.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gcalctool/5.7/gcalctool-5.9.14.tar.bz2
+# MD5SUMS: d4eb2287fa4236fc5a5bf52a930f33f5 gcalctool-5.5.41.tar.bz2
+# MD5SUMS: f9d4cb8177abfbd17e53908bad65404e gcalctool-5.7.29.tar.bz2
+# MD5SUMS: dd51bc2fa9e53a3b6d7b3264e1059296 gcalctool-5.9.14.tar.bz2
+# REQUIRES: desktop-file-utils gconf libgnomeui scrollkeeper
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=5.7.29
+VERSION=5.9.14
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -20,8 +29,8 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/$NAME-$VERSION.tar.bz2
-cd $NAME-$VERSION
+tar xjvf $CWD/gcalctool-$VERSION.tar.bz2
+cd gcalctool-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -30,36 +39,36 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
+  --disable-scrollkeeper \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
 rm -rf $PKG/var/lib/scrollkeeper
-rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README TODO \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -rl echo gconf >>$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/gcalctool-$VERSION
   rm -rf $PKG
 fi
