@@ -82,7 +82,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.4 $"
+ENGINE_REV="\$Revision: 1.5 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -519,7 +519,7 @@ check_reqs()
     avail_pkg=`$TEST_REQS || { \
 ls_slk $re | grep -v $ex | slk2loc; \
 echo $inst_pkg; } | default`
-    use_pkg=${avail_pkg:-`ls_slk $re | grep $us | slk2loc | default`}
+    use_pkg=`ls_slk $re | grep $us | slk2loc | default`
 
     # is any version installed?
     if [ "$inst_pkg" ] && ( $LAZY_CHECKS || $TEST_REQS ); then
