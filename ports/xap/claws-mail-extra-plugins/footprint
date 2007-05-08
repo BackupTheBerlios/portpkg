@@ -1,11 +1,10 @@
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/slack-desc
--rw-r--r--  root/root  install/slack-required
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/claws-mail-extra-plugins-2.9.1/
--rw-r--r--  1000/1000  usr/doc/claws-mail-extra-plugins-2.9.1/README
+drwxr-xr-x  root/root  usr/doc/claws-mail-extra-plugins-2.9.2/
+-rw-r--r--  1000/1000  usr/doc/claws-mail-extra-plugins-2.9.2/README
 drwxr-xr-x  root/root  usr/include/
 -rw-r--r--  root/root  usr/include/ical.h
 drwxr-xr-x  root/root  usr/lib/
@@ -29,6 +28,8 @@ drwxr-xr-x  root/root  usr/lib/claws-mail/plugins/
 -rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/newmail.so
 -rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/notification_plugin.la
 -rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/notification_plugin.so
+-rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/pdf_viewer.la
+-rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/pdf_viewer.so
 -rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/perl_plugin.la
 -rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/perl_plugin.so
 -rwxr-xr-x  root/root  usr/lib/claws-mail/plugins/rssyl.la
@@ -46,6 +47,7 @@ drwxr-xr-x  root/root  usr/share/locale/ca/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/gtkhtml2_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/notification_plugin.mo
+-rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/ca/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/cs/
@@ -59,6 +61,7 @@ drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/es/
@@ -66,6 +69,7 @@ drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/fi/
@@ -73,6 +77,7 @@ drwxr-xr-x  root/root  usr/share/locale/fi/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/fi/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/fr/
@@ -80,6 +85,7 @@ drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/hu/
@@ -88,6 +94,7 @@ drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/gtkhtml2_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/notification_plugin.mo
+-rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/hu/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/it/
@@ -95,6 +102,7 @@ drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/pl/
@@ -102,6 +110,7 @@ drwxr-xr-x  root/root  usr/share/locale/pl/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/pl/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/pt_BR/
@@ -110,6 +119,7 @@ drwxr-xr-x  root/root  usr/share/locale/pt_BR/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/gtkhtml2_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/notification_plugin.mo
+-rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/pt_BR/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/sk/
@@ -117,6 +127,7 @@ drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/sr/
@@ -124,6 +135,7 @@ drwxr-xr-x  root/root  usr/share/locale/sr/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/acpi_notifier.mo
 -rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/attachwarner.mo
 -rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/gtkhtml2_viewer.mo
+-rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/pdf_viewer.mo
 -rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/rssyl.mo
 -rw-r--r--  root/root  usr/share/locale/sr/LC_MESSAGES/vcalendar.mo
 drwxr-xr-x  root/root  usr/share/locale/sv/
