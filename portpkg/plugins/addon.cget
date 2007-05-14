@@ -1,0 +1,11 @@
+#!/bin/sh
+#BLURB="Minimalistic download progress bar (curl)"
+
+cget() # uri saveas
+{
+  echo -en `echo $1 | cut -d / -f 1-3`"/.../${1##*/}\r"
+  curl -C - -L -# -o $2 $1 \
+  && echo -en "\033[1A\033[K"
+}
+
+WGET_CMD='cget $try $dest.part'
