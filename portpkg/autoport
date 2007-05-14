@@ -74,6 +74,9 @@ sel() # tag sub file
   for i in $subs; do
     [ "$i" = "$sub" ] || snip $i $file
   done
+  # do sel() only once for $tag
+  sed -i "/^#:$tag$/d" $file
+  sed -i "s, *##$tag$,," $file
 }
 
 # convert the value of $version to "$VERSION"
@@ -675,6 +678,7 @@ if grep -sqe "#:config" -e "#:make" $script; then
     check "--docdir\>" $TMP/$srcdir_prefix/configure && snip non_ac_docdir $script || snip ac_docdir $script
     check "--mandir\>" $TMP/$srcdir_prefix/configure && snip non_ac_mandir $script || snip ac_mandir $script
     check "--infodir\>" $TMP/$srcdir_prefix/configure && snip non_ac_infodir $script || snip ac_infodir $script
+    snip cfg_autotools $script
     snip cfg_autogen $script
     snip pkgconfig $script
     # pkgconfig
@@ -700,15 +704,26 @@ eval "echo \"$pc_files\"" | grep -o "[a-z][a-z0-9A-Z._+-]*"`
       done
     fi
   elif check "^autogen.sh$" $t/footprint; then
+    snip cfg_autotools $script
     sel config configure $script
+    sel install mk_inst $script
+    sel mk_inst_root inst_destdir $script
+  elif check "^configure.in$" $t/footprint; then
+    snip cfg_autogen $script
+    check "^aclocal.m4$" $t/footprint && snip cfg_aclocal $script
+    check "^config.h.in$" $t/footprint && snip cfg_autoheader $script
+    check "^Makefile.in$" $t/footprint && snip cfg_automake $script
+    sel config configure $script
+    sel install mk_inst $script
+    sel mk_inst_root inst_destdir $script
   elif check "^setup\.py$" $t/footprint; then
     snip config $script
     snip mk $script
     arch=noarch
   else
-    error "Don't know how to build this package."
+#    error "Don't know how to build this package."
     snip config $script
-    failed=true
+#    failed=true
   fi
 fi
 
@@ -983,6 +998,12 @@ chown -R root.root .
 #%post-prepare-fix%
 #:config
 #:configure
+#:cfg_autotools
+aclocal ##cfg_aclocal
+autoheader ##cfg_autoheader
+autoconf ##cfg_autoconf
+automake ##cfg_automake
+#:cfg_autotools
 ./autogen.sh ##cfg_autogen
 CFLAGS="$SLKCFLAGS" \ ##cflags
 CXXFLAGS="$SLKCFLAGS" \ ##cxxflags
