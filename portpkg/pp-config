@@ -87,16 +87,18 @@ If unsure answer 'no'." 0 0; then
   fi
 }
 
-plugins()
+plugins() # {sync|addon}
 {
+  local var=`echo $1 | tr "a-z" "A-Z"`
   heading="PLUGINS SETTINGS"
   echo -n "dialog --title \"$heading\" --single-quoted --checklist \
-\"Select which plugins you want to enable when you sync your data base:\" 0 0 0 " >$t/menu
+\"Select which $1 plugins you want to enable:\" 0 0 0 " >$t/menu
+
   local plugin
-  for plugin in `find $CFG_DIR/plugins/sync.* $PRT_DIR/plugins/sync.* 2>/dev/null`; do
-    echo -n `basename $plugin` \
-      `grep ^#BLURB= $plugin | cut -d = -f 2` \
-      `echo "$SYNC" | tr " " "\n" | grep -qx $(basename $plugin) && echo on || echo off`" "
+  for plugin in `find $CFG_DIR/plugins/$1.* $PRT_DIR/plugins/$1.* 2>/dev/null`; do
+    blurb=`grep ^#BLURB= $plugin | cut -d = -f 2`
+    echo -n `basename $plugin` ${blurb:-$plugin} \
+      `eval echo "\\$${var}" | tr " " "\n" | grep -qx $(basename $plugin) && echo on || echo off`" "
   done >>$t/menu
   . $t/menu 2>$t/plugins
   [ "$?" != 0 ] && return
@@ -108,9 +110,19 @@ plugins()
     && sed -ir "s,(^| )sync.portpkg ,\1,;s,^,sync.portpkg ," $t/plugins
   fi
 
-  sed -i "/^SYNC=/d" $RC
-  echo "SYNC=\"`cat $t/plugins`\"" >>$RC
+  sed -i "/^$var=/d" $RC
+  echo "$var=\"`cat $t/plugins`\"" >>$RC
   . $RC
+}
+
+syncs()
+{
+  plugins sync
+}
+
+addons()
+{
+  plugins addon
 }
 
 cpu()
@@ -244,7 +256,8 @@ while [ $rc == 0 ]; do
 "This is a configuration tool for Portpkg.
 Select what you want to configure:" 0 0 0 \
   target "Set distribution target" \
-  plugins "Set which plugins to use" \
+  syncs "Set which sync plugins to use" \
+  addons "Set which addon plugins to use" \
   maintain "Set ports tag string" \
   output "Set output level" \
   optimise "Set processor optimising" \
