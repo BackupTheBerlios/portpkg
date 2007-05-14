@@ -55,8 +55,12 @@ for arg in `explicit "$@"`; do
   fi
 
   # check if it's already run
-  if [ -f $path/footprint ] && [ $path/footprint -ot $script ]; then
-    error "Build script is newer than footprint: $group/$name"
+  if ! [ -f $path/footprint ]; then
+    error "No footprint: Consider running --remaintain!"
+    continue
+  elif [ $path/footprint -ot $script ]; then
+#    error "Build script is newer than footprint: $group/$name"
+    error "Build script is newer than footprint: Consider running --remaintain!"
     continue
   fi
 
@@ -108,6 +112,7 @@ for arg in `explicit "$@"`; do
       row "Copying files to $dest/"
       cd `dirname $path`
       find $name/ ! -path "*CVS*" ! -name info -exec $pre cp -vP --parents {} $dest/ \;
+      mv $dest/ChangeLog $dest/ChangeLog.`date +%Y%m%d`
 
       # remove old entry
       row "Removing CVS of old $name"
