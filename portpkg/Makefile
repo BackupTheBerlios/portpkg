@@ -25,6 +25,7 @@ install:
 	install -m 644 plugins/sync.* $(DESTDIR)$(CONFDIR)/plugins/
 	install -m 644 plugins/report.* $(DESTDIR)$(CONFDIR)/plugins/
 	install -m 644 plugins/export.* $(DESTDIR)$(CONFDIR)/plugins/
+	install -m 644 plugins/addon.* $(DESTDIR)$(CONFDIR)/plugins/
 	# local.conf.sample
 	echo -e "\
 	#\n\
