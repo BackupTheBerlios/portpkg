@@ -31,11 +31,11 @@ login=`cat $TREE/CVS/Root 2>/dev/null | cut -d @ -f 1`
 row "Syncing $TREE/"
 touch ~/.cvspass
 export CVS_RSH=ssh
-$pre get $SOURCE $TREE
+get $SOURCE $TREE && rm -f $CACHE/slk
 
 # import GPG-KEYS
 if [ -f $TREE/GPG-KEYS ] && has_prog gpg; then
-  row "Updating GPG keys"
+  row "Updating local GPG keyring"
   gpg -q --import $TREE/GPG-KEYS
 fi
 
@@ -83,6 +83,7 @@ for i in `ls $TREE/open 2>/dev/null`; do
     rm -rf $TREE/open/$i
   fi
 done
+  rm -f $CACHE/slk
 fi
 
 # do a simple test to avoid a chunk of "permission denied" errors
@@ -126,6 +127,8 @@ $pre mv ChangeLog ChangeLog.old
 if ! $pre rcs2log -i 2 -h $mailhost >ChangeLog; then
   mv ChangeLog.old ChangeLog
   die "rcs2log failed!"
+else
+  rm ChangeLog.old
 fi
 
 # "Updated." lines are unnecessary
