@@ -20,6 +20,7 @@ ls_slk | slk2loc | any2gany | sed "s,.*,$PKG_DIR/&.tgz," >$t/avail
 # move packages found in $SRC_DIR to $PKG_DIR (pseudo ports do that)
 #find $SRC_DIR/ -regex ".*-[^-]*-[^-]*-[^-]*\.tgz$" -exec mv {} $PKG_DIR/ \; 2>/dev/null
 $DRY_RUN || ls_src ".*-[^-]*-[^-]*-[^-]*\.tgz$" | xargs -i mv {} $PKG_DIR/
+$DRY_RUN || rm -f $CACHE/src $CACHE/pkg
 
 # check groups
 ls_pkg -Fvxf $t/avail | any2gany | while read gpkg; do
@@ -39,3 +40,5 @@ find $TREE/ -depth -mindepth 1 -type d -empty | while read dir; do
   $DRY_RUN && continue
   rmdir -p $dir 2>/dev/null
 done
+
+rm -f $CACHE/pkg
