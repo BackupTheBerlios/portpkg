@@ -294,7 +294,8 @@ sources=`echo "$sources" | sed -e "s,://prdownloads\.,://heanet.dl.," -e "s,\?do
 # we can only handle _one_ source file
 src=`echo "$sources" | head -n 1`
 # name: guess it, if we haven't yet it
-file=`basename $(decode $src)`
+#file=`basename $(decode $src)`
+file=`basename $(decode $src) | sed "s,.*%,,"`
 raw_name=`echo $file | rev | cut -d - -f 2- | rev`
 [ "$name" ] || name=`echo $raw_name | tr "A-Z" "a-z"`
 s=`pause "Name [$name]:"`
@@ -407,7 +408,7 @@ pause "Last chance to quit. Port scripts will now be written.
 # now we should redecode the actual source name
 sources=`decode "$sources"`
 src=`echo "$sources" | head -n 1`
-file=`basename $(decode $src)`
+file=`basename $(decode $src) | sed "s,.*%,,"`
 
 if [ -f $path/stop.autoport ]; then
   stanza "There's a warning not to autoport this source code:"
@@ -480,7 +481,8 @@ else
   row "Downloading $file"
 #  VERBOSE=true
 #  output=/dev/stdout
-  get `decode $src` $SRC_DIR/$file || die
+  uri=`decode $src | sed "s,%.*$,,"`
+  get $uri $SRC_DIR/$file || die
   echo $SRC_DIR/$file >>$CACHE/src
 fi
 
@@ -561,22 +563,28 @@ if [ `echo "$srcdir_prefix" | wc -l` = 1 ] && [ "$srcdir_prefix" != "." ]; then
   else
     snip extra_sdp $script
   fi
-  srcdir_prefix_out=`encode "$srcdir_prefix"`
-  sed -i "s,%srcdirprefix%,$srcdir_prefix_out," $script
+#  srcdir_prefix_out=`encode "$srcdir_prefix"`
+#  sed -i "s,%srcdirprefix%,$srcdir_prefix_out," $script
+  # srcdir_prefix will be inserted after autorun
 else
 #  echo "no prefix"
   row "Checking source-prefix... no prefix"
   snip cd_sdp $script
-  srcdir_prefix="."
-  mkdir $t/src/$name-$version
-  mv $t/src/* $t/src/$name-$version
-  rm -rf $TMP/$name-$version
+#  srcdir_prefix="."
+  srcdir_prefix=$name-$version
+#  mkdir $t/src/$name-$version
+  mkdir $t/src/$srcdir_prefix
+#  mv $t/src/* $t/src/$name-$version
+  mv $t/src/* $t/src/$srcdir_prefix
+#  rm -rf $TMP/$name-$version
 fi
 
 # now, move it to $TMP as user expects it to be
-[ "`whoami`" = "root" ] && chown nobody.nogroup -R $t/src/*
+#[ "`whoami`" = "root" ] && chown nobody.nogroup -R $t/src/*
+[ "`whoami`" = "root" ] && chown nobody.nogroup -R $t/src/$srcdir_prefix
 rm -rf $TMP/$srcdir_prefix
-mv $t/src/* $TMP/
+#mv $t/src/* $TMP/
+mv $t/src/$srcdir_prefix $TMP/
 
 # snip srcdir_prefixed in footprint
 sed -i "s,^\./,," $t/footprint
@@ -601,6 +609,20 @@ for i in `ls $path/*-fix.autoport 2>/dev/null`; do
     die "Couldn't locate $i fix. Maybe you're using the wrong version of autoport?"
   fi
 done
+
+# do autorun.autoport before we continue
+if [ -f $path/autorun.autoport ]; then
+  row "Running autorun.autoport"
+  ( cd $TMP/$srcdir_prefix
+    . $path/autorun.autoport
+    # update footprint
+    find * >$t/footprint
+  )
+fi
+
+# insert the srcdir_prefix into the script
+srcdir_prefix_out=`encode "$srcdir_prefix"`
+sed -i "s,%srcdirprefix%,$srcdir_prefix_out," $script
 
 # include patches
 if [ "`ls $path/*.patch 2>/dev/null`" ]; then
@@ -907,24 +929,24 @@ exit 0
 
 #:SlackBuild.skel
 #!/bin/sh -e
-
 #:head
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
-
 #:head
 #%post-head-fix%
 #:vars
+
 VERSION=%version%
 ##SRCVER=%srcver% ##srcver
 ARCH=%arch%
 BUILD=%build%
-
 #:vars
 #%post-vars-fix%
 #:slkcflags
+
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
@@ -934,9 +956,9 @@ elif [ "$ARCH" = "s390" ]; then
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2"
 fi
-
 #:slkcflags
 #%post-slkcflags-fix%
+
 #:prepare
 rm -rf $PKG
 mkdir -p $PKG/%prefix%
@@ -950,7 +972,7 @@ rpm2targz $CWD/%tarball% ##rpm
 tar xzvf `basename %tarball% .rpm`.tar.gz ##rpm
 tar xzvf $NAME-$VERSION.tar.gz ##rpm
 tar x%tarmode%vf $CWD/%tarball% ##tar
-cp -r $CWD/%tarball% . || true ##dir
+cp -av $CWD/%tarball%/ . || true ##dir
 #:unpack
 cd %srcdirprefix% ##cd_sdp
 cat $CWD/*.patch | patch -p1 --verbose ##patch
@@ -1059,16 +1081,16 @@ cat $CWD/doinst.sh >$PKG/install/doinst.sh ##doinst
 ( cd $PKG; find * -name "*.new" ) | xargs -rl echo config >>$PKG/install/doinst.sh ##etc_config
 ( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -rl echo gconf >>$PKG/install/doinst.sh ##schemas
 ( cd $PKG; find -name index.theme ) | xargs -rl echo icons >>$PKG/install/doinst.sh ##icons
-
 #:tail
 #%post-tail-fix%
 #:package
+
 cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
-
 #:package
 #%post-package-fix%
 #:cleanup
+
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/%srcdirprefix%
   rm -rf $PKG
