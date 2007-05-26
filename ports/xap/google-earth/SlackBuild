@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
 # SOURCES: http://dl.google.com/earth/client/current/GoogleEarthLinux.bin
-# MD5SUMS: 3a4051c185afc719bf807a4a693c44b0 GoogleEarthLinux.bin
+# MD5SUMS: 92dc59ae22ca97111d3d8ce066fa6cb2 GoogleEarthLinux.bin
 # REQUIRES: curl desktop-file-utils libXcursor libXft libXinerama libXmu libXrandr libmng libpng libtiff mesa shared-mime-info
 set -e
 
@@ -10,9 +10,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=4.0.2735
+VERSION=4.1.7076
 ARCH=i386
-BUILD=2sjn
+BUILD=1sjn
 
 rm -rf $PKG $TMP/googleearth-$VERSION
 mkdir -p $PKG $TMP/googleearth-$VERSION
@@ -24,7 +24,7 @@ cd $TMP/googleearth-$VERSION
 patch -p1 < $CWD/startup-script.diff
 
 mkdir -p $PKG/usr/doc/google-earth-$VERSION
-cp *.txt README.linux $PKG/usr/doc/google-earth-$VERSION
+cp EULA* README.linux $PKG/usr/doc/google-earth-$VERSION
 
 mkdir -p $PKG/usr/lib/google-earth
 cp bin/googleearth $PKG/usr/lib/google-earth
