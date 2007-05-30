@@ -1136,19 +1136,8 @@ Backgrounds
    +----------------------------------------------------------------+
    |local/    |Subtree that is always preferred before all others   |
    |----------+-----------------------------------------------------|
-   |z/        |Subtree that contains ports to be used as last resort|
-   |----------+-----------------------------------------------------|
-   |virtual/^2|Subtree for virtual groups                           |
+   |z/^3      |Subtree that contains ports to be used as last resort|
    +----------------------------------------------------------------+
-
-   Notes
-           * Smart slackers will yell when reading pasture/ and testing/
-             being a group or series. In fact these directories are located
-             one level above the package tree in Slackware. Still to be
-             discussed :)
-           * It is possible to have a port in
-             /usr/ports/local/newstuff/l/wxgtk/SlackBuild, which will be
-             interpreted as l/wxgtk and not as a port of group local/!
 
   The SlackBuild Blackbox
 
