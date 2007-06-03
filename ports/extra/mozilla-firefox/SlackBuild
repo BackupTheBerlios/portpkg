@@ -1,6 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
 # REQUIRES: desktop-file-utils glib2 gtk+2 libXt pango
+# OPTIONAL: cxxlibs-6.0.8-i486-2-upgraded
 CWD=`pwd`
 TMP=${TMP:-/tmp}
 PKG=$TMP/package-mozilla-firefox
@@ -26,7 +27,7 @@ fi
 # distribute this, and for all the great work!  :-)
 
 
-VERSION=2.0.0.3
+VERSION=2.0.0.4
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
