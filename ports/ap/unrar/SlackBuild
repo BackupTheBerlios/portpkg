@@ -1,11 +1,18 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://www.rarlab.com/rar/unrarsrc-3.7.5.tar.gz
+# MD5SUMS: 4e8b975374064b774ea80067e11ccf13 unrarsrc-3.5.3.tar.gz
+# MD5SUMS: e6d9e4997da6796ddc5344e995a621e6 unrarsrc-3.6.1.tar.gz
+# MD5SUMS: 10b142866c656e40273434aae6747f96 unrarsrc-3.7.5.tar.gz
+# REQUIRES: cxxlibs-6.0.8-i486-2-upgraded gcc-g++
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.6.1
+VERSION=3.7.5
 ARCH=${ARCH:-i486}
-BUILD=1hnaz
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -26,7 +33,6 @@ chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 make -f makefile.unix CXXFLAGS="$SLKCFLAGS" || exit 1
 cp unrar $PKG/usr/bin
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp {license,readme}.txt $PKG/usr/doc/$NAME-$VERSION
 mkdir -p $PKG/install
