@@ -1,9 +1,10 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://downloads.sourceforge.net/kipi/libkexiv2-0.1.3.tar.bz2
+# SOURCES: http://downloads.sourceforge.net/kipi/libkexiv2-0.1.5.tar.bz2
 # MD5SUMS: 6160fff8036ee538b5c5306bb82ba7e7 libkexiv2-0.1.0-beta1.tar.bz2
 # MD5SUMS: cd577926992dc1ea5359f9cb53c6a10d libkexiv2-0.1.1.tar.bz2
 # MD5SUMS: fcf88d6a6d1eb160323e58fc8c2008e9 libkexiv2-0.1.3.tar.bz2
+# MD5SUMS: 4171b8e929b11ffd82e31bf00f359a19 libkexiv2-0.1.5.tar.bz2
 # REQUIRES: exiv2 kdelibs
 
 TMP=${TMP:-/tmp}
@@ -11,7 +12,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.1.3
+VERSION=0.1.5
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
@@ -59,6 +60,7 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
+( cd usr/lib ; ln -sf libkexiv2.so.1.1.1 libkexiv2.so.0 )
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
