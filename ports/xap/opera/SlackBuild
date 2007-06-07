@@ -1,6 +1,6 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: ftp://opera.inode.at/linux/920/final/en/i386/shared/opera-9.20-20070409.5-shared-qt.i386-en.tar.bz2
+# SOURCES: ftp://opera.inode.at/linux/921/final/en/i386/shared/opera-9.21-20070510.5-shared-qt.i386-en.tar.bz2
 # MD5SUMS: a75e23eadc636dc8936499ac96ea1734 opera-8.50-20050916.5-shared-qt.i386-en.tar.gz
 # MD5SUMS: 5e60bc787e4c80cb4c5d890dacf01c1f opera-8.51-20051114.5-shared-qt.i386-en.tar.gz
 # MD5SUMS: 2e08c3529c9d27b6fe82f4b71f2d62dc opera-8.51-20051114.6-shared-qt.i386-en.tar.gz
@@ -9,6 +9,7 @@
 # MD5SUMS: b2531e899ffbdb40e0383614926e06a5 opera-9.10-20061214.5-shared-qt.i386-en.tar.gz
 # MD5SUMS: f4d7007948c2841583314f321ff88e30 opera-9.10-20061214.6-shared-qt.i386-en.tar.bz2
 # MD5SUMS: 9446ed1e968d511f43c1681eee44ab7a opera-9.20-20070409.5-shared-qt.i386-en.tar.bz2
+# MD5SUMS: f369e702495cf4ef8b230b80dca6073d opera-9.21-20070510.5-shared-qt.i386-en.tar.bz2
 # REQUIRES: cxxlibs expat lesstif libjpeg libmng libpng zlib
 # OPTIONAL: desktop-file-utils gcc-g++ libXcursor libXext libXft libXinerama libXmu libXrandr libXt mesa qt
 TMP=${TMP:-/tmp}
@@ -16,8 +17,8 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=9.20
-BUILDVERS=20070409.5
+VERSION=9.21
+BUILDVERS=20070510.5
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -57,6 +58,7 @@ find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/{man,info} -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
+#cat $CWD/doinst.sh >$PKG/install/doinst.sh
 mv config $PKG/etc
 
 mkdir $PKG/usr/share/applications
@@ -70,10 +72,6 @@ perl -pi -e "s/\/tmp\/package-opera//" usr/bin/opera
 perl -pi -e "s/\/tmp//" usr/bin/opera
 perl -pi -e "s/\/tmp\/package-opera//" usr/share/opera/ini/pluginpath.ini
 perl -pi -e "s/tmp\/package-opera//" usr/share/opera/java/opera.policy
-
-if [ ! -f /usr/lib/libqt-mt.so.3 ];then
-ln -sf /usr/lib/qt-*/lib/libqt-mt.so.3 usr/lib/libqt-mt.so.3
-fi
 
 makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
