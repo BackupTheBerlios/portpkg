@@ -1,12 +1,14 @@
 #!/bin/sh
 # MAINTAINER: Daniel Kmieæ 'dan' <danielos@narsil.asua.org.pl>
-# SOURCES: ftp://ftp.kde.org/pub/kde/unstable/apps/KDE3.x/graphics/kipi-plugins-0.1.0-beta2.tar.bz2
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://downloads.sourceforge.net/kipi/kipi-plugins-0.1.3.tar.bz2
 # MD5SUMS: 1dd0cb05e0c7da43861d2bf0affaa4b3 kipi-plugins-0.1.0-beta2.tar.bz2
+# MD5SUMS: 7b8e55906b5d08280ab3ad3c2b43e8ab kipi-plugins-0.1.3.tar.bz2
 # REQUIRES: kdelibs libkipi
-# OPTIONAL: imlib2 libgphoto2 libkexif libtiff
-VERSION=0.1.0beta2
+# OPTIONAL: desktop-file-utils imlib2 libgphoto2 libgpod libkexif libtiff libxslt
+VERSION=0.1.3
 ARCH=${ARCH:-i486}
-BUILD=2dan
+BUILD=1sjn
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -17,15 +19,15 @@ mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
 
 cd $TMP || exit 1
 rm -rf $NAME-$VERSION
-tar xjvf $CWD/$NAME-0.1.0-beta2.tar.bz2 || exit 1
-cd $NAME-0.1.0-beta2 || exit 1
+tar xjvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+cd $NAME-$VERSION || exit 1
 # apply patch for bad include of cropframe.h 
 # in file kipi-plugins/printwizard/frmprintwizardbase.ui
 patch -p1 < $CWD/frmprintwizard-cropframe.patch
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
-  --prefix=/opt/kde \
+  --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
   --program-prefix="" \
@@ -39,7 +41,7 @@ cp -a \
 
 cd $PKG || exit 1
 cat $CWD/slack-desc >$PKG/install/slack-desc
-find -type d | grep -e /bin$ -e /sbin$ | xargs -r chown -R root.bin
+
 find -type d | grep /doc/ | xargs -r chmod 755
 find -type f | grep /doc/ | xargs -r chmod 644
 find -type f | xargs file | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
