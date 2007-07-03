@@ -1,7 +1,6 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-extra-plugins-2.10.0.tar.bz2
-# MD5SUMS: 1dc867cb2b781a65eace390fd1deb424 claws-mail-extra-plugins-2.10.0.tar.bz2
+# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-extra-plugins-2.9.2.tar.bz2
 # MD5SUMS: 30fa4df35a55fbbc584ce40d7145f92e claws-mail-extra-plugins-2.8.0.tar.bz2
 # MD5SUMS: 5e86ceebdc36c3218cccd718de8b30af claws-mail-extra-plugins-2.9.0.tar.bz2
 # MD5SUMS: cde3849c15009521b51c4afc94f1606a claws-mail-extra-plugins-2.9.1.tar.bz2
@@ -17,7 +16,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.10.0
+VERSION=2.9.2
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
