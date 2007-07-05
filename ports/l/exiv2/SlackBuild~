@@ -1,18 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://www.exiv2.org/exiv2-0.14.tar.gz
+# SOURCES: http://www.exiv2.org/exiv2-0.13.tar.gz
 # MD5SUMS: a97a4e489df7ec99458e3e33b506c3e6 exiv2-0.12.tar.gz
 # MD5SUMS: 492d476e3130ac27983d93e5595d81e8 exiv2-0.13.tar.gz
-# MD5SUMS: 6f8edde77d95f49fc83329feb615bb33 exiv2-0.14.tar.gz
 # REQUIRES: gcc-g++ zlib
-# OPTIONAL: gcc
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.14
+VERSION=0.13
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
