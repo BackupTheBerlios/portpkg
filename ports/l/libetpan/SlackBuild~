@@ -4,9 +4,8 @@
 # MD5SUMS: 0135cf6a9d97afb1f75001f514448836 libetpan-0.45.tar.gz
 # MD5SUMS: afa4abd73665e1a46b0510c4f4efa9a9 libetpan-0.46.tar.gz
 # MD5SUMS: f6c973ea1aa53d947f034e093960da10 libetpan-0.49.tar.gz
-# MD5SUMS: 119eb4ac27fb75540ca74d8997f7fc7f libetpan-0.52.tar.gz
 # REQUIRES: cyrus-sasl db42 openssl
-# OPTIONAL: curl db44 expat
+# OPTIONAL: db44
 set -e
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -57,7 +56,7 @@ rm -rf $PKG/usr/info/dir
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ChangeLog COPYRIGHT NEWS \
+  ChangeLog COPYRIGHT NEWS TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
