@@ -1,14 +1,15 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://switch.dl.sourceforge.net/sourceforge/azureus/Azureus_2.5.0.4_linux.tar.bz2
+# SOURCES: http://switch.dl.sourceforge.net/sourceforge/azureus/Azureus_3.0.2.2_linux.tar.bz2
 # MD5SUMS: aa0ef937ab4faaaefb37c137842b1e0e Azureus_2.5.0.4_linux.tar.bz2
+# MD5SUMS: ebfeaa50bf78058df7bdadab759aed00 Azureus_3.0.2.2_linux.tar.bz2
 # REQUIRES: desktop-file-utils
 
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
-VERSION=2.5.0.4
+VERSION=3.0.2.2
 ARCH=${ARCH:-i386}
 BUILD=1sjn
 
@@ -20,7 +21,7 @@ rm -rf Azureus_$VERSION
 tar xjvf $CWD/Azureus_${VERSION}_linux.tar.bz2 -C $PKG/usr/lib
 cd $PKG
 
-mv usr/lib/azureus/{*.txt,*.html} usr/doc/azureus-$VERSION/
+mv usr/lib/azureus/*.txt usr/doc/azureus-$VERSION/
 mv usr/lib/azureus/*.png usr/share/pixmaps/
 
 mkdir $PKG/install
