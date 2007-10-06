@@ -1,14 +1,18 @@
 #!/bin/sh
 #BLURB="DroplineGNOME.org binaries"
 
+DROPLINE_VER=${DROPLINE_VER:-2.16}
 SOURCE=http://mesh.dl.sourceforge.net/sourceforge/dropline-gnome
 FILESSITE=http://droplinegnome.org
-FILES="DroplineFiles2.16"
-#TREE=$PRT_DIR/droplinegnome.org/bin
+FILES="DroplineFiles$DROPLINE_VER"
+if $USE_ALPHA_CODE; then
+TREE=$PRT_DIR/droplinegnome.org
+else
 TREE=$PRT_DIR/z/bin/dropline
+fi
 
 # check that we're a plug-in
-if  [ "`basename $0`" != "portpkg" ]; then
+if ! [ "$PRT_DIR" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
@@ -44,17 +48,15 @@ while read s; do
   file=`echo "$s" | cut -d : -f 1`
   desc=`echo "$s" | cut -d : -f 3`
   md5sum="`echo "$s" | cut -d : -f 5` $file"
-  group=`echo "$s" | cut -d : -f 8 | sed -r "
-s,Application Development,dev,
-s,Desktop Extras,extra,
-s,GNOME Desktop,gnome,
-s,Internet Software,net,
-s,Media Software,media,
-s,Office Applications,office,
-s,System Software,system,"`
-  req=""
-  opt=""
-  blk=""
+  group=`echo "$s" | cut -d : -f 8 | sed -r "s, ,_,g"`
+#  group=`echo "$s" | cut -d : -f 8 | sed -r "
+#s,Application Development,d,
+#s,Desktop Extras,extra,
+#s,GNOME Desktop,gnome,
+#s,Internet Software,n,
+#s,Media Software,xap,
+#s,Office Applications,xap,
+#s,System Software,l,"`
   pkg=${file%.tgz}
   name=${pkg%-*-*-*}
   rel=${pkg#$name-}
@@ -73,9 +75,6 @@ s,System Software,system,"`
 # MAINTAINER: Portpkg Project <portpkg-devel@lists.berlios.de>
 # SOURCES: $SOURCE/$pkg.tgz
 # MD5SUMS: $md5sum
-# REQUIRES: $req
-# OPTIONAL: $opt
-# BLOCKS: $blk
 
 TMP=\${TMP:-/tmp}
 
@@ -91,9 +90,11 @@ CWD=\`pwd\`
 makepkg() { cp \$CWD/\`basename \$1\` \$1; }
 makepkg \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.tgz
 EOF
-done <$t/DroplineFiles2.16
+done <$t/DroplineFiles$DROPLINE_VER
 
 # done? make the changes valid
 for file in $FILES; do
   mv $t/$file $TREE/
 done
+
+rm -f $CACHE/slk
