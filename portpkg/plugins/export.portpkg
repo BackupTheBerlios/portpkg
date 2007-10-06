@@ -13,8 +13,11 @@
 
 SOURCE=:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg
 DEST=http://portpkg.berlios.de/upload.php
-#TREE=$PRT_DIR/portpkg.berlios.de
+if $USE_ALPHA_CODE; then
+TREE=$PRT_DIR/portpkg.berlios.de
+else
 TREE=$PRT_DIR
+fi
 
 # check that we're a plug-in
 if ! [ "$PRT_DIR" ]; then
