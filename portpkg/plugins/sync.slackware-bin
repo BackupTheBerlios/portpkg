@@ -9,14 +9,17 @@
 # How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
-DIST_VER=${DIST_VER:-`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`}
-SOURCE=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_VER
+SOURCE=ftp://ftp.slackware.com/pub/slackware/slackware-$DIST_TARGET
 FILES="ChangeLog.txt FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5 kernels/VERSIONS.TXT"
-#TREE=$PRT_DIR/slackware.com/bin
+if $USE_ALPHA_CODE; then
+TREE=$PRT_DIR/slackware.com/slackware-$DIST_TARGET
+else
 TREE=$PRT_DIR/z/bin/slackware
+fi
 
 # check that we're a plug-in
-if  [ "`basename $0`" != "portpkg" ]; then
+#if  [ "`basename $0`" != "portpkg" ]; then
+if ! [ "$PRT_DIR" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
@@ -52,10 +55,10 @@ grep -v ^d $t/FILELIST.TXT | sed "s,.* ,,;s,^\./,," >$t/files
 # since portpkg's dependency handling is rather simple, we trim version
 # handling and interpret alternatives as optional dependencies
 sed -r "\
-/PACKAGE REQUIRED:/s/ *, */\nPACKAGE REQUIRED:  /g
-/PACKAGE SUGGESTS:/s/ *, */\nPACKAGE SUGGESTS:  /g
-/PACKAGE CONFLICTS:/s/ *, */\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
-sed -ri "/REQUIRED.* \|+ /{s/REQUIRED/SUGGESTS/;s/ \|+ /\nPACKAGE SUGGESTS:  /g}" $t/packages
+/^PACKAGE REQUIRED:/s/ *, */\nPACKAGE REQUIRED:  /g
+/^PACKAGE SUGGESTS:/s/ *, */\nPACKAGE SUGGESTS:  /g
+/^PACKAGE CONFLICTS:/s/ *, */\nPACKAGE CONFLICTS:  /g" $t/PACKAGES.TXT >$t/packages
+sed -ri "/^PACKAGE REQUIRED:.* \|+ /{s/REQUIRED/SUGGESTS/;s/ \|+ /\nPACKAGE SUGGESTS:  /g}" $t/packages
 sed -ri "s/ [<>=]+ .*$//" $t/packages
 
 # find each binary packages
@@ -72,9 +75,9 @@ sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
   md5sum=`grep "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
   info=`sed -n "/ $pkg\($\| \|\.tgz\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
   desc=`echo "$info" | grep "^$name:"`
-  req=`echo "$info" | grep REQUIRED | cut -d " " -f 4- | xargs`
-  opt=`echo "$info" | grep SUGGESTS | cut -d " " -f 4- | xargs`
-  blk=`echo "$info" | grep CONFLICTS | cut -d " " -f 4- | xargs`
+  req=`echo "$info" | grep "^PACKAGE REQUIRED:" | cut -d " " -f 4- | xargs`
+  opt=`echo "$info" | grep "^PACKAGE SUGGESTS:" | cut -d " " -f 4- | xargs`
+  blk=`echo "$info" | grep "^PACKAGE CONFLICTS:" | cut -d " " -f 4- | xargs`
 
   # make the SlackBuild
   path=$TREE/$group
@@ -170,3 +173,5 @@ done
 for file in $FILES; do
   mv $t/$file $TREE/$file
 done
+
+rm -f $CACHE/slk
