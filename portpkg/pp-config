@@ -15,16 +15,18 @@ fi
 target()
 {
   heading="DISTRIBUTION VERSION"
-  dist_ver=`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`
+#  dist_ver=`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1-2`
   dialog --title "$heading" --inputbox \
 "What distribution do you focus?
-/etc/slackware-version notes $dist_ver, but you can also choose 'current'.
-If unsure enter '$dist_ver'." 0 0 \
-    "$DIST_VER" 2>$t/dist-ver || exit
-  DIST_VER=`cat $t/dist-ver`
+/etc/slackware-version notes $DIST_VER, but you can also choose 'current'.
+If unsure enter '$DIST_VER'." 0 0 \
+    "$DIST_TARGET" 2>$t/dist-target || exit
+  DIST_TARGET=`cat $t/dist-target`
+  sed -i "/^DIST_TARGET=/d" $RC
+  # DIST_VER should not be changed anymore, so we remove this
   sed -i "/^DIST_VER=/d" $RC
-  if [ "$DIST_VER" ]; then
-    echo "DIST_VER=\"$DIST_VER\"" >>$RC
+  if [ "$DIST_TARGET" ] && [ "$DIST_TARGET" != "$DIST_VER" ]; then
+    echo "DIST_TARGET=\"$DIST_TARGET\"" >>$RC
   fi
 }
 
