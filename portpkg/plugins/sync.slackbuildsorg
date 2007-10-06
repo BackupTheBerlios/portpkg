@@ -1,12 +1,16 @@
 #!/bin/sh
 #BLURB="Slackbuilds.org build scripts"
 
-SOURCE=rsync://ftp.slackbuilds.org/slackbuilds
-#TREE=$PRT_DIR/slackbuilds.org
+SOURCE=rsync://ftp.slackbuilds.org/slackbuilds/$DIST_VER
+if $USE_ALPHA_CODE; then
+TREE=$PRT_DIR/slackbuilds.org
+else
 TREE=$PRT_DIR/z/slackbuilds
+fi
 
 # check that we're a plug-in
-if  [ "`basename $0`" != "portpkg" ]; then
+#if  [ "`basename $0`" != "portpkg" ]; then
+if ! [ "$PRT_DIR" ]; then
   echo "I'm a plugin. Don't run me!"
   exit 1
 fi
@@ -17,4 +21,6 @@ t=`mktemp -d`
 mkdir -p $TREE 2>/dev/null || die "No write access to $TREE!"
 
 cd $TREE || die
-rsync -avz $SOURCE .
+rsync -avz --del --exclude '*.tar.gz' --exclude '*.tar.gz.asc' $SOURCE/ . && rm -f $CACHE/slk
+
+#get $SOURCE $TREE && rm -f $CACHE/slk
