@@ -107,7 +107,7 @@ plugins() # {sync|addon}
   # run sync.portpkg first as long as TREE=$PRT_DIR
   if grep -sqw sync.portpkg $t/plugins; then
     grep -sqx "TREE=\$PRT_DIR" $PRT_DIR/plugins/sync.portpkg $CFG_DIR/plugins/sync.portpkg \
-    && sed -ir "s,(^| )sync.portpkg ,\1,;s,^,sync.portpkg ," $t/plugins
+    && sed -ri "s,(^| )sync.portpkg ,\1,;s,^,sync.portpkg ," $t/plugins
   fi
 
   sed -i "/^$var=/d" $RC
