@@ -4,9 +4,9 @@
 # REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
 # OPTIONAL: cvs fakeroot gcc glibc gnupg lynx subversion wget
 
-VERSION=0.38.2cvs
+VERSION=0.38.3cvs
 ARCH=noarch
-BUILD=5tom
+BUILD=1tom
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -19,11 +19,13 @@ cd portpkg
 make DESTDIR=$PKG PREFIX=/usr install
 sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
 
-gzip -9 $PKG/usr/man/man?/*
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   ABOUT COPYING CREDITS FAQ INSTALL NEWS README* ROADMAP \
   $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
