@@ -1,8 +1,14 @@
+2007-10-06  topf  <topf@users.berlios.de>
+
+  * SlackBuild, footprint:
+  * Bumped to version 0.38.3cvs, release 1tom.
+  * Fixed doc permissions.
+
 2007-04-26  topf  <topf@users.berlios.de>
 
   * ChangeLog, SlackBuild, footprint: Finally the separated portpkg port.
 
-  * portpkg, htdocs/doc.php, htdocs/index.php, htdocs/robots.txt, htdocs/upload.php, Makefile, NEWS, README, README.Links, ABOUT, COPYING, CREDITS, FAQ, INSTALL, ROADMAP, autoport, checkpkg, ignore, logo.png, logo.svg, mirrors, portpkg.1, pp-config, repos, synonyms, use, virtual:
+  * portpkg, Makefile, NEWS, README, README.Links, ABOUT, COPYING, CREDITS, FAQ, INSTALL, ROADMAP, autoport, checkpkg, ignore, logo.png, logo.svg, mirrors, portpkg.1, pp-config, repos, synonyms, use, virtual:
   Removed. portpkg is now separat from the ports.
 
   * Makefile, SlackBuild: Use Makefile.
@@ -11,16 +17,6 @@
 
   * sync.portpkg, sync.slackbuildsorg, sync.slackware-bin, sync.slackyit-bin, sync.zz.cleanup, export.portpkg, report.portpkg, sync.dropline-bin, sync.gsb-frg, sync.linuxpackages-bin:
   Moved to plugins/.
-
-  * htdocs/doc.php, htdocs/index.php: Use doc.php.
-
-  * htdocs/index.php: Parse http:// links even better.
-
-  * htdocs/index.php: Parse http:// links.
-
-2007-04-25  topf  <topf@users.berlios.de>
-
-  * htdocs/upload.php: Mail buildlogs to portpkg-devel list.
 
 2007-04-24  topf  <topf@users.berlios.de>
 
@@ -53,7 +49,7 @@
   * portpkg:
   * Code cleanup.
   * Set MY_REALNAME to MY_TAG, instead of messing with /etc/passwd entries.
-  * Added $Revision: 1.32 $ to --version display.
+  * Added $Revision: 1.33 $ to --version display.
 
   * sync.portpkg:
   * Added CVS_RSH=ssh.
@@ -99,10 +95,6 @@
 
   * autoport: Use -mtune for ARCH=i486.
 
-2007-03-24  topf  <topf@users.berlios.de>
-
-  * htdocs/index.php: Changed sidebar font size.
-
 2007-03-23  topf  <topf@users.berlios.de>
 
   * synonyms: Added claws-mail and co.
@@ -137,10 +129,6 @@
   * FAQ, slack-desc: Updated. Reformatted.
 
 2007-02-20  topf  <topf@users.berlios.de>
-
-2007-02-19  topf  <topf@users.berlios.de>
-
-  * htdocs/index.php: Minor changes to the ChangeLog parser.
 
 2007-02-18  topf  <topf@users.berlios.de>
 
@@ -214,10 +202,6 @@
 
   * export.portpkg: Fixed for 'set -f'.
 
-  * htdocs/upload.php:
-  * Fixed syntax error.
-  * Added (commented) portpkg-devel list address.
-
 2007-02-05  topf  <topf@users.berlios.de>
 
   * portpkg: Fixed another previous patch.
@@ -239,15 +223,9 @@
   * Reformatted, updated.
   * Added note to install fakeroot.
 
-  * htdocs/index.php:
-  * Use fopen() and fgets() instead of file().
-  * Improve ChangeLog parsing.
-
 2007-02-04  topf  <topf@users.berlios.de>
 
   * export.portpkg: Enabled new upload method.
-
-  * htdocs/index.php: Inserted logo.
 
   * logo.png, logo.svg: Added logo files.
 
@@ -262,10 +240,6 @@
 
   * pp-config: Run sync.portpkg first as long as TREE=PRT_DIR in it.
 
-  * htdocs/index.php: Removed 'unknown property' in CSS.
-
-  * htdocs/index.php: Fixed ViewCVS URL.
-
   * sync.portpkg:
   * Disabled code that commits uploads to CVS, too messy.
   * Support DRY_RUN.
@@ -278,8 +252,6 @@
   * Use TREE, not PRT_DIR.
   * Pause after warnings, not before.
   * Test if parent of dest is in CVS.
-
-  * htdocs/index.php, htdocs/robots.txt, htdocs/upload.php: Added htdocs.
 
   * NEWS:
   * Changed date to %F format.
