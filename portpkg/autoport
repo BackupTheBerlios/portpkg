@@ -815,7 +815,9 @@ fi
 
 # mime-update
 if check "\.(keys|mime)(|\.in|\.in\.in)$" $t/footprint \
-|| check "SHARED_MIME_INFO" $TMP/$srcdir_prefix/configure; then
+|| check "SHARED_MIME_INFO" $TMP/$srcdir_prefix/configure* \
+|| check "--disable-update-mimedb" $TMP/$srcdir_prefix/configure* \
+|| check "--disable-update-mime-database" $TMP/$srcdir_prefix/configure*; then
   add_inst "usr/bin/update-mime-database usr/share/mime" $path/doinst.sh
 else
   remove_inst "update-mime-database" $path/doinst.sh
@@ -916,6 +918,36 @@ if [ -f $CACHE/slk ]; then
 fi
 #rm $CACHE/prt
 #rm $CACHE/slk
+
+# now merge -fix.autoport files with the script
+if [ "`ls *-fix.autoport 2>/dev/null`" != "" ]; then
+  local fix
+  row "Merging fix files with script"
+  cat >>$script <<EOF
+
+exit \$?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+EOF
+  for fix in *-fix.autoport; do
+    local tag
+    tag=`basename $fix -fix.autoport`
+    if ! [ -s $fix ]; then
+      echo "#-$tag"
+      rm $fix
+      continue
+    fi
+    case $tag in
+      post-*) tag=`echo "$tag" | sed "s,^post-,+,"`;;
+      *)      tag="=$tag";;
+    esac
+    echo "#$tag"
+    cat $fix
+    echo "#$tag"
+    rm $fix
+  done >>$script
+fi
 }
 
 # portpkg?
@@ -1022,6 +1054,7 @@ PKG_CONFIG_PATH=/%prefix%/lib/pkgconfig \ ##pkgconfig
   --disable-scrollkeeper \ ##ac_disable_scrollkeeper
   --disable-update-mimedb \ ##ac_disable_update_mimedb
   --disable-update-mime-database \ ##ac_disable_update_mime_database
+  --disable-schemas-install \ ##ac_disable_schemas_install
 #:configure-opts
 #%post-configure-opts-fix%
   $ARCH-slackware-linux
@@ -1144,7 +1177,7 @@ gconf() {
 #:doinst.sh_icons
 icons() {
   if [ -x usr/bin/gtk-update-icon-cache ]; then
-    usr/bin/gtk-update-icon-cache -f `dirname $1` >/dev/null 2>&1
+    usr/bin/gtk-update-icon-cache -ft `dirname $1` >/dev/null 2>&1
   fi
 }
 #:doinst.sh_icons
