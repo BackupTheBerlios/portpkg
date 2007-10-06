@@ -10,7 +10,11 @@
 #   phase #4: Update and commit ChangeLog
 
 SOURCE=cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports
+if $USE_ALPHA_CODE; then
+TREE=$PRT_DIR/portpkg.berlios.de
+else
 TREE=$PRT_DIR
+fi
 
 # check that we're a plug-in
 if ! [ "$PRT_DIR" ]; then
