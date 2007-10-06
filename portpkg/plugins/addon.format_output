@@ -1,0 +1,12 @@
+#!/bin/sh
+#BLURB="Format messages"
+
+cols=`expr ${COLUMNS:-80} - 2`
+
+fmt_t()     { fold -sw $cols | sed "${1:-2},\$s,^,  ,"; }
+
+stanza()    { log "\n$@" | fmt_t 3; }
+row()       { log "  --> $@" | fmt_t; }
+warn()      { log "WARNING: $@" | fmt_t >&2; }
+debug()     { $DEBUG && log "$@" | fmt_t >&2 || log "$@" >/dev/null; }
+pause()     { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -sw $cols >&2; local s; read s; log -n $s; }
