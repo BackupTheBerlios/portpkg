@@ -16,8 +16,6 @@ install:
 	install -d $(DESTDIR)$(CONFDIR)/plugins
 	install -d $(DESTDIR)$(BINDIR)
 	install -d $(DESTDIR)$(MANDIR)
-#	install -d $(DESTDIR)$(PREFIX)/share/applications
-#	install -d $(DESTDIR)$(PREFIX)/share/pixmaps
 	# configuration
 	install -m 644 mirrors $(DESTDIR)$(CONFDIR)/
 	install -m 644 virtual $(DESTDIR)$(CONFDIR)/
@@ -44,8 +42,11 @@ install:
 	install -m 755 pp-config $(DESTDIR)$(BINDIR)/
 	install -m 755 checkpkg $(DESTDIR)$(BINDIR)/
 	install -m 755 autoport $(DESTDIR)$(BINDIR)/
-#	install -m 755 gportpkg $(DESTDIR)$(BINDIR)/
-#	# stuff
-#	install -m 644 logo.png $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.png
-#	#install -m 644 logo.svg $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.svg
-#	install -m 644 gportpkg.desktop $(DESTDIR)$(PREFIX)/share/applications/
+
+install-unstable:
+	install -d $(DESTDIR)$(PREFIX)/share/applications
+	install -d $(DESTDIR)$(PREFIX)/share/pixmaps
+	install -m 755 gportpkg $(DESTDIR)$(BINDIR)/
+	install -m 644 logo.png $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.png
+	#install -m 644 logo.svg $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.svg
+	install -m 644 gportpkg.desktop $(DESTDIR)$(PREFIX)/share/applications/
