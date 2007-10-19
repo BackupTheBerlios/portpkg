@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Portpkg&mdash;Source package system for Slackware</title>
+    <title>The Portpkg Project</title>
 
     <meta name="author" content="Portpkg Project">
     <meta name="copyright" content="T. Pfaff">
@@ -13,8 +13,8 @@
 <!--
 body
     {
-    background-color: #999;
-    color: #aaa;
+    background-color: #555;
+    color: #222;
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
@@ -26,50 +26,45 @@ body
 p
     {
     font-family: "Trebuchet MS", sans-serif;
-    text-indent: 3em;
+    text-indent: 1em;
     }
 h1,h2,h3,h4
     {
     font-family: Verdana, Geneva, Arial, sans-serif;
-    color: #799;
+    color: #333;
     font-weight: bold;
     line-height: 90%;
     letter-spacing: -2;
     }
-ul
+em
     {
-    list-style-image: url(imgs/smiley.gif);
-    }
-ul li
-    {
-    margin: 1em 0 1em 0;
+    letter-spacing: +1;
     }
 a:link
     {
-    color: #a79;
+    color: #475;
     text-decoration: none;
     background-color: transparent;
     }
 a:visited
     {
-    color: #966;
+    color: #7aa;
     text-decoration: none;
     background-color: transparent;
     }
 a:hover	{
-    color: #47d;
+    color: #f80;
     text-decoration: underline;
     background-color: transparent;
     }
 a:active
     {
-    color: #755;
+    color: #9bb;
     text-decoration: underline;
     background-color: transparent;
     }
 #footer
     {
-    background-color: #282828;
     position: relative;
     padding: 10px;
     font-family: "Trebuchet MS", sans-serif;
@@ -79,44 +74,23 @@ a:active
     }
 #header
     {
-    padding: 20px;
-    position: relative;
-    text-align: center;
-    font-family: verdana, geneva, arial, sans-serif;
-    font-size: 42px;
-    font-weight: bold;
-    height: 110px;
-    line-height: 90%;
-    letter-spacing: -3;
-    }
-#subheader
-    {
-    padding: 5px;
-    position: relative;
-    text-align: center;
-    font-family: verdana, geneva, arial, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 90%;
-    letter-spacing: -1;
+    margin: 20 10 0 10;
     }
 #page
     {
     font-size: 11px;
     font-family: Verdana, Geneva, Arial, sans-serif;
     line-height: 180%;
-    background-color: #221;
+    background-color: #ddd;
     text-align: left;
     visibility: visible;
     margin-right: auto;
     margin-left: auto;
     position: relative;
-    width: 600px;
-    border: 1px solid #bba;
+    border: 1px solid #334;
     }
 #navi
     {
-    background-color: #282828;
     text-align: right;
     padding: 0px 20px;
     margin-top: 10px;
@@ -131,13 +105,13 @@ a:active
     }
 #box
     {
-    background-color: #112;
+    background-color: #eee;
     position: relative;
     padding: 10px 20px;
     margin-top: 10px;
     width: 65%;
     float: left;
-    border: 1px solid #667;
+    border: 1px solid #999;
     border-left: 0;
     border-bottom: 0;
     }
@@ -159,18 +133,19 @@ a:active
 <body>
     <div>
 	<div id="page">
-	    <div id="header">
-		<div style="float: left">
+	    <table id="header">
+		<tr>
+		    <td>
 <img src="logo.png"/>
-	    </div>
-	    <div>
-Portpkg&mdash;Source package system for Slackware<br>
-	    </div>
-	    </div>
-	    <div id="subheader">
-since 2004
-	    </div>
-
+		    </td>
+		    <td>
+<h1><big>The Portpkg Project</big></h1>
+<h2>Source package system for Slackware<br>
+since 2004</h2>
+		    </td>
+		</tr>
+	    </table>
+	    
 	    <div id="navi">
 <a href="http://developer.berlios.de/project/showfiles.php?group_id=2486">Download</a> /
 <a href="http://developer.berlios.de/forum/?group_id=2486">Forums</a> /
@@ -221,7 +196,7 @@ if ($file) {
       break;
     }
     $line = ereg_replace('NEWS','<h2>News</h2>',$line);
-    $line = ereg_replace('^([-/0-9]{10})','<p><em>\1</em><br>',$line);
+    $line = ereg_replace('^([-/0-9]{10})','<p><small><em>\1</em></small><br>',$line);
     $line = ereg_replace('((ht|f)tp://[^ ]*[a-z0-9])','<a href="\1">\1</a>',$line);
     print ($line);
   }
@@ -235,7 +210,7 @@ if ($file) {
 <img src="http://developer.berlios.de/bslogo.php?group_id=2486" width="124px"
  height="32px" border="0" alt="BerliOS Developer Logo"></a>
 
-<h2>Recent changes</h2>
+<h2>Change log</h2>
 <?php
 $file = fopen('ports.ChangeLog','r');
 if ($file) {
@@ -251,7 +226,7 @@ if ($file) {
     }
     if (ereg('^[-0-9]{10} ',$line)) {
       $last_date = $date;
-      $date = ereg_replace('^([-0-9]{10}).*$','<p><em>\1</em><br>',$line);
+      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><small><em>\1 by <a href="mailto:\3">\2</a></em></small><br>',$line);
     } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
       preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
       if ($matches[0][2] == "") {
