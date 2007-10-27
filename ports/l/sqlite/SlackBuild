@@ -2,7 +2,7 @@
 # MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.sqlite.org/sqlite-3.5.0.tar.gz
+# SOURCES: http://www.sqlite.org/sqlite-3.5.1.tar.gz
 # MD5SUMS: 802f19e1f0eba56f3f1be8c6491c8a55 sqlite-3.2.2.tar.gz
 # MD5SUMS: 6b24d9c364215fba82242a86f54e0ad1 sqlite-3.3.13.tar.gz
 # MD5SUMS: e1a4428a5cb17f28164731b72f06130a sqlite-3.3.14.tar.gz
@@ -14,6 +14,7 @@
 # MD5SUMS: 0f06955b18da295fecb62d4bf9ded3c6 sqlite-3.4.1.tar.gz
 # MD5SUMS: 2feec9b429f9298c9f288420c8b449f8 sqlite-3.4.2.tar.gz
 # MD5SUMS: 7ff857e572d85b8fa865c7d36886a67b sqlite-3.5.0.tar.gz
+# MD5SUMS: b015a6db82b95a4668280982fbabfa67 sqlite-3.5.1.tar.gz
 # REQUIRES: ncurses perl readline
 # OPTIONAL: tcl
 
@@ -22,7 +23,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.5.0
+VERSION=3.5.1
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
