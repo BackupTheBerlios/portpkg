@@ -1,4 +1,158 @@
+2007-11-07  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * Added ls_verbose() for --list --verbose.
+  * Bugfixes, code and output cleaned-ups.
+
+  * mirrors:
+  Reduced to a bare minimum to avoid all these nasty time-outs, should be up to the user to choose the right ones.
+
+  * autoport:
+  * Remove Bash-specific syntax.
+  * Allow to cut-out any tags with fix-files.
+
+  * Makefile:
+  * Added target release.
+  * Use ash for scripts with install-unstable.
+
+  * plugins/addon.format_output: Set columns automatically.
+
+  * plugins/addon.cget: Fixed to run with ash.
+
+  * htdocs/index.php: Fixed box position.
+
+  * synonyms: Added gnu-ghostscript and gutenprint.
+
+  * pp-config: Removed Bash-specific syntax.
+
+2007-10-19  topf  <topf@users.berlios.de>
+
+  * logo.png, logo.svg: Updated.
+
+  * htdocs/index.php: The colours of the season have just arrived.
+
+2007-10-06  topf  <topf@users.berlios.de>
+
+  * NEWS: Updated.
+
+  * plugins/export.portpkg: Updated TREE for USE_ALPHA_CODE.
+
+  * plugins/addon.format_output: Added addon.format_output.
+
+  * plugins/sync.gsb-frg, plugins/sync.linuxpackages-bin, plugins/sync.slackware-bin, plugins/sync.slackyit-bin:
+  Updated BLURB/SOURCE/TREE, fixed improper regex's.
+
+  * plugins/sync.slackbuildsorg:
+  * Updated SOURCE.
+  * Don't rsync .tar.gz files.
+  * Cleanup cache.
+
+  * plugins/sync.portpkg: Updated TREE for USE_ALPHA_CODE.
+
+  * plugins/sync.dropline-bin:
+  * Use DROPLINE_VER.
+  * Removed cosmetics.
+  * Cleanup cache.
+
+  * pp-config: Use DIST_VER and DIST_TARGET.
+
+  * portpkg:
+  * Added DIST_VER and DIST_TARGET.
+  * Updated EXCLUDE and SPEC_PAST12 values.
+  * ls_pkg(): Follow symlinks.
+  * Message system: Moved formatting instructions (fmt, fold) out of main script.
+  * Added cache_reset().
+  * slk2loc(): Accept VAR=${VAR=default} style.
+  * sort_ver(): Code cleanup.
+  * cache(): Use -h for grep.
+  * get(): Don't use cache_\*.
+  * explicit(): Parse expressions 0 and @.
+  * find_pkg_file(): Fix improper regex's.
+  * get_info(): Don't read description twice.
+  * check_reqs(): Updated messages, fix improper expression for get_info.
+  * check_opts(): Don't check IGNORE expressions.
+  * build_pkg():
+    * Updated messages.
+    * Check package layout when package is alread built.
+    * Skip download of existing pseudo port packages.
+    * Don't remove non-symlinks.
+  * check_pkg(): Faile on wrong nomenclature.
+  * add_pkg(): Fixed use of caches.
+  * do_add(): Updated messages, fix use of caches.
+  * version(): More information.
+  * parse_options():
+    * Don't imply REBUILD when DOWNLOAD_ONLY.
+    * Updated messages.
+    * Don't quit shell on errors when used as '. portpkg'.
+
+  * synonyms: Updated.
+
+  * pp-config: Fixed ordering sync-plugins.
+
+  * autoport:
+  * Test more whether to use update-mime-database in doinst.sh or not.
+  * Merge \*-fix.autoport files into the build script.
+  * Test for --disable-schemas-install in configure\*.
+  * Use option -t for gtk-update-icon-theme.
+
+  * Makefile: Moved stuff to target install-unstable.
+
+2007-05-30  topf  <topf@users.berlios.de>
+
+  * README:
+  Removed some out-dated information about z/ and some other misleading notes.
+
+  * NEWS: Updated.
+
+2007-05-14  topf  <topf@users.berlios.de>
+
+  * autoport:
+  * Test for configure.in.
+  * Support aclocal, autoheader, automake, autoconf.
+
+  * Makefile: Install addon-plugins.
+
+  * pp-config: Added menu for addon-plugins.
+
+  * plugins/addon.cget: Added.
+
+  * plugins/sync.zz.cleanup: Clear caches.
+
+  * plugins/sync.portpkg:
+  * Remove $CACHE/slk after syncing.
+  * Remove  ChangeLog.old.
+
+  * plugins/export.portpkg:
+  * Test better for footprint.
+  * Save ChangeLog when moving ports.
+
+  * mirrors: Sorted, removed duplicates.
+
+  * htdocs/upload.php: Fixed ereg().
+
+  * autoport:
+  * Support uri%save_as scheme for source.
+  * Fixed deleting $TMP/ when srcdir_prefix=.
+  * Run autorun.autoport right before doing analyses.
+  * Fixed copying of a source directory in SlackBuild skeleton.
+
+2007-05-06  topf  <topf@users.berlios.de>
+
+  * portpkg: check_reqs(): Fixed optionals handling.
+
 2007-05-03  topf  <topf@users.berlios.de>
+
+  * mirrors: Reorganized, changed to shell masks.
+
+  * portpkg:
+  * More code cleanup.
+  * get(): mirrors are shell masks now.
+
+  * portpkg:
+  * Moved dont-change-this-block beneath include-portpkg.conf-block, so it cannot be overwritten.
+  * Code cleanup, removed all that dead code.
+
+  * ChangeLog: Added.
 
   * portpkg.1: Updated.
 
