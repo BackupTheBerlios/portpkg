@@ -106,7 +106,7 @@ a:active
 #box
     {
     background-color: #eee;
-    position: relative;
+//    position: relative;
     padding: 10px 20px;
     margin-top: 10px;
     width: 65%;
