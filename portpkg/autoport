@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-source `which portpkg` || exit 1
+. `which portpkg` || exit 1
 t=`mktemp -d`
 
 # hierarchy of sections
@@ -350,7 +350,7 @@ if [ $gpkg ]; then
 #    [ "$n" = "1000" ] && die "Strange: Cannot find build number!"
 #  done
   # now that we found it, we can find a bigger number too!
-  ((n++))
+  n=$(($n+1))
 fi
 s=`pause "Build [$n$MY_TAG]:"`
 build=${s:-$n$MY_TAG}
@@ -382,7 +382,7 @@ len=${#name}
 desc=`{ \
 echo "$name: $desc1"
 echo "$name:"
-echo "$desc2" | fmt -u -w $((75-len)) | sed "s,^,$name: ,"
+echo "$desc2" | fmt -u -w $((75-$len)) | sed "s,^,$name: ,"
 for i in 1 2 3 4 5 6 7 8 9; do
   echo "$name:"
 done; } | head -n 11`
@@ -437,6 +437,7 @@ fi
 
 auto_port()
 {
+header "Starting automatic port of $sources"
 stanza "Autoporting $group/$name-$version-$arch-$build:"
 mkdir -p $path
 touch $script
@@ -608,6 +609,9 @@ for i in `ls $path/*-fix.autoport 2>/dev/null`; do
         sed -i "\,^#%post-$i-fix%$,r$path/$i-fix.autoport" $script
         snip $i $script;;
     esac
+  elif egrep -sq " ##$i$" $script && ! [ -s $path/$i-fix.autoport ]; then
+    row "Snipping $i"
+    snip $i $script
   else
     die "Couldn't locate $i fix. Maybe you're using the wrong version of autoport?"
   fi
