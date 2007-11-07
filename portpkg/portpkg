@@ -51,12 +51,12 @@ REPORT="report.portpkg"
 ADDON=""
 #PREFER="local/ patches/"
 PREFER="local/"
-EXCLUDE="pasture/ testing/ extra/ open/ aaa_elflibs /(^|/)kernel-/ alsa-driver"
+EXCLUDE="pasture/ testing/ extra/ open/ aaa_elflibs"
 USE=""
 IGNORE="aaa_elflibs glibc-solibs glibc-i18n glibc-profile glibc-zoneinfo cxxlibs openssl-solibs"
 SPEC_PRE11="sgml-tools"
 SPEC_PAST11="linuxdoc-tools"
-SPEC_PRE12="x11 x11-devel"
+SPEC_PRE12="gtk-doc x11 x11-devel"
 SPEC_PAST12="libSM /(^|/)libX/ libcm libdmx libxcb libxkbfile mesa"
 
 # find the ports root and some other locations
@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.6 $"
+ENGINE_REV="\$Revision: 1.7 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -151,7 +151,7 @@ has_args()  { [ "$*" ] || error "Too few arguments! Try: portpkg --help"; }
 is_root()   { [ "$UID" = "0" ] || error "You must be root to run this action!"; }
 has_prog()  { which $1 >/dev/null 2>&1 || error "Cannot find $1!"; }
 has_ports() { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports tree or try: portpkg --sync"; }
-is_sane()   { echo "$2  $1" | md5sum -c --status 2>/dev/null || error "Integrity failed: ${1##*/}!"; }
+is_sane()   { echo "$2  $1" | md5sum -c >$output 2>/dev/null || error "Integrity failed: ${1##*/}!"; }
 
 # simple list handlers
 list_add()  { echo "$group/$package" >>$CACHE/list_$1; }
@@ -182,9 +182,11 @@ sort_ver() # <pkg_list >pkg_list
   # 2) separate ver/arch/build, dots and alphanumericals (make "2. 0", "1rc 7", etc.)
   # (but *only* within version-arch-build parts!)
   # 3) sort them and remove added stuff
-  local re=`echo $PREFER | tr " " "|"`
+  local re prefer
+  re=`echo $PREFER | tr " " "|"`
+  prefer="\,(^|/)($re),s,-([^-]*-[^-]*-[^-]*)$,-99999999PREFER_\1,;"
   sed -r "\
-`$LAZY_CHECKS || echo "\,(^|/)($re),s,-([^-]*-[^-]*-[^-]*)$,-99999999PREFER_\1,;"`\
+`! $LAZY_CHECKS && [ "$PREFER" ] && echo "$prefer"`\
 s,-([^-]*)-([^-]*)-([^-]*)$, - \1 - \2 - \3,;\
 :split;s,( .+[^0-9 ])([0-9]),\1 \2,;tsplit" \
 | sort -nrk 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 \
@@ -209,14 +211,13 @@ cache() # id action regex
 get() # url dest [md5sum]
 {
   local url=$1 dest=$2 md5sum=${3:-}
-  local urls master mirror try i total random module repo
+  local urls master mirror try module repo
   debug "get() $@"
 
   # mirrors
-#  urls=`mirrors | while read master mirror; do \
-#echo $url | sed -nr "s,^$master,$mirror,p"; done | tac`" $url"
   urls=`mirrors | while read master mirror; do \
-  case $url in $master*) echo $mirror${url#$master};; esac; done`" $url"
+case $url in $master*) echo $mirror${url#$master};; esac; done | sort -R`"
+$url"
 
   debug "get(): URLs:" $urls
 #  $DRY_RUN && cache_add src $dest
@@ -224,11 +225,7 @@ get() # url dest [md5sum]
   mkdir -p ${dest%/*}
 
   # try mirrors in random order
-  for i in $urls; do
-    total=`echo $urls | wc -w`
-    random=$(((total-1)*${RANDOM:-1}/32767+1))
-    try=`echo $urls | cut -d " " -f $random`
-    urls=`echo $urls | sed "s,\<$try\>,,"`
+  for try in $urls; do
     debug "get(): trying $try"
     case $try in
       cvs://*)
@@ -317,18 +314,20 @@ regex() # pkgex_list >regex_list
 	   echo "-Ee ${arg%/}" | cut -c 1-4,6-;;
       .)   # local directory (recursively)
 	   echo "-Ee ^($cwd|${cwd#$PRT_DIR/})/";;
-      */)  # groups
-           echo "-Ee (^|/)$arg[^S]";;
-      *)   # (g)names and (g)packages
+      */)  # groups (replace slashes with '/(.*/)?')
+           case $arg in */*/) arg=`echo "$arg" | sed "s,/,/(.*/)?,g"`;; esac
+           echo "-Ee (^|/)$arg";;
+      *)   # (g)names and (g)packages (replace slashes with '/(.*/)?')
            syn=`synonyms -Ee "(^|[[:space:]])${arg##*/}($|[[:space:]])"`
            [ "$syn" ] && case $arg in
              */*) arg="${arg%/*}/(`echo $syn | tr ' ' '|'`)";;
              *)   arg="(`echo $syn | tr ' ' '|'`)";;
            esac
+           case $arg in */*) arg=`echo "$arg" | sed "s,/,/(.*/)?,g"`;; esac
            echo "-Ee (^|/)$arg(|[./]SlackBuild|(-[^-/]*){3})$";;
     esac
-  # now protect pluses and replace slashes with '/(.*/)?' (except `pwd` expressions)
-  done | sed -r "s,\+,\\\+,g;\,\^\(/,!s,/([^])]),/(.*/)?\1,g"
+  # now protect pluses
+  done | sed -r "s,\+,\\\+,g"
 }
 
 # resolve groups/ to names, and [pkgex[%pkgex[...]]]% to a diff-list
@@ -357,9 +356,9 @@ ls_diff() # [pkgex] >list
   debug "ls_diff() $@"
 
   # prepare lists
-  { ls_slk `regex ${@:-@}` | slk2loc | grep -v $(exclude)
+  { ls_slk `regex ${@:-@}` | slk2loc
     $REINSTALL || ls_inst
-  } | sort_ver | tee $t/avail.full | any2base >$t/avail
+  } | grep -v $(exclude) | sort_ver | tee $t/avail.full | any2base >$t/avail
   ls_inst | grep -v $(exclude) | any2base >$t/inst
   pkg2name <$t/avail >$t/avail.names
   pkg2name <$t/inst >$t/inst.names
@@ -381,6 +380,19 @@ ls_diff() # [pkgex] >list
 
   # find version mismatches therein
   fgrep -vxf $t/inst.check $t/avail.check | sed "s,^,.*/," | grep -xf - $t/avail.full | sort -u
+}
+
+ls_verbose() # <pkgex
+{
+  local pkg avail_rel inst_rel name
+  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
+  while read pkg; do
+    avail_rel=`echo $pkg | pkg2rel`
+    name=${pkg%-*-*-*}
+    inst_rel=`ls_inst $(regex ${name##*/}) | pkg2rel | head -n 1`
+    avail_rel=${avail_rel:-(n/a)}
+    printf "%-31s %-23s %s\n" "${name##*/}" "$avail_rel" "${inst_rel:--}"
+  done
 }
 
 # adjust PRT_DIR in case the pkgex "." is used
@@ -532,7 +544,7 @@ echo $inst_pkg; } | default`
       debug "check_reqs(): $name: $req: sufficient [$inst_pkg]"
     # is it up-to-date?
     elif [ "${avail_pkg##*/}" = "${inst_pkg:-0}" ]; then
-      debug "check_reqs(): $name: $req: up-to-date [$inst_pkg]"
+      debug "check_reqs(): $name: $req: match [$inst_pkg]"
     # is it blacklistet?
     elif echo "${avail_pkg:-0}" | grep -sq $ex; then
       debug "check_reqs(): $name: $req: blacklisted [$avail_pkg]"
@@ -542,7 +554,7 @@ echo $inst_pkg; } | default`
     # anyway, is there an available port?
     elif [ "${avail_pkg:-$use_pkg}" ]; then
       avail_pkg=${avail_pkg:-$use_pkg}
-      debug "check_reqs(): $name: $req: out-dated [${inst_pkg:-not installed}]"
+      debug "check_reqs(): $name: $req: mismatch [${inst_pkg:-not installed}]"
       # if there's already one missing go straight on to the next
       [ "$missing" ] && continue
       $DRY_RUN && ! [ "${prev:-}" ] && ! $DOWNLOAD_ONLY && stanza "Preparing dependencies of $package:"
@@ -611,9 +623,9 @@ update_header()
     } | sort -u
     echo "$sources" | xargs -l echo "# SOURCES:"
     echo "$md5sums" | xargs -l echo "# MD5SUMS:"
-    echo "# REQUIRES:" $requires
-    echo "# OPTIONAL:" $optional
-    echo "# BLOCKS:" $blocks
+    echo "$requires" | xargs -s 75 echo "# REQUIRES:"
+    echo "$optional" | xargs -s 75 echo "# OPTIONAL:"
+    echo "$blocks" | xargs -s 75 echo "# BLOCKS:"
   } | sed "/^# .*: *$/d" >$t/header
 
   # clear old script header
@@ -664,7 +676,7 @@ dependencies() # dir
     grep -sq "\.omf$" $t/flist && which scrollkeeper-config
     grep -sq "/gtk-doc/" $t/flist && which gtkdoc-scan
     grep -sq "/share/mime/.*\.xml$" $t/flist && which update-mime-database
-  } | sed "s,^/,,"
+  } 2>/dev/null | sed "s,^/,,"
 }
 
 # update header, footprint, dependencies
@@ -713,7 +725,8 @@ maintainer_mode()
   fgrep -hxvf $t/auto_req $t/new_req $t/old_req >$t/arb_req
   [ -s $t/arb_req ] && row "Arbitrary dependencies (KEEP THIS LIST SHORT):" `cat $t/arb_req`
   grep -e "-upgraded$" $t/auto_req >$t/check_req
-  ls_slk -v $(exclude) | slk2name | fgrep -vxf - $t/auto_req >>$t/check_req
+#  ls_slk -v $(exclude) | slk2name | fgrep -vxf - $t/auto_req >>$t/check_req
+  ls_inst -v $(exclude) | any2gany | pkg2name | fgrep -vxf - $t/auto_req >>$t/check_req
   [ -s $t/check_req ] && warn "Check these dependencies:" `cat $t/check_req`
 
   # remove obsolete files
@@ -727,7 +740,7 @@ maintainer_mode()
 build_pkg()
 {
   local t=`mktemp -d`
-  local src srcname md5sum script_opt flags_var sh_opt prod build_cmd products
+  local src srcname srcloc md5sum script_opt flags_var sh_opt prod build_cmd products
 
   # requirements check
   check_reqs || return 1
@@ -736,9 +749,10 @@ build_pkg()
 
   # package file found in cache?
   if [ "$pkg_file" ] && ! $rebuild; then
+    $DOWNLOAD_ONLY && row "$package.tgz found in ${pkg_file%/*}/" && return 0
     check_pkg || return 1
 #    ( $DOWNLOAD_ONLY || $PREPARE_ONLY ) && stanza "Already built. Skipping."
-    $DOWNLOAD_ONLY && row "$package.tgz found in ${pkg_file%/*}/" && return 0
+#    $DOWNLOAD_ONLY && row "$package.tgz found in ${pkg_file%/*}/" && return 0
     $PREPARE_ONLY && stanza "$package already built. Skipping."
     return 0
   fi
@@ -753,7 +767,7 @@ build_pkg()
   fi
 
   # warnings concerning fakeroot
-  if ( $no_fakeroot || ! has_prog fakeroot ); then
+  if ( $no_fakeroot || ! has_prog fakeroot 2>/dev/null ); then
     if [ "$name" != "fakeroot" ]; then
       $no_fakeroot && warn "Fakeroot disabled for this port!" \
       || warn "Please install fakeroot as soon as possible!"
@@ -764,7 +778,16 @@ build_pkg()
     output=/dev/stdout
   fi
 
-  $DOWNLOAD_ONLY || case `pause "Continue preparing $package${replace:+ to replace $replace}? (s to skip)"` in s|S) continue;; esac
+#  $DOWNLOAD_ONLY || case `pause "Continue preparing $package${replace:+ to replace $replace}? (s to skip)"` in s|S) continue;; esac
+  if ! $DOWNLOAD_ONLY; then
+    if [ "${pkg_file##*/}" = "$package.tgz" ]; then
+      case `pause "Continue rebuild $package? (s to skip)"` in s|S) continue;; esac
+    elif [ "$replace" ]; then
+      case `pause "Continue preparing $package to replace $replace? (s to skip)"` in s|S) continue;; esac
+    else
+      case `pause "Continue preparing $package? (s to skip)"` in s|S) continue;; esac
+    fi
+  fi
 
 #  $DOWNLOAD_ONLY || header "Processing ${script#$PRT_DIR/}"
   $DOWNLOAD_ONLY || header "Processing $group/$name"
@@ -779,20 +802,25 @@ build_pkg()
     srcname=`basename "${src#*%}"`
     src="${src%\%*}"
     md5sum=`echo "$md5sums" | grep -s " $srcname$" | cut -d " " -f 1`
-    if ls_src -q "/$srcname$" && [ -f $SRC_DIR/$srcname ]; then
+#    if ls_src -q "/$srcname$" && [ -f $SRC_DIR/$srcname ]; then
+    srcloc=$SRC_DIR/$srcname
+    if ls_src -q "/$srcname$" && [ -f $srcloc ]; then
       # srcname is there and is a file: skip it
       $DRY_RUN || row "$srcname found in $SRC_DIR/"
     elif [ "${pkg_file##*/}" = "$srcname" ]; then
       # it's the package itself (pseudo port): skip it
       $DRY_RUN || row "$srcname found in ${pkg_file%/*}/"
+      srcloc=$pkg_file
     else
       # no, it's a directory, so assume it's either CVS or SVN: update it
       row "Downloading $srcname"
-      get $src $SRC_DIR/$srcname $md5sum || return 1
-      cache_add src $SRC_DIR/$srcname
+#      get $src $SRC_DIR/$srcname $md5sum || return 1
+#      cache_add src $SRC_DIR/$srcname
+      get $src $srcloc $md5sum || return 1
+      cache_add src $srcloc
     fi
     if ! $DRY_RUN; then
-      ln -sf $SRC_DIR/$srcname .
+      ln -sf $srcloc .
       # check md5sums when non-maintainer-mode
       if $maintain && ls_src -q "/$srcname$"; then
         md5sums=`{ echo "$md5sums"; md5sum $srcname; } | xargs -l | sort -u -k 2`
@@ -914,10 +942,13 @@ build_pkg()
     [ -L ${script%/*}/$srcname ] && rm -f ${script%/*}/$srcname
   done
 
-  if ! $maintain && [ -d $tmp/package-$name ]; then
-    rm -rf $tmp/package-$name
-  else
-    row "$tmp/package-$name kept for maintaining purposes"
+  if [ -d $tmp/package-$name ]; then
+    $maintain && row "$tmp/package-$name kept for maintaining purposes" \
+    || rm -rf $tmp/package-$name
+#  if ! $maintain && [ -d $tmp/package-$name ]; then
+#    rm -rf $tmp/package-$name
+#  else
+#    row "$tmp/package-$name kept for maintaining purposes"
   fi
 
   row "Checking package layout"
@@ -975,7 +1006,7 @@ add_pkg()
   # otherwise if tracked as "finished" (because of a dependency), skip it
   elif in_list finished; then
     return 0
-  elif ls_inst -q "/$package$" && ! $REINSTALL; then
+  elif ls_inst -q "/$package$" && ! $REINSTALL && ! $rebuild; then
     $DOWNLOAD_ONLY && row "$package is already installed, skipping" \
     || stanza "$package is already installed. Skipping."
     return 0
@@ -1008,7 +1039,7 @@ add_pkg()
   if [ "$replace" = "$package" ]; then
     case `pause "Continue reinstall $package? (s to skip)"` in s|S) continue;; esac
   elif [ "$replace" ]; then
-    case `pause "Continue upgrade $replace with $package? (s to skip)"` in s|S) continue;; esac
+    case `pause "Continue replace $replace with $package? (s to skip)"` in s|S) continue;; esac
   else
     case `pause "Continue install $package? (s to skip)"` in s|S) continue;; esac
   fi
@@ -1042,16 +1073,20 @@ do_add() # pkgex-list
     check_indirect "$targets"
     targets=`ls_slk "$@" | slk2name`
   fi
+  
+  [ "$targets" ] || die "No targets given or found!"
 
   # add targets to USE scope
   USE="${USE:+$USE }$@"
-
+  
   # if we have implicit expressions here (groups), tell what they contain
   if [ `echo "$targets" | wc -l` != `echo "${@:-.}" | wc -w` ]; then
     warn "You are using an implicit expression. Use with caution!"
-    $NO_REQS || warn "Exact results are NOT COMPLETELY predictable. \
+    if ! $NO_REQS && ! $TEST_REQS; then
+      warn "Exact results are NOT COMPLETELY predictable. \
 Try --dryrun first and consider using --noreqs and/or --ignore!"
-
+    fi
+    
     stanza "Targets: "`echo "$targets" | sed "s,.*/,,"`
   fi
 
@@ -1076,21 +1111,23 @@ Try --dryrun first and consider using --noreqs and/or --ignore!"
 
 do_diff() # [pkgex]
 {
-  local diff_list pkg avail_rel n inst_rel
+#  local diff_list pkg avail_rel n inst_rel
+  local diff_list
 
   has_ports || die
   diff_list=`ls_diff "$@"`
   [ "$diff_list" ] || die "No differences found."
 
-  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
-  for pkg in $diff_list; do
-    debug "do_diff(): pkg=$pkg"
-    avail_rel=`echo $pkg | pkg2rel`
-    n=${pkg%-*-*-*}
-    inst_rel=`ls_inst $(regex ${n##*/}) | pkg2rel | head -n 1`
-    avail_rel=${avail_rel:-(n/a)}
-    printf "%-31s %-23s %s\n" "${n##*/}" "$avail_rel" "$inst_rel"
-  done
+#  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
+#  for pkg in $diff_list; do
+#    debug "do_diff(): pkg=$pkg"
+#    avail_rel=`echo $pkg | pkg2rel`
+#    n=${pkg%-*-*-*}
+#    inst_rel=`ls_inst $(regex ${n##*/}) | pkg2rel | head -n 1`
+#    avail_rel=${avail_rel:-(n/a)}
+#    printf "%-31s %-23s %s\n" "${n##*/}" "$avail_rel" "$inst_rel"
+#  done
+  echo "$diff_list" | ls_verbose
 }
 
 do_export()
@@ -1129,18 +1166,19 @@ do_info() # pkgex-list
     ret=1
     get_info $arg || continue
     ret=0
-    stanza "PACKAGE NAME:  $package"
+    echo -e "\nPACKAGE NAME:       $package"
     [ "$replace" ] && echo "INSTALLED VERSION:  "$replace | fmt -t
     if [ "$pkg_file" ]; then
       s=`gzip -l $pkg_file 2>/dev/null | tail -n 1 | xargs`
-      echo "COMPRESSED PACKAGE SIZE:  `expr $(echo $s | cut -d " " -f 1) / 1024` K"
-      echo "UNCOMPRESSED PACKAGE SIZE:  `expr $(echo $s | cut -d " " -f 2) / 1024` K"
-      echo "PACKAGE LOCATION:  $pkg_file" | fmt -t
+      printf "PACKAGE SIZE (compressed):    %6s K\n" `expr $(echo $s | cut -d " " -f 1) / 1024`
+      printf "PACKAGE SIZE (uncompressed):  %6s K\n" `expr $(echo $s | cut -d " " -f 2) / 1024`
+      echo "PACKAGE LOCATION:   ${pkg_file%/*}/" | fmt -t
     fi
-    echo "SCRIPT LOCATION:  $script" | fmt -t
-    [ "$requires" ] && echo "PACKAGE REQUIRES:  "$requires | fmt -t
-    [ "$optional" ] && echo "PACKAGE SUGGESTS:  "$optional | fmt -t
-    [ "$sources" ] && echo "SOURCE LOCATIONS:  "$sources | fmt -t
+    echo "SCRIPT LOCATION:    ${script%/*}/" | fmt -t
+    [ "$requires" ] && echo "PACKAGE REQUIRES:   "$requires | fmt -t
+    [ "$optional" ] && echo "PACKAGE SUGGESTS:   "$optional | fmt -t
+    [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$optional | fmt -t
+    [ "$sources" ] && echo "SOURCE LOCATIONS:   "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
 
@@ -1159,7 +1197,8 @@ do_list() # [pkgex-list] >glist
         virt=`virtual $(regex "$@") | any2base`
 	  ls_slk `regex "$@" $virt`
         ;;
-  esac | slk2loc | sort_ver | any2gany
+  esac | slk2loc | sort_ver | any2gany \
+  | { $VERBOSE && ls_verbose || cat -; }
 }
 
 do_sync()
@@ -1248,19 +1287,20 @@ EOF
   $VERBOSE || return 0
   cat <<EOF | fmt -t
 
-PRT_DIR: $PRT_DIR
-SRC_DIR: $SRC_DIR
-PKG_DIR: $PKG_DIR
-LOG_DIR: $LOG_DIR
+PRT_DIR:  $PRT_DIR
+SRC_DIR:  $SRC_DIR
+PKG_DIR:  $PKG_DIR
+LOG_DIR:  $LOG_DIR
 
-EXCLUDE: $EXCLUDE
-IGNORE: $IGNORE
-USE: $USE
+EXCLUDE:  $EXCLUDE
+IGNORE:   $IGNORE
+PREFER:   $PREFER
+USE:      $USE
 
-ARCH: $ARCH
-CFLAGS: $CFLAGS
-DIST_VER: $DIST_VER
-DIST_TARGET: $DIST_TARGET
+ARCH:         $ARCH
+CFLAGS:       $CFLAGS
+DIST_VER:     $DIST_VER
+DIST_TARGET:  $DIST_TARGET
 EOF
 }
 
@@ -1334,6 +1374,12 @@ maintain,export,noask,ignore:,use:,exclude:,testreqs"
   $action "$@"
 }
 
+destroy()
+{
+  rm -rf $TMPDIR
+  log "`date`" >/dev/null
+}
+
 init()
 {
   local plugin
@@ -1362,16 +1408,23 @@ init()
 
   # clean up on exit
   trap 'error "ctrl-c pressed"; exit 1' INT
-  trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
-  # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
-  case ${BASH_VERSION:-} in 3.[12].*) ;; *) trap '' PIPE;; esac
+#  trap 'rm -rf $TMPDIR; log "`date`" >/dev/null' EXIT
+  trap 'destroy' EXIT
+#  # (this seems to be obsolete in Bash-3.1 - can any-one comfirm this?)
+#  case ${BASH_VERSION:-} in 3.[12].*) ;; *) trap '' PIPE;; esac
 
   # we need special dependencies for specific Slackware version
-  case `cut -d " " -f 2 /etc/slackware-version` in
+  case $DIST_VER in
     [89].*|10.*) IGNORE="$SPEC_PAST11 $SPEC_PAST12 $IGNORE";;
-    11.0.*)      IGNORE="$SPEC_PRE11 $SPEC_PAST12 $IGNORE";;
+    11.0)        IGNORE="$SPEC_PRE11 $SPEC_PAST12 $IGNORE";;
     *)           IGNORE="$SPEC_PRE11 $SPEC_PRE12 $IGNORE";;
   esac
+if $USE_ALPHA_CODE; then
+  case $DIST_TARGET in
+    current) EXCLUDE="slackware-$DIST_VER/ $EXCLUDE";;
+    *)       EXCLUDE="slackware-current/ $EXCLUDE";;
+  esac
+fi
   case $ARCH in
     i?86)    EXCLUDE="/-(x86_64|s390|powerpc)-[^-]*$/ $EXCLUDE";;
     x86_64)  EXCLUDE="/-(i.86|s390|powerpc)-[^-]*$/ $EXCLUDE";;
