@@ -12,7 +12,7 @@ portpkg \- automated package building for Slackware Linux systems
 
 portpkg is a script to easily find, build and install packages by
 scripts. Scripts are based around the de-facto standard of
-\fBSlackBuilds\fP, and are expected to be located in predefined
+\fBSlackBuilds\fP, and are expected to be located in a predefined
 \fBports tree\fP.
 
 portpkg also does additional work based on meta-information (such as
@@ -30,8 +30,8 @@ Presumed that all port identifiers belong to the form
 where \fIgroup\fP describes the path from the ports tree to the port itself,
 portpkg allows four different ways to express a target:
 .TP
-\fBimplicit\fP
-By using the form \fIgroup/\fP. Resulting in a range of ports.
+.B implicit
+By using the form \fIgroup\fP/. Resulting in a range of ports.
 Ports matching expressions in the variable \fBEXCLUDE\fP are excluded.
 .TP
 .B explicit
@@ -64,10 +64,11 @@ them can also be defined in your configuration file, see below):
 .TP
 \fB-e\fP, \fB--reinstall\fP (\fBREINSTALL=true\fP)
 Reinstall a package, if already installed.
-Diff to packages that are not available anymore.
+In conjunction with \fB--diff\fP or \fB--upgrade\fP:
+Compare installed packages exactly to that versions that are available.
 .TP
 \fB-b\fP, \fB--rebuild\fP (\fBREBUILD=true\fP)
-Rebuild the package if already built (implies \fB--reinstall\fP).
+Rebuild the package although it is found in the package cache.
 .TP
 \fB-p\fP, \fB--prepare\fP (\fBPREPARE_ONLY=true\fP)
 Build package, but don't install (implies \fB--noreqs\fP).
@@ -76,7 +77,9 @@ Build package, but don't install (implies \fB--noreqs\fP).
 Download source code files only.
 .TP
 \fB-g\fP, \fB--verbose\fP (\fBVERBOSE=true\fP)
-Show compile output.
+Show output of compilations, downloads, etc.
+In conjunction with \fB--list\fP:
+Compare with installed versions (similiar to \fB--diff\fP).
 .TP
 \fB-y\fP, \fB--dryrun\fP (\fBDRY_RUN=true\fP)
 Simulate install/download/build.
@@ -86,8 +89,9 @@ Don't check for requirements.
 .TP
 \fB-a\fP, \fB--lazy\fP (\fBLAZY_CHECKS=true\fP)
 Lazy version checking:
-Any installed version of a package satisfies a dependency.
-Skip upgrades that only differ in architecture or build number.
+A dependency is satisfied if any version of a certain package is installed.
+In conjunction with \fB--diff\fP or \fB--upgrade\fP:
+Skip packages that only differ in architecture or build number.
 .TP
 \fB-n\fP, \fB--noask\fP (\fBINTERACTIVE=false\fP)
 Don't ask for confirmation.
@@ -100,27 +104,27 @@ E.g. md5sums of sources won't be checked, instead the actual value will be writt
 \fB-r\fP, \fB--remaintain\fP (\fBREMAINTAIN=true\fP)
 Skip package building step if possible (implies \fB--prepare --rebuild\fP).
 .TP
-\fB-w\fP, \fB--exclude\fP \fIexpression\fP
+\fB-w\fP, \fB--exclude\fP \fIexpression\fP (\fBEXCLUDE="\fP\fIexpression\fP\fB")\fP
 Exclude \fIexpression\fP from implicit expressions and remove from \fBuse\fP list.
 .TP
-\fB-j\fP, \fB--ignore\fP \fIexpression\fP
+\fB-j\fP, \fB--ignore\fP \fIexpression\fP (\fBIGNORE="\fP\fIexpression\fP\fB")\fP
 Ignore \fIexpression\fP in dependencies lists.
 .TP
-\fB-t\fP, \fB--use\fP \fIexpression\fP
+\fB-t\fP, \fB--use\fP \fIexpression\fP (\fBUSE="\fP\fIexpression\fP\fB")\fP
 Include \fIexpression\fP from optional dependencies and remove from \fBexclude\fP list.
 
 .SH ACTIONS
 
-portpkg knows several \fBactions\fP to perform and one \fBdefault\fP action
+portpkg knows several \fBactions\fP to perform and one \fBdefault action\fP
 if none is specified. The default action is to \fBadd\fP, which includes
-    * checking recursively for any dependencies to be run initally,
+    * checking dependencies,
     * downloading the source code,
     * running the build script and
     * installing the package.
 
 Some of these steps will be skipped automatically if they seem to be
 unnecessary. There are options (see below) to force or to skip some of
-these steps. There can be only one \fBalternative\fP action, with
+these steps. There can be only one \fBalternative action\fP, with
 completely different behaviour:
 .TP
 \fB-d\fP, \fB--diff\fP
@@ -159,32 +163,31 @@ words.
 
 .SH EXAMPLES
 
-Find port \fIfoobar\fP, download source code, compile/package/install it, show
+Find port \fImplayer\fP, download source code, compile/package/install it, show
 compile output, but don't check dependencies:
-    $ \fBportpkg -gq foobar\fP
+    $ \fBportpkg -gq mplayer\fP
 
 Or indirect:
-    $ \fBcd ~/scripts/foobar\fP
+    $ \fBcd ~/ports/xap/mplayer\fP
     $ \fBportpkg -g\fP
 
-Find any ports, that contain the strings \fBmoz\fP and \fBned\fP in their
+Find any ports, that contain the strings \fBbrowser\fP and \fBweb\fP in their
 description:
-    $ \fBportpkg --find moz ned\fP
+    $ \fBportpkg --find browser web\fP
 
-View meta-information about the port \fBmozilla\fP:
-    $ \fBportpkg --info mozilla\fP
+View meta-information about the port \fBdillo\fP:
+    $ \fBportpkg --info dillo\fP
 
 Or indirect:
-    $ \fBcd ~/scripts/mozilla\fP
+    $ \fBcd ~/ports/xap/dillo\fP
     $ \fBportpkg -i\fP
 
 List all available ports of one group or with certain conditions and with more
 or less precision:
     $ \fBportpkg -l l/\fP
-    $ \fBportpkg -l foo\fP
-    $ \fBportpkg -l n/arg\fP
-    $ \fBportpkg -l n/gh/hrr/arg-2.0-i486-1me\fP
-    $ \fBportpkg -l foobar-1.0-i486-1\fP
+    $ \fBportpkg -l dillo\fP
+    $ \fBportpkg -l xap/dillo\fP
+    $ \fBportpkg -l dillo-0.8.5-i686-1mbr\fP
 
 Sync the local ports tree with the official ports tree of The Portpkg Project
 and then export \fBfancy2000\fP to it:
@@ -195,9 +198,15 @@ List all upgradeable packages first and then simulate a system upgrade:
     $ \fBportpkg -d\fP
     $ \fBportpkg --dryrun -u\fP
 
+List all upgrades but \fBkde/\fP and \fBkdei/\fP from Slackware.com:
+    $ \fBportpkg -de slackware/ -w "kde/ kdei/"\fP
+
+Revert all packages from group \fBa/\fP to the original state:
+    $ \fBportpkg -ue slackware/a/\fP
+
 Install amarok and recursively any optional dependencies that are listed in
 \fBl/\fP and \fBkde/\fP:
-    $ \fBportpkg -use l/,kde/ amarok\fP
+    $ \fBportpkg --use "l/ kde/" amarok\fP
 
 .SH DIRECTORIES
 
@@ -230,11 +239,10 @@ Empty or non-existent for defaults.
 Can also be set system-wide in \fB/etc/portpkg/local.conf\fP or user-wide
 in \fB~/.portpkg.conf\fP.
 .LP
-Several configuration files have defaults in \fB/etc/portpkg/\fP and can
-only be expanded:
+Several configuration files always inherit their default settings from \fB/etc/portpkg/\fP:
 .TP
 \fB~/ports/mirrors\fP
-List of mirrors to be used when downloading files. 
+List of mirrors to be used when downloading files.
 .TP
 \fB~/ports/virtual\fP
 List of ports and their virtual groups. Usefull to cross-link ports.
@@ -253,19 +261,18 @@ Viewed instantly with \fB--verbose\fP.
 
 .SH BUGS
 
-Explicit expressions must contain exactly \fBone\fP or \fBall\fP
-parts of the group or \fBsome\fP parts in the exact order:
+Expressions with more than one group qualifier do only match if the qualifiers´ order match the order of the filesystem.
 
-Expressions that \fBmatch\fP the port \fBlocal/new/l/port-1.0-i486-1me\fP:
-    \fBlocal/port\fP
-    \fBnew/port-1.0-i486-1me\fP
-    \fBl/\fP
-    \fBlocal/new/l/port\fP
-    \fBnew/l/port\fP
+For example, given the port \fBa/b/c/d-1.0-i486-1\fP, these expressions do match:
+    \fBa/d\fP
+    \fBb/d-1.0-i486-1me\fP
+    \fBc/\fP
+    \fBa/b/c/d\fP
+    \fBb/c/d\fP
 
-Expressions that \fBdo not match\fP:
-    \fBlocal/l/\fP
-    \fBl/new/port\fP
+And these expressions do not match:
+    \fBc/b/d\fP
+    \fBc/a/\fP
 
 .SH SECURITY
 
