@@ -5,11 +5,12 @@ PREFIX=/usr/local
 BINDIR=$(PREFIX)/bin
 CONFDIR=/etc/portpkg
 MANDIR=$(PREFIX)/man/man1
+VERSION=cvs
 
 default: all
 
 all:
-	@@echo "All done. Now type make install!"
+	@echo "All done. Now type make install!"
 
 install:
 	# directories
@@ -44,9 +45,25 @@ install:
 	install -m 755 autoport $(DESTDIR)$(BINDIR)/
 
 install-unstable:
+	# install gui
 	install -d $(DESTDIR)$(PREFIX)/share/applications
 	install -d $(DESTDIR)$(PREFIX)/share/pixmaps
 	install -m 755 gportpkg $(DESTDIR)$(BINDIR)/
 	install -m 644 logo.png $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.png
-	#install -m 644 logo.svg $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.svg
+	install -m 644 logo.svg $(DESTDIR)$(PREFIX)/share/pixmaps/portpkg.svg
 	install -m 644 gportpkg.desktop $(DESTDIR)$(PREFIX)/share/applications/
+	# ash seems to be much faster
+	for i in portpkg pp-config checkpkg autoport gportpkg; do \
+	    sed -i "1s,^#!/bin/sh,#!/bin/ash," $(DESTDIR)$(BINDIR)/$$i; \
+	done
+
+release:
+	rm -rf /tmp/portpkg-$(VERSION)
+	rm -f /tmp/portpkg-$(VERSION).tar.bz2
+	mkdir -p /tmp/portpkg-$(VERSION)
+	cp -a . /tmp/portpkg-$(VERSION)
+	cd /tmp/portpkg-$(VERSION) && \
+	    find -name CVS -depth -exec rm -rf {} \; && \
+	    sed -i "s,^ENGINE_VER=.*$$,ENGINE_VER=$(VERSION)," portpkg
+	cd /tmp && \
+	    tar cjf portpkg-$(VERSION).tar.bz2 portpkg-$(VERSION)
