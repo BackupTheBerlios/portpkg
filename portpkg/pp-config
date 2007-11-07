@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 #BLURB="Configure Portpkg"
 
-source `which portpkg` || exit 1
+. `which portpkg` || exit 1
 t=`mktemp -d`
 
 if [ -f $PRT_DIR/portpkg.conf ]; then
@@ -216,10 +216,10 @@ SlackBuilds support custom compiler flags.
 If unsure choose 'default'." 0 0 0 \
     "default"  "Build for i486, optimise for i686" \
     "optimise" "Build for `arch`, optimise for `cpu`" 2>$t/menu
-      [ $? == 0 ] || return
+      [ $? = 0 ] || return
       sed -i "/^ARCH=/d" $RC
       sed -i "/^CFLAGS=/d" $RC
-      if [ `cat $t/menu` == optimise ]; then
+      if [ `cat $t/menu` = optimise ]; then
         echo "ARCH=`arch`"
         echo "CFLAGS=\"-O2 -march=`arch` ${mycpuflag}=`cpu`\""
       fi >>$RC;;
@@ -252,7 +252,7 @@ settings()
 }
 
 rc=0
-while [ $rc == 0 ]; do 
+while [ $rc = 0 ]; do 
   dialog --title "PORTPKG-CONFIGURATION MAIN MENU" \
   --cancel-label "Quit" --menu \
 "This is a configuration tool for Portpkg.
@@ -267,5 +267,5 @@ Select what you want to configure:" 0 0 0 \
   dependencies "Set dependency handling" 2>$t/sub
   rc=$?
   sub=`cat $t/sub`
-  [ $rc == 0 ] && $sub
+  [ $rc = 0 ] && $sub
 done
