@@ -16,7 +16,6 @@ TREE=$PRT_DIR/slackware.com/slackware-$DIST_TARGET
 else
 TREE=$PRT_DIR/z/bin/slackware
 fi
-TREE_CLEAN="$FILES extra pasture kernels patches slackware testing"
 
 # check that we're a plug-in
 #if  [ "`basename $0`" != "portpkg" ]; then
@@ -47,9 +46,7 @@ done
 # rebuild the tree
 row "Rebuilding pseudo ports"
 $DRY_RUN && exit 0
-for file in ${TREE_CLEAN:-/}; do
-  rm -rf $TREE/$file
-done
+rm -rf $TREE
 mkdir -p $TREE
 
 # make a *simple* file list
@@ -75,7 +72,7 @@ sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
   arch=${rel%-*}
   arch=${arch#*-}
   build=${rel##*-}
-  md5sum=`grep -m 1 "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
+  md5sum=`grep "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
   info=`sed -n "/ $pkg\($\| \|\.tgz\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
   desc=`echo "$info" | grep "^$name:"`
   req=`echo "$info" | grep "^PACKAGE REQUIRED:" | cut -d " " -f 4- | xargs`

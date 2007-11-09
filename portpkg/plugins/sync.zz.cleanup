@@ -41,12 +41,4 @@ find $TREE/ -depth -mindepth 1 -type d -empty | while read dir; do
   rmdir -p $dir 2>/dev/null
 done
 
-# look for orphaned packages
-ls_slk | slk2name >$t/avail.names
-ls_inst | any2base | pkg2name >$t/inst.names
-fgrep -vxf $t/avail.names $t/inst.names \
-| while read s; do
-  row "Installed package $s is unknown by the tree"
-done
-
 rm -f $CACHE/pkg
