@@ -1,12 +1,14 @@
 #!/bin/sh
 # MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: ftp://ftp.gnome.org/pub/GNOME/sources/glib/2.12/glib-2.12.11.tar.bz2
+# SOURCES: ftp://ftp.gnome.org/pub/GNOME/sources/glib/2.14/glib-2.14.3.tar.bz2
 # MD5SUMS: 60c9f62979415bcb82f0b87d6785dc3b glib-2.10.0.tar.bz2
 # MD5SUMS: 51df7932da118f7f27bbda82b65f0f91 glib-2.10.1.tar.bz2
 # MD5SUMS: 718961161ee1692c216a2d542196a04a glib-2.10.2.tar.bz2
 # MD5SUMS: 077a9917b673a9a0bc63f351786dde24 glib-2.12.11.tar.bz2
 # MD5SUMS: cbf663f8bc733e2f6c90599942f6616a glib-2.12.3.tar.bz2
+# MD5SUMS: 196d7944a8ddc1f7c3d1e9c7146dd560 glib-2.14.1.tar.bz2
+# MD5SUMS: d6e695a2dc96dcdd9d120d8efe265862 glib-2.14.3.tar.bz2
 # MD5SUMS: 803305bfd59cf7421d90983bf63e5227 glib-2.8.0.tar.bz2
 # MD5SUMS: 2ba1146e767454e14ac0788187c35892 glib-2.9.6.tar.bz2
 # OPTIONAL: gtk-doc linuxdoc-tools sgml-tools
@@ -16,7 +18,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.12.11
+VERSION=2.14.3
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -42,8 +44,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -52,7 +58,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \

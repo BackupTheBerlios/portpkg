@@ -1,3 +1,8 @@
+PACKAGE SIZE (compressed):     1657 K
+PACKAGE SIZE (uncompressed):  10170 K
+REMOTE SOURCES:  3267 K
+ftp://ftp.gnome.org/pub/GNOME/sources/glib/2.14/glib-2.14.3.tar.bz2
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
@@ -9,17 +14,17 @@ drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/glib-mkenums
 -rwxr-xr-x  root/root  usr/bin/gobject-query
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/glib2-2.12.11/
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/AUTHORS
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/COPYING
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/ChangeLog
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/HACKING
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/INSTALL
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/INSTALL.in
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/NEWS
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/README
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/README.in
--rw-r--r--  root/root  usr/doc/glib2-2.12.11/README.win32
+drwxr-xr-x  root/root  usr/doc/glib2-2.14.3/
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/AUTHORS
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/COPYING
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/ChangeLog
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/HACKING
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/INSTALL
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/INSTALL.in
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/NEWS
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/README
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/README.in
+-rw-r--r--  root/root  usr/doc/glib2-2.14.3/README.win32
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/glib-2.0/
 -rw-r--r--  root/root  usr/include/glib-2.0/glib-object.h
@@ -62,8 +67,10 @@ drwxr-xr-x  root/root  usr/include/glib-2.0/glib/
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/gquark.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/gqueue.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/grand.h
+-rw-r--r--  root/root  usr/include/glib-2.0/glib/gregex.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/grel.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/gscanner.h
+-rw-r--r--  root/root  usr/include/glib-2.0/glib/gsequence.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/gshell.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/gslice.h
 -rw-r--r--  root/root  usr/include/glib-2.0/glib/gslist.h
@@ -103,13 +110,13 @@ drwxr-xr-x  root/root  usr/lib/glib-2.0/
 drwxr-xr-x  root/root  usr/lib/glib-2.0/include/
 -rw-r--r--  root/root  usr/lib/glib-2.0/include/glibconfig.h
 -rwxr-xr-x  root/root  usr/lib/libglib-2.0.la
--rwxr-xr-x  root/root  usr/lib/libglib-2.0.so.0.1200.11
+-rwxr-xr-x  root/root  usr/lib/libglib-2.0.so.0.1400.3
 -rwxr-xr-x  root/root  usr/lib/libgmodule-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgmodule-2.0.so.0.1200.11
+-rwxr-xr-x  root/root  usr/lib/libgmodule-2.0.so.0.1400.3
 -rwxr-xr-x  root/root  usr/lib/libgobject-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgobject-2.0.so.0.1200.11
+-rwxr-xr-x  root/root  usr/lib/libgobject-2.0.so.0.1400.3
 -rwxr-xr-x  root/root  usr/lib/libgthread-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgthread-2.0.so.0.1200.11
+-rwxr-xr-x  root/root  usr/lib/libgthread-2.0.so.0.1400.3
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/glib-2.0.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/gmodule-2.0.pc
@@ -174,10 +181,12 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/glib/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Miscellaneous-Utility-Functions.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-N-ary-Trees.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Numerical-Definitions.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Perl-compatible-regular-expressions.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Pointer-Arrays.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Quarks.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Random-Numbers.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Relations-and-Tuples.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Sequences.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Shell-related-Utilities.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Simple-XML-Subset-Parser.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html
@@ -204,6 +213,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/glib/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-data-types.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-fundamentals.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-gettextize.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-regex-syntax.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-resources.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-running.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/glib-utilities.html
@@ -221,6 +231,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/glib/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/ix06.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/ix07.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/ix08.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/glib/ix09.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/left.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/mainloop-states.gif
 -rw-r--r--  root/root  usr/share/gtk-doc/html/glib/right.png
@@ -230,13 +241,13 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/glib/
 drwxr-xr-x  root/root  usr/share/gtk-doc/html/gobject/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/GTypeModule.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/GTypePlugin.html
--rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ch01.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ch01s02.html
--rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ch02.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ch06s03.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ch07s02.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ch07s03.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/chapter-gobject.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/chapter-gtype.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/chapter-intro.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/chapter-signal.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/glib-genmarshal.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/glib-mkenums.html
@@ -282,6 +293,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gobject/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ix06.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ix07.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ix08.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/ix09.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/left.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/pr01.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gobject/pt01.html
@@ -304,6 +316,9 @@ drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/ar/
 drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/glib20.mo
+drwxr-xr-x  root/root  usr/share/locale/as/
+drwxr-xr-x  root/root  usr/share/locale/as/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/as/LC_MESSAGES/glib20.mo
 drwxr-xr-x  root/root  usr/share/locale/az/
 drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/glib20.mo
@@ -412,6 +427,9 @@ drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/ka/
 drwxr-xr-x  root/root  usr/share/locale/ka/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/ka/LC_MESSAGES/glib20.mo
+drwxr-xr-x  root/root  usr/share/locale/kn/
+drwxr-xr-x  root/root  usr/share/locale/kn/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/kn/LC_MESSAGES/glib20.mo
 drwxr-xr-x  root/root  usr/share/locale/ko/
 drwxr-xr-x  root/root  usr/share/locale/ko/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/ko/LC_MESSAGES/glib20.mo
@@ -424,6 +442,9 @@ drwxr-xr-x  root/root  usr/share/locale/lt/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/lv/
 drwxr-xr-x  root/root  usr/share/locale/lv/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/lv/LC_MESSAGES/glib20.mo
+drwxr-xr-x  root/root  usr/share/locale/mg/
+drwxr-xr-x  root/root  usr/share/locale/mg/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/mg/LC_MESSAGES/glib20.mo
 drwxr-xr-x  root/root  usr/share/locale/mk/
 drwxr-xr-x  root/root  usr/share/locale/mk/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/mk/LC_MESSAGES/glib20.mo
@@ -448,6 +469,9 @@ drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/nn/
 drwxr-xr-x  root/root  usr/share/locale/nn/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/nn/LC_MESSAGES/glib20.mo
+drwxr-xr-x  root/root  usr/share/locale/oc/
+drwxr-xr-x  root/root  usr/share/locale/oc/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/oc/LC_MESSAGES/glib20.mo
 drwxr-xr-x  root/root  usr/share/locale/or/
 drwxr-xr-x  root/root  usr/share/locale/or/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/or/LC_MESSAGES/glib20.mo
