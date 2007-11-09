@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/atk/1.18/atk-1.18.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/atk/1.20/atk-1.20.0.tar.bz2
 # MD5SUMS: 85190dd5e5c6bcd9b07767bd25eb07ab atk-1.12.1.tar.bz2
 # MD5SUMS: 9fc33ec48fd32933f7f630479dfad667 atk-1.18.0.tar.bz2
+# MD5SUMS: b1a9e28d9f54ea306bd85a4c84b25fb8 atk-1.20.0.tar.bz2
 # REQUIRES: glib2
 # OPTIONAL: gtk-doc linuxdoc-tools
 
@@ -11,7 +12,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.18.0
+VERSION=1.20.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -37,8 +38,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -47,7 +52,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
