@@ -1127,6 +1127,7 @@ cp -a \
 #:docs
 #:docfiles
 #%post-docfiles-fix%
+find $PKG/usr/doc -name .svn -o -name CVS | xargs -r rm -r
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
