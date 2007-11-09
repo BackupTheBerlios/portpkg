@@ -25,6 +25,25 @@ fi
 
 file=$1
 
+case $file in *.buildlog|*.buildlog.gz)
+  if ! $DRY_RUN; then
+    row "Adding dependency information"
+    { echo "+--------------------------+"
+      echo "PORTPKG:    $ENGINE_VER ($ENGINE_REV)"
+      echo "SLACKWARE:  $DIST_VER ($DIST_TARGET)"
+      echo "REQUIRED DEPENDENCIES:"
+      for i in $requires; do
+        printf "%-20s %s\n" $i: `ls_inst $(regex $i) | any2base`
+      done
+      echo "OPTIONAL DEPENDENCIES:"
+      for i in $optional; do
+        printf "%-20s %s\n" $i: `ls_inst $(regex $i) | any2base`
+      done
+    } | case $file in *.gz) gzip -;; *) cat -;; esac >>$file
+
+  fi
+esac
+
 case `pause "Do you want to send $file to portpkg.berlios.de? (y for yes)"` in
   y|Y) :;;
   *) exit 0;;
@@ -35,24 +54,16 @@ row "Uploading $file"
 # stop here when $DRY_RUN
 $DRY_RUN && exit 0
 
-case $file in *.buildlog.gz)
-  # add dependency information to the buildlog
-  { echo "+--------------------+"
-    echo "PORTPKG: $ENGINE_VER ($ENGINE_REV)"
-    echo "SLACKWARE: `cat /etc/slackware-version`"
-    echo "REQUIRED DEPENDENCIES:"
-    for i in $requires; do
-      echo "  $i:" `ls_inst $(regex $i) | any2base`
-    done
-    echo "OPTIONAL DEPENDENCIES:"
-    for i in $optional; do
-      echo "  $i:" `ls_inst $(regex $i) | any2base`
-    done
-  } | gzip - >>$file
-  # timestamp
-  new_file=${file%.buildlog.gz}-`date +%Y-%m-%d,%T`.buildlog.gz
-  mv $file $new_file
-  file=$new_file
+# timestamp buildlogs
+case $file in
+  *.buildlog.gz)
+    new_file=${file%.buildlog.gz}-`date +%Y%M%d%H%M`.buildlog.gz
+    mv $file $new_file
+    file=$new_file;;
+  *.buildlog)
+    new_file=${file%.buildlog}-`date +%Y%M%d%H%M`.buildlog
+    mv $file $new_file
+    file=$new_file;;
 esac
 
 # upload $file to $DEST
