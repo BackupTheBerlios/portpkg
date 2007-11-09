@@ -21,28 +21,20 @@ if (is_uploaded_file($_FILES["$var"]['tmp_name'])) {
   if (!move_uploaded_file($filetmp,$upload_dir.$filename))
     die("Error: file couldn't be moved!\n");
   printf("Success: $filename has been submitted!\n");
-  if (ereg("\.buildlog(\.gz)?$",$filename)
-   || ereg("\.patch(\.gz)?$",$filename)) {
-    $mailto = "portpkg-devel@lists.berlios.de";
-    if (ereg("\.patch(\.gz)?$",$filename)) {
-      $subject = "Patch: $filename";
-      $body = "This patch file has been uploaded on http://portpkg.berlios.de:\n\n";
-    } else {
-      $subject = "Buildlog: $filename";
-      $body = "This is an automatic bug report, uploaded on http://portpkg.berlios.de:\n\n";
-    }
-    if (ereg("\.gz$",$filename)) {
-      $f = gzopen($upload_dir.$filename,"r");
-      while (!gzeof($f))
-        $body = $body.gzgets($f);
-      gzclose($f);
-    } else
-      $body = $body.file_get_contents($upload_dir.$filename);
-    mail($mailto,$subject,$body);
-//    if (mail($mailto,$subject,$body))
-//      delete($upload_dir.$filename);
-    printf("$filename has been sent to $mailto.\n");
-  } elseif (ereg("\.tar\.bz2$",$filename))
-    mail("topf@users.berlios.de","Portpkg: Upload ($filename)","$filename");
+  $mailto = "portpkg-devel@lists.berlios.de";
+  $from = "From: ".$mailto;
+  if (ereg("\.patch(\.gz)?$",$filename)) {
+    $subject = "[patch] $filename";
+    $body = "A patch file has been uploaded on\n\nhttp://portpkg.berlios.de/upload/".$filename."\n";
+    mail($mailto,$subject,$body,$from);
+  } elseif (ereg("\.buildlog(\.gz)?$",$filename)) {
+    $subject = "[buildlog] $filename";
+    $body = "A buildlog has been uploaded on\n\nhttp://portpkg.berlios.de/upload/".$filename."\n";
+    mail($mailto,$subject,$body,$from);
+  } elseif (ereg("\.tar\.bz2$",$filename)) {
+    $subject = "[upload] $filename";
+    $body = "A file has been uploaded on\n\nhttp://portpkg.berlios.de/upload/".$filename."\n";
+    mail($mailto,$subject,$body,$from);
+  }
 }
 ?> 
