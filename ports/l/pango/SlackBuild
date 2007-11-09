@@ -1,21 +1,23 @@
 #!/bin/sh
 # MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/pango/1.16/pango-1.16.2.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/pango/1.18/pango-1.18.3.tar.bz2
 # MD5SUMS: c75489ec7f5fe77e31e4cbde71ad0c16 pango-1.10.0.tar.bz2
 # MD5SUMS: 86c3e08169a18200e64a0c5ee1be7fd9 pango-1.12.0.tar.bz2
 # MD5SUMS: 10ddfbc43cf895639b77788ca637409c pango-1.12.1.tar.bz2
 # MD5SUMS: f41488236baf881a4844216ac61abc24 pango-1.12.2.tar.bz2
 # MD5SUMS: 8ea80c1d747a2844d7d096bfd347c2dc pango-1.16.2.tar.bz2
+# MD5SUMS: 81efeac639977ed3f56c82f16ee0be74 pango-1.18.2.tar.bz2
+# MD5SUMS: 4a9862b5151f16dcad8e30dd6ef08549 pango-1.18.3.tar.bz2
 # REQUIRES: cairo glib2 x11 x11-devel
-# OPTIONAL: gtk-doc linuxdoc-tools
+# OPTIONAL: gtk-doc libXft libxcb linuxdoc-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.16.2
+VERSION=1.18.3
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -41,9 +43,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -52,7 +57,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
