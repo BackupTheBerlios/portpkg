@@ -1,25 +1,29 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: ftp://ftp.gtk.org/pub/gtk/v2.10/gtk+-2.10.2.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gtk+/2.12/gtk+-2.12.1.tar.bz2
 # MD5SUMS: 9039804dfd115e40a70a6ba096f418a2 gtk+-2.10.2.tar.bz2
+# MD5SUMS: e9c280afec29b11772af5a7c807abf41 gtk+-2.12.0.tar.bz2
+# MD5SUMS: c46f34addc2fe3ea6756055d59fb8856 gtk+-2.12.1.tar.bz2
 # MD5SUMS: bdd3b950e4a3c65d61bceed9149888a9 gtk+-2.8.12.tar.bz2
 # MD5SUMS: 1a03dbed4b794194a610e9d7eb175b06 gtk+-2.8.19.tar.bz2
-# REQUIRES: atk cairo expat glib2 libjpeg libpixman libpng libtiff pango x11 x11-devel zlib
-# OPTIONAL: cups gtk-doc linuxdoc-tools sgml-tools
+# REQUIRES: atk cairo expat glib2 libXcomposite libXcursor libXdamage
+# REQUIRES: libXinerama libXrandr libjpeg libpixman libpng libtiff
+# REQUIRES: libxcb pango x11 x11-devel zlib
+# OPTIONAL: cups gtk-doc linuxdoc-tools python sgml-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.10.2
+VERSION=2.12.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -38,8 +42,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
+  --disable-schemas-install \
   --with-x-input\
   --with-png \
   $ARCH-slackware-linux
@@ -48,16 +56,15 @@ make install DESTDIR=$PKG
 mkdir -p $PKG/etc/gtk-2.0 $PKG/etc/profile.d
 install -m 755 $CWD/profile.d/gtk+.sh $PKG/etc/profile.d/
 install -m 755 $CWD/profile.d/gtk+.csh $PKG/etc/profile.d/
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README README.cvs-commits README.win32 \
+  AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README README.commits README.win32 \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -73,3 +80,17 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/gtk+-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+configure-opts
+  --with-x-input\
+  --with-png \
+#+configure-opts
+#+install
+mkdir -p $PKG/etc/gtk-2.0 $PKG/etc/profile.d
+install -m 755 $CWD/profile.d/gtk+.sh $PKG/etc/profile.d/
+install -m 755 $CWD/profile.d/gtk+.csh $PKG/etc/profile.d/
+#+install

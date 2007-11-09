@@ -1,6 +1,12 @@
+PACKAGE SIZE (compressed):     9657 K
+PACKAGE SIZE (uncompressed):  40220 K
+REMOTE SOURCES:  15503 K
+http://ftp.gnome.org/pub/GNOME/sources/gtk+/2.12/gtk+-2.12.1.tar.bz2
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  etc/
 drwxr-xr-x  root/root  etc/gtk-2.0/
+-rw-r--r--  root/root  etc/gtk-2.0/im-multipress.conf
 drwxr-xr-x  root/root  etc/profile.d/
 -rwxr-xr-x  root/root  etc/profile.d/gtk+.csh
 -rwxr-xr-x  root/root  etc/profile.d/gtk+.sh
@@ -11,20 +17,21 @@ drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/gdk-pixbuf-csource
 -rwxr-xr-x  root/root  usr/bin/gdk-pixbuf-query-loaders
+-rwxr-xr-x  root/root  usr/bin/gtk-builder-convert
 -rwxr-xr-x  root/root  usr/bin/gtk-demo
 -rwxr-xr-x  root/root  usr/bin/gtk-query-immodules-2.0
 -rwxr-xr-x  root/root  usr/bin/gtk-update-icon-cache
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/gtk+2-2.10.2/
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/AUTHORS
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/COPYING
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/ChangeLog
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/HACKING
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/INSTALL
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/NEWS
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/README
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/README.cvs-commits
--rw-r--r--  root/root  usr/doc/gtk+2-2.10.2/README.win32
+drwxr-xr-x  root/root  usr/doc/gtk+2-2.12.1/
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/COPYING
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/HACKING
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/INSTALL
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/NEWS
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/README
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/README.commits
+-rw-r--r--  root/root  usr/doc/gtk+2-2.12.1/README.win32
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/gtk-2.0/
 drwxr-xr-x  root/root  usr/include/gtk-2.0/gdk-pixbuf-xlib/
@@ -93,6 +100,8 @@ drwxr-xr-x  root/root  usr/include/gtk-2.0/gtk/
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkbin.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkbindings.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkbox.h
+-rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkbuildable.h
+-rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkbuilder.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkbutton.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkcalendar.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkcelleditable.h
@@ -202,6 +211,7 @@ drwxr-xr-x  root/root  usr/include/gtk-2.0/gtk/
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkradiotoolbutton.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrange.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrc.h
+-rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrecentaction.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrecentchooser.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrecentchooserdialog.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrecentchoosermenu.h
@@ -210,6 +220,7 @@ drwxr-xr-x  root/root  usr/include/gtk-2.0/gtk/
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkrecentmanager.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkruler.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkscale.h
+-rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkscalebutton.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkscrollbar.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkscrolledwindow.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkselection.h
@@ -245,6 +256,7 @@ drwxr-xr-x  root/root  usr/include/gtk-2.0/gtk/
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktoolbar.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktoolbutton.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktoolitem.h
+-rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktooltip.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktooltips.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktree.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtktreednd.h
@@ -264,6 +276,7 @@ drwxr-xr-x  root/root  usr/include/gtk-2.0/gtk/
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkvbox.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkversion.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkviewport.h
+-rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkvolumebutton.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkvpaned.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkvruler.h
 -rw-r--r--  root/root  usr/include/gtk-2.0/gtk/gtkvscale.h
@@ -294,8 +307,10 @@ drwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/
 -rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-inuktitut.so
 -rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-ipa.la
 -rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-ipa.so
--rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-thai-broken.la
--rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-thai-broken.so
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-multipress.la
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-multipress.so
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-thai.la
+-rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-thai.so
 -rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-ti-er.la
 -rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-ti-er.so
 -rwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/immodules/im-ti-et.la
@@ -343,13 +358,13 @@ drwxr-xr-x  root/root  usr/lib/gtk-2.0/2.10.0/printbackends/
 drwxr-xr-x  root/root  usr/lib/gtk-2.0/include/
 -rw-r--r--  root/root  usr/lib/gtk-2.0/include/gdkconfig.h
 -rw-r--r--  root/root  usr/lib/libgdk-x11-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgdk-x11-2.0.so.0.1000.2
+-rwxr-xr-x  root/root  usr/lib/libgdk-x11-2.0.so.0.1200.1
 -rwxr-xr-x  root/root  usr/lib/libgdk_pixbuf-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgdk_pixbuf-2.0.so.0.1000.2
+-rwxr-xr-x  root/root  usr/lib/libgdk_pixbuf-2.0.so.0.1200.1
 -rwxr-xr-x  root/root  usr/lib/libgdk_pixbuf_xlib-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgdk_pixbuf_xlib-2.0.so.0.1000.2
+-rwxr-xr-x  root/root  usr/lib/libgdk_pixbuf_xlib-2.0.so.0.1200.1
 -rw-r--r--  root/root  usr/lib/libgtk-x11-2.0.la
--rwxr-xr-x  root/root  usr/lib/libgtk-x11-2.0.so.0.1000.2
+-rwxr-xr-x  root/root  usr/lib/libgtk-x11-2.0.so.0.1200.1
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/gdk-2.0.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/gdk-pixbuf-2.0.pc
@@ -362,6 +377,7 @@ drwxr-xr-x  root/root  usr/man/
 drwxr-xr-x  root/root  usr/man/man1/
 -rw-r--r--  root/root  usr/man/man1/gdk-pixbuf-csource.1.gz
 -rw-r--r--  root/root  usr/man/man1/gdk-pixbuf-query-loaders.1.gz
+-rw-r--r--  root/root  usr/man/man1/gtk-builder-convert.1.gz
 -rw-r--r--  root/root  usr/man/man1/gtk-query-immodules-2.0.1.gz
 -rw-r--r--  root/root  usr/man/man1/gtk-update-icon-cache.1.gz
 drwxr-xr-x  root/root  usr/share/
@@ -374,11 +390,13 @@ drwxr-xr-x  root/root  usr/share/gtk-2.0/demo/
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/appwindow.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/assistant.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/background.jpg
+-rw-r--r--  root/root  usr/share/gtk-2.0/demo/builder.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/button_box.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/changedisplay.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/clipboard.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/colorsel.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/combobox.c
+-rw-r--r--  root/root  usr/share/gtk-2.0/demo/demo.ui
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/dialog.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/drawingarea.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/editable_cells.c
@@ -408,6 +426,7 @@ drwxr-xr-x  root/root  usr/share/gtk-2.0/demo/
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/rotated_text.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/sizegroup.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/stock_browser.c
+-rw-r--r--  root/root  usr/share/gtk-2.0/demo/textscroll.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/textview.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/tree_store.c
 -rw-r--r--  root/root  usr/share/gtk-2.0/demo/ui_manager.c
@@ -531,6 +550,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gdk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/ix05.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/ix06.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/ix07.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/ix08.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/left.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/left_ptr.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gdk/left_side.png
@@ -584,6 +604,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gdk/
 drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/AbstractObjects.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/Actions.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/Builder.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/ButtonWidgets.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/DeprecatedObjects.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/DisplayWidgets.html
@@ -599,6 +620,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkAssistant.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkBin.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkBox.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkBuilder.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkButtonBox.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkCList.html
@@ -697,6 +719,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRadioMenuItem.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRadioToolButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRange.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRecentAction.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRecentChooser.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRecentChooserDialog.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRecentChooserMenu.html
@@ -705,6 +728,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRecentManager.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkRuler.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkScale.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkScaleButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkScrollbar.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkScrolledWindow.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkSeparator.html
@@ -732,6 +756,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkToolButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkToolItem.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkToolbar.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkTooltip.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkTooltips.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkTree.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkTreeItem.html
@@ -752,6 +777,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkVScrollbar.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkVSeparator.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkViewport.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkVolumeButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkWidget.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkWindow.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/GtkWindowGroup.html
@@ -815,6 +841,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-add.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-apply.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-bold.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-builder-convert.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-building.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-cancel.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-cdrom.png
@@ -846,7 +873,6 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-find.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-floppy.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-font.png
--rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-framebuffer.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-fullscreen.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-go-back-ltr.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-go-back-rtl.png
@@ -860,6 +886,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-goto-last-ltr.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-goto-last-rtl.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-goto-top.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-gtkbuildable.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-gtkfilefilter.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-harddisk.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-help.png
@@ -892,6 +919,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkAboutDialog.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkAction.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkAssistant.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkBuilder.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkColorButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkComboBox.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkFileChooser.html
@@ -899,6 +927,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkLinkButton.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-GtkRecentChooser.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-checklist.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-migrating-tooltips.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-missing-image.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-network.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/gtk-new.png
@@ -973,6 +1002,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/ix05.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/ix06.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/ix07.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/ix08.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/label.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/left.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/link-button.png
@@ -1002,8 +1032,10 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/gtk/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/style.css
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/toggle-button.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/toolbar.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/tree-view-coordinates.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/ui-manager.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/up.png
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/volumebutton.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gtk/window.png
 drwxr-xr-x  root/root  usr/share/locale/
 drwxr-xr-x  root/root  usr/share/locale/af/
@@ -1014,10 +1046,18 @@ drwxr-xr-x  root/root  usr/share/locale/am/
 drwxr-xr-x  root/root  usr/share/locale/am/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/am/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/ang/
+drwxr-xr-x  root/root  usr/share/locale/ang/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ang/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/ang/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/ar/
 drwxr-xr-x  root/root  usr/share/locale/ar/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/ar/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/as/
+drwxr-xr-x  root/root  usr/share/locale/as/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/as/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/as/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/az/
 drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/az/LC_MESSAGES/gtk20-properties.mo
@@ -1030,6 +1070,10 @@ drwxr-xr-x  root/root  usr/share/locale/be/
 drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/be@latin/
+drwxr-xr-x  root/root  usr/share/locale/be@latin/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be@latin/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/be@latin/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/bg/
 drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/gtk20-properties.mo
@@ -1070,6 +1114,10 @@ drwxr-xr-x  root/root  usr/share/locale/de/
 drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/dz/
+drwxr-xr-x  root/root  usr/share/locale/dz/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/dz/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/dz/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/el/
 drwxr-xr-x  root/root  usr/share/locale/el/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/el/LC_MESSAGES/gtk20-properties.mo
@@ -1082,6 +1130,10 @@ drwxr-xr-x  root/root  usr/share/locale/en_GB/
 drwxr-xr-x  root/root  usr/share/locale/en_GB/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/en_GB/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/eo/
+drwxr-xr-x  root/root  usr/share/locale/eo/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/eo/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/eo/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/es/
 drwxr-xr-x  root/root  usr/share/locale/es/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/es/LC_MESSAGES/gtk20-properties.mo
@@ -1146,6 +1198,10 @@ drwxr-xr-x  root/root  usr/share/locale/id/
 drwxr-xr-x  root/root  usr/share/locale/id/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/id/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/io/
+drwxr-xr-x  root/root  usr/share/locale/io/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/io/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/io/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/is/
 drwxr-xr-x  root/root  usr/share/locale/is/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/is/LC_MESSAGES/gtk20-properties.mo
@@ -1226,6 +1282,10 @@ drwxr-xr-x  root/root  usr/share/locale/nso/
 drwxr-xr-x  root/root  usr/share/locale/nso/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/nso/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/nso/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/oc/
+drwxr-xr-x  root/root  usr/share/locale/oc/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/oc/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/oc/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/or/
 drwxr-xr-x  root/root  usr/share/locale/or/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/or/LC_MESSAGES/gtk20-properties.mo
@@ -1322,10 +1382,10 @@ drwxr-xr-x  root/root  usr/share/locale/uz/
 drwxr-xr-x  root/root  usr/share/locale/uz/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/uz/LC_MESSAGES/gtk20-properties.mo
 -rw-r--r--  root/root  usr/share/locale/uz/LC_MESSAGES/gtk20.mo
-drwxr-xr-x  root/root  usr/share/locale/uz@Latn/
-drwxr-xr-x  root/root  usr/share/locale/uz@Latn/LC_MESSAGES/
--rw-r--r--  root/root  usr/share/locale/uz@Latn/LC_MESSAGES/gtk20-properties.mo
--rw-r--r--  root/root  usr/share/locale/uz@Latn/LC_MESSAGES/gtk20.mo
+drwxr-xr-x  root/root  usr/share/locale/uz@cyrillic/
+drwxr-xr-x  root/root  usr/share/locale/uz@cyrillic/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/uz@cyrillic/LC_MESSAGES/gtk20-properties.mo
+-rw-r--r--  root/root  usr/share/locale/uz@cyrillic/LC_MESSAGES/gtk20.mo
 drwxr-xr-x  root/root  usr/share/locale/vi/
 drwxr-xr-x  root/root  usr/share/locale/vi/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/vi/LC_MESSAGES/gtk20-properties.mo
