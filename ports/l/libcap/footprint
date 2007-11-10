@@ -1,76 +1,51 @@
-drwxr-xr-x root/root           0 ./
-drwxr-xr-x root/root           0 install/
--rw-r--r-- root/root         167 install/doinst.sh
--rw-r--r-- root/root         469 install/slack-desc
-drwxr-xr-x root/root           0 usr/
-drwxr-xr-x root/root           0 usr/doc/
-drwxr-xr-x root/root           0 usr/doc/libcap-1.10/
--rw-rw-r-- root/root         522 usr/doc/libcap-1.10/CHANGELOG
--rw-rw-r-- root/root        2050 usr/doc/libcap-1.10/License
--rw-rw-r-- root/root         669 usr/doc/libcap-1.10/README
-drwxrwxr-x root/root           0 usr/doc/libcap-1.10/doc/
--rw-rw-r-- root/root         750 usr/doc/libcap-1.10/doc/Makefile
--rw-rw-r-- root/root          25 usr/doc/libcap-1.10/doc/_cap_names.3
--rw-rw-r-- root/root        1832 usr/doc/libcap-1.10/doc/cap_clear.3
--rw-rw-r-- root/root        3482 usr/doc/libcap-1.10/doc/cap_copy_ext.3
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/cap_copy_int.3
--rw-rw-r-- root/root          20 usr/doc/libcap-1.10/doc/cap_dup.3
--rw-rw-r-- root/root          20 usr/doc/libcap-1.10/doc/cap_free.3
--rw-rw-r-- root/root        5337 usr/doc/libcap-1.10/doc/cap_from_text.3
--rw-rw-r-- root/root          21 usr/doc/libcap-1.10/doc/cap_get_flag.3
--rw-rw-r-- root/root        3213 usr/doc/libcap-1.10/doc/cap_get_proc.3
--rw-rw-r-- root/root        2160 usr/doc/libcap-1.10/doc/cap_init.3
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/cap_set_fd.3
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/cap_set_file.3
--rw-rw-r-- root/root          21 usr/doc/libcap-1.10/doc/cap_set_flag.3
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/cap_set_proc.3
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/cap_size.3
--rw-rw-r-- root/root          25 usr/doc/libcap-1.10/doc/cap_to_text.3
--rw-rw-r-- root/root        2519 usr/doc/libcap-1.10/doc/capability.notes
--rw-rw-r-- root/root        1213 usr/doc/libcap-1.10/doc/capget.2
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/capgetp.3
--rw-rw-r-- root/root          18 usr/doc/libcap-1.10/doc/capset.2
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/capsetp.3
-drwxrwxr-x root/root           0 usr/doc/libcap-1.10/doc/old/
--rw-rw-r-- root/root          45 usr/doc/libcap-1.10/doc/old/README
--rw-rw-r-- root/root          23 usr/doc/libcap-1.10/doc/old/_fgetfilecap.2
--rw-rw-r-- root/root          23 usr/doc/libcap-1.10/doc/old/_fsetfilecap.2
--rw-rw-r-- root/root          23 usr/doc/libcap-1.10/doc/old/_getfilecap.2
--rw-rw-r-- root/root          23 usr/doc/libcap-1.10/doc/old/_getproccap.2
--rw-rw-r-- root/root        3367 usr/doc/libcap-1.10/doc/old/_setfilecap.2
--rw-rw-r-- root/root        1664 usr/doc/libcap-1.10/doc/old/_setproccap.2
--rw-rw-r-- root/root          24 usr/doc/libcap-1.10/doc/old/cap_get_fd.3
--rw-rw-r-- root/root        2502 usr/doc/libcap-1.10/doc/old/cap_get_file.3
--rw-rw-r-- root/root         434 usr/doc/libcap-1.10/doc/old/getcap.8
--rw-rw-r-- root/root         680 usr/doc/libcap-1.10/doc/old/setcap.8
-drwxr-xr-x root/root           0 usr/include/
-drwxr-xr-x root/root           0 usr/include/sys/
--rw-r--r-- root/root        2691 usr/include/sys/capability.h
-drwxr-xr-x root/root           0 usr/lib/
--rw-r--r-- root/root        9384 usr/lib/libcap.so.1.10
-drwxr-xr-x root/root           0 usr/man/
-drwxr-xr-x root/root           0 usr/man/man2/
--rw-r--r-- root/root         709 usr/man/man2/capget.2.gz
--rw-r--r-- root/root          47 usr/man/man2/capset.2.gz
-drwxr-xr-x root/root           0 usr/man/man3/
--rw-r--r-- root/root          58 usr/man/man3/_cap_names.3.gz
--rw-r--r-- root/root         860 usr/man/man3/cap_clear.3.gz
--rw-r--r-- root/root        1364 usr/man/man3/cap_copy_ext.3.gz
--rw-r--r-- root/root          59 usr/man/man3/cap_copy_int.3.gz
--rw-r--r-- root/root          50 usr/man/man3/cap_dup.3.gz
--rw-r--r-- root/root          51 usr/man/man3/cap_free.3.gz
--rw-r--r-- root/root        2132 usr/man/man3/cap_from_text.3.gz
--rw-r--r-- root/root          56 usr/man/man3/cap_get_flag.3.gz
--rw-r--r-- root/root        1474 usr/man/man3/cap_get_proc.3.gz
--rw-r--r-- root/root        1040 usr/man/man3/cap_init.3.gz
--rw-r--r-- root/root          56 usr/man/man3/cap_set_flag.3.gz
--rw-r--r-- root/root          59 usr/man/man3/cap_set_proc.3.gz
--rw-r--r-- root/root          55 usr/man/man3/cap_size.3.gz
--rw-r--r-- root/root          59 usr/man/man3/cap_to_text.3.gz
--rw-r--r-- root/root          54 usr/man/man3/capgetp.3.gz
--rw-r--r-- root/root          54 usr/man/man3/capsetp.3.gz
-drwxr-xr-x root/bin            0 usr/sbin/
--rwxr-xr-x root/bin         4484 usr/sbin/execcap
--rwxr-xr-x root/bin         4332 usr/sbin/getpcaps
--rwxr-xr-x root/bin         5200 usr/sbin/setpcaps
--rwxr-xr-x root/bin         6588 usr/sbin/sucap
+PACKAGE SIZE (compressed):      713 K
+PACKAGE SIZE (uncompressed):   1550 K
+REMOTE SOURCES:  36 K
+http://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.00.tar.bz2
+FILE LIST:
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/libcap-2.00/
+-rw-r--r--  root/root  usr/doc/libcap-2.00/CHANGELOG
+-rw-r--r--  root/root  usr/doc/libcap-2.00/License
+-rw-r--r--  root/root  usr/doc/libcap-2.00/README
+drwxr-xr-x  root/root  usr/include/
+drwxr-xr-x  root/root  usr/include/sys/
+-rw-r--r--  root/root  usr/include/sys/capability.h
+drwxr-xr-x  root/root  usr/lib/
+-rw-r--r--  root/root  usr/lib/libcap.so.2.00
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man2/
+-rw-r--r--  root/root  usr/man/man2/capget.2.gz
+-rw-r--r--  root/root  usr/man/man2/capset.2.gz
+drwxr-xr-x  root/root  usr/man/man3/
+-rw-r--r--  root/root  usr/man/man3/_cap_names.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_clear.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_copy_ext.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_copy_int.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_dup.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_free.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_from_text.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_get_fd.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_get_file.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_get_flag.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_get_proc.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_init.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_set_fd.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_set_file.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_set_flag.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_set_proc.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_size.3.gz
+-rw-r--r--  root/root  usr/man/man3/cap_to_text.3.gz
+-rw-r--r--  root/root  usr/man/man3/capgetp.3.gz
+-rw-r--r--  root/root  usr/man/man3/capsetp.3.gz
+-rw-r--r--  root/root  usr/man/man8.gz
+drwxr-xr-x  root/root  usr/sbin/
+-rwxr-xr-x  root/root  usr/sbin/getcap
+-rwxr-xr-x  root/root  usr/sbin/getpcaps
+-rwxr-xr-x  root/root  usr/sbin/setcap
+drwxr-xr-x  root/root  usr/share/
