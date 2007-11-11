@@ -1,11 +1,10 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://balsa.gnome.org/balsa-2.3.15.tar.bz2
-# MD5SUMS: a1c7fe3454243f1719a19fcdb0905948 balsa-2.3.13.tar.bz2
-# MD5SUMS: 6a86f8bebc21bd279b9fd4d2a21a36c0 balsa-2.3.14.tar.bz2
-# MD5SUMS: 1f38726db84fb5a9b2e8bdfa3e11baf0 balsa-2.3.15.tar.bz2
-# REQUIRES: aspell desktop-file-utils gmime gtkhtml libesmtp pcre scrollkeeper
-# OPTIONAL: gtksourceview gtkspell libnotify
+# SOURCES: http://balsa.gnome.org/balsa-2.3.20.tar.bz2
+# MD5SUMS: 64763beb79731649da7e327b1140843a balsa-2.3.20.tar.bz2
+# REQUIRES: desktop-file-utils gtkhtml scrollkeeper
+# OPTIONAL: aspell compface gmime gpgme gtksourceview gtkspell libesmtp
+# OPTIONAL: libnotify openssl pcre sqlite
 # UP2DATE: http://balsa.gnome.org/download
 
 TMP=${TMP:-/tmp}
@@ -13,9 +12,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.3.15
+VERSION=2.3.20
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -38,13 +37,17 @@ CFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
   --mandir=/usr/man \
   --infodir=/usr/info \
   --program-prefix="" \
-  --with-ssl \
-  --enable-smime \
+  --disable-schemas-install \
   --`pkg-config gtkspell-2.0 && echo with || echo without`-gtkspell \
   --`pkg-config gtksourceview-1.0 && echo with || echo without`-gtksourceview \
+  `pkg-config libssl && echo --with-ssl` \
+  `pkg-config sqlite3 && echo --with-sqlite` \
+  `test -x /usr/bin/gpgme-config && echo --with-gpgme=/usr/bin/gpgme-config` \
+  `test -x /usr/bin/compface && echo --with-compface` \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -54,12 +57,12 @@ rm -rf $PKG/var/lib/scrollkeeper
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/doc $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -name .svn -o -name CVS | xargs -r rm -r
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
@@ -74,3 +77,16 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/balsa-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+configure-opts
+  --`pkg-config gtkspell-2.0 && echo with || echo without`-gtkspell \
+  --`pkg-config gtksourceview-1.0 && echo with || echo without`-gtksourceview \
+  `pkg-config libssl && echo --with-ssl` \
+  `pkg-config sqlite3 && echo --with-sqlite` \
+  `test -x /usr/bin/gpgme-config && echo --with-gpgme=/usr/bin/gpgme-config` \
+  `test -x /usr/bin/compface && echo --with-compface` \
+#+configure-opts
