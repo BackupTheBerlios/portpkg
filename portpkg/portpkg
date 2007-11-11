@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.10 $"
+ENGINE_REV="\$Revision: 1.11 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -1160,7 +1160,7 @@ do_info() # pkgex-list
     [ "$sources" ] && echo "SOURCE LOCATIONS:   "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
-echo ret is $ret
+
   return $ret
 }
 
