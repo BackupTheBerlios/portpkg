@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.11 $"
+ENGINE_REV="\$Revision: 1.12 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -512,14 +512,17 @@ sed -nr "/^MD5SUM=/s,^.*=,,p" $path/$name.info 2>/dev/null`
   fi
 
   # prepare the action message
-  if [ "$replace" = "$package" ]; then
+  if [ "$pkg_file" ]; then
     build_msg="Rebuilding $package"
-    install_msg="Reinstalling $package"
-  elif [ "$replace" ]; then
-    build_msg="Building $package to replace $replace"
-    install_msg="Replacing $replace with $package"
   else
     build_msg="Building $package"
+  fi
+  if [ "$replace" = "$package" ]; then
+    install_msg="Reinstalling $package"
+  elif [ "$replace" ]; then
+    build_msg="$build_msg to replace $replace"
+    install_msg="Replacing $replace with $package"
+  else
     install_msg="Installing $package"
   fi
 
@@ -1372,6 +1375,9 @@ init()
   export LC_MESSAGES=C
   export LC_NUMERIC=C
   export LC_TIME=C
+  
+  # default umask
+  umask 022
 
   # make/check temporary directory
   [ "$TMP" ] || die "TMP is emtpy!"
