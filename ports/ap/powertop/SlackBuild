@@ -1,15 +1,17 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.linuxpowertop.org/download/powertop-1.2.tar.gz
+# SOURCES: http://www.linuxpowertop.org/download/powertop-1.9.tar.gz
 # MD5SUMS: 4420482fff4c3f0c63a4a3cec56f2931 powertop-1.1.tar.gz
 # MD5SUMS: fa18e6115e75417bf94ca38021f8959d powertop-1.2.tar.gz
+# MD5SUMS: 7e2cd799941350a45586edac43760ac9 powertop-1.9.tar.gz
+# REQUIRES: ncurses
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.2
+VERSION=1.9
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -21,8 +23,6 @@ cd powertop-$VERSION
 chown -R root.root .
 make
 make install DESTDIR=$PKG
-mkdir -p $PKG/usr/man/man1
-install -m 644 powertop.1 $PKG/usr/man/man1/
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -36,6 +36,7 @@ mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   COPYING Changelog README \
   $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -name .svn -o -name CVS | xargs -r rm -r
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
