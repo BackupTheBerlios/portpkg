@@ -1,12 +1,14 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.10/gtk-engines-2.10.1.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gtk-engines/2.12/gtk-engines-2.12.2.tar.bz2
 # MD5SUMS: ce66ea6db4d8886b949239b3f3c53c14 gtk-engines-2.10.1.tar.bz2
+# MD5SUMS: a73506d8262eb52e0e4bd8e04517ea4e gtk-engines-2.12.2.tar.bz2
 # MD5SUMS: 3389a92b62b9c8b916fbb52c4529f072 gtk-engines-2.6.4.tar.bz2
 # MD5SUMS: 28469a797ba1e6aaa3f7eea4c9f5f9b7 gtk-engines-2.6.5.tar.bz2
 # MD5SUMS: 9f8d71891771e4583dd0985556784934 gtk-engines-2.7.0.tar.bz2
 # MD5SUMS: b0f27c0f6d5f610ca445a3d82d5779da gtk-engines-2.7.4.tar.bz2
 # MD5SUMS: 5eece46b655fcf027d6b3775ef105bcc gtk-engines-2.7.8.tar.bz2
+# REQUIRES: gtk+2
 # gtk+2
 
 TMP=${TMP:-/tmp}
@@ -14,7 +16,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.10.1
+VERSION=2.12.2
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -40,25 +42,26 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-# remove clearlooks engine which we have in more recent version seperately
-#rm -r $PKG/usr/share/themes/Clearlooks
-#rm $PKG/usr/lib/gtk-2.0/*/engines/libclearlooks.*
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README \
+  AUTHORS COPYING ChangeLog INSTALL NEWS README \
   $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -name .svn -o -name CVS | xargs -r rm -r
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
