@@ -1,0 +1,58 @@
+PACKAGE SIZE (compressed):       27 K
+PACKAGE SIZE (uncompressed):    120 K
+REMOTE SOURCES:  4 K
+http://cvs.fedoraproject.org/repo/pkgs/pm-utils/pm-utils-0.99.4.tar.gz/a88503876f63c96b55784be91b6458d2/pm-utils-0.99.4.tar.gz
+http://cvs.fedora.redhat.com/viewcvs/*checkout*/devel/pm-utils/pm-utils-0.99.3-cfg.patch
+FILE LIST:
+drwxr-xr-x  root/root  ./
+drwxr-xr-x  root/root  etc/
+drwxr-xr-x  root/root  etc/pm/
+drwxr-xr-x  root/root  etc/pm/config.d/
+drwxr-xr-x  root/root  etc/pm/power.d/
+drwxr-xr-x  root/root  etc/pm/sleep.d/
+drwxr-xr-x  root/root  install/
+-rw-r--r--  root/root  install/doinst.sh
+-rw-r--r--  root/root  install/slack-desc
+drwxr-xr-x  root/root  usr/
+drwxr-xr-x  root/root  usr/bin/
+-rwxr-xr-x  root/root  usr/bin/on_ac_power
+-rwxr-xr-x  root/root  usr/bin/pm-is-supported
+drwxr-xr-x  root/root  usr/doc/
+drwxr-xr-x  root/root  usr/doc/pm-utils-0.99.4/
+-rw-r--r--  root/root  usr/doc/pm-utils-0.99.4/AUTHORS
+-rw-r--r--  root/root  usr/doc/pm-utils-0.99.4/COPYING
+-rw-r--r--  root/root  usr/doc/pm-utils-0.99.4/ChangeLog
+-rw-r--r--  root/root  usr/doc/pm-utils-0.99.4/INSTALL
+-rw-r--r--  root/root  usr/doc/pm-utils-0.99.4/NEWS
+-rw-r--r--  root/root  usr/doc/pm-utils-0.99.4/README
+drwxr-xr-x  root/root  usr/lib/
+drwxr-xr-x  root/root  usr/lib/pm-utils/
+drwxr-xr-x  root/root  usr/lib/pm-utils/bin/
+-rwxr-xr-x  root/root  usr/lib/pm-utils/bin/pm-action
+-rwxr-xr-x  root/root  usr/lib/pm-utils/bin/pm-pmu
+-rwxr-xr-x  root/root  usr/lib/pm-utils/bin/pm-reset-swap
+-rwxr-xr-x  root/root  usr/lib/pm-utils/defaults
+-rwxr-xr-x  root/root  usr/lib/pm-utils/functions
+drwxr-xr-x  root/root  usr/lib/pm-utils/power.d/
+-rwxr-xr-x  root/root  usr/lib/pm-utils/power.d/sched-powersave
+drwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/00clear
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/01grub
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/05led
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/10NetworkManager
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/20video
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/49bluetooth
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/50modules
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/55battery
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/60sysfont
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/65alsa
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/90clock
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/94cpufreq
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/95led
+-rwxr-xr-x  root/root  usr/lib/pm-utils/sleep.d/99video
+drwxr-xr-x  root/root  usr/man/
+drwxr-xr-x  root/root  usr/man/man1/
+-rw-r--r--  root/root  usr/man/man1/on_ac_power.1.gz
+-rw-r--r--  root/root  usr/man/man1/pm-pmu.1.gz
+drwxr-xr-x  root/root  usr/sbin/
+-rwxr-xr-x  root/root  usr/sbin/pm-powersave
