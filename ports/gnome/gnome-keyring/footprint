@@ -1,3 +1,8 @@
+PACKAGE SIZE (compressed):      232 K
+PACKAGE SIZE (uncompressed):   1580 K
+REMOTE SOURCES:  537 K
+http://ftp.gnome.org/pub/GNOME/sources/gnome-keyring/2.20/gnome-keyring-2.20.1.tar.bz2
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
@@ -6,20 +11,23 @@ drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/gnome-keyring-daemon
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/gnome-keyring-0.8.1/
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/AUTHORS
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/COPYING
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/ChangeLog
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/INSTALL
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/NEWS
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/README
--rw-r--r--  root/root  usr/doc/gnome-keyring-0.8.1/TODO
+drwxr-xr-x  root/root  usr/doc/gnome-keyring-2.20.1/
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/COPYING
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/HACKING
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/INSTALL
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/NEWS
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/README
+-rw-r--r--  root/root  usr/doc/gnome-keyring-2.20.1/TODO
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/gnome-keyring-1/
+-rw-r--r--  root/root  usr/include/gnome-keyring-1/gnome-keyring-memory.h
+-rw-r--r--  root/root  usr/include/gnome-keyring-1/gnome-keyring-result.h
 -rw-r--r--  root/root  usr/include/gnome-keyring-1/gnome-keyring.h
 drwxr-xr-x  root/root  usr/lib/
 -rwxr-xr-x  root/root  usr/lib/libgnome-keyring.la
--rwxr-xr-x  root/root  usr/lib/libgnome-keyring.so.0.0.1
+-rwxr-xr-x  root/root  usr/lib/libgnome-keyring.so.0.1.1
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/gnome-keyring-1.pc
 drwxr-xr-x  root/root  usr/libexec/
@@ -29,7 +37,18 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/
 drwxr-xr-x  root/root  usr/share/gtk-doc/html/
 drwxr-xr-x  root/root  usr/share/gtk-doc/html/gnome-keyring/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/ch01.html
--rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-acl.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-attributes.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-find.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-generic-callbacks.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-item-info.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-items.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-keyring-info.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-keyrings.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-memory.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-misc.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-network.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring-gnome-keyring-result.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring.devhelp
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/gnome-keyring.devhelp2
 -rw-r--r--  root/root  usr/share/gtk-doc/html/gnome-keyring/home.png
@@ -49,6 +68,9 @@ drwxr-xr-x  root/root  usr/share/locale/az/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/be/
 drwxr-xr-x  root/root  usr/share/locale/be/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/be/LC_MESSAGES/gnome-keyring.mo
+drwxr-xr-x  root/root  usr/share/locale/be@latin/
+drwxr-xr-x  root/root  usr/share/locale/be@latin/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/be@latin/LC_MESSAGES/gnome-keyring.mo
 drwxr-xr-x  root/root  usr/share/locale/bg/
 drwxr-xr-x  root/root  usr/share/locale/bg/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/bg/LC_MESSAGES/gnome-keyring.mo
@@ -172,6 +194,9 @@ drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/nl/
 drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/gnome-keyring.mo
+drwxr-xr-x  root/root  usr/share/locale/oc/
+drwxr-xr-x  root/root  usr/share/locale/oc/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/oc/LC_MESSAGES/gnome-keyring.mo
 drwxr-xr-x  root/root  usr/share/locale/or/
 drwxr-xr-x  root/root  usr/share/locale/or/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/or/LC_MESSAGES/gnome-keyring.mo
@@ -196,6 +221,9 @@ drwxr-xr-x  root/root  usr/share/locale/ru/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/rw/
 drwxr-xr-x  root/root  usr/share/locale/rw/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/rw/LC_MESSAGES/gnome-keyring.mo
+drwxr-xr-x  root/root  usr/share/locale/si/
+drwxr-xr-x  root/root  usr/share/locale/si/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/si/LC_MESSAGES/gnome-keyring.mo
 drwxr-xr-x  root/root  usr/share/locale/sk/
 drwxr-xr-x  root/root  usr/share/locale/sk/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/sk/LC_MESSAGES/gnome-keyring.mo
@@ -217,6 +245,9 @@ drwxr-xr-x  root/root  usr/share/locale/sv/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/ta/
 drwxr-xr-x  root/root  usr/share/locale/ta/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/ta/LC_MESSAGES/gnome-keyring.mo
+drwxr-xr-x  root/root  usr/share/locale/te/
+drwxr-xr-x  root/root  usr/share/locale/te/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/te/LC_MESSAGES/gnome-keyring.mo
 drwxr-xr-x  root/root  usr/share/locale/th/
 drwxr-xr-x  root/root  usr/share/locale/th/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/th/LC_MESSAGES/gnome-keyring.mo
