@@ -5,12 +5,7 @@
 # MD5SUMS: f82bb2bc51b6cd5e5dd96f88f6f98582 MPlayer-1.0rc1.tar.bz2
 # MD5SUMS: 7e27e535c2d267637df34898f1b91707 MPlayer-1.0rc2.tar.bz2
 # REQUIRES: cxxlibs libtermcap
-# OPTIONAL: aalib arts cdparanoia desktop-file-utils divx4linux esound
-# OPTIONAL: faac fribidi glib glib2 gtk+ gtk+2 lame libXv libXxf86dga
-# OPTIONAL: libcaca libdv libjpeg libmad libmpcdec libogg libpng
-# OPTIONAL: libtheora libungif libvorbis lzo mesa mplayer-codecs
-# OPTIONAL: mplayer-fonts mplayer-skins ncurses samba sdl slang speex
-# OPTIONAL: svgalib x11 x11-devel x264 xvidcore zlib
+# OPTIONAL: aalib arts cdparanoia desktop-file-utils divx4linux esound faac fribidi glib glib2 gtk+ gtk+2 lame libXv libXxf86dga libcaca libdv libjpeg libmad libmpcdec libogg libpng libtheora libungif libvorbis lzo mesa mplayer-codecs mplayer-fonts mplayer-skins ncurses samba sdl slang speex svgalib x11 x11-devel x264 xvidcore zlib
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
