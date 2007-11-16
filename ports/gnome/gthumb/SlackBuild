@@ -1,21 +1,22 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.10/gthumb-2.10.0.tar.bz2
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.6/gthumb-2.10.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.10/gthumb-2.10.7.tar.bz2
 # MD5SUMS: a3e785778c262c193f750d4b17e0edfd gthumb-2.10.0.tar.bz2
+# MD5SUMS: cbb6186096136c73e638372f91ee0284 gthumb-2.10.7.tar.bz2
 # MD5SUMS: 498d2729805e335c850f418b7994df66 gthumb-2.6.6.tar.bz2
 # MD5SUMS: 56b35aa24d4461d7e0ee3c4dea3c6141 gthumb-2.6.9.tar.bz2
 # MD5SUMS: 3791412add993ad938f0fe4df021c88b gthumb-2.7.3.tar.bz2
 # MD5SUMS: 7fdd6a6ded5abae5878e6e5b4bc85135 gthumb-2.7.4.tar.bz2
-# REQUIRES: desktop-file-utils gconf libglade libgnomeui libtiff scrollkeeper
-# OPTIONAL: libXtst libXxf86vm libgphoto2
+# REQUIRES: desktop-file-utils gconf libglade libgnomeui libtiff
+# REQUIRES: scrollkeeper
+# OPTIONAL: libXtst libXxf86vm libgphoto2 libusb
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.10.0
+VERSION=2.10.7
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -41,9 +42,13 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
   --disable-scrollkeeper \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
@@ -54,12 +59,12 @@ rm -rf $PKG/var/lib/scrollkeeper
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -name .svn -o -name CVS | xargs -r rm -r
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
