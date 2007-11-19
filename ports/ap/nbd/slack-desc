@@ -1,0 +1,11 @@
+nbd: sharing block device via network
+nbd:
+nbd: With this thing compiled into your kernel, Linux can use a remote
+nbd: server as one of its block devices. Every time the client computer
+nbd: wants to read /dev/nd0, it will send a request to the server via
+nbd: TCP, which will reply with the data requested. This can be used for
+nbd: stations with low disk space (or even diskless - if you boot from
+nbd: floppy) to borrow disk space from other computers
+nbd: 
+nbd: http://nbd.sourceforge.net/
+nbd:
