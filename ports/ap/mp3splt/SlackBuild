@@ -11,7 +11,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=2.1c
 ARCH=${ARCH:-i486}
-BUILD=1shv
+BUILD=2shv
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -28,6 +28,11 @@ mkdir -p $PKG/usr
 cd $TMP
 tar xzvf $CWD/mp3splt-$VERSION-src.tar.gz
 cd mp3splt-$VERSION
+
+# fix format array definitions to compile with new gcc
+
+cat $CWD/formatdef.diff | patch -p0
+
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \

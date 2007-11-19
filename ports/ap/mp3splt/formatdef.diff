@@ -1,0 +1,11 @@
+--- splt.h.orig	2005-03-26 15:52:38.000000000 +0200
++++ splt.h	2007-07-05 11:49:33.000000000 +0300
+@@ -93,7 +93,7 @@
+ 
+ char *zero_pad_float (float f, char *out);
+ 
+-int parse_outformat(char *s, char format[][], int cddboption);
++int parse_outformat(char *s, char format[OUTNUM][MAXOLEN], int cddboption);
+ 
+ unsigned char *cleanstring (unsigned char *s);
+ 
