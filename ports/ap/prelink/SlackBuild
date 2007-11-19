@@ -1,10 +1,16 @@
-TMP=/tmp
+#!/bin/sh
+# MAINTAINER: Shiray Andrey 'sh' <shiray@yandex.ru>
+# SOURCES: http://people.redhat.com/jakub/prelink/prelink-20060213.tar.bz2
+# MD5SUMS: a3ee7d324ecdf2f1a7b8b95c01ee75fa prelink-20060213.tar.bz2
+# REQUIRES: libelf
+
+TMP=${TMP:-/tmp}
 CWD=`pwd`
-NAME=prelink
+NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
-VERSION=20041123
+VERSION=20060213
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=1sh
 
 if [ "$ARCH" = "i386" ]; then
   OPTIMIZ="-O2 -march=i386 -mcpu=i686"
@@ -46,8 +52,9 @@ CFLAGS="$OPTIMIZ" \
 ./configure --prefix=/usr --sysconfdir=/etc || exit 1
 
 # Apply some patches, see http://www.linuxquestions.org/questions/history/212756
-zcat $CWD/pt_gnu_stack.patch.gz | patch -p1 --backup --verbose --suffix=.orig -E
-zcat $CWD/prelink-20030522-glibc231-1.patch.gz | patch -p1 --backup --verbose --suffix=.orig -E
+# We don't need them any more
+#zcat $CWD/pt_gnu_stack.patch.gz | patch -p1 --backup --verbose --suffix=.orig -E
+#zcat $CWD/prelink-20030522-glibc231-1.patch.gz | patch -p1 --backup --verbose --suffix=.orig -E
 
 make || exit 1
 
