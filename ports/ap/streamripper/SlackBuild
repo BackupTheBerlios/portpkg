@@ -1,15 +1,17 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/streamripper/streamripper-1.61.27.tar.gz
+# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/streamripper/streamripper-1.62.1.tar.gz
 # MD5SUMS: d92a37bf23ee3f1bd5a9498d72c0562a streamripper-1.61.27.tar.gz
-# REQUIRES: libmad libvorbis libogg
+# MD5SUMS: c8c84b8acf84f3d431bf7b6303acc63b streamripper-1.62.1.tar.gz
+# REQUIRES: libmad libogg libvorbis
+# OPTIONAL: faad2
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.61.27
+VERSION=1.62.1
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
@@ -32,7 +34,8 @@ chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
-  $ARCH-slackware-linux
+  --mandir=/usr/man \
+  --with-included-tre 
 make
 make install DESTDIR=$PKG
 rm -fv $PKG/usr/info/dir
