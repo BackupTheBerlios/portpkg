@@ -1,0 +1,13 @@
+--- stardict-3.0.0/src/prefsdlg.cpp	2007-08-10 09:08:45.000000000 +0300
++++ stardict-3.0.0.fixed/src/prefsdlg.cpp	2007-08-14 10:18:52.000000000 +0300
+@@ -735,8 +735,8 @@
+ 	gtk_box_pack_start(GTK_BOX(vbox1),check_button,false,false,0);
+ #if defined(CONFIG_GTK) || defined(CONFIG_GPE)
+ 	GtkWidget *hbox2 = gtk_hbox_new(FALSE, 6);
+-	label=gtk_label_new(_("Command for playing wav files:"));
+-	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
++	GtkWidget* label0=gtk_label_new(_("Command for playing wav files:"));
++	gtk_box_pack_start(GTK_BOX(hbox2), label0, FALSE, FALSE, 0);
+ 	GtkWidget *e = gtk_entry_new();
+ 	gtk_widget_set_size_request(e, 50, -1);
+ 	const std::string &playcmd=
