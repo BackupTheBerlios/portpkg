@@ -1,0 +1,90 @@
+#!/bin/sh
+# MAINTAINER: Viktor Kojouharov 'sat' <viktor@bloka.org>
+# SOURCES: http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_11_5_RTM/src/nss-3.11.5.tar.gz
+# MD5SUMS: 1add44e6a41dbf5091cfd000f19ad6b9 nss-3.11.5.tar.gz
+# REQUIRES: nspr
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+
+VERSION=3.11.5
+ARCH=${ARCH:-i486}
+BUILD=1sat
+NSS_VMAJOR=3
+NSS_VMINOR=11
+NSS_VPATCH=5
+
+EXTRACT=$TMP/nss-$VERSION
+PKG=$EXTRACT/mozilla/security/dist
+DIST=$EXTRACT/mozilla/dist
+export NSDISTMODE=copy
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+  export USE_64=1
+fi
+
+SLKCFLAGS=$(nspr-config --cflags)\ $SLKCFLAGS 
+cd $TMP
+tar xzvf $CWD/nss-$VERSION.tar.gz
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $EXTRACT
+chown -R root.root .
+cd $EXTRACT/mozilla/security/coreconf
+make -j1 BUILD_OPT=1 XCFLAGS=$SLKCFLAGS
+cd $EXTRACT/mozilla/security/dbm
+make -j1 BUILD_OPT=1 XCFLAGS=$SLKCFLAGS
+cd $EXTRACT/mozilla/security/nss
+make -j1 BUILD_OPT=1 XCFLAGS=$SLKCFLAGS
+
+LINUX=$DIST/$(ls $DIST | grep Linux)
+mkdir $PKG/usr/include
+cp -rL $DIST/public/nss $PKG/usr/include/
+cp -rL $LINUX/bin $PKG/usr
+mkdir -p $PKG/usr/lib/nss
+cp -rL $LINUX/lib/* $PKG/usr/lib/nss
+
+mkdir $PKG/usr/lib/pkgconfig
+cp $CWD/nss.pc.in $PKG/usr/lib/pkgconfig/nss.pc
+sed -e "s,@libdir@,/usr/lib/nss,g" \
+	      -e "s,@prefix@,/usr,g" \
+	      -e "s,@exec_prefix@,\$\{prefix},g" \
+	      -e "s,@includedir@,\$\{prefix}/include/nss," \
+	      -e "s,@NSPR_VERSION@,`nspr-config --version`,g" \
+	      -e "s,@NSS_VERSION@,$NSS_VMAJOR.$NSS_VMINOR.$NSS_VPATCH,g" \
+	      -i $PKG/usr/lib/pkgconfig/nss.pc
+
+cp $CWD/nss-config.in $PKG/usr/bin/nss-config
+sed -e "s,@libdir@,/usr/lib/nss,g" \
+		-e "s,@prefix@,/usr,g" \
+		-e "s,@exec_prefix@,\$\{prefix},g" \
+		-e "s,@includedir@,\$\{prefix}/include/nss,g" \
+		-e "s,@MOD_MAJOR_VERSION@,$NSS_VMAJOR,g" \
+		-e "s,@MOD_MINOR_VERSION@,$NSS_VMINOR,g" \
+		-e "s,@MOD_PATCH_VERSION@,$NSS_VPATCH,g" \
+		-i $PKG/usr/bin/nss-config
+chmod 755 $PKG/usr/bin/nss-config
+
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/nss-$VERSION
+  rm -rf $PKG
+fi
