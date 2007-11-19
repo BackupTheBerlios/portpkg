@@ -1,68 +1,68 @@
-TMP=/tmp
-CWD=`pwd`
-NAME=libelf
-PKG=$TMP/package-$NAME
-VERSION=0.8.5
-ARCH=${ARCH:-i486}
-BUILD=1sjn
+#!/bin/sh
+# MAINTAINER: Shiray Andrey 'sh' <shiray@yandex.ru>
+# SOURCES: http://www.mr511.de/software/libelf-0.8.9.tar.gz
+# MD5SUMS: 11904a77b948bcfab671e80100b6098d libelf-0.8.9.tar.gz
 
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.8.9
+ARCH=${ARCH:-i486}
+BUILD=1sh
 
 if [ "$ARCH" = "i386" ]; then
-  OPTIMIZ="-O2 -march=i386 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  OPTIMIZ="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "athlon" ]; then
-  OPTIMIZ="-O2 -march=athlon"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
-  OPTIMIZ="-O2"
+  SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
-  OPTIMIZ="-O2"
-else
-  OPTIMIZ="-O2"
+  SLKCFLAGS="-O2"
 fi
 
-rm -rf $PKG $TMP/$NAME-$VERSION
-mkdir -p $PKG/{install,usr/doc/$NAME-$VERSION}
-
-
+rm -rf $PKG
+mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit
-
-cd $NAME-$VERSION || exit
-
+tar xzvf $CWD/libelf-$VERSION.tar.gz
+cd libelf-$VERSION
 chown -R root.root .
-find . -perm 664 -exec chmod 644 {} \;
-find . -perm 600 -exec chmod 644 {} \;
-find . -perm 444 -exec chmod 644 {} \;
-find . -perm 400 -exec chmod 644 {} \;
-find . -perm 440 -exec chmod 644 {} \;
-find . -perm 777 -exec chmod 755 {} \;
-find . -perm 775 -exec chmod 755 {} \;
-find . -perm 511 -exec chmod 755 {} \;
-find . -perm 711 -exec chmod 755 {} \;
-find . -perm 555 -exec chmod 755 {} \;
-find . -perm 666 -exec chmod 644 {} \;
-
-
-CXXFLAGS="$OPTIMIZ" \
-CFLAGS="$OPTIMIZ" \
-./configure --prefix=/usr || exit 1
-make || exit 1
-
-make prefix=$PKG/usr install || exit 1
-
-mkdir -p $PKG/install
-cat $CWD/slack-desc > $PKG/install/slack-desc
-
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
+  --program-prefix="" \
+  --enable-shared \
+  --disable-schemas-install \
+  $ARCH-slackware-linux
+make
+make install prefix=$PKG/usr
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+mv $PKG/usr/share/doc $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-ChangeLog AUTHORS COPYIN* MANIFEST VERSION INSTALL NEWS README TODO \
-$PKG/usr/doc/$NAME-$VERSION/
+  ChangeLog INSTALL MANIFEST README VERSION \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
-find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs strip --strip-debug 2> /dev/null
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
-makepkg -l y -c n ../$NAME-$VERSION-$ARCH-$BUILD.tgz 
-
- 
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/libelf-$VERSION
+  rm -rf $PKG
+fi
