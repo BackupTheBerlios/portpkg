@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.15 $"
+ENGINE_REV="\$Revision: 1.16 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -397,7 +397,7 @@ ls_verbose() # <pkgex
 # adjust PRT_DIR in case the pkgex "." is used
 check_indirect() # pkgex
 {
-  [ "${1:-}" = "." ] || return
+  [ "${1:-}" = "." ] || return 1
   # yes, all relative to current dir, thus no pkgex resolution
   debug "check_indirect(): indirect mode: disabling dependencies resolution"
   TEST_REQS=true
@@ -411,6 +411,7 @@ check_indirect() # pkgex
     SRC_DIR=$PRT_DIR
     LOG_DIR=$PRT_DIR
   esac
+  return 0
 }
 
 find_pkg_file()
@@ -780,7 +781,9 @@ build_pkg()
     output=/dev/stdout
   fi
 
+  list_add canceled
   case `pause "Continue: $build_msg? (s to skip)"` in s|S) continue;; esac
+  list_del canceled
   
   $DOWNLOAD_ONLY || $DRY_RUN || header "Processing $group/$name"
   $DOWNLOAD_ONLY || stanza "$build_msg:"
@@ -985,35 +988,18 @@ add_pkg()
   if in_list canceled; then
     debug "add_pkg() $name has already been canceled, skipping"
     return 0
-  elif in_list started; then
-    error "Circular dependency! Stopping $name."
-    return 1
-  # otherwise if tracked as "finished" (because of a dependency), skip it
-  elif in_list finished; then
-    return 0
   elif ls_inst -q "/$package$" && ! $REINSTALL && ! $rebuild; then
     $DOWNLOAD_ONLY && row "$package is already installed, skipping" \
     || stanza "$package is already installed. Skipping."
     return 0
-  else
-  # else track it as "started"
-    list_add started
   fi
 
-  list_add canceled
-  # package file found in cache? (first in its group, then other places)
+  list_add started
   build_pkg || return 1
-  list_del canceled
 
   # track as "finished", remove from "started" list
   list_add finished
   list_del started
-
-#  # don't get confused in download-only mode
-#  if $DOWNLOAD_ONLY; then
-#    cache_add inst $INST_DIR/$package
-#    cache_del inst $INST_DIR/$replace
-#  fi
 
   # break-points
   $DOWNLOAD_ONLY && return 0
@@ -1047,12 +1033,7 @@ do_add() # pkgex-list
   local arg ret targets
 
   targets=`explicit "$@"`
-
-  if [ "$targets" = "." ]; then
-    check_indirect "$targets"
-    targets=`ls_slk "$@" | slk2name`
-  fi
-  
+  check_indirect "$targets" && targets=`ls_slk "$targets" | slk2name`
   [ "$targets" ] || die "No targets given or found!"
 
   # add targets to USE scope
