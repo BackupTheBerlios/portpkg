@@ -71,7 +71,7 @@ TMP=/tmp
 # commands used
 ADD_CMD='su -c "upgradepkg --install-new --reinstall $pkg_file"'
 ROOT_BUILD_CMD='su -c "$build_cmd"'
-NOBODY_BUILD_CMD='su nobody -c "$build_cmd"'
+NOBODY_BUILD_CMD='sudo -u nobody sh -c "$build_cmd"'
 WGET_CMD='wget -c -O $dest.part $try'
 
 # include configuration overlay
@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.12 $"
+ENGINE_REV="\$Revision: 1.13 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -747,8 +747,8 @@ maintainer_mode()
   rm -f arbitrary requires blocks optional slot-in pseudo no-fakeroot flags md5sums sources
 
   # write a file list of the package (remove creation time and size)
-  { printf "PACKAGE SIZE (compressed):   %6s K\n" $((`cat $pkg_file | wc -c`/1024))
-    printf "PACKAGE SIZE (uncompressed): %6s K\n" $((`zcat $pkg_file | wc -c`/1024))
+  { printf "PACKAGE SIZE (compressed):   %6s K\n" $((`cat $tmp/$package.tgz | wc -c`/1024))
+    printf "PACKAGE SIZE (uncompressed): %6s K\n" $((`zcat $tmp/$package.tgz | wc -c`/1024))
     echo "REMOTE SOURCES:  `echo "$sources" | sed "s,^.*[%/],$SRC_DIR/," | xargs du | tail -n 1 | cut -f 1` K"
     echo "$sources" | sed "s,%.*$,,"
     echo "FILE LIST:"
