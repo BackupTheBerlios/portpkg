@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.13 $"
+ENGINE_REV="\$Revision: 1.14 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -155,9 +155,9 @@ has_ports() { [ -d "$PRT_DIR" ] || error "No ports found! Change to your ports t
 is_sane()   { echo "$2  $1" | md5sum -c >$output 2>/dev/null || error "Integrity failed: ${1##*/}!"; }
 
 # simple list handlers
-list_add()  { echo "$group/$package" >>$CACHE/list_$1; }
-list_del()  { sed -i "\,^$group/$package$,d" $CACHE/list_$1; }
-in_list()   { fgrep -sqx "$group/$package" $CACHE/list_$1; }
+list_add()  { cache_add list_$1 "${2:-$group/$package}"; }
+list_del()  { cache_del list_$1 "${2:-$group/$package}"; }
+in_list()   { fgrep -sqx "${2:-$group/$package}" $CACHE/list_$1; }
 cache_add() { echo "$2" >>$CACHE/$1; }
 cache_del() { sed -i "\,^$2$,d" $CACHE/$1; }
 cache_reset() { rm -f $CACHE/$1; }
@@ -532,20 +532,27 @@ sed -nr "/^MD5SUM=/s,^.*=,,p" $path/$name.info 2>/dev/null`
 # check if all required packages are installed
 check_reqs()
 {
-  local prev req inst_pkg avail_pkg use_pkg list re ex us opt missing check
-  debug "check_reqs(): starting for $package"
+  local prev req inst_pkg avail_pkg use_pkg re ex us opt blk check
   $NO_REQS && return 0
   $LAZY_CHECKS && debug "check_reqs(): doing lazy checks"
   $TEST_REQS && debug "check_reqs(): testing dependencies for presence only"
-  missing=""
   opt=false
+  blk=false
   ex=$(exclude)
   us=$(use)
 
-  check=`echo -e "$requires\n--\n$optional" | grep -v $(ignore)`
+  check=`echo -e "$requires\nOPT\n$optional\nBLK\n$blocks" | grep -v $(ignore)`
   debug "check_reqs(): checking dependencies for $package:" $check
   for req in $check; do
-    [ "$req" = "--" ] && opt=true && continue
+    case $req in
+    OPT) opt=true && continue;;
+    BLK) blk=true && continue;;
+    esac
+
+    # is it already done?
+    in_list prev "$group/$name" && die "Circular dependency: $package"
+    in_list reqs "$group/$name" && continue
+
     re=`regex $req`
     inst_pkg=`ls_inst $re | head -n 1 | any2base`
     avail_pkg=`$TEST_REQS || { \
@@ -554,7 +561,9 @@ echo $inst_pkg; } | default`
     use_pkg=`ls_slk $re | grep $us | slk2loc | default`
 
     # is any version installed?
-    if [ "$inst_pkg" ] && ( $LAZY_CHECKS || $TEST_REQS ); then
+    if $blk && [ "$inst_pkg" ]; then
+      error "$req is blocking $name. Please uninstall first!"
+    elif [ "$inst_pkg" ] && ( $LAZY_CHECKS || $TEST_REQS ); then
       debug "check_reqs(): $name: $req: sufficient [$inst_pkg]"
     # is it up-to-date?
     elif [ "${avail_pkg##*/}" = "${inst_pkg:-0}" ]; then
@@ -564,15 +573,23 @@ echo $inst_pkg; } | default`
       debug "check_reqs(): $name: $req: blacklisted [$avail_pkg]"
     # is it optional?
     elif $opt && ! [ "$use_pkg" ]; then
+      in_list opts "$req" && continue
       debug "check_reqs(): $name: $req: optional"
+      list_add opts "$req"
     # anyway, is there an available port?
     elif [ "${avail_pkg:-$use_pkg}" ]; then
       avail_pkg=${avail_pkg:-$use_pkg}
       debug "check_reqs(): $name: $req: mismatch [${inst_pkg:-not installed}]"
+      # move if previously marked as optional
+      if in_list opts "$req"; then
+        list_del opts "$req"
+        debug "check_reqs(): $name: $req: moved from opt list to req list"
+      fi
       # if there's already one missing go straight on to the next
-      [ "$missing" ] && continue
+      [ -s $CACHE/list_miss ] && continue
       $DRY_RUN && ! [ "${prev:-}" ] && ! $DOWNLOAD_ONLY && stanza "Preparing dependencies of $package:"
       prev=$name
+      list_add prev "$group/$name"
       ( if $DRY_RUN; then
           stanza() { :; }
           header() { :; }
@@ -583,44 +600,22 @@ echo $inst_pkg; } | default`
         $DRY_RUN && ! $DOWNLOAD_ONLY && ! $PREPARE_ONLY && row "$install_msg"
         exit 0
       ) || return 1
+      list_del prev "$group/$name"
       pkg_file=`find_pkg_file`
     # is it blacklistet?
     elif echo "$avail_pkg" | grep -sqv $(exclude) && [ "$avail_pkg" ]; then
       debug "check_reqs(): $name: $req: blacklisted [$avail_pkg]"
     elif ! [ "$inst_pkg" ]; then
       debug "check_reqs(): $name: $req: missing"
-      missing="$missing $req"
+      list_add miss $req
     fi
   done
-  if [ "$missing" ]; then
-    error "Cannot find required packages:" $missing
+  if [ -s $CACHE/list_miss ]; then
+    error "Cannot find required packages:" `cat $CACHE/list_miss`
     return 1
   fi
+  in_list reqs "$group/$name" || list_add reqs "$group/$name"
   return 0
-}
-
-check_opts()
-{
-  local opt all_opts
-  $DOWNLOAD_ONLY && return 0
-  for opt in `echo "$optional" | grep -v $(ignore)`; do
-    ls_inst -q `regex $opt` || all_opts="$all_opts $opt"
-  done
-  [ "$all_opts" ] && warn "Optional dependencies to consider:" $all_opts
-  return 0
-}
-
-check_blocks()
-{
-  local block
-  $NO_REQS && return 0
-  for block in $blocks; do
-    if ls_inst -q `regex $block`; then
-      # we have a blocking package installed, exit!
-      error "$block is blocking $name. Please uninstall first!"
-      return 1
-    fi
-  done
 }
 
 # update a SlackBuilds header to current variables
@@ -764,8 +759,7 @@ build_pkg()
 
   # requirements check
   check_reqs || return 1
-  check_opts || return 1
-  check_blocks || return 1
+  [ -s $CACHE/list_opts ] && warn "Optional dependencies to consider:" `cat $CACHE/list_opts`
 
   # package file found in cache?
   if [ "$pkg_file" ] && ! $rebuild; then
