@@ -1,11 +1,12 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://home.in.tum.de/~baueran/mailfilter/mailfilter-0.8.tar.gz
+# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/mailfilter/mailfilter-0.8.1.tar.gz
 # MD5SUMS: 0c03ef7f9ff214b034eaaf68515610aa mailfilter-0.6.2.tar.gz
+# MD5SUMS: 2046aadb8b54b9cea33360e738855144 mailfilter-0.8.1.tar.gz
 # MD5SUMS: a935c224bfb9c10257a45206305aa832 mailfilter-0.8.tar.gz
 # REQUIRES: cxxlibs
 # OPTIONAL: gcc-g++ openssl
-VERSION=0.8
+VERSION=0.8.1
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -43,6 +44,8 @@ cp -a \
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cd $PKG
+mv usr/share/man usr/
+rm -rf usr/share
 find . -type f | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
 
 find . -type f -path '*/man/*man?/*.*' -path '*.[1-9]' -exec gzip -9f {} \;
