@@ -8,7 +8,7 @@
 # OPTIONAL: gcc-g++ openssl
 VERSION=0.8.1
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=2sjn
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -32,7 +32,7 @@ cd ${NAME}-${VERSION} || exit 1
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-./configure --prefix=/usr $ARCH-slackware-linux || exit 1
+./configure --prefix=/usr --mandir=/usr/man $ARCH-slackware-linux || exit 1
 make || exit 1 
 make DESTDIR=$PKG install || exit 1
 
@@ -44,8 +44,6 @@ cp -a \
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cd $PKG
-mv usr/share/man usr/
-rm -rf usr/share
 find . -type f | xargs file | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded
 
 find . -type f -path '*/man/*man?/*.*' -path '*.[1-9]' -exec gzip -9f {} \;
