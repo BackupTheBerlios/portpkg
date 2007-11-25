@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.16 $"
+ENGINE_REV="\$Revision: 1.17 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -238,7 +238,7 @@ $url"
         if [ -d $dest/CVS ]; then
           ( cd $dest
             # this has already been checked out once
-            cvs -qz3 up -dP . || ! [ "$urls" ]
+            cvs -qz3 up -dPC . || ! [ "$urls" ]
           )
         else
           ( cd ${dest%/*}
@@ -466,7 +466,8 @@ get_info() # pkgex
   srcver=`sed -n "/^VERSION=/s,^.*=,,p" $script`
   path=${script%/*}
 #  description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc ${script%SlackBuild}slack-desc $script | eval $decode`
-  description=`grep -she ^$name: -e "^\\$NAME:" ${script%?SlackBuild}/slack-desc ${script%?SlackBuild}.slack-desc $script | eval $decode`
+  description=`echo -e "$path/slack-desc\n${script%SlackBuild}slack-desc\n$script" | sort -u | xargs grep -she "^$name:" -e "^\$NAME:" | eval $decode`
+#  description=`grep -she ^$name: -e "^\\$NAME:" ${script%?SlackBuild}/slack-desc ${script%?SlackBuild}.slack-desc $script | eval $decode`
   nre=`regex $name`
   requires=`{ \
 sed -nr "/^# REQUIRES:/{s,.*: ,,;s, ,\n,g;p}" $script; \
@@ -556,10 +557,13 @@ check_reqs()
 
     re=`regex $req`
     inst_pkg=`ls_inst $re | head -n 1 | any2base`
-    avail_pkg=`$TEST_REQS || { \
-ls_slk $re | grep -v $ex | slk2loc; \
-echo $inst_pkg; } | default`
-    use_pkg=`ls_slk $re | grep $us | slk2loc | default`
+#    avail_pkg=`$TEST_REQS || { \
+#ls_slk $re | grep -v $ex | slk2loc; \
+#echo $inst_pkg; } | default`
+#    use_pkg=`ls_slk $re | grep $us | slk2loc | default`
+    avail_pkg=`$TEST_REQS || ls_slk $re | grep -v $ex | slk2loc`
+    use_pkg=`echo "$avail_pkg" | grep $us | default`
+    avail_pkg=`echo -e "$avail_pkg\n$inst_pkg" | default`
 
     # is any version installed?
     if $blk && [ "$inst_pkg" ]; then
@@ -579,6 +583,7 @@ echo $inst_pkg; } | default`
       list_add opts "$req"
     # anyway, is there an available port?
     elif [ "${avail_pkg:-$use_pkg}" ]; then
+      echo -n .
       avail_pkg=${use_pkg:-$avail_pkg}
       debug "check_reqs(): $name: $req: mismatch [${inst_pkg:-not installed}]"
       # move if previously marked as optional
@@ -1041,12 +1046,13 @@ do_add() # pkgex-list
 
   # pre-run for requirements check
   if ! $NO_REQS; then
-    stanza "Checking dependencies..."
+    stanza "Checking dependencies...\c"
     for arg in $targets; do
       ( get_info $arg || die
         check_reqs
       ) || return 1
     done
+    echo "done."
     [ -s $CACHE/list_opts ] && warn "Optional dependencies to consider:" `cat $CACHE/list_opts`
     targets=`cat $CACHE/list_reqs`
   fi
