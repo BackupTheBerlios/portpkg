@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.19 $"
+ENGINE_REV="\$Revision: 1.20 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -342,7 +342,7 @@ explicit() # pkgex_list >pkgex-list
               { ls_slk $re | grep -v `exclude` | slk2gname
                 virtual $re | any2base
               } | sort -u;;
-      *%)     ls_diff `echo "${arg%\%}" | tr "%" " "` | pkg2name;;
+      *%)     ls_diff `echo "${arg%"%"}" | tr "%" " "` | pkg2name;;
       *)      echo $arg;;
     esac
   done
@@ -565,10 +565,14 @@ check_reqs()
     use_pkg=`echo "$avail_pkg" | grep $us | default`
     avail_pkg=`echo -e "$avail_pkg\n$inst_pkg" | default`
 
+    # is there a conflict?
+    if $blk; then
+      if [ "$inst_pkg" ]; then
+        error "$req is blocking $name. Please uninstall first!"
+        return 1
+      fi
+      continue
     # is any version installed?
-    if $blk && [ "$inst_pkg" ]; then
-      error "$req is blocking $name. Please uninstall first!"
-      return 1
     elif [ "$inst_pkg" ] && ( $LAZY_CHECKS || $TEST_REQS ); then
       debug "check_reqs(): $name: $req: sufficient [$inst_pkg]"
     # is it up-to-date?
@@ -801,8 +805,9 @@ build_pkg()
     # if the source is a cgi- or php-script, the file name can be
     # saved with a different name via "URI%name"
     srcname=`basename "${src#*%}"`
-    src="${src%\%*}"
+    src="${src%"%"*}"
     md5sum=`echo "$md5sums" | grep -s " $srcname$" | cut -d " " -f 1`
+    md5sum=${md5sum:-$md5sums}
     dest=$SRC_DIR/$srcname
     if ls_src -q "/$srcname$" && [ -f $dest ]; then
       # srcname is there and is a file: skip it
