@@ -20,21 +20,25 @@ if (is_uploaded_file($_FILES["$var"]['tmp_name'])) {
     die("Error: $filename does already exist!\n");
   if (!move_uploaded_file($filetmp,$upload_dir.$filename))
     die("Error: file couldn't be moved!\n");
-  printf("Success: $filename has been submitted!\n");
+  printf("Success: $filename has been submitted.\n");
   $mailto = "portpkg-devel@lists.berlios.de";
   $from = "From: ".$mailto;
+  $succ_msg = "Stay tuned to https://lists.berlios.de/pipermail/portpkg-devel/ for responses!\n";
   if (ereg("\.patch(\.gz)?$",$filename)) {
     $subject = "[patch] $filename";
     $body = "A patch file has been uploaded on\n\nhttp://portpkg.berlios.de/upload/".$filename."\n";
-    mail($mailto,$subject,$body,$from);
+    if (mail($mailto,$subject,$body,$from))
+      printf($succ_msg);
   } elseif (ereg("\.buildlog(\.gz)?$",$filename)) {
     $subject = "[buildlog] $filename";
     $body = "A buildlog has been uploaded on\n\nhttp://portpkg.berlios.de/upload/".$filename."\n";
-    mail($mailto,$subject,$body,$from);
+    if (mail($mailto,$subject,$body,$from))
+      printf($succ_msg);
   } elseif (ereg("\.tar\.bz2$",$filename)) {
     $subject = "[upload] $filename";
     $body = "A file has been uploaded on\n\nhttp://portpkg.berlios.de/upload/".$filename."\n";
-    mail($mailto,$subject,$body,$from);
+    if (mail($mailto,$subject,$body,$from))
+      printf($succ_msg);
   }
 }
 ?> 
