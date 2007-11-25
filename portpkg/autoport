@@ -29,7 +29,7 @@ hier()
   | sed "/^[^#]/s, ##\([^ ]*\),\n#:\1\n#:\1," \
   | grep -o "^#:[^ ]*" \
   | while read s; do
-    t=${s#\#:}
+    t=${s#"#":}
     if echo "$l" | grep -sq " $t$"; then
       l=${l% $t}
     else
