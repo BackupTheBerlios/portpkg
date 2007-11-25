@@ -148,6 +148,7 @@ since 2004</h2>
 	    
 	    <div id="navi">
 <a href="http://developer.berlios.de/project/showfiles.php?group_id=2486">Download</a> /
+<a href="http://developer.berlios.de/mail/?group_id=2486">Mailinglists</a> /
 <a href="http://developer.berlios.de/forum/?group_id=2486">Forums</a> /
 <a href="http://developer.berlios.de/projects/portpkg">Project Page</a> /
 <a href="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports">Browse CVS</a> /
