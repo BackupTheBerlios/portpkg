@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.17 $"
+ENGINE_REV="\$Revision: 1.18 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -466,7 +466,7 @@ get_info() # pkgex
   srcver=`sed -n "/^VERSION=/s,^.*=,,p" $script`
   path=${script%/*}
 #  description=`grep -she ^$name: -e "^\\$NAME:" $path/slack-desc ${script%SlackBuild}slack-desc $script | eval $decode`
-  description=`echo -e "$path/slack-desc\n${script%SlackBuild}slack-desc\n$script" | sort -u | xargs grep -she "^$name:" -e "^\$NAME:" | eval $decode`
+  description=`echo -e "$path/slack-desc\n${script%SlackBuild}slack-desc\n$script" | sort -u | xargs grep -she "^$name:" -e "^\\$NAME:" | eval $decode`
 #  description=`grep -she ^$name: -e "^\\$NAME:" ${script%?SlackBuild}/slack-desc ${script%?SlackBuild}.slack-desc $script | eval $decode`
   nre=`regex $name`
   requires=`{ \
