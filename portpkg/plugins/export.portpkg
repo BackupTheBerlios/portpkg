@@ -262,7 +262,7 @@ it to a key server!"
     # stop here when $DRY_RUN
     $DRY_RUN && continue
 
-    timestamp=`date +%Y%M%d%H%M`
+    timestamp=`date +%Y%m%d%H%M`
 
     if $USE_ALPHA_CODE; then
     mv $LOG_DIR/$package.patch.gz $LOG_DIR/$package-$timestamp.patch.gz

@@ -57,11 +57,11 @@ $DRY_RUN && exit 0
 # timestamp buildlogs
 case $file in
   *.buildlog.gz)
-    new_file=${file%.buildlog.gz}-`date +%Y%M%d%H%M`.buildlog.gz
+    new_file=${file%.buildlog.gz}-`date +%Y%m%d%H%M`.buildlog.gz
     mv $file $new_file
     file=$new_file;;
   *.buildlog)
-    new_file=${file%.buildlog}-`date +%Y%M%d%H%M`.buildlog
+    new_file=${file%.buildlog}-`date +%Y%m%d%H%M`.buildlog
     mv $file $new_file
     file=$new_file;;
 esac
