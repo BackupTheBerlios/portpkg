@@ -84,7 +84,8 @@ for arg in `explicit "$@"`; do
   # if there's $PRT_DIR/CVS/Root which doesn't contain "anonymous" it must be a CVS
   # write account (?)
 #  if [ -f $TREE/CVS/Root ] && ! grep -sq "anonymous" $TREE/CVS/Root; then
-  if [ -f $path/CVS/Root ] && ! grep -sq "anonymous" $path/CVS/Root; then
+#  if [ -f $path/CVS/Root ] && ! grep -sq "anonymous" $path/CVS/Root; then
+  if [ -f $TREE/CVS/Root ] && ! grep -sq "anonymous" $path/CVS/Root; then
     warn "Trying to write directly to CVS!"
 
     pause "Continue submitting $package? (ctrl-c to abort)"
@@ -135,8 +136,8 @@ for arg in `explicit "$@"`; do
     [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
 
     # compare local tree with CVS
-    find ! -name "info" ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
-    find -path "*/CVS/Entries" -exec grep -H / {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
+    find -type f ! -name "info" ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
+    find -path "*/CVS/Entries" -exec grep -H "^/" {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
 
     # add/remove entries that are new/not here anymore
     fgrep -vxf $t/local $t/cvs | xargs -r $pre cvs -qz3 rm || die
