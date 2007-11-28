@@ -1,24 +1,18 @@
+2007-11-27  topf  <topf@users.berlios.de>
+
 2007-11-26  topf  <topf@users.berlios.de>
 
 2007-11-25  topf  <topf@users.berlios.de>
 
 2007-11-25  sajmon  <sajmon@users.berlios.de>
 
-  * ChangeLog: *** empty log message ***
-
   * ap/rar/SlackBuild, ap/rar/footprint: Upgraded to 3.7.1
 
 2007-11-24  sajmon  <sajmon@users.berlios.de>
 
-  * ChangeLog: *** empty log message ***
-
   * n/mailfilter/SlackBuild: Fixed mandir path
 
-  * ChangeLog: *** empty log message ***
-
   * n/mailfilter/SlackBuild, n/mailfilter/footprint: Upgraded to 0.8.1
-
-  * ChangeLog: *** empty log message ***
 
   * xap/claws-mail-extra-plugins/SlackBuild, xap/claws-mail-extra-plugins/footprint:
   Upgraded to 3.1.0
@@ -144,20 +138,14 @@
 
 2007-11-08  sajmon  <sajmon@users.berlios.de>
 
-  * ChangeLog: *** empty log message ***
-
   * l/sqlite/SlackBuild, l/sqlite/footprint: Upgraded to 3.5.2
 
 2007-11-04  sajmon  <sajmon@users.berlios.de>
-
-  * ChangeLog: *** empty log message ***
 
   * extra/mozilla-firefox/SlackBuild, extra/mozilla-firefox/footprint:
   Upgraded to 2.0.0.9
 
 2007-10-27  sajmon  <sajmon@users.berlios.de>
-
-  * ChangeLog: *** empty log message ***
 
   * l/sqlite/SlackBuild, l/sqlite/footprint: Upgraded to 3.5.1
 
@@ -178,8 +166,6 @@
 
 2007-10-06  sajmon  <sajmon@users.berlios.de>
 
-  * ChangeLog: *** empty log message ***
-
   * testing/libkdcraw/SlackBuild, testing/libkdcraw/footprint:
   Upgraded to 0.1.2
 
@@ -187,13 +173,9 @@
 
 2007-10-02  sajmon  <sajmon@users.berlios.de>
 
-  * ChangeLog: *** empty log message ***
-
   * xap/claws-mail/SlackBuild, xap/claws-mail/footprint: Upgraded to 3.0.2
 
 2007-09-25  sajmon  <sajmon@users.berlios.de>
-
-  * ChangeLog: *** empty log message ***
 
   * xap/claws-mail/SlackBuild, xap/claws-mail/footprint: Upgraded to 3.0.1
 
@@ -653,7 +635,7 @@
   * d/portpkg/portpkg:
   * Code cleanup.
   * Set MY_REALNAME to MY_TAG, instead of messing with /etc/passwd entries.
-  * Added $Revision: 1.179 $ to --version display.
+  * Added $Revision: 1.180 $ to --version display.
 
   * d/portpkg/sync.portpkg:
   * Added CVS_RSH=ssh.
@@ -2900,8 +2882,6 @@
   * xap/gtk-server/SlackBuild, xap/gtk-server/footprint, xap/gtk-server/md5sums, xap/gtk-server/requires, xap/gtk-server/sources:
   Version bump.
 
-  * xap/libnotify/SlackBuild: *** empty log message ***
-
   * xap/libnotify/SlackBuild, xap/libnotify/footprint, xap/libnotify/md5sums, xap/libnotify/requires, xap/libnotify/sources:
   Version bump.
 
@@ -3619,8 +3599,6 @@
 
 2006-04-15  topf  <topf@users.berlios.de>
 
-  * d/portpkg/pp-sync-bin, d/portpkg/pp-sync-src: *** empty log message ***
-
   * d/portpkg/portpkg:
   * Look for plugins in $PRT_DIR/plugins and prefer them over $CFG_DIR/plugins (do_sync(), do_export()).
   * Code clean-ups (do_sync(), do_export()).
@@ -4082,8 +4060,6 @@
   * gnome/mail-notification/SlackBuild, gnome/mail-notification/footprint, gnome/mail-notification/mail-notification-2.0-buildfix.diff, gnome/mail-notification/mail-notification-2.0-evolution-2.4.diff, gnome/mail-notification/mail-notification-2.0-gmail-properties-fix.diff, gnome/mail-notification/mail-notification-2.0-imapauth.diff, gnome/mail-notification/md5sums, gnome/mail-notification/requires:
   Version bump.
 
-  * gnome/metacity/metacity-2.14.0.tar.bz2: *** empty log message ***
-
   * gnome/metacity/sources, gnome/metacity/SlackBuild, gnome/metacity/arbitrary, gnome/metacity/footprint, gnome/metacity/md5sums, gnome/metacity/metacity-2.14.0.tar.bz2:
   Version bump.
 
@@ -4180,8 +4156,6 @@
 2006-03-12  topf  <topf@users.berlios.de>
 
   * d/portpkg/export.portpkg: Don't export \*.autoport files.
-
-  * gnome/rhythmbox/post-configure-opts-fix.autoport: *** empty log message ***
 
   * gnome/rhythmbox/SlackBuild, gnome/rhythmbox/SlackBuild.cp, gnome/rhythmbox/doinst.sh, gnome/rhythmbox/footprint, gnome/rhythmbox/md5sums, gnome/rhythmbox/post-configure-opts-fix.autoport, gnome/rhythmbox/requires:
   Updated to 0.9.3.1.
@@ -5106,8 +5080,6 @@
 
 2005-07-15  topf  <topf@users.berlios.de>
 
-  * gnome/libgnome/.#footprint.1.3: *** empty log message ***
-
   * gnome/evolution/sources, gnome/evolution/SlackBuild, gnome/evolution/doinst.sh, gnome/evolution/footprint, gnome/evolution/md5sums, gnome/evolution/requires, gnome/evolution/slack-desc, gnome/evolution-webcal/SlackBuild, gnome/evolution-webcal/doinst.sh, gnome/evolution-webcal/footprint, gnome/evolution-webcal/md5sums, gnome/evolution-webcal/requires, gnome/evolution-webcal/slack-desc, gnome/evolution-webcal/sources, gnome/gtkhtml/SlackBuild, gnome/gtkhtml/footprint, gnome/gtkhtml/md5sums, gnome/evolution-data-server/SlackBuild, gnome/evolution-data-server/footprint, gnome/evolution-data-server/md5sums, gnome/evolution-data-server/requires, gnome/evolution-data-server/slack-desc, gnome/evolution-data-server/sources, gnome/libsoup/SlackBuild, gnome/libsoup/footprint, gnome/libsoup/md5sums, gnome/libsoup/requires, gnome/libsoup/slack-desc, gnome/libsoup/sources, gnome/gal/SlackBuild, gnome/gal/footprint, gnome/gal/md5sums, gnome/gal/slack-desc, gnome/gal/sources, gnome/gdm/SlackBuild, gnome/gdm/doinst.sh, gnome/gdm/footprint, gnome/gdm/md5sums, gnome/gdm/sources, gnome/libwnck/SlackBuild, gnome/libwnck/footprint, gnome/libwnck/md5sums, gnome/libgnome/.#footprint.1.3, gnome/libgnome/SlackBuild, gnome/libgnome/doinst.sh, gnome/libgnome/footprint, gnome/libgnome/md5sums:
   Version update.
 
@@ -5192,8 +5164,6 @@
   * xap/amyedit/requires: Removed aaa_elflibs, gcc and gcc-g++.
 
 2005-06-11  topf  <topf@users.berlios.de>
-
-  * l/id3lib/slack-desc: *** empty log message ***
 
   * n/sarg/SlackBuild, n/sarg/footprint, n/sarg/md5sums, n/sarg/sources:
   Moved open/sarg-2.0.8-i686-1stb to n/. (stb)
@@ -5447,8 +5417,6 @@
   * d/psyco/SlackBuild, d/psyco/doinst.sh, d/psyco/footprint, d/psyco/requires, d/psyco/slack-desc, d/psyco/sources, l/pyfemax/SlackBuild, l/pyfemax/footprint, l/pyfemax/md5sums, l/pyfemax/requires, l/pyfemax/slack-desc, l/pyfemax/sources:
   new entry (lem)
 
-  * kde/k3b/info: *** empty log message ***
-
   * kde/k3bmonkeyaudioplugin/SlackBuild, kde/k3bmonkeyaudioplugin/footprint, kde/k3bmonkeyaudioplugin/sources:
   Newest sources path for download (sjn)
 
@@ -5527,8 +5495,6 @@
   And 'fixed' requires/optional. requires includes now what _is_ required to built the package, not what could be supported by mplayer.
 
 2005-05-03  topf  <topf@users.berlios.de>
-
-  * gnome/conglomerate/info, ap/lapack/info: *** empty log message ***
 
   * kde/superkaramba/SlackBuild, kde/superkaramba/doinst.sh, kde/superkaramba/footprint, kde/superkaramba/md5sums, kde/superkaramba/requires, kde/superkaramba/slack-desc, kde/superkaramba/sources:
   new port (andreas)
@@ -5640,12 +5606,8 @@
   * gnome/evince/SlackBuild, gnome/evince/doinst.sh, gnome/evince/footprint, gnome/evince/md5sums, gnome/evince/requires, gnome/evince/slack-desc, gnome/evince/sources, l/poppler/SlackBuild, l/poppler/footprint, l/poppler/md5sums, l/poppler/requires, l/poppler/slack-desc, l/poppler/sources:
   New entry. (tom)
 
-  * gnome/control-center/info: *** empty log message ***
-
   * gnome/control-center/SlackBuild, gnome/control-center/doinst.sh, gnome/control-center/footprint, gnome/control-center/info:
   Corrected gconf installation. (tom)
-
-  * gnome/bluefish/info: *** empty log message ***
 
   * gnome/bluefish/SlackBuild, gnome/bluefish/doinst.sh, gnome/bluefish/footprint, gnome/bluefish/info, gnome/bluefish/md5sums, gnome/bluefish/slack-desc, gnome/bluefish/sources:
   disabled update-mime-database (lem)
@@ -5721,8 +5683,6 @@
 
   * d/portpkg/pp-config:
   Fixed resources menu to work with more than one importer script.
-
-  * d/portpkg/ChangeLog, ChangeLog: *** empty log message ***
 
   * d/portpkg/ChangeLog, ChangeLog: Added.
 
@@ -6148,8 +6108,6 @@
 
 2005-04-01  topf  <topf@users.berlios.de>
 
-  * d/portpkg/pp-export, d/portpkg/slack-desc: *** empty log message ***
-
   * d/portpkg/SlackBuild, d/portpkg/pp-config, d/portpkg/prepare:
   Make /etc/portpkg/exclude a symlink just like /etc/portpkg/mirrors.
   /etc/portpkg/exclude.local should not be touched by pp-config.
@@ -6201,8 +6159,6 @@
   * xap/graveman/optional, xap/graveman/requires: Moved oggutils to optional.
 
   * d/portpkg/portpkg: Make PORT_IS_BROKEN a symlink to its buildlog.
-
-  * AUTHORS: *** empty log message ***
 
   * d/portpkg/portpkg:
   Changed summary log from /var/log/portpkg.log to /var/log/portpkg/log.
@@ -6344,8 +6300,6 @@
   * d/portpkg/autoport:
   Correct $PKG/usr/share/{man,doc} before mkdir $PKG/usr/doc.
 
-  * AUTHORS: *** empty log message ***
-
   * d/portpkg/portpkg:
   Check whether ports have maintainer's tag when exporting.
 
@@ -6459,8 +6413,6 @@
   * gnome/gnome-mime-data/requires, gnome/gnome2-user-docs/requires, gnome/mail-notification/optional, gnome/totem/optional, n/ibmonitor/requires, pasture/esound/requires, xap/jimmac/requires:
   Removed empty file.
 
-  * gnome/bmp-extra-plugins/optional: *** empty log message ***
-
   * gnome/bubblemon/requires, gnome/bug-buddy/requires, gnome/cog/requires, gnome/control-center/requires, gnome/dasher/requires, gnome/drwright/requires, gnome/eel/requires, gnome/eog/requires, gnome/epiphany/requires, gnome/evolution-data-server/requires, gnome/evolution-webcal/requires, gnome/evolution/requires, gnome/file-roller/requires, gnome/firestarter/requires, gnome/gai/requires, gnome/gal/requires, gnome/galeon/requires, gnome/gamp/requires, gnome/gcalctool/requires, gnome/gconf-editor/requires, gnome/gcursor/requires, gnome/gdesklets/requires, gnome/gedit/requires, gnome/ggv/requires, gnome/glabels/requires, gnome/gmencoder/requires, gnome/gnome-applets/requires, gnome/gnome-cpufreq-applet/requires, gnome/gnome-cups-manager/requires, gnome/gnome-desktop/requires, gnome/gnome-dial/requires, gnome/gnome-games/requires, gnome/gnome-media/requires, gnome/gnome-netstatus/requires, gnome/gnome-nettool/requires, gnome/gnome-panel/requires, gnome/gnome-pkgtool/requires, gnome/gnome-ppp/requires, gnome/gnome-ppx/requires, gnome/gnome-python/requires, gnome/gnome-session/requires, gnome/gnome-settings-visualeffects/requires, gnome/gnome-system-monitor/requires, gnome/gnome-system-tools/requires, gnome/gnome-terminal/requires, gnome/gnome-utils/requires, gnome/gnome2-perl/requires, gnome/gnomebaker/requires, gnome/gnopernicus/requires, gnome/gnubiff/requires, gnome/gok/requires, gnome/goobox/requires, gnome/gpass/requires, gnome/gpdf/requires, gnome/gpp/requires, gnome/grip/requires, gnome/gsplashfu/requires, gnome/gtkam/requires, gnome/gtweakui/requires, gnome/gurlchecker/requires, gnome/gwget/requires, gnome/hardware-monitor/requires, gnome/jamboree/requires, gnome/libbonoboui/requires, gnome/libgail-gnome/requires, gnome/libgnome/requires, gnome/libgnomedb/requires, gnome/libgnomemm/requires, gnome/libgnomeui/requires, gnome/libgnomeuimm/requires, gnome/mail-notification/requires, gnome/mihais-memfree/requires, gnome/monkey-bubble/requires, gnome/muine/requires, gnome/nautilus-cd-burner/requires, gnome/nautilus-media/requires, gnome/nautilus/requires, gnome/netspeed_applet/requires, gnome/revelation/requires, gnome/rhythmbox/requires, gnome/rubrica/requires, gnome/screem/requires, gnome/seahorse/requires, gnome/sound-juicer/requires, gnome/timer-applet/requires, gnome/totem/requires, gnome/tsclient/requires, gnome/tutka/requires, gnome/vino/requires, gnome/yelp/requires, kde/amarok/requires, l/gtk-sharp/requires, l/libsndfile/requires, l/portaudio/requires, l/pygame/requires, l/smpeg/requires, n/mpd/requires, pasture/gal20/requires, pasture/gdm/requires, pasture/gimp/requires, pasture/gthumb/requires, pasture/gtkhtml30/requires, pasture/magicdev/requires, pasture/xine-lib/requires, testing/criawips/requires, testing/eina-gnome/requires, testing/gnome-volume-manager/requires, testing/mplayer-gtk2/requires, testing/polypaudio/requires, xap/armagetron/requires, xap/avidemux/requires, xap/bmp/requires, xap/deng/requires, xap/enlightenment/requires, xap/hydrogen/requires, xap/lbreakout2/requires, xap/mplayer/optional, xap/qemu/requires, xap/wired/requires, xap/zinf/requires, ap/jack/requires, ap/mjpegtools/requires, gnome/anjuta/requires, gnome/balsa/requires, gnome/bluefish/requires, gnome/bmp-extra-plugins/requires:
   Removed obsolete dependencies according to updated "ignore" file.
 
@@ -6515,8 +6467,6 @@
   Added hal, dbus, howl, gamin, fam, esound, arts, polypaudio, audiofile and alsa-lib. In almost any case, they're optional and interchangeable.
 
   * d/portpkg/.#footprint.1.14: Removed
-
-  * xap/mplayer/README, xap/mplayer/readme: *** empty log message ***
 
   * xap/mplayer/SlackBuild, xap/mplayer/footprint, xap/mplayer/readme, xap/mplayer/requires:
   Updated xap/mplayer to 1.0pre6-i686-6tom.
@@ -6609,15 +6559,11 @@
 
 2005-03-12  topf  <topf@users.berlios.de>
 
-  * AUTHORS: *** empty log message ***
-
   * xap/jpilot/SlackBuild, xap/jpilot/footprint, xap/jpilot/md5sums, xap/jpilot/requires, xap/jpilot/slack-desc, xap/jpilot/sources:
   Moved open/jpilot-0.99.7-i686-1frrk to xap/.
 
   * d/portpkg/.#footprint.1.14, d/portpkg/CREDITS, d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.PortpkgGuide, d/portpkg/README.QuestionsAndAnswers, d/portpkg/SlackBuild, d/portpkg/autoport, d/portpkg/checkpkg, d/portpkg/doinst.sh, d/portpkg/exclude, d/portpkg/footprint, d/portpkg/ignore, d/portpkg/mirrors.de, d/portpkg/portpkg, d/portpkg/portpkg.1, d/portpkg/pp-config, d/portpkg/pp-sync-bin, d/portpkg/pp-sync-src:
   Moved local/portpkg-0.36-noarch-1tom to d/.
-
-  * AUTHORS: *** empty log message ***
 
   * kde/showimg/SlackBuild, kde/showimg/footprint, kde/showimg/md5sums, kde/showimg/requires, kde/showimg/slack-desc, kde/showimg/sources:
   Moved open/showimg-0.9.4.1-i686-2andreas to kde/.
@@ -6639,8 +6585,6 @@
 
   * kde/amarok/SlackBuild, kde/amarok/footprint, kde/amarok/md5sums, kde/amarok/requires, kde/amarok/slack-desc, kde/amarok/sources:
   Added kde/amarok-1.2.1-i686-1andreas.
-
-  * xap/gxmessage/SlackBuild, d/valgrind/SlackBuild: *** empty log message ***
 
 2005-03-11  topf  <topf@users.berlios.de>
 
@@ -6674,8 +6618,6 @@
   Moved open/amyedit-0.7-i686-2lem to xap/.
 
 2005-03-08  topf  <topf@users.berlios.de>
-
-  * xap/root-tail/info: *** empty log message ***
 
 2005-03-07  topf  <topf@users.berlios.de>
 
@@ -6724,8 +6666,6 @@
 
 2005-02-26  topf  <topf@users.berlios.de>
 
-  * xap/graveman/graveman-0.3.8.tar.bz2: *** empty log message ***
-
   * xap/graveman/SlackBuild, xap/graveman/doinst.sh, xap/graveman/footprint, xap/graveman/graveman-0.3.8.tar.bz2, xap/graveman/md5sums, xap/graveman/requires, xap/graveman/sources:
   Updated xap/graveman to 0.3.8-i486-3tom.
 
@@ -6749,8 +6689,6 @@
 
   * xap/xosd/SlackBuild, xap/xosd/footprint, xap/xosd/md5sums, xap/xosd/requires, xap/xosd/slack-desc, xap/xosd/sources:
   Added xap/xosd-2.2.12-i486-2tom.
-
-  * l/gpgme/SlackBuild.old, l/gpgme/doinst.sh: *** empty log message ***
 
   * l/gpgme/SlackBuild, l/gpgme/SlackBuild.old, l/gpgme/footprint, l/gpgme/md5sums, l/gpgme/post-install-fix.autoport, l/gpgme/slack-desc, l/gpgme/sources:
   Updated l/gpgme to 1.0.2-i486-2tom.
@@ -6782,15 +6720,11 @@
 
 2005-02-21  topf  <topf@users.berlios.de>
 
-  * testing/xfce-goodies/sources: *** empty log message ***
-
   * ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/footprint:
   Updated ap/hibernate-script to 1.05-noarch-2tom.
 
   * xap/mplayer/.#footprint.1.2, xap/mplayer/.#requires.1.7, xap/mplayer/.#sources.1.4, xap/mplayer/.part, xap/mplayer/SlackBuild, xap/mplayer/SlackBuild.old, xap/mplayer/config-fix.autoport, xap/mplayer/footprint, xap/mplayer/requires, xap/mplayer/sources:
   Updated xap/mplayer to 1.0pre6-i486-4tom.
-
-  * gnome/nautilus-cd-burner/SlackBuild: *** empty log message ***
 
   * ap/hibernate-script/README, ap/hibernate-script/SlackBuild, ap/hibernate-script/doinst.sh, ap/hibernate-script/footprint, ap/hibernate-script/install-fix.autoport:
   Updated ap/hibernate-script to 1.05-i486-1tom.
@@ -6810,8 +6744,6 @@
   *** empty log message ***
 
 2005-02-17  topf  <topf@users.berlios.de>
-
-  * gnome/timer-applet/footprint.new: *** empty log message ***
 
   * ap/john/SlackBuild, ap/john/footprint, ap/john/md5sums, ap/john/requires, ap/john/slack-desc, ap/john/sources:
   Moved open/john-1.6-i486-1lem to ap/.
@@ -6865,8 +6797,6 @@
 
   * xap/mplayer/.#SlackBuild.1.5, xap/mplayer/SlackBuild, xap/mplayer/config-fix.autoport, xap/mplayer/footprint, xap/mplayer/install-fix.autoport, xap/mplayer/md5sums, xap/mplayer/requires, xap/mplayer/sources:
   Updated xap/mplayer to 1.0pre6-i486-2tom.
-
-  * xap/redhat-artwork/readme.autoport: *** empty log message ***
 
   * xap/redhat-artwork/.#SlackBuild.1.6, xap/redhat-artwork/SlackBuild, xap/redhat-artwork/footprint, xap/redhat-artwork/install-fix.autoport, xap/redhat-artwork/md5sums, xap/redhat-artwork/sources:
   Updated xap/redhat-artwork to 0.117-i486-4tom.
@@ -7086,8 +7016,6 @@
   * d/portpkg/SlackBuild, d/portpkg/footprint, d/portpkg/md5sums, d/portpkg/portpkg:
   Updated d/portpkg to 0.34a-noarch-1tom.
 
-  * gnome/tutka/SlackBuild: *** empty log message ***
-
   * gnome/tutka/SlackBuild, gnome/tutka/doinst.sh, gnome/tutka/footprint, gnome/tutka/makefile.patch, gnome/tutka/md5sums, gnome/tutka/requires, gnome/tutka/slack-desc, gnome/tutka/sources:
   Moved open/tutka-0.12-i486-1lem to gnome/.
 
@@ -7113,17 +7041,11 @@
 
 2005-01-31  topf  <topf@users.berlios.de>
 
-  * n/email/SlackBuild_: *** empty log message ***
-
   * n/email/SlackBuild, n/email/doinst.sh, n/email/footprint:
   Updated n/email to 2.3.2-i486-2tom.
 
-  * ap/pnm2ppa/doinst.sh: *** empty log message ***
-
   * n/elinks/SlackBuild, n/elinks/footprint, n/elinks/md5sums, n/elinks/requires:
   Updated n/elinks to 0.10.2-i486-1tom.
-
-  * l/fnlib/sources: *** empty log message ***
 
   * l/locale-maketext-lexicon/SlackBuild, l/locale-maketext-lexicon/footprint, l/locale-maketext-lexicon/md5sums, l/locale-maketext-lexicon/requires, l/locale-maketext-lexicon/slack-desc, l/locale-maketext-lexicon/sources:
   Added l/locale-maketext-lexicon-0.46-noarch-1tom.
@@ -7131,12 +7053,8 @@
   * gnome/sclog/SlackBuild, gnome/sclog/footprint, gnome/sclog/md5sums, gnome/sclog/requires, gnome/sclog/slack-desc, gnome/sclog/sources:
   Updated gnome/sclog to 0.1.2-noarch-1tom.
 
-  * gnome/inkscape/sources, l/libavc1394/sources: *** empty log message ***
-
   * n/email/SlackBuild, n/email/SlackBuild_, n/email/footprint, n/email/md5sums, n/email/slack-desc, n/email/sources:
   Updated n/email to 2.3.2-i486-1tom.
-
-  * gnome/nautilus-cd-burner/sources: *** empty log message ***
 
   * d/fakeroot/SlackBuild, d/fakeroot/fakeroot.SlackBuild_, d/fakeroot/footprint, d/fakeroot/md5sums, d/fakeroot/requires, d/fakeroot/slack-desc, d/fakeroot/sources:
   Updated d/fakeroot to 1.2.3-i486-1tom.
@@ -7248,8 +7166,6 @@
 
 2005-01-23  topf  <topf@users.berlios.de>
 
-  * d/portpkg/pp-sync-dist, d/portpkg/pp-sync-slack: *** empty log message ***
-
   * d/portpkg/NEWS, d/portpkg/README, d/portpkg/README.MaintainerGuide, d/portpkg/SlackBuild, d/portpkg/autoport, d/portpkg/checkpkg, d/portpkg/footprint, d/portpkg/portpkg, d/portpkg/pp-clean-cache, d/portpkg/pp-config, d/portpkg/pp-export, d/portpkg/pp-sync-bin, d/portpkg/pp-sync-src, d/portpkg/slack-desc:
   Updated d/portpkg to 0.33-noarch-1tom.
 
@@ -7274,8 +7190,6 @@
 
   * xap/tvtime/SlackBuild, xap/tvtime/doinst.sh, xap/tvtime/footprint, xap/tvtime/md5sums, xap/tvtime/requires, xap/tvtime/slack-desc, xap/tvtime/sources:
   Moved open/tvtime-0.9.15-i486-1lem to xap/.
-
-  * d/portpkg/portpkg: *** empty log message ***
 
   * d/portpkg/SlackBuild, d/portpkg/autoport, d/portpkg/footprint, d/portpkg/portpkg, d/portpkg/pp-sync-slack, d/portpkg/slack-desc:
   Updated d/portpkg to 0.32-noarch-4tom.
@@ -7346,15 +7260,11 @@
 
 2005-01-16  topf  <topf@users.berlios.de>
 
-  * ap/athcool/md5sums, xap/redhat-artwork/md5sums: *** empty log message ***
-
   * gnome/gsplashfu/SlackBuild, gnome/gsplashfu/footprint, gnome/gsplashfu/md5sums, gnome/gsplashfu/requires, gnome/gsplashfu/slack-desc, gnome/gsplashfu/sources:
   Added gnome/gsplashfu-0.4.0-i486-1tom.
 
   * d/portpkg/SlackBuild, d/portpkg/autoport, d/portpkg/footprint, d/portpkg/portpkg, d/portpkg/pp-sync-dist:
   Updated d/portpkg to 0.32-noarch-2tom.
-
-  * testing/xfce-goodies/requires: *** empty log message ***
 
 2005-01-14  topf  <topf@users.berlios.de>
 
@@ -7463,8 +7373,6 @@
   * d/portpkg/NEWS, d/portpkg/README.QuickStart, d/portpkg/README.UserGuide, d/portpkg/SlackBuild, d/portpkg/autoport, d/portpkg/portpkg, d/portpkg/pp-export, d/portpkg/prepare, d/portpkg/slack-desc, d/portpkg/README, d/portpkg/README.AutoportGuide, d/portpkg/README.Links, d/portpkg/README.MaintainerGuide, d/portpkg/README.PortpkgGuide, d/portpkg/README.QuestionsAndAnswers:
   Updated d/portpkg to 0.31-noarch-2tom.
 
-  * l/file-scan/SlackBuild.old: *** empty log message ***
-
   * l/slmodem/SlackBuild, l/slmodem/slack-desc, l/slmodem/sources:
   Added l/slmodem-2.9.10-i486-1tom.
 
@@ -7518,15 +7426,11 @@
   * xap/idesk/SlackBuild, xap/idesk/slack-desc:
   Updated xap/idesk to 0.5.6-i486-1tom.
 
-  * xap/perlpanel/SlackBuild.old: *** empty log message ***
-
   * xap/perlpanel/SlackBuild, xap/perlpanel/SlackBuild.old, xap/perlpanel/requires, xap/perlpanel/slack-desc, xap/perlpanel/sources:
   Added xap/perlpanel-0.9.0-i486-1tom.
 
   * d/stow/SlackBuild, d/stow/requires, d/stow/slack-desc, d/stow/sources:
   Added d/stow-1.3.3-i486-1tom.
-
-  * ap/lame/SlackBuild.old: *** empty log message ***
 
   * ap/lame/SlackBuild, ap/lame/SlackBuild.old, ap/lame/slack-desc:
   Updated ap/lame to 3.96.1-i486-1tom.
@@ -7573,8 +7477,6 @@
 
   * xap/redhat-artwork/SlackBuild, xap/redhat-artwork/xcursorgen.patch:
   Updated xap/redhat-artwork to 0.117-i486-2tom.
-
-  * xap/redhat-artwork/SlackBuild.old: *** empty log message ***
 
   * xap/redhat-artwork/SlackBuild, xap/redhat-artwork/SlackBuild.old, xap/redhat-artwork/readme.autoport, xap/redhat-artwork/requires, xap/redhat-artwork/sources:
   Updated xap/redhat-artwork to 0.117-i486-2tom.
@@ -7758,8 +7660,6 @@
   * gnome/gnome-vfs/SlackBuild, gnome/gnome-vfs/doinst.sh, gnome/gnome-vfs/slack-desc:
   Updated gnome/gnome-vfs to 2.8.3-i486-2tom.
 
-  * gnome/gnome-mime-data/SlackBuild.old: *** empty log message ***
-
   * gnome/gnome-mime-data/SlackBuild, gnome/gnome-mime-data/SlackBuild.old, gnome/gnome-mime-data/slack-desc:
   Updated gnome/gnome-mime-data to 2.4.2-i486-3tom.
 
@@ -7831,8 +7731,6 @@
   * n/httpup/SlackBuild, n/ibmonitor/SlackBuild, n/mpd/SlackBuild, n/pavuk/SlackBuild, n/snarf/SlackBuild, n/wvdial/SlackBuild, n/wvstreams/SlackBuild, pasture/db41/SlackBuild, pasture/gal20/SlackBuild, pasture/gconfmm20/SlackBuild, pasture/gst-plugins/SlackBuild, pasture/gtkhtml30/SlackBuild, pasture/gtkmm22/SlackBuild, pasture/libsigc++1/SlackBuild, pasture/libsoup20/SlackBuild, pasture/libxml++1/SlackBuild, pasture/linux-pam/SlackBuild, pasture/magicdev/SlackBuild, testing/dbus/SlackBuild, testing/eina-gnome/SlackBuild, testing/gnome-volume-manager/SlackBuild, testing/gtk-webcore/SlackBuild, testing/hal/SlackBuild, testing/libeina/SlackBuild, testing/mplayer-gtk2/SlackBuild, testing/xfmedia/SlackBuild, xap/amule/SlackBuild, xap/armagetron/SlackBuild, xap/bookmarkbridge/SlackBuild, xap/deng/SlackBuild, xap/desktop-file-utils/SlackBuild, xap/dia/SlackBuild, xap/freedoom/SlackBuild, xap/giftoxic/SlackBuild, xap/giftui/SlackBuild, xap/gimp-gap/SlackBuild, xap/gqview/SlackBuild, xap/graphviz/SlackBuild, xap/gtk-server/SlackBuild, xap/gtklp/SlackBuild, xap/icon-slicer/SlackBuild, xap/kino/SlackBuild, xap/lbreakout2/SlackBuild, xap/linphone/SlackBuild, xap/mbox/SlackBuild, xap/mplayer/SlackBuild, xap/ogle/SlackBuild, xap/ogle_gui/SlackBuild, xap/pyne/SlackBuild, xap/redhat-artwork/SlackBuild, xap/straw/SlackBuild, xap/tagtool/SlackBuild, xap/video-dvdrip/SlackBuild, xap/xdaf/SlackBuild, xap/xmbmon/SlackBuild, xap/xvid4conf/SlackBuild, xap/zinf/SlackBuild, gnome/gthumb/SlackBuild, gnome/gtkam/SlackBuild, gnome/gtkglext/SlackBuild, gnome/gtkhtml/SlackBuild, gnome/gtkspell/SlackBuild, gnome/gtorrentviewer/SlackBuild, gnome/gtweakui/SlackBuild, gnome/gurlchecker/SlackBuild, gnome/gwget/SlackBuild, gnome/hardware-monitor/SlackBuild, gnome/intltool/SlackBuild, gnome/jamboree/SlackBuild, gnome/leafpad/SlackBuild, gnome/libbonobo/SlackBuild, gnome/libbonoboui/SlackBuild, gnome/libgail-gnome/SlackBuild, gnome/libghttp/SlackBuild, gnome/libgnome/SlackBuild, gnome/libgnomecanvas/SlackBuild, gnome/libgnomecanvasmm/SlackBuild, gnome/libgnomecups/SlackBuild, gnome/libgnomedb/SlackBuild, gnome/libgnomemm/SlackBuild, gnome/libgnomeprint/SlackBuild, gnome/libgnomeprintui/SlackBuild, gnome/libgnomeui/SlackBuild, gnome/libgnomeuimm/SlackBuild, gnome/libgtop/SlackBuild, gnome/libsoup/SlackBuild, gnome/libwnck/SlackBuild, gnome/libxklavier/SlackBuild, gnome/mail-notification/SlackBuild, gnome/metacity/SlackBuild, gnome/mihais-memfree/SlackBuild, gnome/monkey-bubble/SlackBuild, gnome/nautilus-cd-burner/SlackBuild, gnome/nautilus-media/SlackBuild, gnome/nautilus/SlackBuild, gnome/orbit2/SlackBuild, gnome/rhythmbox/SlackBuild, gnome/rubrica/SlackBuild, gnome/seahorse/SlackBuild, gnome/sodipodi/SlackBuild, gnome/sound-juicer/SlackBuild, gnome/totem/SlackBuild, gnome/ubuntu-artwork/SlackBuild, gnome/vino/SlackBuild, gnome/ximian-artwork/SlackBuild, gnome/yelp/SlackBuild, gnome/zenity/SlackBuild, l/a52dec/SlackBuild, l/atk/SlackBuild, l/bluecurve/SlackBuild, l/bmp-wma/SlackBuild, l/compress-zlib/SlackBuild, l/event/SlackBuild, l/exif-browser/SlackBuild, l/freetype/SlackBuild, l/gift-fasttrack/SlackBuild, l/gift-gnutella/SlackBuild, l/gift-openft/SlackBuild, l/gmime/SlackBuild, l/gpgme/SlackBuild, l/gtk-perl/SlackBuild, l/gtk-qt-engine/SlackBuild, l/gtk-xfce-engine/SlackBuild, l/html-parser/SlackBuild, l/id3lib/SlackBuild, l/libavc1394/SlackBuild, l/libcap/SlackBuild, l/libdv/SlackBuild, l/libdvdcss/SlackBuild, l/libdvdnav/SlackBuild, l/libdvdread/SlackBuild, l/libesmtp/SlackBuild, l/libgda/SlackBuild, l/libgpg-error/SlackBuild, l/libgphoto2/SlackBuild, l/libintl-perl/SlackBuild, l/libmusicbrainz/SlackBuild, l/libosip/SlackBuild, l/libraw1394/SlackBuild, l/libsamplerate/SlackBuild, l/libsigc++/SlackBuild, l/libxml++/SlackBuild, l/openldap/SlackBuild, l/out_lame/SlackBuild, l/plugger/SlackBuild, l/pygtk/SlackBuild, l/pyorbit/SlackBuild, l/rmxmms/SlackBuild, l/sqlite/SlackBuild, l/wxgtk/SlackBuild, l/xvidcore/SlackBuild, n/email/SlackBuild, n/fping/SlackBuild, n/gift/SlackBuild, ap/abook/SlackBuild, ap/athcool/SlackBuild, ap/bonnie++/SlackBuild, ap/cabextract/SlackBuild, ap/cpudyn/SlackBuild, ap/exiftags/SlackBuild, ap/fuse/SlackBuild, ap/fvcool/SlackBuild, ap/giftcurs/SlackBuild, ap/hibernate-script/SlackBuild, ap/jhead/SlackBuild, ap/lame/SlackBuild, ap/lsdvd/SlackBuild, ap/lshw/SlackBuild, ap/mjpegtools/SlackBuild, ap/ntfsprogs/SlackBuild, ap/ogmtools/SlackBuild, ap/pnm2ppa/SlackBuild, ap/setcd/SlackBuild, ap/x86cpucaps/SlackBuild, d/lua/SlackBuild, d/mono/SlackBuild, d/portpkg/SlackBuild, d/ruby/SlackBuild, d/tla/SlackBuild, gnome/aegis-virus-scanner/SlackBuild, gnome/at-spi/SlackBuild, gnome/balsa/SlackBuild, gnome/bluefish/SlackBuild, gnome/bmp-extra-plugins/SlackBuild, gnome/bubblemon/SlackBuild, gnome/bug-buddy/SlackBuild, gnome/cog/SlackBuild, gnome/control-center/SlackBuild, gnome/dasher/SlackBuild, gnome/diacanvas2/SlackBuild, gnome/drwright/SlackBuild, gnome/eel/SlackBuild, gnome/eog/SlackBuild, gnome/epiphany-extensions/SlackBuild, gnome/evolution-data-server/SlackBuild, gnome/evolution-webcal/SlackBuild, gnome/evolution/SlackBuild, gnome/f-spot/SlackBuild, gnome/file-roller/SlackBuild, gnome/gai/SlackBuild, gnome/gail/SlackBuild, gnome/gal/SlackBuild, gnome/galeon/SlackBuild, gnome/gamp/SlackBuild, gnome/gcalctool/SlackBuild, gnome/gconf-editor/SlackBuild, gnome/gconf/SlackBuild, gnome/gconfmm/SlackBuild, gnome/gcursor/SlackBuild, gnome/gedit/SlackBuild, gnome/ggv/SlackBuild, gnome/glabels/SlackBuild, gnome/gmencoder/SlackBuild, gnome/gmpc/SlackBuild, gnome/gnome-applets/SlackBuild, gnome/gnome-blog/SlackBuild, gnome/gnome-clipboard-daemon/SlackBuild, gnome/gnome-common/SlackBuild, gnome/gnome-cpufreq-applet/SlackBuild, gnome/gnome-cups-manager/SlackBuild, gnome/gnome-desktop/SlackBuild, gnome/gnome-dial/SlackBuild, gnome/gnome-games/SlackBuild, gnome/gnome-icon-theme/SlackBuild, gnome/gnome-keyring/SlackBuild, gnome/gnome-mag/SlackBuild, gnome/gnome-media/SlackBuild, gnome/gnome-mime-data/SlackBuild, gnome/gnome-netstatus/SlackBuild, gnome/gnome-nettool/SlackBuild, gnome/gnome-panel/SlackBuild, gnome/gnome-pkgtool/SlackBuild, gnome/gnome-ppx/SlackBuild, gnome/gnome-python/SlackBuild, gnome/gnome-schedule/SlackBuild, gnome/gnome-session/SlackBuild, gnome/gnome-speech/SlackBuild, gnome/gnome-system-monitor/SlackBuild, gnome/gnome-system-tools/SlackBuild, gnome/gnome-terminal/SlackBuild, gnome/gnome-themes/SlackBuild, gnome/gnome-utils/SlackBuild, gnome/gnome-vfs/SlackBuild, gnome/gnome-vfsmm/SlackBuild, gnome/gnome2-user-docs/SlackBuild, gnome/gnomevfs-mount/SlackBuild, gnome/gnopernicus/SlackBuild, gnome/gnubiff/SlackBuild, gnome/gok/SlackBuild, gnome/goobox/SlackBuild, gnome/gpass/SlackBuild, gnome/gpdf/SlackBuild, gnome/gphoto2/SlackBuild, gnome/grip/SlackBuild, gnome/gst-ffmpeg/SlackBuild:
   Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-  * ap/convmv/SlackBuild.old, ap/convmv/doinst.old: *** empty log message ***
-
   * ap/convmv/SlackBuild, ap/convmv/SlackBuild.old, ap/convmv/doinst.old, ap/convmv/doinst.sh, ap/convmv/requires, ap/convmv/slack-desc, ap/convmv/sources:
   Added ap/convmv-1.08-i486-1tom.
 
@@ -7881,8 +7779,6 @@
 
   * gnome/liferea/SlackBuild: Updated gnome/liferea to 0.6.4b-i486-1tom.
 
-  * gnome/inkscape/requires: *** empty log message ***
-
   * l/gc/SlackBuild, l/gc/requires, l/gc/slack-desc, l/gc/sources:
   Added l/gc-6.3-i486-1tom.
 
@@ -7924,8 +7820,6 @@
   * gnome/disksearch/SlackBuild, gnome/disksearch/disksearch-1.0.0.patch, gnome/disksearch/requires, gnome/disksearch/slack-desc, gnome/disksearch/sources:
   Added disksearch
 
-  * xap/jimmac/requires: *** empty log message ***
-
   * ap/html2text/SlackBuild, ap/html2text/requires, ap/html2text/slack-desc, ap/html2text/sources:
   Added html2text
 
@@ -7938,8 +7832,6 @@
 
   * gnome/epiphany/SlackBuild: Updated to 1.4.6
 
-  * ap/athcool/requires: *** empty log message ***
-
 2004-11-27  topf  <topf@users.berlios.de>
 
   * xap/idesk/SlackBuild, xap/idesk/requires, xap/idesk/slack-desc, xap/idesk/sources, xap/cire/SlackBuild, xap/cire/requires, xap/cire/slack-desc, xap/cire/sources, xap/hydrogen/SlackBuild, xap/hydrogen/hydrogen-0.9.0.patch, xap/hydrogen/requires, xap/hydrogen/slack-desc, xap/hydrogen/sources, xap/enlightenment/SlackBuild, xap/enlightenment/requires, xap/enlightenment/slack-desc, xap/enlightenment/sources, xap/eterm/SlackBuild, xap/eterm/eterm-0.9.2.patch, xap/eterm/requires, xap/eterm/slack-desc, xap/eterm/sources, l/fnlib/SlackBuild, l/fnlib/requires, l/fnlib/slack-desc, l/fnlib/sources, l/imlib2/SlackBuild, l/imlib2/requires, l/imlib2/slack-desc, l/imlib2/sources, l/libast/SlackBuild, l/libast/requires, l/libast/slack-desc, l/libast/sources, l/libsndfile/SlackBuild, l/libsndfile/requires, l/libsndfile/slack-desc, l/libsndfile/sources:
@@ -7951,8 +7843,6 @@
   *** empty log message ***
 
 2004-11-24  topf  <topf@users.berlios.de>
-
-  * gnome/gdm/gdm.SlackBuild: *** empty log message ***
 
   * gnome/gdm/SlackBuild, gnome/gdm/Xsession.gz, gnome/gdm/doinst.sh.gz, gnome/gdm/gdm.SlackBuild, gnome/gdm/gdm.conf-doinst.sh.gz, gnome/gdm/gdm.conf-graphical, gnome/gdm/gdm.quiet.diff.gz, gnome/gdm/slack-desc:
   Changed to Slackwares' scripts to include all xinitrcs
@@ -8006,8 +7896,6 @@
 
   * xap/jimmac/slack-desc: Added description
 
-  * d/portpkg/portpkg: *** empty log message ***
-
   * d/portpkg/SlackBuild, d/portpkg/portpkg: Make summary only once
 
 2004-11-13  tomtoastbrot  <tomtoastbrot@users.berlios.de>
@@ -8020,8 +7908,6 @@
 
   * d/portpkg/SlackBuild, d/portpkg/portpkg:
   Find also packages in wrong places in /usr/obj/pkg
-
-  * d/portpkg/SlackBuild, d/portpkg/portpkg: *** empty log message ***
 
 2004-11-12  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
@@ -8062,8 +7948,6 @@
   Added checkpkg, a dialog based interace
 
   * l/libdvdcss/SlackBuild: Fixed a typo
-
-  * d/portpkg/SlackBuild, d/portpkg/portpkg: *** empty log message ***
 
   * gnome/libghttp/sources: Forgotten
 
@@ -8120,16 +8004,12 @@
   * gnome/goobox/SlackBuild, gnome/goobox/doinst.sh, gnome/goobox/requires, gnome/goobox/slack-desc, gnome/goobox/sources:
   New file.
 
-  * gnome/mihais-memfree/requires: *** empty log message ***
-
   * gnome/ximian-artwork/SlackBuild, gnome/ximian-artwork/doinst.sh, gnome/ximian-artwork/requires, gnome/ximian-artwork/slack-desc, gnome/ximian-artwork/sources:
 
   * gnome/ximian-artwork/SlackBuild, gnome/ximian-artwork/doinst.sh, gnome/ximian-artwork/requires, gnome/ximian-artwork/slack-desc, gnome/ximian-artwork/sources:
   New file.
 
   * gnome/ubuntu-artwork/SlackBuild, gnome/ubuntu-artwork/doinst.sh, gnome/ubuntu-artwork/requires, gnome/ubuntu-artwork/slack-desc, gnome/ubuntu-artwork/sources:
-
-  * gnome/liferea/SlackBuild: *** empty log message ***
 
   * gnome/ubuntu-artwork/SlackBuild, gnome/ubuntu-artwork/doinst.sh, gnome/ubuntu-artwork/requires, gnome/ubuntu-artwork/slack-desc, gnome/ubuntu-artwork/sources:
   New file.
@@ -8140,8 +8020,6 @@
   New file.
 
   * gnome/gpass/SlackBuild, gnome/gpass/slack-desc, gnome/gpass/sources:
-
-  * gnome/sclog/requires: *** empty log message ***
 
   * gnome/gpass/SlackBuild, gnome/gpass/slack-desc, gnome/gpass/sources:
   New file.
@@ -8178,8 +8056,6 @@
 
   * d/portpkg/SlackBuild, d/portpkg/requires, d/portpkg/sync-dist, d/portpkg/sync-slack:
   New file.
-
-  * AUTHORS: *** empty log message ***
 
 2004-10-30  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
