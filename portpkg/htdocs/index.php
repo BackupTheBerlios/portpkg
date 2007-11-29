@@ -229,17 +229,22 @@ if ($file) {
       $last_date = $date;
       $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><small><em>\1 by <a href="mailto:\3">\2</a></em></small><br>',$line);
     } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
-      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
-      if ($matches[0][2] == "") {
+//      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
+//      if ($matches[0][2] == "") {
+      preg_match_all('!([^ ]+)[./]SlackBuild[,:]!',$line,$matches,PREG_SET_ORDER);
+      $log = ereg_replace('^.*[./]SlackBuild:','',$line);
+      if ($log == "\n") {
           $line = fgets($file);
-          $log = ereg_replace('\*','',$line);
-      } else
-        $log = $matches[0][2];
+//          $log = ereg_replace('\*','',$line);
+//      } else
+//        $log = $matches[0][2];
+          $log = ereg_replace('^ +\*','',$line);
+      }
+      if ($date != $last_date) {
+  	print($date);
+	$last_date = $date;
+      }
       foreach ($matches as $match) {
-        if ($date != $last_date) {
-  	  print($date);
-	  $last_date = $date;
-        }
         print('<a href="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/'.
           $match[1].'">'.$match[1].'</a> '.$log.'<br>');
         $items++;
