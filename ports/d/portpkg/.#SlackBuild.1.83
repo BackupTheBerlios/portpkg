@@ -1,0 +1,36 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# mein Kommentar
+# SOURCES: cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/portpkg
+# REQUIRES: bin coreutils findutils grep gzip pkgtools sed shadow tar util-linux
+# OPTIONAL: cvs fakeroot gcc glibc gnupg lynx subversion wget
+
+VERSION=0.38.3cvs
+ARCH=noarch
+BUILD=1tom
+
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=/tmp/package-$NAME
+rm -rf $PKG
+
+cd $TMP
+cp -a $CWD/portpkg/ . || exit 1
+cd portpkg
+make DESTDIR=$PKG PREFIX=/usr install
+sed -i -r "s,^(ENGINE_VER=).*$,\1$VERSION," $PKG/usr/bin/portpkg
+
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT COPYING CREDITS FAQ INSTALL NEWS README* ROADMAP \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+( cd $PKG; find * -name "*.new" ) | xargs -rl echo config >>$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n /tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz
