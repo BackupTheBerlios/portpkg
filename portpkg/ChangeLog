@@ -1,4 +1,83 @@
+2007-12-05  topf  <topf@users.berlios.de>
+
+  * NEWS: Updated for release 0.38.5.
+
+2007-11-29  topf  <topf@users.berlios.de>
+
+  * htdocs/index.php:
+  Modified to view newer ChangeLogs in the way we expect it to do this (say bugfix).
+
+2007-11-26  topf  <topf@users.berlios.de>
+
+  * plugins/export.portpkg:
+  * Check that the _whole_ TREE is a CVS and the _current_ directory has write access.
+  * Search only for _files_ when comparing workcopy with repository.
+
+  * plugins/export.portpkg, plugins/report.portpkg: Fixed timestamps.
+
+2007-11-25  topf  <topf@users.berlios.de>
+
+  * autoport: Fixed wrong usage of parameter expansion with #'s and %'s inside.
+
+  * portpkg:
+  * Fixed wrong usage of parameter expansion with #'s and %'s inside.
+  * check_reqs(): (yet another) Fix: Handle conflicts as conflicts, not as optional dependencies.
+  * build_pkg(): Fix ignoring md5sums that are not like md5sum's output.
+
+  * portpkg: * check_reqs(): Fail if current package is blocked.
+
+  * portpkg: * get_info(): Typo fixed.
+
+  * htdocs/upload.php: Added another success message.
+
+  * htdocs/index.php: Added link to the mailing lists.
+
+  * portpkg:
+  * get(): Use -C for cvs up to have a clean update.
+  * get_info(): Once again fixed: Search descriptions on several possible places but don't duplicate them.
+  * check_reqs(): Filter out $EXCLUDE when looking for $use_pkg.
+  * check_reqs(): Set $use_pkg empty if $TEST_REQS is set.
+  * check_reqs(): Re-use code for $avail_pkg and $use_pkg.
+  * check_reqs(), do_add(): Make search process a little more visually appealing.
+
+2007-11-23  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * check_indirect(): Produce return codes.
+  * build_pkg(): Track canceled packages.
+  * add_pkg(): No need to detect circular dependencies anymore.
+  * do_add(): Simplify check_indirect call and use semantically correct parameter.
+  * add_pkg(): Remove some dead code.
+
+  * portpkg:
+  * Moved check_reqs() out of build_pkg() and put into do_add().
+  * check_reqs(): Prefer package from the USE scope.
+  * check_reqs(): Reverted all this special output for DRY_RUN into (nearly) normal output, since do_add() now prints a reasonable targets list.
+  * do_add(): Check all dependencies recursively and print one final target list and one list of dependencies to consider.
+  * do_add(): Prompt after targets list again.
+  * do_add(): Removed warnings, since targets list is mandatory now.
+
+  * portpkg:
+  * Unify check_opts() and check_blocks() with check_reqs().
+  * list_add(), list_del(), in_list(): Allow optional parameter.
+
+  * portpkg:
+  * Fix: Use sudo -u nobody instead of su nobody.
+  * Fix: maintainer_mode(): Use $tmp/$package.tgz instead of $pkg_file at this state.
+
+2007-11-12  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * Say "Rebuilding package" if a package file already exists.
+  * Use umask 022 to prevent making packages only readable by root if a custom umask is set (Thanks to linhat).
+
+2007-11-11  topf  <topf@users.berlios.de>
+
+  * portpkg: do_info(): Removed overlooked debugging output.
+
 2007-11-09  topf  <topf@users.berlios.de>
+
+  * ChangeLog, NEWS: Updated.
 
   * portpkg:
   * Messages improved.
