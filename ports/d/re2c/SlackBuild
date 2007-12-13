@@ -1,16 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim at mail dot ru>
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://kent.dl.sourceforge.net/sourceforge/re2c/re2c-0.11.3.tar.gz
-# MD5SUMS: c9d28f69e86f078a3326497b55dacd7e re2c-0.11.3.tar.gz
-# REQUIRES:
+# SOURCES: http://kent.dl.sourceforge.net/sourceforge/re2c/re2c-0.13.1.tar.gz
+# MD5SUMS: d6168a6c18d5912e98d9343b33fdad97 re2c-0.13.1.tar.gz
+# REQUIRES: gcc-g++
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.11.3
+VERSION=0.13.1
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
