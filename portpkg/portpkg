@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.20 $"
+ENGINE_REV="\$Revision: 1.21 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -490,7 +490,7 @@ sed -nr "/^DOWNLOAD=/s,^.*=,,p" $path/$name.info 2>/dev/null`
   md5sums=`\
 sed -nr "/^# MD5SUMS:/s,.*: ,,p" $script; \
 sed -nr "/^[^#]/p" $path/md5sums 2>/dev/null; \
-sed -nr "/^MD5SUM=/s,^.*=,,p" $path/$name.info 2>/dev/null`
+sed -nr "/^MD5SUM=/s,^.*=,,p" $path/$name.info 2>/dev/null | xargs -ri echo "{} ${sources##*/}"`
   replace=`ls_inst -m 1 $nre | any2base`
   pkg_file=`find_pkg_file`
 
@@ -807,7 +807,6 @@ build_pkg()
     srcname=`basename "${src#*%}"`
     src="${src%"%"*}"
     md5sum=`echo "$md5sums" | grep -s " $srcname$" | cut -d " " -f 1`
-    md5sum=${md5sum:-$md5sums}
     dest=$SRC_DIR/$srcname
     if ls_src -q "/$srcname$" && [ -f $dest ]; then
       # srcname is there and is a file: skip it
@@ -826,6 +825,7 @@ build_pkg()
       ln -sf $dest .
       # check md5sums when non-maintainer-mode
       if $maintain && ls_src -q "/$srcname$"; then
+	row "Generating checksum for $srcname"
         md5sums=`{ echo "$md5sums"; md5sum $srcname; } | xargs -l | sort -u -k 2`
       elif ! [ "$md5sum" ]; then
         warn "No checksums available for $srcname!"
