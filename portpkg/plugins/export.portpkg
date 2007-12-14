@@ -136,7 +136,7 @@ for arg in `explicit "$@"`; do
     [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
 
     # compare local tree with CVS
-    find -type f ! -name "info" ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
+    find -type f ! -name ".#*" ! -name "portpkg.log" ! -name "info" ! -path "*CVS*" ! -path "." ! -name "*.autoport" | sort >$t/local
     find -path "*/CVS/Entries" -exec grep -H "^/" {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
 
     # add/remove entries that are new/not here anymore
