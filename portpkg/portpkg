@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.21 $"
+ENGINE_REV="\$Revision: 1.22 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -747,11 +747,11 @@ maintainer_mode()
   # write a file list of the package (remove creation time and size)
   { printf "PACKAGE SIZE (compressed):   %6s K\n" $((`cat $tmp/$package.tgz | wc -c`/1024))
     printf "PACKAGE SIZE (uncompressed): %6s K\n" $((`zcat $tmp/$package.tgz | wc -c`/1024))
-    echo "REMOTE SOURCES:  `echo "$sources" | sed "s,^.*[%/],$SRC_DIR/," | xargs du | tail -n 1 | cut -f 1` K"
+    printf "REMOTE SOURCES:              %6s K\n" `echo "$sources" | sed "s,^.*[%/],$SRC_DIR/," | xargs du -c | tail -n 1 | cut -f 1`
     echo "$sources" | sed "s,%.*$,,"
     echo "FILE LIST:"
+    tar tzvf $tmp/$package.tgz | xargs -l | cut -d " " -f 1,2,6- | sort -k 3 | column -t
   } >${script%SlackBuild}footprint
-  tar tzvf $tmp/$package.tgz | xargs -l | cut -d " " -f 1,2,6- | sort -k 3 | column -t >>${script%SlackBuild}footprint
 }
 
 # build package
@@ -1141,7 +1141,7 @@ do_info() # pkgex-list
     echo "SCRIPT LOCATION:    ${script%/*}/" | fmt -t
     [ "$requires" ] && echo "PACKAGE REQUIRES:   "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:   "$optional | fmt -t
-    [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$optional | fmt -t
+    [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$blocks | fmt -t
     [ "$sources" ] && echo "SOURCE LOCATIONS:   "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
