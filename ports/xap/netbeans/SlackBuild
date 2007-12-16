@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://dlc.sun.com/netbeans/download/5_5/mlfcs/200612070100/netbeans-5_5.tar.bz2
-# MD5SUMS: cc0564eb2c2385dbf99631f027287ed6 netbeans-5_5.tar.bz2
+# SOURCES: http://download.netbeans.org/netbeans/6.0/final/zip/netbeans-6.0-200711261600.zip
+# MD5SUMS: 7d2e497afd54d4cf3be6c3b74f31bbb7 netbeans-6.0-200711261600.zip
 # REQUIRES: jdk x11
 # OPTIONAL: desktop-file-utils
 
@@ -10,14 +10,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=5.5
+VERSION=6.0
 ARCH=noarch
 BUILD=1shv
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar -xjvf $CWD/netbeans-5_5.tar.bz2
+unzip $CWD/netbeans-6.0-200711261600.zip
 
 
 rm -rf `find $NAME -name *.exe` \
