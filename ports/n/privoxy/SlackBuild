@@ -12,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=3.0.6
 ARCH=${ARCH:-i486}
-BUILD=6tom
+BUILD=7tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -27,10 +27,12 @@ autoconf
   --sysconfdir=/etc/privoxy \
   --localstatedir=/var \
   --with-user=daemon \
-  --with-group=daemon \
   $ARCH-slackware-linux
 make
 make install prefix=$PKG/usr CONF_BASE=$PKG/etc/privoxy VAR_DEST=$PKG/var
+( cd $PKG/usr/share/doc
+  mv privoxy privoxy-$VERSION
+)
 sed -i "s,$PKG,,g" $PKG/etc/privoxy/config
 cat <<EOF >>$PKG/etc/privoxy/config
 
@@ -39,22 +41,23 @@ cat <<EOF >>$PKG/etc/privoxy/config
 EOF
 mv $PKG/etc/privoxy/config $PKG/etc/privoxy/config.new
 mkdir -p $PKG/etc/rc.d
-install -m 755 slackware/rc.privoxy.orig $PKG/etc/rc.d/rc.privoxy.new
+install -m 755 slackware/rc.privoxy.orig $PKG/etc/rc.d/rc.privoxy.incoming
 sed -i "s,%PROGRAM%,privoxy,g;\
 s,%SBIN_DEST%,/usr/sbin,g;\
 s,%CONF_DEST%,/etc/privoxy,g;\
 s,%USER%,daemon,g;\
-s,%GROUP%,daemon,g;" $PKG/etc/rc.d/rc.privoxy.new
+s,%GROUP%,daemon,g;" $PKG/etc/rc.d/rc.privoxy.incoming
 mkdir -p $PKG/var/run/privoxy
 chown -R daemon.daemon $PKG/var/log/privoxy $PKG/var/run/privoxy
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
-mv $PKG/usr/doc/privoxy $PKG/usr/doc/$NAME-$VERSION
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -71,3 +74,41 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/privoxy-$VERSION-stable
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=config
+autoheader
+autoconf
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc/privoxy \
+  --localstatedir=/var \
+  --with-user=daemon \
+  $ARCH-slackware-linux
+#=config
+#=install
+make
+make install prefix=$PKG/usr CONF_BASE=$PKG/etc/privoxy VAR_DEST=$PKG/var
+( cd $PKG/usr/share/doc
+  mv privoxy privoxy-$VERSION
+)
+sed -i "s,$PKG,,g" $PKG/etc/privoxy/config
+cat <<EOF >>$PKG/etc/privoxy/config
+
+# Uncomment for tor router:
+#forward-socks4a / localhost:9050 .
+EOF
+mv $PKG/etc/privoxy/config $PKG/etc/privoxy/config.new
+mkdir -p $PKG/etc/rc.d
+install -m 755 slackware/rc.privoxy.orig $PKG/etc/rc.d/rc.privoxy.incoming
+sed -i "s,%PROGRAM%,privoxy,g;\
+s,%SBIN_DEST%,/usr/sbin,g;\
+s,%CONF_DEST%,/etc/privoxy,g;\
+s,%USER%,daemon,g;\
+s,%GROUP%,daemon,g;" $PKG/etc/rc.d/rc.privoxy.incoming
+mkdir -p $PKG/var/run/privoxy
+chown -R daemon.daemon $PKG/var/log/privoxy $PKG/var/run/privoxy
+#=install
