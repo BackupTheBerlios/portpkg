@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.22 $"
+ENGINE_REV="\$Revision: 1.23 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -1142,7 +1142,7 @@ do_info() # pkgex-list
     [ "$requires" ] && echo "PACKAGE REQUIRES:   "$requires | fmt -t
     [ "$optional" ] && echo "PACKAGE SUGGESTS:   "$optional | fmt -t
     [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$blocks | fmt -t
-    [ "$sources" ] && echo "SOURCE LOCATIONS:   "$sources | fmt -t
+    [ "$sources" ] && echo "REMOTE SOURCES:     "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
   done
 
