@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.23 $"
+ENGINE_REV="\$Revision: 1.24 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -135,7 +135,7 @@ slk2gname() { sed -r "s,^(|$PRT_DIR/)(.*)[./]SlackBuild$,\2,"; }
 slk2name()  { sed -r "s,^.*/(.*)[./]SlackBuild$,\1,"; }
 
 # message system
-log()       { echo -e "$@" | tee -a $LOG_DIR/portpkg.log; }
+log()       { echo -e "$@" | ($DEBUG && tee -a $LOG_DIR/portpkg.log || cat -); }
 header()    { log "\n+==============================================================================
 | $@
 +=============================================================================="; }
@@ -1328,6 +1328,12 @@ maintain,export,noask,ignore:,use:,exclude:,testreqs"
   $DOWNLOAD_ONLY && INTERACTIVE=false
   $VERBOSE && output=/dev/stdout
 
+  # start log entry
+  log "+--------------------------+" >/dev/null
+  log "`date`" >/dev/null
+  log "Portpkg version $ENGINE_VER ($ENGINE_REV)" >/dev/null
+  log "`whoami`@`hostname`:`pwd`$ $0 $@" >/dev/null
+
   debug "parse_options() $start_args"
   debug "$action() $@"
 
@@ -1366,12 +1372,6 @@ init()
   [ "$TMP" = "/" ] && die "TMP cannot be /!"
   [ -d "$TMP" ] || die "Internal error!"
   [ -d "$LOG_DIR" ] || mkdir -p $LOG_DIR
-
-  # start log entry
-  log "+--------------------------+" >/dev/null
-  log "`date`" >/dev/null
-  log "Portpkg version $ENGINE_VER ($ENGINE_REV)" >/dev/null
-  log "`whoami`@`hostname`:`pwd`$ $0 $@" >/dev/null
 
   # clean up on exit
   trap 'error "ctrl-c pressed"; exit 1' INT
