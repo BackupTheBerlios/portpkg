@@ -1,7 +1,8 @@
 #!/bin/sh
 #BLURB="Format messages"
 
-cols=`expr $(stty size | cut -d " " -f 2) - 2`
+cols=`stty size 2>/dev/null | cut -d " " -f 2`
+cols=$((${cols:-80}-2))
 
 fmt_t()     { fold -sw $cols | sed "${1:-2},\$s,^,  ,"; }
 
