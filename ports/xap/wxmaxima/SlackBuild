@@ -1,0 +1,73 @@
+#!/bin/sh
+# MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
+# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/wxmaxima/wxMaxima-0.7.3a.tar.gz
+# MD5SUMS: bb24cc08495c259413c34870ea2018d7 wxMaxima-0.7.3a.tar.gz
+# REQUIRES: libxml2 maxima wxwidgets
+# OPTIONAL: desktop-file-utils
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.7.3a
+ARCH=${ARCH:-i486}
+BUILD=1shv
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/wxMaxima-$VERSION.tar.gz
+cd wxMaxima-$VERSION
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
+  --program-prefix="" \
+  --disable-schemas-install \
+  $ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+install -d $PKG/usr/share/{applications,pixmaps}
+install -m 744 wxmaxima.desktop $PKG/usr/share/applications/wxmaxima.desktop
+install -m 744 maxima-new.png $PKG/usr/share/pixmaps/maxima-new.png
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+cat $CWD/doinst.sh >$PKG/install/doinst.sh
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/wxMaxima-$VERSION
+  rm -rf $PKG
+fi
