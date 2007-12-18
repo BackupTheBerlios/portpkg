@@ -1,0 +1,40 @@
+get_info() sshfs-fuse
+cache(): filling synonyms
+get_info(): sshfs-fuse is /home/vadim/portsCVS/ports/ap/sshfs-fuse-1.9-i686-1shv
+cache(): filling inst
+cache(): filling pkg
+cache(): filling src
+WARNING: Maintainer mode: Script header will be modified!
+
+* Continue: Building sshfs-fuse-1.9-i686-1shv to replace sshfs-fuse-1.8-i686-1shv? (s to skip) 
++==============================================================================
+| Processing /sshfs-fuse
++==============================================================================
+
+Building sshfs-fuse-1.9-i686-1shv to replace sshfs-fuse-1.8-i686-1shv:
+  --> Downloading sshfs-fuse-1.9.tar.gz
+get() http://belnet.dl.sourceforge.net/sourceforge/fuse/sshfs-fuse-1.9.tar.gz /home/vadim/portsCVS/ports/ap/sshfs-fuse/sshfs-fuse-1.9.tar.gz
+cache(): filling mirrors
+get(): URLs: http://jaist.dl.sourceforge.net/sourceforge/fuse/sshfs-fuse-1.9.tar.gz http://belnet.dl.sourceforge.net/sourceforge/fuse/sshfs-fuse-1.9.tar.gz
+get(): trying http://jaist.dl.sourceforge.net/sourceforge/fuse/sshfs-fuse-1.9.tar.gz
+build_pkg(): using SLKCFLAGS for CFLAGS
+  --> Executing (fakerooted) SlackBuild 
+maintainer_mode(): auto reqs: aaa_elflibs fuse-2.6.5_2.6.21.5 glib2
+  --> Updating script header of SlackBuild
+  --> New dependencies: fuse-2.6.5_2.6.21.5
+  --> Arbitrary dependencies (KEEP THIS LIST SHORT): fuse
+  --> Moving sshfs-fuse-1.9-i686-1shv.tgz to /home/vadim/portsCVS/ports/ap/sshfs-fuse//
+  --> Cleaning up
+  --> /tmp/package-sshfs-fuse kept for maintaining purposes
+  --> Checking package layout
+check_pkg(): sshfs-fuse-1.9-i686-1shv
+
+* Continue: Replacing sshfs-fuse-1.8-i686-1shv with sshfs-fuse-1.9-i686-1shv? (s to skip) add_pkg(): su -c "upgradepkg --install-new --reinstall $pkg_file"
+Tue Dec 18 13:12:19 IST 2007
+cache(): filling synonyms
+get_info(): . is /home/vadim/portsCVS/ports/ap/sshfs-fuse-1.9-i686-1shv
+cache(): filling inst
+cache(): filling pkg
+WARNING: Trying to write directly to CVS!
+
+* Continue submitting sshfs-fuse-1.9-i686-1shv? (ctrl-c to abort)   --> Submitting sshfs-fuse-1.9-i686-1shv to CVS

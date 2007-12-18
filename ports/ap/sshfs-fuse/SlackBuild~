@@ -1,16 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/fuse/sshfs-fuse-1.9.tar.gz
-# MD5SUMS: 05c3da4fa0f673f7ce5f480b3023af61 sshfs-fuse-1.9.tar.gz
+# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/fuse/sshfs-fuse-1.8.tar.gz
+# MD5SUMS: e91a2fed1da952a375798408dc6e41a0 sshfs-fuse-1.7.tar.gz
+# MD5SUMS: 3c575cf89a6d3d8ab6063c2f60bd5b25 sshfs-fuse-1.8.tar.gz
 # REQUIRES: fuse glib2
-# OPTIONAL: fuse-2.6.5_2.6.21.5
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.9
+VERSION=1.8
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
