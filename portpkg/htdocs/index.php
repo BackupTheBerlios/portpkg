@@ -3,11 +3,11 @@
 <head>
     <title>The Portpkg Project</title>
 
-    <meta name="author" content="Portpkg Project">
-    <meta name="copyright" content="T. Pfaff">
-    <meta name="keywords" content="ports, portsystem, buildscript, slackbuild, slackware, source, package, manager, portpkg">
-    <meta name="description" content="Source package system for Slackware Linux">
-    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    <meta name="author" content="Portpkg Project" />
+    <meta name="copyright" content="T. Pfaff" />
+    <meta name="keywords" content="ports, portsystem, buildscript, slackbuild, slackware, source, package, manager, portpkg" />
+    <meta name="description" content="Source package system for Slackware Linux" />
+    <meta name="robots" content="index,nofollow" />
 
     <style type="text/css">
 <!--
