@@ -45,6 +45,25 @@ for arg in `explicit "$@"`; do
   get_info $arg || continue
   path=`dirname $script`
 
+  dirs_to_commit=`\
+cd $path
+find ! -name "." -type d ! -name "CVS" | sort`
+  files_to_commit=`\
+cd $path
+find -type f \
+  ! -name "*~" \
+  ! -name ".#*" \
+  ! -path "*/CVS/*" \
+  ! -name "$name-*-*-*.tgz" \
+  ! -name "portpkg.log" \
+  ! -name "*.buildlog.gz" \
+  ! -name "info" \
+  ! -name "*.autoport" \
+  ! -name "$name-*-*-*.patch.gz" \
+| for src in $sources; do
+  grep -v "/${src##*[%/]}$"
+done | sort`
+
   # quote summary
   if ( $quote || [ "$dest" ] ) && [ -f $path/info ]; then
     tag=`echo $package | egrep -o "[a-zA-Z]+$"`
@@ -67,10 +86,10 @@ for arg in `explicit "$@"`; do
     continue
   fi
 
-  if [ "`find $path/ -type l`" ]; then
-    error "Remove any links before export: $group/$name"
-    continue
-  fi
+#  if [ "`find $path/ -type l`" ]; then
+#    error "Remove any links before export: $group/$name"
+#    continue
+#  fi
 
 #  # check "ownership"
 ##  case $package in *[0-9]$MY_TAG) ;; *)
@@ -133,21 +152,27 @@ for arg in `explicit "$@"`; do
 
     # check if this path is already in the repository
     cd $path || die
-    [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
+#    [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
+    for d in $dirs_to_commit; do
+      ( cd $path/$d
+	[ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $d` ) || die
+      ) || die
+    done
 
     # compare local tree with CVS
-    find -type f \
-      ! -name ".#*" \
-      ! -path "*/CVS/*" \
-      ! -path "." \
-      ! -name "$name-*-*-*.tgz" \
-      ! -name "portpkg.log" \
-      ! -name "*.buildlog.gz" \
-      ! -name "info" \
-      ! -name "*.autoport" | sort >$t/local
-    for src in $sources; do
-      sed -i "\,/${src##*[%/]}$,d" $t/local
-    done
+#    find -type f \
+#      ! -name ".#*" \
+#      ! -path "*/CVS/*" \
+#      ! -name "*~" \
+#      ! -name "$name-*-*-*.tgz" \
+#      ! -name "portpkg.log" \
+#      ! -name "*.buildlog.gz" \
+#      ! -name "info" \
+#      ! -name "*.autoport" | sort >$t/local
+#    for src in $sources; do
+#      sed -i "\,/${src##*[%/]}$,d" $t/local
+#    done
+    echo "$files_to_commit" >$t/local
     find -path "*/CVS/Entries" -exec grep -H "^/" {} \; | rev | cut -d / -f 5,8- | rev | sort >$t/cvs
 
     # add/remove entries that are new/not here anymore
@@ -213,7 +238,10 @@ EOF
     else
     rm -f $LOG_DIR/$package.tar.bz2
     mkdir -p $t/$package/$name
-    cp -a $path $t/$package/
+#    cp -a $path $t/$package/
+    ( cd $path
+      cp -a $files_to_commit $t/$package/
+    )
 
     # add maintainer information and changelog entry
     cat >$t/$package/$name/info <<EOF
@@ -233,21 +261,23 @@ EOF
       debug "export.portpkg: type #1) cvsdiff"
       cd $path
       repo=`cat CVS/Repository | cut -d / -f 2-`
-      cvs diff -uN >>$LOG_DIR/$package.patch
+      cvs diff -uN $files_to_commit >>$LOG_DIR/$package.patch
       sed -ri "s,^(---|\+\+\+) ,\1 $repo/," $LOG_DIR/$package.patch
     else
       # situation #2) not in CVS
       debug "export.portpkg: type #2) new"
-      cd $PRT_DIR
-      diff -urNx CVS -x "*.autoport" -x "*~" open/$name/ $group/$name/ \
-      | sed -r "s,^(\+\+\+) $group/,\1 open/," >>$LOG_DIR/$package.patch
+      cd `dirname $path`
+#      diff -urNx CVS -x "*.autoport" -x "*~" open/$name/ $group/$name/ \
+      for f in $files_to_commit; do
+        diff -urN open/$name/$f `basename $path`/$f
+      done | sed -r "s,^(\+\+\+) $group/,\1 open/," >>$LOG_DIR/$package.patch
     fi
     else
     # remove private and backup files
     ( cd $t/$package
-      find -name "CVS" -depth -exec rm -rf {} \;
-      find -name "*.autoport" -exec rm -f {} \;
-      find -name "*~" -exec rm -f {} \;
+#      find -name "CVS" -depth -exec rm -rf {} \;
+#      find -name "*.autoport" -exec rm -f {} \;
+#      find -name "*~" -exec rm -f {} \;
       tar cjf $LOG_DIR/$package.tar.bz2 . )
     fi
 
