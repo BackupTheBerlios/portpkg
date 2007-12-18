@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.24 $"
+ENGINE_REV="\$Revision: 1.25 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -822,7 +822,7 @@ build_pkg()
       cache_add src $dest
     fi
     if ! $DRY_RUN; then
-      ln -sf $dest .
+      [ "$SRC_DIR" = "$cwd" ] || ln -sf $dest .
       # check md5sums when non-maintainer-mode
       if $maintain && ls_src -q "/$srcname$"; then
 	row "Generating checksum for $srcname"
