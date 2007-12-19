@@ -1,5 +1,5 @@
 #!/bin/sh
-# MAINTAINER: Shiray Andrey 'sh' <shiray@yandex.ru>
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://www.ntfs-3g.org/ntfs-3g-1.1030.tgz
 # MD5SUMS: 899c7cb230cd7b38c3481ca98e87d3e5 ntfs-3g-1.1030.tgz
 # REQUIRES: fuse
@@ -11,7 +11,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.1030
 ARCH=${ARCH:-i486}
-BUILD=1sh
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -43,7 +43,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-schemas-install \
   $ARCH-slackware-linux
 make
-make install DESTDIR=$PKG
+make install DESTDIR=$PKG LDCONFIG=/bin/true
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -67,3 +67,12 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/ntfs-3g-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=install
+make
+make install DESTDIR=$PKG LDCONFIG=/bin/true
+#=install
