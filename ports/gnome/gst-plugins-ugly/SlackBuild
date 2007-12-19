@@ -1,6 +1,6 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-0.10.5.tar.bz2
+# SOURCES: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-0.10.6.tar.bz2
 # MD5SUMS: af6f238507b0040bf84fcbc6a241e559 gst-plugins-ugly-0.10.3.tar.bz2
 # MD5SUMS: 2e6bf35ebcb2ab508b43ef3aaee878ad gst-plugins-ugly-0.10.5.tar.bz2
 # REQUIRES: a52dec gst-plugins-base lame libdvdnav libdvdread libid3tag libmad mpeg2dec
@@ -11,7 +11,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.10.5
+VERSION=0.10.6
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
