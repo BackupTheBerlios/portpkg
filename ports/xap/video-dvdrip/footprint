@@ -1,3 +1,8 @@
+PACKAGE SIZE (compressed):     1149 K
+PACKAGE SIZE (uncompressed):   2330 K
+REMOTE SOURCES:                1718 K
+http://www.exit1.org/dvdrip/dist/dvdrip-0.98.8.tar.gz
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
@@ -15,15 +20,15 @@ drwxr-xr-x  root/root  usr/bin/
 -r-xr-xr-x  root/root  usr/bin/dvdrip-subpng
 -r-xr-xr-x  root/root  usr/bin/dvdrip-thumb
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/video-dvdrip-0.97.12/
--rw-r--r--  root/root  usr/doc/video-dvdrip-0.97.12/COPYRIGHT
--rw-r--r--  root/root  usr/doc/video-dvdrip-0.97.12/MANIFEST
--rw-r--r--  root/root  usr/doc/video-dvdrip-0.97.12/README
--rw-r--r--  root/root  usr/doc/video-dvdrip-0.97.12/TODO
+drwxr-xr-x  root/root  usr/doc/video-dvdrip-0.98.8/
+-rw-r--r--  root/root  usr/doc/video-dvdrip-0.98.8/COPYRIGHT
+-rw-r--r--  root/root  usr/doc/video-dvdrip-0.98.8/MANIFEST
+-rw-r--r--  root/root  usr/doc/video-dvdrip-0.98.8/README
+-rw-r--r--  root/root  usr/doc/video-dvdrip-0.98.8/TODO
 drwxr-xr-x  root/root  usr/lib/
 drwxr-xr-x  root/root  usr/lib/perl5/
 drwxr-xr-x  root/root  usr/lib/perl5/5.8.8/
-drwxr-xr-x  root/root  usr/lib/perl5/5.8.8/i486-linux/
+drwxr-xr-x  root/root  usr/lib/perl5/5.8.8/i486-linux-thread-multi/
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/
@@ -45,6 +50,9 @@ drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/it/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/sr/
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/sr/LC_MESSAGES/
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/sr/LC_MESSAGES/video.dvdrip.mo
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/sr@Latn/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/sr@Latn/LC_MESSAGES/
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/LocaleData/sr@Latn/LC_MESSAGES/video.dvdrip.mo
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/Video/
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip.pm
 drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/
@@ -104,6 +112,7 @@ drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/GUI/Project/
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/GUI/Project/Subtitle.pm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/GUI/Project/Title.pm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/GUI/Project/Transcode.pm
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/GUI/Rules.pm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/GUI/ZoomCalculator.pm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/InfoFile.pm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/JobPlanner.pm
@@ -122,15 +131,19 @@ drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/Term/
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/TranscodeRC.pm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/icon.xpm
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/license.txt
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.ca.png
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.de.png
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.en.png
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.es.png
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.it.png
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.sr.png
+-r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/splash.sr@Latn.png
 -r--r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/Video/DVDRip/translators.txt
-drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/
-drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/
-drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Video/
-drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Video/DVDRip/
--rw-r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux/auto/Video/DVDRip/.packlist
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux-thread-multi/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux-thread-multi/auto/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux-thread-multi/auto/Video/
+drwxr-xr-x  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux-thread-multi/auto/Video/DVDRip/
+-rw-r--r--  root/root  usr/lib/perl5/site_perl/5.8.8/i486-linux-thread-multi/auto/Video/DVDRip/.packlist
 drwxr-xr-x  root/root  usr/man/
 drwxr-xr-x  root/root  usr/man/man1/
 -r--r--r--  root/root  usr/man/man1/dvdrip-progress.1.gz

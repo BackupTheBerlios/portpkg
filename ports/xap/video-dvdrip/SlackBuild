@@ -1,24 +1,28 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-0.97.12.tar.gz
+# SOURCES: http://www.exit1.org/dvdrip/dist/dvdrip-0.98.8.tar.gz
 # MD5SUMS: fc98605c3c08a02b3992565e3fe5f057 Video-DVDRip-0.97.12.tar.gz
-# REQUIRES: event-execflow gtk2-ex-formfactory gtk2-perl libintl-perl perl transcode
-# OPTIONAL: cdrdao cdrecord lsdvd mjpegtools mplayer ogmtools vcdimager video-dvdrip xine-ui
+# MD5SUMS: 61b77b298b14c6bde83713e93e9ea4d8 dvdrip-0.98.8.tar.gz
+# REQUIRES: event-execflow gtk2-ex-formfactory gtk2-perl libintl-perl
+# REQUIRES: perl transcode
+# OPTIONAL: cdrdao cdrecord desktop-file-utils event event-rpc lsdvd
+# OPTIONAL: mjpegtools mplayer ogmtools rar vcdimager xine-ui
+# OPTIONAL: xvid4conf
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.97.12
+VERSION=0.98.8
 ARCH=noarch
 BUILD=1tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/Video-DVDRip-$VERSION.tar.gz
-cd Video-DVDRip-$VERSION
+tar xzvf $CWD/dvdrip-$VERSION.tar.gz
+cd dvdrip-$VERSION
 chown -R root.root .
 perl Makefile.PL
 make
@@ -26,24 +30,36 @@ make install DESTDIR=$PKG
 mkdir -p $PKG/usr/share/applications
 install -m 644 $CWD/dvdrip.desktop $PKG/usr/share/applications/
 sed -i "s,^Icon=.*$,Icon=/`cd $PKG; find * -name icon.xpm`," $PKG/usr/share/applications/dvdrip.desktop
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rf $PKG/usr/info/dir
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   COPYRIGHT MANIFEST README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/Video-DVDRip-$VERSION
+  rm -rf $TMP/dvdrip-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+install
+mkdir -p $PKG/usr/share/applications
+install -m 644 $CWD/dvdrip.desktop $PKG/usr/share/applications/
+sed -i "s,^Icon=.*$,Icon=/`cd $PKG; find * -name icon.xpm`," $PKG/usr/share/applications/dvdrip.desktop
+#+install
