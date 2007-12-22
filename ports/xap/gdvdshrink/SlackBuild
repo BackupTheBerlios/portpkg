@@ -2,7 +2,8 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://downloads.sourceforge.net/gdvdshrink/gDVDshrink-0.3-9.tgz
 # MD5SUMS: 17a0d07bdf22d8793d75779561be509c gDVDshrink-0.3-9.tgz
-# REQUIRES: dvdauthor gtk2-gladexml-perl gtk2-perl lsdvd mplayer perl vamps
+# REQUIRES: dvdauthor gtk2-gladexml-perl gtk2-perl lsdvd mplayer perl
+# REQUIRES: vamps
 # OPTIONAL: desktop-file-utils
 
 TMP=${TMP:-/tmp}
@@ -12,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.3-9
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -32,13 +33,17 @@ install -m 644 $CWD/gdvdshrink.desktop usr/share/applications/
 find -type d | xargs -i mkdir -p $PKG/{}
 find -type f | xargs -i install -m 644 {} $PKG/{}
 chmod +x $PKG/usr/bin/* $PKG/opt/gDVDshrink/*.pl
-find $PKG/ -name perllocal.pod | xargs -r rm -fv
+# fix calculation of requant factor to fit into 4.7 GB
+# (changed factor from 1.04 (2^20/10^6) to 1.08 (aprox. 2^30/10^9))
+sed -i "/4700000000/s, \* 1.04, * 1.08," $PKG/opt/gDVDshrink/main_wnd.pm
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 find $PKG/usr/doc -type f | xargs -r chmod 644
@@ -52,6 +57,26 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/%srcdirprefix%
+  rm -rf $TMP/gdvdshrink-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=install
+mv usr/local/bin usr/
+rmdir usr/local
+mkdir -p usr/doc/gdvdshrink-$VERSION
+mv opt/gDVDshrink/CHANGES opt/gDVDshrink/COPYING opt/gDVDshrink/INSTALL \
+  opt/gDVDshrink/README opt/gDVDshrink/TODO usr/doc/gdvdshrink-$VERSION/
+mkdir -p usr/share/applications
+install -m 644 $CWD/gdvdshrink.desktop usr/share/applications/
+find -type d | xargs -i mkdir -p $PKG/{}
+find -type f | xargs -i install -m 644 {} $PKG/{}
+chmod +x $PKG/usr/bin/* $PKG/opt/gDVDshrink/*.pl
+# fix calculation of requant factor to fit into 4.7 GB
+# (changed factor from 1.04 (2^20/10^6) to 1.08 (aprox. 2^30/10^9))
+sed -i "/4700000000/s, \* 1.04, * 1.08," $PKG/opt/gDVDshrink/main_wnd.pm
+#=install
