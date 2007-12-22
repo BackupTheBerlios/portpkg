@@ -1,9 +1,11 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://heanet.dl.sourceforge.net/gtk-server/gtk-server-2.1.3.tar.gz
+# SOURCES: http://heanet.dl.sourceforge.net/gtk-server/gtk-server-2.2.1.tar.gz
 # MD5SUMS: 3d8697d07c256be3629701f15ca91dbe gtk-server-2.0.12.tar.gz
 # MD5SUMS: d02650037c1fb482d5bc8d4a753508b2 gtk-server-2.1.3.tar.gz
-# REQUIRES: gtk+2 libffi libglade
+# MD5SUMS: 3d2006964b57c08c9fee4a8c5be80918 gtk-server-2.2.1.tar.gz
+# REQUIRES: gtk+2 libffi
+# OPTIONAL: libglade
 # UP2DATE: http://heanet.dl.sourceforge.net/sourceforge/gtk-server
 
 TMP=${TMP:-/tmp}
@@ -11,14 +13,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.1.3
+VERSION=2.2.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -36,8 +38,13 @@ CFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --with-gtk2
+  --disable-schemas-install \
+  --with-gtk2 \
+  $ARCH-slackware-linux
 make
 mkdir $PKG/etc
 make install prefix=$PKG/usr SYSCONFIG=$PKG/etc
@@ -47,7 +54,6 @@ rmdir $PKG/usr/etc
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
@@ -66,3 +72,18 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/gtk-server-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#-ac_disable_static
+#=install
+make
+mkdir $PKG/etc
+make install prefix=$PKG/usr SYSCONFIG=$PKG/etc
+rmdir $PKG/usr/etc
+#=install
+#+configure-opts
+  --with-gtk2 \
+#+configure-opts
