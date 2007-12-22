@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case $1 in
+  start)
+    echo -n "Starting system tools:  /usr/bin/system-tools-backends"
+    /usr/bin/system-tools-backends || echo -n "... FAILED"
+    echo;;
+  stop)
+    killall system-tools-backends;;
+  restart)
+    sh $0 stop
+    sh $0 start;;
+  *)
+    echo "usage: $0 start|stop|restart";;
+esac
+
+  
