@@ -1,9 +1,10 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/eel/2.18/eel-2.18.0.1.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/eel/2.20/eel-2.20.0.tar.bz2
 # MD5SUMS: 7002f4f99317ed11da8b9db15b7e4a2b eel-2.14.1.tar.bz2
 # MD5SUMS: 7403a91bd27979f7513b9e9325e1d890 eel-2.16.0.tar.bz2
 # MD5SUMS: dd06a56773af79e4292e63c6bcca9449 eel-2.18.0.1.tar.bz2
+# MD5SUMS: 691734dc1078e05e726b4f5b8646dadf eel-2.20.0.tar.bz2
 # REQUIRES: gail gnome-desktop gnome-menus libglade
 
 TMP=${TMP:-/tmp}
@@ -11,7 +12,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.18.0.1
+VERSION=2.20.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -37,9 +38,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -48,7 +52,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
