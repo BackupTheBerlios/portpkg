@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://dl.sourceforge.net/kdbg/kdbg-2.0.5.tar.gz
-# MD5SUMS: 1c0a90c82f27c0ddcdf0a4434d85119b kdbg-2.0.5.tar.gz
+# SOURCES: http://dl.sourceforge.net/kdbg/kdbg-2.1.0.tar.gz
+# MD5SUMS: dbac8bbc9f0182be6a272201b342fafc kdbg-2.1.0.tar.gz
 # REQUIRES: desktop-file-utils kdelibs qt
 
 TMP=${TMP:-/tmp}
@@ -9,7 +9,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.0.5
+VERSION=2.1.0
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
