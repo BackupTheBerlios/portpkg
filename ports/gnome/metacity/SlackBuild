@@ -1,6 +1,6 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/metacity/2.18/metacity-2.18.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/metacity/2.20/metacity-2.20.1.tar.bz2
 # MD5SUMS: 08c38e04c8ea83b524e36b17ffaec661 metacity-2.11.1.tar.bz2
 # MD5SUMS: fa01d95221a64a1f6d4e088ca9b6362e metacity-2.12.0.tar.bz2
 # MD5SUMS: 2480951fb0636d3fc6a78ab8a54f355d metacity-2.14.0.tar.bz2
@@ -8,15 +8,18 @@
 # MD5SUMS: db1f2582681bf5eb0a8ecab45b622d7b metacity-2.16.0.tar.bz2
 # MD5SUMS: 7ac14eb4caffbb15df91b70b0def2f5e metacity-2.16.5.tar.bz2
 # MD5SUMS: 2af31af033618329d093267ac00e49ff metacity-2.18.0.tar.bz2
-# REQUIRES: desktop-file-utils gconf gtk+2 startup-notification
-# OPTIONAL: libcm libxcb
+# MD5SUMS: e9c6317c85db019ac2d832dd9f45f536 metacity-2.20.0.tar.bz2
+# MD5SUMS: bd4396d1a3b096c544cf0139a847fd16 metacity-2.20.1.tar.bz2
+# REQUIRES: desktop-file-utils gconf gtk+2 popt
+# REQUIRES: startup-notification
+# OPTIONAL: libcm
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.18.0
+VERSION=2.20.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -42,8 +45,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
+  --disable-schemas-install \
   --`pkg-config cm && echo enable || echo disable`-compositor \
   $ARCH-slackware-linux
 make
@@ -54,7 +61,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
@@ -75,3 +81,11 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/metacity-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+configure-opts
+  --`pkg-config cm && echo enable || echo disable`-compositor \
+#+configure-opts
