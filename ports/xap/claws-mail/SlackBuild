@@ -1,6 +1,6 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-3.1.0.tar.bz2
+# SOURCES: http://downloads.sourceforge.net/sylpheed-claws/claws-mail-3.2.0.tar.bz2
 # MD5SUMS: ed409002b5e6b60b682ae3ee7f87a86d claws-mail-2.10.0.tar.bz2
 # MD5SUMS: b68983f2edac97cc094c527536d49a09 claws-mail-2.8.1.tar.bz2
 # MD5SUMS: 0a5a22e456640070ca09f6d65c0f680c claws-mail-2.9.0.tar.bz2
@@ -10,6 +10,7 @@
 # MD5SUMS: 700c6b4efeb10cc33a43111c2a734db8 claws-mail-3.0.1.tar.bz2
 # MD5SUMS: 97a0c627f91b51b6851b9a1ed9ee7afe claws-mail-3.0.2.tar.bz2
 # MD5SUMS: ef1184a0f1b41e44545dac9d880b9638 claws-mail-3.1.0.tar.bz2
+# MD5SUMS: acbfd919f7b633d51e96a0419ac07802 claws-mail-3.2.0.tar.bz2
 # REQUIRES: aspell desktop-file-utils glib2 gpgme gtk+2 libetpan
 # REQUIRES: openldap-client pilot-link startup-notification
 
@@ -19,7 +20,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.1.0
+VERSION=3.2.0
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
