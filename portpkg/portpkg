@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.25 $"
+ENGINE_REV="\$Revision: 1.26 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -486,7 +486,7 @@ sed -nr "/^# block/{s,.* ,,;s, ,\n,g;p}" $path/requires 2>/dev/null; \
   sources=`{ \
 sed -nr "/^# SOURCES:/{s,.*: ,,;s, ,\n,g;p}" $script; \
 sed -nr "/^[^#]/p" $path/sources 2>/dev/null; } | eval $decode
-sed -nr "/^DOWNLOAD=/s,^.*=,,p" $path/$name.info 2>/dev/null`
+sed -nr "/^DOWNLOAD=/{s,\",,g;s,^.*=,,p}" $path/$name.info 2>/dev/null`
   md5sums=`\
 sed -nr "/^# MD5SUMS:/s,.*: ,,p" $script; \
 sed -nr "/^[^#]/p" $path/md5sums 2>/dev/null; \
