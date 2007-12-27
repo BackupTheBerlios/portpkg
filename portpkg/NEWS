@@ -1,5 +1,20 @@
 NEWS
 
+2007-12-27
+
+Added to the FAQ:
+
+ * What does "configure: error: C compiler cannot create executables" mean?
+
+The package "glibc" from Slackware's l/ series is most likely not
+installed.
+
+ * What does "configure: error: C preprocessor "/lib/cpp" fails sanity
+ check" mean?
+
+The package "kernel-headers" from Slackware's d/ series is most likely
+not installed.
+
 2007-12-05
 
 Released portpkg-0.38.5:

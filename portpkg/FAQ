@@ -241,3 +241,15 @@ It should work fine on Slackware 10.1 and current (I'm running current).
 About 9.x series, I have read sometime about changes with some GNU tools
 options, but I didn't noted what it was. Also, I've never tested it on
 9.x.
+
+What means "configure: error: C compiler cannot create executables"?
+--------------------------------------------------------------------
+
+You most likely forgot to install the package "glibc" from Slackware's
+l/ series.
+
+What means "configure: error: C preprocessor "/lib/cpp" fails sanity check"?
+----------------------------------------------------------------------------
+
+You most likely forgot to install the package "kernel-headers" from
+Slackware's d/ series.
