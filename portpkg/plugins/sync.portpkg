@@ -10,6 +10,8 @@
 #   phase #4: Update and commit ChangeLog
 
 SOURCE=cvs://:pserver:anonymous@cvs.berlios.de:/cvsroot/portpkg/ports
+FILES_SOURCE=http://portpkg.berlios.de/upload
+#CL_SOURCE=http://portpkg.berlios.de/ports.ChangeLog
 if $USE_ALPHA_CODE; then
 TREE=$PRT_DIR/portpkg.berlios.de
 else
@@ -33,108 +35,138 @@ login=`cat $TREE/CVS/Root 2>/dev/null | cut -d @ -f 1`
 
 # sync port dir (avoid error message about missing ~/.cvspass)
 row "Syncing $TREE/"
+
+#t=`mktemp -d`
+## this may speed up the sync process a bit:
+#get $CL_SOURCE $t/ChangeLog || die
+#if ! cmp -s $t/ChangeLog $TREE/ChangeLog; then
 touch ~/.cvspass
 export CVS_RSH=ssh
 get $SOURCE $TREE && rm -f $CACHE/slk
+#fi
+
+# do a simple test to avoid a chunk of "permission denied" errors
+case $login in
+*anonymous*|*pserver*|"") has_access=false;;
+*)			  has_access=true;;
+esac
+debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
 
 # import GPG-KEYS
 if [ -f $TREE/GPG-KEYS ] && has_prog gpg; then
   row "Updating local GPG keyring"
-  gpg -q --import $TREE/GPG-KEYS
+  gpg --import $TREE/GPG-KEYS 2>$output
 fi
 
 # get uploads from http://portpkg.berlios.de/upload
 has_prog lynx || die
 cd $TREE || die
-files=`$pre lynx -dump http://portpkg.berlios.de/upload | grep -o "http://[^ ?]*[^/]$" | sort -u`
 
-if [ "$files" ]; then
-uploads=`echo "$files" | grep "\.tar\.bz2$"`
-if [ "$uploads" ]; then
-  row "Syncing $TREE/open"
-  for src in $uploads; do
-    pkg=`basename $src`
-    [ -f $TREE/open/$pkg ] && continue
-    [ -f $TREE/open/$pkg.badsig ] && continue
-    [ -d $TREE/open/`basename $pkg .tar.bz2` ] && continue
-    row "Downloading $pkg"
-    get $src $TREE/open/$pkg || continue
-    if echo "$files" | grep -xsq "$src.asc"; then
-      row "Downloading $pkg.asc"
-      get $src.asc $TREE/open/$pkg.asc || continue
+sync_http() # tree <urls
+{
+  local tree=$1
+  local t=`mktemp -d`
+  local i
+  row "Syncing $tree"
+  cat - >$t/srclist
+  while read src; do
+#    echo "$src" >>$t/srclist
+    id=`basename $src`
+    # .asc files will be handled seperately
+    case $id in *.asc) continue;; esac
+    # skip, if it seems to be done already
+    [ -f $tree/$id ] && continue
+    [ -f $tree/$id.badsig ] && continue
+    [ -f $tree/$id.nosig ] && continue
+    [ -f $tree/`basename $id .gz` ] && continue
+    [ -d $tree/`basename $id .tar.bz2` ] && continue
+    # get it
+    row "Downloading $id"
+    get $src $tree/$id || continue
+    # now, is there a .asc file?
+    if grep -xsq "$src.asc" $t/srclist; then
+      row "Downloading $id.asc"
+      get $src.asc $tree/$id.asc || continue
+      # verify the signature
       if has_prog gpg; then
-	row "Verifying signature"
-	if gpg --verify $TREE/open/$pkg.asc; then
-            row "Unpacking $pkg"
-            ( cd $TREE/open
-              mkdir `basename $pkg .tar.bz2`
-              tar xf $pkg -C `basename $pkg .tar.bz2`/
-              rm $pkg $pkg.asc
-            )
+        row "Verifying signature"
+        if gpg --verify $tree/$id.asc; then
+          case $id in
+          *.tar.bz2)
+            row "Unpacking $id"
+            ( cd $tree
+              mkdir `basename $id .tar.bz2`
+              tar xf $id -C `basename $id .tar.bz2`/
+              rm $id $id.asc
+            );;
+          *.gz)
+            gunzip $tree/$id;;
+          esac
         else
-	  mv $TREE/open/$pkg $TREE/open/$pkg.badsig
-	  continue
-	fi
-      fi
+	  # signature mismatch
+          mv $tree/$id $tree/$id.badsig
+        fi
+       fi
+    else
+      # no signature
+      mv $tree/$id $tree/$id.nosig
+    fi
+  done <$t/srclist
+  # remove anything that is no longer in the repository
+  for l in `ls $tree 2>/dev/null`; do
+    [ "$l" = "CVS" ] && continue
+    r=${l%.asc}
+    r=${r%.badsig}
+    r=${r%.nosig}
+    if ! grep -sqe "/$r\(\|\.tar\.bz2\|\.gz\)$" $t/srclist; then
+      row "$l is no longer in the repository"
+      rm -rf $tree/$l
     fi
   done
-fi
+}
 
-for i in `ls $TREE/open 2>/dev/null`; do
-  if ! echo "$uploads" | egrep -sqe "/$i(|\.tar\.bz2)$" \
-    -e "/`basename $i .asc`$" -e "/`basename $i .badsig`$"; then
-    row "$i is no longer in the repository"
-    rm -rf $TREE/open/$i
-  fi
-done
+files=`$pre lynx -dump $FILES_SOURCE | grep -o "http://[^ ?]*[^/]$" | sort -u`
+
+# get uploaded ports into open/
+if [ "$files" ]; then
+  echo "$files" \
+  | grep -e "\.tar\.bz2$" -e "\.patch$" -e "\.patch.gz$" -e "\.asc$" \
+  | sync_http $TREE/open
   rm -f $CACHE/slk
 fi
 
-# do a simple test to avoid a chunk of "permission denied" errors
-case $login in *anonymous*|*pserver*|"") exit 0;; esac
-debug "sync.portpkg: convinced by login $login to do CVS admin tasks"
+# below for developer only :-(
+$has_access || exit 0
 
+# get everything else uploaded into reports/
 if [ "$files" ]; then
-# get uploaded buildlogs
-buildlogs=`echo "$files" | grep -e "\.buildlog$" -e "\.buildlog\.gz$"`
-if [ "$buildlogs" ]; then
-  row "Syncing $TREE/reports"
-  for src in $buildlogs; do
-    pkg=`basename $src`
-    [ -f $TREE/reports/$pkg ] && continue
-    [ -f $TREE/reports/`basename $pkg .gz` ] && continue
-    row "Downloading $pkg"
-    get $src $TREE/reports/$pkg || continue
-    case $src in *.gz) gunzip $TREE/reports/$pkg;; esac
-  done
-fi
-
-for i in `ls $TREE/reports 2>/dev/null`; do
-  if ! echo "$buildlogs" | egrep -sq "/$i(|\.gz)$"; then
-    row "$i is no longer in the repository"
-    rm -f $TREE/reports/$i
-  fi
-done
+  echo "$files" \
+  | grep -ve "\.tar\.bz2$" -e "\.patch$" -e "\.patch.gz$" \
+  | sync_http $TREE/reports
 fi
 
 # ChangeLog
-if ! [ "${1:-}" = "force" ] && [ "`find $TREE/ChangeLog -mtime -2`" ]; then
-  debug "sync.portpkg: ChangeLog is newer than 48 hours, exiting"
+if ! [ "${1:-}" = "force" ] && [ "`find $TREE/ChangeLog -mtime -7`" ]; then
   exit 0
 fi
+
+debug "sync.portpkg: ChangeLog is older than a week, updating it manually"
 
 # update the ChangeLog
 has_prog rcs2log || die
 cd $TREE || die
 row "Syncing $TREE/ChangeLog"
 $pre mv ChangeLog ChangeLog.old
-if ! $pre rcs2log -i 2 -h $mailhost >ChangeLog; then
+if ! $pre rcs2log -i 2 -h $mailhost `find -name "*SlackBuild"` >ChangeLog; then
   mv ChangeLog.old ChangeLog
   die "rcs2log failed!"
 else
-  rm ChangeLog.old
+  # "Updated." lines are unnecessary
+  sed -i "/: Updated.$/{N;d}" ChangeLog
+  if ! cmp ChangeLog.old ChangeLog; then
+    $pre cvs ci -m "Updated." ChangeLog
+    rm ChangeLog.old
+  else
+    mv ChangeLog.old ChangeLog
+  fi
 fi
-
-# "Updated." lines are unnecessary
-sed -i "/: Updated.$/{N;d}" ChangeLog
-$pre cvs ci -m "Updated." ChangeLog
