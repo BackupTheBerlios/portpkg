@@ -9,7 +9,8 @@
 # How to use this plugin? Copy this file to e.g. sync.my-fav-repo and edit
 # the lines SOURCE= and TREE= and enable the plugin with pp-config.
 
-SOURCE=http://www.slacky.eu/repository/slackware-$DIST_VER
+#SOURCE=http://www.slacky.eu/repository/slackware-$DIST_VER
+SOURCE=http://filer-1.filearena.net/pub/slackware/addon/slacky/slackware-$DIST_VER
 FILES="ChangeLog.txt FILELIST.TXT PACKAGES.TXT CHECKSUMS.md5"
 if $USE_ALPHA_CODE; then
 TREE=$PRT_DIR/slacky.eu
