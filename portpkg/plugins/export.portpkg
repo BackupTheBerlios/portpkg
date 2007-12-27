@@ -63,6 +63,7 @@ find -type f \
 | for src in $sources; do
   grep -v "/${src##*[%/]}$"
 done | sort`
+#  ! -name "ChangeLog" \
 
   # quote summary
   if ( $quote || [ "$dest" ] ) && [ -f $path/info ]; then
@@ -153,8 +154,9 @@ done | sort`
     # check if this path is already in the repository
     cd $path || die
 #    [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
-    for d in $dirs_to_commit; do
+    for d in . $dirs_to_commit; do
       ( cd $path/$d
+	d=`pwd`
 	[ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $d` ) || die
       ) || die
     done
