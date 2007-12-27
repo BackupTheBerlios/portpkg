@@ -184,7 +184,7 @@ if ($file) {
 ?>
 	    </div>
 
-	    <div id="box">
+	    <div id="box"><pre>
 <?php
 $file = fopen('NEWS','r');
 if ($file) {
@@ -196,15 +196,15 @@ if ($file) {
       print('(...)');
       break;
     }
-    $line = ereg_replace('NEWS','<h2>News</h2>',$line);
-    $line = ereg_replace('^([-/0-9]{10})','<p><small><em>\1</em></small><br>',$line);
+    $line = ereg_replace('NEWS','<big><b>News</b></big>',$line);
+    $line = ereg_replace('^([-/0-9]{10})','<small><em>\1</em></small>',$line);
     $line = ereg_replace('((ht|f)tp://[^ ]*[a-z0-9])','<a href="\1">\1</a>',$line);
     print ($line);
   }
   fclose($file);
 }
 ?>
-	    </div>
+	    </pre></div>
 
 	    <div id="sidebar">
 <a href="http://developer.berlios.de" title="BerliOS Developer">
