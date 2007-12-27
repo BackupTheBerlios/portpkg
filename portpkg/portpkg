@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.26 $"
+ENGINE_REV="\$Revision: 1.27 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -921,7 +921,8 @@ build_pkg()
       error "Remaintaining not possible: No package file found!"
       return 1
     fi
-    row "Skipping package building"
+#    row "Skipping package building"
+    row "${pkg_file##*/} found in ${pkg_file%/*}. Skipping."
     cp $pkg_file $tmp/
     products=$tmp/$package.tgz
   fi
@@ -1144,6 +1145,13 @@ do_info() # pkgex-list
     [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$blocks | fmt -t
     [ "$sources" ] && echo "REMOTE SOURCES:     "$sources | fmt -t
     [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
+    $VERBOSE || continue
+    if [ "$pkg_file" ]; then
+      echo "FILE LIST:"
+      tar tzvf $pkg_file | xargs -l | cut -d " " -f 1,2,6- | sort -k 3 | column -t
+      echo "INSTALL SCRIPT:"
+      tar xzOf $pkg_file install/doinst.sh
+    fi
   done
 
   return $ret
