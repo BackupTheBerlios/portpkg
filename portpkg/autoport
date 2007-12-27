@@ -830,6 +830,7 @@ fi
 
 # desktop-database
 if check "\.desktop(|\.in|\.in\.in)$" $t/footprint; then
+  add_inst "usr/bin/gtk-update-icon-cache -ft usr/share/icons/hicolor" $path/doinst.sh
   add_inst "usr/bin/update-desktop-database" $path/doinst.sh
 else
   #remove_inst "update-desktop-database" $path/doinst.sh
