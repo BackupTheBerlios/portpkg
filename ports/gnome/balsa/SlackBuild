@@ -1,10 +1,11 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://balsa.gnome.org/balsa-2.3.20.tar.bz2
+# SOURCES: http://balsa.gnome.org/balsa-2.3.22.tar.bz2
 # MD5SUMS: 64763beb79731649da7e327b1140843a balsa-2.3.20.tar.bz2
+# MD5SUMS: 0f9b8dbdd26a1916dcc92f0767e8b4e4 balsa-2.3.22.tar.bz2
 # REQUIRES: desktop-file-utils gtkhtml scrollkeeper
-# OPTIONAL: aspell compface gmime gpgme gtksourceview gtkspell libesmtp
-# OPTIONAL: libnotify openssl pcre sqlite
+# OPTIONAL: aspell compface gmime gpgme gtksourceview gtkspell
+# OPTIONAL: libesmtp libnotify openssl pcre sqlite
 # UP2DATE: http://balsa.gnome.org/download
 
 TMP=${TMP:-/tmp}
@@ -12,9 +13,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.3.20
+VERSION=2.3.22
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -62,7 +63,6 @@ mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -name .svn -o -name CVS | xargs -r rm -r
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
