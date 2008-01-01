@@ -1,16 +1,18 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://open.nit.ca/download/wvstreams-4.2.2.tar.gz
+# SOURCES: http://wvstreams.googlecode.com/files/wvstreams-4.4.1.tar.gz
 # MD5SUMS: ecb4e74ebaa1f45206f5d88eb34c5623 wvstreams-4.0.2.tar.gz
 # MD5SUMS: 103230cb9926cb8f3f4d8dc8584f3b9c wvstreams-4.2.2.tar.gz
+# MD5SUMS: 907b0cba8931553d848620ea16f006b9 wvstreams-4.4.1.tar.gz
 # REQUIRES: openssl zlib
+# OPTIONAL: pam xplc
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=4.2.2
+VERSION=4.4.1
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -36,9 +38,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
+  --disable-schemas-install \
   --without-qt \
-  $ARCH-slackware-linux || exit 1
+  $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
 ( cd $PKG
@@ -46,11 +51,10 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/doc $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ChangeLog README \
+  ChangeLog README README.TESTS \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -65,3 +69,18 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/wvstreams-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=configure-opts
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
+  --program-prefix="" \
+  --disable-schemas-install \
+  --without-qt \
+#=configure-opts

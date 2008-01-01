@@ -1,3 +1,8 @@
+PACKAGE SIZE (compressed):     2070 K
+PACKAGE SIZE (uncompressed):   7630 K
+REMOTE SOURCES:                1277 K
+http://wvstreams.googlecode.com/files/wvstreams-4.4.1.tar.gz
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  etc/
 -rw-r--r--  root/root  etc/uniconf.conf
@@ -7,10 +12,13 @@ drwxr-xr-x  root/root  install/
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/uni
+-rwxr-xr-x  root/root  usr/bin/wvtesthelper
+-rwxr-xr-x  root/root  usr/bin/wvtestmeter
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/wvstreams-4.2.2/
--rw-r--r--  root/root  usr/doc/wvstreams-4.2.2/ChangeLog
--rw-r--r--  root/root  usr/doc/wvstreams-4.2.2/README
+drwxr-xr-x  root/root  usr/doc/wvstreams-4.4.1/
+-rw-r--r--  root/root  usr/doc/wvstreams-4.4.1/ChangeLog
+-rw-r--r--  root/root  usr/doc/wvstreams-4.4.1/README
+-rw-r--r--  root/root  usr/doc/wvstreams-4.4.1/README.TESTS
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/fileutils.h
@@ -24,17 +32,13 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/unicallbackgen.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniclientconn.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniclientgen.h
--rw-r--r--  root/root  usr/include/wvstreams/uniconf-csharp.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconf.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfdaemon.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfdaemonconn.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfgen.h
--rw-r--r--  root/root  usr/include/wvstreams/uniconfiter-csharp.h
--rw-r--r--  root/root  usr/include/wvstreams/uniconfkey-csharp.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfkey.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfpair.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfpamconn.h
--rw-r--r--  root/root  usr/include/wvstreams/uniconfroot-csharp.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconfroot.h
 -rw-r--r--  root/root  usr/include/wvstreams/uniconftree.h
 -rw-r--r--  root/root  usr/include/wvstreams/unidefgen.h
@@ -71,6 +75,7 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvautoconf.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvbackslash.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvbase64.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvbellpull.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvblowfish.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvbuf.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvbufbase.h
@@ -78,11 +83,13 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvbufstream.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcallback.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcallbacklist.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvcolorlogconsole.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvconf.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvconfemu.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcont.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcountermode.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcrash.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvcrashlog.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcrl.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvcrypto.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvdaemon.h
@@ -108,7 +115,6 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvhash.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvhashtable.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvhex.h
--rw-r--r--  root/root  usr/include/wvstreams/wvhttp.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvhttppool.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvinterface.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvipaddrtable.h
@@ -127,6 +133,7 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvlogbuffer.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvlogfile.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvlogrcv.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvlogstream.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvloopback.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvloopback2.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvmagiccircle.h
@@ -136,8 +143,6 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvmoniker.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvmonikerregistry.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvoakley.h
--rw-r--r--  root/root  usr/include/wvstreams/wvondiskhash.h
--rw-r--r--  root/root  usr/include/wvstreams/wvondisklist.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvpam.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvpcmutils.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvpipe.h
@@ -164,6 +169,8 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvstream.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvstreamclone.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvstreamsdaemon.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvstreamsdebugger.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvstreamsdebuggerserver.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvstring.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvstringcache.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvstringlist.h
@@ -173,7 +180,6 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvsubproc.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvsubprocqueue.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvsubprocqueuestream.h
--rw-r--r--  root/root  usr/include/wvstreams/wvsyncstream.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvsyslog.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvsystem.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvtask.h
@@ -181,7 +187,6 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvtcp.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvtelephony.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvtest.h
--rw-r--r--  root/root  usr/include/wvstreams/wvtest_filecountprefix.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvtimeoutstream.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvtimestream.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvtimeutils.h
@@ -195,53 +200,25 @@ drwxr-xr-x  root/root  usr/include/wvstreams/
 -rw-r--r--  root/root  usr/include/wvstreams/wvurl.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvvector.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvverstring.h
--rw-r--r--  root/root  usr/include/wvstreams/wvwatcher.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvwin32-sanitize.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvwin32task.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvwindebuglog.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvwinstreamclone.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvwordwrap.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvx509.h
+-rw-r--r--  root/root  usr/include/wvstreams/wvx509mgr.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvxor.h
 -rw-r--r--  root/root  usr/include/wvstreams/wvxplc.h
-drwxr-xr-x  root/root  usr/include/wvstreams/xplc/
--rw-r--r--  root/root  usr/include/wvstreams/xplc/ICategory.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/ICategoryIterator.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/ICategoryManager.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IFactory.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IModule.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IModuleLoader.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IModuleManagerFactory.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IMoniker.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IMonikerService.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IObject.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IServiceHandler.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IServiceManager.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IStaticServiceHandler.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/IWeakRef.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/core.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/delete.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/factory.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/module.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/ptr.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/trace.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/utils.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/uuid.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/uuidops.h
--rw-r--r--  root/root  usr/include/wvstreams/xplc/xplc.h
 drwxr-xr-x  root/root  usr/lib/
 -rw-r--r--  root/root  usr/lib/libuniconf.a
--rwxr-xr-x  root/root  usr/lib/libuniconf.so.4.2
+-rwxr-xr-x  root/root  usr/lib/libuniconf.so.4.4
 -rw-r--r--  root/root  usr/lib/libwvbase.a
--rwxr-xr-x  root/root  usr/lib/libwvbase.so.4.2
+-rwxr-xr-x  root/root  usr/lib/libwvbase.so.4.4
 -rw-r--r--  root/root  usr/lib/libwvstreams.a
--rwxr-xr-x  root/root  usr/lib/libwvstreams.so.4.2
--rw-r--r--  root/root  usr/lib/libwvtelephony.a
--rwxr-xr-x  root/root  usr/lib/libwvtelephony.so.4.2
+-rwxr-xr-x  root/root  usr/lib/libwvstreams.so.4.4
 -rw-r--r--  root/root  usr/lib/libwvtest.a
 -rw-r--r--  root/root  usr/lib/libwvutils.a
--rwxr-xr-x  root/root  usr/lib/libwvutils.so.4.2
--rw-r--r--  root/root  usr/lib/libxplc-cxx.a
+-rwxr-xr-x  root/root  usr/lib/libwvutils.so.4.4
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/libuniconf.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/libwvbase.pc
@@ -250,6 +227,8 @@ drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/libwvtest.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/libwvutils.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/wvxplc.pc
+drwxr-xr-x  root/root  usr/lib/valgrind/
+-rwxr-xr-x  root/root  usr/lib/valgrind/wvstreams.supp
 drwxr-xr-x  root/root  usr/man/
 drwxr-xr-x  root/root  usr/man/man8/
 -rw-r--r--  root/root  usr/man/man8/uni.8.gz
