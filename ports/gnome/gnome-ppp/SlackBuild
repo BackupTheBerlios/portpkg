@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.3.23
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -31,6 +31,7 @@ cd $TMP
 tar xzvf $CWD/gnome-ppp_$VERSION.orig.tar.gz
 cd gnome-ppp-$VERSION
 tar xjvf gnome-ppp-$VERSION.tar.bz2
+cd gnome-ppp-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -43,6 +44,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --disable-static \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -71,3 +73,18 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/gnome-ppp-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=prepare
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/gnome-ppp_$VERSION.orig.tar.gz
+cd gnome-ppp-$VERSION
+tar xjvf gnome-ppp-$VERSION.tar.bz2
+cd gnome-ppp-$VERSION
+chown -R root.root .
+#=prepare
