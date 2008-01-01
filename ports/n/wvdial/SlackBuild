@@ -1,7 +1,8 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://open.nit.ca/download/wvdial-1.54.0.tar.gz
+# SOURCES: http://alumnit.ca/download/wvdial-1.60.tar.gz
 # MD5SUMS: 8648c044305fc66ee33ecc55d36f8c8b wvdial-1.54.0.tar.gz
+# MD5SUMS: 27fbbde89f8fd9f6e735a8efa5217fc9 wvdial-1.60.tar.gz
 # REQUIRES: gcc-g++ ppp wvstreams
 
 TMP=${TMP:-/tmp}
@@ -9,9 +10,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.54.0
+VERSION=1.60
 ARCH=${ARCH:-i486}
-BUILD=5tom
+BUILD=1tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -19,10 +20,10 @@ cd $TMP
 tar xzvf $CWD/wvdial-$VERSION.tar.gz
 cd wvdial-$VERSION
 chown -R root.root .
-make PREFIX=/usr || exit 1
-make install PREFIX=$PKG/usr PPPDIR=$PKG/etc/ppp/peers || exit 1
-mkdir -p $PKG/etc/ppp/peers
-touch $PKG/etc/ppp/wvdial
+make
+make install prefix=$PKG/usr PPPDIR=$PKG/etc/ppp/peers MANDIR=$PKG/usr/man
+#mkdir -p $PKG/etc/ppp/peers
+#touch $PKG/etc/ppp/wvdial
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
@@ -34,7 +35,7 @@ mv $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  CHANGES FAQ README TODO \
+  CHANGES ChangeLog FAQ README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
@@ -49,3 +50,14 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/wvdial-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=install
+make
+make install prefix=$PKG/usr PPPDIR=$PKG/etc/ppp/peers MANDIR=$PKG/usr/man
+#mkdir -p $PKG/etc/ppp/peers
+#touch $PKG/etc/ppp/wvdial
+#=install
