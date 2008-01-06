@@ -1,17 +1,20 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://static.audacious-media-player.org/release/audacious-plugins-1.3.4.tgz
+# SOURCES: http://distfiles.atheme.org/audacious-plugins-1.4.4.tgz
 # MD5SUMS: 520187b4840c534001604195ce603ed9 audacious-plugins-1.3.3.tgz
 # MD5SUMS: 417ffe1cae7081b0dec404b659a6d67e audacious-plugins-1.3.4.tgz
-# REQUIRES: audacious curl esound glib2 gtk+2 lame libmad libmpcdec libvorbis libxml2 sdl taglib
-# OPTIONAL: libsndfile wavpack
+# MD5SUMS: dc1374344cfde2667b2650fdb4227b78 audacious-plugins-1.4.4.tgz
+# REQUIRES: audacious curl esound glib2 gtk+2 lame libmad libxml2 sdl
+# REQUIRES: taglib dbus-glib imlib2 libXcomposite 
+# OPTIONAL: arts libcdio libmpcdec
+# OPTIONAL: libmtp libogg libsndfile libvorbis wavpack
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.3.4
+VERSION=1.4.4
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
