@@ -1,0 +1,70 @@
+#!/bin/sh
+# MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.7-9.tar.bz2
+# MD5SUMS: 388e0215e47a6a19e5dce8627ae57968 ImageMagick-6.3.7-9.tar.bz2
+# REQUIRES: gcc-g++ graphviz lcms libXext libXt libpng librsvg
+# REQUIRES: libtiff libwmf perl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=6.3.7
+ARCH=${ARCH:-i486}
+BUILD=1shv
+
+if [ "$ARCH" = "i386" ]; then
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
+elif [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/ImageMagick-$VERSION-9.tar.bz2
+cd ImageMagick-$VERSION
+chown -R root.root .
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
+  --program-prefix="" \
+  --enable-shared \
+  --disable-schemas-install \
+  --build=$ARCH-slackware-linux
+make
+make install DESTDIR=$PKG
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
+)
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  AUTHORS ChangeLog LICENSE NEWS README.txt index.html \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/ImageMagick-$VERSION
+  rm -rf $PKG
+fi
