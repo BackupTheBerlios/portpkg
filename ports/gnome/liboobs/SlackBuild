@@ -2,8 +2,7 @@
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # SOURCES: http://ftp.belnet.be/mirror/ftp.gnome.org/sources/liboobs/2.18/liboobs-2.18.1.tar.bz2
 # MD5SUMS: 3462f6cf93d1c13b4cd7cb070e919c4a liboobs-2.18.1.tar.bz2
-# REQUIRES: system-tools-backends
-# OPTIONAL: dbus-glib linuxdoc-tools
+# REQUIRES: dbus-glib linuxdoc-tools system-tools-backends
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
