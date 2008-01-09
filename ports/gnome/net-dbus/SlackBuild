@@ -1,0 +1,44 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://search.cpan.org/CPAN/authors/id/D/DA/DANBERR/Net-DBus-0.33.4.tar.gz
+# MD5SUMS: 7138571b3d8df29faa65d1db509f9d32 Net-DBus-0.33.4.tar.gz
+# REQUIRES: dbus perl
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.33.4
+ARCH=noarch
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xzvf $CWD/Net-DBus-$VERSION.tar.gz
+cd Net-DBus-$VERSION
+chown -R root.root .
+perl Makefile.PL
+make
+make install DESTDIR=$PKG
+find $PKG/ -name perllocal.pod | xargs -r rm -fv
+mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  AUTHORS CHANGES COPYING MANIFEST README \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/Net-DBus-$VERSION
+  rm -rf $PKG
+fi
