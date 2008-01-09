@@ -1,24 +1,25 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # MAINTAINER: Tomas Stefano 'lem' <stefano at cedo dot cz>
-# SOURCES: http://www.galago-project.org/files/releases/source/notification-daemon/notification-daemon-0.3.6.tar.gz
+# SOURCES: http://www.galago-project.org/files/releases/source/notification-daemon/notification-daemon-0.3.7.tar.gz
 # MD5SUMS: 7aa30632a180777c6a75e987bb411b5e notification-daemon-0.2.1.tar.gz
 # MD5SUMS: a5a9aa63205e624da8468e35722b08bf notification-daemon-0.3.6.tar.gz
-# REQUIRES: dbus gconf libsexy libwnck
+# MD5SUMS: 7fa369bff1031acbe4ca41f03bee7d02 notification-daemon-0.3.7.tar.gz
+# REQUIRES: dbus dbus-glib gconf libsexy libwnck
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.3.6
+VERSION=0.3.7
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -37,9 +38,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
@@ -54,7 +58,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
@@ -75,3 +78,15 @@ if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/notification-daemon-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+install
+( cd themes/bubble
+  make
+  GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
+  make install DESTDIR=$PKG
+)
+#+install
