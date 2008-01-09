@@ -4,8 +4,10 @@
 # MD5SUMS: 872ef8d5e95cdc359f93b5ded501d98d epiphany-2.14.2.1.tar.bz2
 # MD5SUMS: 3ee93d168eb5720a96f4c7adf2cdf2d4 epiphany-2.16.3.tar.bz2
 # MD5SUMS: 680a14ee43637728c94bcdf02ef16a4a epiphany-2.18.1.tar.bz2
-# REQUIRES: desktop-file-utils gcc-g++ gconf gnome-desktop iso-codes libglade libpng libxslt scrollkeeper
-# OPTIONAL: dbus linuxdoc-tools mozilla python seamonkey x11 xulrunner
+# REQUIRES: desktop-file-utils gcc-g++ gconf gnome-desktop iso-codes
+# REQUIRES: libglade libpng libxslt scrollkeeper
+# OPTIONAL: dbus libXft libXt linuxdoc-tools mozilla pygtk python
+# OPTIONAL: seamonkey x11 xulrunner
 # BLOCKS: mozilla-nss
 
 TMP=${TMP:-/tmp}
