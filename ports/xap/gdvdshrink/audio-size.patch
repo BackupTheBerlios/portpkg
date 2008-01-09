@@ -1,0 +1,11 @@
+--- opt/gDVDshrink/main_wnd.pm.orig	2008-01-08 18:31:17.000000000 +0100
++++ opt/gDVDshrink/main_wnd.pm	2008-01-08 19:08:57.000000000 +0100
+@@ -231,6 +231,8 @@
+ 		foreach(@arr) {
+ 			if($_ =~ /AC3: .* (\d+)\.0 kbit\/s/) {
+ 				$size += $1 * 1024 / 8 * $length;
++			} elsif($_ =~ /AUDIO: .* (\d+)\.0 kbit/) {
++				$size += $1 * 1024 / 8 * $length;
+ 			}
+ 		}
+ 	}

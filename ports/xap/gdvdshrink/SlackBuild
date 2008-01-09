@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.3-9
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -23,6 +23,7 @@ mkdir -p $NAME-$VERSION
 cd $NAME-$VERSION
 tar xzvf $CWD/gDVDshrink-$VERSION.tgz
 chown -R root.root .
+cat $CWD/*.patch | patch -p0 --verbose
 mv usr/local/bin usr/
 rmdir usr/local
 mkdir -p usr/doc/gdvdshrink-$VERSION
