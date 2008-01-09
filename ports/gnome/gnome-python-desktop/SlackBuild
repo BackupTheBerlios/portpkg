@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gnome-python-desktop/2.16/gnome-python-desktop-2.16.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gnome-python-desktop/2.20/gnome-python-desktop-2.20.0.tar.bz2
 # MD5SUMS: d3f9c2d213b7d486ca7bd87dd106ca69 gnome-python-desktop-2.14.0.tar.bz2
 # MD5SUMS: ea79fe3e6a65d8380539a9ef6eed963f gnome-python-desktop-2.16.0.tar.bz2
+# MD5SUMS: 02b177f488091d27bf0648ec4660d8f7 gnome-python-desktop-2.20.0.tar.bz2
 # REQUIRES: gnome-media gnome-panel gnome-python gtksourceview libgnomeprintui libwnck metacity nautilus-cd-burner python totem
 # OPTIONAL: gnome-desktop gtk-doc libgtop librsvg linuxdoc-tools
 
@@ -11,14 +12,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.16.0
+VERSION=2.20.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -37,9 +38,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
@@ -48,7 +52,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
