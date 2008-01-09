@@ -9,7 +9,6 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-config etc/X11/gdm/gdm.conf.new
 if [ -x usr/bin/scrollkeeper-update ]; then
   usr/bin/scrollkeeper-update -p var/lib/scrollkeeper >/dev/null 2>&1
 fi
