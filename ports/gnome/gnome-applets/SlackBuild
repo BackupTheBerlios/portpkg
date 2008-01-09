@@ -1,18 +1,19 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gnome-applets/2.18/gnome-applets-2.18.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/GNOME/sources/gnome-applets/2.20/gnome-applets-2.20.0.tar.bz2
 # MD5SUMS: e6da539e78da1256b9a9bee1301fd44f gnome-applets-2.14.2.tar.bz2
 # MD5SUMS: af7ed5ad25e355ba422936f1395ce01b gnome-applets-2.16.0.tar.bz2
 # MD5SUMS: db3ef99c00335798f30fc0a9162c0257 gnome-applets-2.18.0.tar.bz2
+# MD5SUMS: 985cfc3c58a72e1a92201bf4a4873b87 gnome-applets-2.20.0.tar.bz2
 # REQUIRES: desktop-file-utils gconf gnome-desktop gnome-panel gst-plugins-base gucharmap libgtop libnotify libwnck libxklavier python scrollkeeper
-# OPTIONAL: hal libgnomekbd pygtk system-tools-backends
+# OPTIONAL: apmd hal libgnomekbd libxcb pygtk system-tools-backends
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.18.0
+VERSION=2.20.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -38,10 +39,13 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
   --disable-scrollkeeper \
-  --disable-gnomedocs \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
@@ -52,7 +56,6 @@ rm -rf $PKG/var/lib/scrollkeeper
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
