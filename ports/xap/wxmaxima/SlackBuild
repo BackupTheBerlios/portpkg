@@ -1,7 +1,8 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/wxmaxima/wxMaxima-0.7.3a.tar.gz
+# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/wxmaxima/wxMaxima-0.7.4.tar.gz
 # MD5SUMS: bb24cc08495c259413c34870ea2018d7 wxMaxima-0.7.3a.tar.gz
+# MD5SUMS: 7baa47204feff25ac252717d65f6799a wxMaxima-0.7.4.tar.gz
 # REQUIRES: libxml2 maxima wxwidgets
 # OPTIONAL: desktop-file-utils
 
@@ -10,7 +11,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.7.3a
+VERSION=0.7.4
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
@@ -59,7 +60,7 @@ find $PKG/usr/doc -type d | xargs -r chmod 755
 find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 install -d $PKG/usr/share/{applications,pixmaps}
 install -m 744 wxmaxima.desktop $PKG/usr/share/applications/wxmaxima.desktop
-install -m 744 maxima-new.png $PKG/usr/share/pixmaps/maxima-new.png
+install -m 744 wxmaxima.png $PKG/usr/share/pixmaps/wxmaxima.png
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
