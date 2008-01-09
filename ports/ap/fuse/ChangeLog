@@ -1,41 +1,46 @@
-2005-07-29 09:43  topf
+2008-01-09  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, footprint, md5sums, slack-desc, sources:
-	  Version update.
+  * SlackBuild, footprint, md5sums, slack-desc, sources: Fixed udev rule.
 
-2005-07-16 14:23  topf
+2006-04-29  hnaz  <hnaz@users.berlios.de>
 
-	* md5sums: Cleaned up.	Removed filenames without version numbers.
-	  Removed PGP signatures.
+  * SlackBuild, footprint, md5sums, requires, slack-desc:
+  Update from 2.3.0 to 2.5.3.
+  Removed requires.
+  Rewrote slack-desc.
+  SlackBuild cleanups.
 
-2005-02-08 10:34  topf
+2005-10-15  topf  <topf@users.berlios.de>
 
-	* md5sums: [no log message]
+2005-07-29  topf  <topf@users.berlios.de>
 
-2005-02-08 09:52  topf
+  * SlackBuild, doinst.sh, footprint, md5sums, slack-desc, sources:
+  Version update.
 
-	* SlackBuild: Patched to use $SLKCFLAGS.
+2005-07-16  topf  <topf@users.berlios.de>
 
-2005-02-05 22:31  topf
+  * md5sums: Cleaned up.
+  Removed filenames without version numbers.
+  Removed PGP signatures.
 
-	* md5sums: Updated ap/fuse to 2.2-i486-1tom.
+2005-02-08  topf  <topf@users.berlios.de>
 
-2005-02-05 17:43  topf
+  * md5sums: *** empty log message ***
 
-	* SlackBuild, footprint, md5sums, slack-desc, sources: Updated
-	  ap/fuse to 2.2-i486-1tom.
+  * SlackBuild: Patched to use $SLKCFLAGS.
 
-2004-12-08 23:12  topf
+2005-02-05  topf  <topf@users.berlios.de>
 
-	* SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
+  * md5sums, SlackBuild, footprint, slack-desc, sources:
+  Updated ap/fuse to 2.2-i486-1tom.
 
-2004-10-30 14:00  tomtoastbrot
+2004-12-08  topf  <topf@users.berlios.de>
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: Initial
-	  revision
+  * SlackBuild: Changed ARCH=i486 to ARCH=${ARCH:-i486}.
 
-2004-10-30 14:00  tomtoastbrot
+2004-10-30  tomtoastbrot  <tomtoastbrot@users.berlios.de>
 
-	* SlackBuild, doinst.sh, requires, slack-desc, sources: [no log
-	  message]
+  * SlackBuild, doinst.sh, requires, slack-desc, sources:
+
+  * SlackBuild, doinst.sh, requires, slack-desc, sources: New file.
 
