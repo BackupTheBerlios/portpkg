@@ -1,3 +1,8 @@
+PACKAGE SIZE (compressed):     1534 K
+PACKAGE SIZE (uncompressed):   5060 K
+REMOTE SOURCES:                1542 K
+http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-0.10.6.tar.bz2
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  etc/
 drwxr-xr-x  root/root  etc/gconf/
@@ -8,15 +13,15 @@ drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/slack-desc
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/gst-plugins-good-0.10.5/
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/ABOUT-NLS
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/AUTHORS
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/COPYING
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/ChangeLog
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/INSTALL
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/NEWS
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/README
--rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.5/RELEASE
+drwxr-xr-x  root/root  usr/doc/gst-plugins-good-0.10.6/
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/ABOUT-NLS
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/AUTHORS
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/COPYING
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/ChangeLog
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/INSTALL
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/NEWS
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/README
+-rw-r--r--  root/root  usr/doc/gst-plugins-good-0.10.6/RELEASE
 drwxr-xr-x  root/root  usr/lib/
 drwxr-xr-x  root/root  usr/lib/gstreamer-0.10/
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstaasink.a
@@ -82,6 +87,9 @@ drwxr-xr-x  root/root  usr/lib/gstreamer-0.10/
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstflxdec.a
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstflxdec.la
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstflxdec.so
+-rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstgamma.a
+-rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstgamma.la
+-rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstgamma.so
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstgconfelements.a
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstgconfelements.la
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstgconfelements.so
@@ -124,6 +132,9 @@ drwxr-xr-x  root/root  usr/lib/gstreamer-0.10/
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstpng.a
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstpng.la
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstpng.so
+-rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstqtdemux.a
+-rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstqtdemux.la
+-rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstqtdemux.so
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstrtp.a
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstrtp.la
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstrtp.so
@@ -148,6 +159,9 @@ drwxr-xr-x  root/root  usr/lib/gstreamer-0.10/
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstvideobox.a
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstvideobox.la
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstvideobox.so
+-rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstvideocrop.a
+-rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstvideocrop.la
+-rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstvideocrop.so
 -rw-r--r--  root/root  usr/lib/gstreamer-0.10/libgstvideoflip.a
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstvideoflip.la
 -rwxr-xr-x  root/root  usr/lib/gstreamer-0.10/libgstvideoflip.so
@@ -183,6 +197,9 @@ drwxr-xr-x  root/root  usr/share/locale/hu/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/it/
 drwxr-xr-x  root/root  usr/share/locale/it/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/it/LC_MESSAGES/gst-plugins-good-0.10.mo
+drwxr-xr-x  root/root  usr/share/locale/ja/
+drwxr-xr-x  root/root  usr/share/locale/ja/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ja/LC_MESSAGES/gst-plugins-good-0.10.mo
 drwxr-xr-x  root/root  usr/share/locale/nb/
 drwxr-xr-x  root/root  usr/share/locale/nb/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/nb/LC_MESSAGES/gst-plugins-good-0.10.mo

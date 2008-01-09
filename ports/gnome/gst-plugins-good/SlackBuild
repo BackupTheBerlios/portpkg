@@ -3,8 +3,10 @@
 # SOURCES: http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-0.10.6.tar.bz2
 # MD5SUMS: a58bb825bd4b22412764f2a8d2f98b1c gst-plugins-good-0.10.3.tar.bz2
 # MD5SUMS: c45fc9ace9feb4d3df32da0a6d262d84 gst-plugins-good-0.10.5.tar.bz2
-# REQUIRES: aalib flac gconf gst-plugins-base gtk+2 libavc1394 libcdio libdv libjpeg liboil libraw1394 speex taglib x11
-# OPTIONAL: esound gstreamer hal ncurses
+# MD5SUMS: 25f111360c2930705b91b4fcf93ae5c5 gst-plugins-good-0.10.6.tar.bz2
+# REQUIRES: aalib flac gconf gst-plugins-base gtk+2 libavc1394
+# REQUIRES: libcdio libdv libjpeg liboil libraw1394 speex taglib x11
+# OPTIONAL: esound gstreamer hal libSM libcaca ncurses
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -13,7 +15,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.10.6
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -31,6 +33,7 @@ cd $TMP
 tar xjvf $CWD/gst-plugins-good-$VERSION.tar.bz2
 cd gst-plugins-good-$VERSION
 chown -R root.root .
+cat $CWD/*.patch | patch -p1 --verbose
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
