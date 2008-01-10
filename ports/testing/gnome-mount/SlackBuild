@@ -3,8 +3,8 @@
 # SOURCES: http://hal.freedesktop.org/releases/gnome-mount-0.5.tar.gz
 # MD5SUMS: 75f260ea6b0ec3c5e0af3c722fbd9568 gnome-mount-0.4.tar.gz
 # MD5SUMS: 76622ff9af0131fc44687aed7204f84f gnome-mount-0.5.tar.gz
-# REQUIRES: dbus eel gconf hal nautilus
-# OPTIONAL: avahi glitz libnotify
+# REQUIRES: dbus gconf hal
+# OPTIONAL: eel libnotify nautilus
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0.5
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=2tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -43,7 +43,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   --enable-shared \
   --disable-schemas-install \
-  --enable-nautilus-extension \
+  `pkg-config libnautilus-extension && echo --enable-nautilus-extension` \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
@@ -80,5 +80,5 @@ exit $?
 # This chunk has been added by autoport, part of portpkg.berlios.de:
 
 #+configure-opts
-  --enable-nautilus-extension \
+  `pkg-config libnautilus-extension && echo --enable-nautilus-extension` \
 #+configure-opts
