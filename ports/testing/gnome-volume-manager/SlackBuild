@@ -1,18 +1,19 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gnome-volume-manager/2.17/gnome-volume-manager-2.17.0.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/gnome-volume-manager/2.22/gnome-volume-manager-2.22.0.tar.bz2
 # MD5SUMS: 0bf3ee007c951a5d833a3c17bbe59ec6 gnome-volume-manager-1.5.15.tar.bz2
 # MD5SUMS: d723bc2069fd19cf1c31961fbc1cf3c8 gnome-volume-manager-2.15.0.tar.bz2
 # MD5SUMS: 104cec26e721e0bba69debd392367195 gnome-volume-manager-2.17.0.tar.bz2
-# REQUIRES: desktop-file-utils gconf gnome-mount hal libglade libgnomeui
-# OPTIONAL: libnotify
+# MD5SUMS: f84e2d72d494a5bbee8d2685f6ad7b11 gnome-volume-manager-2.22.0.tar.bz2
+# REQUIRES: desktop-file-utils gconf hal libglade libgnomeui
+# OPTIONAL: gnome-mount libnotify
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.17.0
+VERSION=2.22.0
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -37,7 +38,11 @@ CFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
@@ -47,7 +52,6 @@ make install DESTDIR=$PKG
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
