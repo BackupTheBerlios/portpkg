@@ -1,0 +1,321 @@
+LINKS
+=====
+
+Here's some interesting stuff concerning ports and co. This list is
+neither complete nor 100% up-to-date.
+
+Ports Systems / Build Scripts For Slackware Linux
+=================================================
+
+SlackBuilds.org
+---------------
+
+  "The SlackBuilds.org project is maintained by a small group of
+  people, but we want the scripts in our repository to be
+  representative of the entire Slackware user community. There's no way
+  that the few of us can possibly write scripts for all of the extra
+  applications that users want to have, so we depend on YOU to help us
+  out. If there's some application that you use, and we don't have it
+  in our repository already, please consider writing a build script for
+  it and submitting it to us for possible inclusion - see the
+  Submissions page."
+
+http://slackbuilds.org/
+
+The Emerde Project
+------------------
+
+  "Emerde is the port of Gentoo's portage system that installs, removes,
+  updates, mantains your system rapidly and easily. Furthermore on
+  Slackware distribution it cooperates with the Slackware's db and
+  allows to install .tgz files directly, using dependeces checking."
+
+http://emerde.freaknet.org/
+
+Slackports (unmaintained)
+-------------------------
+
+  "[The slackports project] aim at creating a light BSD-like ports
+  system for the Slackware GNU/linux the goal is to provide a large set
+  a software to the distribution, by downloading and compiling them and
+  creating slackware package in order to let you manage your installed
+  software as usually with pkgtool."
+
+http://slackports.sourceforge.net/
+
+Dropline GNOME's Build System
+-----------------------------
+
+   "The Dropline Build System provides a simple interface for compiling
+   and packaging software. Any Dropline GNOME errors that appear to be
+   packaging-related can be traced using the Build Scripts, and patches
+   to fix them can be submitted against the CVS repository."
+
+http://cvs.sourceforge.net/viewcvs.py/dropline-gnome/dropline-build-system/
+
+Autopkg
+-------
+
+  "autopkg helps to automate Slackware package creation. Once an autopkg
+  rules file has been created for a program, the rules may be used to
+  easily create a package from the program's source. They are also
+  likely to be useful for the program's next version. One could
+  therefore stay on the bleeding edge with certain favorite
+  applications, but retain the advantages of the Slackware package
+  system."
+
+http://yath.mine.nu/autopkg/
+
+SlackBuild Central
+------------------
+
+  "This is a repository of scripts and controller tarballs used to
+  create Slackware-compatible packages."
+
+http://slackpack.tripleg.net.au/
+
+Linuxpackages.net's SlackBuilds
+-------------------------------
+
+  "This directory contains build scripts for Slackware. Most of these
+  are taken from -current and only have a few modifications. You should
+  always read the program.SlackBuild file and adjust it for your needs.
+  Also you will need to download the slack-package.conf file and place
+  it in /etc and edit for your needs or you can install the
+  slackbuilds-1.1-noarch-1jim.tgz package that will add this as a
+  package."
+
+ftp://opensys.linuxpackages.net/pub/SlackBuilds/
+
+Freerock GNOME / GSB: GNOME.SlackBuild
+--------------------------------------
+
+  "Freerock GNOME is a complete GNOME Desktop distribution designed and
+  packaged specifically for Slackware Linux"
+
+http://gsb.freerock.org/
+
+Voltalinux
+----------
+
+  "Voltalinux is a GNU/Linux distro based on Slackware GNU/linux and the
+  pkgsrc package system from NetBSD. The two pieces of software put
+  together give you great power."
+
+http://www.sicurezzarete.com/voltalinux.htm
+
+CruxPorts4Slack
+---------------
+
+  "CruxPorts4Slack adapts the "ports" and "pkgmk" commands to allow the
+  use of ports repositories for Crux with Slackware. The httpup program,
+  which is necessary to use ports, is included in the package."
+
+http://freshmeat.net/redir/cruxports4slack/58597/url_homepage/cruxports4slack.html
+
+--------------------------------------------------------------------------
+
+Other Ports Systems
+===================
+
+Pkgbuilder
+----------
+
+  "Se podría decir que esto es el embrión de un arbol de ports para
+  sistemas Linux, aunque ahora mismo se trata sólo de una serie de
+  scripts bash que automatizan la construcción de paquetes."
+
+http://pkgbuilder.berlios.de/
+
+Pkgsrc: The NetBSD Packages Collection
+--------------------------------------
+
+  "The NetBSD Packages Collection (pkgsrc) is a framework for building
+  third-party software on NetBSD and other UNIX-like systems, currently
+  containing nearly 5000 packages. It is used to enable freely available
+  software to be configured and built easily on supported platforms."
+
+http://www.netbsd.org/Documentation/software/packages.html
+
+GARNOME: A Build Utility For The GNOME Desktop
+----------------------------------------------
+
+  "GARNOME began as a project to allow users to build the GNOME desktop,
+  without falling victim to the depravities of CVS, non-standard build
+  tools and other forms of co-dependance."
+
+http://cipherfunk.org/garnome/
+
+Portage
+-------
+
+  "Portage is probably Gentoo's most notable innovation in software
+  management. With its high flexibility and enormous amount of features
+  it is frequently seen as the best software management tool available
+  for Linux."
+
+http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&chap=1
+
+FreeBSD Ports
+-------------
+
+  "The FreeBSD Ports and Packages Collection offers a simple way for
+  users and administrators to install applications. The ports collection
+  has been growing at a tremendous rate."
+
+http://www.freebsd.org/ports/
+
+CRUX
+----
+
+  "CRUX is a lightweight, i686-optimized Linux distribution targeted at
+  experienced Linux users. The primary focus of this distribution is
+  "keep it simple", which is reflected in a simple tar.gz-based package
+  system, BSD-style initscripts, and a relatively small collection of
+  trimmed packages. The secondary focus is utilization of new Linux
+  features and recent tools and libraries. CRUX also has a ports system
+  which makes it easy to install and upgrade applications."
+
+http://www.crux.nu/
+
+--------------------------------------------------------------------------
+
+Package Managing And Building Tools For Slackware Linux
+=======================================================
+
+Slackware Linux Stuff
+---------------------
+
+  "This page allows you to download some of my software that is (in some
+  fashion) related to or for use with the Slackware Linux distribution."
+
+http://www.interlude.org.uk/unix/slackware/
+
+Swaret :: The Esential SlackWARE Tool
+-------------------------------------
+
+  "SWARET is an updating tool for the Slackware distribution. It is
+  covered under the GPL license, and it has several features that make
+  it unique (library dependency detection & rollback capability). See
+  the FAQ for more information, or go to the downloads section for the
+  latest stable version."
+
+http://swaret.sourceforge.net/index.php
+
+Slapt-get
+---------
+
+  "slapt-get is an APT like system for Slackware package management. It
+  allows one to search slackware mirrors and third party sources for
+  packages, compare them with installed packages, install new packages,
+  or upgrade all installed packages. Great for scripting as well."
+
+http://software.jaos.org/
+
+Slackpkg
+--------
+
+  "Automated tool for management of Slackware Linux Packages"
+
+http://slackpkg.sourceforge.net/
+
+Slack-get
+---------
+
+  "slack-get is a tool like Debian's apt-get to autoupdate your
+  Slackware Linux system. It will support an indexing system for use on
+  non-standard packages. You can see supported non standard (not
+  supported by Salckware) packages in the 'Packages' section of the
+  site. It also support a plugins system wich allow to add new packages
+  indexing site."
+
+http://slackget.infinityperl.org/
+
+GNOME-Pkgtool
+-------------
+
+  "gnome-pkgtool is a GTK+/GNOME front-end to Slackware package
+  management tools (pkgtool). With gnome-pkgtool you can do the
+  following actions to your Slackware Linux installation: (...) Build
+  packages from source and install them (...)"
+
+http://gnome-pkgtool.sourceforge.net/
+
+--------------------------------------------------------------------------
+
+Usefull Documentation And Interesting Concepts
+==============================================
+
+Filesystem Hierarchy Standard
+-----------------------------
+
+  "This standard consists of a set of requirements and guidelines for
+  file and directory placement under UNIX-like operating systems. The
+  guidelines are intended to support interoperability of applications,
+  system administration tools, development tools, and scripts as well as
+  greater uniformity of documentation for these systems."
+
+http://www.pathname.com/fhs/pub/fhs-2.3.html
+
+Introduction To Autoconf
+------------------------
+
+  "Autoconf is an extensible package of m4 macros that produce shell
+  scripts to automatically configure software source code packages.
+  These scripts can adapt the packages to many kinds of UNIX-like
+  systems without manual user intervention. Autoconf creates a
+  configuration script for a package from a template file that lists the
+  operating system features that the package can use, in the form of m4
+  macro calls."
+
+http://www.gnu.org/software/autoconf/manual/
+
+GoboLinux
+---------
+
+  "GoboLinux is an alternative Linux distribution which redefines the
+  entire filesystem hierarchy. In GoboLinux you don't need a package
+  manager because the filesystem is the package manager: each program
+  resides in its own directory, such as /Programs/Xorg/6.7.0/ and
+  /Programs/KDE/3.2.2. Like it? Read more..."
+
+http://www.gobolinux.org/
+
+GNU Stow
+--------
+
+  "GNU Stow is a program for managing the installation of software
+  packages, keeping them separate (/usr/local/stow/emacs vs.
+  /usr/local/stow/perl, for example) while making them appear to be
+  installed in the same place (/usr/local)."
+
+http://www.gnu.org/software/stow/stow.html
+
+Autopackage
+-----------
+
+  "This is autopackage, the distro neutral binary packaging framework
+  for Linux systems.''
+
+http://autopackage.org/
+
+Some documentation on optimisation
+----------------------------------
+
+http://www.freehackers.org/gentoo/gccflags/faq.html
+
+http://www.freehackers.org/gentoo/gccflags/flag_gcc3opt.html
+
+http://www.freehackers.org/gentoo/gccflags/flag_gcc3.html
+
+Pkgcheck
+--------
+
+  "pkgcheck is a program to check the sanity of a Slackware package.
+  This should be done in two situations: 1. before submitting a package
+  to LinuxPackages or passing a self-build package to somebody else 2.
+  before installing a package created by somebody else, as an
+  incorrectly fomatted package can compromise the stability of your
+  system."
+
+http://www.homepages.lu/pu/pkgcheck.html
