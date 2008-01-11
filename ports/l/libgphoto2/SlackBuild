@@ -1,16 +1,26 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/gphoto/libgphoto2-2.4.0.tar.gz
+# MD5SUMS: 210844f0d88f58842917af6eaff06382 libgphoto2-2.1.5.tar.gz
+# MD5SUMS: 6e0e3073e1669ec80332c527e9c17855 libgphoto2-2.1.99.tar.gz
+# MD5SUMS: adef1a564d3d1a48e1c13ece34b111b6 libgphoto2-2.4.0.tar.gz
+# REQUIRES: hal libjpeg libtool
+# OPTIONAL: libexif libusb
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.1.99
+VERSION=2.4.0
 ARCH=${ARCH:-i486}
-BUILD=5tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -20,48 +30,68 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
-cat $CWD/*.patch | patch -p1 --verbose
+tar xzvf $CWD/libgphoto2-$VERSION.tar.gz
+cd libgphoto2-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
+  --program-prefix="" \
+  --enable-shared \
+  --disable-schemas-install \
   --with-doc-dir=/usr/doc/$NAME-$VERSION \
   --with-html-dir=/usr/doc/$NAME-$VERSION/html \
   --with-hotplug-doc-dir=/usr/doc/$NAME-$VERSION/hotplug \
-  --sysconfdir=/etc \
-  --localstatedir=/var/lib \
-  --disable-static \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG \
 apidocdir=$DESTDIR/usr/doc/$NAME-$VERSION/libgphoto2_port/api \
 dockdir=$DESTDIR/usr/doc/$NAME-$VERSION \
 htmldir=$DESTDIR/usr/doc/$NAME-$VERSION/libgphoto2_port/html
-rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT-NLS AUTHORS COPYING ChangeLog HACKING NEWS README README.in \
+  ABOUT-NLS AUTHORS COPYING ChangeLog HACKING INSTALL NEWS README README.in \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/$NAME-$VERSION
+  rm -rf $TMP/libgphoto2-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=install
+make
+make install DESTDIR=$PKG \
+apidocdir=$DESTDIR/usr/doc/$NAME-$VERSION/libgphoto2_port/api \
+dockdir=$DESTDIR/usr/doc/$NAME-$VERSION \
+htmldir=$DESTDIR/usr/doc/$NAME-$VERSION/libgphoto2_port/html
+#=install
+#+configure-opts
+  --with-doc-dir=/usr/doc/$NAME-$VERSION \
+  --with-html-dir=/usr/doc/$NAME-$VERSION/html \
+  --with-hotplug-doc-dir=/usr/doc/$NAME-$VERSION/hotplug \
+#+configure-opts
+ * sjn: Piotr Simon <sajmon at users dot berlios dot de>
