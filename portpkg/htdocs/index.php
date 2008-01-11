@@ -156,11 +156,12 @@ since 2004</h2>
 
 <div align="left">
 <a href="doc.php?doc=NEWS">News</a> /
+<a href="doc.php?doc=QUICKSTART">Quickstart</a> /
 <a href="doc.php?doc=INSTALL">Install</a> /
 <a href="doc.php?doc=README">Readme</a> /
 <a href="doc.php?doc=ABOUT">About</a> /
 <a href="doc.php?doc=FAQ">FAQ</a> /
-<a href="doc.php?doc=README.Links">Links</a> /
+<a href="doc.php?doc=LINKS">Links</a> /
 <a href="doc.php?doc=ROADMAP">Roadmap</a> /
 <a href="doc.php?doc=ChangeLog">ChangeLog</a>
 </div>
@@ -211,7 +212,7 @@ if ($file) {
 <img src="http://developer.berlios.de/bslogo.php?group_id=2486" width="124px"
  height="32px" border="0" alt="BerliOS Developer Logo"></a>
 
-<h2>Change log</h2>
+<h2>Changes <a href="doc.php?doc=ports.ChangeLog">(details)</a></h2>
 <?php
 $file = fopen('ports.ChangeLog','r');
 if ($file) {
