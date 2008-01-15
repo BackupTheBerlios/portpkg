@@ -1,17 +1,19 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://downloads.sourceforge.net/digikam/digikam-0.9.2.tar.bz2
+# SOURCES: http://downloads.sourceforge.net/digikam/digikam-0.9.3.tar.bz2
 # MD5SUMS: c4573ae34c87b41efad4e69f983c36b9 digikam-0.7.2.tar.bz2
 # MD5SUMS: 41e673dac4d0bb6203a6ec615d44b893 digikam-0.9.1.tar.bz2
 # MD5SUMS: 0710efe340d1a30a36e3954ea03c46ef digikam-0.9.2.tar.bz2
-# REQUIRES: desktop-file-utils jasper kdelibs libgphoto2 libkexiv2 libkipi libtiff perl sqlite
+# MD5SUMS: 20497c1a02394505f899ef0757ebefad digikam-0.9.3.tar.bz2
+# REQUIRES: desktop-file-utils jasper kdelibs libgphoto2 libkexiv2
+# REQUIRES: libkipi libtiff perl sqlite
 # OPTIONAL: libkdcraw
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.9.2
+VERSION=0.9.3
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
