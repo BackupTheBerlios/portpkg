@@ -1,17 +1,19 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/k3b/k3b-1.0.1.tar.bz2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/k3b/k3b-1.0.4.tar.bz2
 # MD5SUMS: eaff485fb4c431aae715b0ef95c43fcf k3b-0.11.23.tar.bz2
 # MD5SUMS: 8abd11f56e6e40d6f2d0b076a5f8b8ed k3b-1.0.1.tar.bz2
+# MD5SUMS: 42538ddae0809707d3bcdbe0a6ed6a43 k3b-1.0.4.tar.bz2
 # MD5SUMS: 02bf955059adfe9ac8a11d36fb34a11c k3b-1.0.tar.bz2
-# REQUIRES: alsa-lib arts desktop-file-utils flac kdelibs libmad libmusicbrainz libvorbis taglib
-# OPTIONAL: libogg oggutils
+# REQUIRES: alsa-lib arts desktop-file-utils flac kdelibs libmad
+# REQUIRES: libmusicbrainz libvorbis taglib
+# OPTIONAL: dbus-qt3 hal libogg libsndfile oggutils
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.0.1
+VERSION=1.0.4
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 

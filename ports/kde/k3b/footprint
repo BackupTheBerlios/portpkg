@@ -1,21 +1,25 @@
+PACKAGE SIZE (compressed):     6152 K
+PACKAGE SIZE (uncompressed):  12310 K
+REMOTE SOURCES:                5001 K
+http://heanet.dl.sourceforge.net/sourceforge/k3b/k3b-1.0.4.tar.bz2
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
 -rw-r--r--  root/root  install/slack-desc
--rw-r--r--  root/root  install/slack-required
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/k3b
 -rwxr-xr-x  root/root  usr/bin/k3bsetup
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/k3b-1.0.1/
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/AUTHORS
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/COPYING
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/FAQ
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/INSTALL
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/README
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/TODO
--rw-r--r--  root/root  usr/doc/k3b-1.0.1/k3b.lsm
+drwxr-xr-x  root/root  usr/doc/k3b-1.0.4/
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/AUTHORS
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/COPYING
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/FAQ
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/INSTALL
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/README
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/TODO
+-rw-r--r--  root/root  usr/doc/k3b-1.0.4/k3b.lsm
 drwxr-xr-x  root/root  usr/include/
 -rw-r--r--  root/root  usr/include/k3b_export.h
 -rw-r--r--  root/root  usr/include/k3bactivepipe.h
@@ -76,6 +80,7 @@ drwxr-xr-x  root/root  usr/include/
 -rw-r--r--  root/root  usr/include/k3bglobals.h
 -rw-r--r--  root/root  usr/include/k3bglobalsettings.h
 -rw-r--r--  root/root  usr/include/k3bgrowisofswriter.h
+-rw-r--r--  root/root  usr/include/k3bhalconnection.h
 -rw-r--r--  root/root  usr/include/k3bimagefilereader.h
 -rw-r--r--  root/root  usr/include/k3binffilewriter.h
 -rw-r--r--  root/root  usr/include/k3bintmapcombobox.h
@@ -154,6 +159,8 @@ drwxr-xr-x  root/root  usr/lib/kde3/
 -rwxr-xr-x  root/root  usr/lib/kde3/libk3bexternalencoder.so
 -rwxr-xr-x  root/root  usr/lib/kde3/libk3bflacdecoder.la
 -rwxr-xr-x  root/root  usr/lib/kde3/libk3bflacdecoder.so
+-rwxr-xr-x  root/root  usr/lib/kde3/libk3blibsndfiledecoder.la
+-rwxr-xr-x  root/root  usr/lib/kde3/libk3blibsndfiledecoder.so
 -rwxr-xr-x  root/root  usr/lib/kde3/libk3bmaddecoder.la
 -rwxr-xr-x  root/root  usr/lib/kde3/libk3bmaddecoder.so
 -rwxr-xr-x  root/root  usr/lib/kde3/libk3boggvorbisdecoder.la
@@ -382,6 +389,7 @@ drwxr-xr-x  root/root  usr/share/apps/k3b/plugins/
 -rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3baudioprojectcddbplugin.plugin
 -rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3bexternalencoder.plugin
 -rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3bflacdecoder.plugin
+-rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3blibsndfiledecoder.plugin
 -rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3bmaddecoder.plugin
 -rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3boggvorbisdecoder.plugin
 -rw-r--r--  root/root  usr/share/apps/k3b/plugins/k3boggvorbisencoder.plugin
@@ -404,6 +412,8 @@ drwxr-xr-x  root/root  usr/share/apps/konqueror/servicemenus/
 -rw-r--r--  root/root  usr/share/apps/konqueror/servicemenus/k3b_audiocd_rip.desktop
 -rw-r--r--  root/root  usr/share/apps/konqueror/servicemenus/k3b_cd_copy.desktop
 -rw-r--r--  root/root  usr/share/apps/konqueror/servicemenus/k3b_dvd_copy.desktop
+-rw-r--r--  root/root  usr/share/apps/konqueror/servicemenus/k3b_handle_empty_cd.desktop
+-rw-r--r--  root/root  usr/share/apps/konqueror/servicemenus/k3b_handle_empty_dvd.desktop
 -rw-r--r--  root/root  usr/share/apps/konqueror/servicemenus/k3b_videodvd_rip.desktop
 drwxr-xr-x  root/root  usr/share/doc/
 drwxr-xr-x  root/root  usr/share/doc/HTML/
