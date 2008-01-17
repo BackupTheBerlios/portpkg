@@ -1,15 +1,20 @@
+PACKAGE SIZE (compressed):     7350 K
+PACKAGE SIZE (uncompressed):  16410 K
+REMOTE SOURCES:                7411 K
+http://heanet.dl.sourceforge.net/sourceforge/k3b/k3b-i18n-1.0.4.tar.bz2
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
 -rw-r--r--  root/root  install/slack-desc
 drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/k3b-i18n-1.0.1/
--rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.1/AUTHORS
--rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.1/COPYING
--rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.1/ChangeLog
--rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.1/NEWS
--rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.1/README
+drwxr-xr-x  root/root  usr/doc/k3b-i18n-1.0.4/
+-rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.4/AUTHORS
+-rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.4/COPYING
+-rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.4/ChangeLog
+-rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.4/NEWS
+-rw-r--r--  root/root  usr/doc/k3b-i18n-1.0.4/README
 drwxr-xr-x  root/root  usr/share/
 drwxr-xr-x  root/root  usr/share/doc/
 drwxr-xr-x  root/root  usr/share/doc/HTML/
@@ -85,11 +90,19 @@ drwxr-xr-x  root/root  usr/share/doc/HTML/it/k3b/
 drwxr-xr-x  root/root  usr/share/doc/HTML/nl/
 drwxr-xr-x  root/root  usr/share/doc/HTML/nl/k3b/
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/audiocd-howto.docbook
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/burndialog_audio.png
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/burndialog_progress.png
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/cdcopy-howto.docbook
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/cdcopy_done.png
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/cdcopy_reading.png
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/cdcopy_settings.png
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/cdcopy_writing.png
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/commands.docbook
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/dcop.docbook
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/index.cache.bz2
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/index.docbook
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/select_audiofiles.png
+-rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/select_project.png
 -rw-r--r--  root/root  usr/share/doc/HTML/nl/k3b/video-encoding.docbook
 drwxr-xr-x  root/root  usr/share/doc/HTML/pl/
 drwxr-xr-x  root/root  usr/share/doc/HTML/pl/k3b/
@@ -166,10 +179,12 @@ drwxr-xr-x  root/root  usr/share/doc/HTML/uk/
 drwxr-xr-x  root/root  usr/share/doc/HTML/uk/k3b/
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/audiocd-howto.docbook
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/cdcopy-howto.docbook
+-rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/cdcopy_settings.png
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/commands.docbook
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/dcop.docbook
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/index.cache.bz2
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/index.docbook
+-rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/select_project.png
 -rw-r--r--  root/root  usr/share/doc/HTML/uk/k3b/video-encoding.docbook
 drwxr-xr-x  root/root  usr/share/locale/
 drwxr-xr-x  root/root  usr/share/locale/af/
@@ -364,6 +379,12 @@ drwxr-xr-x  root/root  usr/share/locale/nds/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/nds/LC_MESSAGES/k3bsetup.mo
 -rw-r--r--  root/root  usr/share/locale/nds/LC_MESSAGES/libk3b.mo
 -rw-r--r--  root/root  usr/share/locale/nds/LC_MESSAGES/libk3bdevice.mo
+drwxr-xr-x  root/root  usr/share/locale/ne/
+drwxr-xr-x  root/root  usr/share/locale/ne/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/k3b.mo
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/k3bsetup.mo
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/libk3b.mo
+-rw-r--r--  root/root  usr/share/locale/ne/LC_MESSAGES/libk3bdevice.mo
 drwxr-xr-x  root/root  usr/share/locale/nl/
 drwxr-xr-x  root/root  usr/share/locale/nl/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/nl/LC_MESSAGES/k3b.mo
