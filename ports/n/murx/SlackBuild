@@ -3,6 +3,7 @@
 # SOURCES: http://heanet.dl.sourceforge.net/sourceforge/murx/murx-0_7_1.tar.gz
 # MD5SUMS: a3058c1df82653da799ac4d7d9f9cd2c murx-0_7_1.tar.gz
 # REQUIRES: gcc-g++ openssl
+# OPTIONAL: pcre
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
@@ -11,7 +12,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=0_7_1
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=2sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -27,7 +28,7 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
 tar xzvf $CWD/murx-$VERSION.tar.gz
-cd murx-0.7.1
+cd murx-`echo $VERSION | tr _ .`
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -39,6 +40,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --infodir=/usr/info \
   --program-prefix="" \
+  --with-pcre \
   --disable-schemas-install \
   $ARCH-slackware-linux
 make
@@ -60,9 +62,9 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr _ .`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/murx-0.7.1
+  rm -rf $TMP/murx-`echo $VERSION | tr _ .`
   rm -rf $PKG
 fi
