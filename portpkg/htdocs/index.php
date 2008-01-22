@@ -1,8 +1,10 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 
 <head>
     <title>The Portpkg Project</title>
 
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
     <meta name="author" content="Portpkg Project" />
     <meta name="copyright" content="T. Pfaff" />
     <meta name="keywords" content="ports, portsystem, buildscript, slackbuild, slackware, source, package, manager, portpkg" />
