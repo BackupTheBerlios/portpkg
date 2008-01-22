@@ -132,12 +132,12 @@ a:active
     font-size: xx-small;
     line-height: 120%;
     }
-#newstitle
+.newstitle
     {
     font-size: larger;
     font-weight: bold;
     }
-#date
+.date
     {
     font-size: smaller;
     font-style: italic;
@@ -147,7 +147,6 @@ a:active
 </head>
 
 <body>
-    <div>
 	<div id="page">
 	    <table id="header">
 		<tr>
@@ -213,8 +212,8 @@ if ($file) {
       print('(...)');
       break;
     }
-    $line = ereg_replace('NEWS','<span id="newstitle">News</span>',$line);
-    $line = ereg_replace('^([-/0-9]{10})','<span id="date">\1</span>',$line);
+    $line = ereg_replace('NEWS','<span class="newstitle">News</span>',$line);
+    $line = ereg_replace('^([-/0-9]{10})','<span class="date">\1</span>',$line);
     $line = ereg_replace('((ht|f)tp://[^ ]*[a-z0-9])','<a href="\1">\1</a>',$line);
     print ($line);
   }
@@ -226,7 +225,7 @@ if ($file) {
 	    <div id="sidebar">
 <a href="http://developer.berlios.de" title="BerliOS Developer">
 <img src="http://developer.berlios.de/bslogo.php?group_id=2486" width="124px"
- height="32px" border="0" alt="BerliOS Developer Logo"></a>
+ height="32px" style="border: 0" alt="BerliOS Developer Logo"></a>
 
 <h2>Changes <a href="doc.php?doc=ports.ChangeLog">(details)</a></h2>
 <?php
@@ -244,7 +243,7 @@ if ($file) {
     }
     if (ereg('^[-0-9]{10} ',$line)) {
       $last_date = $date;
-      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><span id="date">\1 by <a href="mailto:\3">\2</a></span><br>',$line);
+      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><span class="date">\1 by <a href="mailto:\3">\2</a></span><br>',$line);
     } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
 //      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
 //      if ($matches[0][2] == "") {
@@ -277,15 +276,18 @@ if ($file) {
 	    </div>
 
     	    <div id="footer">
+            <p>
 <b>Bug reports</b> and <b>manual ports contributions</b> go here:
 		<form action="upload.php" method="post" enctype="multipart/form-data">
+		    <p>
 		    <input name="filetoupload" type="file">
 		    <input name="MAX_FILE_SIZE" value="250000" type="hidden">
 		    <input value="Upload" type="submit">
+		    </p>
 		</form>
+		    </p>
 	    </div>
 	</div>
-    </div>
 </body>
 
 </html>
