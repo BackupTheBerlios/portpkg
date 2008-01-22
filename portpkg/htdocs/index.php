@@ -278,14 +278,14 @@ if ($file) {
 	    </div>
 
     	    <div id="footer">
-            <p>
 <b>Bug reports</b> and <b>manual ports contributions</b> go here:
 		<form action="upload.php" method="post" enctype="multipart/form-data">
+            <p>
 		    <input name="filetoupload" type="file">
 		    <input name="MAX_FILE_SIZE" value="250000" type="hidden">
 		    <input value="Upload" type="submit">
-		</form>
 		    </p>
+		</form>
 	    </div>
 	</div>
 </body>
