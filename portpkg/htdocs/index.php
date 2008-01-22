@@ -30,17 +30,21 @@ p
     font-family: "Trebuchet MS", sans-serif;
     text-indent: 1em;
     }
+h1
+    {
+    font-size: 500%;
+    }
 h1,h2,h3,h4
     {
     font-family: Verdana, Geneva, Arial, sans-serif;
     color: #333;
     font-weight: bold;
     line-height: 90%;
-    letter-spacing: -2;
+    letter-spacing: -2px;
     }
 em
     {
-    letter-spacing: +1;
+    letter-spacing: +1px;
     }
 a:link
     {
@@ -76,7 +80,7 @@ a:active
     }
 #header
     {
-    margin: 20 10 0 10;
+    margin: 10px 10px 0 10px;
     }
 #page
     {
@@ -128,6 +132,16 @@ a:active
     font-size: xx-small;
     line-height: 120%;
     }
+#newstitle
+    {
+    font-size: larger;
+    font-weight: bold;
+    }
+#date
+    {
+    font-size: smaller;
+    font-style: italic;
+    }
 -->
     </style>
 </head>
@@ -138,10 +152,10 @@ a:active
 	    <table id="header">
 		<tr>
 		    <td>
-<img src="logo.png">
+<img src="logo.png" alt="Portpkg-logo">
 		    </td>
 		    <td>
-<h1><big>The Portpkg Project</big></h1>
+<h1>The Portpkg Project</h1>
 <h2>Source package system for Slackware<br>
 since 2004</h2>
 		    </td>
@@ -156,7 +170,7 @@ since 2004</h2>
 <a href="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports">Browse CVS</a> /
 <a href="people">People</a>
 
-<div align="left">
+<div style="text-align: left">
 <a href="doc.php?doc=NEWS">News</a> /
 <a href="doc.php?doc=QUICKSTART">Quickstart</a> /
 <a href="doc.php?doc=INSTALL">Install</a> /
@@ -199,8 +213,8 @@ if ($file) {
       print('(...)');
       break;
     }
-    $line = ereg_replace('NEWS','<big><b>News</b></big>',$line);
-    $line = ereg_replace('^([-/0-9]{10})','<small><em>\1</em></small>',$line);
+    $line = ereg_replace('NEWS','<span id="newstitle">News</span>',$line);
+    $line = ereg_replace('^([-/0-9]{10})','<span id="date">\1</span>',$line);
     $line = ereg_replace('((ht|f)tp://[^ ]*[a-z0-9])','<a href="\1">\1</a>',$line);
     print ($line);
   }
@@ -230,7 +244,7 @@ if ($file) {
     }
     if (ereg('^[-0-9]{10} ',$line)) {
       $last_date = $date;
-      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><small><em>\1 by <a href="mailto:\3">\2</a></em></small><br>',$line);
+      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><span id="date">\1 by <a href="mailto:\3">\2</a></span><br>',$line);
     } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
 //      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
 //      if ($matches[0][2] == "") {
