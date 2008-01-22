@@ -13,6 +13,10 @@
 
     <style type="text/css">
 <!--
+*   {
+    margin: 0;
+    padding: 0;
+    }
 body
     {
     background-color: #555;
@@ -21,14 +25,15 @@ body
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 70px;
-    font-family: Georgia, "Times New Roman", Times, serif;
+//    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: "Trebuchet MS", sans-serif;
     font-size: small;
     line-height: 180%;
     }
 p
     {
-    font-family: "Trebuchet MS", sans-serif;
-    text-indent: 1em;
+//    text-indent: 1em;
+    padding: 5px 0 5px 0;
     }
 h1
     {
@@ -41,10 +46,7 @@ h1,h2,h3,h4
     font-weight: bold;
     line-height: 90%;
     letter-spacing: -2px;
-    }
-em
-    {
-    letter-spacing: +1px;
+    padding: 5px 0 5px 0;
     }
 a:link
     {
@@ -80,7 +82,7 @@ a:active
     }
 #header
     {
-    margin: 10px 10px 0 10px;
+    margin: 10px 20px 0 20px;
     }
 #page
     {
@@ -132,6 +134,10 @@ a:active
     font-size: xx-small;
     line-height: 120%;
     }
+#sub
+    {
+    padding: 10px;
+    }
 .newstitle
     {
     font-size: larger;
@@ -141,6 +147,7 @@ a:active
     {
     font-size: smaller;
     font-style: italic;
+    letter-spacing: +1px;
     }
 -->
     </style>
@@ -213,7 +220,7 @@ if ($file) {
       break;
     }
     $line = ereg_replace('NEWS','<span class="newstitle">News</span>',$line);
-    $line = ereg_replace('^([-/0-9]{10})','<span class="date">\1</span>',$line);
+    $line = ereg_replace('^([-/0-9]{10})','<span class="date">&bull; \1</span>',$line);
     $line = ereg_replace('((ht|f)tp://[^ ]*[a-z0-9])','<a href="\1">\1</a>',$line);
     print ($line);
   }
@@ -238,13 +245,13 @@ if ($file) {
   while (!feof($file)) {
     $line = fgets($file);
     $lines++;
-    if ($lines >= 200) {
+    if ($lines >= 300) {
       print ('(...)');
       break;
     }
     if (ereg('^[-0-9]{10} ',$line)) {
       $last_date = $date;
-      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','</p><p><span class="date">\1 by <a href="mailto:\3">\2</a></span><br>',$line);
+      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','</p><p><span class="date">&bull; \1 by <a href="mailto:\3">\2</a></span><br>',$line);
     } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
 //      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
 //      if ($matches[0][2] == "") {
@@ -287,6 +294,15 @@ if ($file) {
 		    </p>
 		</form>
 	    </div>
+	</div>
+	
+	<div id="sub">
+	<table><tr><td>
+    </td><td>
+        <p>Copyright &copy; 2004-2008 Portpkg Project. All rights reserved.<br>
+        Slackware&reg; is a registered trademark of Patrick Volkerding.<br>
+        Linux&reg; is a registered trademark of Linux Torvalds.</p>
+    </td></tr></table>
 	</div>
 </body>
 
