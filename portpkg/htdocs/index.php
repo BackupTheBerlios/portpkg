@@ -5,11 +5,11 @@
     <title>The Portpkg Project</title>
 
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-    <meta name="author" content="Portpkg Project" />
-    <meta name="copyright" content="T. Pfaff" />
-    <meta name="keywords" content="ports, portsystem, buildscript, slackbuild, slackware, source, package, manager, portpkg" />
-    <meta name="description" content="Source package system for Slackware Linux" />
-    <meta name="robots" content="index,nofollow" />
+    <meta name="author" content="Portpkg Project">
+    <meta name="copyright" content="T. Pfaff">
+    <meta name="keywords" content="ports, portsystem, buildscript, slackbuild, slackware, source, package, manager, portpkg">
+    <meta name="description" content="Source package system for Slackware Linux">
+    <meta name="robots" content="index,nofollow">
 
     <style type="text/css">
 <!--
@@ -138,7 +138,7 @@ a:active
 	    <table id="header">
 		<tr>
 		    <td>
-<img src="logo.png"/>
+<img src="logo.png">
 		    </td>
 		    <td>
 <h1><big>The Portpkg Project</big></h1>
