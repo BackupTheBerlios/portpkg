@@ -183,10 +183,10 @@ since 2004</h2>
 	    </div>
 
 	    <div id="mainbox">
+	        <p>
 <?php
 $file = fopen('ABOUT','r');
 if ($file) {
-  print('<p>');
   while (!feof($file)) {
     $line = fgets($file);
     if (ereg('---',$line))
@@ -195,9 +195,9 @@ if ($file) {
       print($line);
   }
   fclose($file);
-  print ('</p>');
 }
 ?>
+            </p>
 	    </div>
 
 	    <div id="box"><pre>
@@ -228,6 +228,7 @@ if ($file) {
  height="32px" style="border: 0" alt="BerliOS Developer Logo"></a>
 
 <h2>Changes <a href="doc.php?doc=ports.ChangeLog">(details)</a></h2>
+    <p>
 <?php
 $file = fopen('ports.ChangeLog','r');
 if ($file) {
@@ -243,7 +244,7 @@ if ($file) {
     }
     if (ereg('^[-0-9]{10} ',$line)) {
       $last_date = $date;
-      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','<p><span class="date">\1 by <a href="mailto:\3">\2</a></span><br>',$line);
+      $date = ereg_replace('^([-0-9]{10}) +([^ ]*) +<(.*)>.*$','</p><p><span class="date">\1 by <a href="mailto:\3">\2</a></span><br>',$line);
     } elseif (ereg('[^ ]+[./]SlackBuild[,:]',$line)) {
 //      preg_match_all('|([^ ]+)[./]SlackBuild[,:].*:(.*)|',$line,$matches,PREG_SET_ORDER);
 //      if ($matches[0][2] == "") {
@@ -273,17 +274,16 @@ if ($file) {
   }
 }
 ?>
+            </p>
 	    </div>
 
     	    <div id="footer">
             <p>
 <b>Bug reports</b> and <b>manual ports contributions</b> go here:
 		<form action="upload.php" method="post" enctype="multipart/form-data">
-		    <p>
 		    <input name="filetoupload" type="file">
 		    <input name="MAX_FILE_SIZE" value="250000" type="hidden">
 		    <input value="Upload" type="submit">
-		    </p>
 		</form>
 		    </p>
 	    </div>
