@@ -1,8 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.7-10.tar.bz2
-# MD5SUMS: 126da133acf3854aef145459f215feaf ImageMagick-6.3.7-10.tar.bz2
-# MD5SUMS: 388e0215e47a6a19e5dce8627ae57968 ImageMagick-6.3.7-9.tar.bz2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-1.tar.bz2
+# MD5SUMS: 34a337a9acd057f211a719fd83789958 ImageMagick-6.3.8-1.tar.bz2
 # REQUIRES: gcc-g++ graphviz lcms libXext libXt libpng librsvg
 # REQUIRES: libtiff libwmf perl
 
@@ -11,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=6.3.7-10
+VERSION=6.3.8-1
 
 ARCH=${ARCH:-i486}
 BUILD=1shv
@@ -30,7 +29,7 @@ rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
 tar xjvf $CWD/ImageMagick-$VERSION.tar.bz2
-cd ImageMagick-6.3.7
+cd ImageMagick-6.3.8
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -67,6 +66,6 @@ cd $PKG
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
-  rm -rf $TMP/ImageMagick-6.3.7
+  rm -rf $TMP/ImageMagick-6.3.8
   rm -rf $PKG
 fi
