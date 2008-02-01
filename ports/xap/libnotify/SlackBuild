@@ -1,20 +1,22 @@
 #!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
 # MAINTAINER: Tomas Stefano 'lem' <stefano at cedo dot cz>
-# SOURCES: http://www.galago-project.org/files/releases/source/libnotify/libnotify-0.4.3.tar.gz
+# SOURCES: http://www.galago-project.org/files/releases/source/libnotify/libnotify-0.4.4.tar.gz
 # MD5SUMS: c9b5b51578742908bb1d3201a2da8f00 libnotify-0.4.0.tar.gz
 # MD5SUMS: 5c81a26b461b2abd4c02a918b8486539 libnotify-0.4.3.tar.gz
+# MD5SUMS: ba76f68b7e3bd284ac2c2a1b9c5ecb06 libnotify-0.4.4.tar.gz
 # REQUIRES: glib2 popt
-# OPTIONAL: dbus gtk+2 gtk-doc linuxdoc-tools
+# OPTIONAL: dbus dbus-glib gtk+2 gtk-doc linuxdoc-tools
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.4.3
+VERSION=0.4.4
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
