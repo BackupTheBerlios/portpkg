@@ -85,7 +85,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.27 $"
+ENGINE_REV="\$Revision: 1.28 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -409,7 +409,7 @@ check_indirect() # pkgex
     PRT_DIR=`pwd`
     PKG_DIR=$PRT_DIR
     SRC_DIR=$PRT_DIR
-    LOG_DIR=$PRT_DIR
+#    LOG_DIR=$PRT_DIR
   esac
   return 0
 }
@@ -745,6 +745,7 @@ maintainer_mode()
   rm -f arbitrary requires blocks optional slot-in pseudo no-fakeroot flags md5sums sources
 
   # write a file list of the package (remove creation time and size)
+  row "Generating footprint"
   { printf "PACKAGE SIZE (compressed):   %6s K\n" $((`cat $tmp/$package.tgz | wc -c`/1024))
     printf "PACKAGE SIZE (uncompressed): %6s K\n" $((`zcat $tmp/$package.tgz | wc -c`/1024))
     printf "REMOTE SOURCES:              %6s K\n" `echo "$sources" | sed "s,^.*[%/],$SRC_DIR/," | xargs du -c | tail -n 1 | cut -f 1`
@@ -865,7 +866,8 @@ build_pkg()
     mkdir -p $LOG_DIR
     date >$LOG_DIR/$name.buildlog
     # set OUTPUT=$tmp here just in case it's a slackbuilds.org type sctipt
-    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp OUTPUT=$tmp"
+    # set DISTCC_HOST if defined
+    build_cmd="ARCH=$ARCH $flags_var=\"$CFLAGS\" TMP=$tmp OUTPUT=$tmp DISTCC_HOSTS=\"${DISTCC_HOSTS:-}\""
     if ! $no_fakeroot && has_prog fakeroot; then
       # run fakerooted SlackBuild
       row "Executing (fakerooted) ${script#$PRT_DIR/} $script_opt"
@@ -985,6 +987,15 @@ check_pkg()
     return 1;;
   esac;; esac
 
+  # test for major library upgrades
+  if [ "$replace" ]; then
+    grep -o ".*\.so\.[0-9]*" $INST_DIR/$replace >$t/old_libs
+    grep -o "[^ ]*\.so\.[0-9]*" $t/footprint >$t/new_libs
+    fgrep -vxf $t/new_libs $t/old_libs | while read s; do
+      warn "Major library version removed: /$s"
+    done
+  fi
+
   # list .new files
   grep -wo "etc/.*\.new$" $t/footprint | while read s; do
     [ -f /${s%.new} ] && warn "Consider updating /${s%.new} with ${s##*/}!"
@@ -1077,9 +1088,9 @@ do_add() # pkgex-list
 
   for arg in $targets; do
     ret=1
-    get_info $arg || continue
-    add_pkg
-    ret=$?
+    get_info $arg || break
+    add_pkg || break
+    ret=0
   done
 
   return $ret
@@ -1236,10 +1247,12 @@ EOF
   cat <<EOF
 
 Expressions:
-  [group/]name or    'foobar', 'l/foobar'
-  group/ or          'l/', 'local/apps/'
-  /regex/ or         '/ooba/'
-  [.]                Use current directory
+  [group/]name       Explicit, e.g. 'foobar', 'l/foobar'
+  group/             Implicit, e.g. 'l/', 'local/apps/'
+  /regex/            Regular expression e.g. '/ooba/'
+  .                  Current directory recursively (default)
+  @                  Everything
+  0                  Nothing
 EOF
 
   $VERBOSE || stanza "(Use --verbose for more help)"
@@ -1259,20 +1272,24 @@ EOF
   $VERBOSE || return 0
   cat <<EOF | fmt -t
 
-PRT_DIR:  $PRT_DIR
-SRC_DIR:  $SRC_DIR
-PKG_DIR:  $PKG_DIR
-LOG_DIR:  $LOG_DIR
+PRT_DIR:      $PRT_DIR
+SRC_DIR:      $SRC_DIR
+PKG_DIR:      $PKG_DIR
+LOG_DIR:      $LOG_DIR
 
-EXCLUDE:  $EXCLUDE
-IGNORE:   $IGNORE
-PREFER:   $PREFER
-USE:      $USE
+EXCLUDE:      $EXCLUDE
+IGNORE:       $IGNORE
+PREFER:       $PREFER
+USE:          $USE
 
 ARCH:         $ARCH
 CFLAGS:       $CFLAGS
 DIST_VER:     $DIST_VER
 DIST_TARGET:  $DIST_TARGET
+
+ADDON:        $ADDON
+SYNC:         $SYNC
+EXPORT:       $EXPORT
 EOF
 }
 
@@ -1379,7 +1396,7 @@ init()
   [ "$TMP" ] || die "TMP is emtpy!"
   [ "$TMP" = "/" ] && die "TMP cannot be /!"
   [ -d "$TMP" ] || die "Internal error!"
-  [ -d "$LOG_DIR" ] || mkdir -p $LOG_DIR
+  [ -d "$LOG_DIR" ] || { mkdir -p $LOG_DIR || die; }
 
   # clean up on exit
   trap 'error "ctrl-c pressed"; exit 1' INT
