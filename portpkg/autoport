@@ -737,17 +737,17 @@ sed -i "s,%etc%,etc,g" $script
 
 # installation prefix
 if grep -sq "#:install" $script; then
-  if check "^Makefile" $t/footprint; then
+  if check "^Makefile|^GNUmakefile" $t/footprint; then
     sel install mk_inst $script
-    check "\<MCS\>" $TMP/$srcdir_prefix/Makefile* \
-    || check "\<CSC\>" $TMP/$srcdir_prefix/Makefile* || snip mono $script
+    check "\<MCS\>" $TMP/$srcdir_prefix/*akefile* \
+    || check "\<CSC\>" $TMP/$srcdir_prefix/*akefile* || snip mono $script
     # Makefile.PL will always use DESTDIR
     if grep -sq "^Makefile.PL$" $t/footprint \
-    || check "\<DESTDIR\>" $TMP/$srcdir_prefix/Makefile*; then
+    || check "\<DESTDIR\>" $TMP/$srcdir_prefix/*akefile*; then
       sel mk_inst_root inst_destdir $script
-    elif check "\<PREFIX\>" $TMP/$srcdir_prefix/Makefile*; then
+    elif check "\<PREFIX\>" $TMP/$srcdir_prefix/*akefile*; then
       sel mk_inst_root inst_PREFIX $script
-    elif check "\<prefix\>" $TMP/$srcdir_prefix/Makefile*; then
+    elif check "\<prefix\>" $TMP/$srcdir_prefix/*akefile*; then
       sel mk_inst_root inst_prefix $script
     else
       error "Don't know how to install this package (no install-prefix)."
@@ -1076,7 +1076,7 @@ perl Makefile.PL ##perl
 #:install
 #:mk_inst
 MONO_SHARED_DIR=$TMP \ ##mono
-make ##mk
+make -j ##mk
 ##make PREFIX=/usr ##mk_PREFIX
 ##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
