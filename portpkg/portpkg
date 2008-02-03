@@ -34,6 +34,7 @@ REINSTALL=false                 # Force installation
 REBUILD=false                   # Force compilation
 REMAINTAIN=false                # Try to skip compilation
 NO_FAKEROOT=false               # Do not use compilation sandbox
+FOLLOW_SYMS=true                # Follow symlinks in PKG_DIR, PRT_DIR, SRC_DIR
 
 ARCH=i486                       # Build architecture
 CFLAGS=""                       # Compiler flags (effectless for ARCH=i486)
@@ -85,7 +86,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.28 $"
+ENGINE_REV="\$Revision: 1.29 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -119,9 +120,9 @@ use()       { regex "$USE"; }
 ls_virt()   { virtual "$@"; }           # obsolete
 ls_loc()    { ls_slk "$@" | slk2loc; }  # obsolete
 ls_inst()   { cache inst 'find $INST_DIR/ -type f' "$@"; }
-ls_pkg()    { cache pkg 'find $PKG_DIR/ -follow -type f -name "*.tgz" 2>/dev/null' "$@"; }
-ls_slk()    { cache slk 'find $PRT_DIR/ -follow -name "CVS" -prune -o -type f -name "*SlackBuild" -print 2>/dev/null' "$@"; }
-ls_src()    { cache src 'find $SRC_DIR/ -type f -maxdepth 1 2>/dev/null' "$@"; }
+ls_pkg()    { cache pkg 'find $PKG_DIR/ `$FOLLOW_SYMS && echo -follow` -type f -name "*.tgz" 2>/dev/null' "$@"; }
+ls_slk()    { cache slk 'find $PRT_DIR/ `$FOLLOW_SYMS && echo -follow` -type f -name "*SlackBuild" 2>/dev/null' "$@"; }
+ls_src()    { cache src 'find $SRC_DIR/ `$FOLLOW_SYMS && echo -follow` -type f -maxdepth 1 2>/dev/null' "$@"; }
 
 # converters
 #any2dir()    { sed -r "s,^(.*)/.*$,\1,"; }
@@ -384,7 +385,7 @@ ls_diff() # [pkgex] >list
 ls_verbose() # <pkgex
 {
   local pkg avail_rel inst_rel name
-  printf "\n%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"
+  stanza "`printf "%-31s %-23s %s\n" "PACKAGE NAME:" "AVAILABLE:" "INSTALLED:"`"
   while read pkg; do
     avail_rel=`echo $pkg | pkg2rel`
     name=${pkg%-*-*-*}
@@ -1137,32 +1138,36 @@ do_find() # text [..] >list
 do_info() # pkgex-list
 {
   local arg ret
+  local t=`mktemp -d`
   has_ports || die
   
   for arg in `explicit "$@"`; do
     ret=1
     get_info $arg || continue
     ret=0
-    echo -e "\nPACKAGE NAME:       $package"
-    [ "$replace" ] && echo "INSTALLED VERSION:  "$replace | fmt -t
-    if [ "$pkg_file" ]; then
-      printf "PACKAGE SIZE (compressed):    %6s K\n" $((`cat $pkg_file | wc -c`/1024))
-      printf "PACKAGE SIZE (uncompressed):  %6s K\n" $((`zcat $pkg_file | wc -c`/1024))
-      echo "PACKAGE LOCATION:   ${pkg_file%/*}/" | fmt -t
+    { echo -e "PACKAGE NAME:       $package"
+      [ "$replace" ] && echo "INSTALLED VERSION:  "$replace
+      if [ "$pkg_file" ]; then
+        printf "PACKAGE SIZE (compressed):    %6s K\n" $((`cat $pkg_file | wc -c`/1024))
+        printf "PACKAGE SIZE (uncompressed):  %6s K\n" $((`zcat $pkg_file | wc -c`/1024))
+        echo "PACKAGE LOCATION:   ${pkg_file%/*}/"
+      fi
+      echo "SCRIPT LOCATION:    ${script%/*}/"
+      [ "$requires" ] && echo "PACKAGE REQUIRES:   "$requires
+      [ "$optional" ] && echo "PACKAGE SUGGESTS:   "$optional
+      [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$blocks
+      [ "$sources" ] && echo "REMOTE SOURCES:     "$sources
+      [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
+    } >$t/info
+    if $VERBOSE && [ "$pkg_file" ]; then
+      echo "FILE LIST:" >>$t/info
+      tar tzvf $pkg_file | xargs -l | cut -d " " -f 1,2,6- | sort -k 3 | column -t >>$t/info
+      if grep -sq " install/doinst\.sh$" $t/info; then
+        echo "INSTALL SCRIPT:"
+        tar xzOf $pkg_file install/doinst.sh
+      fi >>$t/info
     fi
-    echo "SCRIPT LOCATION:    ${script%/*}/" | fmt -t
-    [ "$requires" ] && echo "PACKAGE REQUIRES:   "$requires | fmt -t
-    [ "$optional" ] && echo "PACKAGE SUGGESTS:   "$optional | fmt -t
-    [ "$blocks" ] && echo "PACKAGE BLOCKS:     "$blocks | fmt -t
-    [ "$sources" ] && echo "REMOTE SOURCES:     "$sources | fmt -t
-    [ "$description" ] && echo -e "PACKAGE DESCRIPTION:\n$description"
-    $VERBOSE || continue
-    if [ "$pkg_file" ]; then
-      echo "FILE LIST:"
-      tar tzvf $pkg_file | xargs -l | cut -d " " -f 1,2,6- | sort -k 3 | column -t
-      echo "INSTALL SCRIPT:"
-      tar xzOf $pkg_file install/doinst.sh
-    fi
+    stanza "`cat $t/info`"
   done
 
   return $ret
@@ -1206,12 +1211,10 @@ do_upgrade() # [pkgex-list]
 
 help()
 {
-  cat <<EOF
-
-Usage: portpkg [action] [options] [expression [..]]
+  stanza "USAGE: portpkg [action] [options] [expression [..]]
   Prepare and install a package (default action).
 
-Actions (alternative):
+ACTIONS (alternative):
   -d, --diff         Compare installed versions with availables
   -i, --info         View information about specified ports
   -f, --find strs    Find ports by pattern strings
@@ -1220,12 +1223,9 @@ Actions (alternative):
   -u, --upgrade      Upgrade all (!) outdated ports (see --diff)
   -v, --version	     View version information
   -x, --export msg   Upload ports to portpkg.berlios.de
-  -h, --help         Display this page
-EOF
+  -h, --help         Display this page"
 
-  $VERBOSE && cat <<EOF
-
-Options:
+  $VERBOSE && stanza "OPTIONS:
   -e, --reinstall    Reinstall package if already installed
   -b, --rebuild      Rebuild package if already build (implies --reinstall)
   -p, --prepare      Build package, but don't install (implies --testreqs)
@@ -1241,38 +1241,29 @@ Options:
   -n, --noask        Do not ask for confirmations
   -w, --exclude expr Exclude from implicit expressions (single expression!)
   -j, --ignore expr  Ignore these dependencies (single expression!)
-  -t, --use expr     Use these optional dependencies (single expression!)
-EOF
+  -t, --use expr     Use these optional dependencies (single expression!)"
 
-  cat <<EOF
-
-Expressions:
+  stanza "EXPRESSIONS:
   [group/]name       Explicit, e.g. 'foobar', 'l/foobar'
   group/             Implicit, e.g. 'l/', 'local/apps/'
   /regex/            Regular expression e.g. '/ooba/'
   .                  Current directory recursively (default)
   @                  Everything
-  0                  Nothing
-EOF
+  0                  Nothing"
 
   $VERBOSE || stanza "(Use --verbose for more help)"
 }
 
 version()
 {
-  cat <<EOF | fmt -t
-    
-Portpkg version $ENGINE_VER ($ENGINE_REV).
+  stanza "Portpkg version $ENGINE_VER ($ENGINE_REV).
 Copyright (C) 2003-2007 Thomas Pfaff <topf@users.berlios.de>.
-Portpkg comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.
-EOF
+Portpkg comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions."
 
   $VERBOSE || stanza "(Use --verbose for more information)"
 
   $VERBOSE || return 0
-  cat <<EOF | fmt -t
-
-PRT_DIR:      $PRT_DIR
+  stanza "PRT_DIR:      $PRT_DIR
 SRC_DIR:      $SRC_DIR
 PKG_DIR:      $PKG_DIR
 LOG_DIR:      $LOG_DIR
@@ -1289,8 +1280,7 @@ DIST_TARGET:  $DIST_TARGET
 
 ADDON:        $ADDON
 SYNC:         $SYNC
-EXPORT:       $EXPORT
-EOF
+EXPORT:       $EXPORT"
 }
 
 parse_options()
