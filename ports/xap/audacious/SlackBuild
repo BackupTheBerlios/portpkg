@@ -1,16 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://distfiles.atheme.org/audacious-1.4.5.tgz
-# MD5SUMS: b784a30604a2f9d84e9da310069f43f9 audacious-1.3.2.tgz
-# MD5SUMS: db898864e14770c6ad063aa83bf11aa7 audacious-1.4.5.tgz
-# REQUIRES: desktop-file-utils gcc-g++ glib2 libglade mcs libmowgli dbus-glib
+# SOURCES: http://distfiles.atheme.org/audacious-1.4.6.tgz
+# MD5SUMS: 51c828b34300b592c363e6f441312898 audacious-1.4.6.tgz
+# REQUIRES: dbus-glib desktop-file-utils gcc-g++ glib2 libglade
+# REQUIRES: libmowgli mcs
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.5
+VERSION=1.4.6
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
