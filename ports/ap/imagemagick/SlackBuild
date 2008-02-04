@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-2.tar.bz2
-# MD5SUMS: 82c244af316908fe364c918f200d2b91 ImageMagick-6.3.8-2.tar.bz2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-3.tar.bz2
+# MD5SUMS: 0831a630eae57b7a7f97c255a1dcbbed ImageMagick-6.3.8-3.tar.bz2
 # REQUIRES: gcc-g++ graphviz lcms libXext libXt libpng librsvg
 # REQUIRES: libtiff libwmf perl
 
@@ -10,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=6.3.8-2
+VERSION=6.3.8-3
 
 ARCH=${ARCH:-i486}
 BUILD=1shv
