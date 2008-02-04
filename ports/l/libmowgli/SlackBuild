@@ -1,14 +1,14 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://distfiles.atheme.org/libmowgli-0.6.0.tgz
-# MD5SUMS: 7040b6fa8ee5b8498a09ea95ad59d446 libmowgli-0.6.0.tgz
+# SOURCES: http://distfiles.atheme.org/libmowgli-0.6.1.tgz
+# MD5SUMS: 80f8a27f1b44b0b129215f858ab1ab82 libmowgli-0.6.1.tgz
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.6.0
+VERSION=0.6.1
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
