@@ -1,16 +1,18 @@
 #!/bin/sh
 # MAINTAINER: D.Riaux 'ldv' <ldv@no-log.org>
-# SOURCES: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-0.9.6.tar.gz
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# SOURCES: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-0.9.7.tar.gz
 # MD5SUMS: 329401b84ad0b00aaccaad58f2fc393c libdvdread-0.9.6.tar.gz
+# MD5SUMS: 078788c9241ae16763529e1235502337 libdvdread-0.9.7.tar.gz
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.9.6
+VERSION=0.9.7
 ARCH=${ARCH:-i486}
-BUILD=1ldv
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
