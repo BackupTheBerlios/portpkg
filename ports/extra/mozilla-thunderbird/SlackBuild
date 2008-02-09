@@ -26,12 +26,10 @@ fi
 # Thanks to the folks at the Mozilla Foundation for permission to
 # distribute this, and for all the great work!  :-)
 
-VERSION=2.0.0.0
+VERSION=2.0.0.9
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
-#Sorry
-rm -f $CWD/thunderbird-$VERSION.tar.gz
 wget -c http://mozilla2.mirrors.tds.net/pub/mozilla.org/thunderbird/releases/$VERSION/linux-i686/$MY_LANG/thunderbird-$VERSION.tar.gz -P $CWD
 
 rm -rf $PKG
@@ -86,3 +84,5 @@ cat $CWD/doinst.sh > $PKG/install/doinst.sh
 cd $PKG
 makepkg -l y -c n $TMP/mozilla-thunderbird-$VERSION-$ARCH-$BUILD.tgz
 
+#Sorry
+rm -f $CWD/thunderbird-$VERSION.tar.gz
