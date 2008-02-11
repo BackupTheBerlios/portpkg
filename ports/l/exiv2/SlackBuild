@@ -1,19 +1,20 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://www.exiv2.org/exiv2-0.15.tar.gz
+# SOURCES: http://www.exiv2.org/exiv2-0.16.tar.gz
 # MD5SUMS: a97a4e489df7ec99458e3e33b506c3e6 exiv2-0.12.tar.gz
 # MD5SUMS: 492d476e3130ac27983d93e5595d81e8 exiv2-0.13.tar.gz
 # MD5SUMS: 6f8edde77d95f49fc83329feb615bb33 exiv2-0.14.tar.gz
 # MD5SUMS: bb18d19e1d6fb255dadda456cadec00e exiv2-0.15.tar.gz
+# MD5SUMS: a6e72343885d990c593bd013c6c988f1 exiv2-0.16.tar.gz
 # REQUIRES: gcc-g++ zlib
-# OPTIONAL: gcc
+# OPTIONAL: expat gcc
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.15
+VERSION=0.16
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
@@ -62,6 +63,7 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
+chmod 755 usr/lib/*.so.*
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
