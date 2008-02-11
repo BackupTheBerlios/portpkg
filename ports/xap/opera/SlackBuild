@@ -22,13 +22,13 @@ PKG=$TMP/package-$NAME
 VERSION=9.25
 BUILDVERS=20071214.5
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=2sjn
 
 #
 ## choose your language (pl, pt, see opera.language file (en included opera tarball))
 #
 LANGUAGE=
-LANGVERS=920
+LANGVERS=925
 
 rm -rf $PKG
 mkdir -p $PKG/usr
