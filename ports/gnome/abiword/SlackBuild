@@ -1,8 +1,12 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.abisource.com/downloads/abiword/2.4.5/source/abiword-2.4.5.tar.gz
+# SOURCES: http://www.abisource.com/downloads/abiword/2.4.6/source/abiword-2.4.6.tar.gz
 # MD5SUMS: e05f15936535c4b737deaa721adf8d09 abiword-2.4.5.tar.gz
-# REQUIRES: aiksaurus enchant fribidi gucharmap libglade libgnomeprintui librsvg libtermcap libwmf libwpd pango readline
+# MD5SUMS: 30fbd0a9b539f15f54f90d3812a75266 abiword-2.4.6.tar.gz
+# REQUIRES: aiksaurus enchant fribidi gucharmap libglade
+# REQUIRES: libgnomeprintui librsvg libtermcap libwmf libwpd pango
+# REQUIRES: readline
+# OPTIONAL: desktop-file-utils
 # UP2DATE: http://www.abisource.com/download
 
 TMP=${TMP:-/tmp}
@@ -10,14 +14,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.4.5
+VERSION=2.4.6
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -40,18 +44,19 @@ for i in abi abiword-plugins; do
       --disable-static \
       --with-libpng=/usr/lib \
       $ARCH-slackware-linux
-    make
+    make -j
     make install DESTDIR=$PKG
   )
 done
-rm -rf $PKG/usr/lib/perl?/?.?.?/*-linux/perllocal.pod
-rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cd abi
 cp -a \
@@ -59,15 +64,44 @@ cp -a \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/abiword-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#=config
+for i in abi abiword-plugins; do
+  ( cd $i
+    CFLAGS="$SLKCFLAGS" \
+    ./configure \
+      --prefix=/usr \
+      --sysconfdir=/etc \
+      --localstatedir=/var/lib \
+      --disable-static \
+      --with-libpng=/usr/lib \
+#=config
+#=docfiles
+cd abi
+cp -a \
+  BUILD.TXT BiDiReadme.txt COPYING COPYRIGHT.TXT CREDITS.TXT README.TXT \
+  $PKG/usr/doc/$NAME-$VERSION/
+#=docfiles
+#=install
+      $ARCH-slackware-linux
+    make
+    make install DESTDIR=$PKG
+  )
+done
+#=install
