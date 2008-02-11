@@ -1,13 +1,65 @@
 #!/bin/sh
 #BLURB="Format messages"
 
+COLORS=${COLORS:-true}		# Use colored output
+
 cols=`stty size 2>/dev/null | cut -d " " -f 2`
 cols=$((${cols:-80}-2))
 
-fmt_t()     { fold -sw $cols | sed "${1:-2},\$s,^,  ,"; }
+# Define some colors first:
+BOLD=`$COLORS && echo -e '\e[1m'`
+RED=`$COLORS && echo -e '\e[1;31m'`
+GREEN=`$COLORS && echo -e '\e[1;32m'`
+YELLOW=`$COLORS && echo -e '\e[1;33m'`
+BLUE=`$COLORS && echo -e '\e[1;34m'`
+MAGENTA=`$COLORS && echo -e '\e[1;35m'`
+CYAN=`$COLORS && echo -e '\e[1;36m'`
+WHITE=`$COLORS && echo -e '\e[1;37m'`
+DARK=`$COLORS && echo -e '\e[1;30m'`
+BELL=`$COLORS && echo -e '\a'` # uhuuuu... %-)
+NC=`$COLORS && echo -e '\e[0m'` # No Color
 
-stanza()    { log "\n$@" | fmt_t 3; }
-row()       { log "  --> $@" | fmt_t; }
-warn()      { log "WARNING: $@" | fmt_t >&2; }
-debug()     { $DEBUG && log "$@" | fmt_t >&2 || log "$@" >/dev/null; }
-pause()     { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -sw $cols >&2; local s; read s; log -n $s; }
+C_HEADER="$GREEN"
+C_ROW="$BLUE"
+C_PAUSE="$MAGENTA"
+C_STRONG="$BOLD"
+C_WARN="$BELL$YELLOW"
+C_DEBUG="$DARK"
+C_ERROR="$RED"
+
+colorize()
+{
+  sed -r "\
+s,-->,$C_ROW-->$NC,;\
+s,^\| (.*),| $C_HEADER\1$NC,;\
+s,^WARNING:,$C_WARN&$NC,;\
+s/^[A-Z]{2,}([^:]*:|.*:$)/$C_STRONG&$NC/;\
+s,^\* ,$C_PAUSE&$NC,;\
+s,^[^ ]*\(\): .*$,$C_DEBUG&$NC,;\
+s,^\*\* (.*)$,** $C_ERROR\1$NC,"
+}
+
+if $USE_ALPHA_CODE; then
+# colorize upgradepkg
+$COLORS && ADD_CMD="$ADD_CMD | colorize"
+fi
+
+# because fmt -t is buggy for very large paragraphs, we use fold and sed
+fmt_t()
+{
+  sed -r "s/^[^ \t]/§&/;s,^[ \t]+,," \
+| fold -sw $cols \
+| sed -r "/^[^§]/s,^,  ,;s,^§,,"
+}
+
+# redefine our text subroutines
+header()    { log "\n+==============================================================================
+| $@
++==============================================================================" \
+| colorize; }
+stanza()    { log "\n$@" | fmt_t | colorize; }
+row()       { log "  --> $@" | fmt_t | colorize; }
+warn()      { log "WARNING: $@" | fmt_t | colorize >&2; }
+debug()     { $DEBUG && log "$@" | fmt_t | colorize >&2 || log "$@" >/dev/null; }
+pause()     { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -sw $cols | colorize >&2; local s; read s; log -n $s; }
+error()     { [ "$*" ] && log "** $@" | fmt_t | colorize >&2; return 1; }
