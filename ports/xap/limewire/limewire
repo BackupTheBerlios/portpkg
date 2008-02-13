@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Simple LimeWire startup script for Slackware.
+# Written by Ken Zalewski on 11 August 2006
+#
+
+cd /usr/share/limewire
+exec ./runLime.sh
+

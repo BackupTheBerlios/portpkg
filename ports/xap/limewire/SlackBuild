@@ -1,0 +1,54 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
+# REQUIRES: jre
+# OPTIONAL: desktop-file-utils libXt zlib
+
+#download LimeWireOther.zip
+wget -c http://www10.limewire.com/download/LimeWireOther.zip
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=4.16.6
+ARCH=noarch
+BUILD=1sjn
+
+rm -rf $PKG
+
+#create dirs
+mkdir -p $PKG/usr/{doc/$NAME-$VERSION,bin,share}
+cp -R $CWD/{pixmaps,applications} $PKG/usr/share
+cp $CWD/limewire $PKG/usr/bin
+
+#unzip limewire 
+( cd $PKG/usr/share
+unzip $CWD/LimeWireOther.zip
+mv LimeWire limewire )
+
+cd $PKG 
+
+#slack-desc
+mkdir install
+cat $CWD/slack-desc >install/slack-desc
+
+#docs
+ln -sf /usr/share/limewire/{COPYING,README.txt,SOURCE} usr/doc/$NAME-$VERSION/.
+
+chmod 755 usr/bin/limewire
+chown -R root.root .
+
+#fixed perms
+find . -type d -exec chmod 755 {} \;
+find . -type d -name "CVS" -exec rm -r {} \;
+
+makepkg -p -l y -c n ../$NAME-$VERSION-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/%srcdirprefix%
+  rm -rf $PKG
+fi
+
+#sorry. for next vers.
+rm $CWD/LimeWireOther.zip
