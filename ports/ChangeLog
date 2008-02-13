@@ -1,7 +1,7 @@
 2008-02-13  sajmon  <sajmon@users.berlios.de>
 
   * ChangeLog, xap/limewire/ChangeLog, xap/limewire/applications/limewire.desktop, xap/limewire/footprint, xap/limewire/limewire, xap/limewire/pixmaps/limewire.png, xap/limewire/pixmaps/limewire_plug.png, xap/limewire/pixmaps/limewire_shadowed.png, xap/limewire/pixmaps/limewire_sliced.png, xap/limewire/slack-desc, xap/limewire/SlackBuild:
-  *** empty log message ***
+  New port, based on Ken Zalewski limewire pkg from linuxpackages.org
 
 2008-02-12  topf  <topf@users.berlios.de>
 
@@ -1903,7 +1903,7 @@
   * d/portpkg/portpkg:
   * Code cleanup.
   * Set MY_REALNAME to MY_TAG, instead of messing with /etc/passwd entries.
-  * Added $Revision: 1.243 $ to --version display.
+  * Added $Revision: 1.244 $ to --version display.
 
   * d/portpkg/sync.portpkg:
   * Added CVS_RSH=ssh.
