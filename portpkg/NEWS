@@ -1,5 +1,18 @@
 NEWS
 
+2008-02-17
+
+Released portpkg version 0.38.6, which fixes a bug that caused broken 
+downloads for SlackBuilds.org style ports, besides other minor 
+improvements and some neat colors in the addon.format_output plugin.
+
+To upgrade portpkg use one of those methods:
+  * Via source code ("make install"):
+    http://prdownload.berlios.de/portpkg/portpkg-0.38.6.tar.bz2
+  * Via Slackware package ("upgradepkg portpkg-0.38.6-noarch-1tom.tgz"):
+    http://prdownload.berlios.de/portpkg/portpkg-0.38.6-noarch-1tom.tgz
+  * Via ports ("portpkg --sync && portpkg portpkg")
+
 2007-12-27
 
 Added to the FAQ:
