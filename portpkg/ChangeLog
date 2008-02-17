@@ -1,4 +1,147 @@
+2008-02-17  topf  <topf@users.berlios.de>
+
+  * NEWS: Release 0.38.6.
+
+  * ignore, repos, use: Obsolete.
+
+2008-02-11  topf  <topf@users.berlios.de>
+
+  * plugins/addon.format_output: Add some nice colors.
+
+2008-02-03  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * ls_pkg(), ls_slk(), ls_src(): Added variable FOLLOW_SYMS to disable following symlinks.
+  * ls_verbose(), do_info(), help(), version(): Removed fmt -t pipes and modified to use stanza().
+
+  * portpkg:
+  * check_indirect(): Don't reset LOG_DIR.
+  * maintainer_mode(): Added 'Generating footprint' output.
+  * build_pkg(): Pass DISTCC_HOSTS variable to script if defined.
+  * check_pkg(): List major library version removals.
+  * add_pkg(): Stop if get_info or add_pkg fails.
+  * help(): More help for expressions.
+  * version(): Show ADDON, SYNC and EXPORT.
+  * init(): Die if mkdir LOG_DIR fails.
+
+  * autoport:
+  * Check for GNUmakefile.
+  * Use make -j.
+
+  * synonyms: Updated package synonyms.
+
+2008-01-22  topf  <topf@users.berlios.de>
+
+  * htdocs/index.php: border: 0
+
+  * htdocs/index.php:
+  Finally insert the hard-earned W3C HTML-4.01 logo... clap, clap, clap
+
+  * htdocs/index.php: Added sub-footer, lots of more CSS cleanups and fixes.
+
+  * htdocs/index.php: More HTML fixes.
+
+  * htdocs/index.php: More CSS fixes.
+
+  * htdocs/index.php: Fixed CSS, removed non-semantic styles, etc.
+
+  * htdocs/index.php: Removed XHTML-style tag endings.
+
+  * htdocs/index.php: Added doctype and character encoding.
+
+  * htdocs/robots.txt: Updated.
+
+2008-01-11  topf  <topf@users.berlios.de>
+
+  * htdocs/index.php:
+  * Added QUICKSTART.
+  * Renamed README.Links.
+  * Added details links for the ports' ChangeLog.
+
+  * INSTALL: Added new INSTALL.
+
+  * QUICKSTART: Renamed INSTALL to QUICKSTART.
+
+  * LINKS, README.Links: Renamed README.Links to LINKS
+
+2007-12-27  topf  <topf@users.berlios.de>
+
+  * portpkg:
+  * build_pkg(): Be more verbose when running -r.
+  do_info(): List files and install script when VERBOSE=true.
+
+  * plugins/sync.portpkg:
+  * Print GPG output if VERBOSE=true.
+  * Fixed some bugs concerning not downloading some files from the uploads.
+  * Major code clean up especially for syncing open/ and reports/.
+  * Update ChangeLog if older than 7 days (if server fails).
+  * List SlackBuilds in ChangeLog only.
+
+  * portpkg: Fixed parsing SBo-style URLs (thanks sheva).
+
+  * plugins/sync.slackyit-bin: Fixed slacky.eu download URL.
+
+  * plugins/export.portpkg:
+  * Do not cvs rm ChangeLog every time.
+  * Do cvs add whole port directory if necessary.
+
+  * autoport:
+  Do gtk-update-icon-cache -ft hicolor before every update-desktop-database in doinst.sh.
+
+  * htdocs/index.php: Use preformatted text for NEWS.
+
+  * FAQ, NEWS: Updated FAQ.
+
+2007-12-22  topf  <topf@users.berlios.de>
+
+  * README.Links: Added SBo.
+
+2007-12-18  topf  <topf@users.berlios.de>
+
+  * plugins/export.portpkg:
+  * Determine file and directories for all types of commission.
+  * Exclude *~ file and previous patches.
+  * FIX: Add _all_ needed new directories to CVS.
+
+  * plugins/export.portpkg:
+  * Don't commit source files, buildlogs and packages to CVS when run in indirect mode.
+
+  * portpkg:
+  build_pkg(): Avoid error message for linking to the same directory when run in indirect mode.
+
+  * htdocs/index.php:
+  * Changed robots meta tag to allow indexing of this page.
+  * Fixed html syntax in header.
+
+  * htdocs/robots.txt: Changed to disallow everything.
+
+2007-12-16  topf  <topf@users.berlios.de>
+
+  * plugins/addon.format_output: Reset $cols to 80 if not available.
+
+  * portpkg:
+  * log(): Only write to portpkg.log if DEBUG=true.
+  * init(), parse_options(): Start log entry after DEBUG could be set.
+
+  * portpkg: do_info: Use term 'remote sources' as in footprint.
+
+  * portpkg:
+  * maintainer_mode(): Fixed printing total size of remote resources, code cleanup.
+  * do_info(): Fixed listing optional dependencies as conflicts.
+
+2007-12-14  topf  <topf@users.berlios.de>
+
+  * plugins/export.portpkg: Don't commit portpkg.log and .#* files.
+
+  * portpkg: Fixed MD5Sum issue:
+  * get_info(): Fix SBo-style MD5Sums.
+  * build_pkg(): Removed previous fix, print info when generating md5sum.
+
 2007-12-05  topf  <topf@users.berlios.de>
+
+  * NEWS: URLs added.
+
+  * ChangeLog: Updated.
 
   * NEWS: Updated for release 0.38.5.
 
