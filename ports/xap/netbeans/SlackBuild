@@ -1,23 +1,24 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://download.netbeans.org/netbeans/6.0/final/zip/netbeans-6.0-200711261600.zip
-# MD5SUMS: 7d2e497afd54d4cf3be6c3b74f31bbb7 netbeans-6.0-200711261600.zip
+# SOURCES: http://download.netbeans.org/netbeans/6.0/final/zip/netbeans-6.0.1-200801291616-ml-javaee.zip
+# MD5SUMS: 7cef372affe8510f2d71769daa6ebd91 netbeans-6.0.1-200801291616-ml-javaee.zip
 # REQUIRES: jdk x11
 # OPTIONAL: desktop-file-utils
+## SOURCES: http://download.netbeans.org/netbeans/6.0/final/zip/netbeans-6.0.1-200801291616-ml.zip
 
 TMP=/tmp
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=6.0
+VERSION=6.0.1
 ARCH=noarch
 BUILD=1shv
 
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-unzip $CWD/netbeans-6.0-200711261600.zip
+unzip $CWD/netbeans-6.0.1-200801291616-ml-javaee.zip
 
 
 rm -rf `find $NAME -name *.exe` \
