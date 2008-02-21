@@ -1,17 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-8.tar.bz2
-# MD5SUMS: fd86a1b2f6ff05d19dd114828159768a ImageMagick-6.3.8-8.tar.bz2
-# REQUIRES: gcc-g++ lcms libXext libXt libpng librsvg libtiff libwmf
-# REQUIRES: perl
-# OPTIONAL: bzip2
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-9.tar.bz2
+# MD5SUMS: edf2bd8e8ebd0fae567bf2bc7f232bbe ImageMagick-6.3.8-9.tar.bz2
+# REQUIRES: gcc-g++ 
+# OPTIONAL: lcms libXext libXt libpng librsvg libtiff libwmf bzip2 graphviz perl
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=6.3.8-8
+VERSION=6.3.8-9
 
 ARCH=${ARCH:-i486}
 BUILD=1shv
@@ -43,8 +42,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --infodir=/usr/info \
   --program-prefix="" \
   --enable-shared \
-  --disable-schemas-install \
-  --build=x86_64-pc-linux
+  --disable-schemas-install
 make
 make install DESTDIR=$PKG
 ( cd $PKG
