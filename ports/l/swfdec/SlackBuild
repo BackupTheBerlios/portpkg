@@ -1,15 +1,15 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://www.schleef.org/swfdec/download/swfdec-0.3.6.tar.gz
-# MD5SUMS: bcfca3a8ce1d524ebf4d11fd511dedb8  swfdec-0.3.6.tar.gz
-# REQUIRES: gimp gst-plugins-base gstreamer mozilla x11
+# SOURCES: http://swfdec.freedesktop.org/download/swfdec/0.5/swfdec-0.5.5.tar.gz
+# MD5SUMS: b988b014e210cee205aeccaca4d6a9a7  swfdec-0.5.5.tar.gz
+# REQUIRES: gimp gst-plugins-base gstreamer x11
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.3.6
+VERSION=0.5.5
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -50,7 +50,7 @@ find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog NEWS README RELEASE TODO \
+  AUTHORS COPYING ChangeLog NEWS README \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
