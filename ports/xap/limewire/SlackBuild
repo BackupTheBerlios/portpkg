@@ -13,7 +13,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=4.16.6
 ARCH=noarch
-BUILD=1sjn
+BUILD=2sjn
 
 rm -rf $PKG
 
@@ -41,8 +41,8 @@ chown -R root.root .
 
 #fixed perms
 find . -type d -exec chmod 755 {} \;
-find . -type d -name "CVS" -exec rm -r {} \;
-
+#find . -type d -name "CVS" -exec rm -r {} \;
+rm -rf usr/share/{pixmaps,applications}/CVS
 makepkg -p -l y -c n ../$NAME-$VERSION-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
