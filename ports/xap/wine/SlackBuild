@@ -1,30 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Viktor Kojouharov 'sat' <viktor@bloka.org>
-# SOURCES: http://ibiblio.org/pub/linux/system/emulators/wine/wine-0.9.50.tar.bz2
-# MD5SUMS: d8f361e6fe7520cda983a78673cd3bda wine-0.9.37.tar.bz2
-# MD5SUMS: 6d8cf3a9eef08e9dfbc3105ccd1ce648 wine-0.9.38.tar.bz2
-# MD5SUMS: 6535691a7558c53bbe66455c6df559a1 wine-0.9.39.tar.bz2
-# MD5SUMS: 412b64916b32c31cacd7655ffa4489b6 wine-0.9.40.tar.bz2
-# MD5SUMS: 014e3760c07ac71906ba47c27f0471ab wine-0.9.41.tar.bz2
-# MD5SUMS: 04e53f201e5747b86751fc0abb0c0aeb wine-0.9.42.tar.bz2
-# MD5SUMS: 7b9133e717ef6ca1ab220512670d9786 wine-0.9.43.tar.bz2
-# MD5SUMS: cdfc5cc1d813a955c8e7310346fb5629 wine-0.9.44.tar.bz2
-# MD5SUMS: feecc3ccb4639b672d8446154a4fb700 wine-0.9.45.tar.bz2
-# MD5SUMS: aa729097ddb324185a3e092b37a5f9fe wine-0.9.46.tar.bz2
-# MD5SUMS: dfeeb7c137a1abab917f82dafbef5c8a wine-0.9.47.tar.bz2
-# MD5SUMS: e2cc11fe7ec7769bcf8fe4f59b1dd75a wine-0.9.48.tar.bz2
-# MD5SUMS: 417912f28e48ddc6c4285a493d070564 wine-0.9.49.tar.bz2
-# MD5SUMS: 1f2a34569b4a76eb270f5ad206a464b8 wine-0.9.50.tar.bz2
-# REQUIRES: desktop-file-utils
-# OPTIONAL: esound gphoto-suite lcms libSM libXxf86vm libxslt mesa
-# OPTIONAL: openldap openldap-client perl
+# SOURCES: http://ibiblio.org/pub/linux/system/emulators/wine/wine-0.9.52.tar.bz2
+# MD5SUMS: c3b14ac84f049a2db28cd41c3f71998b wine-0.9.52.tar.bz2
+# REQUIRES: desktop-file-utils esound gphoto-suite lcms libSM
+# REQUIRES: libXxf86vm libxslt mesa openldap openldap-client perl
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.9.50
+VERSION=0.9.52
 ARCH=${ARCH:-i486}
 BUILD=1sat
 
