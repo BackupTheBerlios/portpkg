@@ -1,16 +1,17 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-9.tar.bz2
-# MD5SUMS: edf2bd8e8ebd0fae567bf2bc7f232bbe ImageMagick-6.3.8-9.tar.bz2
-# REQUIRES: gcc-g++ 
-# OPTIONAL: lcms libXext libXt libpng librsvg libtiff libwmf bzip2 graphviz perl
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/imagemagick/ImageMagick-6.3.8-11.tar.gz
+# MD5SUMS: a353ccfd0069219fc29183ddd309e58d ImageMagick-6.3.8-11.tar.gz
+# REQUIRES: gcc-g++
+# OPTIONAL: bzip2 graphviz lcms libXext libXt libpng librsvg libtiff
+# OPTIONAL: libwmf perl
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=6.3.8-9
+VERSION=6.3.8-11
 
 ARCH=${ARCH:-i486}
 BUILD=1shv
@@ -28,7 +29,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xjvf $CWD/ImageMagick-$VERSION.tar.bz2
+tar xzvf $CWD/ImageMagick-$VERSION.tar.gz
 cd ImageMagick-6.3.8
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
