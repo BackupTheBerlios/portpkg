@@ -1,9 +1,15 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
+# SOURCES: http://heanet.dl.sourceforge.net/sourceforge/krename/krename-3.0.14.tar.bz2
+# MD5SUMS: 1f5fe57384d912c11fbd0fae94bb7fca krename-3.0.14.tar.bz2
+# MD5SUMS: e07485fd50c929164d3e168c81818ed5 krename-3.0.9.tar.bz2
+# REQUIRES: desktop-file-utils kdelibs qt
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.0.9
+VERSION=3.0.14
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -27,7 +33,7 @@ chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
-  --prefix=/opt/kde \
+  --prefix=/usr \
   --localstatedir=/var/lib \
   --program-prefix="" \
   --disable-static \
@@ -35,7 +41,7 @@ CXXFLAGS="$SLKCFLAGS" \
 make || exit 1
 make install DESTDIR=$PKG || exit 1
 rm -rf $PKG/usr/info/dir
-find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
+#find $PKG/ -type d -name bin -o -name sbin | xargs -r chown -R root.bin
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
