@@ -1,13 +1,11 @@
 libquicktime: libquicktime
-libquicktime: 
+libquicktime:
 libquicktime: libquicktime is a library for reading and writing quicktime
-libquicktime: files. It is based on the quicktime4linux library, with the
-libquicktime: following extensions:
-libquicktime:   * Sourcetree upgraded with autoconf/automake/libtool
-libquicktime:     and all the other stuff, people like in "standard"
-libquicktime:     linux libraries.
-libquicktime:   * All 3rd party libraries (jpeg, OggVorbis) were removed
-libquicktime:     to reduce download size, compilation time and code
-libquicktime:     duplication on users harddisks.  Instead, the sytemwide
-libquicktime:     installed libaries are autodetected by the configure
-libquicktime:     script.
+libquicktime: files. It is based on the quicktime4linux library,
+libquicktime: with the following extensions: * Sourcetree upgraded with
+libquicktime: autoconf/automake/libtool and all the other stuff, people like
+libquicktime: in "standard" linux libraries.  * All 3rd party libraries
+libquicktime: (jpeg, OggVorbis) were removed to reduce download size,
+libquicktime: compilation time and code duplication on users harddisks.
+libquicktime: Instead, the sytemwide installed libaries are autodetected
+libquicktime: by the configure script.
