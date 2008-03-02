@@ -1,8 +1,9 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://transcode.kabewm.com/transcode-1.0.4.tar.bz2
+# SOURCES: http://transcode.kabewm.com/transcode-1.0.5.tar.bz2
 # MD5SUMS: e353c0ab7e927a8672528e05a9ae960b transcode-1.0.2.tar.gz
 # MD5SUMS: 6f05b9efb8d67540dd6dbb7b8db47504 transcode-1.0.4.tar.bz2
+# MD5SUMS: 124a6055d304fa2d8577d7380e2bcb0c transcode-1.0.5.tar.bz2
 # REQUIRES: a52dec ffmpeg gtk+ imagemagick libdv libdvdread libfame
 # REQUIRES: libogg libpng libquicktime libtheora libvorbis libxml2
 # REQUIRES: mjpegtools sdl x11
@@ -13,7 +14,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.0.4
+VERSION=1.0.5
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
@@ -45,8 +46,8 @@ CXXFLAGS="$SLKCFLAGS" \
   --program-prefix="" \
   --enable-shared \
   --disable-schemas-install \
-  --with-libavcodec-includes=/usr/include/ffmpeg \
-  --with-libpostproc-includes=/usr/include/postproc \
+  --with-libavcodec-includes=/usr/include/libavcodec \
+  --with-libpostproc-includes=/usr/include/libpostproc \
   --enable-mjpegtools \
   --enable-libpostproc \
   --enable-ogg \
@@ -95,8 +96,8 @@ exit $?
 # This chunk has been added by autoport, part of portpkg.berlios.de:
 
 #+configure-opts
-  --with-libavcodec-includes=/usr/include/ffmpeg \
-  --with-libpostproc-includes=/usr/include/postproc \
+  --with-libavcodec-includes=/usr/include/libavcodec \
+  --with-libpostproc-includes=/usr/include/libpostproc \
   --enable-mjpegtools \
   --enable-libpostproc \
   --enable-ogg \
