@@ -1,22 +1,24 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/libgsf/1.14/libgsf-1.14.0.tar.bz2
-# MD5SUMS: 2d3b112a2c6e7e1740306c32b1ebf6e6  libgsf-1.14.0.tar.bz2
-# REQUIRES: bzip2 gnome-vfs
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/libgsf/1.14/libgsf-1.14.7.tar.bz2
+# MD5SUMS: 2d3b112a2c6e7e1740306c32b1ebf6e6 libgsf-1.14.0.tar.bz2
+# MD5SUMS: 6612f1e57d3974d609bedd2fd8ff6317 libgsf-1.14.7.tar.bz2
+# REQUIRES: bzip2
+# OPTIONAL: gnome-vfs libbonobo linuxdoc-tools pygobject
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.14.0
+VERSION=1.14.7
 ARCH=${ARCH:-i486}
 BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -35,33 +37,36 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
-make
+make -j
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 make install DESTDIR=$PKG
-rm -rf $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS BUGS COPYING ChangeLog HACKING NEWS README TODO \
+  AUTHORS BUGS COPYING ChangeLog HACKING INSTALL NEWS README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
-find $PKG/etc/gconf/schemas/ -name "*.schemas" | sed "s,^$PKG/,gconf ," >>$PKG/install/doinst.sh
+( cd $PKG; find etc/gconf/schemas/ -name "*.schemas" ) | xargs -rl echo gconf >>$PKG/install/doinst.sh
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/libgsf-$VERSION
