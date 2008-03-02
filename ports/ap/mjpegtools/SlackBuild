@@ -1,8 +1,10 @@
 #!/bin/sh
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://dl.sourceforge.net/mjpeg/mjpegtools-1.8.0.tar.gz
+# SOURCES: http://dl.sourceforge.net/mjpeg/mjpegtools-1.9.0rc3.tar.gz
 # MD5SUMS: 6fd98362310480bdaf7171e9659f165f mjpegtools-1.8.0.tar.gz
+# MD5SUMS: d38dad44333e3236ccc0dc1efdb27910 mjpegtools-1.9.0rc3.tar.gz
 # REQUIRES: gcc-g++ gtk+2 libdv libjpeg libquicktime sdl
+# OPTIONAL: libpng
 # UP2DADTE: http://sourceforge.net/project/showfiles.php?group_id=5776
 
 TMP=${TMP:-/tmp}
@@ -10,14 +12,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.8.0
+VERSION=1.9.0rc3
 ARCH=${ARCH:-i486}
-BUILD=4tom
+BUILD=1tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -30,41 +32,55 @@ cd $TMP
 tar xzvf $CWD/mjpegtools-$VERSION.tar.gz
 cd mjpegtools-$VERSION
 chown -R root.root .
-# Apply patch if libquicktime >= 0.9.8 is installed
-pkg-config libquicktime --atleast-version=0.9.8 && \
-  patch -p1 <$CWD/patch-libquicktime-0.9.8+
+## Apply patch if libquicktime >= 0.9.8 is installed
+#pkg-config libquicktime --atleast-version=0.9.8 && \
+#  patch -p1 <$CWD/patch-libquicktime-0.9.8+
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
   --disable-static \
+  --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
 make
 make install DESTDIR=$PKG
-rm -fv $PKG/usr/info/dir
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/{man,doc} $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS BUGS CHANGES COPYING ChangeLog INSTALL INSTALL.real NEWS README README.AltiVec README.DV README.avilib README.glav README.lavpipe README.transist TODO \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
-find $PKG/usr/{man,info} -type f | xargs -r gzip -9
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/mjpegtools-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+prepare
+## Apply patch if libquicktime >= 0.9.8 is installed
+#pkg-config libquicktime --atleast-version=0.9.8 && \
+#  patch -p1 <$CWD/patch-libquicktime-0.9.8+
+#+prepare
