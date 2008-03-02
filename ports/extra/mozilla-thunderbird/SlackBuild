@@ -1,5 +1,6 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
 # REQUIRES: desktop-file-utils glib2 gtk+2 libXt libxml2 pango
 # OPTIONAL: cxxlibs-6.0.8-i486-2-upgraded
 CWD=`pwd`
@@ -26,7 +27,7 @@ fi
 # Thanks to the folks at the Mozilla Foundation for permission to
 # distribute this, and for all the great work!  :-)
 
-VERSION=2.0.0.9
+VERSION=2.0.0.12
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
