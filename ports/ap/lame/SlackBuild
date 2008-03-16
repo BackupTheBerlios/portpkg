@@ -1,6 +1,12 @@
-VERSION=3.96.1
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
+# SOURCES: http://garr.dl.sourceforge.net/sourceforge/lame/lame-3.97.tar.gz
+# MD5SUMS: e1206c46a5e276feca11a7149e2fc6ac lame-3.96.1.tar.gz
+# MD5SUMS: 90a4acbb730d150dfe80de145126eef7 lame-3.97.tar.gz
+# REQUIRES: glibc ncurses
+VERSION=3.97
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1sjn
 
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -19,6 +25,7 @@ elif [ "$ARCH" = "x86_64" ]; then
 fi
 
 cd /tmp || exit 1
+rm -rf $NAME-$VERSION
 tar xzvf $CWD/$NAME-$VERSION.tar.gz || exit 1
 cd $NAME-$VERSION || exit 1
 chown -R root.root .
@@ -33,7 +40,7 @@ CXXFLAGS="$SLKCFLAGS" \
   $ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG || exit 1
-chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
+#chown -R root.bin $PKG{,/usr}/{,s}bin 2>/dev/null
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
   find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null
