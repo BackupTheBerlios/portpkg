@@ -1,5 +1,6 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
 # REQUIRES: desktop-file-utils glib2 gtk+2 libXt pango
 # OPTIONAL: cxxlibs
 CWD=`pwd`
@@ -27,7 +28,7 @@ fi
 # distribute this, and for all the great work!  :-)
 
 
-VERSION=2.0.0.12
+VERSION=2.0.0.13
 ARCH=${ARCH:-i686}
 BUILD=1sjn
 
