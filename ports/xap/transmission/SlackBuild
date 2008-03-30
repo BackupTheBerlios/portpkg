@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://download.m0k.org/transmission/files/transmission-1.06.tar.bz2
-# MD5SUMS: 471e4bd40e1464067a3e266ecf3cb724 transmission-1.06.tar.bz2
+# SOURCES: http://download.m0k.org/transmission/files/transmission-1.10.tar.bz2
+# MD5SUMS: 51250c3ff7854da6fe4649c036afeccf transmission-1.10.tar.bz2
 # REQUIRES: desktop-file-utils glib2 gtk+2 openssl
 
 TMP=${TMP:-/tmp}
@@ -9,7 +9,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.06
+VERSION=1.10
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
