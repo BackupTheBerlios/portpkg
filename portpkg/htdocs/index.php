@@ -307,7 +307,7 @@ if ($file) {
     </td><td>
         <p>Copyright &copy; 2004-2008 Portpkg Project. All rights reserved.<br>
         Slackware&reg; is a registered trademark of Patrick Volkerding.<br>
-        Linux&reg; is a registered trademark of Linux Torvalds.</p>
+        Linux&reg; is a registered trademark of Linus Torvalds.</p>
     </td></tr></table>
 	</div>
 </body>
