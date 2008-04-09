@@ -1,8 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://kent.dl.sourceforge.net/sourceforge/nbd/nbd-2.9.9.tar.bz2
-# MD5SUMS: 33b88c365215c6ec392ab8941a71ed12 nbd-2.9.6.tar.bz2
-# MD5SUMS: 143c391f5f42c49cb8979ddd24df89f6 nbd-2.9.9.tar.bz2
+# SOURCES: http://kent.dl.sourceforge.net/sourceforge/nbd/nbd-2.9.10.tar.bz2
+# MD5SUMS: 7652828b0d2abfbb002e5ad8e9fc6bbc nbd-2.9.10.tar.bz2
 # REQUIRES: glib2
 
 TMP=${TMP:-/tmp}
@@ -10,7 +9,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=2.9.9
+VERSION=2.9.10
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
