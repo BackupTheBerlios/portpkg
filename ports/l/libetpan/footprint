@@ -1,3 +1,8 @@
+PACKAGE SIZE (compressed):      343 K
+PACKAGE SIZE (uncompressed):   1450 K
+REMOTE SOURCES:                1265 K
+http://heanet.dl.sourceforge.net/sourceforge/libetpan/libetpan-0.54.tar.gz
+FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
@@ -6,11 +11,12 @@ drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/libetpan-config
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/libetpan-0.52/
--rw-r--r--  root/root  usr/doc/libetpan-0.52/COPYRIGHT
--rw-r--r--  root/root  usr/doc/libetpan-0.52/ChangeLog
--rw-r--r--  root/root  usr/doc/libetpan-0.52/NEWS
+drwxr-xr-x  root/root  usr/doc/libetpan-0.54/
+-rw-r--r--  root/root  usr/doc/libetpan-0.54/COPYRIGHT
+-rw-r--r--  root/root  usr/doc/libetpan-0.54/ChangeLog
+-rw-r--r--  root/root  usr/doc/libetpan-0.54/NEWS
 drwxr-xr-x  root/root  usr/include/
+-rw-r--r--  root/root  usr/include/libetpan.h
 drwxr-xr-x  root/root  usr/include/libetpan/
 -rw-r--r--  root/root  usr/include/libetpan/acl.h
 -rw-r--r--  root/root  usr/include/libetpan/acl_types.h
@@ -19,7 +25,6 @@ drwxr-xr-x  root/root  usr/include/libetpan/
 -rw-r--r--  root/root  usr/include/libetpan/carray.h
 -rw-r--r--  root/root  usr/include/libetpan/charconv.h
 -rw-r--r--  root/root  usr/include/libetpan/chash.h
--rw-r--r--  root/root  usr/include/libetpan/cinthash.h
 -rw-r--r--  root/root  usr/include/libetpan/clist.h
 -rw-r--r--  root/root  usr/include/libetpan/data_message_driver.h
 -rw-r--r--  root/root  usr/include/libetpan/dbdriver.h
@@ -37,6 +42,8 @@ drwxr-xr-x  root/root  usr/include/libetpan/
 -rw-r--r--  root/root  usr/include/libetpan/imapdriver_cached.h
 -rw-r--r--  root/root  usr/include/libetpan/imapdriver_cached_message.h
 -rw-r--r--  root/root  usr/include/libetpan/imapdriver_message.h
+-rw-r--r--  root/root  usr/include/libetpan/imapdriver_tools.h
+-rw-r--r--  root/root  usr/include/libetpan/imapdriver_tools_private.h
 -rw-r--r--  root/root  usr/include/libetpan/imapdriver_types.h
 -rw-r--r--  root/root  usr/include/libetpan/imapstorage.h
 -rw-r--r--  root/root  usr/include/libetpan/libetpan-config.h
@@ -150,4 +157,4 @@ drwxr-xr-x  root/root  usr/include/libetpan/
 -rw-r--r--  root/root  usr/include/libetpan/uidplus_types.h
 drwxr-xr-x  root/root  usr/lib/
 -rwxr-xr-x  root/root  usr/lib/libetpan.la
--rwxr-xr-x  root/root  usr/lib/libetpan.so.11.0.0
+-rwxr-xr-x  root/root  usr/lib/libetpan.so.13.0.0
