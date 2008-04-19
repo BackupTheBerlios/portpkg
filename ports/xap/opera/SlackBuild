@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
-# SOURCES: ftp://opera.inode.at/linux/926/final/en/i386/shared/opera-9.26-20080215.5-shared-qt.i386-en.tar.bz2
+# SOURCES: ftp://opera.inode.at/linux/927/final/en/i386/shared/opera-9.27-20080331.5-shared-qt.i386-en.tar.bz2
 # MD5SUMS: a75e23eadc636dc8936499ac96ea1734 opera-8.50-20050916.5-shared-qt.i386-en.tar.gz
 # MD5SUMS: 5e60bc787e4c80cb4c5d890dacf01c1f opera-8.51-20051114.5-shared-qt.i386-en.tar.gz
 # MD5SUMS: 2e08c3529c9d27b6fe82f4b71f2d62dc opera-8.51-20051114.6-shared-qt.i386-en.tar.gz
@@ -13,6 +13,7 @@
 # MD5SUMS: f369e702495cf4ef8b230b80dca6073d opera-9.21-20070510.5-shared-qt.i386-en.tar.bz2
 # MD5SUMS: 186ac3db2d79452e911c1a9eaa9a0d0d opera-9.25-20071214.5-shared-qt.i386-en.tar.bz2
 # MD5SUMS: 62f4cbee61c824c37d1eb3645ef851dd opera-9.26-20080215.5-shared-qt.i386-en.tar.bz2
+# MD5SUMS: 706c44da756969d283a2155a4c393a3e opera-9.27-20080331.5-shared-qt.i386-en.tar.bz2
 # REQUIRES: cxxlibs expat lesstif libjpeg libmng libpng zlib
 # OPTIONAL: NVIDIA-Linux-x86 desktop-file-utils gcc-g++ libXcursor
 # OPTIONAL: libXext libXft libXinerama libXmu libXrandr libXt mesa qt
@@ -21,8 +22,8 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=9.26
-BUILDVERS=20080215.5
+VERSION=9.27
+BUILDVERS=20080331.5
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -30,7 +31,7 @@ BUILD=1sjn
 ## choose your language (pl, pt, see opera.language file (en included opera tarball))
 #
 LANGUAGE=
-LANGVERS=926
+LANGVERS=927
 
 rm -rf $PKG
 mkdir -p $PKG/usr
