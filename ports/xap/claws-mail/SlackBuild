@@ -17,7 +17,7 @@
 # MD5SUMS: ec5ee743baa198c7fd707b0461b6c68a claws-mail-3.4.0.tar.bz2
 # REQUIRES: aspell desktop-file-utils glib2 gpgme gtk+2 libetpan
 # REQUIRES: openldap-client pilot-link startup-notification
-# OPTIONAL: dbus-glib
+# OPTIONAL: dbus-glib gnutls
 
 set -e
 TMP=${TMP:-/tmp}
@@ -27,7 +27,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=3.4.0
 ARCH=${ARCH:-i686}
-BUILD=1sjn
+BUILD=2sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mtune=i686"
@@ -60,6 +60,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --enable-gpgme \
   --enable-openssl \
   --enable-aspell \
+  --enable-gnutls \
   --target=$ARCH-slackware-linux || exit 1
 make || exit 1
 make install DESTDIR=$PKG \
