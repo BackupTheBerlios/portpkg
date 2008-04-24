@@ -1,10 +1,12 @@
 #!/bin/sh
 # MAINTAINER: Piotr Simon 'sjn' <sajmon@tenboard.com>
-# SOURCES: http://www.rarlab.com/rar/unrarsrc-3.7.6.tar.gz
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
+# SOURCES: http://www.rarlab.com/rar/unrarsrc-3.7.8.tar.gz
 # MD5SUMS: 4e8b975374064b774ea80067e11ccf13 unrarsrc-3.5.3.tar.gz
 # MD5SUMS: e6d9e4997da6796ddc5344e995a621e6 unrarsrc-3.6.1.tar.gz
 # MD5SUMS: 10b142866c656e40273434aae6747f96 unrarsrc-3.7.5.tar.gz
 # MD5SUMS: c6e1ae41bc140d47f4608c1ab5f01802 unrarsrc-3.7.6.tar.gz
+# MD5SUMS: b783f1932bc0c73902c6399f7c2c6f43 unrarsrc-3.7.8.tar.gz
 # REQUIRES: gcc-g++
 
 TMP=${TMP:-/tmp}
@@ -12,7 +14,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=3.7.6
+VERSION=3.7.8
 ARCH=${ARCH:-i486}
 BUILD=1sjn
 
@@ -29,6 +31,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr/bin
 cd $TMP || exit 1
+rm -rf unrar
 tar xzvf $CWD/${NAME}src-${VERSION}.tar.gz || exit 1
 cd $NAME || exit 1
 chown -R root.root .
