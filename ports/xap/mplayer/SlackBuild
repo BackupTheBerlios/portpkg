@@ -19,7 +19,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.0rc2
 ARCH=${ARCH:-i486}
-BUILD=2tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   OPT="--enable-runtime-cpudetection"
@@ -32,6 +32,11 @@ elif [ "$ARCH" = "x86_64" ]; then
 else
   OPT="--disable-runtime-cpudetection"
 fi
+# binutils >= 2.17?
+BINUTILS_VER=`as --version | grep "Binutils" | egrep -o "[.0-9]+"`
+case $BINUTILS_VER in
+  2.1[456].*) OPT="$OPT --disable-ssse3";;
+esac
 
 rm -rf $PKG
 mkdir -p $PKG/usr
@@ -121,4 +126,9 @@ elif [ "$ARCH" = "x86_64" ]; then
 else
   OPT="--disable-runtime-cpudetection"
 fi
+# binutils >= 2.17?
+BINUTILS_VER=`as --version | grep "Binutils" | egrep -o "[.0-9]+"`
+case $BINUTILS_VER in
+  2.1[456].*) OPT="$OPT --disable-ssse3";;
+esac
 #=slkcflags
