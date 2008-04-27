@@ -7,8 +7,8 @@
 # MD5SUMS: 9002b0e69b3f94831a22d3f2a7735ce2 cairo-1.0.4.tar.gz
 # MD5SUMS: 2460487b1257a5583c889b1b9d2033ec cairo-1.2.2.tar.gz
 # MD5SUMS: 6890023ac2c6304c284fae5d56768a17 cairo-1.6.0.tar.gz
-# REQUIRES: expat libpng x11 x11-devel zlib
-# OPTIONAL: fontconfig gcc-g++ libXrender pixman
+# REQUIRES: expat libpng pixman x11 x11-devel zlib
+# OPTIONAL: fontconfig gcc-g++ libXrender
 TMP=${TMP:-/var/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
@@ -16,7 +16,7 @@ PKG=$TMP/package-$NAME
 
 VERSION=1.6.0
 ARCH=${ARCH:-i486}
-BUILD=1sjn
+BUILD=2sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
