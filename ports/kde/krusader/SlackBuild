@@ -1,11 +1,12 @@
 #!/bin/sh
 # MAINTAINER: Stefano Stabellini 'stb' <stefano at stabellini dot net>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/krusader/krusader-1.70.1.tar.gz
+# MAINTAINER: Nino Jardim 'ncgj' <shardik@gmail.com>
+# SOURCES: http://ovh.dl.sourceforge.net/sourceforge/krusader/krusader-1.90.0.tar.gz
 # MD5SUMS: 3c2d73637c72e1042fef52ad1a336a64 krusader-1.70.0.tar.gz
 # MD5SUMS: d8b33c94385fe055d55f592f0dc15c36 krusader-1.70.1.tar.gz
-# REQUIRES: kdebase kdelibs qt
-# OPTIONAL: desktop-file-utils
+# MD5SUMS: 0bcf8f4d03484dae0390ffafa953ac40 krusader-1.90.0.tar.gz
+# REQUIRES: desktop-file-utils kdebase kdebindings
 #
 # Heavily based on the Slackware 10.2 SlackBuild
 # http://krusader.sourceforge.net
@@ -15,14 +16,14 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.70.1
+VERSION=1.90.0
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1ncgj
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -30,7 +31,7 @@ elif [ "$ARCH" = "x86_64" ]; then
 fi
 
 rm -rf $PKG
-mkdir -p $PKG/opt/kde
+mkdir -p $PKG/usr
 cd $TMP
 tar xzvf $CWD/krusader-$VERSION.tar.gz
 cd krusader-$VERSION
@@ -38,22 +39,24 @@ chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
-  --prefix=/opt/kde \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
   --enable-shared \
---disable-debug \
---mandir=/usr/man \
+  --disable-schemas-install \
   $ARCH-slackware-linux
-make
+make -j
 make install DESTDIR=$PKG
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
-rm -fv $PKG/opt/kde/info/dir
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog FAQ INSTALL README TODO \
