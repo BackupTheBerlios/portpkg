@@ -652,7 +652,7 @@ if grep -sq "#:doc" $script; then
     sed -i "s,%docs%,$docs," $script
   else
     row "Checking docs... none."
-    snip docs $script
+    grep -sq "%docs%" $script && snip docs $script
   fi
 fi
 
@@ -1052,7 +1052,7 @@ PKG_CONFIG_PATH=/%prefix%/lib/pkgconfig \ ##pkgconfig
   --localstatedir=/var/lib \ ##ac_localstatedir
   --docdir=/usr/doc/$NAME-$VERSION \ ##ac_docdir
   --mandir=/usr/man \ ##ac_mandir
-  --infodir=/usr/info \ ##ac_mandir
+  --infodir=/usr/info \ ##ac_infodir
   --program-prefix="" \ ##ac_program_prefix
   --disable-static \ ##ac_disable_static
   --enable-shared \ ##ac_enable_shared
@@ -1076,7 +1076,8 @@ perl Makefile.PL ##perl
 #:install
 #:mk_inst
 MONO_SHARED_DIR=$TMP \ ##mono
-make -j ##mk
+MAKEFLAGS=${SLKMAKEFLAGS:-} \
+make ##mk
 ##make PREFIX=/usr ##mk_PREFIX
 ##make prefix=/usr ##mk_prefix
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \ ##schemas
