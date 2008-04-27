@@ -145,6 +145,8 @@ if [ "$files" ]; then
   | sync_http $TREE/reports
 fi
 
+exit 0
+
 # ChangeLog
 if ! [ "${1:-}" = "force" ] && [ "`find $TREE/ChangeLog -mtime -7`" ]; then
   exit 0
