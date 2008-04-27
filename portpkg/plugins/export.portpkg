@@ -8,6 +8,8 @@
 #
 # usage: portpkg --export "This is a summary" <expression>
 #        portpkg --export q <expression>	# quote summary from 'info' file
+#
+# DISABLED:
 #        portpkg --export <dest>: <expression>  # move to dest (relative to
 #						# $PRT_DIR) in CVS (write access!)
 
@@ -28,11 +30,11 @@ fi
 t=`mktemp -d`
 has_args "$@" || die
 export_opt=""
-dest=""
+#dest=""
 quote=false
 case $1 in
-  *:)   export_opt="Moved to ${1%:}/."
-        dest=$TREE/${1%:};;
+#  *:)   export_opt="Moved to ${1%:}/."
+#        dest=$TREE/${1%:};;
   q)    quote=true;;
   *\ *) export_opt="$1";;
   *)    die "You must specify a summary of your export! At least two words required.";; esac
@@ -66,7 +68,8 @@ done | sort`
 #  ! -name "ChangeLog" \
 
   # quote summary
-  if ( $quote || [ "$dest" ] ) && [ -f $path/info ]; then
+#  if ( $quote || [ "$dest" ] ) && [ -f $path/info ]; then
+  if $quote && [ -f $path/info ]; then
     tag=`echo $package | egrep -o "[a-zA-Z]+$"`
     export_opt=`grep -si "changelog entry:" $path/info | tr -s " " | cut -d " " -f 3-`" ($tag)"
   fi
@@ -121,41 +124,61 @@ done | sort`
     export CVS_RSH=ssh
     $DRY_RUN && pre=echo || pre=""
 
-    if [ "$dest" ]; then
-      # check dest
-      if ! [ -d `dirname $dest`/CVS ]; then
-	die "`dirname $dest` not in CVS! Add it first!"
-      fi
-
-      # first clean $dest/
-      if [ -d $dest/$name ]; then
-        row "Cleaning destination $dest/$name"
-        find $dest/$name -type f ! -path "*CVS*" -exec $pre rm -rf {} \;
-      fi
-
-      # copy files
-      row "Copying files to $dest/"
-      cd `dirname $path`
-      find $name/ ! -path "*CVS*" ! -name info -exec $pre cp -vP --parents {} $dest/ \;
-      mv $dest/ChangeLog $dest/ChangeLog.`date +%Y%m%d`
-
-      # remove old entry
-      row "Removing CVS of old $name"
-      cd `dirname $path`
-      if [ -d $name/CVS ]; then
-        $pre cvs -qz3 rm -f $name && $pre cvs -qz3 ci -m "$export_opt" $name || continue
-      fi
-      [ "$path" ] && $pre rm -rf $path
-
-      # set new $path
-      path=$dest/$name
-    fi
+#    if [ "$dest" ]; then
+##      row "Moving $path to $dest"
+#set -x
+#      # check dest
+#      if ! [ -d `dirname $dest`/CVS ]; then
+#	die "`dirname $dest` not in CVS! Add it first!"
+#pause "OK?"
+#      fi
+#
+#      # Save the old ChangeLog of the new location first
+#      if [ -f $dest/$name/ChangeLog ]; then
+#	row "Saving old ChangeLog of new location"
+#	$pre cp $dest/$name/ChangeLog $path/ChangeLog.old.`date +%Y%m%d`
+#pause "OK?"
+#      fi
+#
+#      # first clean $dest/
+#      if [ -d $dest/$name ]; then
+#        row "Cleaning destination $dest/$name"
+#        find $dest/$name -type f ! -path "*CVS*" -exec $pre rm -rf {} \;
+#pause "OK?"
+#      fi
+#
+#      # copy files
+#      row "Copying files to new location $dest/"
+#      cd `dirname $path`
+#      find $name/ -type f ! -path "*CVS*" ! -name info -exec $pre cp -vP --parents {} $dest/ \;
+##      echo "$dirs_to_commit" "$files_to_commit" | xargs -i $pre cp -vP --parents {} $dest/
+#pause "OK?"
+#      if [ -f $dest/$name/ChangeLog ]; then
+#	row "Renaming new ChangeLog of new location"
+#	$pre mv $dest/$name/ChangeLog $dest/$name/ChangeLog.new.`date +%Y%m%d`
+#pause "OK?"
+#      fi
+#
+#      # remove old entry
+#      row "Removing CVS of old location $name"
+#      $pre cd `dirname $path`
+#      if [ -d $name/CVS ]; then
+#        $pre cvs -qz3 rm -f $name && $pre cvs -qz3 ci -m "$export_opt" $name || continue
+#pause "OK?"
+#      fi
+#      [ "$path" ] && $pre rm -rf $path
+#pause "OK?"
+#
+#      # set new $path
+#      path=$dest/$name
+#set +x
+#    fi
 
     # check if this path is already in the repository
     cd $path || die
 #    [ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $path` ) || die
     for d in . $dirs_to_commit; do
-      ( cd $path/$d
+      ( $pre cd $path/$d
 	d=`pwd`
 	[ -d CVS ] || ( cd .. && $pre cvs -qz3 add `basename $d` ) || die
       ) || die
@@ -242,7 +265,7 @@ EOF
     mkdir -p $t/$package/$name
 #    cp -a $path $t/$package/
     ( cd $path
-      cp -a $files_to_commit $t/$package/
+      cp -a $files_to_commit $t/$package/$name/
     )
 
     # add maintainer information and changelog entry
