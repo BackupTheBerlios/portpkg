@@ -1,7 +1,8 @@
 #!/bin/sh
 # MAINTAINER: Johannes Weiner 'hnaz' <hnazfoo at googlemail dot com>
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
 # MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
-# SOURCES: http://ftp.gnome.org/pub/gnome/sources/pango/1.18/pango-1.18.3.tar.bz2
+# SOURCES: http://ftp.gnome.org/pub/gnome/sources/pango/1.21/pango-1.21.0.tar.bz2
 # MD5SUMS: c75489ec7f5fe77e31e4cbde71ad0c16 pango-1.10.0.tar.bz2
 # MD5SUMS: 86c3e08169a18200e64a0c5ee1be7fd9 pango-1.12.0.tar.bz2
 # MD5SUMS: 10ddfbc43cf895639b77788ca637409c pango-1.12.1.tar.bz2
@@ -9,6 +10,7 @@
 # MD5SUMS: 8ea80c1d747a2844d7d096bfd347c2dc pango-1.16.2.tar.bz2
 # MD5SUMS: 81efeac639977ed3f56c82f16ee0be74 pango-1.18.2.tar.bz2
 # MD5SUMS: 4a9862b5151f16dcad8e30dd6ef08549 pango-1.18.3.tar.bz2
+# MD5SUMS: d993288b0704f60b109cd2ca44423e7a pango-1.21.0.tar.bz2
 # REQUIRES: cairo glib2 x11 x11-devel
 # OPTIONAL: gtk-doc libXft libxcb linuxdoc-tools
 
@@ -17,9 +19,9 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.18.3
+VERSION=1.21.0
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=1sjn
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
@@ -70,6 +72,9 @@ cat $CWD/slack-desc >$PKG/install/slack-desc
 cat $CWD/doinst.sh >$PKG/install/doinst.sh
 
 cd $PKG
+cp -a $TMP/pango-$VERSION/modules/pango.modules etc/pango/
+sed -i "s,^#$,# ModulesPath \= \/usr\/lib\/pango\/$VERSION\/modules,g;s,\/tmp,\/usr\/lib,g" etc/pango/pango.modules
+
 makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then

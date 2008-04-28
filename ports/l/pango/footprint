@@ -1,11 +1,12 @@
-PACKAGE SIZE (compressed):      643 K
-PACKAGE SIZE (uncompressed):   3060 K
-REMOTE SOURCES:  1365 K
-http://ftp.gnome.org/pub/gnome/sources/pango/1.18/pango-1.18.3.tar.bz2
+PACKAGE SIZE (compressed):      602 K
+PACKAGE SIZE (uncompressed):   3040 K
+REMOTE SOURCES:                1393 K
+http://ftp.gnome.org/pub/gnome/sources/pango/1.21/pango-1.21.0.tar.bz2
 FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  etc/
 drwxr-xr-x  root/root  etc/pango/
+-rw-r--r--  root/root  etc/pango/pango.modules
 -rw-r--r--  root/root  etc/pango/pangox.aliases
 drwxr-xr-x  root/root  install/
 -rw-r--r--  root/root  install/doinst.sh
@@ -15,20 +16,21 @@ drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/pango-querymodules
 -rwxr-xr-x  root/root  usr/bin/pango-view
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/pango-1.18.3/
--rw-r--r--  root/root  usr/doc/pango-1.18.3/AUTHORS
--rw-r--r--  root/root  usr/doc/pango-1.18.3/COPYING
--rw-r--r--  root/root  usr/doc/pango-1.18.3/ChangeLog
--rw-r--r--  root/root  usr/doc/pango-1.18.3/HACKING
--rw-r--r--  root/root  usr/doc/pango-1.18.3/INSTALL
--rw-r--r--  root/root  usr/doc/pango-1.18.3/NEWS
--rw-r--r--  root/root  usr/doc/pango-1.18.3/README
--rw-r--r--  root/root  usr/doc/pango-1.18.3/README.win32
--rw-r--r--  root/root  usr/doc/pango-1.18.3/THANKS
+drwxr-xr-x  root/root  usr/doc/pango-1.21.0/
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/AUTHORS
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/COPYING
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/ChangeLog
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/HACKING
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/INSTALL
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/NEWS
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/README
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/README.win32
+-rw-r--r--  root/root  usr/doc/pango-1.21.0/THANKS
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/pango-1.0/
 drwxr-xr-x  root/root  usr/include/pango-1.0/pango/
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-attributes.h
+-rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-bidi-type.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-break.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-context.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-coverage.h
@@ -53,7 +55,6 @@ drwxr-xr-x  root/root  usr/include/pango-1.0/pango/
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-types.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango-utils.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pango.h
--rw-r--r--  root/root  usr/include/pango-1.0/pango/pangocairo.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pangofc-decoder.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pangofc-font.h
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pangofc-fontmap.h
@@ -63,15 +64,13 @@ drwxr-xr-x  root/root  usr/include/pango-1.0/pango/
 -rw-r--r--  root/root  usr/include/pango-1.0/pango/pangoxft.h
 drwxr-xr-x  root/root  usr/lib/
 -rwxr-xr-x  root/root  usr/lib/libpango-1.0.la
--rwxr-xr-x  root/root  usr/lib/libpango-1.0.so.0.1800.3
--rwxr-xr-x  root/root  usr/lib/libpangocairo-1.0.la
--rwxr-xr-x  root/root  usr/lib/libpangocairo-1.0.so.0.1800.3
+-rwxr-xr-x  root/root  usr/lib/libpango-1.0.so.0.2100.0
 -rw-r--r--  root/root  usr/lib/libpangoft2-1.0.la
--rwxr-xr-x  root/root  usr/lib/libpangoft2-1.0.so.0.1800.3
+-rwxr-xr-x  root/root  usr/lib/libpangoft2-1.0.so.0.2100.0
 -rw-r--r--  root/root  usr/lib/libpangox-1.0.la
--rwxr-xr-x  root/root  usr/lib/libpangox-1.0.so.0.1800.3
+-rwxr-xr-x  root/root  usr/lib/libpangox-1.0.so.0.2100.0
 -rw-r--r--  root/root  usr/lib/libpangoxft-1.0.la
--rwxr-xr-x  root/root  usr/lib/libpangoxft-1.0.so.0.1800.3
+-rwxr-xr-x  root/root  usr/lib/libpangoxft-1.0.so.0.2100.0
 drwxr-xr-x  root/root  usr/lib/pango/
 drwxr-xr-x  root/root  usr/lib/pango/1.6.0/
 drwxr-xr-x  root/root  usr/lib/pango/1.6.0/modules/
@@ -101,7 +100,6 @@ drwxr-xr-x  root/root  usr/lib/pango/1.6.0/modules/
 -rwxr-xr-x  root/root  usr/lib/pango/1.6.0/modules/pango-tibetan-fc.so
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/pango.pc
--rw-r--r--  root/root  usr/lib/pkgconfig/pangocairo.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/pangoft2.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/pangox.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/pangoxft.pc
@@ -126,6 +124,8 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/pango/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.16.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.18.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.2.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.20.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.22.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.4.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.6.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/index-1.8.html
@@ -137,6 +137,7 @@ drwxr-xr-x  root/root  usr/share/gtk-doc/html/pango/
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/left.png
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/lowlevel.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/pango-ATSUI-Fonts.html
+-rw-r--r--  root/root  usr/share/gtk-doc/html/pango/pango-Bidirectional-Text.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/pango-Coverage-Maps.html
 -rw-r--r--  root/root  usr/share/gtk-doc/html/pango/pango-Engines.html
