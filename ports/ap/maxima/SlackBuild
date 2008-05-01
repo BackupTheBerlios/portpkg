@@ -1,7 +1,7 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/maxima/maxima-5.14.0.tar.gz
-# MD5SUMS: 8afd0efee916c983d875a396ec405ad2 maxima-5.14.0.tar.gz
+# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/maxima/maxima-5.15.0.tar.gz
+# MD5SUMS: db5338cd384bc0531e76ccdf18d760ef maxima-5.15.0.tar.gz
 # REQUIRES: ncurses readline
 # OPTIONAL: gnuplot
 
@@ -10,7 +10,7 @@ CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=5.14.0
+VERSION=5.15.0
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
