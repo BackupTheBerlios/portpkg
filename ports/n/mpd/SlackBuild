@@ -1,16 +1,26 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://www.musicpd.org/uploads/files/mpd-0.13.1.tar.bz2
+# MD5SUMS: e38bbb31e07920bac90f5c6f3825aa8e mpd-0.11.4.tar.gz
+# MD5SUMS: 1a9a1a9d31f00a43838b3752024f7ebe mpd-0.11.5.tar.gz
+# MD5SUMS: dbd219c8ba773bc9270e27bfafc798b5 mpd-0.13.1.tar.bz2
+# REQUIRES: libao libmpcdec zlib
+# OPTIONAL: alsa-lib audiofile avahi faad2 flac libid3tag libmad
+# OPTIONAL: libmikmod libogg libvorbis
+
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=0.11.5
+VERSION=0.13.1
 ARCH=${ARCH:-i486}
-BUILD=1tom
+BUILD=3tom
 
 if [ "$ARCH" = "i386" ]; then
   SLKCFLAGS="-O2 -march=i386 -mcpu=i686"
 elif [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -20,7 +30,7 @@ fi
 rm -rf $PKG
 mkdir -p $PKG/usr
 cd $TMP
-tar xzvf $CWD/mpd-$VERSION.tar.gz
+tar xjvf $CWD/mpd-$VERSION.tar.bz2
 cd mpd-$VERSION
 chown -R root.root .
 CFLAGS="$SLKCFLAGS" \
@@ -29,33 +39,51 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --sysconfdir=/etc \
   --localstatedir=/var/lib \
+  --docdir=/usr/doc/$NAME-$VERSION \
+  --mandir=/usr/man \
+  --infodir=/usr/info \
   --program-prefix="" \
-  --disable-static \
+  --enable-shared \
+  --disable-schemas-install \
   $ARCH-slackware-linux
+MAKEFLAGS=${SLKMAKEFLAGS:-} \
 make
 make install DESTDIR=$PKG
-rm -rfv $PKG/usr/info/dir
-chown -R root.bin $PKG/usr/bin $PKG/usr/sbin || true
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+mv $PKG/usr/share/doc/mpd/* $PKG/usr/doc/$NAME-$VERSION/
+rmdir $PKG/usr/share/doc/mpd
+rmdir $PKG/usr/share/doc
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
   find . | xargs file | grep "shared object" | grep ELF | cut -d : -f 1 | xargs -r strip --strip-unneeded
-  find . | xargs file | grep "current ar archive" | cut -d : -f 1 | xargs -r strip --strip-debug
+  find . | xargs file | grep "current ar archive" | cut -f 1 -d : | xargs -r strip --strip-debug
 )
-mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/ || true
-gzip -9 $PKG/usr/info/* $PKG/usr/man/man?/* $PKG/usr/man/*/man?/* || true
+rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
   AUTHORS COPYING ChangeLog INSTALL README TODO \
   $PKG/usr/doc/$NAME-$VERSION/
-find $PKG/usr/doc -type f -exec chmod 644 {} \;
-find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
 mkdir -p $PKG/install
 cat $CWD/slack-desc >$PKG/install/slack-desc
 
 cd $PKG
-makepkg -p -l y -c n $TMP/$NAME-$VERSION-$ARCH-$BUILD.tgz
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
 
 if [ "$1" = "--cleanup" ]; then
   rm -rf $TMP/mpd-$VERSION
   rm -rf $PKG
 fi
+
+exit $?
+
+# This chunk has been added by autoport, part of portpkg.berlios.de:
+
+#+install
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+mv $PKG/usr/share/doc/mpd/* $PKG/usr/doc/$NAME-$VERSION/
+rmdir $PKG/usr/share/doc/mpd
+rmdir $PKG/usr/share/doc
+#+install
