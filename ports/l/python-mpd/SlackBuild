@@ -1,0 +1,43 @@
+#!/bin/sh
+# MAINTAINER: T. Pfaff 'tom' <topf@users.berlios.de>
+# SOURCES: http://pypi.python.org/packages/source/p/python-mpd/python-mpd-0.2.0.tar.bz2
+# MD5SUMS: 17632bc9a23c5e393a17e06bae6305f7 python-mpd-0.2.0.tar.bz2
+# REQUIRES: python
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+VERSION=0.2.0
+ARCH=noarch
+BUILD=1tom
+
+rm -rf $PKG
+mkdir -p $PKG/usr
+cd $TMP
+tar xjvf $CWD/python-mpd-$VERSION.tar.bz2
+cd python-mpd-$VERSION
+chown -R root.root .
+python setup.py build install --root=$PKG
+mv $PKG/usr/share/man $PKG/usr/ || true
+mv $PKG/usr/share/doc $PKG/usr/ || true
+mv $PKG/usr/share/info $PKG/usr/ || true
+rm -fv $PKG/usr/info/dir
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a \
+  README.txt \
+  $PKG/usr/doc/$NAME-$VERSION/
+find $PKG/usr/doc -type f | xargs -r chmod 644
+find $PKG/usr/doc -type d | xargs -r chmod 755
+find $PKG/usr/man $PKG/usr/info -type f | xargs -r gzip -9
+mkdir -p $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+makepkg -p -l y -c n $TMP/$NAME-`echo $VERSION | tr - _`-$ARCH-$BUILD.tgz
+
+if [ "$1" = "--cleanup" ]; then
+  rm -rf $TMP/python-mpd-$VERSION
+  rm -rf $PKG
+fi
