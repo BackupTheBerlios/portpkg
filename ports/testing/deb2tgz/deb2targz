@@ -1,0 +1,166 @@
+#!/bin/sh
+# Copyright 1997, 1998  Patrick Volkerding, Moorhead, MN USA
+# Copyright 2002, 2004  Slackware Linux, Inc., Concord, CA USA
+# Copyright 2006  Patrick Volkerding, Sebeka, MN USA
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# rpm2tgz: Modified by Piotr Simon <sajmon-@-inode-.-at (rem -)>
+#
+
+set -e
+CWD=`pwd`
+SLKVERSION=`cut -d " " -f 2 /etc/slackware-version | cut -d . -f 1,2`
+
+if [ ! -d $HOME/.rpmdeb2tgz ];then
+mkdir -p $HOME/.rpmdeb2tgz/{control,slack-desc}
+echo
+echo " create $HOME/.rpmdeb2tgz with picasa.deb2tgz.example file"
+echo
+echo 'echo "Run $HOME/.rpmdeb2tgz/picasa.deb2tgz"' >$HOME/.rpmdeb2tgz/picasa.deb2tgz.example
+echo '( cd $DEST' >>$HOME/.rpmdeb2tgz/picasa.deb2tgz.example
+echo '#for more manipulations' >>$HOME/.rpmdeb2tgz/picasa.deb2tgz.example
+echo 'mkdir -p usr/doc/$PKGNAME-$VERSION' >>$HOME/.rpmdeb2tgz/picasa.deb2tgz.example
+echo '#rest belongs to you )' >>$HOME/.rpmdeb2tgz/picasa.deb2tgz.example
+fi
+
+if [ "$1" = "" ]; then
+  echo "$0:  Converts DEB format to standard GNU tar + GNU zip format."
+  echo "            (view converted packages with \"less\", install and remove"
+  echo "            with \"installpkg\", \"removepkg\", \"pkgtool\", or manually"
+  echo "            with \"tar\")"
+  echo
+  echo "Usage:      $0 <file.deb>"
+  if [ "`basename $0`" = "deb2tgz" ]; then
+    echo "            (Outputs \"file.tgz\")"
+  else
+    echo "            (Outputs \"file.tar.gz\")"
+  fi
+  exit 1;
+fi
+
+# Create a new temporary directory with a secure filename:
+make_temp_dir() {
+  if [ -x "$(which mcookie)" ]; then
+    tempd=/tmp/tmp.$(mcookie)
+    mkdir -p -m 0755 $tempd
+  elif [ -x "$(which openssl)" ]; then
+    tempd=/tmp/tmp.$(dd if=/dev/urandom bs=1k count=1 2> /dev/null | openssl dgst -md5)
+    mkdir -p -m 0755 $tempd
+  elif [ -x "$(which md5)" ]; then
+    tempd=/tmp/tmp.$(dd if=/dev/urandom bs=1k count=1 2> /dev/null | md5)
+    mkdir -p -m 0755 $tempd
+  elif [ -x "$(which mktemp)" ]; then
+    tempd=$(mktemp -d)
+    chmod 755 $tempd
+  fi
+  if [ -d $tempd ]; then # success, return the name of the directory:
+    echo $tempd
+  else
+    echo "ERROR:  Could not find mcookie, openssl, or md5."
+    echo "        Exiting since a secure temporary directory could not be made."
+    exit 1
+  fi
+}
+
+  if [ ! -x `which ar` ];then
+      echo "ERROR: /usr/bin/ar not found. (binutils)"
+      exit 1;
+    fi
+
+for i in $* ; do
+
+  TMPDIR=$(make_temp_dir)
+
+  if  [[ "${i##*.}" != "deb" ]];then 
+      echo "ERROR:  (maybe $i is not an deb?)"
+      rm -rf $TMPDIR
+      continue
+    fi
+
+NAMEDEB=`basename $i |sed 's/.deb//'`
+
+#convert pkgname to readable form :) (only tgz)
+PKGNAME=${NAMEDEB%%_*}
+export PKGNAME
+VERSION=${NAMEDEB%-*}
+VERSION=${VERSION#*_}
+export VERSION
+BUILD=${NAMEDEB#*-}
+BUILD=${BUILD%_*}
+ARCH=${NAMEDEB##*_}
+
+  DEST=$TMPDIR
+  export DEST
+  mkdir -p $DEST
+
+  ( cd $DEST
+DELTARBALLS=`ar -t $CWD/$i`
+#debian-binary
+#control.tar.gz
+#data.tar.gz
+#
+#unpack .deb
+    ar -x $CWD/$i
+     tar zxf data.tar.gz #pkg
+  #read and save control file if not exist (create install/slack-desc)
+echo "create install/slack-desc"
+  mkdir install
+   tar zxfO control.tar.gz ./control |sed 1,8d | sed "s,^Description:,,g;s,^ ,$PKGNAME: ,g;s,^$PKGNAME: \.$,$PKGNAME: ,g" >install/slack-desc
+    echo "$PKGNAME: " >>install/slack-desc
+      if [ ! -r $HOME/.rpmdeb2tgz/control/${i%.*} ];then
+         echo "save info $HOME/.rpmdeb2tgz/control/${i%.*} for more manipulations."
+           tar zxfO control.tar.gz ./control >$HOME/.rpmdeb2tgz/control/${i%.*}
+       #find . -exec ls -l {} \; >>$HOME/.rpmdeb2tgz/control/${i%.*}
+            less data.tar.gz >>$HOME/.rpmdeb2tgz/control/${i%.*}
+       fi
+    rm -f $DELTARBALLS
+#remove Debian changelog*gz files
+find . -name "changelo*.gz" -exec rm {} \;
+ #if [[ "$SLKVERSION" > "11.0" ]];then
+  #find . -group bin -exec chown root.root. {}\;
+ #fi
+  )
+
+  # Repack the files in a tar.gz archive:
+if [ "`basename $0`" = "deb2targz" ]; then
+   ( cd $TMPDIR ; tar cf - . ) > $NAMEDEB.tar
+    gzip -9 $NAMEDEB.tar
+fi
+
+ # convert to tgz and run(if exist) script for more manipulations
+if [ "`basename $0`" = "deb2tgz" ]; then
+ if [ -r $HOME/.rpmdeb2tgz/${i%%_*}.deb2tgz ];then
+   source $HOME/.rpmdeb2tgz/${i%%_*}.deb2tgz
+     echo "convert: $NAMEDEB to $PKGNAME-$VERSION-$ARCH-$BUILD"
+  ( cd $TMPDIR ; tar cf - . ) >$PKGNAME-$VERSION-$ARCH-$BUILD.tar
+    gzip -9 $PKGNAME-$VERSION-$ARCH-$BUILD.tar
+   mv $PKGNAME-$VERSION-$ARCH-$BUILD.tar.gz $PKGNAME-$VERSION-$ARCH-$BUILD.tgz
+else
+echo "convert: $NAMEDEB to $PKGNAME-$VERSION-$ARCH-$BUILD"
+( cd $TMPDIR ; tar cf - . ) >$PKGNAME-$VERSION-$ARCH-$BUILD.tar
+  gzip -9 $PKGNAME-$VERSION-$ARCH-$BUILD.tar
+   mv $PKGNAME-$VERSION-$ARCH-$BUILD.tar.gz $PKGNAME-$VERSION-$ARCH-$BUILD.tgz
+  fi;fi
+
+  # Remove temporary directory:
+  rm -rf $TMPDIR
+
+done
+

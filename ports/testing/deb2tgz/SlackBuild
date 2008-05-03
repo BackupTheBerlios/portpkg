@@ -1,0 +1,29 @@
+#!/bin/sh
+# MAINTAINER: Piotr Simon 'sjn' <sajmon@users.berlios.de>
+# REQUIRES: binutils
+
+VERSION=1.0
+ARCH=noarch
+BUILD=1sjn
+
+TMP=${TMP:-/tmp}
+CWD=`pwd`
+NAME=`basename $CWD`
+PKG=$TMP/package-$NAME
+
+rm -rf $PKG
+mkdir -p $PKG/usr/{bin,doc/$NAME-$VERSION}
+
+cp -a $CWD/deb2targz $PKG/usr/bin
+( cd $PKG/usr/bin
+chmod 755 deb2targz
+ln -sf deb2targz deb2tgz )
+
+cp -a $CWD/README $PKG/usr/doc/$NAME-$VERSION
+
+mkdir $PKG/install
+cat $CWD/slack-desc >$PKG/install/slack-desc
+
+cd $PKG
+chown -R root.root .
+makepkg -l y -c n ../$NAME-$VERSION-$ARCH-$BUILD.tgz
