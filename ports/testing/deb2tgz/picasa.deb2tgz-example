@@ -1,0 +1,37 @@
+# copy picasa*.deb from http://picasa.google.com/linux/download.html
+# create $HOME/.rpmdeb2tgz
+# copy this file to $HOME/.rpmdeb2tgz/picasa.deb2tgz
+# run deb2tgz picasa_2.7.3736-15_i386.deb
+#
+echo "Run $HOME/.rpmdeb2tgz/picasa.deb2tgz"
+( cd $DEST
+
+mkdir -p usr/doc/picasa-$VERSION/scripts
+mkdir usr/lib
+mv opt/picasa usr/lib/picasa-$VERSION
+rm -rf opt
+
+( cd usr/lib ; ln -sf picasa-$VERSION picasa )
+
+mv usr/lib/picasa/desktop/picasa-hook-email.sh.template usr/lib/picasa/desktop/picasa-hook-filemanager.sh.template \
+  usr/lib/picasa/desktop/picasa-hook-mimehandler.sh.template usr/lib/picasa/desktop/picasa-hook-urlhandler.sh.template \
+ usr/doc/picasa-$VERSION/scripts
+
+mv usr/lib/picasa-$VERSION/{LICENSE.FOSS,README} usr/doc/picasa-$VERSION
+
+mkdir -p usr/share/{applications,pixmaps}
+mv usr/lib/picasa/desktop/google-picasa-mediadetector.desktop.template usr/share/applications/google-picasa-mediadetector.desktop
+mv usr/lib/picasa/desktop/google-picasa.desktop.template usr/share/applications/google-picasa.desktop
+sed -i s#EXEC#\/usr\/lib\/picasa-$VERSION\/bin\/picasa# usr/share/applications/google-picasa.desktop
+sed -i s#ICON#\/usr\/share\/pixmaps\/picasa.xpm# usr/share/applications/google-picasa.desktop
+sed -i s#EXEC#\/usr\/lib\/picasa-$VERSION\/bin\/mediadetector# usr/share/applications/google-picasa-mediadetector.desktop
+sed -i s#ICON#\/usr\/share\/pixmaps\/picasa.xpm# usr/share/applications/google-picasa-mediadetector.desktop
+cp usr/lib/picasa/desktop/picasa.xpm usr/share/pixmaps
+
+( cd usr/lib/picasa-$VERSION/lib
+rm -f *
+ln -sf /usr/lib/libfreetype.s* . )
+
+( cd usr/bin
+ln -sf /usr/lib/picasa-$VERSION/bin/picasa picasa )
+)

@@ -1,0 +1,79 @@
+--- deb2targz.orig	2008-05-04 20:35:08.000000000 +0200
++++ deb2targz	2008-05-04 20:30:02.000000000 +0200
+@@ -98,7 +98,6 @@
+ 
+ #convert pkgname to readable form :) (only tgz)
+ PKGNAME=${NAMEDEB%%_*}
+-export PKGNAME
+ VERSION=${NAMEDEB%-*}
+ VERSION=${VERSION#*_}
+ export VERSION
+@@ -116,27 +115,37 @@
+ #control.tar.gz
+ #data.tar.gz
+ #
++
+ #unpack .deb
+     ar -x $CWD/$i
+      tar zxf data.tar.gz #pkg
+-  #read and save control file if not exist (create install/slack-desc)
++  #save info from control.tar.gz if not exist (create install/slack-desc)
+ echo "create install/slack-desc"
+   mkdir install
+-   tar zxfO control.tar.gz ./control |sed 1,8d | sed "s,^Description:,,g;s,^ ,$PKGNAME: ,g;s,^$PKGNAME: \.$,$PKGNAME: ,g" >install/slack-desc
+-    echo "$PKGNAME: " >>install/slack-desc
+-      if [ ! -r $HOME/.rpmdeb2tgz/control/${i%.*} ];then
+-         echo "save info $HOME/.rpmdeb2tgz/control/${i%.*} for more manipulations."
+-           tar zxfO control.tar.gz ./control >$HOME/.rpmdeb2tgz/control/${i%.*}
+-       #find . -exec ls -l {} \; >>$HOME/.rpmdeb2tgz/control/${i%.*}
+-            less data.tar.gz >>$HOME/.rpmdeb2tgz/control/${i%.*}
++tar zxfO control.tar.gz ./control |sed 1,8d | sed "s,^Description:,,g;s,^ ,$PKGNAME: ,g;s,^$PKGNAME: \.$,$PKGNAME: ,g" >>install/slack-desc
++      if [ ! -d $HOME/.rpmdeb2tgz/${i%.*} ];then
++         mkdir -p $HOME/.rpmdeb2tgz/${i%.*}
++          echo "save info to $HOME/.rpmdeb2tgz/${i%.*} for more manipulations."
++           tar zxf control.tar.gz -C $HOME/.rpmdeb2tgz/${i%.*}/
++            less data.tar.gz >>$HOME/.rpmdeb2tgz/${i%.*}/control
+        fi
++
+     rm -f $DELTARBALLS
++
+ #remove Debian changelog*gz files
+ find . -name "changelo*.gz" -exec rm {} \;
+  #if [[ "$SLKVERSION" > "11.0" ]];then
+   #find . -group bin -exec chown root.root. {}\;
+  #fi
+-  )
++
++ #run(if exist) script for more manipulations and makepkg
++if [ "`basename $0`" = "deb2tgz" ]; then
++  if [ -r $HOME/.rpmdeb2tgz/${i%%_*}.deb2tgz ];then
++   source $HOME/.rpmdeb2tgz/${i%%_*}.deb2tgz
++    fi
++makepkg -l y -c n $CWD/$PKGNAME-$VERSION-$ARCH-$BUILD.tgz
++fi
++)
+ 
+   # Repack the files in a tar.gz archive:
+ if [ "`basename $0`" = "deb2targz" ]; then
+@@ -144,21 +153,6 @@
+     gzip -9 $NAMEDEB.tar
+ fi
+ 
+- # convert to tgz and run(if exist) script for more manipulations
+-if [ "`basename $0`" = "deb2tgz" ]; then
+- if [ -r $HOME/.rpmdeb2tgz/${i%%_*}.deb2tgz ];then
+-   source $HOME/.rpmdeb2tgz/${i%%_*}.deb2tgz
+-     echo "convert: $NAMEDEB to $PKGNAME-$VERSION-$ARCH-$BUILD"
+-  ( cd $TMPDIR ; tar cf - . ) >$PKGNAME-$VERSION-$ARCH-$BUILD.tar
+-    gzip -9 $PKGNAME-$VERSION-$ARCH-$BUILD.tar
+-   mv $PKGNAME-$VERSION-$ARCH-$BUILD.tar.gz $PKGNAME-$VERSION-$ARCH-$BUILD.tgz
+-else
+-echo "convert: $NAMEDEB to $PKGNAME-$VERSION-$ARCH-$BUILD"
+-( cd $TMPDIR ; tar cf - . ) >$PKGNAME-$VERSION-$ARCH-$BUILD.tar
+-  gzip -9 $PKGNAME-$VERSION-$ARCH-$BUILD.tar
+-   mv $PKGNAME-$VERSION-$ARCH-$BUILD.tar.gz $PKGNAME-$VERSION-$ARCH-$BUILD.tgz
+-  fi;fi
+-
+   # Remove temporary directory:
+   rm -rf $TMPDIR
+ 
