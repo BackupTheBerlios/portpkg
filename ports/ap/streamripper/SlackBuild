@@ -1,16 +1,16 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/streamripper/streamripper-1.62.3.tar.gz
-# MD5SUMS: 127eb52355d0d10183ee22c44b5a9039 streamripper-1.62.3.tar.gz
+# SOURCES: http://belnet.dl.sourceforge.net/sourceforge/streamripper/streamripper-1.63.3.tar.gz
+# MD5SUMS: a89dc4ff93106cd8b35eff5dbe64429c streamripper-1.63.3.tar.gz
 # REQUIRES: libmad libogg libvorbis
-# OPTIONAL: faad2
+# OPTIONAL: faad2 glib2
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.62.3
+VERSION=1.63.3
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
