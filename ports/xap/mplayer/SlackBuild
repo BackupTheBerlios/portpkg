@@ -52,6 +52,7 @@ CFLAGS="" \
   --enable-gui \
   --enable-dynamic-plugins \
   --enable-menu \
+  --disable-ivtv \
   $OPT
 make
 make install DESTDIR=$PKG
