@@ -1,7 +1,7 @@
-PACKAGE SIZE (compressed):     1104 K
+PACKAGE SIZE (compressed):     1186 K
 PACKAGE SIZE (uncompressed):   3070 K
-REMOTE SOURCES:                1798 K
-http://distfiles.atheme.org/audacious-1.4.6.tgz
+REMOTE SOURCES:                1900 K
+http://distfiles.atheme.org/audacious-1.5.1.tgz
 FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
@@ -12,16 +12,18 @@ drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/audacious
 -rwxr-xr-x  root/root  usr/bin/audtool
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/audacious-1.4.6/
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/ABOUT-NLS
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/AUTHORS
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/COPYING
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/FAQ.bmp
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/INSTALL
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/NEWS
--rw-r--r--  root/root  usr/doc/audacious-1.4.6/README
+drwxr-xr-x  root/root  usr/doc/audacious-1.5.1/
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/ABOUT-NLS
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/COPYING
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/HACKING
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/INSTALL
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/NEWS
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/README
+-rw-r--r--  root/root  usr/doc/audacious-1.5.1/TODO
 drwxr-xr-x  root/root  usr/include/
 drwxr-xr-x  root/root  usr/include/audacious/
+-rw-r--r--  root/root  usr/include/audacious/audconfig.h
 -rw-r--r--  root/root  usr/include/audacious/audctrl.h
 -rw-r--r--  root/root  usr/include/audacious/auddrct.h
 -rw-r--r--  root/root  usr/include/audacious/configdb.h
@@ -31,7 +33,6 @@ drwxr-xr-x  root/root  usr/include/audacious/
 -rw-r--r--  root/root  usr/include/audacious/discovery.h
 -rw-r--r--  root/root  usr/include/audacious/eventqueue.h
 -rw-r--r--  root/root  usr/include/audacious/flow.h
--rw-r--r--  root/root  usr/include/audacious/formatter.h
 -rw-r--r--  root/root  usr/include/audacious/hook.h
 -rw-r--r--  root/root  usr/include/audacious/i18n.h
 -rw-r--r--  root/root  usr/include/audacious/id3tag.h
@@ -55,11 +56,13 @@ drwxr-xr-x  root/root  usr/include/audacious/
 -rw-r--r--  root/root  usr/include/audacious/vfs.h
 -rw-r--r--  root/root  usr/include/audacious/vfs_buffer.h
 -rw-r--r--  root/root  usr/include/audacious/vfs_buffered_file.h
--rw-r--r--  root/root  usr/include/audacious/xconvert.h
+drwxr-xr-x  root/root  usr/include/libSAD/
+-rw-r--r--  root/root  usr/include/libSAD/common.h
+-rw-r--r--  root/root  usr/include/libSAD/dither.h
+-rw-r--r--  root/root  usr/include/libSAD/libSAD.h
 drwxr-xr-x  root/root  usr/lib/
-drwxr-xr-x  root/root  usr/lib/audacious/
--rwxr-xr-x  root/root  usr/lib/audacious/libaudid3tag.so.1.0.0
 -rwxr-xr-x  root/root  usr/lib/libaudclient.so.1.0.0
+-rwxr-xr-x  root/root  usr/lib/libaudid3tag.so.1.0.0
 drwxr-xr-x  root/root  usr/lib/pkgconfig/
 -rw-r--r--  root/root  usr/lib/pkgconfig/audacious.pc
 -rw-r--r--  root/root  usr/lib/pkgconfig/audclient.pc
@@ -311,9 +314,6 @@ drwxr-xr-x  root/root  usr/share/audacious/Skins/TinyPlayer/
 -rw-r--r--  root/root  usr/share/audacious/Skins/TinyPlayer/titlebar.png
 -rw-r--r--  root/root  usr/share/audacious/Skins/TinyPlayer/viscolor.txt
 -rw-r--r--  root/root  usr/share/audacious/Skins/TinyPlayer/volume.png
-drwxr-xr-x  root/root  usr/share/audacious/glade/
--rw-r--r--  root/root  usr/share/audacious/glade/fileinfo.glade
--rw-r--r--  root/root  usr/share/audacious/glade/prefswin.glade
 drwxr-xr-x  root/root  usr/share/audacious/images/
 -rw-r--r--  root/root  usr/share/audacious/images/about-logo.png
 -rw-r--r--  root/root  usr/share/audacious/images/appearance.png
@@ -322,25 +322,15 @@ drwxr-xr-x  root/root  usr/share/audacious/images/
 -rw-r--r--  root/root  usr/share/audacious/images/audacious_playlist.xpm
 -rw-r--r--  root/root  usr/share/audacious/images/audio.png
 -rw-r--r--  root/root  usr/share/audacious/images/connectivity.png
--rw-r--r--  root/root  usr/share/audacious/images/eq.png
--rw-r--r--  root/root  usr/share/audacious/images/info.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_invert_playlist.png
+-rw-r--r--  root/root  usr/share/audacious/images/menu_playlist.png
+-rw-r--r--  root/root  usr/share/audacious/images/menu_plugin.png
 -rw-r--r--  root/root  usr/share/audacious/images/menu_queue_toggle.png
 -rw-r--r--  root/root  usr/share/audacious/images/menu_randomize_playlist.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_remove_dups.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_remove_unavail.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_select_all.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_select_invert.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_select_none.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_sort_artist.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_sort_filename.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_sort_pathfile.png
--rw-r--r--  root/root  usr/share/audacious/images/menu_sort_title.png
 -rw-r--r--  root/root  usr/share/audacious/images/mouse.png
--rw-r--r--  root/root  usr/share/audacious/images/pl.png
--rw-r--r--  root/root  usr/share/audacious/images/play.png
+-rw-r--r--  root/root  usr/share/audacious/images/playback.png
 -rw-r--r--  root/root  usr/share/audacious/images/playlist.png
 -rw-r--r--  root/root  usr/share/audacious/images/plugins.png
+-rw-r--r--  root/root  usr/share/audacious/images/replay_gain.png
 drwxr-xr-x  root/root  usr/share/audacious/ui/
 -rw-r--r--  root/root  usr/share/audacious/ui/carbon-menubar.ui
 -rw-r--r--  root/root  usr/share/audacious/ui/equalizer.ui

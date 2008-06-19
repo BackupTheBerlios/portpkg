@@ -1,16 +1,17 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://distfiles.atheme.org/audacious-1.4.6.tgz
-# MD5SUMS: 51c828b34300b592c363e6f441312898 audacious-1.4.6.tgz
+# MAINTAINER: vadim 'vadim' <vadim@vadim>
+# SOURCES: http://distfiles.atheme.org/audacious-1.5.1.tgz
+# MD5SUMS: 3c206a6d06d49d8a68f0edd9933d2219 audacious-1.5.1.tgz
 # REQUIRES: dbus-glib desktop-file-utils gcc-g++ glib2 libglade
-# REQUIRES: libmowgli mcs
+# REQUIRES: libmowgli gtk+2 libSM libmcs 
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.6
+VERSION=1.5.1
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
@@ -46,7 +47,7 @@ mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  ABOUT-NLS AUTHORS COPYING FAQ.bmp INSTALL NEWS README \
+  ABOUT-NLS AUTHORS COPYING HACKING INSTALL NEWS README TODO\
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755

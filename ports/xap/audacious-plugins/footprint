@@ -1,7 +1,7 @@
-PACKAGE SIZE (compressed):     1605 K
-PACKAGE SIZE (uncompressed):   4580 K
-REMOTE SOURCES:                3107 K
-http://distfiles.atheme.org/audacious-plugins-1.4.5.tgz
+PACKAGE SIZE (compressed):     1298 K
+PACKAGE SIZE (uncompressed):   3210 K
+REMOTE SOURCES:                2880 K
+http://distfiles.atheme.org/audacious-plugins-1.5.1.tgz
 FILE LIST:
 drwxr-xr-x  root/root  ./
 drwxr-xr-x  root/root  install/
@@ -10,12 +10,11 @@ drwxr-xr-x  root/root  usr/
 drwxr-xr-x  root/root  usr/bin/
 -rwxr-xr-x  root/root  usr/bin/audacious-arts-helper
 drwxr-xr-x  root/root  usr/doc/
-drwxr-xr-x  root/root  usr/doc/audacious-plugins-1.4.5/
--rw-r--r--  root/root  usr/doc/audacious-plugins-1.4.5/AUTHORS
--rw-r--r--  root/root  usr/doc/audacious-plugins-1.4.5/COPYING
--rw-r--r--  root/root  usr/doc/audacious-plugins-1.4.5/ChangeLog
--rw-r--r--  root/root  usr/doc/audacious-plugins-1.4.5/INSTALL
--rw-r--r--  root/root  usr/doc/audacious-plugins-1.4.5/NEWS
+drwxr-xr-x  root/root  usr/doc/audacious-plugins-1.5.1/
+-rw-r--r--  root/root  usr/doc/audacious-plugins-1.5.1/AUTHORS
+-rw-r--r--  root/root  usr/doc/audacious-plugins-1.5.1/COPYING
+-rw-r--r--  root/root  usr/doc/audacious-plugins-1.5.1/INSTALL
+-rw-r--r--  root/root  usr/doc/audacious-plugins-1.5.1/NEWS
 drwxr-xr-x  root/root  usr/lib/
 drwxr-xr-x  root/root  usr/lib/audacious/
 drwxr-xr-x  root/root  usr/lib/audacious/Container/
@@ -24,6 +23,7 @@ drwxr-xr-x  root/root  usr/lib/audacious/Container/
 -rwxr-xr-x  root/root  usr/lib/audacious/Container/xspf.so
 drwxr-xr-x  root/root  usr/lib/audacious/Effect/
 -rwxr-xr-x  root/root  usr/lib/audacious/Effect/audiocompress.so
+-rwxr-xr-x  root/root  usr/lib/audacious/Effect/crystalizer.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Effect/echo.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Effect/ladspa.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Effect/sndstretch.so
@@ -42,20 +42,20 @@ drwxr-xr-x  root/root  usr/lib/audacious/General/
 drwxr-xr-x  root/root  usr/lib/audacious/Input/
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/aac.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/alac.so
+-rwxr-xr-x  root/root  usr/lib/audacious/Input/cdaudio-ng.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/console.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/cuesheet.so
+-rwxr-xr-x  root/root  usr/lib/audacious/Input/demac.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/flacng.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/madplug.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/metronom.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/modplug.so
--rwxr-xr-x  root/root  usr/lib/audacious/Input/musepack.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/sexypsf.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/timidity.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/tonegen.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/tta.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/vorbis.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/vtx.so
--rwxr-xr-x  root/root  usr/lib/audacious/Input/wav.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/wavpack.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Input/wma.so
 drwxr-xr-x  root/root  usr/lib/audacious/Output/
@@ -67,12 +67,12 @@ drwxr-xr-x  root/root  usr/lib/audacious/Output/
 -rwxr-xr-x  root/root  usr/lib/audacious/Output/null.so
 drwxr-xr-x  root/root  usr/lib/audacious/Transport/
 -rwxr-xr-x  root/root  usr/lib/audacious/Transport/lastfm.so
+-rwxr-xr-x  root/root  usr/lib/audacious/Transport/neon.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Transport/stdio.so
 drwxr-xr-x  root/root  usr/lib/audacious/Visualization/
 -rwxr-xr-x  root/root  usr/lib/audacious/Visualization/blur_scope.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Visualization/paranormal.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Visualization/rocklight.so
--rwxr-xr-x  root/root  usr/lib/audacious/Visualization/rootvis.so
 -rwxr-xr-x  root/root  usr/lib/audacious/Visualization/spectrum.so
 drwxr-xr-x  root/root  usr/share/
 drwxr-xr-x  root/root  usr/share/audacious/
@@ -128,6 +128,9 @@ drwxr-xr-x  root/root  usr/share/locale/cy/LC_MESSAGES/
 drwxr-xr-x  root/root  usr/share/locale/de/
 drwxr-xr-x  root/root  usr/share/locale/de/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/de/LC_MESSAGES/audacious-plugins.mo
+drwxr-xr-x  root/root  usr/share/locale/et/
+drwxr-xr-x  root/root  usr/share/locale/et/LC_MESSAGES/
+-rw-r--r--  root/root  usr/share/locale/et/LC_MESSAGES/audacious-plugins.mo
 drwxr-xr-x  root/root  usr/share/locale/fr/
 drwxr-xr-x  root/root  usr/share/locale/fr/LC_MESSAGES/
 -rw-r--r--  root/root  usr/share/locale/fr/LC_MESSAGES/audacious-plugins.mo

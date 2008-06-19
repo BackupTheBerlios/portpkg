@@ -1,18 +1,19 @@
 #!/bin/sh
 # MAINTAINER: Vadim Shevchenko 'shv' <shevadim@mail.ru>
-# SOURCES: http://distfiles.atheme.org/audacious-plugins-1.4.5.tgz
-# MD5SUMS: ecb7802c1800ed2b10b44e7e9fea46aa audacious-plugins-1.4.5.tgz
-# REQUIRES: audacious curl dbus-glib esound glib2 gtk+2 imlib2 lame
-# REQUIRES: libXcomposite libmad libxml2 sdl taglib
-# OPTIONAL: arts libcdio libmpcdec libmtp libogg libsndfile libvorbis
-# OPTIONAL: wavpack
+# MAINTAINER: vadim 'vadim' <vadim@vadim>
+# SOURCES: http://distfiles.atheme.org/audacious-plugins-1.5.1.tgz
+# MD5SUMS: 057b91f33aaf06bb4cde7260177c2f5f audacious-plugins-1.5.1.tgz
+# REQUIRES: audacious curl dbus-glib esound glib2 gtk+2 libXcomposite
+# REQUIRES: libmad libxml2 sdl taglib
+# OPTIONAL: arts flac gcc-g++ imlib2 lame libcddb libcdio libmpcdec
+# OPTIONAL: libmtp libogg libsndfile libvorbis neon wavpack
 
 TMP=${TMP:-/tmp}
 CWD=`pwd`
 NAME=`basename $CWD`
 PKG=$TMP/package-$NAME
 
-VERSION=1.4.5
+VERSION=1.5.1
 ARCH=${ARCH:-i486}
 BUILD=1shv
 
@@ -48,7 +49,7 @@ mv $PKG/usr/share/man $PKG/usr/share/doc $PKG/usr/share/info $PKG/usr/ || true
 rm -fv $PKG/usr/info/dir
 mkdir -p $PKG/usr/doc/$NAME-$VERSION
 cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS \
+  AUTHORS COPYING INSTALL NEWS \
   $PKG/usr/doc/$NAME-$VERSION/
 find $PKG/usr/doc -type f | xargs -r chmod 644
 find $PKG/usr/doc -type d | xargs -r chmod 755
