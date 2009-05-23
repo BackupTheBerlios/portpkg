@@ -62,8 +62,10 @@ sed -ri "/^PACKAGE REQUIRED:.* \|+ /{s/REQUIRED/SUGGESTS/;s/ \|+ /\nPACKAGE SUGG
 sed -ri "s/ [<>=]+ .*$//" $t/packages
 
 # find each binary packages
-sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
+sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*\.t[gbx]z)$,\1,p" $t/files \
 | egrep -v "(^|/)source/" | while read s; do
+  ext=${s##*.}
+  s=${s%.*}
   group=${s%/*}
   pkg=${s##*/}
   name=${pkg%-*-*-*}
@@ -72,8 +74,8 @@ sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
   arch=${rel%-*}
   arch=${arch#*-}
   build=${rel##*-}
-  md5sum=`grep "/$pkg\.tgz$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
-  info=`sed -n "/ $pkg\($\| \|\.tgz\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
+  md5sum=`grep "/$pkg\.$ext$" $t/CHECKSUMS.md5 | sed "s,  .*/,  ,"`
+  info=`sed -n "/ $pkg\($\| \|\.$ext\)/,/^$/p" $t/packages | sed -n "1,/^$/p"`
   desc=`echo "$info" | grep "^$name:"`
   req=`echo "$info" | grep "^PACKAGE REQUIRED:" | cut -d " " -f 4- | xargs`
   opt=`echo "$info" | grep "^PACKAGE SUGGESTS:" | cut -d " " -f 4- | xargs`
@@ -86,7 +88,7 @@ sed -nr "s,(.*/[^/]*-[^/-]*-[^/-]*-[^/-]*)\.tgz$,\1,p" $t/files \
 #!/bin/sh
 # This is a pseudo port--it may look absurd
 # MAINTAINER: Portpkg Project <portpkg-devel@lists.berlios.de>
-# SOURCES: $SOURCE/$group/$pkg.tgz
+# SOURCES: $SOURCE/$group/$pkg.$ext
 # MD5SUMS: $md5sum
 # REQUIRES: $req
 # OPTIONAL: $opt
@@ -104,14 +106,14 @@ eof
 
 CWD=\`pwd\`
 makepkg() { cp \$CWD/\`basename \$1\` \$1; }
-makepkg \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.tgz
+makepkg \$TMP/$name-\$VERSION-\$ARCH-\$BUILD.$ext
 EOF
 done
 
 row "Rebuilding pseudo kernel ports"
 
 # get arch from glibc package
-arch=`grep "/glibc-[^-]*-[^-]*-[^-]*\.tgz$" $t/files | rev | cut -d - -f 2 | rev | sort -u`
+arch=`grep "/glibc-[^-]*-[^-]*-[^-]*\.t[gbx]z$" $t/files | rev | cut -d - -f 2 | rev | sort -u`
 
 # for each flavour (bare.i, bareacpi.i etc.)
 for kernel in `sed -nr "s,^kernels/(.*)/bzImage$,\1,p" $t/files`; do
