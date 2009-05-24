@@ -86,7 +86,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.30 $"
+ENGINE_REV="\$Revision: 1.31 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
@@ -418,7 +418,7 @@ check_indirect() # pkgex
 find_pkg_file()
 {
   local f
-  f=`ls_pkg "^$PKG_DIR/$group/$package\.t[gx]z$"`
+  f=`ls_pkg "^$PKG_DIR/$group/$package\.t[gbx]z$"`
   [ "$f" ] || f=`ls_pkg "/$package\.t[gbx]z$"`
   [ "$f" ] || f=`ls_src "/$package\.t[gbx]z$"`
   echo "$f" | head -n 1
@@ -940,14 +940,13 @@ build_pkg()
 
   # clean up
   mkdir -p $PKG_DIR/$group
-  pkg_file=
   for prod in $products; do
     row "Moving ${prod##*/} to $PKG_DIR/$group/"
     mv $prod $PKG_DIR/$group/
     cache_add pkg $PKG_DIR/$group/${prod##*/}
-    pkg_file=${pkg_file:-$prod}
   done
 #  pkg_file=$PKG_DIR/$group/$package.tgz
+  pkg_file=`find_pkg_file`
 
   row "Cleaning up"
   for src in $sources; do
