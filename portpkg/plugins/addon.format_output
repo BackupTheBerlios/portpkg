@@ -35,7 +35,7 @@ s,^\| (.*),| $C_HEADER\1$NC,;\
 s,^WARNING:,$C_WARN&$NC,;\
 s/^[A-Z]{2,}([^:]*:|.*:$)/$C_STRONG&$NC/;\
 s,^\* ,$C_PAUSE&$NC,;\
-s,^[^ ]*\(\): .*$,$C_DEBUG&$NC,;\
+s,^[^ ]*\(\)(:|) .*$,$C_DEBUG&$NC,;\
 s,^\*\* (.*)$,** $C_ERROR\1$NC,"
 }
 
@@ -60,6 +60,6 @@ header()    { log "\n+==========================================================
 stanza()    { log "\n$@" | fmt_t | colorize; }
 row()       { log "  --> $@" | fmt_t | colorize; }
 warn()      { log "WARNING: $@" | fmt_t | colorize >&2; }
-debug()     { $DEBUG && log "$@" | fmt_t | colorize >&2 || log "$@" >/dev/null; }
+debug()     { $DEBUG && log "$@" | colorize | fmt_t >&2 || log "$@" >/dev/null; }
 pause()     { $INTERACTIVE || return 0; log -n "\n* $@ " | fold -sw $cols | colorize >&2; local s; read s; log -n $s; }
 error()     { [ "$*" ] && log "** $@" | fmt_t | colorize >&2; return 1; }
