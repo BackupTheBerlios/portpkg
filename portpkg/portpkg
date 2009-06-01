@@ -1,7 +1,7 @@
 #!/bin/sh -fu
 #
 # Portpkg -- Source package manager for Slackware
-# Copyright (C) 2003-2007 Thomas Pfaff <topf@users.berlios.de>
+# Copyright (C) 2003-2009 Thomas Pfaff <topf@users.berlios.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@ INST_DIR=$ADM_DIR/packages
 CFG_DIR=/etc/portpkg
 PATH=$PATH:/sbin:/usr/local/sbin:/usr/sbin
 ENGINE_VER=cvs
-ENGINE_REV="\$Revision: 1.32 $"
+ENGINE_REV="\$Revision: 1.33 $"
 TMPDIR=`mktemp -d $TMP/portpkg-XXXXXX` || exit 1
 export TMPDIR
 CACHE=`mktemp -d`
